@@ -1,0 +1,2 @@
+#include "OptimizelySDKTVOS.xcconfig"
+#include "Pods/Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.release.xcconfig"

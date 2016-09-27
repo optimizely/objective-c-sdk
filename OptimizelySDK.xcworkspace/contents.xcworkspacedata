@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:iOSDemo/iOSDemo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKTVOS/../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
+   </FileRef>
+</Workspace>

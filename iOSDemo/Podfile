@@ -1,0 +1,21 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'iOSDemo' do
+  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'JSONModel', '1.3.0'
+
+  # Pods for iOSDemo
+
+  target 'iOSDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'iOSDemoUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
