@@ -1,0 +1,111 @@
+{
+    "experiments": [
+                    {
+                    "id" : "1886780721",
+                    "status": "Running",
+                    "layerId": "1234",
+                    "key": "Basic_Experiment",
+                    "trafficAllocation": [
+                                          {
+                                          "entityId": "6030714421",
+                                          "endOfRange": 5000
+                                          },
+                                          {
+                                          "entityId": "6030714422",
+                                          "endOfRange": 10000
+                                          }
+                                          ],
+                    "variations": [
+                                   {
+                                   "id": "6030714421",
+                                   "key": "Variation_A"
+                                   },
+                                   {
+                                   "id": "6030714422",
+                                   "key": "Variation_B"
+                                   }
+                                   ],
+                    "audienceIds": [ ],
+                    "forcedVariations": { }
+                    },
+                    {
+                    "id" : "3",
+                    "status": "Running",
+                    "layerId": "1234",
+                    "key": "whiteListExperiment",
+                    "trafficAllocation":[],
+                    "variations" : [
+                                    {
+                                    "id" : "variation4",
+                                    "key" : "whiteListedVariation"
+                                    }
+                                    ],
+                    "audienceIds" : [],
+                    "forcedVariations": {
+                    "userId" : "whiteListedVariation"
+                    }
+                    }
+                    ],
+    "version": "1",
+    "audiences": [],
+    "attributes": [],
+    "groups": [
+               {
+               "id": "1886780721",
+               "policy": "random",
+               "trafficAllocation": [
+                                     {
+                                     "entityId": "1",
+                                     "endOfRange": 5000
+                                     },
+                                     {
+                                     "entityId": "2",
+                                     "endOfRange": 6000
+                                     }
+                                     ],
+               "experiments": [
+                               {
+                               "id": "1",
+                               "status": "Running",
+                               "key": "experiment1",
+                               "trafficAllocation": [
+                                                     {
+                                                     "entityId": "11",
+                                                     "endOfRange": 10000
+                                                     }
+                                                     ],
+                               "audienceIds": [],
+                               "variations": [
+                                              {
+                                              "id": "11",
+                                              "key": "variationOfExperiment1"
+                                              }
+                                              ],
+                               "forcedVariations": { }
+                               },
+                               {
+                               "id": "2",
+                               "status": "Running",
+                               "key": "experiment2",
+                               "trafficAllocation": [
+                                                     {
+                                                     "entityId": "21",
+                                                     "endOfRange": 10000
+                                                     }],
+                               "audienceIds": [],
+                               "variations": [
+                                              {
+                                              "id": "21",
+                                              "key": "variationOfExperiment2"
+                                              }
+                                              ],
+                               "forcedVariations": { }
+                               }
+                               ]
+               }
+               ],
+    "projectId": "6031093773",
+    "accountId": "3244610124",
+    "events": [],
+    "revision": "25"
+}

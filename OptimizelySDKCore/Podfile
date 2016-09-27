@@ -1,0 +1,21 @@
+project 'OptimizelySDKCore.xcodeproj/'
+
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'OptimizelySDKCore' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  platform :ios, '9.0'
+  use_frameworks!
+
+  # Pods for OptimizelySDKCore
+  pod 'JSONModel', '1.3.0'
+
+  target 'OptimizelySDKCoreTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'OHHTTPStubs'
+    pod 'OCMock'
+  end
+
+end
