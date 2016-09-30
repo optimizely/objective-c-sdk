@@ -45,7 +45,7 @@ Clone repo and manually add source to project to build.
 
 ### Using the SDK
 
-See the Optimizely server-side testing [developer documentation](http://developers.optimizely.com/server/reference/index) to learn how to set
+See the Optimizely server-side testing [developer documentation](http://developers.optimizely.com/server/) to learn how to set
 up your first custom project and use the SDK. **Please note that you must be a member of the private server-side testing beta to create custom
 projects and use this SDK.**
 
