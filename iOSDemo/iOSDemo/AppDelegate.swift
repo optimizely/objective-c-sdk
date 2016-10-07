@@ -40,15 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let errorHandler = OPTLYErrorHandlerDefault();
             let projectConfig = OPTLYProjectConfig.init(datafile: data, withLogger: logger, withErrorHandler: errorHandler);
             print(projectConfig);
-            let defaultOptimizely : Optimizely = Optimizely.initWithBuilderBlock({ (builder)in
-                builder?.datafile = data;
-                builder?.eventDispatcher = eventDispatcher;
-                builder?.logger = logger;
-                builder?.errorHandler = errorHandler;
-            })!
+
+            if let defaultOptimizely : Optimizely = (Optimizely.initWithBuilderBlock({ (builder)in
+                builder!.datafile = data;
+                builder!.eventDispatcher = eventDispatcher;
+                builder!.logger = logger;
+                builder!.errorHandler = errorHandler;
+            })) {
             
-            defaultOptimizely.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
-            defaultOptimizely.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
+                defaultOptimizely.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
+                defaultOptimizely.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
+            }
+        
         };
         
         return true

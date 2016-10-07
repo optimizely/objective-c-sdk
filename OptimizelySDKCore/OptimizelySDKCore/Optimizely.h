@@ -38,7 +38,7 @@
  * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
  * @return Optimizely instance.
  */
-+ (nullable instancetype)initWithBuilderBlock:(nullable OPTLYBuilderBlock)block;
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
 
 
 
