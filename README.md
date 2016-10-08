@@ -13,8 +13,8 @@ This repository houses the Objective-C SDK for Optimizely's server-side testing 
 ### Installing the SDK
 
 #### Cocoapod 
-1. Create a podfile and add the following line:
-<pre>pod 'OptimizelySDKCore'</pre>
+1. Add the following line in the Podfile:
+<pre>pod 'OptimizelySDKiOS'</pre> or <pre>pod 'OptimizelySDKTVOS'</pre>
 
 2. Run : ``` pod install ```
 
@@ -27,16 +27,20 @@ github "jsonmodel/jsonmodel"</pre>
 
 2. Run: ``` carthage update ```
 
-3. Link the OptimizelySDKCore and JSONModel frameworks to your project:
-      - Go to your project target's **Link Binary With Libraries** and drag over **OptimizelySDKCore.framework** and **JSONModel.framework** from the _Carthage/Build_ folder. 
+3. Link the OptimizelySDKCore and JSONModel frameworks to your project. Go to your project target's **Link Binary With Libraries** and drag over the following from the _Carthage/Build_ folder:  
+      * OptimizelySDKiOSSDK.framework _or_ OptimizelyTVOSSDK.framework<br/> 
+      * OptimizelySDKCore.framework<br/>
+      * JSONModel.framework<br/>
       
 4. Ensure proper bitcode-related files and dSYMs are copied when archiving by calling a Carthage build script:
       - Add a new **Run Script** phase. 
       - In the script area include: 
         ```/usr/local/bin/carthage copy-frameworks```. 
-      - Add the two frameworks to the **Input Files** list:
-        ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKCore.framework```
-        ```$(SRCROOT)/Carthage/Build/iOS/JSONModel.framework```
+      - Add the frameworks to the **Input Files** list:<br/>
+            - ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKiOS.framework``` or      
+              ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKTVOS.framework```<br/>
+            - ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKCore.framework```<br/>
+            - ```$(SRCROOT)/Carthage/Build/iOS/JSONModel.framework```<br/>
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
 
