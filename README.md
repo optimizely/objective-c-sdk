@@ -28,7 +28,7 @@ github "jsonmodel/jsonmodel"</pre>
 2. Run: ``` carthage update ```
 
 3. Link the OptimizelySDKCore and JSONModel frameworks to your project. Go to your project target's **Link Binary With Libraries** and drag over the following from the _Carthage/Build_ folder:  
-      * OptimizelySDK<platform>.framework<br/> 
+      * OptimizelySDK\<platform\>.framework<br/> 
       * OptimizelySDKCore.framework<br/>
       * JSONModel.framework<br/>
       
