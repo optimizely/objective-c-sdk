@@ -21,8 +21,9 @@
 
 + (JSONKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId    : @"variationId",
-                                                        OPTLYDatafileKeysVariationKey   : @"variationKey"
+    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId        : @"variationId",
+                                                        OPTLYDatafileKeysVariationKey       : @"variationKey",
+                                                        OPTLYDatafileKeysVariationVariables : @"variables"
                                                        }];
 }
 

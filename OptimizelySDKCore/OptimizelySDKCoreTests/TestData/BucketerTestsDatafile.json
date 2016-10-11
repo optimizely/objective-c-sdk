@@ -18,11 +18,13 @@
                     "variations": [
                                    {
                                    "id": "6030714421",
-                                   "key": "Variation_A"
+                                   "key": "Variation_A",
+                                   "variables": [{"id": "6384881128", "value": "Hello"}]
                                    },
                                    {
                                    "id": "6030714422",
-                                   "key": "Variation_B"
+                                   "key": "Variation_B",
+                                   "variables": []
                                    }
                                    ],
                     "audienceIds": [ ],
@@ -37,7 +39,8 @@
                     "variations" : [
                                     {
                                     "id" : "variation4",
-                                    "key" : "whiteListedVariation"
+                                    "key" : "whiteListedVariation",
+                                    "variables": []
                                     }
                                     ],
                     "audienceIds" : [],
@@ -79,7 +82,8 @@
                                "variations": [
                                               {
                                               "id": "11",
-                                              "key": "variationOfExperiment1"
+                                              "key": "variationOfExperiment1",
+                                              "variables": []
                                               }
                                               ],
                                "forcedVariations": { }
@@ -98,7 +102,8 @@
                                "variations": [
                                               {
                                               "id": "21",
-                                              "key": "variationOfExperiment2"
+                                              "key": "variationOfExperiment2",
+                                              "variables": []
                                               }
                                               ],
                                "forcedVariations": { }
@@ -109,5 +114,6 @@
     "projectId": "6031093773",
     "accountId": "3244610124",
     "events": [],
+    "variables": [{"id": "6384881128", "key": "someString", "type": "string", "value": "defaultStringValue", "status": "active"}],
     "revision": "25"
 }

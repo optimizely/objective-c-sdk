@@ -62,6 +62,7 @@ extern NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange;
 // Variations
 extern NSString * const OPTLYDatafileKeysVariationId;
 extern NSString * const OPTLYDatafileKeysVariationKey;
+extern NSString * const OPTLYDatafileKeysVariationVariables;
 // Conditions
 extern NSString * const OPTLYDatafileKeysConditionName;
 extern NSString * const OPTLYDatafileKeysConditionType;
@@ -69,6 +70,12 @@ extern NSString * const OPTLYDatafileKeysConditionValue;
 extern NSString * const OPTLYDatafileKeysAndCondition;
 extern NSString * const OPTLYDatafileKeysNotCondition;
 extern NSString * const OPTLYDatafileKeysOrCondition;
+// Variables
+extern NSString * const OPTLYDatafileKeysVariableId;
+extern NSString * const OPTLYDatafileKeysVariableKey;
+extern NSString * const OPTLYDatafileKeysVariableType;
+extern NSString * const OPTLYDatafileKeysVariableValue;
+extern NSString * const OPTLYDatafileKeysVariableStatus;
 
 @interface OPTLYDatafileKeys : NSObject
 

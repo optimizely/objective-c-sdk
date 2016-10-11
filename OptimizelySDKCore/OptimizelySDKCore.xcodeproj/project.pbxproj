@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2DF1F36C1D92FF390080AC4B /* Pods_OptimizelySDKCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F28E1D71101D0096CE8F /* Pods_OptimizelySDKCoreTests.framework */; };
 		2DF1F3761D9352880080AC4B /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1F36F1D93524F0080AC4B /* validator_whitelisting_test_datafile.json */; };
+		5EB7CC6E1DAC048500131612 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EB7CC6C1DAC048500131612 /* OPTLYVariable.h */; };
+		5EB7CC6F1DAC048500131612 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7CC6D1DAC048500131612 /* OPTLYVariable.m */; };
 		EA13DAC31D65141600C6F9E8 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A4C201D372F4700A68DA1 /* OptimizelySDKCore.framework */; };
 		EA1F6A421D63970B00C580A7 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5ACC481D631D0600FB4DDD /* OPTLYTestHelper.m */; };
 		EA1F6A481D63A89A00C580A7 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA5ACC5C1D631D2E00FB4DDD /* BucketerTestsDatafile.json */; };
@@ -162,6 +164,8 @@
 		2907FF11799BFB6EFBC4681C /* Pods-OptimizelySDKCoreTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.rc.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.rc.xcconfig"; sourceTree = "<group>"; };
 		2DF1F36F1D93524F0080AC4B /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = validator_whitelisting_test_datafile.json; path = OptimizelySDKCoreTests/TestData/validator_whitelisting_test_datafile.json; sourceTree = SOURCE_ROOT; };
 		390E1C47BC0CD7BE296AA7AA /* Pods-OptimizelySDKCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EB7CC6C1DAC048500131612 /* OPTLYVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariable.h; sourceTree = SOURCE_ROOT; };
+		5EB7CC6D1DAC048500131612 /* OPTLYVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariable.m; sourceTree = SOURCE_ROOT; };
 		A9F66D02FAB16CD4287CBEA4 /* Pods-OptimizelySDKCoreTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.beta.xcconfig"; sourceTree = "<group>"; };
 		BA417DA013904B5FF5DAC0DB /* Pods-OptimizelySDKCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD897484C33A003C358B540F /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +367,8 @@
 				EA5ACC051D631C9E00FB4DDD /* OPTLYProjectConfig.m */,
 				EA5ACC061D631C9E00FB4DDD /* OPTLYTrafficAllocation.h */,
 				EA5ACC071D631C9E00FB4DDD /* OPTLYTrafficAllocation.m */,
+				5EB7CC6C1DAC048500131612 /* OPTLYVariable.h */,
+				5EB7CC6D1DAC048500131612 /* OPTLYVariable.m */,
 				EA5ACC081D631C9E00FB4DDD /* OPTLYVariation.h */,
 				EA5ACC091D631C9E00FB4DDD /* OPTLYVariation.m */,
 			);
@@ -614,6 +620,7 @@
 				EA5ACBD31D631BD000FB4DDD /* OPTLYMacros.h in Headers */,
 				EA5ACBD61D631BDA00FB4DDD /* OPTLYLog.h in Headers */,
 				EA6BB07E1D76093D00DD40DC /* OPTLYEventView.h in Headers */,
+				5EB7CC6E1DAC048500131612 /* OPTLYVariable.h in Headers */,
 				EA5ACC0E1D631C9E00FB4DDD /* OPTLYBaseCondition.h in Headers */,
 				EA6BB06E1D76057000DD40DC /* OPTLYEventRelatedEvent.h in Headers */,
 				EA59F85D1D5E843000BD4FB4 /* murmur3.h in Headers */,
@@ -870,6 +877,7 @@
 				EA5ACC1F1D631C9E00FB4DDD /* OPTLYVariation.m in Sources */,
 				EA59F85C1D5E841A00BD4FB4 /* murmur3.c in Sources */,
 				EA6BB0731D76058600DD40DC /* OPTLYEventMetric.m in Sources */,
+				5EB7CC6F1DAC048500131612 /* OPTLYVariable.m in Sources */,
 				EA5ACC151D631C9E00FB4DDD /* OPTLYEvent.m in Sources */,
 				EA5ACBED1D631C3800FB4DDD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5ACC0D1D631C9E00FB4DDD /* OPTLYAudience.m in Sources */,
