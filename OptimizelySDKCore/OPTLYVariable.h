@@ -29,5 +29,4 @@
 /// The variable's status.
 @property (nonatomic, strong) NSString *status;
 
-
 @end
