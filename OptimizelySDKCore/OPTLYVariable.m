@@ -14,10 +14,7 @@
 + (JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableId     : @"variableId",
-                                                        OPTLYDatafileKeysVariableKey    : @"variableKey",
-                                                        OPTLYDatafileKeysVariableType   : @"type",
-                                                        OPTLYDatafileKeysVariableValue  : @"value",
-                                                        OPTLYDatafileKeysVariableStatus : @"status"
+                                                        OPTLYDatafileKeysVariableKey    : @"variableKey"
                                                        }];
 }
     
