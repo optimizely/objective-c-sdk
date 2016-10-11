@@ -28,7 +28,7 @@ github "jsonmodel/jsonmodel"</pre>
 2. Run: ``` carthage update ```
 
 3. Link the OptimizelySDKCore and JSONModel frameworks to your project. Go to your project target's **Link Binary With Libraries** and drag over the following from the _Carthage/Build_ folder:  
-      * OptimizelySDKiOSSDK.framework _or_ OptimizelyTVOSSDK.framework<br/> 
+      * OptimizelySDK<platform>.framework<br/> 
       * OptimizelySDKCore.framework<br/>
       * JSONModel.framework<br/>
       
@@ -37,10 +37,9 @@ github "jsonmodel/jsonmodel"</pre>
       - In the script area include: 
         ```/usr/local/bin/carthage copy-frameworks```. 
       - Add the frameworks to the **Input Files** list:<br/>
-            - ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKiOS.framework``` or      
-              ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKTVOS.framework```<br/>
-            - ```$(SRCROOT)/Carthage/Build/iOS/OptimizelySDKCore.framework```<br/>
-            - ```$(SRCROOT)/Carthage/Build/iOS/JSONModel.framework```<br/>
+            - ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDK<platform>.framework```<br/>
+            - ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKCore.framework```<br/>
+            - ```$(SRCROOT)/Carthage/Build/<platform>/JSONModel.framework```<br/>
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
 
