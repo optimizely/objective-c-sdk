@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSString *variableKey;
 /// The variable's type.
 @property (nonatomic, strong) NSString *type;
-/// The variable's value.
+/// The variable's default value.
 @property (nonatomic, strong) NSString *value;
 /// The variable's status.
 @property (nonatomic, strong) NSString *status;
