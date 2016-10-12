@@ -19,12 +19,12 @@
                                    {
                                    "id": "6030714421",
                                    "key": "Variation_A",
-                                   "variables": [{"id": "6384881128", "value": "Hello"}, {"id": "6384881125", "value": false}]
+                                   "variables": [{"id": "6384881128", "value": "Hello"}, {"id": "6384881125", "value": "false"}]
                                    },
                                    {
                                    "id": "6030714422",
                                    "key": "Variation_B",
-                                   "variables": [{"id": "6384881128", "value": "GoodBye"}, {"id": "63234881124", "value": 8}]
+                                   "variables": [{"id": "6384881128", "value": "GoodBye"}, {"id": "63234881124", "value": "8"}]
                                    }
                                    ],
                     "audienceIds": [ ],
@@ -40,7 +40,7 @@
                                     {
                                     "id" : "variation4",
                                     "key" : "whiteListedVariation",
-                                    "variables": [{"id": "6684886128", "value": 1.8}]
+                                    "variables": [{"id": "6684886128", "value": "1.8"}]
                                     }
                                     ],
                     "audienceIds" : [],
@@ -114,6 +114,6 @@
     "projectId": "6031093773",
     "accountId": "3244610124",
     "events": [],
-    "variables": [{"id": "6384881128", "key": "someString", "type": "string", "value": "defaultStringValue", "status": "active"}, {"id": "6384881125", "key": "someBoolean", "type": "bool", "value": "false", "status": "inactive"}, {"id": "63234881124", "key": "someInteger", "type": "integer", "value": 1, "status": "active"}, {"id": "6684886128", "key": "someFloat", "type": "float", "value": 0.5, "status": "active"}],
+    "variables": [{"id": "6384881128", "key": "someString", "type": "string", "value": "defaultStringValue", "status": "active"}, {"id": "6384881125", "key": "someBoolean", "type": "bool", "value": "false", "status": "inactive"}, {"id": "63234881124", "key": "someInteger", "type": "integer", "value": "1", "status": "active"}, {"id": "6684886128", "key": "someFloat", "type": "float", "value": "0.5", "status": "active"}],
     "revision": "25"
 }
