@@ -5,6 +5,11 @@ This repository houses the Objective-C SDK for Optimizely's server-side testing 
 
 ## Getting Started
 
+### Using the SDK
+
+See the Optimizely server-side testing [developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec) to learn how to set
+up your first custom project and use the SDK. **Please note that you must be a member of the private server-side testing beta to create custom projects and use this SDK.**
+
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
 * Foundation.framework
@@ -45,12 +50,6 @@ Futher installation instructions for Carthage: https://github.com/Carthage/Carth
 
 #### Clone Source
 Clone repo and manually add source to project to build. 
-
-### Using the SDK
-
-See the Optimizely server-side testing [developer documentation](http://developers.optimizely.com/server/) to learn how to set
-up your first custom project and use the SDK. **Please note that you must be a member of the private server-side testing beta to create custom
-projects and use this SDK.**
 
 ###Contributing
 
