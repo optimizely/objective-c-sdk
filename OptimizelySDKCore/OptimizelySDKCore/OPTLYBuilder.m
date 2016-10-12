@@ -78,7 +78,7 @@
 
 - (id<OPTLYErrorHandler>)errorHandler {
     if (!_errorHandler) {
-        _errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
+        _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
     }
     return _errorHandler;
 }

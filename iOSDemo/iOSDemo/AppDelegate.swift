@@ -36,22 +36,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkService = OPTLYNetworkService();
         networkService.downloadProjectConfig(projectId) { [weak self] (data, response, error) in
             let eventDispatcher = OPTLYEventDispatcherDefault();
-            let logger = OPTLYLoggerDefault();
-            let errorHandler = OPTLYErrorHandlerDefault();
+            let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
+            let errorHandler = OPTLYErrorHandlerNoOp();
             let projectConfig = OPTLYProjectConfig.init(datafile: data, withLogger: logger, withErrorHandler: errorHandler);
             print(projectConfig);
 
-            if let defaultOptimizely : Optimizely = (Optimizely.initWithBuilderBlock({ (builder)in
+            
+            let defaultOptimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
                 builder!.datafile = data;
                 builder!.eventDispatcher = eventDispatcher;
                 builder!.logger = logger;
-                builder!.errorHandler = errorHandler;
-            })) {
+                //builder!.errorHandler = errorHandler;
+            }))
+                
+            defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
+            defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
             
-                defaultOptimizely.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
-                defaultOptimizely.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
+
+            
+            // activate user in an experiment
+            if let variation = defaultOptimizely?.activateExperiment("experimentKey", userId: "userId")
+            {
+                if (variation.variationKey == "variation_a") {
+                    // execute code for variation A
+                }
+                else if (variation.variationKey == "variation_b") {
+                    // execute code for variation B
+                }
+            } else {
+                // execute default code
             }
-        
+
+
+            
         };
         
         return true
