@@ -1,0 +1,9 @@
+language: objective-c
+xcode_workspace: OptimizelySDK.xcworkspace
+xcode_scheme: OptimizelySDKCore
+branches:
+  only:
+  - master
+  - devel
+  - rc
+  - beta
