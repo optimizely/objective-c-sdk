@@ -13,6 +13,4 @@ script:
   - if [ $TRAVIS_BRANCH == 'devel' ]; then
 	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS;
 	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
-	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS;
-        xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;  
   fi
