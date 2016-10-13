@@ -1,9 +1,18 @@
 language: objective-c
-xcode_workspace: OptimizelySDK.xcworkspace
-xcode_scheme: OptimizelySDKCore
+osx_image: xcode7.3
+env:
+  matrix:
+   - TEST_SDK_iOS=iphonesimulator
+   - TEST_SDK_iOS=iphoneos
+   - TEST_SDK_tvOS=appletvsimulator
+   - TEST_SDK_tvOS=appletvos
 branches:
   only:
-  - master
   - devel
-  - rc
-  - beta
+script:
+  - if [ $TRAVIS_BRANCH == 'devel' ]; then
+	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS;
+	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
+	xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS;
+        xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;  
+  fi
