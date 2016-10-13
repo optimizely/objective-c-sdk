@@ -429,7 +429,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         NSAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
         
         // check should index
-        BOOL shouldIndex = params[OPTLYEventParameterKeysFeaturesShouldIndex];
+        BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
         NSAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
     }
 }
