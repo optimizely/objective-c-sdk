@@ -940,6 +940,7 @@
 /* Begin XCBuildConfiguration section */
 		EA1A4C321D372F4700A68DA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA475A041D46DB8600EBD626 /* OptimizelySDKCore.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -985,11 +986,12 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -998,6 +1000,7 @@
 		};
 		EA1A4C331D372F4700A68DA1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA475A061D46DB8600EBD626 /* OptimizelySDKCore.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1019,6 +1022,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1041,6 +1045,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1070,12 +1075,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1107,6 +1114,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1129,11 +1137,11 @@
 				);
 				INFOPLIST_FILE = OptimizelySDKCoreTests/OptimizelySDKCoreTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) @executable_path/../Frameworks @loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 			};
 			name = Debug;
 		};
@@ -1156,16 +1164,17 @@
 				);
 				INFOPLIST_FILE = OptimizelySDKCoreTests/OptimizelySDKCoreTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) @executable_path/../Frameworks @loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 			};
 			name = Release;
 		};
 		EA4759FD1D46D2A500EBD626 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA475A031D46DB8600EBD626 /* OptimizelySDKCore.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1187,6 +1196,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1209,6 +1219,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1243,6 +1254,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = Beta;
 		};
@@ -1267,16 +1279,17 @@
 				);
 				INFOPLIST_FILE = OptimizelySDKCoreTests/OptimizelySDKCoreTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) @executable_path/../Frameworks @loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 			};
 			name = Beta;
 		};
 		EA475A001D46D2AE00EBD626 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA475A051D46DB8600EBD626 /* OptimizelySDKCore.rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1298,6 +1311,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1320,6 +1334,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -1354,12 +1369,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = RC;
 		};
 		EA475A021D46D2AE00EBD626 /* RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2907FF11799BFB6EFBC4681C /* Pods-OptimizelySDKCoreTests.rc.xcconfig */;
+			baseConfigurationReference = EA475A051D46DB8600EBD626 /* OptimizelySDKCore.rc.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)",
@@ -1378,11 +1394,11 @@
 				);
 				INFOPLIST_FILE = OptimizelySDKCoreTests/OptimizelySDKCoreTestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS) @executable_path/../Frameworks @loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 			};
 			name = RC;
 		};

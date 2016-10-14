@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.preserve_path           = xcconfig_path
   s.xcconfig                = File.open(File.join(Dir.pwd, xcconfig_path)) { |file| Hash[file.each_line.map { |line| line.split("=", 2) }] }
   s.subspec "JSONModel" do |ss|
-      ss.dependency 'JSONModel', '~> 1.3.0'
+      ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
 

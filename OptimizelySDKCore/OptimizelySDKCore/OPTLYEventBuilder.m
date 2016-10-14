@@ -162,7 +162,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
                           attributes:(NSDictionary<NSString *, NSString *> *)attributes
 {
     NSMutableDictionary *params = [NSMutableDictionary new];
-    params[OPTLYEventParameterKeysTimestamp] = StringOrEmpty([self time]);
+    params[OPTLYEventParameterKeysTimestamp] = [self time] ? : @0;
     params[OPTLYEventParameterKeysRevision] = StringOrEmpty(config.revision);
     params[OPTLYEventParameterKeysVisitorId] = StringOrEmpty(userId);
     params[OPTLYEventParameterKeysProjectId] = StringOrEmpty(config.projectId);
@@ -259,11 +259,12 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     return [layerStates copy];
 }
 
-- (NSString *)time
+// time in milliseconds
+- (NSNumber *)time
 {
-    NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
-    NSNumber *timestamp = [NSNumber numberWithDouble:currentTimeInterval * 1000];
-    NSString *time = [NSString stringWithFormat:@"%lld", [timestamp longLongValue]];
-    return time;
+    NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970] * 1000;
+    NSNumber *timestamp = [NSNumber numberWithDouble:currentTimeInterval];
+
+    return timestamp;
 }
 @end

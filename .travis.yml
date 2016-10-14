@@ -1,0 +1,24 @@
+language: objective-c
+branches:
+  only:
+    - devel
+    - master
+env:
+  matrix:
+    - TEST_SDK_iOS=iphonesimulator OS=8.1 NAME=iPhone 5
+    - TEST_SDK_iOS=iphonesimulator OS=9.3 NAME=iPhone 6s Plus
+    - TEST_SDK_tvOS=appletvsimulator
+script:
+- |
+  if [  "$TRAVIS_BRANCH" == 'devel' ]; then
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS -destination "platform=iOS Simulator,OS=$OS,name=$NAME";
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS -destination "platform=iOS Simulator,OS=$OS,name=$NAME";
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKtvOS -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
+  fi
+  if [  "$TRAVIS_BRANCH" == 'master' ]; then
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS -destination "platform=iOS Simulator,OS=$OS,name=$NAME";
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCore -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_iOS -destination "platform=iOS Simulator,OS=$OS,name=$NAME";
+    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKtvOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK_tvOS;
+  fi

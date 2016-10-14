@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D75443E1D777F67002601A1 /* OPTLYEventBuilder+tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D75443D1D777F67002601A1 /* OPTLYEventBuilder+tvOS.h */; };
 		2D7544401D777F77002601A1 /* OPTLYEventBuilder+tvOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75443F1D777F77002601A1 /* OPTLYEventBuilder+tvOS.m */; };
-		EA64F2AE1D7117690096CE8F /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106AB1D710E7C004B0DDF /* Pods_OptimizelySDKTVOSTests.framework */; };
 		EA8390F61D7104B30074185B /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8390F51D7104B30074185B /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA8390FD1D7104B30074185B /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8390F21D7104B30074185B /* OptimizelySDKTVOS.framework */; };
 		EA8391021D7104B30074185B /* OptimizelySDKTVOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8391011D7104B30074185B /* OptimizelySDKTVOSTests.m */; };
 		EA83917E1D710B1B0074185B /* OptimizelySDKTVOS.beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA8391791D710B1B0074185B /* OptimizelySDKTVOS.beta.xcconfig */; };
 		EA83917F1D710B1B0074185B /* OptimizelySDKTVOS.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA83917A1D710B1B0074185B /* OptimizelySDKTVOS.debug.xcconfig */; };
@@ -55,6 +53,13 @@
 			containerPortal = EA01069A1D710E7C004B0DDF /* Pods.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C257CCB7E1CB1CB0084F83EB2D7D48FA;
+			remoteInfo = "Pods-OptimizelySDKTVOSTests";
+		};
+		EA3820EC1DB05DF60044B1D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA01069A1D710E7C004B0DDF /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AC34E7174C1E4925DE71E4CDE3F69B96;
 			remoteInfo = "Pods-OptimizelySDKTVOSTests";
 		};
 		EA8390FE1D7104B30074185B /* PBXContainerItemProxy */ = {
@@ -102,8 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA8390FD1D7104B30074185B /* OptimizelySDKTVOS.framework in Frameworks */,
-				EA64F2AE1D7117690096CE8F /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +249,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EA3820ED1DB05DF60044B1D0 /* PBXTargetDependency */,
 				EA8390FF1D7104B30074185B /* PBXTargetDependency */,
 			);
 			name = OptimizelySDKTVOSTests;
@@ -465,6 +469,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EA3820ED1DB05DF60044B1D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-OptimizelySDKTVOSTests";
+			targetProxy = EA3820EC1DB05DF60044B1D0 /* PBXContainerItemProxy */;
+		};
 		EA8390FF1D7104B30074185B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA8390F11D7104B30074185B /* OptimizelySDKTVOS */;
