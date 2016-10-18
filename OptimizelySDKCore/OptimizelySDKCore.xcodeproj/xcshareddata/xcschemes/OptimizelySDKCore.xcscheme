@@ -38,26 +38,6 @@
                ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA83911F1D7104CA0074185B"
-               BuildableName = "OptimizelySDKiOSTests.xctest"
-               BlueprintName = "OptimizelySDKiOSTests"
-               ReferencedContainer = "container:../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA8390FB1D7104B30074185B"
-               BuildableName = "OptimizelySDKTVOSTests.xctest"
-               BlueprintName = "OptimizelySDKTVOSTests"
-               ReferencedContainer = "container:../OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
