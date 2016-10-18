@@ -14,10 +14,8 @@ env:
 script:
 - |
   if [  "$TRAVIS_BRANCH" == "devel" ]; then
-    set -o pipefail
-    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME";
+    set -o pipefail; xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME";
   fi
   if [  "$TRAVIS_BRANCH" == "master" ]; then
-    set -o pipefail
-    xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME";
+    set -o pipefail; xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME";
   fi
