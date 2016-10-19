@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		049EEBE29FB19CD39C676A8754D90A57 /* Pods-OptimizelySDKTVOSTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DE665620F1B69406F61A885C4B6E981B /* Pods-OptimizelySDKTVOSTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06E48CC96856A0316ECA7EABEB9694D9 /* OHHTTPStubs-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6238CA5DB444689D85482DA66555B /* OHHTTPStubs-dummy.m */; };
 		084D49DCF46F23FD34470621BAF6B27F /* OCMInvocationExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3C306E52029FAA3F114907151D154 /* OCMInvocationExpectation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0D38D7ECFE50D812269D1C80FF8A47BD /* OHPathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DB276E8DDA761EDC7E99EDDB0DAA80 /* OHPathHelpers.m */; };
@@ -22,17 +21,19 @@
 		24E85704BBE2FD46363E43E32CA02A7A /* OCMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A095034ECD1680BB6041199A58A3F4 /* OCMockObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		261F4E673D5E4AA0B15B057C813BACA3 /* NSMethodSignature+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0EA223AB99BD42B3A6C2444FFF9663 /* NSMethodSignature+OCMAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2D1B6D43343EC42D1429B62693F06BAE /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = FFDEE5BBBCCE1E139F8798EF438D5CE6 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30022576347F46FA1E7738F5E936C3BD /* Pods-OptimizelySDKTVOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A10BDC2BAD832ACB1CF4AA4F4DF5DE8 /* Pods-OptimizelySDKTVOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DD73E5FFB2CB24B73F1EF5AFEE2949D /* Pods-OptimizelySDKTVOSTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AAD6097184C212C97601672D26884FE6 /* Pods-OptimizelySDKTVOSTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30022576347F46FA1E7738F5E936C3BD /* Pods-OptimizelySDKTVOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 424A73EE5099C1EAB6D835AB772991ED /* Pods-OptimizelySDKTVOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DA71E043A0490026D14CCEF622F75D /* NSMethodSignature+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFCAF02AFBFEE102767D9A90C0DFE90 /* NSMethodSignature+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		341298D33E0A4BE88FE19DFA7D33DE4B /* OCMRealObjectForwarder.h in Headers */ = {isa = PBXBuildFile; fileRef = E770BABA3575221DFCD689AC9CD2D068 /* OCMRealObjectForwarder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		35164275680522190DE8D2D5BF94420E /* NSNotificationCenter+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E66C91477A243EF7B5123EB75C26D2E4 /* NSNotificationCenter+OCMAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36674C05126C9E3088C58FCF95BCDB1E /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = F57582223F114CB63A5DA2E04FAB6BF1 /* JSONModel+networking.m */; };
-		36D3BA8C1758399471458685E7995E8A /* Pods-OptimizelySDKTVOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B823E231C6B0619001219C17892D1D6A /* Pods-OptimizelySDKTVOS-dummy.m */; };
+		36D3BA8C1758399471458685E7995E8A /* Pods-OptimizelySDKTVOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1ADD60904FA7CF8A5FCC2D5B8DB8C /* Pods-OptimizelySDKTVOS-dummy.m */; };
 		3880060E591367448B6A798BE49609EB /* OCMConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5517DDD40B2ECE231031A8C03974F5D9 /* OCMConstraint.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3C6E4980C46DB95EC50F498C2DBAF381 /* OCClassMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C2BCC9AD2E1878891C386E3C60C91D /* OCClassMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3DA75DDDD3249427EF112B002BE0504A /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = BD7C617F8A38C9F6A548369D0D1B75EB /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F5FEEE5290A572585D32BD5FD6052A0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = D098A0D300183B7F35C225C4DD25216F /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42153B09D56D38336593934DC4E86979 /* NSURLRequest+HTTPBodyTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FAB77B0560211D108F1468B847D234 /* NSURLRequest+HTTPBodyTesting.m */; };
+		4372773B897340854ACE4A74A39F0EBD /* Pods-OptimizelySDKTVOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCD152BBA77836A76D8C5C1880BF185 /* Pods-OptimizelySDKTVOSTests-dummy.m */; };
 		44C8F17A628B1768AC62ED5F909EA538 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420E3A86F51B289FC27F75384113EB1 /* OHHTTPStubs+NSURLSessionConfiguration.m */; };
 		458810290C65609101CE7E9874BD409F /* OCMExpectationRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = E31781490820E5F859C96A60510CF706 /* OCMExpectationRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		46D8CBF2CC27695DE43B0F6A461A498F /* OCMArg.m in Sources */ = {isa = PBXBuildFile; fileRef = 11256F3B31AFFDCC416B74885ED5EF2C /* OCMArg.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -41,7 +42,6 @@
 		506B0AB50179BBA844988DF97C90C70C /* OCMock.h in Headers */ = {isa = PBXBuildFile; fileRef = AB00EDB5EBB84BCFBEA65AC902DD4323 /* OCMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52FB8E9220BC1B2E7B39C81B0D52086D /* OCMInvocationExpectation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3884CC55436E5C8EDBC72F93BFABE4 /* OCMInvocationExpectation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		54E93FFF6795EA8B9173177C680BE0D6 /* OCMRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CECAEC9DB5802C776B5805281B1D884 /* OCMRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		57BDB8BCE26F3D5E43040F65B6C00A92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADF9C12B94657B5D644A57BE0CC8B53 /* Foundation.framework */; };
 		5A7EDBD81D3BCCA2EBD4A402F1F81158 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = FAD9E088C375C8FAB2804044E37EA022 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D11B12835EAF88DD9C31B069A65EF6A /* OCMNotificationPoster.h in Headers */ = {isa = PBXBuildFile; fileRef = F959CFE5435694F0CD7D955352ADD9EB /* OCMNotificationPoster.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5D9B4B03D08E8C54B8FB7DDEE1845E40 /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = 213540CA44500AE9567A7667B9D93514 /* OCMArg.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -76,9 +76,9 @@
 		999009FF5648917110EA59B5C8828344 /* OCMInvocationStub.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA85A804DDD703452FC23416EE47AB4 /* OCMInvocationStub.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		99E408B6F74F95388AA72DCD7AB220E5 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FAB49E623BE3BB77AA30159202CA76 /* JSONModel.m */; };
 		9A719B5D82D8D541491A485CC6F69065 /* OCMBoxedReturnValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BAD54DCEDA499C5E640D56CDDABA19 /* OCMBoxedReturnValueProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		9AC8E4E0FD0326376ECA79A791E8E1FB /* Pods-OptimizelySDKTVOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EC61CF1BB773ED27C26BA85610C786 /* Pods-OptimizelySDKTVOSTests-dummy.m */; };
 		A02A6FFF4F48A2D5420CAEA35EEB2043 /* OCPartialMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6F63A3EC5040DB9F13E01B042F8D3 /* OCPartialMockObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A08AC248B96948636EBD4AC0A0DB34B2 /* OCMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 34321E7DEB3F9353329FEAC2D3639CC0 /* OCMLocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A4B3500DBD18B0F2D2762028BB3D08F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AADF9C12B94657B5D644A57BE0CC8B53 /* Foundation.framework */; };
 		AC12CC73A195A5801F28E1C38F636E76 /* OCMPassByRefSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = C68BBFF2243E8ABA173E7F0B91F8FBCB /* OCMPassByRefSetter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AE82F0F6CB3789E0468BF411884B88DD /* OCMFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C979A1D30A9E0A2303D0958655B730F /* OCMFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AF747B8EB3D77214B62C785014A90192 /* OCMVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 998C4F07DFD623C9EC9519B91306E802 /* OCMVerifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -125,14 +125,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		08D458E97A16516260B26BAF6E73F9BE /* PBXContainerItemProxy */ = {
+		4FFDD77BA69A7E1A1F519F945A84543A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 443858D4EB29D85AFFF373F1DDA9C83D;
-			remoteInfo = OCMock;
+			remoteGlobalIDString = 037BBF054B42F6279690695FC7429201;
+			remoteInfo = JSONModel;
 		};
-		2ED2F66F35174BE9C72F9EC95F25ACF4 /* PBXContainerItemProxy */ = {
+		A19FE9F716A8A418430B253A79481F9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -146,16 +146,19 @@
 			remoteGlobalIDString = 037BBF054B42F6279690695FC7429201;
 			remoteInfo = JSONModel;
 		};
+		F9D9C3B3A48FB131457CC76FE9636971 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 443858D4EB29D85AFFF373F1DDA9C83D;
+			remoteInfo = OCMock;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		011905A35227E8BAA99488ED92FDE023 /* Pods-OptimizelySDKTVOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKTVOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		02D22CF8ED16D19FC1F6BB27F296086D /* Pods-OptimizelySDKTVOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSTests-frameworks.sh"; sourceTree = "<group>"; };
+		0000FE1BB7402DDB18CB0B1815E5DD30 /* Pods-OptimizelySDKTVOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKTVOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		03C2BCC9AD2E1878891C386E3C60C91D /* OCClassMockObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCClassMockObject.h; path = Source/OCMock/OCClassMockObject.h; sourceTree = "<group>"; };
-		05FF65AF00C479E51F060E9E0B05DCDF /* Pods-OptimizelySDKTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		07B19EC2CE314358D2D7D282E1DCB41F /* OHHTTPStubs.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OHHTTPStubs.m; path = OHHTTPStubs/Sources/OHHTTPStubs.m; sourceTree = "<group>"; };
-		07BD27743A831DE3A69F7EB3497A6222 /* Pods-OptimizelySDKTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.debug.xcconfig"; sourceTree = "<group>"; };
-		08E2AD07E58EB7020D0E834FE47EB4E2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BC74A4298A1ECA8C8D9AB4449BC2802 /* OCMMacroState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMMacroState.m; path = Source/OCMock/OCMMacroState.m; sourceTree = "<group>"; };
 		0C3884CC55436E5C8EDBC72F93BFABE4 /* OCMInvocationExpectation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMInvocationExpectation.h; path = Source/OCMock/OCMInvocationExpectation.h; sourceTree = "<group>"; };
 		0F601F45CE65C0CE335A0428B73E7645 /* OHHTTPStubs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs-prefix.pch"; sourceTree = "<group>"; };
@@ -164,9 +167,8 @@
 		11352F30ED1841E3C0D2D8FFBA837E4C /* OCProtocolMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCProtocolMockObject.m; path = Source/OCMock/OCProtocolMockObject.m; sourceTree = "<group>"; };
 		13FAB77B0560211D108F1468B847D234 /* NSURLRequest+HTTPBodyTesting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+HTTPBodyTesting.m"; path = "OHHTTPStubs/Sources/NSURLSession/NSURLRequest+HTTPBodyTesting.m"; sourceTree = "<group>"; };
 		14DEA0C533CDE39ADA7574B043590B98 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
-		15C57323BA97E37225241CE8F4298549 /* Pods-OptimizelySDKTVOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKTVOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		15FE58B84AFF934AEB510D95F8F22847 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		1B5E1D94F6E104E8F13A1E7C8EDA2C07 /* Pods-OptimizelySDKTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		1B455252E3AC1A691EF850C128DF8B8C /* Pods-OptimizelySDKTVOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKTVOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1BC6238CA5DB444689D85482DA66555B /* OHHTTPStubs-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs-dummy.m"; sourceTree = "<group>"; };
 		1C68D62C9AF8B4B6214E1FB8E21C28BE /* OCMFunctionsPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMFunctionsPrivate.h; path = Source/OCMock/OCMFunctionsPrivate.h; sourceTree = "<group>"; };
 		1F83CF893AA0F3160E7A2D8ECEC7C06A /* OCProtocolMockObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCProtocolMockObject.h; path = Source/OCMock/OCProtocolMockObject.h; sourceTree = "<group>"; };
@@ -180,28 +182,34 @@
 		34321E7DEB3F9353329FEAC2D3639CC0 /* OCMLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMLocation.m; path = Source/OCMock/OCMLocation.m; sourceTree = "<group>"; };
 		34A9343BD577A502646A8C68700FF709 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35EF12BC5B49DAEDAD1E4B8326EE0FD7 /* OCMInvocationMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMInvocationMatcher.h; path = Source/OCMock/OCMInvocationMatcher.h; sourceTree = "<group>"; };
+		36A5FCEB7DAC2686C664EC69F769B003 /* Pods-OptimizelySDKTVOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKTVOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3D2855EA3B0C1D9349AAA7EB49535FF6 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		4189F1DDF2201BCA8BEEED9F61D28FA2 /* OCMBoxedReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMBoxedReturnValueProvider.h; path = Source/OCMock/OCMBoxedReturnValueProvider.h; sourceTree = "<group>"; };
+		424A73EE5099C1EAB6D835AB772991ED /* Pods-OptimizelySDKTVOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKTVOS-umbrella.h"; sourceTree = "<group>"; };
 		4372C17CB30B5F48FB72F0CB05847F68 /* OCMExceptionReturnValueProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMExceptionReturnValueProvider.m; path = Source/OCMock/OCMExceptionReturnValueProvider.m; sourceTree = "<group>"; };
 		4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
-		4A10BDC2BAD832ACB1CF4AA4F4DF5DE8 /* Pods-OptimizelySDKTVOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKTVOS-umbrella.h"; sourceTree = "<group>"; };
 		4BACB35AA6016FAF15DC0BD99FD364A4 /* JSONValueTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
 		4CC3C306E52029FAA3F114907151D154 /* OCMInvocationExpectation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMInvocationExpectation.m; path = Source/OCMock/OCMInvocationExpectation.m; sourceTree = "<group>"; };
 		4F8F1F00D48AB3C9F543D204C568626B /* NSNotificationCenter+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+OCMAdditions.m"; path = "Source/OCMock/NSNotificationCenter+OCMAdditions.m"; sourceTree = "<group>"; };
 		4FA1A2D95DA29D38044DE3F91B7F0E1F /* OCMBlockArgCaller.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMBlockArgCaller.m; path = Source/OCMock/OCMBlockArgCaller.m; sourceTree = "<group>"; };
+		52F4F9C8F4AB26ED49871E389A162889 /* Pods-OptimizelySDKTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		53AB12DF77D8B34471D0FAF5183826AD /* NSInvocation+OCMAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+OCMAdditions.h"; path = "Source/OCMock/NSInvocation+OCMAdditions.h"; sourceTree = "<group>"; };
 		53FA5081F25B81A97E09A2FCB76C8398 /* OCClassMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCClassMockObject.m; path = Source/OCMock/OCClassMockObject.m; sourceTree = "<group>"; };
 		5403EDC629863319C192E0240E87E896 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
 		5420E3A86F51B289FC27F75384113EB1 /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OHHTTPStubs+NSURLSessionConfiguration.m"; path = "OHHTTPStubs/Sources/NSURLSession/OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
 		5517DDD40B2ECE231031A8C03974F5D9 /* OCMConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMConstraint.m; path = Source/OCMock/OCMConstraint.m; sourceTree = "<group>"; };
-		58CA631CA62BB668FEA7FF66D19E7CD1 /* Pods-OptimizelySDKTVOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOS-resources.sh"; sourceTree = "<group>"; };
 		5AFCAF02AFBFEE102767D9A90C0DFE90 /* NSMethodSignature+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMethodSignature+OCMAdditions.m"; path = "Source/OCMock/NSMethodSignature+OCMAdditions.m"; sourceTree = "<group>"; };
 		5CECAEC9DB5802C776B5805281B1D884 /* OCMRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMRecorder.h; path = Source/OCMock/OCMRecorder.h; sourceTree = "<group>"; };
-		5E73E2105FD7D31016A8E883390E5782 /* Pods-OptimizelySDKTVOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSTests-resources.sh"; sourceTree = "<group>"; };
+		5DABED6142AAAF09170080AB2140A367 /* Pods-OptimizelySDKTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		629FF5D7338285B4D8B45A3A207AC91A /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63A1ADD60904FA7CF8A5FCC2D5B8DB8C /* Pods-OptimizelySDKTVOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOS-dummy.m"; sourceTree = "<group>"; };
+		63ACCCCD9546AE8F2731A96FA2AB8FC8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6559E80EBCB1E8E147572644F9997F98 /* OCMInvocationStub.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMInvocationStub.m; path = Source/OCMock/OCMInvocationStub.m; sourceTree = "<group>"; };
 		65B0C17AD1B93EBDC68505C4BAAC7FDC /* OCMExceptionReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMExceptionReturnValueProvider.h; path = Source/OCMock/OCMExceptionReturnValueProvider.h; sourceTree = "<group>"; };
 		66B822ECD6EE075F067A17F87DA90743 /* OCObserverMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCObserverMockObject.m; path = Source/OCMock/OCObserverMockObject.m; sourceTree = "<group>"; };
 		6A99D6DC454FA3C603B4F2CB3EDE607F /* OCMIndirectReturnValueProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMIndirectReturnValueProvider.m; path = Source/OCMock/OCMIndirectReturnValueProvider.m; sourceTree = "<group>"; };
 		6B1D422570F2B86399BF1FFB31AC5C22 /* OHHTTPStubsResponse+JSON.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OHHTTPStubsResponse+JSON.h"; path = "OHHTTPStubs/Sources/JSON/OHHTTPStubsResponse+JSON.h"; sourceTree = "<group>"; };
+		6DCCD775FC59BACC0E07FC9A0CDC1D7E /* Pods-OptimizelySDKTVOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSTests-resources.sh"; sourceTree = "<group>"; };
 		72736F9C47A2EEB657F7BB9BB1540C31 /* JSONHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
 		74E6F63A3EC5040DB9F13E01B042F8D3 /* OCPartialMockObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCPartialMockObject.h; path = Source/OCMock/OCPartialMockObject.h; sourceTree = "<group>"; };
 		774C2F4B5B54A3739ED4490F602844E8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -215,12 +223,12 @@
 		8599829B0AC63D37285536462C09A907 /* OCMIndirectReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMIndirectReturnValueProvider.h; path = Source/OCMock/OCMIndirectReturnValueProvider.h; sourceTree = "<group>"; };
 		8788EA48C07330B9F5C1350EEA23D91C /* NSInvocation+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+OCMAdditions.m"; path = "Source/OCMock/NSInvocation+OCMAdditions.m"; sourceTree = "<group>"; };
 		890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OHHTTPStubs.xcconfig; sourceTree = "<group>"; };
+		8ADF30437C61822CB9DC77EBD703AA8B /* Pods-OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-OptimizelySDKTVOS.modulemap"; sourceTree = "<group>"; };
 		8C979A1D30A9E0A2303D0958655B730F /* OCMFunctions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMFunctions.h; path = Source/OCMock/OCMFunctions.h; sourceTree = "<group>"; };
-		8D3EB455022F4F97430FD2001738A9D8 /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		8DF54724F1792890AF7DCD181E5A42A3 /* OCMock-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OCMock-umbrella.h"; sourceTree = "<group>"; };
-		8E2327FC42468E81E129C816165C4A58 /* Pods-OptimizelySDKTVOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKTVOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		8E79509BBA37A8E5A641893F000391E3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E7FF9D60206CCDCB29ADB97FB2CFEAB /* OCMObserverRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMObserverRecorder.h; path = Source/OCMock/OCMObserverRecorder.h; sourceTree = "<group>"; };
+		90B89E7119F1343FE11DBB3CDC379EAC /* Pods-OptimizelySDKTVOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKTVOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		91FAB49E623BE3BB77AA30159202CA76 /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94396A42951CB80E396F588FD70A1580 /* Pods_OptimizelySDKTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,40 +236,37 @@
 		9620692B70AFF0B3FCA5B4EC27BD5198 /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
 		96575BC9E6CE9A21B0D1B6570509B0DF /* OHHTTPStubs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHHTTPStubs.h; path = OHHTTPStubs/Sources/OHHTTPStubs.h; sourceTree = "<group>"; };
 		96E66C0492D68C6372B6CE47D61F4FE4 /* OCMObserverRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMObserverRecorder.m; path = Source/OCMock/OCMObserverRecorder.m; sourceTree = "<group>"; };
-		982A689B68F934B18514D5F789E732B0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998C4F07DFD623C9EC9519B91306E802 /* OCMVerifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMVerifier.m; path = Source/OCMock/OCMVerifier.m; sourceTree = "<group>"; };
 		9DA69EA8292ECC5A7AEC24B4968EA43B /* OHHTTPStubsMethodSwizzling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHHTTPStubsMethodSwizzling.h; path = OHHTTPStubs/Sources/NSURLSession/OHHTTPStubsMethodSwizzling.h; sourceTree = "<group>"; };
 		9FEF84FE3E8246E1B0A7C33CC2A824ED /* OHHTTPStubsMethodSwizzling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OHHTTPStubsMethodSwizzling.m; path = OHHTTPStubs/Sources/NSURLSession/OHHTTPStubsMethodSwizzling.m; sourceTree = "<group>"; };
 		A0BAD58A75F27B96E7B005489E89237D /* JSONModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-umbrella.h"; sourceTree = "<group>"; };
+		A13B47BBC168E1BC3EF3F3151EDB5BA7 /* Pods-OptimizelySDKTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		A1872FF9CA64C4C399138DE70B6A98B7 /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
 		A2067274EFCC0B0881B80E71812A9585 /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
 		A26EA16327765B37EF5D95E56C659174 /* OCMBlockCaller.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMBlockCaller.m; path = Source/OCMock/OCMBlockCaller.m; sourceTree = "<group>"; };
 		A2A095034ECD1680BB6041199A58A3F4 /* OCMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMockObject.m; path = Source/OCMock/OCMockObject.m; sourceTree = "<group>"; };
+		A5FF8BE2385920BD0AF31DA8ABA7091F /* Pods-OptimizelySDKTVOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-OptimizelySDKTVOSTests.modulemap"; sourceTree = "<group>"; };
 		AACBEE18C57CB6909249361019E41F95 /* OCMRealObjectForwarder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMRealObjectForwarder.m; path = Source/OCMock/OCMRealObjectForwarder.m; sourceTree = "<group>"; };
+		AAD6097184C212C97601672D26884FE6 /* Pods-OptimizelySDKTVOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKTVOSTests-umbrella.h"; sourceTree = "<group>"; };
 		AADF9C12B94657B5D644A57BE0CC8B53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		AB00EDB5EBB84BCFBEA65AC902DD4323 /* OCMock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMock.h; path = Source/OCMock/OCMock.h; sourceTree = "<group>"; };
 		AC0873DB47241D99B66E75F106C30D94 /* NSObject+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+OCMAdditions.m"; path = "Source/OCMock/NSObject+OCMAdditions.m"; sourceTree = "<group>"; };
 		AE103A83BB8453744630478BE6CB3B4F /* OHHTTPStubs-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs-umbrella.h"; sourceTree = "<group>"; };
-		AEAA04B00AB528E59B3137011454A30E /* Pods-OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-OptimizelySDKTVOS.modulemap"; sourceTree = "<group>"; };
 		AFC6FC2A3DB48E5D8F7714C9F30C8406 /* Compatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Compatibility.h; path = OHHTTPStubs/Sources/Compatibility.h; sourceTree = "<group>"; };
-		AFD0A8204B861A27F43A3E0EF3E6C2D5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		B09B4AC7C98C5FCCEA61D2687B920671 /* OCMArgAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMArgAction.m; path = Source/OCMock/OCMArgAction.m; sourceTree = "<group>"; };
 		B4D55F25D1691357DCAE979BE87F5767 /* JSONKeyMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
 		B64C5F5B57E89FF1282DEBB469180856 /* OCMMacroState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMMacroState.h; path = Source/OCMock/OCMMacroState.h; sourceTree = "<group>"; };
-		B823E231C6B0619001219C17892D1D6A /* Pods-OptimizelySDKTVOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOS-dummy.m"; sourceTree = "<group>"; };
 		B887E5781272D318CDB726B48A51C5C7 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
 		BA53F94593D081EA0B59D51A453AB386 /* OCMBlockCaller.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMBlockCaller.h; path = Source/OCMock/OCMBlockCaller.h; sourceTree = "<group>"; };
 		BC1F3065354EDCC0A23DAE91BA531822 /* OCMReturnValueProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMReturnValueProvider.m; path = Source/OCMock/OCMReturnValueProvider.m; sourceTree = "<group>"; };
 		BC61E35032F4B5E9257ED3730D38EE92 /* OHHTTPStubsResponse+JSON.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OHHTTPStubsResponse+JSON.m"; path = "OHHTTPStubs/Sources/JSON/OHHTTPStubsResponse+JSON.m"; sourceTree = "<group>"; };
 		BD7C617F8A38C9F6A548369D0D1B75EB /* JSONAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
-		BEB13644CAC32550765887FFD78838D9 /* Pods-OptimizelySDKTVOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKTVOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C1094BFF7276783103BA0A7B97FE10D8 /* OCMock-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OCMock-prefix.pch"; sourceTree = "<group>"; };
 		C2DB276E8DDA761EDC7E99EDDB0DAA80 /* OHPathHelpers.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OHPathHelpers.m; path = OHHTTPStubs/Sources/OHPathHelpers/OHPathHelpers.m; sourceTree = "<group>"; };
 		C2ECA6BCD5E1BD179C680075310AAB37 /* JSONModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = JSONModel.modulemap; sourceTree = "<group>"; };
 		C68BBFF2243E8ABA173E7F0B91F8FBCB /* OCMPassByRefSetter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMPassByRefSetter.m; path = Source/OCMock/OCMPassByRefSetter.m; sourceTree = "<group>"; };
-		C83E64F9908A28AF4EA77968C64A0D69 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
-		C90DA5FA078D35D1EB51906E30910BBD /* Pods-OptimizelySDKTVOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-OptimizelySDKTVOSTests.modulemap"; sourceTree = "<group>"; };
-		CB0C7D69F63728152D428188D64D719C /* Pods-OptimizelySDKTVOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOS-frameworks.sh"; sourceTree = "<group>"; };
+		CA584BBA99FA921FA84F34AB39F780A5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.rc.xcconfig"; sourceTree = "<group>"; };
+		CB9623B49AE6327E0A8E5D80C16280F0 /* Pods-OptimizelySDKTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		CD461675FD9896ED06D3C9067098C17B /* OCMExpectationRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMExpectationRecorder.h; path = Source/OCMock/OCMExpectationRecorder.h; sourceTree = "<group>"; };
 		CDF8FD0604587200FA0CC6175CFAF3C4 /* Pods_OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0EA223AB99BD42B3A6C2444FFF9663 /* NSMethodSignature+OCMAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMethodSignature+OCMAdditions.h"; path = "Source/OCMock/NSMethodSignature+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -270,15 +275,15 @@
 		D32953386FCFA27C34AEC339FAA95AA2 /* OHPathHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHPathHelpers.h; path = OHHTTPStubs/Sources/OHPathHelpers/OHPathHelpers.h; sourceTree = "<group>"; };
 		D3A69C8130A44E6E4EA3CF18F202E51E /* OCMConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMConstraint.h; path = Source/OCMock/OCMConstraint.h; sourceTree = "<group>"; };
 		D470E7EB23B2381E3D0B2A0B89F8EF0E /* NSValue+OCMAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSValue+OCMAdditions.h"; path = "Source/OCMock/NSValue+OCMAdditions.h"; sourceTree = "<group>"; };
+		D58BCB968F456DB5EFCE1280D438906F /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OCMock.xcconfig; sourceTree = "<group>"; };
 		D74579E6D57D88709C4D2FC4356F989C /* JSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93B0FE39A552B29AC69C884A0788957 /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		DD2D71E30C6258718C588307B5531ADF /* Pods-OptimizelySDKTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOS.beta.xcconfig"; sourceTree = "<group>"; };
-		DE665620F1B69406F61A885C4B6E981B /* Pods-OptimizelySDKTVOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKTVOSTests-umbrella.h"; sourceTree = "<group>"; };
+		D93C0C8046ED8FE5742AC514209E545B /* Pods-OptimizelySDKTVOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOS-resources.sh"; sourceTree = "<group>"; };
 		DF7F72A09AAE193114F719B162E4E4EC /* OCPartialMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCPartialMockObject.m; path = Source/OCMock/OCPartialMockObject.m; sourceTree = "<group>"; };
-		E0EC61CF1BB773ED27C26BA85610C786 /* Pods-OptimizelySDKTVOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOSTests-dummy.m"; sourceTree = "<group>"; };
 		E2D3815093659B60F199C21ACD526E56 /* OCMRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMRecorder.m; path = Source/OCMock/OCMRecorder.m; sourceTree = "<group>"; };
 		E31781490820E5F859C96A60510CF706 /* OCMExpectationRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMExpectationRecorder.m; path = Source/OCMock/OCMExpectationRecorder.m; sourceTree = "<group>"; };
+		E42C7E91DD072E586F77BFFF326891A0 /* Pods-OptimizelySDKTVOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSTests-frameworks.sh"; sourceTree = "<group>"; };
 		E522B9BCEAF9BEC997F34B9FA5020635 /* OCMInvocationMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMInvocationMatcher.m; path = Source/OCMock/OCMInvocationMatcher.m; sourceTree = "<group>"; };
 		E5911F930B81AE9D12DF9C98E98903E6 /* OCMock-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OCMock-dummy.m"; sourceTree = "<group>"; };
 		E61FBFFB0A14626FE8E0782ABB2250F3 /* OCMPassByRefSetter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMPassByRefSetter.h; path = Source/OCMock/OCMPassByRefSetter.h; sourceTree = "<group>"; };
@@ -286,14 +291,15 @@
 		E770BABA3575221DFCD689AC9CD2D068 /* OCMRealObjectForwarder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMRealObjectForwarder.h; path = Source/OCMock/OCMRealObjectForwarder.h; sourceTree = "<group>"; };
 		EAD04C6303F00AC1378E58339ED2BDA8 /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OHHTTPStubsResponse.m; path = OHHTTPStubs/Sources/OHHTTPStubsResponse.m; sourceTree = "<group>"; };
 		EC0711CD4CD41DF8D96316F9A410DC02 /* OCMLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMLocation.h; path = Source/OCMock/OCMLocation.h; sourceTree = "<group>"; };
+		ECCD152BBA77836A76D8C5C1880BF185 /* Pods-OptimizelySDKTVOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOSTests-dummy.m"; sourceTree = "<group>"; };
 		ED9FB72064DBA42B764D793D30AC9638 /* OHHTTPStubs.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = OHHTTPStubs.modulemap; sourceTree = "<group>"; };
 		EE383F1ED611A1AFA8ECE491EFCB7A6E /* NSValue+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSValue+OCMAdditions.m"; path = "Source/OCMock/NSValue+OCMAdditions.m"; sourceTree = "<group>"; };
 		EE77047BDF623062D6F8A4D5C3EE6EB3 /* OCMNotificationPoster.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMNotificationPoster.m; path = Source/OCMock/OCMNotificationPoster.m; sourceTree = "<group>"; };
 		EFA85A804DDD703452FC23416EE47AB4 /* OCMInvocationStub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMInvocationStub.h; path = Source/OCMock/OCMInvocationStub.h; sourceTree = "<group>"; };
 		F24818FE9ED3F55E485507EC624ADC40 /* OCObserverMockObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCObserverMockObject.h; path = Source/OCMock/OCObserverMockObject.h; sourceTree = "<group>"; };
-		F293509A6D60CB4B0968CF334D738785 /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F57582223F114CB63A5DA2E04FAB6BF1 /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		F879DF4374E030F221AE8EA2828CE1E7 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F903A8488C1F0CA3089195C2BB4FEE71 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F959CFE5435694F0CD7D955352ADD9EB /* OCMNotificationPoster.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMNotificationPoster.h; path = Source/OCMock/OCMNotificationPoster.h; sourceTree = "<group>"; };
 		F982D0A3555EA17A1D0A14143A28C062 /* OCMVerifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMVerifier.h; path = Source/OCMock/OCMVerifier.h; sourceTree = "<group>"; };
 		FAD9E088C375C8FAB2804044E37EA022 /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
@@ -318,19 +324,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FFC1BBBC2F68E3CE9328A4847FEB9FE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57BDB8BCE26F3D5E43040F65B6C00A92 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1C3AEDCA7461C391207DBA01B8C21CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				88D4D9126F7B100B044AE42904B594BD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2A7750FB4AEF7C4AA59FB4E2D574397 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4B3500DBD18B0F2D2762028BB3D08F9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,15 +363,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/OCMock";
-			sourceTree = "<group>";
-		};
-		0FFFD9EC8F063B8B47E4D29A2E285CFD /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				98298F7F3AB72FDD73FCAE395B0AD62A /* Pods-OptimizelySDKTVOS */,
-				7ADF524C6834F9D08641328CF8456955 /* Pods-OptimizelySDKTVOSTests */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		117388F2A65F1D8D239D2741F393A6BB /* OHHTTPStubs */ = {
@@ -501,6 +498,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		712002EA02FA1F33B607E11D7CDF21CE /* Pods-OptimizelySDKTVOS */ = {
+			isa = PBXGroup;
+			children = (
+				63ACCCCD9546AE8F2731A96FA2AB8FC8 /* Info.plist */,
+				8ADF30437C61822CB9DC77EBD703AA8B /* Pods-OptimizelySDKTVOS.modulemap */,
+				36A5FCEB7DAC2686C664EC69F769B003 /* Pods-OptimizelySDKTVOS-acknowledgements.markdown */,
+				90B89E7119F1343FE11DBB3CDC379EAC /* Pods-OptimizelySDKTVOS-acknowledgements.plist */,
+				63A1ADD60904FA7CF8A5FCC2D5B8DB8C /* Pods-OptimizelySDKTVOS-dummy.m */,
+				D93C0C8046ED8FE5742AC514209E545B /* Pods-OptimizelySDKTVOS-resources.sh */,
+				424A73EE5099C1EAB6D835AB772991ED /* Pods-OptimizelySDKTVOS-umbrella.h */,
+				A13B47BBC168E1BC3EF3F3151EDB5BA7 /* Pods-OptimizelySDKTVOS.beta.xcconfig */,
+				5DABED6142AAAF09170080AB2140A367 /* Pods-OptimizelySDKTVOS.debug.xcconfig */,
+				CA584BBA99FA921FA84F34AB39F780A5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */,
+				CB9623B49AE6327E0A8E5D80C16280F0 /* Pods-OptimizelySDKTVOS.release.xcconfig */,
+			);
+			name = "Pods-OptimizelySDKTVOS";
+			path = "Target Support Files/Pods-OptimizelySDKTVOS";
+			sourceTree = "<group>";
+		};
 		75AE13D9890060B59185900AAEDB8423 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,26 +526,6 @@
 			name = JSON;
 			sourceTree = "<group>";
 		};
-		7ADF524C6834F9D08641328CF8456955 /* Pods-OptimizelySDKTVOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				08E2AD07E58EB7020D0E834FE47EB4E2 /* Info.plist */,
-				C90DA5FA078D35D1EB51906E30910BBD /* Pods-OptimizelySDKTVOSTests.modulemap */,
-				BEB13644CAC32550765887FFD78838D9 /* Pods-OptimizelySDKTVOSTests-acknowledgements.markdown */,
-				15C57323BA97E37225241CE8F4298549 /* Pods-OptimizelySDKTVOSTests-acknowledgements.plist */,
-				E0EC61CF1BB773ED27C26BA85610C786 /* Pods-OptimizelySDKTVOSTests-dummy.m */,
-				02D22CF8ED16D19FC1F6BB27F296086D /* Pods-OptimizelySDKTVOSTests-frameworks.sh */,
-				5E73E2105FD7D31016A8E883390E5782 /* Pods-OptimizelySDKTVOSTests-resources.sh */,
-				DE665620F1B69406F61A885C4B6E981B /* Pods-OptimizelySDKTVOSTests-umbrella.h */,
-				C83E64F9908A28AF4EA77968C64A0D69 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */,
-				F293509A6D60CB4B0968CF334D738785 /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */,
-				8D3EB455022F4F97430FD2001738A9D8 /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */,
-				05FF65AF00C479E51F060E9E0B05DCDF /* Pods-OptimizelySDKTVOSTests.release.xcconfig */,
-			);
-			name = "Pods-OptimizelySDKTVOSTests";
-			path = "Target Support Files/Pods-OptimizelySDKTVOSTests";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -537,7 +533,7 @@
 				6EC461C1435A31577346ED4ADA0BD5A9 /* Frameworks */,
 				9986B522EB805008882415B19E1D95FE /* Pods */,
 				89BF8C00C44127A6F607143047AFB716 /* Products */,
-				0FFFD9EC8F063B8B47E4D29A2E285CFD /* Targets Support Files */,
+				E8B87A8DDE15B585AA1192E8A5790B0A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -578,26 +574,6 @@
 			path = JSONModel;
 			sourceTree = "<group>";
 		};
-		98298F7F3AB72FDD73FCAE395B0AD62A /* Pods-OptimizelySDKTVOS */ = {
-			isa = PBXGroup;
-			children = (
-				982A689B68F934B18514D5F789E732B0 /* Info.plist */,
-				AEAA04B00AB528E59B3137011454A30E /* Pods-OptimizelySDKTVOS.modulemap */,
-				011905A35227E8BAA99488ED92FDE023 /* Pods-OptimizelySDKTVOS-acknowledgements.markdown */,
-				8E2327FC42468E81E129C816165C4A58 /* Pods-OptimizelySDKTVOS-acknowledgements.plist */,
-				B823E231C6B0619001219C17892D1D6A /* Pods-OptimizelySDKTVOS-dummy.m */,
-				CB0C7D69F63728152D428188D64D719C /* Pods-OptimizelySDKTVOS-frameworks.sh */,
-				58CA631CA62BB668FEA7FF66D19E7CD1 /* Pods-OptimizelySDKTVOS-resources.sh */,
-				4A10BDC2BAD832ACB1CF4AA4F4DF5DE8 /* Pods-OptimizelySDKTVOS-umbrella.h */,
-				DD2D71E30C6258718C588307B5531ADF /* Pods-OptimizelySDKTVOS.beta.xcconfig */,
-				07BD27743A831DE3A69F7EB3497A6222 /* Pods-OptimizelySDKTVOS.debug.xcconfig */,
-				AFD0A8204B861A27F43A3E0EF3E6C2D5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */,
-				1B5E1D94F6E104E8F13A1E7C8EDA2C07 /* Pods-OptimizelySDKTVOS.release.xcconfig */,
-			);
-			name = "Pods-OptimizelySDKTVOS";
-			path = "Target Support Files/Pods-OptimizelySDKTVOS";
-			sourceTree = "<group>";
-		};
 		9986B522EB805008882415B19E1D95FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +582,26 @@
 				117388F2A65F1D8D239D2741F393A6BB /* OHHTTPStubs */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9DF134B442C78D0F5D786148BDD9A68E /* Pods-OptimizelySDKTVOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				F903A8488C1F0CA3089195C2BB4FEE71 /* Info.plist */,
+				A5FF8BE2385920BD0AF31DA8ABA7091F /* Pods-OptimizelySDKTVOSTests.modulemap */,
+				1B455252E3AC1A691EF850C128DF8B8C /* Pods-OptimizelySDKTVOSTests-acknowledgements.markdown */,
+				0000FE1BB7402DDB18CB0B1815E5DD30 /* Pods-OptimizelySDKTVOSTests-acknowledgements.plist */,
+				ECCD152BBA77836A76D8C5C1880BF185 /* Pods-OptimizelySDKTVOSTests-dummy.m */,
+				E42C7E91DD072E586F77BFFF326891A0 /* Pods-OptimizelySDKTVOSTests-frameworks.sh */,
+				6DCCD775FC59BACC0E07FC9A0CDC1D7E /* Pods-OptimizelySDKTVOSTests-resources.sh */,
+				AAD6097184C212C97601672D26884FE6 /* Pods-OptimizelySDKTVOSTests-umbrella.h */,
+				3D2855EA3B0C1D9349AAA7EB49535FF6 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */,
+				629FF5D7338285B4D8B45A3A207AC91A /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */,
+				D58BCB968F456DB5EFCE1280D438906F /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */,
+				52F4F9C8F4AB26ED49871E389A162889 /* Pods-OptimizelySDKTVOSTests.release.xcconfig */,
+			);
+			name = "Pods-OptimizelySDKTVOSTests";
+			path = "Target Support Files/Pods-OptimizelySDKTVOSTests";
 			sourceTree = "<group>";
 		};
 		B1D7172857662BD00825C9B7AAA54E29 /* NSURLSession */ = {
@@ -639,6 +635,15 @@
 				C2DB276E8DDA761EDC7E99EDDB0DAA80 /* OHPathHelpers.m */,
 			);
 			name = OHPathHelpers;
+			sourceTree = "<group>";
+		};
+		E8B87A8DDE15B585AA1192E8A5790B0A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				712002EA02FA1F33B607E11D7CDF21CE /* Pods-OptimizelySDKTVOS */,
+				9DF134B442C78D0F5D786148BDD9A68E /* Pods-OptimizelySDKTVOSTests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -712,14 +717,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EE1209A51DD6F64CCD6D134B4E802AE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				049EEBE29FB19CD39C676A8754D90A57 /* Pods-OptimizelySDKTVOSTests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		72C749346AD2984E4285B86B15897CEF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -732,6 +729,14 @@
 				FED4326740FF4E9065D0C5EEAB4DCF39 /* OHHTTPStubsResponse+JSON.h in Headers */,
 				C0B12CE2746DD8B7ED798DEA77A297D6 /* OHHTTPStubsResponse.h in Headers */,
 				88CC84883721D9922E6258D3B96A0A6D /* OHPathHelpers.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2CF98FA9209948B9551E0976DC9E444 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DD73E5FFB2CB24B73F1EF5AFEE2949D /* Pods-OptimizelySDKTVOSTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +758,26 @@
 			name = JSONModel;
 			productName = JSONModel;
 			productReference = D74579E6D57D88709C4D2FC4356F989C /* JSONModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0A362237C2697613F61D5BF586C8556F /* Pods-OptimizelySDKTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F938B331A7F5136F44B42A8046F00B4 /* Build configuration list for PBXNativeTarget "Pods-OptimizelySDKTVOSTests" */;
+			buildPhases = (
+				03C0563F7DB231107D010F787C23513F /* Sources */,
+				F2A7750FB4AEF7C4AA59FB4E2D574397 /* Frameworks */,
+				E2CF98FA9209948B9551E0976DC9E444 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84D317A00EAC086C62845120DF88D4A3 /* PBXTargetDependency */,
+				4380C4A3A5CADC5D8B4CE8B0E87A2A47 /* PBXTargetDependency */,
+				3E0B5125128E475B67CE9A8F080E861B /* PBXTargetDependency */,
+			);
+			name = "Pods-OptimizelySDKTVOSTests";
+			productName = "Pods-OptimizelySDKTVOSTests";
+			productReference = 94396A42951CB80E396F588FD70A1580 /* Pods_OptimizelySDKTVOSTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		443858D4EB29D85AFFF373F1DDA9C83D /* OCMock */ = {
@@ -807,25 +832,6 @@
 			productReference = 34A9343BD577A502646A8C68700FF709 /* OHHTTPStubs.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AC34E7174C1E4925DE71E4CDE3F69B96 /* Pods-OptimizelySDKTVOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DBB0890B092659CFFA87B14F1CB7D28 /* Build configuration list for PBXNativeTarget "Pods-OptimizelySDKTVOSTests" */;
-			buildPhases = (
-				B31CA6351E643A1E093B5EA2566EEAFA /* Sources */,
-				9FFC1BBBC2F68E3CE9328A4847FEB9FE /* Frameworks */,
-				5EE1209A51DD6F64CCD6D134B4E802AE /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E726E80D140CB83BD2BA480474259C41 /* PBXTargetDependency */,
-				CED65E382BDA1AFC0D7DAAC80E6ED4FB /* PBXTargetDependency */,
-			);
-			name = "Pods-OptimizelySDKTVOSTests";
-			productName = "Pods-OptimizelySDKTVOSTests";
-			productReference = 94396A42951CB80E396F588FD70A1580 /* Pods_OptimizelySDKTVOSTests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -851,7 +857,7 @@
 				443858D4EB29D85AFFF373F1DDA9C83D /* OCMock */,
 				914AEDCFFC0F82BEA6E187F4ECE92453 /* OHHTTPStubs */,
 				4E31E68D381355B1DAFB8525FEE9358C /* Pods-OptimizelySDKTVOS */,
-				AC34E7174C1E4925DE71E4CDE3F69B96 /* Pods-OptimizelySDKTVOSTests */,
+				0A362237C2697613F61D5BF586C8556F /* Pods-OptimizelySDKTVOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -898,6 +904,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03C0563F7DB231107D010F787C23513F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4372773B897340854ACE4A74A39F0EBD /* Pods-OptimizelySDKTVOSTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15CB1CA9005E52F1A55205ACD6981143 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -937,14 +951,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B31CA6351E643A1E093B5EA2566EEAFA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AC8E4E0FD0326376ECA79A791E8E1FB /* Pods-OptimizelySDKTVOSTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -954,27 +960,36 @@
 			target = 037BBF054B42F6279690695FC7429201 /* JSONModel */;
 			targetProxy = C143038B6DC6E1D8679BD1766A3777C5 /* PBXContainerItemProxy */;
 		};
-		CED65E382BDA1AFC0D7DAAC80E6ED4FB /* PBXTargetDependency */ = {
+		3E0B5125128E475B67CE9A8F080E861B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OHHTTPStubs;
 			target = 914AEDCFFC0F82BEA6E187F4ECE92453 /* OHHTTPStubs */;
-			targetProxy = 2ED2F66F35174BE9C72F9EC95F25ACF4 /* PBXContainerItemProxy */;
+			targetProxy = A19FE9F716A8A418430B253A79481F9E /* PBXContainerItemProxy */;
 		};
-		E726E80D140CB83BD2BA480474259C41 /* PBXTargetDependency */ = {
+		4380C4A3A5CADC5D8B4CE8B0E87A2A47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OCMock;
 			target = 443858D4EB29D85AFFF373F1DDA9C83D /* OCMock */;
-			targetProxy = 08D458E97A16516260B26BAF6E73F9BE /* PBXContainerItemProxy */;
+			targetProxy = F9D9C3B3A48FB131457CC76FE9636971 /* PBXContainerItemProxy */;
+		};
+		84D317A00EAC086C62845120DF88D4A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSONModel;
+			target = 037BBF054B42F6279690695FC7429201 /* JSONModel */;
+			targetProxy = 4FFDD77BA69A7E1A1F519F945A84543A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		00C95632A68FDBE08F5DED7D6155065E /* Debug */ = {
+		00F2BA18A26C87EBC6DF9BB08700883A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07BD27743A831DE3A69F7EB3497A6222 /* Pods-OptimizelySDKTVOS.debug.xcconfig */;
+			baseConfigurationReference = CB9623B49AE6327E0A8E5D80C16280F0 /* Pods-OptimizelySDKTVOS.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -986,7 +1001,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -999,12 +1014,108 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		160961DA3E55184CC376C55C7803093C /* Beta */ = {
+		0A7E7C94B7F208DAC2874D5572ADC656 /* RC */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OCMock;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = RC;
+		};
+		11A83EF3FB196C1F4FD8E2B63E2FDE62 /* RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OHHTTPStubs;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = RC;
+		};
+		158B3AB52555FF4D42098137DF86DF69 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = JSONModel;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
+		186A4AE0A3219542BBF99EA11FDA7E67 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1029,7 +1140,7 @@
 			};
 			name = Beta;
 		};
-		2451934325A9BB132B45B9D4AFF86374 /* Release */ = {
+		1DD1CFF0DC5554065098F7DC1848365A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1047,6 +1158,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1060,17 +1172,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = appletvos;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SYMROOT = "${SRCROOT}/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};
-		2AD4C8EF62453E803073D96FB6A0DECF /* Beta */ = {
+		353828B420EBA227AF3B3F618AC5BC2D /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1088,6 +1198,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1101,375 +1212,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = appletvos;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Beta;
 		};
-		451A94A9A6923D4ADF5CD14DCCA72604 /* Beta */ = {
+		43DD1A0D94B5C89A56B89C88A17AC052 /* RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C83E64F9908A28AF4EA77968C64A0D69 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */;
+			baseConfigurationReference = D58BCB968F456DB5EFCE1280D438906F /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_OptimizelySDKTVOSTests;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
-		4D010E7900D3275AE814CF742652A7B4 /* RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = OHHTTPStubs;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		59A4E69606C4AB2CCB8A556EEE56DA80 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = OHHTTPStubs;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		623D05C8A8D2AAB60518C704C79C74B8 /* Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2D71E30C6258718C588307B5531ADF /* Pods-OptimizelySDKTVOS.beta.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
-		6ADE3B29AE869E96D9D5DA7F91E7E67A /* Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = JSONModel;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
-		6C2B356383C4B6A40419807866179964 /* RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = OCMock;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		74DA7C54B0F13A6EFC155B5080B19403 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = OHHTTPStubs;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		74F61CA9640A9FE0FAAF19FA5C534050 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F293509A6D60CB4B0968CF334D738785 /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_OptimizelySDKTVOSTests;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		76CE83EC05D2200518D354B244B76349 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B5E1D94F6E104E8F13A1E7C8EDA2C07 /* Pods-OptimizelySDKTVOS.release.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		78EDE1FD9A9C015FE0BCA0F354F3EA09 /* RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = JSONModel;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		7977E9882CD788628A8B644CB92AD938 /* RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFD0A8204B861A27F43A3E0EF3E6C2D5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		9788C7B62AE80143C52E4C617387A222 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = JSONModel;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9B75021105C90DB60F692E9ACFBC6115 /* RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D3EB455022F4F97430FD2001738A9D8 /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */;
-			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1498,25 +1254,32 @@
 			};
 			name = RC;
 		};
-		CB1DC65FF9C44C2054F253E1F6290C12 /* Release */ = {
+		5900D2EF05407878091B68482D9B6391 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
+			baseConfigurationReference = 629FF5D7338285B4D8B45A3A207AC91A /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = OCMock;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_OptimizelySDKTVOSTests;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1524,14 +1287,17 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		D337EE9151D4C942D22FFBBBF4F76421 /* Debug */ = {
+		7D20C58BB7E38FF048CF782A6786A416 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1543,7 +1309,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = JSONModel;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1552,37 +1318,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		DE7A7C94E6E4C72EE9F99B2342B1D53A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = OCMock;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E46DC92EE7EAE9E9F6A4C179BBDAC949 /* Debug */ = {
+		7DEE56CBFFC5EF063F24F486B02300EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1600,6 +1338,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1617,20 +1356,417 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = appletvos;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SYMROOT = "${SRCROOT}/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
 		};
-		E51D2D6ED7323F8A03EA59C8509F9EE4 /* Release */ = {
+		81500EE36D71397A891BCBC1E6AF66F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05FF65AF00C479E51F060E9E0B05DCDF /* Pods-OptimizelySDKTVOSTests.release.xcconfig */;
+			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = OHHTTPStubs;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8B3D10B5740230FA08814730E24174AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = JSONModel;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8F3F872A184B07EE8D5EA47734084F47 /* RC */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA584BBA99FA921FA84F34AB39F780A5 /* Pods-OptimizelySDKTVOS.rc.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = RC;
+		};
+		99A8F4F3BCD81CF4919849A26715D052 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OCMock;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A79E6A94F332F5B539F373A14F844A20 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D2855EA3B0C1D9349AAA7EB49535FF6 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_OptimizelySDKTVOSTests;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
+		B4D2BB39D00917C163935D11AA7FF70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DABED6142AAAF09170080AB2140A367 /* Pods-OptimizelySDKTVOS.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B7E3B7F032ED55F010BA51EF601EA432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 890962359C9B58BB481137EF3EBBC9C3 /* OHHTTPStubs.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OHHTTPStubs/OHHTTPStubs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OHHTTPStubs/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OHHTTPStubs/OHHTTPStubs.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OHHTTPStubs;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C876E5559ADE425BC31D3BF2CC8D3513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = OCMock;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CC4513967095B66FAAFC822D8BEB40C5 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RC=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = RC;
+		};
+		EF2BE0A6C8C499C4E994AB907A297722 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A13B47BBC168E1BC3EF3F3151EDB5BA7 /* Pods-OptimizelySDKTVOS.beta.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_OptimizelySDKTVOS;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
+		EFAA2DAA7552AB38C9ADA652CCFD9B31 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OCMock;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
+		F0F4D63075E2D09DB8C36A3C05FDEA4F /* RC */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4543E826DCA2B1BCD9F2052BF89F9A95 /* JSONModel.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JSONModel/JSONModel.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = JSONModel;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = RC;
+		};
+		FF6B3A2E3EF497C0A9A3FE201AFCF053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52F4F9C8F4AB26ED49871E389A162889 /* Pods-OptimizelySDKTVOSTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1659,84 +1795,16 @@
 			};
 			name = Release;
 		};
-		E8DC6117B215EC9F8B64F1D0F9912DB6 /* Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D733E15AFD9BAE8F529F7C74BE7AD35D /* OCMock.xcconfig */;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OCMock/OCMock-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OCMock/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OCMock/OCMock.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = OCMock;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
-		EA5693EF695323934F372ED2F3DE5F93 /* RC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RC=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = appletvos;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 x86_64";
-			};
-			name = RC;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		00013ED1C7A9EDD15E9008E646B7C98F /* Build configuration list for PBXNativeTarget "Pods-OptimizelySDKTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				623D05C8A8D2AAB60518C704C79C74B8 /* Beta */,
-				00C95632A68FDBE08F5DED7D6155065E /* Debug */,
-				7977E9882CD788628A8B644CB92AD938 /* RC */,
-				76CE83EC05D2200518D354B244B76349 /* Release */,
+				EF2BE0A6C8C499C4E994AB907A297722 /* Beta */,
+				B4D2BB39D00917C163935D11AA7FF70B /* Debug */,
+				8F3F872A184B07EE8D5EA47734084F47 /* RC */,
+				00F2BA18A26C87EBC6DF9BB08700883A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1744,21 +1812,21 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AD4C8EF62453E803073D96FB6A0DECF /* Beta */,
-				E46DC92EE7EAE9E9F6A4C179BBDAC949 /* Debug */,
-				EA5693EF695323934F372ED2F3DE5F93 /* RC */,
-				2451934325A9BB132B45B9D4AFF86374 /* Release */,
+				353828B420EBA227AF3B3F618AC5BC2D /* Beta */,
+				7DEE56CBFFC5EF063F24F486B02300EA /* Debug */,
+				CC4513967095B66FAAFC822D8BEB40C5 /* RC */,
+				1DD1CFF0DC5554065098F7DC1848365A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DBB0890B092659CFFA87B14F1CB7D28 /* Build configuration list for PBXNativeTarget "Pods-OptimizelySDKTVOSTests" */ = {
+		7F938B331A7F5136F44B42A8046F00B4 /* Build configuration list for PBXNativeTarget "Pods-OptimizelySDKTVOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				451A94A9A6923D4ADF5CD14DCCA72604 /* Beta */,
-				74F61CA9640A9FE0FAAF19FA5C534050 /* Debug */,
-				9B75021105C90DB60F692E9ACFBC6115 /* RC */,
-				E51D2D6ED7323F8A03EA59C8509F9EE4 /* Release */,
+				A79E6A94F332F5B539F373A14F844A20 /* Beta */,
+				5900D2EF05407878091B68482D9B6391 /* Debug */,
+				43DD1A0D94B5C89A56B89C88A17AC052 /* RC */,
+				FF6B3A2E3EF497C0A9A3FE201AFCF053 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1766,10 +1834,10 @@
 		B5D6CB9ADCDC58A1D7DFD2D5C950EEE6 /* Build configuration list for PBXNativeTarget "JSONModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6ADE3B29AE869E96D9D5DA7F91E7E67A /* Beta */,
-				D337EE9151D4C942D22FFBBBF4F76421 /* Debug */,
-				78EDE1FD9A9C015FE0BCA0F354F3EA09 /* RC */,
-				9788C7B62AE80143C52E4C617387A222 /* Release */,
+				158B3AB52555FF4D42098137DF86DF69 /* Beta */,
+				8B3D10B5740230FA08814730E24174AD /* Debug */,
+				F0F4D63075E2D09DB8C36A3C05FDEA4F /* RC */,
+				7D20C58BB7E38FF048CF782A6786A416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1777,10 +1845,10 @@
 		BDD9B445B58E69E647F2DAA701884E16 /* Build configuration list for PBXNativeTarget "OHHTTPStubs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				160961DA3E55184CC376C55C7803093C /* Beta */,
-				74DA7C54B0F13A6EFC155B5080B19403 /* Debug */,
-				4D010E7900D3275AE814CF742652A7B4 /* RC */,
-				59A4E69606C4AB2CCB8A556EEE56DA80 /* Release */,
+				186A4AE0A3219542BBF99EA11FDA7E67 /* Beta */,
+				81500EE36D71397A891BCBC1E6AF66F9 /* Debug */,
+				11A83EF3FB196C1F4FD8E2B63E2FDE62 /* RC */,
+				B7E3B7F032ED55F010BA51EF601EA432 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1788,10 +1856,10 @@
 		C128F9B8C8AC2A2C44504AA6F932166D /* Build configuration list for PBXNativeTarget "OCMock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8DC6117B215EC9F8B64F1D0F9912DB6 /* Beta */,
-				DE7A7C94E6E4C72EE9F99B2342B1D53A /* Debug */,
-				6C2B356383C4B6A40419807866179964 /* RC */,
-				CB1DC65FF9C44C2054F253E1F6290C12 /* Release */,
+				EFAA2DAA7552AB38C9ADA652CCFD9B31 /* Beta */,
+				C876E5559ADE425BC31D3BF2CC8D3513 /* Debug */,
+				0A7E7C94B7F208DAC2874D5572ADC656 /* RC */,
+				99A8F4F3BCD81CF4919849A26715D052 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
