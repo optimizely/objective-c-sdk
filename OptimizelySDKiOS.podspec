@@ -1,13 +1,16 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKiOS"
-  s.version                 = "0.1.0"
+  s.version                 = "0.1.1"
   s.summary                 = "Optimizely server-side testing framework for iOS."
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.author                  = "Optimizely"
   s.platform                = :ios, '9.3'
   s.ios.deployment_target   = "8.0"
-  s.source                  = { :git => "git@github.com:optimizely/objective-c-sdk.git"}
+  s.source                  = {
+    :git => "https://github.com/optimizely/objective-c-sdk.git",
+    :tag => "iOS-"+s.version.to_s
+  }
   s.source_files            = "OptimizelySDKiOS/OptimizelySDKiOS/*.{h,m}"
   s.public_header_files     = "OptimizelySDKiOS/OptimizelySDKiOS/*.h"
   s.framework               = "Foundation"
