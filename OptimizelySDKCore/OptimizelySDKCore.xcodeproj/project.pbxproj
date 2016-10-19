@@ -2370,6 +2370,7 @@
 				EA191BE91DB6E7EC000E087C /* RC */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA191BEA1DB6E7EC000E087C /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -2380,6 +2381,7 @@
 				EA191BEE1DB6E7EC000E087C /* RC */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA191C051DB6E7FE000E087C /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreTVOS" */ = {
 			isa = XCConfigurationList;
@@ -2390,6 +2392,7 @@
 				EA191C091DB6E7FE000E087C /* RC */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA191C0A1DB6E7FE000E087C /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreTVOSTests" */ = {
 			isa = XCConfigurationList;
@@ -2400,6 +2403,7 @@
 				EA191C0E1DB6E7FE000E087C /* RC */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA1A4C1A1D372F4700A68DA1 /* Build configuration list for PBXProject "OptimizelySDKCore" */ = {
 			isa = XCConfigurationList;
