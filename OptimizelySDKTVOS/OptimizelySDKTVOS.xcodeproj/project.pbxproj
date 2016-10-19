@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82BA6C5DB0C7D027A3A5FAD1 /* Pods_OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0EC7C6045CADEA0BF226AE /* Pods_OptimizelySDKTVOS.framework */; };
+		A0A610455E195AFEF02EC73B /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE1816F0CC3DB4963A1E34B /* Pods_OptimizelySDKTVOSTests.framework */; };
 		EA191B6E1DB6E2F7000E087C /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106AB1D710E7C004B0DDF /* Pods_OptimizelySDKTVOSTests.framework */; };
 		EA191C1D1DB6E890000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106A91D710E7C004B0DDF /* Pods_OptimizelySDKTVOS.framework */; };
 		EA8390F61D7104B30074185B /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8390F51D7104B30074185B /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,8 +117,10 @@
 /* Begin PBXFileReference section */
 		5F5F5959D4F681F26A2F85AB /* Pods-OptimizelySDKTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B9BA208CD5E54D6FC8BFE04 /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7BE1816F0CC3DB4963A1E34B /* Pods_OptimizelySDKTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9294DB750779535E9BD6D920 /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.rc.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		C98AB6C2E6C050FD29A9D56D /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		DE0EC7C6045CADEA0BF226AE /* Pods_OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA01069A1D710E7C004B0DDF /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		EA191B421DB6E288000E087C /* OptimizelySDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKCore.xcodeproj; path = ../OptimizelySDKCore/OptimizelySDKCore.xcodeproj; sourceTree = "<group>"; };
 		EA8390F21D7104B30074185B /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA191C1D1DB6E890000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
+				82BA6C5DB0C7D027A3A5FAD1 /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA191B6E1DB6E2F7000E087C /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */,
+				A0A610455E195AFEF02EC73B /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				EA191B421DB6E288000E087C /* OptimizelySDKCore.xcodeproj */,
+				DE0EC7C6045CADEA0BF226AE /* Pods_OptimizelySDKTVOS.framework */,
+				7BE1816F0CC3DB4963A1E34B /* Pods_OptimizelySDKTVOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -480,7 +488,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		73270835745A5BCE0E7B03D7 /* [CP] Copy Pods Resources */ = {
@@ -510,7 +518,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EABC69B01D8756A600BCB6C5 /* ShellScript */ = {
