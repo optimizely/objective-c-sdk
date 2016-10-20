@@ -15,7 +15,7 @@
 ***************************************************************************/
 
 import UIKit
-import OptimizelySDKCore
+import OptimizelySDKiOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -128,6 +128,7 @@
 		EA8391251D7104CA0074185B /* OptimizelySDKiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKiOSTests.m; sourceTree = "<group>"; };
 		EA8391271D7104CA0074185B /* OptimizelySDKiOSTestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OptimizelySDKiOSTestsInfo.plist; sourceTree = "<group>"; };
 		EABC69BE1D875B4A00BCB6C5 /* OptimizelySDKiOSInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OptimizelySDKiOSInfo.plist; path = OptimizelySDKiOS/OptimizelySDKiOSInfo.plist; sourceTree = SOURCE_ROOT; };
+		EAF090DF1DB85ED700196EC7 /* OptimizelySDKiOS.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKiOS.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				EABC69BE1D875B4A00BCB6C5 /* OptimizelySDKiOSInfo.plist */,
+				EAF090DF1DB85ED700196EC7 /* OptimizelySDKiOS.modulemap */,
 				EA8391191D7104CA0074185B /* OptimizelySDKiOS.h */,
 			);
 			path = OptimizelySDKiOS;

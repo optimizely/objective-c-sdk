@@ -14,14 +14,5 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
-
-//! Project version number for OptimizelySDKiOS.
-FOUNDATION_EXPORT double OptimizelySDKiOSVersionNumber;
-
-//! Project version string for OptimizelySDKiOS.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKiOSVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKiOS/PublicHeader.h>
-
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 
