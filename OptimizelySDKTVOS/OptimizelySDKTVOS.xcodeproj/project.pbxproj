@@ -8,16 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1A7F94D1D9917127F0ACE168 /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59F304FBAD34F0D1E8B1672 /* Pods_OptimizelySDKTVOSTests.framework */; };
-		3CA28B81CCAAB58AEB1D29B0 /* Pods_OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDC189C13CF14CFCBBA98A /* Pods_OptimizelySDKTVOS.framework */; };
 		EA191B6E1DB6E2F7000E087C /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106AB1D710E7C004B0DDF /* Pods_OptimizelySDKTVOSTests.framework */; };
-		EA191C1D1DB6E890000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106A91D710E7C004B0DDF /* Pods_OptimizelySDKTVOS.framework */; };
+		EA191D531DB827F5000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0106A91D710E7C004B0DDF /* Pods_OptimizelySDKTVOS.framework */; };
 		EA8390F61D7104B30074185B /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8390F51D7104B30074185B /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8391021D7104B30074185B /* OptimizelySDKTVOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8391011D7104B30074185B /* OptimizelySDKTVOSTests.m */; };
-		EA83917E1D710B1B0074185B /* OptimizelySDKTVOS.beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA8391791D710B1B0074185B /* OptimizelySDKTVOS.beta.xcconfig */; };
-		EA83917F1D710B1B0074185B /* OptimizelySDKTVOS.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA83917A1D710B1B0074185B /* OptimizelySDKTVOS.debug.xcconfig */; };
-		EA8391801D710B1B0074185B /* OptimizelySDKTVOS.rc.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA83917B1D710B1B0074185B /* OptimizelySDKTVOS.rc.xcconfig */; };
-		EA8391811D710B1B0074185B /* OptimizelySDKTVOS.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA83917C1D710B1B0074185B /* OptimizelySDKTVOS.release.xcconfig */; };
-		EA8391821D710B1B0074185B /* OptimizelySDKTVOS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA83917D1D710B1B0074185B /* OptimizelySDKTVOS.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,8 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA191C1D1DB6E890000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
-				3CA28B81CCAAB58AEB1D29B0 /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
+				EA191D531DB827F5000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,11 +436,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA8391821D710B1B0074185B /* OptimizelySDKTVOS.xcconfig in Resources */,
-				EA8391811D710B1B0074185B /* OptimizelySDKTVOS.release.xcconfig in Resources */,
-				EA83917F1D710B1B0074185B /* OptimizelySDKTVOS.debug.xcconfig in Resources */,
-				EA8391801D710B1B0074185B /* OptimizelySDKTVOS.rc.xcconfig in Resources */,
-				EA83917E1D710B1B0074185B /* OptimizelySDKTVOS.beta.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
