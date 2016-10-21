@@ -14,22 +14,20 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import "OPTLYiOSProjectConfig.h"
 
-@class OPTLYEventBuilderEvent;
+NSString * const kClientEngine = @"objective-c-sdk-iOS";
 
-@interface OPTLYTestHelper : NSObject
+@implementation OPTLYiOSProjectConfig
 
-/// Set up mock response with a failure
-+ (void)stubFailureResponse;
+- (NSString *)clientEngine
+{
+    return kClientEngine;
+}
 
-/// Set up mock response with a success
-+ (void)stubSuccessResponse;
-
-/// Loads JSON datafile into a JSON object
-+ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
-
-/// Loads JSON datafile into an NSData object
-+ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
+- (NSString *)clientVersion
+{
+    return OPTIMIZELY_SDK_iOS_VERSION;
+}
 
 @end

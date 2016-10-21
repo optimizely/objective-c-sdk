@@ -14,22 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import "OPTLYTVOSProjectConfig.h"
+#import "OptimizelySDKTVOS.h"
 
-@class OPTLYEventBuilderEvent;
+NSString * const kClientEngine = @"objective-c-sdk-tvOS";
 
-@interface OPTLYTestHelper : NSObject
+@implementation OPTLYTVOSProjectConfig
 
-/// Set up mock response with a failure
-+ (void)stubFailureResponse;
+- (NSString *)clientEngine
+{
+    return kClientEngine;
+}
 
-/// Set up mock response with a success
-+ (void)stubSuccessResponse;
+- (NSString *)clientVersion
+{
+    return OPTIMIZELY_SDK_TV_OS_VERSION;
+}
 
-/// Loads JSON datafile into a JSON object
-+ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
-
-/// Loads JSON datafile into an NSData object
-+ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
 
 @end

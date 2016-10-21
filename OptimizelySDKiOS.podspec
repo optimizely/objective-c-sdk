@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKiOS"
-  s.version                 = "0.1.1"
+  s.version                 = "0.1.9"
   s.summary                 = "Optimizely server-side testing framework for iOS."
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -15,9 +15,7 @@ Pod::Spec.new do |s|
   s.public_header_files     = "OptimizelySDKiOS/OptimizelySDKiOS/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
-  xcconfig_path             = "OptimizelySDKiOS/Config/OptimizelySDKiOS.xcconfig"
-  s.preserve_path           = xcconfig_path
-  s.xcconfig                = File.open(File.join(Dir.pwd, xcconfig_path)) { |file| Hash[file.each_line.map { |line| line.split("=", 2) }] }
+  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_iOS_VERSION=@\\\"#{s.version}\\\"" }
   s.subspec "JSONModel" do |ss|
       ss.dependency 'JSONModel', '~> 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }

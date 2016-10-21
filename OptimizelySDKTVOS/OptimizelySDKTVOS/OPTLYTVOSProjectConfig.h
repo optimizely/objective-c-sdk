@@ -15,21 +15,10 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 
-@class OPTLYEventBuilderEvent;
+@class OPTLYProjectConfig;
 
-@interface OPTLYTestHelper : NSObject
-
-/// Set up mock response with a failure
-+ (void)stubFailureResponse;
-
-/// Set up mock response with a success
-+ (void)stubSuccessResponse;
-
-/// Loads JSON datafile into a JSON object
-+ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
-
-/// Loads JSON datafile into an NSData object
-+ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
+@interface OPTLYTVOSProjectConfig : OPTLYProjectConfig
 
 @end
