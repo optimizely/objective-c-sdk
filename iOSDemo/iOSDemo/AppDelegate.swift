@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     // Optimizely SDK test parameters
-    let projectId = "7335661696";
+    let projectId = "12345678";
     let attributes = ["attribute1" : "attributeValue1", "attribute2" : "attributeValue2"];
     let eventKey = "event1";
     let experimentKey = "Experiment1";
-    let userId = "7318651941";
+    let userId = "1234";
     let revenue = NSNumber(unsignedInt: 88);
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

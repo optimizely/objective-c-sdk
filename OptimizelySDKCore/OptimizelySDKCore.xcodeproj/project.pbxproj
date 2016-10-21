@@ -1593,6 +1593,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1617,6 +1618,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1641,6 +1643,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1665,6 +1668,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1749,6 +1753,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1775,6 +1780,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1801,6 +1807,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1827,6 +1834,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1952,7 +1960,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
-				MODULEMAP_PRIVATE_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
@@ -2011,7 +2019,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
-				MODULEMAP_PRIVATE_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				SDKROOT = "";
@@ -2049,12 +2057,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
@@ -2083,11 +2094,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = Release;
@@ -2190,7 +2204,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
-				MODULEMAP_PRIVATE_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				SDKROOT = "";
@@ -2228,11 +2242,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = Beta;
@@ -2310,7 +2327,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
-				MODULEMAP_PRIVATE_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				SDKROOT = "";
@@ -2348,11 +2365,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
 			};
 			name = RC;
