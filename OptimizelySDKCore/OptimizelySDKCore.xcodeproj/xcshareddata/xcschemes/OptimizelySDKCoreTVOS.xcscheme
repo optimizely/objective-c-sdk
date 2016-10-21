@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA1A4C1F1D372F4700A68DA1"
-               BuildableName = "OptimizelySDKCore.framework"
-               BlueprintName = "OptimizelySDKCore"
+               BlueprintIdentifier = "EA191BF31DB6E7FD000E087C"
+               BuildableName = "OptimizelySDKCoreTVOS.framework"
+               BlueprintName = "OptimizelySDKCoreTVOS"
                ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA1A4C291D372F4700A68DA1"
-               BuildableName = "OptimizelySDKCoreTests.xctest"
-               BlueprintName = "OptimizelySDKCoreTests"
+               BlueprintIdentifier = "EA191BFC1DB6E7FE000E087C"
+               BuildableName = "OptimizelySDKCoreTVOSTests.xctest"
+               BlueprintName = "OptimizelySDKCoreTVOSTests"
                ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA1A4C1F1D372F4700A68DA1"
-            BuildableName = "OptimizelySDKCore.framework"
-            BlueprintName = "OptimizelySDKCore"
+            BlueprintIdentifier = "EA191BF31DB6E7FD000E087C"
+            BuildableName = "OptimizelySDKCoreTVOS.framework"
+            BlueprintName = "OptimizelySDKCoreTVOS"
             ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA1A4C1F1D372F4700A68DA1"
-            BuildableName = "OptimizelySDKCore.framework"
-            BlueprintName = "OptimizelySDKCore"
+            BlueprintIdentifier = "EA191BF31DB6E7FD000E087C"
+            BuildableName = "OptimizelySDKCoreTVOS.framework"
+            BlueprintName = "OptimizelySDKCoreTVOS"
             ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA1A4C1F1D372F4700A68DA1"
-            BuildableName = "OptimizelySDKCore.framework"
-            BlueprintName = "OptimizelySDKCore"
+            BlueprintIdentifier = "EA191BF31DB6E7FD000E087C"
+            BuildableName = "OptimizelySDKCoreTVOS.framework"
+            BlueprintName = "OptimizelySDKCoreTVOS"
             ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
