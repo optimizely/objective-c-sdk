@@ -13,6 +13,7 @@
 		EA8391021D7104B30074185B /* OptimizelySDKTVOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8391011D7104B30074185B /* OptimizelySDKTVOSTests.m */; };
 		EA8D57DC1DB99F0400C88377 /* OPTLYTVOSProjectConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8D57DA1DB99F0400C88377 /* OPTLYTVOSProjectConfig.h */; };
 		EA8D57DD1DB99F0400C88377 /* OPTLYTVOSProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D57DB1DB99F0400C88377 /* OPTLYTVOSProjectConfig.m */; };
+		EA8D57F61DB9A06400C88377 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA191B4C1DB6E288000E087C /* OptimizelySDKCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8D57F61DB9A06400C88377 /* OptimizelySDKCore.framework in Frameworks */,
 				EA191D531DB827F5000E087C /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

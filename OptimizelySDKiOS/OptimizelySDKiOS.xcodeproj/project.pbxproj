@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA191BCB1DB6E703000E087C /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F2BE1D7118AA0096CE8F /* Pods_OptimizelySDKiOS.framework */; };
+		EA191BCB1DB6E703000E087C /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F2BE1D7118AA0096CE8F /* Pods_OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EA191BCE1DB6E72B000E087C /* Pods_OptimizelySDKiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F2C01D7118AA0096CE8F /* Pods_OptimizelySDKiOSTests.framework */; };
 		EA83911A1D7104CA0074185B /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8391191D7104CA0074185B /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8391261D7104CA0074185B /* OptimizelySDKiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8391251D7104CA0074185B /* OptimizelySDKiOSTests.m */; };
 		EA8D57F41DB99F2000C88377 /* OPTLYiOSProjectConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8D57F21DB99F2000C88377 /* OPTLYiOSProjectConfig.h */; };
 		EA8D57F51DB99F2000C88377 /* OPTLYiOSProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D57F31DB99F2000C88377 /* OPTLYiOSProjectConfig.m */; };
+		EA8D57F71DB9A08700C88377 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA191B611DB6E293000E087C /* OptimizelySDKCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8D57F71DB9A08700C88377 /* OptimizelySDKCore.framework in Frameworks */,
 				EA191BCB1DB6E703000E087C /* Pods_OptimizelySDKiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,6 +600,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -624,7 +627,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
+				VALID_ARCHS = "arm64 i386 x86_64 armv7s armv7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -635,6 +638,7 @@
 			baseConfigurationReference = EA64F2C21D7118EB0096CE8F /* OptimizelySDKiOS.beta.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION_MAJOR)";
@@ -647,7 +651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Beta;
 		};
@@ -681,6 +685,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -707,7 +712,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
+				VALID_ARCHS = "arm64 i386 x86_64 armv7s armv7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -718,6 +723,7 @@
 			baseConfigurationReference = EA64F2C41D7118EB0096CE8F /* OptimizelySDKiOS.rc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION_MAJOR)";
@@ -730,7 +736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = RC;
 		};
@@ -764,6 +770,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -790,7 +797,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
+				VALID_ARCHS = "arm64 i386 x86_64 armv7s armv7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -814,6 +821,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -835,7 +843,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
+				VALID_ARCHS = "arm64 i386 x86_64 armv7s armv7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -846,6 +854,7 @@
 			baseConfigurationReference = EA64F2C31D7118EB0096CE8F /* OptimizelySDKiOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION_MAJOR)";
@@ -858,7 +867,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -867,6 +876,7 @@
 			baseConfigurationReference = EA64F2C51D7118EB0096CE8F /* OptimizelySDKiOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "$(OPTIMIZELY_SDK_iOS_VERSION_MAJOR)";
@@ -879,7 +889,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
