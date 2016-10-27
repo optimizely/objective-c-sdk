@@ -11,8 +11,8 @@
 		2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */; };
 		2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */; };
 		2DE4D4881DC2A11D00E2758B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4451DC2A08600E2758B /* OptimizelySDKCore.framework */; };
-		5B6F901F1AB8DB3661218930 /* Pods_OptimizelySDKSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B086B2AEA3467FEFAAF7E /* Pods_OptimizelySDKSharedTests.framework */; };
-		A50346F479B406A3EAAB9C1B /* Pods_OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 139F3E3A28BC861727FB4FC3 /* Pods_OptimizelySDKShared.framework */; };
+		2DE4D49B1DC2A14000E2758B /* Pods_OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4981DC2A13600E2758B /* Pods_OptimizelySDKShared.framework */; };
+		2DE4D49C1DC2A14800E2758B /* Pods_OptimizelySDKSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D49A1DC2A13600E2758B /* Pods_OptimizelySDKSharedTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +72,41 @@
 			remoteGlobalIDString = EA1A4C1F1D372F4700A68DA1;
 			remoteInfo = OptimizelySDKCore;
 		};
+		2DE4D4911DC2A13600E2758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6735400A32188E3465430056077629A5;
+			remoteInfo = JSONModel;
+		};
+		2DE4D4931DC2A13600E2758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 315A5287E4CEB9F4C320352B51D7B4C4;
+			remoteInfo = OCMock;
+		};
+		2DE4D4951DC2A13600E2758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3C6E253B97A18D6815DD8BFE25E58E37;
+			remoteInfo = OHHTTPStubs;
+		};
+		2DE4D4971DC2A13600E2758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A461EC6A2675998D0E7418B904474489;
+			remoteInfo = "Pods-OptimizelySDKShared";
+		};
+		2DE4D4991DC2A13600E2758B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8E08D8077CDB844E8DE5468A182FCDDB;
+			remoteInfo = "Pods-OptimizelySDKSharedTests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +119,7 @@
 		2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKSharedTests.m; sourceTree = "<group>"; };
 		2DB66B511DC1809D004A3B4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DE4D43B1DC2A08600E2758B /* OptimizelySDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKCore.xcodeproj; path = ../OptimizelySDKCore/OptimizelySDKCore.xcodeproj; sourceTree = "<group>"; };
+		2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		2F4FF57A60F6719AA380C2E6 /* Pods-OptimizelySDKShared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKShared.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKShared/Pods-OptimizelySDKShared.debug.xcconfig"; sourceTree = "<group>"; };
 		5B43596498996139F878D3C8 /* Pods-OptimizelySDKSharedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKSharedTests/Pods-OptimizelySDKSharedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		791B086B2AEA3467FEFAAF7E /* Pods_OptimizelySDKSharedTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +131,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE4D49B1DC2A14000E2758B /* Pods_OptimizelySDKShared.framework in Frameworks */,
 				2DE4D4881DC2A11D00E2758B /* OptimizelySDKCore.framework in Frameworks */,
-				A50346F479B406A3EAAB9C1B /* Pods_OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE4D49C1DC2A14800E2758B /* Pods_OptimizelySDKSharedTests.framework in Frameworks */,
 				2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */,
-				5B6F901F1AB8DB3661218930 /* Pods_OptimizelySDKSharedTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,9 +209,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2DE4D48A1DC2A13600E2758B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DE4D4921DC2A13600E2758B /* JSONModel.framework */,
+				2DE4D4941DC2A13600E2758B /* OCMock.framework */,
+				2DE4D4961DC2A13600E2758B /* OHHTTPStubs.framework */,
+				2DE4D4981DC2A13600E2758B /* Pods_OptimizelySDKShared.framework */,
+				2DE4D49A1DC2A13600E2758B /* Pods_OptimizelySDKSharedTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		633EDE6EB10EAAF7EF5229BF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */,
 				2F4FF57A60F6719AA380C2E6 /* Pods-OptimizelySDKShared.debug.xcconfig */,
 				0A3C1B51B486C2D81C65F4BD /* Pods-OptimizelySDKShared.release.xcconfig */,
 				5B43596498996139F878D3C8 /* Pods-OptimizelySDKSharedTests.debug.xcconfig */,
@@ -272,6 +321,10 @@
 					ProductGroup = 2DE4D43C1DC2A08600E2758B /* Products */;
 					ProjectRef = 2DE4D43B1DC2A08600E2758B /* OptimizelySDKCore.xcodeproj */;
 				},
+				{
+					ProductGroup = 2DE4D48A1DC2A13600E2758B /* Products */;
+					ProjectRef = 2DE4D4891DC2A13600E2758B /* Pods.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -322,6 +375,41 @@
 			fileType = wrapper.cfbundle;
 			path = OptimizelySDKCoreTVOSTests.xctest;
 			remoteRef = 2DE4D44E1DC2A08600E2758B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DE4D4921DC2A13600E2758B /* JSONModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONModel.framework;
+			remoteRef = 2DE4D4911DC2A13600E2758B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DE4D4941DC2A13600E2758B /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = 2DE4D4931DC2A13600E2758B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DE4D4961DC2A13600E2758B /* OHHTTPStubs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OHHTTPStubs.framework;
+			remoteRef = 2DE4D4951DC2A13600E2758B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DE4D4981DC2A13600E2758B /* Pods_OptimizelySDKShared.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_OptimizelySDKShared.framework;
+			remoteRef = 2DE4D4971DC2A13600E2758B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2DE4D49A1DC2A13600E2758B /* Pods_OptimizelySDKSharedTests.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_OptimizelySDKSharedTests.framework;
+			remoteRef = 2DE4D4991DC2A13600E2758B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
