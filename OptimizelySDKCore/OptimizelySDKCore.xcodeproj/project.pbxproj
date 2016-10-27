@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE4D4A51DC2A34400E2758B /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4A41DC2A34400E2758B /* JSONModel.framework */; };
 		2DF1F36C1D92FF390080AC4B /* Pods_OptimizelySDKCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F28E1D71101D0096CE8F /* Pods_OptimizelySDKCoreTests.framework */; };
 		2DF1F3761D9352880080AC4B /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1F36F1D93524F0080AC4B /* validator_whitelisting_test_datafile.json */; };
 		EA13DAC31D65141600C6F9E8 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A4C201D372F4700A68DA1 /* OptimizelySDKCore.framework */; };
@@ -282,7 +283,6 @@
 		EA5ACC721D63947300FB4DDD /* OPTLYValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5ACC491D631D0600FB4DDD /* OPTLYValidatorTest.m */; };
 		EA5ACC741D6394BC00FB4DDD /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5ACC471D631D0600FB4DDD /* OPTLYTestHelper.h */; };
 		EA5ACC751D6394E700FB4DDD /* OptimizelySDKCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5ACC391D631D0600FB4DDD /* OptimizelySDKCoreTests.m */; };
-		EA64F2951D71111B0096CE8F /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F2861D71101D0096CE8F /* JSONModel.framework */; };
 		EA64F2971D7112FA0096CE8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A4C8F1D37335E00A68DA1 /* Foundation.framework */; };
 		EA6BB0511D7600A100DD40DC /* OPTLYEventLayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6BB04F1D7600A100DD40DC /* OPTLYEventLayerState.h */; };
 		EA6BB0521D7600A100DD40DC /* OPTLYEventLayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6BB0501D7600A100DD40DC /* OPTLYEventLayerState.m */; };
@@ -376,6 +376,7 @@
 /* Begin PBXFileReference section */
 		17726291BE48EB3B89E6E994 /* Pods_OptimizelySDKCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2907FF11799BFB6EFBC4681C /* Pods-OptimizelySDKCoreTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.rc.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.rc.xcconfig"; sourceTree = "<group>"; };
+		2DE4D4A41DC2A34400E2758B /* JSONModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONModel.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-appletvsimulator/JSONModel/JSONModel.framework"; sourceTree = "<group>"; };
 		2DF1F36F1D93524F0080AC4B /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = validator_whitelisting_test_datafile.json; path = OptimizelySDKCoreTests/TestData/validator_whitelisting_test_datafile.json; sourceTree = SOURCE_ROOT; };
 		390E1C47BC0CD7BE296AA7AA /* Pods-OptimizelySDKCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A9F66D02FAB16CD4287CBEA4 /* Pods-OptimizelySDKCoreTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKCoreTests/Pods-OptimizelySDKCoreTests.beta.xcconfig"; sourceTree = "<group>"; };
@@ -535,8 +536,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE4D4A51DC2A34400E2758B /* JSONModel.framework in Frameworks */,
 				EA64F2971D7112FA0096CE8F /* Foundation.framework in Frameworks */,
-				EA64F2951D71111B0096CE8F /* JSONModel.framework in Frameworks */,
 				EAAE1B9B1D74CDE200562476 /* Pods_OptimizelySDKCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,6 +744,7 @@
 		EA1A4C3A1D372FB600A68DA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DE4D4A41DC2A34400E2758B /* JSONModel.framework */,
 				EAFEAB3F1DBA9DF4009535A6 /* Pods_OptimizelySDKiOS.framework */,
 				EA1A4C8F1D37335E00A68DA1 /* Foundation.framework */,
 				EA59F8571D5E83D600BD4FB4 /* murmur */,
