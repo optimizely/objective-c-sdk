@@ -1,536 +1,388 @@
-## Magical Data Modeling Framework for JSON
+# JSONModel - Magical Data Modeling Framework for JSON
 
-### Version 1.3.0
+JSONModel allows rapid creation of smart data models. You can use it in your
+iOS, macOS, watchOS and tvOS apps. Automatic introspection of your model classes
+and JSON input drastically reduces the amount of code you have to write.
 
----
-If you like JSONModel and use it, could you please:
+See [CHANGELOG.md](CHANGELOG.md) for details on changes.
 
- * star this repo
+## Installation
 
- * send me some feedback. Thanks!
-
----
-
-![JSONModel for iOS and OSX](http://jsonmodel.com/img/jsonmodel_logolike.png)
-
-JSONModel is a library, which allows rapid creation of smart data models. You can use it in your iOS or OSX apps.
-
-JSONModel automatically introspects your model classes and the structure of your JSON input and reduces drastically the amount of code you have to write.
-
-[![](http://www.touch-code-magazine.com/img/json.png)](http://www.touch-code-magazine.com/img/json.png)
-
-
-------------------------------------
-Adding JSONModel to your project
-====================================
-
-#### Requirements
-
-* ARC only; iOS 5.0+ / OSX 10.7+
-* **SystemConfiguration.framework**
-
-#### Get it as: 1) source files
-
-1. Download the JSONModel repository as a [zip file](https://github.com/jsonmodel/jsonmodel/archive/master.zip) or clone it
-2. Copy the JSONModel sub-folder into your Xcode project
-3. Link your app to SystemConfiguration.framework
-
-#### or 2) via CocoaPods
-
-In your project's **Podfile** add the JSONModel pod:
+### CocoaPods
 
 ```ruby
 pod 'JSONModel'
 ```
-If you want to read more about CocoaPods, have a look at [this short tutorial](http://www.raywenderlich.com/12139/introduction-to-cocoapods).
 
-#### or 3) via Carthage
-
-In your project's **Cartfile** add the JSONModel:
+### Carthage
 
 ```ruby
 github "jsonmodel/jsonmodel"
 ```
 
-#### Docs
+### Manual
 
-You can find the generated docs online at: [http://cocoadocs.org/docsets/JSONModel](http://cocoadocs.org/docsets/JSONModel)
+0. download the JSONModel repository
+0. copy the JSONModel sub-folder into your Xcode project
+0. link your app to SystemConfiguration.framework
 
-------------------------------------
-Basic usage
-====================================
+## Basic Usage
 
-Consider you have a JSON like this:
-```javascript
-{ "id": "10", "country": "Germany", "dialCode": 49, "isInEurope": true }
+Consider you have JSON like this:
+
+```json
+{ "id": 10, "country": "Germany", "dialCode": 49, "isInEurope": true }
 ```
 
- * Create a new Objective-C class for your data model and make it inherit the JSONModel class.
- * Declare properties in your header file with the name of the JSON keys:
+- create a JSONModel subclass for your data model
+- declare properties in your header file with the name of the JSON keys:
 
-```objective-c
-#import "JSONModel.h"
-
+```objc
 @interface CountryModel : JSONModel
-
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* country;
-@property (strong, nonatomic) NSString* dialCode;
-@property (assign, nonatomic) BOOL isInEurope;
-
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *country;
+@property (nonatomic) NSString *dialCode;
+@property (nonatomic) BOOL isInEurope;
 @end
 ```
-There's no need to do anything in the **.m** file.
 
- * Initialize your model with data:
+There's no need to do anything in the implementation (`.m`) file.
 
-```objective-c
-#import "CountryModel.h"
-...
+- initialize your model with data:
 
-NSString* json = (fetch here JSON from Internet) ...
-NSError* err = nil;
-CountryModel* country = [[CountryModel alloc] initWithString:json error:&err];
-
+```objc
+NSError *error;
+CountryModel *country = [[CountryModel alloc] initWithString:myJson error:&error];
 ```
 
-If the validation of the JSON passes you have all the corresponding properties in your model populated from the JSON. JSONModel will also try to convert as much data to the types you expect, in the example above it will:
+If the validation of the JSON passes. you have all the corresponding properties
+in your model populated from the JSON. JSONModel will also try to convert as
+much data to the types you expect. In the example above it will:
 
-* convert "id" from string (in the JSON) to an int for your class
-* just copy country's value
-* convert dialCode from number (in the JSON) to an NSString value
-* finally convert isInEurope to a BOOL for your BOOL property
+- convert `id` from string (in the JSON) to an `int` for your class
+- copy the `country` value
+- convert `dialCode` from a number (in the JSON) to an `NSString` value
+- copy the `isInEurope` value
 
-And the good news is all you had to do is define the properties and their expected types.
+All you have to do is define the properties and their expected types.
 
--------
-#### Online tutorials
+## Examples
 
+### Automatic name based mapping
 
-Official website: [http://www.jsonmodel.com](http://www.jsonmodel.com)
-
-Class docs online: [http://jsonmodel.com/docs/](http://jsonmodel.com/docs/)
-
-Step-by-step tutorials:
-
- * [How to fetch and parse JSON by using data models](http://www.touch-code-magazine.com/how-to-fetch-and-parse-json-by-using-data-models/)
-
- * [Performance optimisation for working with JSON feeds via JSONModel](http://www.touch-code-magazine.com/performance-optimisation-for-working-with-json-feeds-via-jsonmodel/)
-
- * [How to make a YouTube app using MGBox and JSONModel](http://www.touch-code-magazine.com/how-to-make-a-youtube-app-using-mgbox-and-jsonmodel/)
-
--------
-Examples
-=======
-
-#### Automatic name based mapping
-<table>
-<tr>
-<td valign="top">
-<pre>
+```json
 {
-  "id": "123",
-  "name": "Product name",
-  "price": 12.95
+	"id": 123,
+	"name": "Product name",
+	"price": 12.95
 }
-</pre>
-</td>
-<td>
-<pre>
+```
+
+```objc
 @interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) float price;
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) float price;
 @end
+```
 
-@implementation ProductModel
-@end
-</pre>
-</td>
-</tr>
-</table>
+### Model cascading (models including other models)
 
-#### Model cascading (models including other models)
-<table>
-<tr>
-<td valign="top">
-<pre>
+```json
 {
-  "order_id": 104,
-  "total_price": 13.45,
-  "product" : {
-    "id": "123",
-    "name": "Product name",
-    "price": 12.95
-  }
+	"orderId": 104,
+	"totalPrice": 13.45,
+	"product": {
+		"id": 123,
+		"name": "Product name",
+		"price": 12.95
+	}
 }
-</pre>
-</td>
-<td valign="top">
-<pre>
+```
+
+```objc
+@interface ProductModel : JSONModel
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) float price;
+@end
+
 @interface OrderModel : JSONModel
-@property (assign, nonatomic) int order_id;
-@property (assign, nonatomic) float total_price;
-@property (strong, nonatomic) <b>ProductModel*</b> product;
+@property (nonatomic) NSInteger orderId;
+@property (nonatomic) float totalPrice;
+@property (nonatomic) ProductModel *product;
 @end
+```
 
-@implementation OrderModel
-@end
-</pre>
-</td>
-</tr>
-</table>
+### Model collections
 
-#### Model collections
-<table>
-<tr>
-<td valign="top">
-<pre>
+```json
 {
-  "order_id": 104,
-  "total_price": 103.45,
-  "products" : [
-    {
-      "id": "123",
-      "name": "Product #1",
-      "price": 12.95
-    },
-    {
-      "id": "137",
-      "name": "Product #2",
-      "price": 82.95
-    }
-  ]
+	"orderId": 104,
+	"totalPrice": 103.45,
+	"products": [
+		{
+			"id": 123,
+			"name": "Product #1",
+			"price": 12.95
+		},
+		{
+			"id": 137,
+			"name": "Product #2",
+			"price": 82.95
+		}
+	]
 }
-</pre>
-</td>
-<td valign="top">
-<pre>
-<b>@protocol ProductModel
-@end</b>
+```
+
+```objc
+@protocol ProductModel;
 
 @interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) float price;
-@end
-
-@implementation ProductModel
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) float price;
 @end
 
 @interface OrderModel : JSONModel
-@property (assign, nonatomic) int order_id;
-@property (assign, nonatomic) float total_price;
-@property (strong, nonatomic) <b>NSArray&lt;ProductModel&gt;*</b> products;
+@property (nonatomic) NSInteger orderId;
+@property (nonatomic) float totalPrice;
+@property (nonatomic) NSArray <ProductModel> *products;
 @end
+```
 
-@implementation OrderModel
-@end
-</pre>
+Note: the angle brackets after `NSArray` contain a protocol. This is not the
+same as the Objective-C generics system. They are not mutually exclusive, but
+for JSONModel to work, the protocol must be in place.
 
-Note: the angle brackets after <code>NSArray</code> contain a protocol. This is not the same as the new Objective-C generics system. They are not mutually exclusive, but for JSONModel to work, the protocol must be in place.
-</td>
-</tr>
-</table>
+### Nested key mapping
 
-#### Key mapping
-<table>
-<tr>
-<td valign="top">
-<pre>
+```json
 {
-  "order_id": 104,
-  "order_details" : [
-    {
-      "name": "Product#1",
-      "price": {
-        "usd": 12.95
-      }
-    }
-  ]
+	"orderId": 104,
+	"orderDetails": [
+		{
+			"name": "Product #1",
+			"price": {
+				"usd": 12.95
+			}
+		}
+	]
 }
-</pre>
-</td>
-<td valign="top">
-<pre>
+```
+
+```objc
 @interface OrderModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (assign, nonatomic) float price;
-@property (strong, nonatomic) NSString* productName;
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *productName;
+@property (nonatomic) float price;
 @end
 
 @implementation OrderModel
 
-+(JSONKeyMapper*)keyMapper
++ (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{
-  <b>  @"order_id": @"id",
-    @"order_details.name": @"productName",
-    @"order_details.price.usd": @"price"</b>
-  }];
+	return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+		@"id": @"orderId",
+		@"productName": @"orderDetails.name",
+		@"price": @"orderDetails.price.usd"
+	}];
 }
 
 @end
-</pre>
-</td>
-</tr>
-</table>
+```
 
-#### Global key mapping (applies to all models in your app)
-<table>
-<tr>
-<td valign="top">
-<pre>
-<b>[JSONModel setGlobalKeyMapper:[</b>
-    [JSONKeyMapper alloc] initWithDictionary:@{
-      @"item_id":@"ID",
-      @"item.name": @"itemName"
-   }]
-<b>];</b>
+### Map automatically to snake_case
 
-</pre>
-</td>
-</tr>
-</table>
-
-#### Map automatically under_score case to camelCase
-<table>
-<tr>
-<td valign="top">
-<pre>
+```json
 {
-  "order_id": 104,
-  "order_product" : @"Product#1",
-  "order_price" : 12.95
+	"order_id": 104,
+	"order_product": "Product #1",
+	"order_price": 12.95
 }
-</pre>
-</td>
-<td valign="top">
-<pre>
+```
+
+```objc
 @interface OrderModel : JSONModel
-
-@property (assign, nonatomic) int orderId;
-@property (assign, nonatomic) float orderPrice;
-@property (strong, nonatomic) NSString* orderProduct;
-
+@property (nonatomic) NSInteger orderId;
+@property (nonatomic) NSString *orderProduct;
+@property (nonatomic) float orderPrice;
 @end
 
 @implementation OrderModel
 
-+(JSONKeyMapper*)keyMapper
++ (JSONKeyMapper *)keyMapper
 {
-  return <b>[JSONKeyMapper mapperFromUnderscoreCaseToCamelCase];</b>
+	return [JSONKeyMapper mapperForSnakeCase];
 }
 
 @end
-</pre>
-</td>
-</tr>
-</table>
-
-#### Optional properties (i.e. can be missing or null)
-<table>
-<tr>
-<td valign="top">
-<pre>
-{
-  "id": "123",
-  "name": null,
-  "price": 12.95
-}
-</pre>
-</td>
-<td>
-<pre>
-@interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString<b>&lt;Optional&gt;</b>* name;
-@property (assign, nonatomic) float price;
-@property (strong, nonatomic) NSNumber<b>&lt;Optional&gt;</b>* uuid;
-@end
-
-@implementation ProductModel
-@end
-</pre>
-</td>
-</tr>
-</table>
-
-#### Ignored properties (i.e. JSONModel completely ignores them)
-<table>
-<tr>
-<td valign="top">
-<pre>
-{
-  "id": "123",
-  "name": null
-}
-</pre>
-</td>
-<td>
-<pre>
-@interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString<b>&lt;Ignore&gt;</b>* customProperty;
-@end
-
-@implementation ProductModel
-@end
-</pre>
-</td>
-</tr>
-</table>
-
-
-#### Make all model properties optional (avoid if possible)
-<table>
-<tr>
-<td valign="top">
-<pre>
-@implementation ProductModel
-<b>+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-  return YES;
-}</b>
-@end
-</pre>
-</td>
-</tr>
-</table>
-
-#### Using the built-in thin HTTP client
-
-```objective-c
-
-//add extra headers
-[[JSONHTTPClient requestHeaders] setValue:@"MySecret" forKey:@"AuthorizationToken"];
-
-//make post, get requests
-[JSONHTTPClient postJSONFromURLWithString:@"http://mydomain.com/api"
-                                   params:@{@"postParam1":@"value1"}
-                               completion:^(id json, JSONModelError *err) {
-
-                                   //check err, process json ...
-
-                               }];
 ```
 
-#### Export model to NSDictionary or to JSON text
+### Optional properties (i.e. can be missing or null)
 
-```objective-c
-
-ProductModel* pm = [[ProductModel alloc] initWithString:jsonString error:nil];
-pm.name = @"Changed Name";
-
-//convert to dictionary
-NSDictionary* dict = [pm toDictionary];
-
-//convert to text
-NSString* string = [pm toJSONString];
-
+```json
+{
+	"id": 123,
+	"name": null,
+	"price": 12.95
+}
 ```
 
-#### Custom data transformers
+```objc
+@interface ProductModel : JSONModel
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString <Optional> *name;
+@property (nonatomic) float price;
+@property (nonatomic) NSNumber <Optional> *uuid;
+@end
+```
 
-```objective-c
+### Ignored properties (i.e. JSONModel completely ignores them)
+
+```json
+{
+	"id": 123,
+	"name": null
+}
+```
+
+```objc
+@interface ProductModel : JSONModel
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString <Ignore> *customProperty;
+@end
+```
+
+### Making scalar types optional
+
+```json
+{
+	"id": null
+}
+```
+
+```objc
+@interface ProductModel : JSONModel
+@property (nonatomic) NSInteger id;
+@end
+
+@implementation ProductModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+	if ([propertyName isEqualToString:@"id"])
+		return YES;
+
+	return NO;
+}
+
+@end
+```
+
+### Export model to `NSDictionary` or JSON
+
+```objc
+ProductModel *pm = [ProductModel new];
+pm.name = @"Some Name";
+
+// convert to dictionary
+NSDictionary *dict = [pm toDictionary];
+
+// convert to json
+NSString *string = [pm toJSONString];
+```
+
+### Custom data transformers
+
+```objc
+@interface JSONValueTransformer (CustomNSDate)
+@end
 
 @implementation JSONValueTransformer (CustomTransformer)
 
-- (NSDate *)NSDateFromNSString:(NSString*)string {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:APIDateFormat];
-    return [formatter dateFromString:string];
+- (NSDate *)NSDateFromNSString:(NSString *)string
+{
+	NSDateFormatter *formatter = [NSDateFormatter new];
+	formatter.dateFormat = APIDateFormat;
+	return [formatter dateFromString:string];
 }
 
-- (NSString *)JSONObjectFromNSDate:(NSDate *)date {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:APIDateFormat];
-    return [formatter stringFromDate:date];
+- (NSString *)JSONObjectFromNSDate:(NSDate *)date
+{
+	NSDateFormatter *formatter = [NSDateFormatter new];
+	formatter.dateFormat = APIDateFormat;
+	return [formatter stringFromDate:date];
 }
 
 @end
-
 ```
 
-#### Custom handling for specific properties
+### Custom getters/setters
 
-```objective-c
-
+```objc
 @interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) float price;
-@property (strong, nonatomic) NSLocale *locale;
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) float price;
+@property (nonatomic) NSLocale *locale;
 @end
 
 @implementation ProductModel
 
-// Convert and assign the locale property
-- (void)setLocaleWithNSString:(NSString*)string {
-    self.locale = [NSLocale localeWithLocaleIdentifier:string];
+- (void)setLocaleWithNSString:(NSString *)string
+{
+	self.locale = [NSLocale localeWithLocaleIdentifier:string];
 }
 
-- (NSString *)JSONObjectForLocale {
-    return self.locale.localeIdentifier;
+- (void)setLocaleWithNSDictionary:(NSDictionary *)dictionary
+{
+	self.locale = [NSLocale localeWithLocaleIdentifier:dictionary[@"identifier"]];
+}
+
+- (NSString *)JSONObjectForLocale
+{
+	return self.locale.localeIdentifier;
 }
 
 @end
-
 ```
 
-#### Custom JSON validation
+### Custom JSON validation
 
-```objective-c
+```objc
 
 @interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) float price;
-@property (strong, nonatomic) NSLocale *locale;
-@property (strong, nonatomic) NSNumber <Ignore> *minNameLength;
+@property (nonatomic) NSInteger id;
+@property (nonatomic) NSString *name;
+@property (nonatomic) float price;
+@property (nonatomic) NSLocale *locale;
+@property (nonatomic) NSNumber <Ignore> *minNameLength;
 @end
 
 @implementation ProductModel
 
-- (BOOL)validate:(NSError *__autoreleasing *)error {
-    BOOL valid = [super validate:error];
+- (BOOL)validate:(NSError **)error
+{
+	if (![super validate:error])
+		return NO;
 
-    if (self.name.length < self.minNameLength.integerValue) {
-        *error = [NSError errorWithDomain:@"me.mycompany.com" code:1 userInfo:nil];
-        valid = NO;
-    }
+	if (self.name.length < self.minNameLength.integerValue)
+	{
+		*error = [NSError errorWithDomain:@"me.mycompany.com" code:1 userInfo:nil];
+		return NO;
+	}
 
-    return valid;
+	return YES;
 }
 
 @end
-
 ```
-* error handling
-* custom data validation
-* automatic compare and equality features
-* and more.
 
--------
+## License
 
-Misc
-=======
+MIT licensed - see [LICENSE](LICENSE) file.
 
-Author: [Marin Todorov](http://www.touch-code-magazine.com)
+## Contributing
 
-Contributors: Christian Hoffmann, Mark Joslin, Julien Vignali, Symvaro GmbH, BB9z.
-Also everyone who did successful [pull requests](https://github.com/jsonmodel/jsonmodel/graphs/contributors).
-
-Change log : [https://github.com/jsonmodel/jsonmodel/blob/master/CHANGELOG.md](https://github.com/jsonmodel/jsonmodel/blob/master/CHANGELOG.md)
-
-Utility to generate JSONModel classes from JSON data: https://github.com/dofork/json2object
-
--------
-#### License
-This code is distributed under the terms and conditions of the MIT license.
-
--------
-#### Contribution guidelines
-
-**NB!** If you are fixing a bug you discovered, please add also a unit test so I know how exactly to reproduce the bug before merging.
-
+We love pull requests! See [CONTRIBUTING.md](CONTRIBUTING.md) for full details.

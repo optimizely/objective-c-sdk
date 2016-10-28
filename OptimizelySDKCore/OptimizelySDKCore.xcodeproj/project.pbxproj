@@ -10,6 +10,8 @@
 		2DE4D4A51DC2A34400E2758B /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4A41DC2A34400E2758B /* JSONModel.framework */; };
 		2DF1F36C1D92FF390080AC4B /* Pods_OptimizelySDKCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA64F28E1D71101D0096CE8F /* Pods_OptimizelySDKCoreTests.framework */; };
 		2DF1F3761D9352880080AC4B /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DF1F36F1D93524F0080AC4B /* validator_whitelisting_test_datafile.json */; };
+		7623E41333D1112F3BF2DCC1 /* Pods_OptimizelySDKCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17726291BE48EB3B89E6E994 /* Pods_OptimizelySDKCoreTests.framework */; };
+		B4AC04F14228BBF714E2353D /* Pods_OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD897484C33A003C358B540F /* Pods_OptimizelySDKCore.framework */; };
 		EA13DAC31D65141600C6F9E8 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A4C201D372F4700A68DA1 /* OptimizelySDKCore.framework */; };
 		EA191BDE1DB6E7EC000E087C /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA191BD41DB6E7EC000E087C /* OptimizelySDKCore.framework */; };
 		EA191BFE1DB6E7FE000E087C /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA191BF41DB6E7FD000E087C /* OptimizelySDKCore.framework */; };
@@ -311,7 +313,6 @@
 		EADD37091D75927500A59494 /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EADD37071D75927500A59494 /* OPTLYEventParameterKeys.h */; };
 		EADD370A1D75927500A59494 /* OPTLYEventParameterKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = EADD37081D75927500A59494 /* OPTLYEventParameterKeys.m */; };
 		EAEB1BFA1D7FEFD500056CE3 /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6BB0971D76EE6600DD40DC /* OPTLYEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAFEAB401DBA9DF4009535A6 /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFEAB3F1DBA9DF4009535A6 /* Pods_OptimizelySDKiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -502,7 +503,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFEAB401DBA9DF4009535A6 /* Pods_OptimizelySDKiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +539,7 @@
 				2DE4D4A51DC2A34400E2758B /* JSONModel.framework in Frameworks */,
 				EA64F2971D7112FA0096CE8F /* Foundation.framework in Frameworks */,
 				EAAE1B9B1D74CDE200562476 /* Pods_OptimizelySDKCore.framework in Frameworks */,
+				B4AC04F14228BBF714E2353D /* Pods_OptimizelySDKCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +549,7 @@
 			files = (
 				2DF1F36C1D92FF390080AC4B /* Pods_OptimizelySDKCoreTests.framework in Frameworks */,
 				EA13DAC31D65141600C6F9E8 /* OptimizelySDKCore.framework in Frameworks */,
+				7623E41333D1112F3BF2DCC1 /* Pods_OptimizelySDKCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
