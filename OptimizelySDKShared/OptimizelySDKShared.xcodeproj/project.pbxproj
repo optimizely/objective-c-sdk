@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		104FCACEE9709447F2375E22 /* Pods_OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 139F3E3A28BC861727FB4FC3 /* Pods_OptimizelySDKShared.framework */; };
 		2DB66B441DC1809D004A3B4A /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */; };
 		2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */; };
@@ -16,6 +17,7 @@
 		2DE4D4A31DC2A33300E2758B /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4A21DC2A33300E2758B /* JSONModel.framework */; };
 		2DE4D4A71DC2A3A400E2758B /* OptimizelyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE4D4A61DC2A3A400E2758B /* OptimizelyManager.h */; };
 		2DE4D4A91DC2A3D300E2758B /* OptimizelyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE4D4A81DC2A3D300E2758B /* OptimizelyManager.m */; };
+		5C71D99A6B7A99EB95A7B42F /* Pods_OptimizelySDKSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B086B2AEA3467FEFAAF7E /* Pods_OptimizelySDKSharedTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,7 @@
 				2DE4D4A31DC2A33300E2758B /* JSONModel.framework in Frameworks */,
 				2DE4D49B1DC2A14000E2758B /* Pods_OptimizelySDKShared.framework in Frameworks */,
 				2DE4D4881DC2A11D00E2758B /* OptimizelySDKCore.framework in Frameworks */,
+				104FCACEE9709447F2375E22 /* Pods_OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +152,7 @@
 			files = (
 				2DE4D49C1DC2A14800E2758B /* Pods_OptimizelySDKSharedTests.framework in Frameworks */,
 				2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */,
+				5C71D99A6B7A99EB95A7B42F /* Pods_OptimizelySDKSharedTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

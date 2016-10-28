@@ -1,30 +1,30 @@
 PODS:
-  - JSONModel (1.3.0)
+  - JSONModel (1.7.0)
   - OCMock (3.3.1)
-  - OHHTTPStubs (5.2.1):
-    - OHHTTPStubs/Default (= 5.2.1)
-  - OHHTTPStubs/Core (5.2.1)
-  - OHHTTPStubs/Default (5.2.1):
+  - OHHTTPStubs (5.2.2):
+    - OHHTTPStubs/Default (= 5.2.2)
+  - OHHTTPStubs/Core (5.2.2)
+  - OHHTTPStubs/Default (5.2.2):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (5.2.1):
+  - OHHTTPStubs/JSON (5.2.2):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (5.2.1):
+  - OHHTTPStubs/NSURLSession (5.2.2):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (5.2.1)
+  - OHHTTPStubs/OHPathHelpers (5.2.2)
 
 DEPENDENCIES:
-  - JSONModel (= 1.3.0)
-  - OCMock
-  - OHHTTPStubs
+  - JSONModel (= 1.7.0)
+  - OCMock (= 3.3.1)
+  - OHHTTPStubs (= 5.2.2)
 
 SPEC CHECKSUMS:
-  JSONModel: 81c06ecf99190a25fa6aafceea5faffa7880868a
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
-  OHHTTPStubs: 3a42f25c00563b71355ac73112ba2324e9e6cef4
+  OHHTTPStubs: 34d9d0994e64fcf8552dbfade5ce82ada913ee31
 
-PODFILE CHECKSUM: b02cfbf882d2161c42f290ac0fd9b887fdd774c4
+PODFILE CHECKSUM: 7d35a77c1e1593fa3eb753460030d620c9892a40
 
 COCOAPODS: 1.0.1

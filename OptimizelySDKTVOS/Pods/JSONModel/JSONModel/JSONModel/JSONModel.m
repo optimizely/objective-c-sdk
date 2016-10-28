@@ -1,18 +1,7 @@
 //
 //  JSONModel.m
+//  JSONModel
 //
-//  @version 1.3
-//  @author Marin Todorov (http://www.underplot.com) and contributors
-//
-
-// Copyright (c) 2012-2015 Marin Todorov, Underplot ltd.
-// This code is distributed under the terms and conditions of the MIT license.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
 
 #if !__has_feature(objc_arc)
 #error The JSONMOdel framework is ARC only, you can enable ARC on per file basis.
@@ -473,12 +462,9 @@ static JSONKeyMapper* globalKeyMapper = nil;
                         }
 
                     } else {
-
-                        // it's not a JSON data type, and there's no transformer for it
-                        // if property type is not supported - that's a programmer mistake -> exception
-                        @throw [NSException exceptionWithName:@"Type not allowed"
-                                                       reason:[NSString stringWithFormat:@"%@ type not supported for %@.%@", property.type, [self class], property.name]
-                                                     userInfo:nil];
+                        NSString* msg = [NSString stringWithFormat:@"%@ type not supported for %@.%@", property.type, [self class], property.name];
+                        JSONModelError* dataErr = [JSONModelError errorInvalidDataWithTypeMismatch:msg];
+                        *err = [dataErr errorByPrependingKeyPathComponent:property.name];
                         return NO;
                     }
 
@@ -692,6 +678,39 @@ static JSONKeyMapper* globalKeyMapper = nil;
             if (p && ![propertyIndex objectForKey:p.name]) {
                 [propertyIndex setValue:p forKey:p.name];
             }
+
+            // generate custom setters and getter
+            if (p)
+            {
+                NSString *name = [p.name stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[p.name substringToIndex:1].uppercaseString];
+
+                // getter
+                SEL getter = NSSelectorFromString([NSString stringWithFormat:@"JSONObjectFor%@", name]);
+
+                if ([self respondsToSelector:getter])
+                    p.customGetter = getter;
+
+                // setters
+                p.customSetters = [NSMutableDictionary new];
+
+                SEL genericSetter = NSSelectorFromString([NSString stringWithFormat:@"set%@WithJSONObject:", name]);
+
+                if ([self respondsToSelector:genericSetter])
+                    p.customSetters[@"generic"] = [NSValue valueWithBytes:&genericSetter objCType:@encode(SEL)];
+
+                for (Class type in allowedJSONTypes)
+                {
+                    NSString *class = NSStringFromClass([JSONValueTransformer classByResolvingClusterClasses:type]);
+
+                    if (p.customSetters[class])
+                        continue;
+
+                    SEL setter = NSSelectorFromString([NSString stringWithFormat:@"set%@With%@:", name, class]);
+
+                    if ([self respondsToSelector:setter])
+                        p.customSetters[class] = [NSValue valueWithBytes:&setter objCType:@encode(SEL)];
+                }
+            }
         }
 
         free(properties);
@@ -830,71 +849,38 @@ static JSONKeyMapper* globalKeyMapper = nil;
 }
 
 #pragma mark - custom transformations
--(BOOL)__customSetValue:(id<NSObject>)value forProperty:(JSONModelClassProperty*)property
+- (BOOL)__customSetValue:(id <NSObject>)value forProperty:(JSONModelClassProperty *)property
 {
-    if (!property.customSetters)
-        property.customSetters = [NSMutableDictionary new];
+    NSString *class = NSStringFromClass([JSONValueTransformer classByResolvingClusterClasses:[value class]]);
 
-    NSString *className = NSStringFromClass([JSONValueTransformer classByResolvingClusterClasses:[value class]]);
+    SEL setter = nil;
+    [property.customSetters[class] getValue:&setter];
 
-    if (!property.customSetters[className]) {
-        //check for a custom property setter method
-        NSString* ucfirstName = [property.name stringByReplacingCharactersInRange:NSMakeRange(0,1)
-                                                                       withString:[[property.name substringToIndex:1] uppercaseString]];
-        NSString* selectorName = [NSString stringWithFormat:@"set%@With%@:", ucfirstName, className];
+    if (!setter)
+        [property.customSetters[@"generic"] getValue:&setter];
 
-        SEL customPropertySetter = NSSelectorFromString(selectorName);
+    if (!setter)
+        return NO;
 
-        //check if there's a custom selector like this
-        if (![self respondsToSelector: customPropertySetter]) {
-            property.customSetters[className] = [NSNull null];
-            return NO;
-        }
+    IMP imp = [self methodForSelector:setter];
+    void (*func)(id, SEL, id <NSObject>) = (void *)imp;
+    func(self, setter, value);
 
-        //cache the custom setter selector
-        property.customSetters[className] = selectorName;
-    }
-
-    if (property.customSetters[className] != [NSNull null]) {
-        //call the custom setter
-        //https://github.com/steipete
-        SEL selector = NSSelectorFromString(property.customSetters[className]);
-        ((void (*) (id, SEL, id))objc_msgSend)(self, selector, value);
-        return YES;
-    }
-
-    return NO;
+    return YES;
 }
 
--(BOOL)__customGetValue:(id<NSObject>*)value forProperty:(JSONModelClassProperty*)property
+- (BOOL)__customGetValue:(id *)value forProperty:(JSONModelClassProperty *)property
 {
-    if (property.getterType == kNotInspected) {
-        //check for a custom property getter method
-        NSString* ucfirstName = [property.name stringByReplacingCharactersInRange: NSMakeRange(0,1)
-                                                                       withString: [[property.name substringToIndex:1] uppercaseString]];
-        NSString* selectorName = [NSString stringWithFormat:@"JSONObjectFor%@", ucfirstName];
+    SEL getter = property.customGetter;
 
-        SEL customPropertyGetter = NSSelectorFromString(selectorName);
-        if (![self respondsToSelector: customPropertyGetter]) {
-            property.getterType = kNo;
-            return NO;
-        }
+    if (!getter)
+        return NO;
 
-        property.getterType = kCustom;
-        property.customGetter = customPropertyGetter;
+    IMP imp = [self methodForSelector:getter];
+    id (*func)(id, SEL) = (void *)imp;
+    *value = func(self, getter);
 
-    }
-
-    if (property.getterType==kCustom) {
-        //call the custom getter
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        *value = [self performSelector:property.customGetter];
-        #pragma clang diagnostic pop
-        return YES;
-    }
-
-    return NO;
+    return YES;
 }
 
 #pragma mark - persistance
@@ -1387,7 +1373,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 -(instancetype)initWithCoder:(NSCoder *)decoder
 {
     NSString* json;
-    
+
     if ([decoder respondsToSelector:@selector(decodeObjectOfClass:forKey:)]) {
         json = [decoder decodeObjectOfClass:[NSString class] forKey:@"json"];
     } else {
