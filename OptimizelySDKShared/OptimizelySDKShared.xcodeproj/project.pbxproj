@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D75286D1DC3EFE9004C0183 /* OPTLYManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D75286C1DC3EFE9004C0183 /* OPTLYManagerBuilderTest.m */; };
 		2DB66B441DC1809D004A3B4A /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */; };
 		2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */; };
@@ -117,6 +118,7 @@
 /* Begin PBXFileReference section */
 		0A3C1B51B486C2D81C65F4BD /* Pods-OptimizelySDKShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKShared.release.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKShared/Pods-OptimizelySDKShared.release.xcconfig"; sourceTree = "<group>"; };
 		139F3E3A28BC861727FB4FC3 /* Pods_OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D75286C1DC3EFE9004C0183 /* OPTLYManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilderTest.m; sourceTree = "<group>"; };
 		2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKShared.h; sourceTree = "<group>"; };
 		2DB66B451DC1809D004A3B4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */,
+				2D75286C1DC3EFE9004C0183 /* OPTLYManagerBuilderTest.m */,
 				2DB66B511DC1809D004A3B4A /* Info.plist */,
 			);
 			path = OptimizelySDKSharedTests;
@@ -541,6 +544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D75286D1DC3EFE9004C0183 /* OPTLYManagerBuilderTest.m in Sources */,
 				2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
