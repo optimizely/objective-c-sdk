@@ -20,7 +20,7 @@
 @interface OptimizelyManager : NSObject
 
 /**
- * Init with biulder block
+ * Init with builder block
  * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
  * @return OptimizelyManager instance
  */
