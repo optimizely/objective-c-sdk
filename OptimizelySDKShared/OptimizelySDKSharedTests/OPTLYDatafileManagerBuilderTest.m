@@ -14,16 +14,21 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OptimizelyManager.h"
+#import <XCTest/XCTest.h>
+
 #import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
 
-//! Project version number for OptimizelySDKShared.
-FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
+@interface OPTLYDatafileManagerBuilderTest : XCTestCase
 
-//! Project version string for OptimizelySDKShared.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKSharedVersionString[];
+@end
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKShared/PublicHeader.h>
+@implementation OPTLYDatafileManagerBuilderTest
 
+- (void)testBasicInitialization {
+    OPTLYDatafileManager *datafilemanager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder *builder) {
+        
+    }];
+    XCTAssertNotNil(datafilemanager);
+}
 
+@end

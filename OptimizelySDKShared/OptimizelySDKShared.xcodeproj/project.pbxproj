@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2FD24E1DC42560008D2AC8 /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2FD24D1DC42560008D2AC8 /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D2FD25A1DC4256B008D2AC8 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FD2591DC4256B008D2AC8 /* OPTLYDatafileManager.m */; };
+		2D2FD25C1DC4259B008D2AC8 /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2FD25B1DC4259B008D2AC8 /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D2FD25E1DC425AA008D2AC8 /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FD25D1DC425AA008D2AC8 /* OPTLYDatafileManagerBuilder.m */; };
+		2D2FD2601DC430C5008D2AC8 /* OPTLYDatafileManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FD25F1DC430C5008D2AC8 /* OPTLYDatafileManagerBuilderTest.m */; };
 		2DB66B441DC1809D004A3B4A /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB66B4B1DC1809D004A3B4A /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */; };
 		2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */; };
@@ -14,7 +19,7 @@
 		2DE4D49B1DC2A14000E2758B /* Pods_OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4981DC2A13600E2758B /* Pods_OptimizelySDKShared.framework */; };
 		2DE4D49C1DC2A14800E2758B /* Pods_OptimizelySDKSharedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D49A1DC2A13600E2758B /* Pods_OptimizelySDKSharedTests.framework */; };
 		2DE4D4A31DC2A33300E2758B /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE4D4A21DC2A33300E2758B /* JSONModel.framework */; };
-		2DE4D4A71DC2A3A400E2758B /* OptimizelyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE4D4A61DC2A3A400E2758B /* OptimizelyManager.h */; };
+		2DE4D4A71DC2A3A400E2758B /* OptimizelyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE4D4A61DC2A3A400E2758B /* OptimizelyManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DE4D4A91DC2A3D300E2758B /* OptimizelyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE4D4A81DC2A3D300E2758B /* OptimizelyManager.m */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +120,11 @@
 /* Begin PBXFileReference section */
 		0A3C1B51B486C2D81C65F4BD /* Pods-OptimizelySDKShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKShared.release.xcconfig"; path = "Pods/Target Support Files/Pods-OptimizelySDKShared/Pods-OptimizelySDKShared.release.xcconfig"; sourceTree = "<group>"; };
 		139F3E3A28BC861727FB4FC3 /* Pods_OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D2FD24D1DC42560008D2AC8 /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
+		2D2FD2591DC4256B008D2AC8 /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
+		2D2FD25B1DC4259B008D2AC8 /* OPTLYDatafileManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManagerBuilder.h; sourceTree = "<group>"; };
+		2D2FD25D1DC425AA008D2AC8 /* OPTLYDatafileManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilder.m; sourceTree = "<group>"; };
+		2D2FD25F1DC430C5008D2AC8 /* OPTLYDatafileManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilderTest.m; sourceTree = "<group>"; };
 		2DB66B401DC1809D004A3B4A /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKShared.h; sourceTree = "<group>"; };
 		2DB66B451DC1809D004A3B4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,6 +202,10 @@
 				2DB66B431DC1809D004A3B4A /* OptimizelySDKShared.h */,
 				2DE4D4A61DC2A3A400E2758B /* OptimizelyManager.h */,
 				2DE4D4A81DC2A3D300E2758B /* OptimizelyManager.m */,
+				2D2FD24D1DC42560008D2AC8 /* OPTLYDatafileManager.h */,
+				2D2FD2591DC4256B008D2AC8 /* OPTLYDatafileManager.m */,
+				2D2FD25B1DC4259B008D2AC8 /* OPTLYDatafileManagerBuilder.h */,
+				2D2FD25D1DC425AA008D2AC8 /* OPTLYDatafileManagerBuilder.m */,
 				2DB66B451DC1809D004A3B4A /* Info.plist */,
 			);
 			path = OptimizelySDKShared;
@@ -201,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB66B4F1DC1809D004A3B4A /* OptimizelySDKSharedTests.m */,
+				2D2FD25F1DC430C5008D2AC8 /* OPTLYDatafileManagerBuilderTest.m */,
 				2DB66B511DC1809D004A3B4A /* Info.plist */,
 			);
 			path = OptimizelySDKSharedTests;
@@ -251,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE4D4A71DC2A3A400E2758B /* OptimizelyManager.h in Headers */,
+				2D2FD24E1DC42560008D2AC8 /* OPTLYDatafileManager.h in Headers */,
 				2DB66B441DC1809D004A3B4A /* OptimizelySDKShared.h in Headers */,
+				2D2FD25C1DC4259B008D2AC8 /* OPTLYDatafileManagerBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +542,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2FD25A1DC4256B008D2AC8 /* OPTLYDatafileManager.m in Sources */,
 				2DE4D4A91DC2A3D300E2758B /* OptimizelyManager.m in Sources */,
+				2D2FD25E1DC425AA008D2AC8 /* OPTLYDatafileManagerBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +552,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2FD2601DC430C5008D2AC8 /* OPTLYDatafileManagerBuilderTest.m in Sources */,
 				2DB66B501DC1809D004A3B4A /* OptimizelySDKSharedTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
