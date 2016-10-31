@@ -14,16 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import <XCTest/XCTest.h>
+
+#import "OptimizelyManager.h"
 #import "OPTLYManagerBuilder.h"
 
-@interface OPTLYManager : NSObject
+@interface OPTLYManagerBuilderTest : XCTestCase
 
-/**
- * Init with builder block
- * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
+@end
+
+@implementation OPTLYManagerBuilderTest
+
+- (void)testBasicBuilderReturnsManager {
+    OptimizelyManager *manager = [OptimizelyManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        
+    }];
+    XCTAssertNotNil(manager);
+}
 
 @end
