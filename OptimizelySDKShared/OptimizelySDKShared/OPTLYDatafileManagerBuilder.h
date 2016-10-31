@@ -14,16 +14,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYManager.h"
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import <Foundation/Foundation.h>
 
-//! Project version number for OptimizelySDKShared.
-FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
+@class OPTLYDatafileManagerBuilder;
 
-//! Project version string for OptimizelySDKShared.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKSharedVersionString[];
+/// This is a block that takes the biulder values
+typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _Nullable builder);
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKShared/PublicHeader.h>
+@interface OPTLYDatafileManagerBuilder : NSObject
 
+/// The time interval to regularly fetch the datafile.
+@property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
 
+/// Create an Optimizely Datafile Manager Builder object.
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
+
+@end

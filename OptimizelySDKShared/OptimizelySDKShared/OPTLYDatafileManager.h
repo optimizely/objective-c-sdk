@@ -14,29 +14,16 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OptimizelyManager.h"
+#import <Foundation/Foundation.h>
+#import "OPTLYDatafileManagerBuilder.h"
 
-@implementation OptimizelyManager
+@interface OPTLYDatafileManager : NSObject
 
-+ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
-}
-
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
-            // TODO: Josh W. initialize datafile manager
-            // TODO: Josh W. initialize event dispatcher
-            // TODO: Josh W. initialize user experiment record
-        }
-        return self;
-    }
-    else {
-        // TODO: Josh W. log error
-        // TODO: Josh W. throw error
-        return nil;
-    }
-}
+/**
+ * Init with builder block
+ * @param block The builder block containing the datafile fetch interval.
+ * @return an Optimizely Datafile Manager instance.
+ */
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
 
 @end

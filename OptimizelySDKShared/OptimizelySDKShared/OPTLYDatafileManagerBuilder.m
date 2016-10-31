@@ -14,16 +14,28 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYManager.h"
-#import "OPTLYDatafileManager.h"
 #import "OPTLYDatafileManagerBuilder.h"
 
-//! Project version number for OptimizelySDKShared.
-FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
+@implementation OPTLYDatafileManagerBuilder
 
-//! Project version string for OptimizelySDKShared.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKSharedVersionString[];
++ (instancetype)builderWithBlock:(OPTLYDatafileManagerBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKShared/PublicHeader.h>
+- (id) init {
+    return [self initWithBlock:nil];
+}
 
+- (id)initWithBlock:(OPTLYDatafileManagerBuilderBlock)block {
+    NSParameterAssert(block);
+    self = [super init];
+    if (self != nil) {
+        block(self);
+    }
+    else {
+        return nil;
+    }
+    return self;
+}
 
+@end

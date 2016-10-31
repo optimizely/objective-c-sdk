@@ -15,15 +15,28 @@
  ***************************************************************************/
 
 #import "OPTLYManager.h"
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
 
-//! Project version number for OptimizelySDKShared.
-FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
+@implementation OPTLYManager
 
-//! Project version string for OptimizelySDKShared.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKSharedVersionString[];
++ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKShared/PublicHeader.h>
+- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    if (builder != nil) {
+        self = [super init];
+        if (self != nil) {
+            // TODO: Josh W. initialize datafile manager
+            // TODO: Josh W. initialize event dispatcher
+            // TODO: Josh W. initialize user experiment record
+        }
+        return self;
+    }
+    else {
+        // TODO: Josh W. log error
+        // TODO: Josh W. throw error
+        return nil;
+    }
+}
 
-
+@end
