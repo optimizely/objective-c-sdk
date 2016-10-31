@@ -1964,7 +1964,7 @@
 				MODULEMAP_FILE = OptimizelySDKCore/OptimizelySDKCore.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = "";
@@ -2041,7 +2041,6 @@
 			baseConfigurationReference = EA475A041D46DB8600EBD626 /* OptimizelySDKCore.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2065,7 +2064,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2078,7 +2077,6 @@
 			baseConfigurationReference = EA475A061D46DB8600EBD626 /* OptimizelySDKCore.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2101,7 +2099,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
@@ -2226,7 +2224,6 @@
 			baseConfigurationReference = EA475A031D46DB8600EBD626 /* OptimizelySDKCore.beta.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2249,7 +2246,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
@@ -2349,7 +2346,6 @@
 			baseConfigurationReference = EA475A051D46DB8600EBD626 /* OptimizelySDKCore.rc.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2372,7 +2368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "iphoneos appletvos iphonesimulator appletvsimulator";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos appletvos iphonesimulator appletvsimulator";
 				VALID_ARCHS = "arm64 i386 x86_64 armv7 armv7s";
