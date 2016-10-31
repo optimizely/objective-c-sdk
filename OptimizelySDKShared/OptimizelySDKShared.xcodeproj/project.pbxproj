@@ -13,6 +13,10 @@
 		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; };
 		EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
 		EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
+		EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; };
+		EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; };
+		EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
+		EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,8 @@
 		EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKShared.modulemap; sourceTree = "<group>"; };
 		EA5247831DC7226400AF6685 /* OPTLYManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManager.h; sourceTree = "<group>"; };
 		EA5247841DC7226400AF6685 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
+		EA5247891DC723D300AF6685 /* OPTLYDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDataStore.h; sourceTree = "<group>"; };
+		EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDataStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,8 @@
 				EA3C682E1DC1E68E00C578CA /* OptimizelySDKShared-Info.plist */,
 				EA5247831DC7226400AF6685 /* OPTLYManager.h */,
 				EA5247841DC7226400AF6685 /* OPTLYManager.m */,
+				EA5247891DC723D300AF6685 /* OPTLYDataStore.h */,
+				EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */,
 			);
 			path = OptimizelySDKShared;
 			sourceTree = "<group>";
@@ -192,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */,
+				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
+				EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
 				EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
