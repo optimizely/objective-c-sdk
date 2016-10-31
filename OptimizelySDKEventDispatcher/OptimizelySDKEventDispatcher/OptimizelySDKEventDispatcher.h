@@ -15,6 +15,8 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#import "OPTLYEventDispatcher.h"
 
 //! Project version number for OptimizelySDKEventDispatcher.
 FOUNDATION_EXPORT double OptimizelySDKEventDispatcherVersionNumber;

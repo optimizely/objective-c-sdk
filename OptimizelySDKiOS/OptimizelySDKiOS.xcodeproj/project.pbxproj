@@ -10,6 +10,9 @@
 		EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3C68581DC1E6B600C578CA /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3C684D1DC1E6B600C578CA /* OptimizelySDKiOS.framework */; };
 		EA3C685D1DC1E6B600C578CA /* OptimizelySDKiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */; };
+		EA5249E81DC7E49000AF6685 /* OptimizelySDKDatafileManageriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248CD1DC72ECC00AF6685 /* OptimizelySDKDatafileManageriOS.framework */; };
+		EA5249E91DC7E49000AF6685 /* OptimizelySDKEventDispatcheriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248DC1DC72ED200AF6685 /* OptimizelySDKEventDispatcheriOS.framework */; };
+		EA5249EA1DC7E49000AF6685 /* OptimizelySDKUserProfileiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248EB1DC72ED600AF6685 /* OptimizelySDKUserProfileiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,21 +107,21 @@
 			remoteGlobalIDString = EA52486C1DC72B6500AF6685;
 			remoteInfo = OptimizelySDKUserProfileTVOSTests;
 		};
-		EA52491F1DC72F1200AF6685 /* PBXContainerItemProxy */ = {
+		EA5249E21DC7E46300AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5248E31DC72ED600AF6685 /* OptimizelySDKUserProfile.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = EA5248431DC72B5500AF6685;
 			remoteInfo = OptimizelySDKUserProfileiOS;
 		};
-		EA5249211DC72F1200AF6685 /* PBXContainerItemProxy */ = {
+		EA5249E41DC7E46300AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5248D41DC72ED200AF6685 /* OptimizelySDKEventDispatcher.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = EA5247BE1DC7272300AF6685;
 			remoteInfo = OptimizelySDKEventDispatcheriOS;
 		};
-		EA5249231DC72F1200AF6685 /* PBXContainerItemProxy */ = {
+		EA5249E61DC7E46300AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5248C51DC72ECC00AF6685 /* OptimizelySDKDatafileManager.xcodeproj */;
 			proxyType = 1;
@@ -145,6 +148,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249E81DC7E49000AF6685 /* OptimizelySDKDatafileManageriOS.framework in Frameworks */,
+				EA5249E91DC7E49000AF6685 /* OptimizelySDKEventDispatcheriOS.framework in Frameworks */,
+				EA5249EA1DC7E49000AF6685 /* OptimizelySDKUserProfileiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +272,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				EA5249201DC72F1200AF6685 /* PBXTargetDependency */,
-				EA5249221DC72F1200AF6685 /* PBXTargetDependency */,
-				EA5249241DC72F1200AF6685 /* PBXTargetDependency */,
+				EA5249E31DC7E46300AF6685 /* PBXTargetDependency */,
+				EA5249E51DC7E46300AF6685 /* PBXTargetDependency */,
+				EA5249E71DC7E46300AF6685 /* PBXTargetDependency */,
 			);
 			name = OptimizelySDKiOS;
 			productName = OptimizelySDKiOS;
@@ -470,20 +476,20 @@
 			target = EA3C684C1DC1E6B600C578CA /* OptimizelySDKiOS */;
 			targetProxy = EA3C68591DC1E6B600C578CA /* PBXContainerItemProxy */;
 		};
-		EA5249201DC72F1200AF6685 /* PBXTargetDependency */ = {
+		EA5249E31DC7E46300AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKUserProfileiOS;
-			targetProxy = EA52491F1DC72F1200AF6685 /* PBXContainerItemProxy */;
+			targetProxy = EA5249E21DC7E46300AF6685 /* PBXContainerItemProxy */;
 		};
-		EA5249221DC72F1200AF6685 /* PBXTargetDependency */ = {
+		EA5249E51DC7E46300AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKEventDispatcheriOS;
-			targetProxy = EA5249211DC72F1200AF6685 /* PBXContainerItemProxy */;
+			targetProxy = EA5249E41DC7E46300AF6685 /* PBXContainerItemProxy */;
 		};
-		EA5249241DC72F1200AF6685 /* PBXTargetDependency */ = {
+		EA5249E71DC7E46300AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKDatafileManageriOS;
-			targetProxy = EA5249231DC72F1200AF6685 /* PBXContainerItemProxy */;
+			targetProxy = EA5249E61DC7E46300AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -492,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -574,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -656,6 +664,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -714,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

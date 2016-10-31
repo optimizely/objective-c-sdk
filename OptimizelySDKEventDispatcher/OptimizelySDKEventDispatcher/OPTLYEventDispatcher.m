@@ -15,10 +15,9 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYEventDispatcher.h"
 
-@implementation OPTLYEventDispatcher
+@implementation OPTLYEventDispatcher : NSObject 
 
 - (void)dispatchEvent:(NSDictionary *)params
                 toURL:(NSURL *)url

@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @implementation OPTLYDatafileManager
 

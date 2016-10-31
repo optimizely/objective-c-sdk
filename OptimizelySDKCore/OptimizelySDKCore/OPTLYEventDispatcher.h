@@ -37,3 +37,6 @@
  */
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(nonnull Class)instanceClass;
 @end
+
+@interface OPTLYEventDispatcherNoOp : NSObject<OPTLYEventDispatcher>
+@end

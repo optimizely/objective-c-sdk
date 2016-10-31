@@ -33,3 +33,15 @@
 }
 
 @end
+
+
+@implementation OPTLYEventDispatcherNoOp
+
+- (void)dispatchEvent:(NSDictionary *)params
+                toURL:(NSURL *)url
+    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
+{
+    return;
+}
+
+@end

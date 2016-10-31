@@ -1,0 +1,6 @@
+framework module Pods_OptimizelySDKDatafileManagerTVOSTests {
+  umbrella header "Pods-OptimizelySDKDatafileManagerTVOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

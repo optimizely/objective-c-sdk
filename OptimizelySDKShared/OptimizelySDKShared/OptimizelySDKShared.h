@@ -15,7 +15,8 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import "OPLTYManager.h"
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
+#import "OPTLYManager.h"
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYNetworkService.h"
 #import "OPTLYDataStore.h"

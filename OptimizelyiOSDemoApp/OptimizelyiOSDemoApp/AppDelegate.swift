@@ -15,23 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // Optimizely SDK test parameters
-    let projectId = "12345678";
-    let attributes = ["attribute1" : "attributeValue1", "attribute2" : "attributeValue2"];
-    let eventKey = "event1";
-    let experimentKey = "Experiment1";
+    let projectId = "7738070017";
+    let attributes = ["nameOfPerson" : "alda"];
+    let eventKey = "people";
+    let experimentKey = "exp1";
     let userId = "1234";
-    let revenue = NSNumber(unsignedInt: 88);
+    let revenue = NSNumber(value: 88);
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let networkService = OPTLYNetworkService();
         networkService.downloadProjectConfig(projectId) { [weak self] (data, response, error) in
-            let eventDispatcher = OPTLYEventDispatcherDefault();
+            let eventDispatcher = OPTLYEventDispatcher();
             let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
             let errorHandler = OPTLYErrorHandlerNoOp();
-            let projectConfig = OPTLYProjectConfig.init(datafile: data, withLogger: logger, withErrorHandler: errorHandler);
-            print(projectConfig);
+    
+            let projectConfig = OPTLYProjectConfig.init(datafile: data, with: logger, with: errorHandler);
+            //print(projectConfig ??, default "no project config");
             
             
             let defaultOptimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
@@ -59,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // execute default code
             }
         };
-        
+
         return true
     }
 

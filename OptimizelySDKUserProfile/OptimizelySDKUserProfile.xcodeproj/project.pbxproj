@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2097A5E4C881CEECF8B701 /* Pods_OptimizelySDKUserProfileTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */; };
+		81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */; };
+		A3C8D9A6919F619B78EE7A6E /* Pods_OptimizelySDKUserProfileTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */; };
+		C59C96115DB572352F06B35C /* Pods_OptimizelySDKUserProfileiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */; };
 		EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfile.framework */; };
 		EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfile.framework */; };
-		EA5249451DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; };
-		EA5249461DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; };
+		EA5249451DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5249461DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249471DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */; };
 		EA5249481DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */; };
+		EA5249961DC7D86A00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248B81DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249A11DC7D93B00AF6685 /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5249E11DC7E3F900AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248BC1DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249ED1DC7E77C00AF6685 /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +83,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05377D1F51DA2A59E7D6E949 /* Pods-OptimizelySDKUserProfileTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.rc.xcconfig"; sourceTree = "<group>"; };
+		0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E98DBE48E244F260EA2A9F4 /* Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
+		1C62B7FF941C777EC3DEB0F8 /* Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		234097C09F518FB25E8F1B9E /* Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; sourceTree = "<group>"; };
+		340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		44B5FC3E732A6470A867EF0A /* Pods-OptimizelySDKUserProfileiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOS/Pods-OptimizelySDKUserProfileiOS.release.xcconfig"; sourceTree = "<group>"; };
+		49F44DBED3E7281239DDD26B /* Pods-OptimizelySDKUserProfileTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		60638C60F6AC0A0B3C0BBC8B /* Pods-OptimizelySDKUserProfileiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6424C812608C1987FED0E893 /* Pods-OptimizelySDKUserProfileTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7186951DC2D644C1E9A6AFA0 /* Pods-OptimizelySDKUserProfileiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOS/Pods-OptimizelySDKUserProfileiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		ACD0424A2B0DC653D977B001 /* Pods-OptimizelySDKUserProfileiOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOS/Pods-OptimizelySDKUserProfileiOS.rc.xcconfig"; sourceTree = "<group>"; };
+		C2F643D5444F649E1A9982BB /* Pods-OptimizelySDKUserProfileiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
+		D7B033A2676D60D2082E7F3E /* Pods-OptimizelySDKUserProfileiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		DF1A170D408271B194F004A8 /* Pods-OptimizelySDKUserProfileiOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOS/Pods-OptimizelySDKUserProfileiOS.beta.xcconfig"; sourceTree = "<group>"; };
+		E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKUserProfile.h; sourceTree = "<group>"; };
 		EA2FA7891DC5B38900B1D81B /* OptimizelySDKUserProfile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKUserProfile-Info.plist"; sourceTree = "<group>"; };
 		EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKUserProfileTests.m; sourceTree = "<group>"; };
@@ -87,6 +114,7 @@
 		EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKShared.xcodeproj; path = ../OptimizelySDKShared/OptimizelySDKShared.xcodeproj; sourceTree = "<group>"; };
 		EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYUserProfile.h; sourceTree = "<group>"; };
 		EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYUserProfile.m; sourceTree = "<group>"; };
+		FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249961DC7D86A00AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				C59C96115DB572352F06B35C /* Pods_OptimizelySDKUserProfileiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */,
+				81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249E11DC7E3F900AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				A3C8D9A6919F619B78EE7A6E /* Pods_OptimizelySDKUserProfileTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,12 +150,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */,
+				2B2097A5E4C881CEECF8B701 /* Pods_OptimizelySDKUserProfileTVOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		438FD1AB741702F19CA39AB1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C62B7FF941C777EC3DEB0F8 /* Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig */,
+				05377D1F51DA2A59E7D6E949 /* Pods-OptimizelySDKUserProfileTVOS.rc.xcconfig */,
+				30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */,
+				2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */,
+				340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */,
+				0E98DBE48E244F260EA2A9F4 /* Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig */,
+				49F44DBED3E7281239DDD26B /* Pods-OptimizelySDKUserProfileTVOSTests.beta.xcconfig */,
+				6424C812608C1987FED0E893 /* Pods-OptimizelySDKUserProfileTVOSTests.release.xcconfig */,
+				7186951DC2D644C1E9A6AFA0 /* Pods-OptimizelySDKUserProfileiOS.debug.xcconfig */,
+				ACD0424A2B0DC653D977B001 /* Pods-OptimizelySDKUserProfileiOS.rc.xcconfig */,
+				DF1A170D408271B194F004A8 /* Pods-OptimizelySDKUserProfileiOS.beta.xcconfig */,
+				44B5FC3E732A6470A867EF0A /* Pods-OptimizelySDKUserProfileiOS.release.xcconfig */,
+				60638C60F6AC0A0B3C0BBC8B /* Pods-OptimizelySDKUserProfileiOSTests.debug.xcconfig */,
+				C2F643D5444F649E1A9982BB /* Pods-OptimizelySDKUserProfileiOSTests.rc.xcconfig */,
+				D7B033A2676D60D2082E7F3E /* Pods-OptimizelySDKUserProfileiOSTests.beta.xcconfig */,
+				234097C09F518FB25E8F1B9E /* Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EA2FA77B1DC5B38900B1D81B = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +187,7 @@
 				EA2FA7921DC5B38900B1D81B /* OptimizelySDKUserProfileTests */,
 				EA2FA7861DC5B38900B1D81B /* Products */,
 				EA5248881DC72BF800AF6685 /* Frameworks */,
+				438FD1AB741702F19CA39AB1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +227,10 @@
 			isa = PBXGroup;
 			children = (
 				EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */,
+				E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */,
+				0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */,
+				FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */,
+				6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,9 +238,9 @@
 		EA5248B11DC72D5900AF6685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA5248B81DC72D5900AF6685 /* OptimizelySDKSharediOS.framework */,
+				EA5248B81DC72D5900AF6685 /* OptimizelySDKShared.framework */,
 				EA5248BA1DC72D5900AF6685 /* OptimizelySDKSharediOSTests.xctest */,
-				EA5248BC1DC72D5900AF6685 /* OptimizelySDKSharedTVOS.framework */,
+				EA5248BC1DC72D5900AF6685 /* OptimizelySDKShared.framework */,
 				EA5248BE1DC72D5900AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
 			);
 			name = Products;
@@ -191,6 +253,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249A11DC7D93B00AF6685 /* OptimizelySDKUserProfile.h in Headers */,
 				EA5249451DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +262,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249ED1DC7E77C00AF6685 /* OptimizelySDKUserProfile.h in Headers */,
 				EA5249461DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,10 +274,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA5248551DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOS" */;
 			buildPhases = (
+				EADE77F96E609636AF6ECB6B /* [CP] Check Pods Manifest.lock */,
 				EA52483F1DC72B5500AF6685 /* Sources */,
 				EA5248401DC72B5500AF6685 /* Frameworks */,
 				EA5248411DC72B5500AF6685 /* Headers */,
 				EA5248421DC72B5500AF6685 /* Resources */,
+				060BBD8B6B2497DD474490DF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,9 +295,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52485A1DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOSTests" */;
 			buildPhases = (
+				521DC8A0B9EBDE996FEB37FF /* [CP] Check Pods Manifest.lock */,
 				EA5248481DC72B5500AF6685 /* Sources */,
 				EA5248491DC72B5500AF6685 /* Frameworks */,
 				EA52484A1DC72B5500AF6685 /* Resources */,
+				2CC4A3354B1D7184A6195DE1 /* [CP] Embed Pods Frameworks */,
+				C70EFA43A522360FCE1393F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,10 +316,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA5248751DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOS" */;
 			buildPhases = (
+				A90783F2437F795E1151F2F9 /* [CP] Check Pods Manifest.lock */,
 				EA52485F1DC72B6500AF6685 /* Sources */,
 				EA5248601DC72B6500AF6685 /* Frameworks */,
 				EA5248611DC72B6500AF6685 /* Headers */,
 				EA5248621DC72B6500AF6685 /* Resources */,
+				D4FED4BF1A2BE3D1BFEE6354 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,9 +337,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52487A1DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOSTests" */;
 			buildPhases = (
+				A940D9DB0323AAC1B5A18468 /* [CP] Check Pods Manifest.lock */,
 				EA5248681DC72B6500AF6685 /* Sources */,
 				EA5248691DC72B6500AF6685 /* Frameworks */,
 				EA52486A1DC72B6500AF6685 /* Resources */,
+				DE211E9FF9EE69717C4B2847 /* [CP] Embed Pods Frameworks */,
+				5EC0CEA800A7D1403316F31B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -334,10 +408,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		EA5248B81DC72D5900AF6685 /* OptimizelySDKSharediOS.framework */ = {
+		EA5248B81DC72D5900AF6685 /* OptimizelySDKShared.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = OptimizelySDKSharediOS.framework;
+			path = OptimizelySDKShared.framework;
 			remoteRef = EA5248B71DC72D5900AF6685 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -348,10 +422,10 @@
 			remoteRef = EA5248B91DC72D5900AF6685 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EA5248BC1DC72D5900AF6685 /* OptimizelySDKSharedTVOS.framework */ = {
+		EA5248BC1DC72D5900AF6685 /* OptimizelySDKShared.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = OptimizelySDKSharedTVOS.framework;
+			path = OptimizelySDKShared.framework;
 			remoteRef = EA5248BB1DC72D5900AF6685 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -394,6 +468,159 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		060BBD8B6B2497DD474490DF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOS/Pods-OptimizelySDKUserProfileiOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CC4A3354B1D7184A6195DE1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		521DC8A0B9EBDE996FEB37FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5EC0CEA800A7D1403316F31B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A90783F2437F795E1151F2F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A940D9DB0323AAC1B5A18468 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C70EFA43A522360FCE1393F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4FED4BF1A2BE3D1BFEE6354 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE211E9FF9EE69717C4B2847 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EADE77F96E609636AF6ECB6B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA52483F1DC72B5500AF6685 /* Sources */ = {
@@ -456,6 +683,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -516,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -573,6 +802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -630,6 +860,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -685,10 +916,11 @@
 		};
 		EA5248561DC72B5500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7186951DC2D644C1E9A6AFA0 /* Pods-OptimizelySDKUserProfileiOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -708,10 +940,11 @@
 		};
 		EA5248571DC72B5500AF6685 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACD0424A2B0DC653D977B001 /* Pods-OptimizelySDKUserProfileiOS.rc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -727,10 +960,11 @@
 		};
 		EA5248581DC72B5500AF6685 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1A170D408271B194F004A8 /* Pods-OptimizelySDKUserProfileiOS.beta.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -746,10 +980,11 @@
 		};
 		EA5248591DC72B5500AF6685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44B5FC3E732A6470A867EF0A /* Pods-OptimizelySDKUserProfileiOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -765,6 +1000,7 @@
 		};
 		EA52485B1DC72B5500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60638C60F6AC0A0B3C0BBC8B /* Pods-OptimizelySDKUserProfileiOSTests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -779,6 +1015,7 @@
 		};
 		EA52485C1DC72B5500AF6685 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2F643D5444F649E1A9982BB /* Pods-OptimizelySDKUserProfileiOSTests.rc.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -789,6 +1026,7 @@
 		};
 		EA52485D1DC72B5500AF6685 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7B033A2676D60D2082E7F3E /* Pods-OptimizelySDKUserProfileiOSTests.beta.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -799,6 +1037,7 @@
 		};
 		EA52485E1DC72B5500AF6685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 234097C09F518FB25E8F1B9E /* Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -809,10 +1048,11 @@
 		};
 		EA5248761DC72B6500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C62B7FF941C777EC3DEB0F8 /* Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -835,10 +1075,11 @@
 		};
 		EA5248771DC72B6500AF6685 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05377D1F51DA2A59E7D6E949 /* Pods-OptimizelySDKUserProfileTVOS.rc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -857,10 +1098,11 @@
 		};
 		EA5248781DC72B6500AF6685 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -879,10 +1121,11 @@
 		};
 		EA5248791DC72B6500AF6685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -901,6 +1144,7 @@
 		};
 		EA52487B1DC72B6500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -917,6 +1161,7 @@
 		};
 		EA52487C1DC72B6500AF6685 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E98DBE48E244F260EA2A9F4 /* Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -929,6 +1174,7 @@
 		};
 		EA52487D1DC72B6500AF6685 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49F44DBED3E7281239DDD26B /* Pods-OptimizelySDKUserProfileTVOSTests.beta.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -941,6 +1187,7 @@
 		};
 		EA52487E1DC72B6500AF6685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6424C812608C1987FED0E893 /* Pods-OptimizelySDKUserProfileTVOSTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -974,6 +1221,7 @@
 				EA5248591DC72B5500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = RC;
 		};
 		EA52485A1DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -984,6 +1232,7 @@
 				EA52485E1DC72B5500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = RC;
 		};
 		EA5248751DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOS" */ = {
 			isa = XCConfigurationList;
@@ -994,6 +1243,7 @@
 				EA5248791DC72B6500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = RC;
 		};
 		EA52487A1DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1004,6 +1254,7 @@
 				EA52487E1DC72B6500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = RC;
 		};
 /* End XCConfigurationList section */
 	};

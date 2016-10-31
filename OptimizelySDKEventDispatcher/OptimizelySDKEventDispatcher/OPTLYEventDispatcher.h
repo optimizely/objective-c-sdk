@@ -14,10 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 #import <Foundation/Foundation.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
-@class OPTLYProjectConfig;
+@protocol OPTLYEventDispatcher;
 
-@protocol OPTLYEventDispatcher <NSObject>
+@interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
 
 /**
  * Dispatch an event to a specific URL. 

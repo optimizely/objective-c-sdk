@@ -28,4 +28,13 @@
    <FileRef
       location = "group:OptimizelySDKUserExperimentRecord/../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
+   </FileRef>
 </Workspace>

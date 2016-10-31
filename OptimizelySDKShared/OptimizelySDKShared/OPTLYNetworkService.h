@@ -26,9 +26,8 @@ NS_ASSUME_NONNULL_END
 /**
  * Download the project config file from remote server
  *
- * @param:
-        projectId - projectId of the project config to download
- *      completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param projectId - projectId of the project config to download
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;

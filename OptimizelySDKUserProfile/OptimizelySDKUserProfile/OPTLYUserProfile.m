@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYUserProfile.h"
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @implementation OPTLYUserProfile
 

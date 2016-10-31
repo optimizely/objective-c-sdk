@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
+#import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
+#import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
+
 //! Project version number for OptimizelySDKiOS.
 FOUNDATION_EXPORT double OptimizelySDKiOSVersionNumber;
 
