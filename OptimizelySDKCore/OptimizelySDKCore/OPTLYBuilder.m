@@ -18,7 +18,6 @@
 #import "OPTLYBuilder.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventBuilder.h"
-#import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 
@@ -81,13 +80,6 @@
         _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
     }
     return _errorHandler;
-}
-
-- (id<OPTLYEventDispatcher>)eventDispatcher {
-    if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
-    }
-    return _eventDispatcher;
 }
 
 - (id<OPTLYLogger>)logger {

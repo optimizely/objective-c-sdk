@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA52470C1DC7192200AF6685 /* OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKSharediOS.framework */; };
-		EA52472C1DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework */; };
-		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; };
-		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; };
+		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
+		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
+		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
 		EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
-		EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; };
-		EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; };
+		EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
 		EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
+		EA5247961DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5247981DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */; };
+		EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */; };
+		EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247941DC724AF00AF6685 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247941DC724AF00AF6685 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52479C1DC724AF00AF6685 /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247951DC724AF00AF6685 /* OPTLYNetworkService.m */; };
+		EA52479D1DC724AF00AF6685 /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247951DC724AF00AF6685 /* OPTLYNetworkService.m */; };
+		EA52497A1DC7C83E00AF6685 /* OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246F71DC718D300AF6685 /* OptimizelySDKCoreiOS.framework */; };
+		EA52497E1DC7C9C500AF6685 /* OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCoreTVOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,19 +72,19 @@
 			remoteGlobalIDString = EA5247221DC7193B00AF6685;
 			remoteInfo = OptimizelySDKSharedTVOS;
 		};
-		EA52473F1DC71B1000AF6685 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EA2FA7FD1DC5DBA000B1D81B;
-			remoteInfo = OptimizelySDKCoreiOS;
-		};
 		EA5247411DC71B1600AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = EA2FA81D1DC5DBB100B1D81B;
 			remoteInfo = OptimizelySDKCoreTVOS;
+		};
+		EA5249781DC7C83200AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA7FD1DC5DBA000B1D81B;
+			remoteInfo = OptimizelySDKCoreiOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -84,15 +94,21 @@
 		EA3C68381DC1E68E00C578CA /* OptimizelySDKSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKSharedTests.m; sourceTree = "<group>"; };
 		EA3C683A1DC1E68E00C578CA /* OptimizelySDKSharedTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKSharedTests-Info.plist"; sourceTree = "<group>"; };
 		EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKCore.xcodeproj; path = ../OptimizelySDKCore/OptimizelySDKCore.xcodeproj; sourceTree = "<group>"; };
-		EA5247031DC7192200AF6685 /* OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKSharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52470B1DC7192200AF6685 /* OptimizelySDKSharediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKSharediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA5247231DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKSharedTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKSharedTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKShared.modulemap; sourceTree = "<group>"; };
 		EA5247831DC7226400AF6685 /* OPTLYManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManager.h; sourceTree = "<group>"; };
 		EA5247841DC7226400AF6685 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
 		EA5247891DC723D300AF6685 /* OPTLYDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDataStore.h; sourceTree = "<group>"; };
 		EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDataStore.m; sourceTree = "<group>"; };
+		EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYHTTPRequestManager.h; sourceTree = "<group>"; };
+		EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManager.m; sourceTree = "<group>"; };
+		EA5247941DC724AF00AF6685 /* OPTLYNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNetworkService.h; sourceTree = "<group>"; };
+		EA5247951DC724AF00AF6685 /* OPTLYNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkService.m; sourceTree = "<group>"; };
+		EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-erjurkichwjuqxdcgaywtbodfztf/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
+		EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "/Users/aluong/src/objective-c-sdk-public/OptimizelySDKCore/Pods/../build/Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCoreiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA52470C1DC7192200AF6685 /* OptimizelySDKSharediOS.framework in Frameworks */,
+				EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA52497E1DC7C9C500AF6685 /* OptimizelySDKCoreTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA52472C1DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework in Frameworks */,
+				EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,9 +160,9 @@
 		EA3C682A1DC1E68E00C578CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA5247031DC7192200AF6685 /* OptimizelySDKSharediOS.framework */,
+				EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */,
 				EA52470B1DC7192200AF6685 /* OptimizelySDKSharediOSTests.xctest */,
-				EA5247231DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework */,
+				EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */,
 				EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
 			);
 			name = Products;
@@ -154,12 +172,11 @@
 			isa = PBXGroup;
 			children = (
 				EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */,
-				EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */,
 				EA3C682E1DC1E68E00C578CA /* OptimizelySDKShared-Info.plist */,
-				EA5247831DC7226400AF6685 /* OPTLYManager.h */,
-				EA5247841DC7226400AF6685 /* OPTLYManager.m */,
-				EA5247891DC723D300AF6685 /* OPTLYDataStore.h */,
-				EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */,
+				EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */,
+				EA5247911DC7248200AF6685 /* DataStore */,
+				EA5247901DC7247500AF6685 /* Network */,
+				EA52478F1DC7246C00AF6685 /* Manager */,
 			);
 			path = OptimizelySDKShared;
 			sourceTree = "<group>";
@@ -176,6 +193,8 @@
 		EA5246EE1DC718AD00AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */,
+				EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */,
 				EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */,
 			);
 			name = Frameworks;
@@ -192,6 +211,35 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EA52478F1DC7246C00AF6685 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247831DC7226400AF6685 /* OPTLYManager.h */,
+				EA5247841DC7226400AF6685 /* OPTLYManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		EA5247901DC7247500AF6685 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */,
+				EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */,
+				EA5247941DC724AF00AF6685 /* OPTLYNetworkService.h */,
+				EA5247951DC724AF00AF6685 /* OPTLYNetworkService.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		EA5247911DC7248200AF6685 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247891DC723D300AF6685 /* OPTLYDataStore.h */,
+				EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */,
+			);
+			name = DataStore;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -200,6 +248,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */,
+				EA5247961DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
+				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +259,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
+				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
+				EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,11 +280,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				EA5247401DC71B1000AF6685 /* PBXTargetDependency */,
+				EA5249791DC7C83200AF6685 /* PBXTargetDependency */,
 			);
 			name = OptimizelySDKSharediOS;
 			productName = OptimizelySDKSharediOS;
-			productReference = EA5247031DC7192200AF6685 /* OptimizelySDKSharediOS.framework */;
+			productReference = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		EA52470A1DC7192200AF6685 /* OptimizelySDKSharediOSTests */ = {
@@ -269,7 +321,7 @@
 			);
 			name = OptimizelySDKSharedTVOS;
 			productName = OptimizelySDKSharedTVOS;
-			productReference = EA5247231DC7193B00AF6685 /* OptimizelySDKSharedTVOS.framework */;
+			productReference = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		EA52472A1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests */ = {
@@ -296,7 +348,7 @@
 		EA3C68201DC1E68E00C578CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA5247021DC7192200AF6685 = {
@@ -411,7 +463,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
+				EA5247981DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */,
+				EA52479C1DC724AF00AF6685 /* OPTLYNetworkService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +481,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
+				EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
+				EA52479D1DC724AF00AF6685 /* OPTLYNetworkService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,15 +507,15 @@
 			target = EA5247221DC7193B00AF6685 /* OptimizelySDKSharedTVOS */;
 			targetProxy = EA52472D1DC7193B00AF6685 /* PBXContainerItemProxy */;
 		};
-		EA5247401DC71B1000AF6685 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OptimizelySDKCoreiOS;
-			targetProxy = EA52473F1DC71B1000AF6685 /* PBXContainerItemProxy */;
-		};
 		EA5247421DC71B1600AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKCoreTVOS;
 			targetProxy = EA5247411DC71B1600AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5249791DC7C83200AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKCoreiOS;
+			targetProxy = EA5249781DC7C83200AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -478,14 +534,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -531,14 +590,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -584,14 +646,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -640,14 +705,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -700,9 +768,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -724,9 +792,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SKIP_INSTALL = YES;
 			};
 			name = RC;
@@ -748,9 +816,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SKIP_INSTALL = YES;
 			};
 			name = Beta;
@@ -772,9 +840,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -859,9 +927,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -885,9 +953,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -911,9 +979,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -937,9 +1005,9 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOS;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OptimizelySDKShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;

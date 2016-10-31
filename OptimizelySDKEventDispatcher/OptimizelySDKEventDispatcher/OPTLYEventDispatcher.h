@@ -13,15 +13,19 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+#import <Foundation/Foundation.h>
 
-#import <UIKit/UIKit.h>
+@class OPTLYProjectConfig;
 
-//! Project version number for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT double OptimizelySDKEventDispatcherVersionNumber;
+@protocol OPTLYEventDispatcher <NSObject>
 
-//! Project version string for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKEventDispatcherVersionString[];
+/**
+ * Dispatch an event to a specific URL. 
+ * @param params Dictionary of the event parameter values
+ * @param url The URL to send the event to.
+ */
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+                toURL:(nonnull NSURL *)url
+    completionHandler:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKEventDispatcher/PublicHeader.h>
-
-
+@end

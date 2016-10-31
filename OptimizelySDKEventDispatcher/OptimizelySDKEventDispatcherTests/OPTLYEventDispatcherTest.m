@@ -14,14 +14,23 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
+#import "OPTLYEventDispatcher.h"
 
-//! Project version number for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT double OptimizelySDKEventDispatcherVersionNumber;
+@interface OPTLYEventDispatcherTest : XCTestCase
 
-//! Project version string for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKEventDispatcherVersionString[];
+@end
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKEventDispatcher/PublicHeader.h>
+@implementation OPTLYEventDispatcherTest
 
+- (void)setUp {
+    [super setUp];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
 
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+@end

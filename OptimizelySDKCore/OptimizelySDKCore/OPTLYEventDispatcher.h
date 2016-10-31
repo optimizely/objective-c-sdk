@@ -30,13 +30,10 @@
 
 @end
 
-@interface OPTLYEventDispatcher : NSObject
+@interface OPTLYEventDispatcherUtility : NSObject
 /**
  * Utility method to check if a class conforms to the OPTLYEventDispatcher protocol
  * This method uses compile and run time checks
  */
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(nonnull Class)instanceClass;
-@end
-
-@interface OPTLYEventDispatcherDefault : NSObject <OPTLYEventDispatcher>
 @end

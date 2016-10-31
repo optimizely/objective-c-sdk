@@ -30,6 +30,27 @@
 			remoteGlobalIDString = EA52474B1DC71C6900AF6685;
 			remoteInfo = OptimizelyTVOSDemoApp;
 		};
+		EA5249391DC72F3900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA2FA7241DC1FA9F00B1D81B;
+			remoteInfo = OptimizelySDKTVOS;
+		};
+		EA52493B1DC72F3900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA2FA72D1DC1FAA000B1D81B;
+			remoteInfo = OptimizelySDKTVOSTests;
+		};
+		EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA7231DC1FA9F00B1D81B;
+			remoteInfo = OptimizelySDKTVOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +66,11 @@
 		EA5247681DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyTVOSDemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52476C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelyTVOSDemoAppUITests.swift; sourceTree = "<group>"; };
 		EA52476E1DC71C6900AF6685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA5247A51DC726C800AF6685 /* OptimizelySDKEventDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKEventDispatcher.h; sourceTree = "<group>"; };
+		EA5247A61DC726C800AF6685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA5247B01DC726C900AF6685 /* OptimizelySDKEventDispatcherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKEventDispatcherTests.m; sourceTree = "<group>"; };
+		EA5247B21DC726C900AF6685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKTVOS.xcodeproj; path = ../OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +104,10 @@
 				EA52474E1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */,
 				EA5247601DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests */,
 				EA52476B1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests */,
+				EA5247A41DC726C800AF6685 /* OptimizelySDKEventDispatcher */,
+				EA5247AF1DC726C900AF6685 /* OptimizelySDKEventDispatcherTests */,
 				EA52474D1DC71C6900AF6685 /* Products */,
+				EA5248C41DC72E9500AF6685 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +151,41 @@
 			path = OptimizelyTVOSDemoAppUITests;
 			sourceTree = "<group>";
 		};
+		EA5247A41DC726C800AF6685 /* OptimizelySDKEventDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247A51DC726C800AF6685 /* OptimizelySDKEventDispatcher.h */,
+				EA5247A61DC726C800AF6685 /* Info.plist */,
+			);
+			path = OptimizelySDKEventDispatcher;
+			sourceTree = "<group>";
+		};
+		EA5247AF1DC726C900AF6685 /* OptimizelySDKEventDispatcherTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247B01DC726C900AF6685 /* OptimizelySDKEventDispatcherTests.m */,
+				EA5247B21DC726C900AF6685 /* Info.plist */,
+			);
+			path = OptimizelySDKEventDispatcherTests;
+			sourceTree = "<group>";
+		};
+		EA5248C41DC72E9500AF6685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA5249351DC72F3900AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA52493A1DC72F3900AF6685 /* OptimizelySDKTVOS.framework */,
+				EA52493C1DC72F3900AF6685 /* OptimizelySDKTVOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,6 +200,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EA52495B1DC7363600AF6685 /* PBXTargetDependency */,
 			);
 			name = OptimizelyTVOSDemoApp;
 			productName = OptimizelyTVOSDemoApp;
@@ -215,6 +280,12 @@
 			mainGroup = EA5247431DC71C6900AF6685;
 			productRefGroup = EA52474D1DC71C6900AF6685 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA5249351DC72F3900AF6685 /* Products */;
+					ProjectRef = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */,
@@ -223,6 +294,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EA52493A1DC72F3900AF6685 /* OptimizelySDKTVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKTVOS.framework;
+			remoteRef = EA5249391DC72F3900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA52493C1DC72F3900AF6685 /* OptimizelySDKTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKTVOSTests.xctest;
+			remoteRef = EA52493B1DC72F3900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA52474A1DC71C6900AF6685 /* Resources */ = {
@@ -288,6 +376,11 @@
 			isa = PBXTargetDependency;
 			target = EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */;
 			targetProxy = EA5247691DC71C6900AF6685 /* PBXContainerItemProxy */;
+		};
+		EA52495B1DC7363600AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKTVOS;
+			targetProxy = EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

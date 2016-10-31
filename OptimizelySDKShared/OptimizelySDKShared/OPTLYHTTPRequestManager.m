@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #import "OPTLYHTTPRequestManager.h"
-#import "OPTLYMacros.h"
 
 static NSString * const kHTTPRequestMethodGet = @"GET";
 static NSString * const kHTTPRequestMethodPost = @"POST";

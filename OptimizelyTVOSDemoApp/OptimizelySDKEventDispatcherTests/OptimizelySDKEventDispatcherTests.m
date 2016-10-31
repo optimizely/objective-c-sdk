@@ -1,18 +1,18 @@
 //
-//  OptimizelySDKUserExperimentRecordTests.m
-//  OptimizelySDKUserExperimentRecordTests
+//  OptimizelySDKEventDispatcherTests.m
+//  OptimizelySDKEventDispatcherTests
 //
-//  Created by Alda Luong on 10/27/16.
+//  Created by Alda Luong on 10/31/16.
 //  Copyright © 2016 Optimizely. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface OptimizelySDKUserExperimentRecordTests : XCTestCase
+@interface OptimizelySDKEventDispatcherTests : XCTestCase
 
 @end
 
-@implementation OptimizelySDKUserExperimentRecordTests
+@implementation OptimizelySDKEventDispatcherTests
 
 - (void)setUp {
     [super setUp];

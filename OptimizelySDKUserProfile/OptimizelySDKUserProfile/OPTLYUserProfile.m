@@ -14,14 +14,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
+#import "OPTLYUserProfile.h"
 
-//! Project version number for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT double OptimizelySDKEventDispatcherVersionNumber;
+@implementation OPTLYUserProfile
 
-//! Project version string for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKEventDispatcherVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKEventDispatcher/PublicHeader.h>
-
-
+@end

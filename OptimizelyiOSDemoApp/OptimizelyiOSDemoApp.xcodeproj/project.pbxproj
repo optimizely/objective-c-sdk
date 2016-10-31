@@ -31,6 +31,27 @@
 			remoteGlobalIDString = EA5246BC1DC7186800AF6685;
 			remoteInfo = OptimizelyiOSDemoApp;
 		};
+		EA5249301DC72F3500AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA3C684D1DC1E6B600C578CA;
+			remoteInfo = OptimizelySDKiOS;
+		};
+		EA5249321DC72F3500AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA3C68571DC1E6B600C578CA;
+			remoteInfo = OptimizelySDKiOSTests;
+		};
+		EA5249581DC7362600AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA3C684C1DC1E6B600C578CA;
+			remoteInfo = OptimizelySDKiOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +68,7 @@
 		EA5246DC1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyiOSDemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5246E01DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelyiOSDemoAppUITests.swift; sourceTree = "<group>"; };
 		EA5246E21DC7186800AF6685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKiOS.xcodeproj; path = ../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +103,7 @@
 				EA5246D41DC7186800AF6685 /* OptimizelyiOSDemoAppTests */,
 				EA5246DF1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests */,
 				EA5246BE1DC7186800AF6685 /* Products */,
+				EA5248C31DC72E8300AF6685 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +148,23 @@
 			path = OptimizelyiOSDemoAppUITests;
 			sourceTree = "<group>";
 		};
+		EA5248C31DC72E8300AF6685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA52492C1DC72F3500AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */,
+				EA5249331DC72F3500AF6685 /* OptimizelySDKiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +179,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EA5249591DC7362600AF6685 /* PBXTargetDependency */,
 			);
 			name = OptimizelyiOSDemoApp;
 			productName = OptimizelyiOSDemoApp;
@@ -218,6 +259,12 @@
 			mainGroup = EA5246B41DC7186800AF6685;
 			productRefGroup = EA5246BE1DC7186800AF6685 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA52492C1DC72F3500AF6685 /* Products */;
+					ProjectRef = EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EA5246BC1DC7186800AF6685 /* OptimizelyiOSDemoApp */,
@@ -226,6 +273,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKiOS.framework;
+			remoteRef = EA5249301DC72F3500AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5249331DC72F3500AF6685 /* OptimizelySDKiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKiOSTests.xctest;
+			remoteRef = EA5249321DC72F3500AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA5246BB1DC7186800AF6685 /* Resources */ = {
@@ -292,6 +356,11 @@
 			isa = PBXTargetDependency;
 			target = EA5246BC1DC7186800AF6685 /* OptimizelyiOSDemoApp */;
 			targetProxy = EA5246DD1DC7186800AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5249591DC7362600AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKiOS;
+			targetProxy = EA5249581DC7362600AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -14,14 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#import "OPTLYEventDispatcher.h"
 
-//! Project version number for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT double OptimizelySDKEventDispatcherVersionNumber;
+@implementation OPTLYEventDispatcher
 
-//! Project version string for OptimizelySDKEventDispatcher.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKEventDispatcherVersionString[];
+- (void)dispatchEvent:(NSDictionary *)params
+                toURL:(NSURL *)url
+    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
+{
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
+    [requestManager POSTWithParameters:params completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (completion) {
+            completion(response, error);
+        }
+    }];
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKEventDispatcher/PublicHeader.h>
-
-
+@end

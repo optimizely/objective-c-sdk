@@ -17,10 +17,9 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYProjectConfig.h"
 #import "OPTLYEventDispatcher.h"
-#import "OPTLYHTTPRequestManager.h"
 #import "OPTLYErrorHandler.h"
 
-@implementation OPTLYEventDispatcher
+@implementation OPTLYEventDispatcherUtility
 
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
 {
@@ -31,22 +30,6 @@
     BOOL implementsDispatchEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchEvent:toURL:completionHandler:)];
     
     return validProtocolDeclaration && implementsDispatchEventMethod;
-}
-
-@end
-
-@implementation OPTLYEventDispatcherDefault
-
-- (void)dispatchEvent:(NSDictionary *)params
-                toURL:(NSURL *)url
-    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
-{
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (completion) {
-            completion(response, error);
-        }
-    }];
 }
 
 @end

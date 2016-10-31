@@ -7,43 +7,123 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA3C68EC1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA3C68F31DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3C68E81DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework */; };
-		EA3C68F81DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C68F71DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.m */; };
+		EA5247C81DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */; };
+		EA5247E81DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247DF1DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework */; };
+		EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5249401DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
+		EA5249421DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
+		EA5249661DC7BA0800AF6685 /* OPTLYEventDispatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */; };
+		EA5249671DC7BA0B00AF6685 /* OPTLYEventDispatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */; };
+		EA5249721DC7BD9D00AF6685 /* OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A51DC72D0800AF6685 /* OptimizelySDKSharediOS.framework */; };
+		EA5249761DC7C38200AF6685 /* OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A91DC72D0800AF6685 /* OptimizelySDKSharedTVOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA3C68F41DC1E79900C578CA /* PBXContainerItemProxy */ = {
+		EA5247C91DC7272300AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA3C68DF1DC1E79900C578CA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA3C68E71DC1E79900C578CA;
-			remoteInfo = OptimizelySDKEventDispatcher;
+			remoteGlobalIDString = EA5247BE1DC7272300AF6685;
+			remoteInfo = OptimizelySDKEventDispatcheriOS;
+		};
+		EA5247E91DC7273100AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C68DF1DC1E79900C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247DE1DC7273100AF6685;
+			remoteInfo = OptimizelySDKEventDispatcherTVOS;
+		};
+		EA5248A41DC72D0800AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5247031DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOS;
+		};
+		EA5248A61DC72D0800AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52470B1DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOSTests;
+		};
+		EA5248A81DC72D0800AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5247231DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOS;
+		};
+		EA5248AA1DC72D0800AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52472B1DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOSTests;
+		};
+		EA5248AC1DC72D3400AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247021DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOS;
+		};
+		EA5248AE1DC72D3B00AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247221DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA3C68E81DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKEventDispatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKEventDispatcher.h; sourceTree = "<group>"; };
 		EA3C68ED1DC1E79900C578CA /* OptimizelySDKEventDispatcher-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKEventDispatcher-Info.plist"; sourceTree = "<group>"; };
-		EA3C68F21DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKEventDispatcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA3C68F71DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKEventDispatcherTests.m; sourceTree = "<group>"; };
-		EA3C68F91DC1E79900C578CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA3C68F91DC1E79900C578CA /* OPTLYEventDispatcherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYEventDispatcherTests-Info.plist"; sourceTree = "<group>"; };
+		EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKEventDispatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247C71DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKEventDispatcheriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247DF1DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKEventDispatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247E71DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKEventDispatcherTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247FE1DC729C000AF6685 /* OptimizelySDKEventDispatcher.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKEventDispatcher.modulemap; sourceTree = "<group>"; };
+		EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKShared.xcodeproj; path = ../OptimizelySDKShared/OptimizelySDKShared.xcodeproj; sourceTree = "<group>"; };
+		EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventDispatcher.h; sourceTree = "<group>"; };
+		EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDispatcher.m; sourceTree = "<group>"; };
+		EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDispatcherTest.m; sourceTree = "<group>"; };
+		EA5249731DC7BDC200AF6685 /* OptimizelySDKUserProfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfile.framework; path = "../OptimizelySDKUserProfile/build/Debug-appletvos/OptimizelySDKUserProfile.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA3C68E41DC1E79900C578CA /* Frameworks */ = {
+		EA5247BB1DC7272300AF6685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249721DC7BD9D00AF6685 /* OptimizelySDKSharediOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA3C68EF1DC1E79900C578CA /* Frameworks */ = {
+		EA5247C41DC7272300AF6685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3C68F31DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework in Frameworks */,
+				EA5247C81DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247DB1DC7273100AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249761DC7C38200AF6685 /* OptimizelySDKSharedTVOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247E41DC7273100AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5247E81DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,14 +136,17 @@
 				EA3C68EA1DC1E79900C578CA /* OptimizelySDKEventDispatcher */,
 				EA3C68F61DC1E79900C578CA /* OptimizelySDKEventDispatcherTests */,
 				EA3C68E91DC1E79900C578CA /* Products */,
+				EA5247FA1DC7287900AF6685 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		EA3C68E91DC1E79900C578CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA3C68E81DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework */,
-				EA3C68F21DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.xctest */,
+				EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */,
+				EA5247C71DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests.xctest */,
+				EA5247DF1DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework */,
+				EA5247E71DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +154,11 @@
 		EA3C68EA1DC1E79900C578CA /* OptimizelySDKEventDispatcher */ = {
 			isa = PBXGroup;
 			children = (
+				EA5247FE1DC729C000AF6685 /* OptimizelySDKEventDispatcher.modulemap */,
 				EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */,
 				EA3C68ED1DC1E79900C578CA /* OptimizelySDKEventDispatcher-Info.plist */,
+				EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */,
+				EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */,
 			);
 			path = OptimizelySDKEventDispatcher;
 			sourceTree = "<group>";
@@ -80,60 +166,126 @@
 		EA3C68F61DC1E79900C578CA /* OptimizelySDKEventDispatcherTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA3C68F71DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.m */,
-				EA3C68F91DC1E79900C578CA /* Info.plist */,
+				EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */,
+				EA3C68F91DC1E79900C578CA /* OPTLYEventDispatcherTests-Info.plist */,
 			);
 			path = OptimizelySDKEventDispatcherTests;
+			sourceTree = "<group>";
+		};
+		EA5247FA1DC7287900AF6685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA5249731DC7BDC200AF6685 /* OptimizelySDKUserProfile.framework */,
+				EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA52489E1DC72D0800AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA5248A51DC72D0800AF6685 /* OptimizelySDKSharediOS.framework */,
+				EA5248A71DC72D0800AF6685 /* OptimizelySDKSharediOSTests.xctest */,
+				EA5248A91DC72D0800AF6685 /* OptimizelySDKSharedTVOS.framework */,
+				EA5248AB1DC72D0800AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EA3C68E51DC1E79900C578CA /* Headers */ = {
+		EA5247BC1DC7272300AF6685 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3C68EC1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h in Headers */,
+				EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247DC1DC7273100AF6685 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249401DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EA3C68E71DC1E79900C578CA /* OptimizelySDKEventDispatcher */ = {
+		EA5247BE1DC7272300AF6685 /* OptimizelySDKEventDispatcheriOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA3C68FC1DC1E79900C578CA /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcher" */;
+			buildConfigurationList = EA5247D81DC7272300AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcheriOS" */;
 			buildPhases = (
-				EA3C68E31DC1E79900C578CA /* Sources */,
-				EA3C68E41DC1E79900C578CA /* Frameworks */,
-				EA3C68E51DC1E79900C578CA /* Headers */,
-				EA3C68E61DC1E79900C578CA /* Resources */,
+				EA5247BA1DC7272300AF6685 /* Sources */,
+				EA5247BB1DC7272300AF6685 /* Frameworks */,
+				EA5247BC1DC7272300AF6685 /* Headers */,
+				EA5247BD1DC7272300AF6685 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EA5248AD1DC72D3400AF6685 /* PBXTargetDependency */,
 			);
-			name = OptimizelySDKEventDispatcher;
-			productName = OptimizelySDKEventDispatcher;
-			productReference = EA3C68E81DC1E79900C578CA /* OptimizelySDKEventDispatcher.framework */;
+			name = OptimizelySDKEventDispatcheriOS;
+			productName = OptimizelySDKEventDispatcheriOS;
+			productReference = EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EA3C68F11DC1E79900C578CA /* OptimizelySDKEventDispatcherTests */ = {
+		EA5247C61DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA3C68FF1DC1E79900C578CA /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTests" */;
+			buildConfigurationList = EA5247D91DC7272300AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcheriOSTests" */;
 			buildPhases = (
-				EA3C68EE1DC1E79900C578CA /* Sources */,
-				EA3C68EF1DC1E79900C578CA /* Frameworks */,
-				EA3C68F01DC1E79900C578CA /* Resources */,
+				EA5247C31DC7272300AF6685 /* Sources */,
+				EA5247C41DC7272300AF6685 /* Frameworks */,
+				EA5247C51DC7272300AF6685 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EA3C68F51DC1E79900C578CA /* PBXTargetDependency */,
+				EA5247CA1DC7272300AF6685 /* PBXTargetDependency */,
 			);
-			name = OptimizelySDKEventDispatcherTests;
-			productName = OptimizelySDKEventDispatcherTests;
-			productReference = EA3C68F21DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.xctest */;
+			name = OptimizelySDKEventDispatcheriOSTests;
+			productName = OptimizelySDKEventDispatcheriOSTests;
+			productReference = EA5247C71DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA5247DE1DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5247F01DC7273100AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTVOS" */;
+			buildPhases = (
+				EA5247DA1DC7273100AF6685 /* Sources */,
+				EA5247DB1DC7273100AF6685 /* Frameworks */,
+				EA5247DC1DC7273100AF6685 /* Headers */,
+				EA5247DD1DC7273100AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA5248AF1DC72D3B00AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKEventDispatcherTVOS;
+			productName = OptimizelySDKEventDispatcherTVOS;
+			productReference = EA5247DF1DC7273100AF6685 /* OptimizelySDKEventDispatcher.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EA5247E61DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5247F51DC7273100AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTVOSTests" */;
+			buildPhases = (
+				EA5247E31DC7273100AF6685 /* Sources */,
+				EA5247E41DC7273100AF6685 /* Frameworks */,
+				EA5247E51DC7273100AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA5247EA1DC7273100AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKEventDispatcherTVOSTests;
+			productName = OptimizelySDKEventDispatcherTVOSTests;
+			productReference = EA5247E71DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -142,14 +294,24 @@
 		EA3C68DF1DC1E79900C578CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
-					EA3C68E71DC1E79900C578CA = {
-						CreatedOnToolsVersion = 7.3.1;
+					EA5247BE1DC7272300AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
 					};
-					EA3C68F11DC1E79900C578CA = {
-						CreatedOnToolsVersion = 7.3.1;
+					EA5247C61DC7272300AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					EA5247DE1DC7273100AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					EA5247E61DC7273100AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -163,23 +325,76 @@
 			mainGroup = EA3C68DE1DC1E79900C578CA;
 			productRefGroup = EA3C68E91DC1E79900C578CA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA52489E1DC72D0800AF6685 /* Products */;
+					ProjectRef = EA52489D1DC72D0800AF6685 /* OptimizelySDKShared.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				EA3C68E71DC1E79900C578CA /* OptimizelySDKEventDispatcher */,
-				EA3C68F11DC1E79900C578CA /* OptimizelySDKEventDispatcherTests */,
+				EA5247BE1DC7272300AF6685 /* OptimizelySDKEventDispatcheriOS */,
+				EA5247C61DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests */,
+				EA5247DE1DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOS */,
+				EA5247E61DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOSTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		EA5248A51DC72D0800AF6685 /* OptimizelySDKSharediOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKSharediOS.framework;
+			remoteRef = EA5248A41DC72D0800AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248A71DC72D0800AF6685 /* OptimizelySDKSharediOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKSharediOSTests.xctest;
+			remoteRef = EA5248A61DC72D0800AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248A91DC72D0800AF6685 /* OptimizelySDKSharedTVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKSharedTVOS.framework;
+			remoteRef = EA5248A81DC72D0800AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248AB1DC72D0800AF6685 /* OptimizelySDKSharedTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKSharedTVOSTests.xctest;
+			remoteRef = EA5248AA1DC72D0800AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
-		EA3C68E61DC1E79900C578CA /* Resources */ = {
+		EA5247BD1DC7272300AF6685 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA3C68F01DC1E79900C578CA /* Resources */ = {
+		EA5247C51DC7272300AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247DD1DC7273100AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247E51DC7273100AF6685 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,28 +404,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA3C68E31DC1E79900C578CA /* Sources */ = {
+		EA5247BA1DC7272300AF6685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA3C68EE1DC1E79900C578CA /* Sources */ = {
+		EA5247C31DC7272300AF6685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3C68F81DC1E79900C578CA /* OptimizelySDKEventDispatcherTests.m in Sources */,
+				EA5249661DC7BA0800AF6685 /* OPTLYEventDispatcherTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247DA1DC7273100AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249421DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247E31DC7273100AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249671DC7BA0B00AF6685 /* OPTLYEventDispatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EA3C68F51DC1E79900C578CA /* PBXTargetDependency */ = {
+		EA5247CA1DC7272300AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EA3C68E71DC1E79900C578CA /* OptimizelySDKEventDispatcher */;
-			targetProxy = EA3C68F41DC1E79900C578CA /* PBXContainerItemProxy */;
+			target = EA5247BE1DC7272300AF6685 /* OptimizelySDKEventDispatcheriOS */;
+			targetProxy = EA5247C91DC7272300AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5247EA1DC7273100AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA5247DE1DC7273100AF6685 /* OptimizelySDKEventDispatcherTVOS */;
+			targetProxy = EA5247E91DC7273100AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5248AD1DC72D3400AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKSharediOS;
+			targetProxy = EA5248AC1DC72D3400AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5248AF1DC72D3B00AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKSharedTVOS;
+			targetProxy = EA5248AE1DC72D3B00AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -229,14 +476,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -253,6 +503,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 0;
@@ -264,32 +515,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		EA2FA7701DC5AD1B00B1D81B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		EA2FA7711DC5AD1B00B1D81B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -307,14 +532,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -331,6 +559,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 0;
@@ -342,32 +571,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		EA2FA7731DC5AD2000B1D81B /* RC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = RC;
-		};
-		EA2FA7741DC5AD2000B1D81B /* RC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = RC;
 		};
@@ -385,14 +588,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -412,6 +618,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
@@ -440,14 +647,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -464,6 +674,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 0;
@@ -478,57 +689,317 @@
 			};
 			name = Beta;
 		};
-		EA3C68FD1DC1E79900C578CA /* Debug */ = {
+		EA5247D01DC7272300AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEFINES_MODULE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EA5247D11DC7272300AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SKIP_INSTALL = YES;
 			};
-			name = Debug;
+			name = Beta;
 		};
-		EA3C68FE1DC1E79900C578CA /* Beta */ = {
+		EA5247D21DC7272300AF6685 /* RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEFINES_MODULE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SKIP_INSTALL = YES;
 			};
-			name = Beta;
+			name = RC;
 		};
-		EA3C69001DC1E79900C578CA /* Debug */ = {
+		EA5247D31DC7272300AF6685 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EA5247D41DC7272300AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcheriOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		EA3C69011DC1E79900C578CA /* Beta */ = {
+		EA5247D51DC7272300AF6685 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcheriOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
+		};
+		EA5247D61DC7272300AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcheriOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EA5247D71DC7272300AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcheriOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EA5247F11DC7273100AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EA5247F21DC7273100AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = Beta;
+		};
+		EA5247F31DC7273100AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = RC;
+		};
+		EA5247F41DC7273100AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_NAME = OptimizelySDKEventDispatcher;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EA5247F61DC7273100AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA5247F71DC7273100AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		EA5247F81DC7273100AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EA5247F91DC7273100AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -544,27 +1015,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Beta;
 		};
-		EA3C68FC1DC1E79900C578CA /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcher" */ = {
+		EA5247D81DC7272300AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcheriOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA3C68FD1DC1E79900C578CA /* Debug */,
-				EA3C68FE1DC1E79900C578CA /* Beta */,
-				EA2FA7731DC5AD2000B1D81B /* RC */,
-				EA2FA7701DC5AD1B00B1D81B /* Release */,
+				EA5247D01DC7272300AF6685 /* Debug */,
+				EA5247D11DC7272300AF6685 /* Beta */,
+				EA5247D21DC7272300AF6685 /* RC */,
+				EA5247D31DC7272300AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Beta;
 		};
-		EA3C68FF1DC1E79900C578CA /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTests" */ = {
+		EA5247D91DC7272300AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcheriOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA3C69001DC1E79900C578CA /* Debug */,
-				EA3C69011DC1E79900C578CA /* Beta */,
-				EA2FA7741DC5AD2000B1D81B /* RC */,
-				EA2FA7711DC5AD1B00B1D81B /* Release */,
+				EA5247D41DC7272300AF6685 /* Debug */,
+				EA5247D51DC7272300AF6685 /* Beta */,
+				EA5247D61DC7272300AF6685 /* RC */,
+				EA5247D71DC7272300AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Beta;
+		};
+		EA5247F01DC7273100AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5247F11DC7273100AF6685 /* Debug */,
+				EA5247F21DC7273100AF6685 /* Beta */,
+				EA5247F31DC7273100AF6685 /* RC */,
+				EA5247F41DC7273100AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EA5247F51DC7273100AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKEventDispatcherTVOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5247F61DC7273100AF6685 /* Debug */,
+				EA5247F71DC7273100AF6685 /* Beta */,
+				EA5247F81DC7273100AF6685 /* RC */,
+				EA5247F91DC7273100AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

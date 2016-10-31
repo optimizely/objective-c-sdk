@@ -7,43 +7,116 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA2FA78F1DC5B38900B1D81B /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7851DC5B38900B1D81B /* OptimizelySDKUserProfile.framework */; };
-		EA2FA7941DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */; };
-		EA2FA7961DC5B38900B1D81B /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfile.framework */; };
+		EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfile.framework */; };
+		EA5249451DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; };
+		EA5249461DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */; };
+		EA5249471DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */; };
+		EA5249481DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA2FA7901DC5B38900B1D81B /* PBXContainerItemProxy */ = {
+		EA52484E1DC72B5500AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA2FA77C1DC5B38900B1D81B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA2FA7841DC5B38900B1D81B;
-			remoteInfo = OptimizelySDKUserProfile;
+			remoteGlobalIDString = EA5248431DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileiOS;
+		};
+		EA52486E1DC72B6500AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA2FA77C1DC5B38900B1D81B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5248631DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileTVOS;
+		};
+		EA5248B71DC72D5900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5247031DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOS;
+		};
+		EA5248B91DC72D5900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52470B1DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOSTests;
+		};
+		EA5248BB1DC72D5900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5247231DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOS;
+		};
+		EA5248BD1DC72D5900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52472B1DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOSTests;
+		};
+		EA5248BF1DC72D6400AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247021DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOS;
+		};
+		EA5248C11DC72D6700AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247221DC7193B00AF6685;
+			remoteInfo = OptimizelySDKSharedTVOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA2FA7851DC5B38900B1D81B /* OptimizelySDKUserProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKUserProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKUserProfile.h; sourceTree = "<group>"; };
-		EA2FA7891DC5B38900B1D81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA2FA78E1DC5B38900B1D81B /* OptimizelySDKUserProfileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKUserProfileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2FA7891DC5B38900B1D81B /* OptimizelySDKUserProfile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKUserProfile-Info.plist"; sourceTree = "<group>"; };
 		EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKUserProfileTests.m; sourceTree = "<group>"; };
-		EA2FA7951DC5B38900B1D81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2FA7951DC5B38900B1D81B /* OptimizelySDKUserProfileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKUserProfileTests-Info.plist"; sourceTree = "<group>"; };
+		EA5247FB1DC7290C00AF6685 /* OptimizelySDKUserProfile.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKUserProfile.modulemap; sourceTree = "<group>"; };
+		EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKUserProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52484C1DC72B5500AF6685 /* OptimizelySDKUserProfileiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKUserProfileiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKUserProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52486C1DC72B6500AF6685 /* OptimizelySDKUserProfileTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKUserProfileTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKShared.xcodeproj; path = ../OptimizelySDKShared/OptimizelySDKShared.xcodeproj; sourceTree = "<group>"; };
+		EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYUserProfile.h; sourceTree = "<group>"; };
+		EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYUserProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA2FA7811DC5B38900B1D81B /* Frameworks */ = {
+		EA5248401DC72B5500AF6685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA2FA78B1DC5B38900B1D81B /* Frameworks */ = {
+		EA5248491DC72B5500AF6685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2FA78F1DC5B38900B1D81B /* OptimizelySDKUserProfile.framework in Frameworks */,
+				EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248601DC72B6500AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248691DC72B6500AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,14 +129,17 @@
 				EA2FA7871DC5B38900B1D81B /* OptimizelySDKUserProfile */,
 				EA2FA7921DC5B38900B1D81B /* OptimizelySDKUserProfileTests */,
 				EA2FA7861DC5B38900B1D81B /* Products */,
+				EA5248881DC72BF800AF6685 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		EA2FA7861DC5B38900B1D81B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA2FA7851DC5B38900B1D81B /* OptimizelySDKUserProfile.framework */,
-				EA2FA78E1DC5B38900B1D81B /* OptimizelySDKUserProfileTests.xctest */,
+				EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfile.framework */,
+				EA52484C1DC72B5500AF6685 /* OptimizelySDKUserProfileiOSTests.xctest */,
+				EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfile.framework */,
+				EA52486C1DC72B6500AF6685 /* OptimizelySDKUserProfileTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +147,11 @@
 		EA2FA7871DC5B38900B1D81B /* OptimizelySDKUserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				EA5247FB1DC7290C00AF6685 /* OptimizelySDKUserProfile.modulemap */,
 				EA2FA7881DC5B38900B1D81B /* OptimizelySDKUserProfile.h */,
-				EA2FA7891DC5B38900B1D81B /* Info.plist */,
+				EA2FA7891DC5B38900B1D81B /* OptimizelySDKUserProfile-Info.plist */,
+				EA5249431DC72FD500AF6685 /* OPTLYUserProfile.h */,
+				EA5249441DC72FD500AF6685 /* OPTLYUserProfile.m */,
 			);
 			path = OptimizelySDKUserProfile;
 			sourceTree = "<group>";
@@ -81,59 +160,124 @@
 			isa = PBXGroup;
 			children = (
 				EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */,
-				EA2FA7951DC5B38900B1D81B /* Info.plist */,
+				EA2FA7951DC5B38900B1D81B /* OptimizelySDKUserProfileTests-Info.plist */,
 			);
 			path = OptimizelySDKUserProfileTests;
+			sourceTree = "<group>";
+		};
+		EA5248881DC72BF800AF6685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA5248B11DC72D5900AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA5248B81DC72D5900AF6685 /* OptimizelySDKSharediOS.framework */,
+				EA5248BA1DC72D5900AF6685 /* OptimizelySDKSharediOSTests.xctest */,
+				EA5248BC1DC72D5900AF6685 /* OptimizelySDKSharedTVOS.framework */,
+				EA5248BE1DC72D5900AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EA2FA7821DC5B38900B1D81B /* Headers */ = {
+		EA5248411DC72B5500AF6685 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2FA7961DC5B38900B1D81B /* OptimizelySDKUserProfile.h in Headers */,
+				EA5249451DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248611DC72B6500AF6685 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249461DC72FD500AF6685 /* OPTLYUserProfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EA2FA7841DC5B38900B1D81B /* OptimizelySDKUserProfile */ = {
+		EA5248431DC72B5500AF6685 /* OptimizelySDKUserProfileiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA2FA7991DC5B38900B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfile" */;
+			buildConfigurationList = EA5248551DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOS" */;
 			buildPhases = (
-				EA2FA7801DC5B38900B1D81B /* Sources */,
-				EA2FA7811DC5B38900B1D81B /* Frameworks */,
-				EA2FA7821DC5B38900B1D81B /* Headers */,
-				EA2FA7831DC5B38900B1D81B /* Resources */,
+				EA52483F1DC72B5500AF6685 /* Sources */,
+				EA5248401DC72B5500AF6685 /* Frameworks */,
+				EA5248411DC72B5500AF6685 /* Headers */,
+				EA5248421DC72B5500AF6685 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EA5248C01DC72D6400AF6685 /* PBXTargetDependency */,
 			);
-			name = OptimizelySDKUserProfile;
-			productName = OptimizelySDKUserProfile;
-			productReference = EA2FA7851DC5B38900B1D81B /* OptimizelySDKUserProfile.framework */;
+			name = OptimizelySDKUserProfileiOS;
+			productName = OptimizelySDKUserProfileiOS;
+			productReference = EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfile.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EA2FA78D1DC5B38900B1D81B /* OptimizelySDKUserProfileTests */ = {
+		EA52484B1DC72B5500AF6685 /* OptimizelySDKUserProfileiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA2FA79C1DC5B38900B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTests" */;
+			buildConfigurationList = EA52485A1DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOSTests" */;
 			buildPhases = (
-				EA2FA78A1DC5B38900B1D81B /* Sources */,
-				EA2FA78B1DC5B38900B1D81B /* Frameworks */,
-				EA2FA78C1DC5B38900B1D81B /* Resources */,
+				EA5248481DC72B5500AF6685 /* Sources */,
+				EA5248491DC72B5500AF6685 /* Frameworks */,
+				EA52484A1DC72B5500AF6685 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EA2FA7911DC5B38900B1D81B /* PBXTargetDependency */,
+				EA52484F1DC72B5500AF6685 /* PBXTargetDependency */,
 			);
-			name = OptimizelySDKUserProfileTests;
-			productName = OptimizelySDKUserProfileTests;
-			productReference = EA2FA78E1DC5B38900B1D81B /* OptimizelySDKUserProfileTests.xctest */;
+			name = OptimizelySDKUserProfileiOSTests;
+			productName = OptimizelySDKUserProfileiOSTests;
+			productReference = EA52484C1DC72B5500AF6685 /* OptimizelySDKUserProfileiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA5248631DC72B6500AF6685 /* OptimizelySDKUserProfileTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5248751DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOS" */;
+			buildPhases = (
+				EA52485F1DC72B6500AF6685 /* Sources */,
+				EA5248601DC72B6500AF6685 /* Frameworks */,
+				EA5248611DC72B6500AF6685 /* Headers */,
+				EA5248621DC72B6500AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA5248C21DC72D6700AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKUserProfileTVOS;
+			productName = OptimizelySDKUserProfileTVOS;
+			productReference = EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfile.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EA52486B1DC72B6500AF6685 /* OptimizelySDKUserProfileTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA52487A1DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOSTests" */;
+			buildPhases = (
+				EA5248681DC72B6500AF6685 /* Sources */,
+				EA5248691DC72B6500AF6685 /* Frameworks */,
+				EA52486A1DC72B6500AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52486F1DC72B6500AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKUserProfileTVOSTests;
+			productName = OptimizelySDKUserProfileTVOSTests;
+			productReference = EA52486C1DC72B6500AF6685 /* OptimizelySDKUserProfileTVOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -145,11 +289,19 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
-					EA2FA7841DC5B38900B1D81B = {
+					EA5248431DC72B5500AF6685 = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
-					EA2FA78D1DC5B38900B1D81B = {
+					EA52484B1DC72B5500AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					EA5248631DC72B6500AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					EA52486B1DC72B6500AF6685 = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -165,23 +317,76 @@
 			mainGroup = EA2FA77B1DC5B38900B1D81B;
 			productRefGroup = EA2FA7861DC5B38900B1D81B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA5248B11DC72D5900AF6685 /* Products */;
+					ProjectRef = EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				EA2FA7841DC5B38900B1D81B /* OptimizelySDKUserProfile */,
-				EA2FA78D1DC5B38900B1D81B /* OptimizelySDKUserProfileTests */,
+				EA5248431DC72B5500AF6685 /* OptimizelySDKUserProfileiOS */,
+				EA52484B1DC72B5500AF6685 /* OptimizelySDKUserProfileiOSTests */,
+				EA5248631DC72B6500AF6685 /* OptimizelySDKUserProfileTVOS */,
+				EA52486B1DC72B6500AF6685 /* OptimizelySDKUserProfileTVOSTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		EA5248B81DC72D5900AF6685 /* OptimizelySDKSharediOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKSharediOS.framework;
+			remoteRef = EA5248B71DC72D5900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248BA1DC72D5900AF6685 /* OptimizelySDKSharediOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKSharediOSTests.xctest;
+			remoteRef = EA5248B91DC72D5900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248BC1DC72D5900AF6685 /* OptimizelySDKSharedTVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKSharedTVOS.framework;
+			remoteRef = EA5248BB1DC72D5900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5248BE1DC72D5900AF6685 /* OptimizelySDKSharedTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKSharedTVOSTests.xctest;
+			remoteRef = EA5248BD1DC72D5900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
-		EA2FA7831DC5B38900B1D81B /* Resources */ = {
+		EA5248421DC72B5500AF6685 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA2FA78C1DC5B38900B1D81B /* Resources */ = {
+		EA52484A1DC72B5500AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248621DC72B6500AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52486A1DC72B6500AF6685 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -191,28 +396,58 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA2FA7801DC5B38900B1D81B /* Sources */ = {
+		EA52483F1DC72B5500AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5249471DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248481DC72B5500AF6685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA2FA78A1DC5B38900B1D81B /* Sources */ = {
+		EA52485F1DC72B6500AF6685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2FA7941DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m in Sources */,
+				EA5249481DC72FD500AF6685 /* OPTLYUserProfile.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5248681DC72B6500AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EA2FA7911DC5B38900B1D81B /* PBXTargetDependency */ = {
+		EA52484F1DC72B5500AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EA2FA7841DC5B38900B1D81B /* OptimizelySDKUserProfile */;
-			targetProxy = EA2FA7901DC5B38900B1D81B /* PBXContainerItemProxy */;
+			target = EA5248431DC72B5500AF6685 /* OptimizelySDKUserProfileiOS */;
+			targetProxy = EA52484E1DC72B5500AF6685 /* PBXContainerItemProxy */;
+		};
+		EA52486F1DC72B6500AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA5248631DC72B6500AF6685 /* OptimizelySDKUserProfileTVOS */;
+			targetProxy = EA52486E1DC72B6500AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5248C01DC72D6400AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKSharediOS;
+			targetProxy = EA5248BF1DC72D6400AF6685 /* PBXContainerItemProxy */;
+		};
+		EA5248C21DC72D6700AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKSharedTVOS;
+			targetProxy = EA5248C11DC72D6700AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -242,6 +477,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -261,6 +497,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = OptimizelySDKUserProfile/OptimizelySDKUserProfile.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MINOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_PATCH)$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_SUFFIX)";
@@ -300,6 +537,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -316,6 +554,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = OptimizelySDKUserProfile/OptimizelySDKUserProfile.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MINOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_PATCH)$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR = 0;
@@ -327,60 +566,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = RC;
-		};
-		EA2FA79A1DC5B38900B1D81B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OptimizelySDKUserProfile/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		EA2FA79B1DC5B38900B1D81B /* RC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OptimizelySDKUserProfile/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = RC;
-		};
-		EA2FA79D1DC5B38900B1D81B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = OptimizelySDKUserProfileTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		EA2FA79E1DC5B38900B1D81B /* RC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = OptimizelySDKUserProfileTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = RC;
 		};
@@ -409,6 +594,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -425,6 +611,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = OptimizelySDKUserProfile/OptimizelySDKUserProfile.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MINOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_PATCH)$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR = 0;
@@ -436,33 +623,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
-		EA2FA7A91DC5B3B900B1D81B /* Beta */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OptimizelySDKUserProfile/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Beta;
-		};
-		EA2FA7AA1DC5B3B900B1D81B /* Beta */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = OptimizelySDKUserProfileTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
 		};
@@ -491,6 +651,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -507,6 +668,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = OptimizelySDKUserProfile/OptimizelySDKUserProfile.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION = "$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_MINOR).$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_PATCH)$(OPTIMIZELY_SDK_USER_PROFILE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_USER_PROFILE_VERSION_MAJOR = 0;
@@ -521,30 +683,271 @@
 			};
 			name = Release;
 		};
-		EA2FA7AC1DC5B3BC00B1D81B /* Release */ = {
+		EA5248561DC72B5500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = OptimizelySDKUserProfile/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EA5248571DC72B5500AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SKIP_INSTALL = YES;
+			};
+			name = RC;
+		};
+		EA5248581DC72B5500AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SKIP_INSTALL = YES;
+			};
+			name = Beta;
+		};
+		EA5248591DC72B5500AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		EA2FA7AD1DC5B3BC00B1D81B /* Release */ = {
+		EA52485B1DC72B5500AF6685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = OptimizelySDKUserProfileTests/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA52485C1DC72B5500AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EA52485D1DC72B5500AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		EA52485E1DC72B5500AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EA5248761DC72B6500AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		EA5248771DC72B6500AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = RC;
+		};
+		EA5248781DC72B6500AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Beta;
+		};
+		EA5248791DC72B6500AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "OptimizelySDKUserProfile/OptimizelySDKUserProfile-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfile;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfile;
+				PRODUCT_NAME = OptimizelySDKUserProfile;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		EA52487B1DC72B6500AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		EA52487C1DC72B6500AF6685 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = RC;
+		};
+		EA52487D1DC72B6500AF6685 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Beta;
+		};
+		EA52487E1DC72B6500AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "OptimizelySDKUserProfileTests/OptimizelySDKUserProfileTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -562,27 +965,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = RC;
 		};
-		EA2FA7991DC5B38900B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfile" */ = {
+		EA5248551DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA2FA79A1DC5B38900B1D81B /* Debug */,
-				EA2FA79B1DC5B38900B1D81B /* RC */,
-				EA2FA7A91DC5B3B900B1D81B /* Beta */,
-				EA2FA7AC1DC5B3BC00B1D81B /* Release */,
+				EA5248561DC72B5500AF6685 /* Debug */,
+				EA5248571DC72B5500AF6685 /* RC */,
+				EA5248581DC72B5500AF6685 /* Beta */,
+				EA5248591DC72B5500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
 		};
-		EA2FA79C1DC5B38900B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTests" */ = {
+		EA52485A1DC72B5500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA2FA79D1DC5B38900B1D81B /* Debug */,
-				EA2FA79E1DC5B38900B1D81B /* RC */,
-				EA2FA7AA1DC5B3B900B1D81B /* Beta */,
-				EA2FA7AD1DC5B3BC00B1D81B /* Release */,
+				EA52485B1DC72B5500AF6685 /* Debug */,
+				EA52485C1DC72B5500AF6685 /* RC */,
+				EA52485D1DC72B5500AF6685 /* Beta */,
+				EA52485E1DC72B5500AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+		};
+		EA5248751DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5248761DC72B6500AF6685 /* Debug */,
+				EA5248771DC72B6500AF6685 /* RC */,
+				EA5248781DC72B6500AF6685 /* Beta */,
+				EA5248791DC72B6500AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EA52487A1DC72B6500AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKUserProfileTVOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA52487B1DC72B6500AF6685 /* Debug */,
+				EA52487C1DC72B6500AF6685 /* RC */,
+				EA52487D1DC72B6500AF6685 /* Beta */,
+				EA52487E1DC72B6500AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
