@@ -14,8 +14,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OptimizelyManager.h"
+#import "OPTLYManager.h"
 
-@implementation OptimizelyManager
+@implementation OPTLYManager
 
 @end

@@ -16,6 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OptimizelyManager : NSObject
+@interface OPTLYManager : NSObject
 
 @end
