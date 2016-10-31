@@ -7,15 +7,59 @@
 //
 
 import UIKit
+import OptimizelySDKiOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+    // Optimizely SDK test parameters
+    let projectId = "12345678";
+    let attributes = ["attribute1" : "attributeValue1", "attribute2" : "attributeValue2"];
+    let eventKey = "event1";
+    let experimentKey = "Experiment1";
+    let userId = "1234";
+    let revenue = NSNumber(unsignedInt: 88);
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let networkService = OPTLYNetworkService();
+        networkService.downloadProjectConfig(projectId) { [weak self] (data, response, error) in
+            let eventDispatcher = OPTLYEventDispatcherDefault();
+            let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
+            let errorHandler = OPTLYErrorHandlerNoOp();
+            let projectConfig = OPTLYProjectConfig.init(datafile: data, withLogger: logger, withErrorHandler: errorHandler);
+            print(projectConfig);
+            
+            
+            let defaultOptimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
+                builder!.datafile = data;
+                builder!.eventDispatcher = eventDispatcher;
+                builder!.logger = logger;
+                //builder!.errorHandler = errorHandler;
+            }))
+            
+            defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
+            defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
+            
+            
+            
+            // activate user in an experiment
+            if let variation = defaultOptimizely?.activateExperiment("experimentKey", userId: "userId")
+            {
+                if (variation.variationKey == "variation_a") {
+                    // execute code for variation A
+                }
+                else if (variation.variationKey == "variation_b") {
+                    // execute code for variation B
+                }
+            } else {
+                // execute default code
+            }
+        };
+        
         return true
     }
 
