@@ -14,7 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OptimizelyManager.h"
+#import "OPTLYManager.h"
 #import "OPTLYDatafileManager.h"
 #import "OPTLYDatafileManagerBuilder.h"
 
