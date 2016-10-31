@@ -14,29 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <XCTest/XCTest.h>
+
 #import "OptimizelyManager.h"
+#import "OPTLYManagerBuilder.h"
 
-@implementation OptimizelyManager
+@interface OPTLYManagerBuilderTest : XCTestCase
 
-+ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
-}
+@end
 
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
-            // TODO: Josh W. initialize datafile manager
-            // TODO: Josh W. initialize event dispatcher
-            // TODO: Josh W. initialize user experiment record
-        }
-        return self;
-    }
-    else {
-        // TODO: Josh W. log error
-        // TODO: Josh W. throw error
-        return nil;
-    }
+@implementation OPTLYManagerBuilderTest
+
+- (void)testBasicBuilderReturnsManager {
+    OptimizelyManager *manager = [OptimizelyManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        
+    }];
+    XCTAssertNotNil(manager);
 }
 
 @end

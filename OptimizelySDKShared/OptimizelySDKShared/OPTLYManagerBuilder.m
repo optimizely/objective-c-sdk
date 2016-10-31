@@ -14,29 +14,30 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OptimizelyManager.h"
+#import "OPTLYManagerBuilder.h"
+#import <OptimizelySDKCore/OPTLYEventBuilder.h>
 
-@implementation OptimizelyManager
+@implementation OPTLYManagerBuilder
 
-+ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
++ (nullable instancetype)builderWithBlock:(OPTLYManagerBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
 }
 
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
-            // TODO: Josh W. initialize datafile manager
-            // TODO: Josh W. initialize event dispatcher
-            // TODO: Josh W. initialize user experiment record
-        }
-        return self;
+- (id)init {
+    return [self initWithBlock:nil];
+}
+
+- (id)initWithBlock:(OPTLYManagerBuilderBlock)block {
+    NSParameterAssert(block);
+    self = [super init];
+    if (self != nil) {
+        block(self);
     }
     else {
-        // TODO: Josh W. log error
-        // TODO: Josh W. throw error
         return nil;
     }
+    
+    return self;
 }
 
 @end
