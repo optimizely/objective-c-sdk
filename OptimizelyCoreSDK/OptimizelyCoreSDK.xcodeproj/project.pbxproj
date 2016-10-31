@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA3C67E51DC1E55600C578CA /* OptimizelyCoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C67E41DC1E55600C578CA /* OptimizelyCoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3C67EC1DC1E55600C578CA /* OptimizelyCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3C67E11DC1E55600C578CA /* OptimizelyCoreSDK.framework */; };
+		EA3C67F11DC1E55600C578CA /* OptimizelyCoreSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C67F01DC1E55600C578CA /* OptimizelyCoreSDKTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA3C67ED1DC1E55600C578CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C67D81DC1E55600C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA3C67E01DC1E55600C578CA;
+			remoteInfo = OptimizelyCoreSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EA3C67E11DC1E55600C578CA /* OptimizelyCoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelyCoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA3C67E41DC1E55600C578CA /* OptimizelyCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelyCoreSDK.h; sourceTree = "<group>"; };
+		EA3C67E61DC1E55600C578CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA3C67EB1DC1E55600C578CA /* OptimizelyCoreSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyCoreSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA3C67F01DC1E55600C578CA /* OptimizelyCoreSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelyCoreSDKTests.m; sourceTree = "<group>"; };
+		EA3C67F21DC1E55700C578CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA3C67DD1DC1E55600C578CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA3C67E81DC1E55600C578CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3C67EC1DC1E55600C578CA /* OptimizelyCoreSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA3C67D71DC1E55600C578CA = {
+			isa = PBXGroup;
+			children = (
+				EA3C67E31DC1E55600C578CA /* OptimizelyCoreSDK */,
+				EA3C67EF1DC1E55600C578CA /* OptimizelyCoreSDKTests */,
+				EA3C67E21DC1E55600C578CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA3C67E21DC1E55600C578CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA3C67E11DC1E55600C578CA /* OptimizelyCoreSDK.framework */,
+				EA3C67EB1DC1E55600C578CA /* OptimizelyCoreSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA3C67E31DC1E55600C578CA /* OptimizelyCoreSDK */ = {
+			isa = PBXGroup;
+			children = (
+				EA3C67E41DC1E55600C578CA /* OptimizelyCoreSDK.h */,
+				EA3C67E61DC1E55600C578CA /* Info.plist */,
+			);
+			path = OptimizelyCoreSDK;
+			sourceTree = "<group>";
+		};
+		EA3C67EF1DC1E55600C578CA /* OptimizelyCoreSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA3C67F01DC1E55600C578CA /* OptimizelyCoreSDKTests.m */,
+				EA3C67F21DC1E55700C578CA /* Info.plist */,
+			);
+			path = OptimizelyCoreSDKTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EA3C67DE1DC1E55600C578CA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3C67E51DC1E55600C578CA /* OptimizelyCoreSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EA3C67E01DC1E55600C578CA /* OptimizelyCoreSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA3C67F51DC1E55700C578CA /* Build configuration list for PBXNativeTarget "OptimizelyCoreSDK" */;
+			buildPhases = (
+				EA3C67DC1DC1E55600C578CA /* Sources */,
+				EA3C67DD1DC1E55600C578CA /* Frameworks */,
+				EA3C67DE1DC1E55600C578CA /* Headers */,
+				EA3C67DF1DC1E55600C578CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OptimizelyCoreSDK;
+			productName = OptimizelyCoreSDK;
+			productReference = EA3C67E11DC1E55600C578CA /* OptimizelyCoreSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EA3C67EA1DC1E55600C578CA /* OptimizelyCoreSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA3C67F81DC1E55700C578CA /* Build configuration list for PBXNativeTarget "OptimizelyCoreSDKTests" */;
+			buildPhases = (
+				EA3C67E71DC1E55600C578CA /* Sources */,
+				EA3C67E81DC1E55600C578CA /* Frameworks */,
+				EA3C67E91DC1E55600C578CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA3C67EE1DC1E55600C578CA /* PBXTargetDependency */,
+			);
+			name = OptimizelyCoreSDKTests;
+			productName = OptimizelyCoreSDKTests;
+			productReference = EA3C67EB1DC1E55600C578CA /* OptimizelyCoreSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA3C67D81DC1E55600C578CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Optimizely;
+				TargetAttributes = {
+					EA3C67E01DC1E55600C578CA = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					EA3C67EA1DC1E55600C578CA = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = EA3C67DB1DC1E55600C578CA /* Build configuration list for PBXProject "OptimizelyCoreSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EA3C67D71DC1E55600C578CA;
+			productRefGroup = EA3C67E21DC1E55600C578CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA3C67E01DC1E55600C578CA /* OptimizelyCoreSDK */,
+				EA3C67EA1DC1E55600C578CA /* OptimizelyCoreSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA3C67DF1DC1E55600C578CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA3C67E91DC1E55600C578CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA3C67DC1DC1E55600C578CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA3C67E71DC1E55600C578CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3C67F11DC1E55600C578CA /* OptimizelyCoreSDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA3C67EE1DC1E55600C578CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA3C67E01DC1E55600C578CA /* OptimizelyCoreSDK */;
+			targetProxy = EA3C67ED1DC1E55600C578CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EA3C67F31DC1E55700C578CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EA3C67F41DC1E55700C578CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EA3C67F61DC1E55700C578CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = OptimizelyCoreSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyCoreSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EA3C67F71DC1E55700C578CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = OptimizelyCoreSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyCoreSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EA3C67F91DC1E55700C578CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = OptimizelyCoreSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyCoreSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA3C67FA1DC1E55700C578CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = OptimizelyCoreSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyCoreSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA3C67DB1DC1E55600C578CA /* Build configuration list for PBXProject "OptimizelyCoreSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA3C67F31DC1E55700C578CA /* Debug */,
+				EA3C67F41DC1E55700C578CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA3C67F51DC1E55700C578CA /* Build configuration list for PBXNativeTarget "OptimizelyCoreSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA3C67F61DC1E55700C578CA /* Debug */,
+				EA3C67F71DC1E55700C578CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EA3C67F81DC1E55700C578CA /* Build configuration list for PBXNativeTarget "OptimizelyCoreSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA3C67F91DC1E55700C578CA /* Debug */,
+				EA3C67FA1DC1E55700C578CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA3C67D81DC1E55600C578CA /* Project object */;
+}
