@@ -1,12 +1,12 @@
 workspace 'OptimizelySDK.xcworkspace'
   
 def common_pods
-  pod 'JSONModel', '1.3.0'
+  pod 'JSONModel', '1.7.0'
 end
 
 def common_test_pods
-  pod 'OHHTTPStubs'
-  pod 'OCMock'
+  pod 'OHHTTPStubs', '5.2.2'
+  pod 'OCMock', '3.3.1'
 end
  
 use_frameworks!
@@ -32,6 +32,32 @@ end
 
 target 'OptimizelySDKCoreTVOSTests' do
   project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
+  common_pods
+  common_test_pods
+end
+
+# OptimizelySDKiOS targets
+target 'OptimizelySDKiOS' do
+  project 'OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj/'
+  platform :ios, '10.1'
+  common_pods
+end
+
+target 'OptimizelySDKiOSTests' do
+  project 'OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj/'
+  common_pods
+  common_test_pods
+end
+
+# OptimizelySDKTVOS targets
+target 'OptimizelySDKTVOS' do
+  project 'OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj/'
+  platform :tvos, '10.0'
+  common_pods
+end
+
+target 'OptimizelySDKTVOSTests' do
+  project 'OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj/'
   common_pods
   common_test_pods
 end

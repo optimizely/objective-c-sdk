@@ -1,6 +1,0 @@
-framework module JSONModel {
-  umbrella header "JSONModel-tvOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

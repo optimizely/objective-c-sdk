@@ -84,8 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
 fi
