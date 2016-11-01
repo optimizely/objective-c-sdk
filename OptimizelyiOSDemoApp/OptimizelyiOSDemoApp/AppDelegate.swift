@@ -1,10 +1,18 @@
-//
-//  AppDelegate.swift
-//  OptimizelyiOSDemoApp
-//
-//  Created by Alda Luong on 10/30/16.
-//  Copyright © 2016 Optimizely. All rights reserved.
-//
+/****************************************************************************
+ * Copyright 2016, Optimizely, Inc. and contributors                        *
+ *                                                                          *
+ * Licensed under the Apache License, Version 2.0 (the "License");          *
+ * you may not use this file except in compliance with the License.         *
+ * You may obtain a copy of the License at                                  *
+ *                                                                          *
+ *    http://www.apache.org/licenses/LICENSE-2.0                            *
+ *                                                                          *
+ * Unless required by applicable law or agreed to in writing, software      *
+ * distributed under the License is distributed on an "AS IS" BASIS,        *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
+ * See the License for the specific language governing permissions and      *
+ * limitations under the License.                                           *
+ ***************************************************************************/
 
 import UIKit
 import OptimizelySDKiOS
@@ -24,13 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let networkService = OPTLYNetworkService();
-        networkService.downloadProjectConfig(projectId) { [weak self] (data, response, error) in
+
+        networkService.downloadProjectConfig(projectId, completionHandler:
+            { [weak self] (data, response, error) in
             let eventDispatcher = OPTLYEventDispatcher();
             let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
             let errorHandler = OPTLYErrorHandlerNoOp();
     
             let projectConfig = OPTLYProjectConfig.init(datafile: data, with: logger, with: errorHandler);
-            //print(projectConfig ??, default "no project config");
+                print(projectConfig);
             
             
             let defaultOptimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
@@ -42,9 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
             defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
-            
-            
-            
+                
             // activate user in an experiment
             if let variation = defaultOptimizely?.activateExperiment("experimentKey", userId: "userId")
             {
@@ -57,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 // execute default code
             }
-        };
+        });
 
         return true
     }
