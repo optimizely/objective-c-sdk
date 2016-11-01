@@ -15,8 +15,24 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @implementation OPTLYDatafileManager
+
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:block]];
+}
+
+- (instancetype)initWithBuilder:(OPTLYDatafileManagerBuilder *)builder {
+    NSParameterAssert(builder);
+    self = [super init];
+    if (self != nil) {
+        return self;
+    }
+    else {
+        // TODO: Josh W. log an error
+        // TODO: Josh W. throw/handle the error
+        return nil;
+    }
+}
 
 @end

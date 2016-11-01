@@ -14,7 +14,6 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYManager.h"
 #import "OPTLYHTTPRequestManager.h"

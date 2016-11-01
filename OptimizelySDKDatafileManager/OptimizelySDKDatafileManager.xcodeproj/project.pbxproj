@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2BB51BA262BB8150B95167CC /* Pods_OptimizelySDKDatafileManagerTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C3406734E932C4DD563494 /* Pods_OptimizelySDKDatafileManagerTVOS.framework */; };
+		2DB3D1751DC816C600ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C68CA1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests.m */; };
+		2DB3D1791DC816C700ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C68CA1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests.m */; };
+		2DB3D1841DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB3D1821DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DB3D1851DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */; };
+		2DB3D1881DC818E800ECF72E /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB3D1821DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DB3D1891DC818EC00ECF72E /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */; };
+		2DB3D18A1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */; };
+		2DB3D18B1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */; };
 		6D5CBB24D7CD0C622634D15B /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E878B599943D437831DAA7F /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework */; };
 		7C30D664EDAC58887076AE8E /* Pods_OptimizelySDKDatafileManageriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11A4F80C7960C4907845910 /* Pods_OptimizelySDKDatafileManageriOSTests.framework */; };
 		8160880F9C1EE3663169C1F5 /* Pods_OptimizelySDKDatafileManageriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E531AA1D0D78410E6B99080 /* Pods_OptimizelySDKDatafileManageriOS.framework */; };
@@ -86,6 +94,9 @@
 		00E229D537533B61E486FD74 /* Pods-OptimizelySDKDatafileManageriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManageriOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManageriOS/Pods-OptimizelySDKDatafileManageriOS.release.xcconfig"; sourceTree = "<group>"; };
 		014E0B036FDB9D48F093B283 /* Pods-OptimizelySDKDatafileManagerTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManagerTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManagerTVOS/Pods-OptimizelySDKDatafileManagerTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		165C7E15B0446C33509E7A9E /* Pods-OptimizelySDKDatafileManageriOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManageriOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManageriOSTests/Pods-OptimizelySDKDatafileManageriOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		2DB3D1821DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManagerBuilder.h; sourceTree = "<group>"; };
+		2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilder.m; sourceTree = "<group>"; };
+		2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilderTest.m; sourceTree = "<group>"; };
 		2FEFFF84C21046FA94F7615A /* Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManageriOSTests/Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C0F2EF1551F96713F44A84E /* Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManagerTVOSTests/Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C3406734E932C4DD563494 /* Pods_OptimizelySDKDatafileManagerTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKDatafileManagerTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +221,8 @@
 				EA3C68C01DC1E75900C578CA /* OptimizelySDKDatafileManager-Info.plist */,
 				EA5249491DC72FF200AF6685 /* OPTLYDatafileManager.h */,
 				EA52494A1DC72FF200AF6685 /* OPTLYDatafileManager.m */,
+				2DB3D1821DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h */,
+				2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */,
 			);
 			path = OptimizelySDKDatafileManager;
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				EA3C68CA1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests.m */,
+				2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */,
 				EA3C68CC1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests-Info.plist */,
 			);
 			path = OptimizelySDKDatafileManagerTests;
@@ -255,6 +269,7 @@
 			files = (
 				EA52499B1DC7D8ED00AF6685 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52494B1DC72FF200AF6685 /* OPTLYDatafileManager.h in Headers */,
+				2DB3D1841DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +279,7 @@
 			files = (
 				EA52499E1DC7D8F900AF6685 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52494C1DC72FF200AF6685 /* OPTLYDatafileManager.h in Headers */,
+				2DB3D1881DC818E800ECF72E /* OPTLYDatafileManagerBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +643,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB3D1851DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m in Sources */,
 				EA52494D1DC72FF200AF6685 /* OPTLYDatafileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +652,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB3D18A1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */,
+				2DB3D1751DC816C600ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB3D1891DC818EC00ECF72E /* OPTLYDatafileManagerBuilder.m in Sources */,
 				EA52494E1DC72FF200AF6685 /* OPTLYDatafileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +670,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB3D18B1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */,
+				2DB3D1791DC816C700ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

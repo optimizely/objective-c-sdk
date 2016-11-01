@@ -15,8 +15,28 @@
  ***************************************************************************/
 
 #import "OPTLYManager.h"
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
 
 @implementation OPTLYManager
+
++ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+}
+
+- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    if (builder != nil) {
+        self = [super init];
+        if (self != nil) {
+            // TODO: Josh W. initialize datafile manager
+            // TODO: Josh W. initialize event dispatcher
+            // TODO: Josh W. initialize user experiment record
+        }
+        return self;
+    }
+    else {
+        // TODO: Josh W. log error
+        // TODO: Josh W. throw error
+        return nil;
+    }
+}
 
 @end
