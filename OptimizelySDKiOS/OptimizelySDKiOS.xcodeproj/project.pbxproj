@@ -14,6 +14,7 @@
 		EA3C68581DC1E6B600C578CA /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3C684D1DC1E6B600C578CA /* OptimizelySDKiOS.framework */; };
 		EA3C685D1DC1E6B600C578CA /* OptimizelySDKiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */; };
 		EA5249E91DC7E49000AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248DC1DC72ED200AF6685 /* OptimizelySDKEventDispatcher.framework */; };
+		EA524A4D1DC8495900AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457141DC8224C0095E286 /* OptimizelySDKUserProfile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,20 @@
 			remoteGlobalIDString = EA5247BE1DC7272300AF6685;
 			remoteInfo = OptimizelySDKEventDispatcheriOS;
 		};
+		EA524A3E1DC8494900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D54570C1DC8224C0095E286 /* OptimizelySDKUserProfile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5248431DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileiOS;
+		};
+		EA524A401DC8494900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5456FC1DC822120095E286 /* OptimizelySDKDatafileManager.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5248031DC72AAF00AF6685;
+			remoteInfo = OptimizelySDKDatafileManageriOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA524A4D1DC8495900AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */,
 				2D54570B1DC8223F0095E286 /* OptimizelySDKDatafileManager.framework in Frameworks */,
 				EA5249E91DC7E49000AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 				6112539CF7A5064D0D4B344C /* Pods_OptimizelySDKiOS.framework in Frameworks */,
@@ -290,6 +306,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				EA524A3F1DC8494900AF6685 /* PBXTargetDependency */,
+				EA524A411DC8494900AF6685 /* PBXTargetDependency */,
 				EA5249E51DC7E46300AF6685 /* PBXTargetDependency */,
 			);
 			name = OptimizelySDKiOS;
@@ -577,6 +595,16 @@
 			isa = PBXTargetDependency;
 			name = OptimizelySDKEventDispatcheriOS;
 			targetProxy = EA5249E41DC7E46300AF6685 /* PBXContainerItemProxy */;
+		};
+		EA524A3F1DC8494900AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKUserProfileiOS;
+			targetProxy = EA524A3E1DC8494900AF6685 /* PBXContainerItemProxy */;
+		};
+		EA524A411DC8494900AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKDatafileManageriOS;
+			targetProxy = EA524A401DC8494900AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

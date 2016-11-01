@@ -26,9 +26,9 @@
 		EA52494D1DC72FF200AF6685 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52494A1DC72FF200AF6685 /* OPTLYDatafileManager.m */; };
 		EA52494E1DC72FF200AF6685 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52494A1DC72FF200AF6685 /* OPTLYDatafileManager.m */; };
 		EA52499B1DC7D8ED00AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52499E1DC7D8F900AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249DF1DC7E3C300AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248921DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
 		EA5249E01DC7E3CF00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248961DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
+		EA524A3D1DC846CE00AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,9 +277,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA52499E1DC7D8F900AF6685 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52494C1DC72FF200AF6685 /* OPTLYDatafileManager.h in Headers */,
 				2DB3D1881DC818E800ECF72E /* OPTLYDatafileManagerBuilder.h in Headers */,
+				EA524A3D1DC846CE00AF6685 /* OptimizelySDKDatafileManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
