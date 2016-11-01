@@ -84,22 +84,22 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS10.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS10.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS9.0/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS10.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS10.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS9.0/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "RC" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS10.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS10.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS9.0/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS10.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS10.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS10.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS9.0/JSONModel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi

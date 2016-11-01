@@ -1,7 +1,7 @@
 workspace 'OptimizelySDK.xcworkspace'
   
 def common_pods
-  pod 'JSONModel', '1.7.0'
+  pod 'JSONModel', '1.3.0'
 end
 
 def common_test_pods

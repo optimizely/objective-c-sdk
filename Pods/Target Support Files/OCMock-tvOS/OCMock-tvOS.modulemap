@@ -1,5 +1,5 @@
 framework module OCMock {
-  umbrella header "OCMock-tvOS10.0-umbrella.h"
+  umbrella header "OCMock-tvOS-umbrella.h"
 
   export *
   module * { export * }

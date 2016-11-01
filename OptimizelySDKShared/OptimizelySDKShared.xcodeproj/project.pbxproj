@@ -1021,7 +1021,7 @@
 				);
 				INFOPLIST_FILE = "OptimizelySDKShared/OptimizelySDKShared-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
@@ -1046,7 +1046,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "OptimizelySDKShared/OptimizelySDKShared-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
@@ -1071,7 +1071,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "OptimizelySDKShared/OptimizelySDKShared-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
@@ -1096,7 +1096,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "OptimizelySDKShared/OptimizelySDKShared-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
@@ -1118,7 +1118,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "OptimizelySDKSharedTests/OptimizelySDKSharedTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1133,7 +1133,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = "OptimizelySDKSharedTests/OptimizelySDKSharedTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1148,7 +1148,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = "OptimizelySDKSharedTests/OptimizelySDKSharedTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1163,7 +1163,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				INFOPLIST_FILE = "OptimizelySDKSharedTests/OptimizelySDKSharedTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1197,7 +1197,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1224,7 +1224,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = RC;
 		};
@@ -1251,7 +1251,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Beta;
 		};
@@ -1278,7 +1278,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1298,7 +1298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1314,7 +1314,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = RC;
 		};
@@ -1330,7 +1330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Beta;
 		};
@@ -1346,7 +1346,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

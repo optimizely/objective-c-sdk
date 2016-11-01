@@ -85,21 +85,21 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS8.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS8.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS8.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "RC" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS8.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS8.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS8.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS8.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS8.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS8.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS8.0/JSONModel.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS8.0/OCMock.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS8.0/OHHTTPStubs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OCMock-iOS/OCMock.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-iOS/OHHTTPStubs.framework"
 fi
