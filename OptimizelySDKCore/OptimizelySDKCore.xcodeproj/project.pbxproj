@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13E49680B774392C0DE2BCA1 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
+		2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
 		701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */; };
+		73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		EA2FA8071DC5DBA000B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA8271DC5DBB100B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; };
@@ -218,6 +219,7 @@
 		01386A41636DEDC5D8938455 /* Pods-OptimizelySDKCoreiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.release.xcconfig"; sourceTree = "<group>"; };
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -343,7 +345,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13E49680B774392C0DE2BCA1 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
+				2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
+				73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +528,7 @@
 		EA2FA9721DC6F3CF00B1D81B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */,
 				EA2FA9711DC6F3CF00B1D81B /* murmur */,
 				BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */,
 				9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */,

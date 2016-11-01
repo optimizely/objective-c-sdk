@@ -1192,7 +1192,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = OptimizelySDKEventDispatcherTVOSTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1207,7 +1207,7 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = OptimizelySDKEventDispatcherTVOSTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1222,7 +1222,7 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = OptimizelySDKEventDispatcherTVOSTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1237,7 +1237,7 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = OptimizelySDKEventDispatcherTVOSTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKEventDispatcherTests/OptimizelySDKEventDispatcherTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcherTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
