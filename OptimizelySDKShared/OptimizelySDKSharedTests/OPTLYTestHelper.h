@@ -14,22 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
 
-#import "OPTLYManager.h"
-#import "OPTLYManagerBuilder.h"
+@class OPTLYEventBuilderEvent;
 
-@interface OPTLYManagerBuilderTest : XCTestCase
+@interface OPTLYTestHelper : NSObject
 
-@end
+/// Set up mock response with a failure
++ (void)stubFailureResponse;
 
-@implementation OPTLYManagerBuilderTest
+/// Set up mock response with a success
++ (void)stubSuccessResponse;
 
-- (void)testBasicBuilderReturnsManager {
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
-        
-    }];
-    XCTAssertNotNil(manager);
-}
+/// Loads JSON datafile into a JSON object
++ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
+
+/// Loads JSON datafile into an NSData object
++ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
 
 @end

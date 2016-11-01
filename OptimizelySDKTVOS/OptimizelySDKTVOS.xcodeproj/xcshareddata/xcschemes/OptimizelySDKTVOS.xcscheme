@@ -88,6 +88,46 @@
                ReferencedContainer = "container:../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA2FA8051DC5DBA000B1D81B"
+               BuildableName = "OptimizelySDKCoreiOSTests.xctest"
+               BlueprintName = "OptimizelySDKCoreiOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52470A1DC7192200AF6685"
+               BuildableName = "OptimizelySDKSharediOSTests.xctest"
+               BlueprintName = "OptimizelySDKSharediOSTests"
+               ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA3C68561DC1E6B600C578CA"
+               BuildableName = "OptimizelySDKiOSTests.xctest"
+               BlueprintName = "OptimizelySDKiOSTests"
+               ReferencedContainer = "container:../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52480B1DC72AB000AF6685"
+               BuildableName = "OptimizelySDKDatafileManageriOSTests.xctest"
+               BlueprintName = "OptimizelySDKDatafileManageriOSTests"
+               ReferencedContainer = "container:../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
