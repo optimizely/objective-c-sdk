@@ -14,11 +14,14 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @protocol OPTLYEventDispatcher;
 
 @interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
+
+- (instancetype)initWithInterval:(NSInteger)pollingInterval;
 
 /**
  * Dispatch an event to a specific URL. 
