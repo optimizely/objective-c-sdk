@@ -38,4 +38,12 @@
     return self;
 }
 
+- (NSTimeInterval)datafileFetchInterval {
+    if(!_datafileFetchInterval) {
+        // set default datafile Fetch interval to 0 so we never poll for the datafile
+        _datafileFetchInterval = 0;
+    }
+    return _datafileFetchInterval;
+}
+
 @end
