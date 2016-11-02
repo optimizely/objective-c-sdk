@@ -2,18 +2,33 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+      location = "group:OptimizelyiOSDemoApp/OptimizelyiOSDemoApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:iOSDemo/iOSDemo.xcodeproj">
+      location = "group:OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+      location = "group:OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OptimizelySDKTVOS/../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
+      location = "group:OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

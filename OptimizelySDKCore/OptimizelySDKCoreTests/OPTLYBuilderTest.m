@@ -72,7 +72,7 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 
 - (void)testBuilderCanAssignEventDispatcher {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+    id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;

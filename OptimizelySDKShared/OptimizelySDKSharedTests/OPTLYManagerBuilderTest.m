@@ -16,7 +16,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "OptimizelyManager.h"
+#import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"
 
 @interface OPTLYManagerBuilderTest : XCTestCase
@@ -26,7 +26,7 @@
 @implementation OPTLYManagerBuilderTest
 
 - (void)testBasicBuilderReturnsManager {
-    OptimizelyManager *manager = [OptimizelyManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         
     }];
     XCTAssertNotNil(manager);

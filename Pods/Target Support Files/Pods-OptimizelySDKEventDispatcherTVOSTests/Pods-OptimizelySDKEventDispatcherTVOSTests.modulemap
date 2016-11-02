@@ -1,0 +1,6 @@
+framework module Pods_OptimizelySDKEventDispatcherTVOSTests {
+  umbrella header "Pods-OptimizelySDKEventDispatcherTVOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

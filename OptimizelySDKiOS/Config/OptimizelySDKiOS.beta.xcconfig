@@ -1,4 +1,0 @@
-#include "OptimizelySDKiOS.xcconfig"
-#include "Pods/Target Support Files/Pods-OptimizelySDKiOS/Pods-OptimizelySDKiOS.beta.xcconfig"
-OPTIMIZELY_SDK_iOS_VERSION_PATCH = beta
-GCC_PREPROCESSOR_DEFINITIONS=$(GCC_PREPROCESSOR_DEFINITIONS_DEFAULT_iOS)
