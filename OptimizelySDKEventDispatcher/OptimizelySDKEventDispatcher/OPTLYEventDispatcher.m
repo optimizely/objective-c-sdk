@@ -14,10 +14,78 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
 #import "OPTLYEventDispatcher.h"
 
-@implementation OPTLYEventDispatcher : NSObject 
+@implementation OPTLYEventDispatcher : NSObject
+
+- (instancetype)initWithInterval:(NSInteger)pollingInterval {
+    self = [super init];
+    if (self) {
+        [self setupApplicationNotificationHandlers];
+    }
+    return self;
+}
+
+#pragma mark -- Application Lifecycle Handlers --
+- (void)setupApplicationNotificationHandlers {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    UIApplication *app = [UIApplication sharedApplication];
+    
+        [defaultCenter addObserver:self
+                          selector:@selector(applicationDidBecomeActive:)
+                              name:UIApplicationDidBecomeActiveNotification
+                            object:app];
+        
+        [defaultCenter addObserver:self
+                          selector:@selector(applicationDidEnterBackground:)
+                              name:UIApplicationDidEnterBackgroundNotification
+                            object:app];
+        
+        [defaultCenter addObserver:self
+                          selector:@selector(applicationWillEnterForeground:)
+                              name:UIApplicationWillEnterForegroundNotification
+                            object:app];
+        
+        [defaultCenter addObserver:self
+                          selector:@selector(applicationWillResignActive:)
+                              name:UIApplicationWillResignActiveNotification
+                            object:app];
+        
+        [defaultCenter addObserver:self
+                          selector:@selector(applicationWillTerminate:)
+                              name:UIApplicationWillTerminateNotification
+                            object:app];
+    });
+}
+
+- (void)applicationDidBecomeActive:(id)notificaton {
+    NSLog(@"applicationDidBecomeActive");
+}
+
+- (void)applicationDidEnterBackground:(id)notification {
+    NSLog(@"applicationDidEnterBackground");
+}
+
+- (void)applicationWillEnterForeground:(id)notification {
+    NSLog(@"applicationWillEnterForeground");
+}
+
+- (void)applicationWillResignActive:(id)notification {
+    NSLog(@"applicationWillResignActive");
+}
+
+- (void)applicationWillTerminate:(id)notification {
+    NSLog(@"applicationWillTerminate");
+    
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)dispatchEvent:(NSDictionary *)params
                 toURL:(NSURL *)url
