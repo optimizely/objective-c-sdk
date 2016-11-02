@@ -14,9 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYManager.h"
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import "OPTLYHTTPRequestManager.h"
+#import "OPTLYNetworkService.h"
+#import "OPTLYDataStore.h"
 
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;

@@ -89,7 +89,7 @@
 
 /**
  * Get variation for experiment and user ID with user attributes.
- * @param experiment The key for the experiment.
+ * @param experimentKey The key for the experiment.
  * @param userId The user ID to be used for bucketing.
  * @param attributes A map of attribute names to current user attribute values.
  * @return The variation the user was bucketed into. This value can be nil.
