@@ -15,34 +15,30 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYEventDispatcherBuilder.h"
 
-@protocol OPTLYEventDispatcher;
+/**
+ * This class contains details related to how the Optimizely Event Dispatcher instance is built.
+ */
 
-@interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
+@class OPTLYEventDispatcherBuilder;
+
+/// This is a block that takes the builder values.
+typedef void (^OPTLYEventDispatcherBuilderBlock)(OPTLYEventDispatcherBuilder * _Nullable builder);
+
+@interface OPTLYEventDispatcherBuilder : NSObject
+
+/**
+* Initializer for Optimizely Event Dispatcher Builder object
+*
+* @param block The builder block with which to initialize the Optimizely Event Dispatcher Builder object
+* @return An instance of OPTLYEventDispatcherBuilder
+*/
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
-@property (nonatomic, assign) NSInteger eventHandlerDispatchInterval;
+@property (nonatomic, assign, readwrite) NSInteger eventHandlerDispatchInterval;
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
-
-/**
- * Initializer for Optimizely Event Dispatcher object
- *
- * @param block The builder block with which to initialize the Optimizely Event Dispatcher object
- * @return An instance of OPTLYEventDispatcher
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
-
-/**
- * Dispatch an event to a specific URL. 
- * @param params Dictionary of the event parameter values
- * @param url The URL to send the event to.
- */
-- (void)dispatchEvent:(nonnull NSDictionary *)params
-                toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
 @end

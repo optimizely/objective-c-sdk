@@ -16,6 +16,10 @@
 
 #import <XCTest/XCTest.h>
 #import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBuilder.h"
+
+
+static NSInteger const kEventHandlerDispatchInterval = 12345;
 
 @interface OPTLYEventDispatcherTest : XCTestCase
 
@@ -31,6 +35,19 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)eventDispatcherInitWithBuilderBlock
+{
+    OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+        builder.eventHandlerDispatchInterval = kEventHandlerDispatchInterval;
+        builder.logger = [OPTLYLoggerDefault new];
+    }];
+    
+    XCTAssertNotNil(eventDispatcher);
+    XCTAssert(eventDispatcher.eventHandlerDispatchInterval == kEventHandlerDispatchInterval);
+    XCTAssertNotNil(eventDispatcher.logger);
+    XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
 }
 
 @end

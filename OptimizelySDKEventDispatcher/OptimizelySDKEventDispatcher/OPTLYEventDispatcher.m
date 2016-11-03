@@ -18,47 +18,60 @@
 
 @implementation OPTLYEventDispatcher : NSObject
 
-- (instancetype)initWithInterval:(NSInteger)pollingInterval {
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:block]];
+}
+
+- (instancetype)init {
+    return [self initWithBuilder:nil];
+}
+
+- (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
-    if (self) {
-        [self setupApplicationNotificationHandlers];
+    if (self != nil) {
+        _eventHandlerDispatchInterval = 0;
+        _logger = builder.logger;
+        
+        if (builder.eventHandlerDispatchInterval > 0) {
+            _eventHandlerDispatchInterval = builder.eventHandlerDispatchInterval;
+        }
+        
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherInterval, _eventHandlerDispatchInterval];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        
     }
     return self;
 }
 
 #pragma mark -- Application Lifecycle Handlers --
 - (void)setupApplicationNotificationHandlers {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     UIApplication *app = [UIApplication sharedApplication];
     
-        [defaultCenter addObserver:self
-                          selector:@selector(applicationDidBecomeActive:)
-                              name:UIApplicationDidBecomeActiveNotification
-                            object:app];
-        
-        [defaultCenter addObserver:self
-                          selector:@selector(applicationDidEnterBackground:)
-                              name:UIApplicationDidEnterBackgroundNotification
-                            object:app];
-        
-        [defaultCenter addObserver:self
-                          selector:@selector(applicationWillEnterForeground:)
-                              name:UIApplicationWillEnterForegroundNotification
-                            object:app];
-        
-        [defaultCenter addObserver:self
-                          selector:@selector(applicationWillResignActive:)
-                              name:UIApplicationWillResignActiveNotification
-                            object:app];
-        
-        [defaultCenter addObserver:self
-                          selector:@selector(applicationWillTerminate:)
-                              name:UIApplicationWillTerminateNotification
-                            object:app];
-    });
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationDidBecomeActive:)
+                          name:UIApplicationDidBecomeActiveNotification
+                        object:app];
+    
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationDidEnterBackground:)
+                          name:UIApplicationDidEnterBackgroundNotification
+                        object:app];
+    
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationWillEnterForeground:)
+                          name:UIApplicationWillEnterForegroundNotification
+                        object:app];
+    
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationWillResignActive:)
+                          name:UIApplicationWillResignActiveNotification
+                        object:app];
+    
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationWillTerminate:)
+                          name:UIApplicationWillTerminateNotification
+                        object:app];
 }
 
 - (void)applicationDidBecomeActive:(id)notificaton {

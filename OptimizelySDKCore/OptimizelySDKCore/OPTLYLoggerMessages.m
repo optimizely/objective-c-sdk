@@ -65,6 +65,7 @@ NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey = @"Attribute
 NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId = @"Audience not found for audience id: %@."; // audience id
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"Group not found for group id: %@."; // group id
 
+NSString *const OPTLYLoggerMessagesEventDispatcherInterval = @"Event dispatcher interval set: %ld";
 
 // ---- Debug ----
 // Event Dispatcher
