@@ -15,6 +15,12 @@
  ***************************************************************************/
 
 #import "OPTLYClient.h"
+#import <OptimizelySDKCore/OPTLYVariation.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+
+NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initialized.";
+
 
 /**
  * This class wraps the Optimizely class from the Core SDK.
@@ -26,14 +32,100 @@
     return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:block]];
 }
 
-- (instancetype)initWithBuilder:(OPTLYBuilder *)builder {
+- (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder {
     self = [super init];
     if (self == nil) {
         return nil;
     }
     else {
+        _optimizely = builder.optimizely;
         return self;
     }
+}
+
+#pragma mark activate methods
+- (OPTLYVariation *)activateExperiment:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId {
+    return [self activateExperiment:experimentKey userId:userId attributes:nil];
+}
+
+- (OPTLYVariation *)activateExperiment:(NSString *)experimentKey
+                                userId:(NSString *)userId
+                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
+                                 OPTLYClientDummyOptimizelyWarning,
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesActivationFailure, userId, experimentKey]]
+                      withLevel:OptimizelyLogLevelWarning];
+        return nil;
+    }
+    else {
+        return [self.optimizely activateExperiment:experimentKey
+                                        userId:userId
+                                    attributes:attributes];
+    }
+}
+
+#pragma mark getVariation methods
+- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
+                                       userId:(NSString *)userId {
+    return [self getVariationForExperiment:experimentKey
+                                    userId:userId
+                                attributes:nil];
+}
+
+- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
+                                       userId:(NSString *)userId
+                                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil ) {
+        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
+                                 OPTLYClientDummyOptimizelyWarning,
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationFailed, userId, experimentKey]]
+                      withLevel:OptimizelyLogLevelWarning];
+        return nil;
+    }
+    else {
+        return [self.optimizely getVariationForExperiment:experimentKey
+                                                   userId:userId
+                                               attributes:attributes];
+    }
+}
+
+#pragma mark trackEvent methods
+- (void)trackEvent:(NSString *)eventKey userId:(NSString *)userId
+{
+    [self trackEvent:eventKey userId:userId attributes:nil eventValue:nil];
+}
+
+- (void)trackEvent:(NSString *)eventKey
+            userId:(NSString *)userId
+        attributes:(NSDictionary<NSString *, NSString *> * )attributes
+{
+    [self trackEvent:eventKey userId:userId attributes:attributes eventValue:nil];
+}
+
+- (void)trackEvent:(NSString *)eventKey
+            userId:(NSString *)userId
+        eventValue:(NSNumber *)eventValue
+{
+    [self trackEvent:eventKey userId:userId attributes:nil eventValue:eventValue];
+}
+
+- (void)trackEvent:(NSString *)eventKey
+            userId:(NSString *)userId
+        attributes:(NSDictionary *)attributes
+        eventValue:(NSNumber *)eventValue {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
+                                 OPTLYClientDummyOptimizelyWarning,
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesNotTrackedUnknownEvent, eventKey, userId]]
+                      withLevel:OptimizelyLogLevelWarning];
+        return;
+    }
+    [self.optimizely trackEvent:(NSString *)eventKey
+                         userId:(NSString *)userId
+                     attributes:(NSDictionary *)attributes
+                     eventValue:(NSNumber *)eventValue];
 }
 
 @end

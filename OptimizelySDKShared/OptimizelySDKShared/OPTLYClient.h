@@ -24,6 +24,11 @@
  */
 @interface OPTLYClient : NSObject <Optimizely>
 
+/// Reference to the Optimizely Core instance
+@property (nonatomic, strong, readonly, nonnull) Optimizely *optimizely;
+/// The Optimizely Core's logger, or if no logger a default logger
+@property (nonatomic, strong, readonly, nonnull) id<OPTLYLogger> logger;
+
 + (nonnull instancetype)initWithBuilderBlock:(nonnull OPTLYClientBuilderBlock)block;
 
 @end

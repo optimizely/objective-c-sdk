@@ -31,6 +31,7 @@ extern NSString *const OPTLYLoggerMessagesExperimentUnknown;
 extern NSString *const OPTLYLoggerMessagesEventUnknown;
 extern NSString *const OPTLYLoggerMessagesAttributeUnknown;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknown;
+extern NSString *const OPTLYLoggerMessagesGetVariationFailed;
 
 // ---- info ----
 extern NSString *const OPTLYLoggerMessagesAudienceTargetingFail;

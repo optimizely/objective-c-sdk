@@ -130,9 +130,7 @@
     return bucketedVariation;
 }
 
-
-
-
+#pragma mark trackEvent methods
 - (void)trackEvent:(NSString *)eventKey userId:(NSString *)userId
 {
     [self trackEvent:eventKey userId:userId attributes:nil eventValue:nil];
