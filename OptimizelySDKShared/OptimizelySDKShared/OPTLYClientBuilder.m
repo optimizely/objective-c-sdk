@@ -34,6 +34,7 @@
         return nil;
     }
     else { // golden path (self != nil)
+        block(self);
         _optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
             builder.datafile = _datafile;
             builder.errorHandler = _errorHandler;

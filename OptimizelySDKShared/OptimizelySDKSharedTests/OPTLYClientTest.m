@@ -10,6 +10,7 @@
 #import "OPTLYTestHelper.h"
 
 #import "OPTLYClient.h"
+#import <OptimizelySDKCore/OPTLYLogger.h>
 
 // static datafile name
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
@@ -21,17 +22,22 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 @implementation OPTLYClientTest
 
 - (void)testEmptyClientInitializationReturnsDummyClient {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nullable builder) {
         
     }];
     XCTAssertNotNil(client);
+    XCTAssertNil(client.optimizely);
+    XCTAssertNotNil(client.logger);
+    XCTAssertEqual(client.logger.logLevel, OptimizelyLogLevelAll);
 }
 
 - (void)testClientBuildsOptimizelyDefaults {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nullable builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     }];
     XCTAssertNotNil(client);
+    XCTAssertNotNil(client.optimizely);
+    XCTAssertNotNil(client.logger);
 }
 
 @end
