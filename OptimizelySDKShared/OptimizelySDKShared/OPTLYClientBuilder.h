@@ -14,8 +14,24 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OPTLYBuilder.h>
+#import <Foundation/Foundation.h>
 
-@interface OPTLYClientBuilder: OPTLYBuilder
+@class Optimizely;
+
+/**
+ * This class contains the informaation on how your Optimizely Client instance will be built.
+ */
+@class OPTLYClientBuilder;
+
+/// This is a block that takes the builder values.
+typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nullable builder);
+
+@interface OPTLYClientBuilder : NSObject
+
+/// Reference to the Optimizely Core instance
+@property (nonatomic, readwrite, strong, nullable) Optimizely *optimizely;
+
+/// Create an Optimizely Client object.
++ (nonnull instancetype)builderWithBlock:(nonnull OPTLYClientBuilderBlock)block;
 
 @end

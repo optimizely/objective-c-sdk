@@ -16,15 +16,23 @@
 
 #import "OPTLYClientBuilder.h"
 
-@implementation OPTLYClientBuilder: OPTLYBuilder
+@implementation OPTLYClientBuilder: NSObject
 
-- (id)initWithBlock:(OPTLYBuilderBlock)block {
-    // If there is no valid datafile for the client, return a dummy instance
-    if (_datafile == nil) {
-        
++ (instancetype)builderWithBlock:(OPTLYClientBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
+
+- (id)init {
+    return [self initWithBlock:nil];
+}
+
+- (id)initWithBlock:(OPTLYClientBuilderBlock)block {
+    self = [super init];
+    if (self == nil) {
+        return nil;
     }
-    else {
-        [super initWithBlock:block];
+    else { // golden path (self != nil)
+        return self;
     }
 }
 

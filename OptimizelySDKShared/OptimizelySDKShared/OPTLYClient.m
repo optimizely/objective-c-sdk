@@ -20,10 +20,20 @@
  * This class wraps the Optimizely class from the Core SDK.
  * Optimizely Client Instance
  */
-@implementation OPTLYClient : Optimizely
+@implementation OPTLYClient
+
++ (nonnull instancetype)initWithBuilderBlock:(OPTLYClientBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:block]];
+}
 
 - (instancetype)initWithBuilder:(OPTLYBuilder *)builder {
-    
+    self = [super init];
+    if (self == nil) {
+        return nil;
+    }
+    else {
+        return self;
+    }
 }
 
 @end

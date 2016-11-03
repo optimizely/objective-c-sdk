@@ -16,11 +16,14 @@
 
 #import <Foundation/Foundation.h>
 #import <OptimizelySDKCore/Optimizely.h>
+#import "OPTLYClientBuilder.h"
 
 /**
  * This class wraps the Optimizely class from the Core SDK.
  * Optimizely Client Instance
  */
-@interface OPTLYClient : Optimizely
+@interface OPTLYClient : NSObject <Optimizely>
+
++ (nonnull instancetype)initWithBuilderBlock:(nonnull OPTLYClientBuilderBlock)block;
 
 @end
