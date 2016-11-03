@@ -39,6 +39,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     }
     else {
         _optimizely = builder.optimizely;
+        _logger = builder.logger;
         return self;
     }
 }
@@ -61,8 +62,8 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     }
     else {
         return [self.optimizely activateExperiment:experimentKey
-                                        userId:userId
-                                    attributes:attributes];
+                                            userId:userId
+                                        attributes:attributes];
     }
 }
 

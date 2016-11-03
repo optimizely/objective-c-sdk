@@ -16,7 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class Optimizely;
+@class Optimizely, OPTLYProjectConfig, OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault;
+@protocol OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
 /**
  * This class contains the informaation on how your Optimizely Client instance will be built.
@@ -29,7 +30,15 @@ typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nullable builder);
 @interface OPTLYClientBuilder : NSObject
 
 /// Reference to the Optimizely Core instance
-@property (nonatomic, readwrite, strong, nullable) Optimizely *optimizely;
+@property (nonatomic, readonly, strong, nullable) Optimizely *optimizely;
+/// A datafile is required to create an Optimizely object.
+@property (nonatomic, readwrite, strong, nullable) NSData *datafile;
+/// The error handler is by default set to one that is created by Optimizely. This default error handler can be overridden by any object that conforms to the OPTLYErrorHandler protocol.
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
+/// The event dispatcher is by default set to one that is created by Optimizely. This default event dispatcher can be overridden by any object that conforms to the OPTLYEventDispatcher protocol.
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYEventDispatcher> eventDispatcher;
+/// The logger is by default set to one that is created by Optimizely. This default logger can be overridden by any object that conforms to the OPTLYLogger protocol.
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 
 /// Create an Optimizely Client object.
 + (nonnull instancetype)builderWithBlock:(nonnull OPTLYClientBuilderBlock)block;

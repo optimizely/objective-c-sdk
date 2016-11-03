@@ -15,6 +15,8 @@
  ***************************************************************************/
 
 #import "OPTLYClientBuilder.h"
+#import <OptimizelySDKCore/Optimizely.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 
 @implementation OPTLYClientBuilder: NSObject
 
@@ -32,6 +34,16 @@
         return nil;
     }
     else { // golden path (self != nil)
+        _optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+            builder.datafile = _datafile;
+            builder.errorHandler = _errorHandler;
+            builder.eventDispatcher = _eventDispatcher;
+            builder.logger = _logger;
+        }];
+        _logger = _optimizely.logger;
+        if (!_logger) {
+            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+        }
         return self;
     }
 }
