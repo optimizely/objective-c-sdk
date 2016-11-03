@@ -48,4 +48,7 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 /// Create an Optimizely Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYBuilderBlock)block;
 
+/// inner method that subclasses can override if they want to change default initialization behaviors.
+- (nullable id)initWithBlock:(nonnull OPTLYBuilderBlock)block;
+
 @end

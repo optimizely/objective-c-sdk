@@ -14,16 +14,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import "OPTLYManagerBuilder.h"
+#import <OptimizelySDKCore/OPTLYBuilder.h>
 
-@interface OPTLYManager : NSObject
-
-/**
- * Init with builder block
- * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
+@interface OPTLYClientBuilder: OPTLYBuilder
 
 @end

@@ -15,15 +15,12 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYManagerBuilder.h"
-
-@interface OPTLYManager : NSObject
+#import <OptimizelySDKCore/Optimizely.h>
 
 /**
- * Init with builder block
- * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
+ * This class wraps the Optimizely class from the Core SDK.
+ * Optimizely Client Instance
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
+@interface OPTLYClient : Optimizely
 
 @end
