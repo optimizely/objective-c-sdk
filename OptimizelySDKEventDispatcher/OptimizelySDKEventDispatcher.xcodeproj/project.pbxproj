@@ -11,6 +11,12 @@
 		54770275047095CC925FC46E /* Pods_OptimizelySDKEventDispatcheriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3E25CA29BD3B84317654DD /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */; };
 		88620F49A57781AD90653E9C /* Pods_OptimizelySDKEventDispatcheriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE3CCF1E529546113D4F010 /* Pods_OptimizelySDKEventDispatcheriOS.framework */; };
 		DF8C6B377B170C031FF71C57 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69AAECF8B785E459CC3BFA9 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */; };
+		EA29D8F11DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; };
+		EA29D8F31DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
+		EA29D8F41DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
+		EA29D8F91DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */; };
+		EA29D8FA1DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */; };
 		EA5247C81DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */; };
 		EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
@@ -101,9 +107,11 @@
 		DE3E25CA29BD3B84317654DD /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKEventDispatcheriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E69AAECF8B785E459CC3BFA9 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKEventDispatcherTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97CC77B37863B1B9E77F923 /* Pods-OptimizelySDKEventDispatcherTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcherTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOSTests/Pods-OptimizelySDKEventDispatcherTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventDispatcherBuilder.h; sourceTree = "<group>"; };
+		EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDispatcherBuilder.m; sourceTree = "<group>"; };
+		EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OptimizelySDKEventDispatcherTests-Info.plist"; sourceTree = "<group>"; };
 		EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKEventDispatcher.h; sourceTree = "<group>"; };
 		EA3C68ED1DC1E79900C578CA /* OptimizelySDKEventDispatcher-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKEventDispatcher-Info.plist"; sourceTree = "<group>"; };
-		EA3C68F91DC1E79900C578CA /* OPTLYEventDispatcherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYEventDispatcherTests-Info.plist"; sourceTree = "<group>"; };
 		EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKEventDispatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5247C71DC7272300AF6685 /* OptimizelySDKEventDispatcheriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKEventDispatcheriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5247FE1DC729C000AF6685 /* OptimizelySDKEventDispatcher.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKEventDispatcher.modulemap; sourceTree = "<group>"; };
@@ -212,6 +220,8 @@
 				EA3C68ED1DC1E79900C578CA /* OptimizelySDKEventDispatcher-Info.plist */,
 				EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */,
 				EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */,
+				EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */,
+				EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */,
 			);
 			path = OptimizelySDKEventDispatcher;
 			sourceTree = "<group>";
@@ -219,8 +229,8 @@
 		EA3C68F61DC1E79900C578CA /* OptimizelySDKEventDispatcherTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */,
 				EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */,
-				EA3C68F91DC1E79900C578CA /* OPTLYEventDispatcherTests-Info.plist */,
 			);
 			path = OptimizelySDKEventDispatcherTests;
 			sourceTree = "<group>";
@@ -258,6 +268,7 @@
 			files = (
 				EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */,
 				EA52499F1DC7D91800AF6685 /* OptimizelySDKEventDispatcher.h in Headers */,
+				EA29D8F11DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +278,7 @@
 			files = (
 				EA5249C31DC7DD5500AF6685 /* OPTLYEventDispatcher.h in Headers */,
 				EA5249EC1DC7E76400AF6685 /* OptimizelySDKEventDispatcher.h in Headers */,
+				EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D8F91DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D8FA1DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D8F31DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D8F41DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA5249C21DC7DD4A00AF6685 /* OPTLYEventDispatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

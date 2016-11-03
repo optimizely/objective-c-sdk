@@ -14,35 +14,24 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYEventDispatcherBuilder.h"
 
-@protocol OPTLYEventDispatcher;
+@implementation OPTLYEventDispatcherBuilder
 
-@interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
 
-/// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
-@property (nonatomic, assign) NSInteger eventHandlerDispatchInterval;
-/// Logger provided by the user
-@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
+- (id) init {
+    return [self initWithBlock:nil];
+}
 
-/**
- * Initializer for Optimizely Event Dispatcher object
- *
- * @param block The builder block with which to initialize the Optimizely Event Dispatcher object
- * @return An instance of OPTLYEventDispatcher
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
-
-/**
- * Dispatch an event to a specific URL. 
- * @param params Dictionary of the event parameter values
- * @param url The URL to send the event to.
- */
-- (void)dispatchEvent:(nonnull NSDictionary *)params
-                toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
+- (id)initWithBlock:(OPTLYEventDispatcherBuilderBlock)block {
+    self = [super init];
+    if (self != nil) {
+        block(self);
+    }
+    return self;
+}
 
 @end
