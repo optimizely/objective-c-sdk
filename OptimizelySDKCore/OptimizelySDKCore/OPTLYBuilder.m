@@ -32,9 +32,7 @@
     return [self initWithBlock:nil];
 }
 
-- (id)initWithBlock:(OPTLYBuilderBlock)block;
-{
-    NSParameterAssert(block);
+- (id)initWithBlock:(OPTLYBuilderBlock)block {
     self = [super init];
     if (self != nil) {
         block(self);

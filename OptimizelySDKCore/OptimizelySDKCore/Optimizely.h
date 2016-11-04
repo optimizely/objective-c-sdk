@@ -20,27 +20,7 @@
 @class OPTLYProjectConfig, OPTLYVariation;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
-/** 
- * This class defines the Optimizely SDK interface.
- * Optimizely Instance
- */
-@interface Optimizely : NSObject
-
-@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
-
-/**
- * Init with builder block
- * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
- * @return Optimizely instance.
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
-
-
+@protocol Optimizely <NSObject>
 
 #pragma mark - activateExperiment methods
 /**
@@ -73,7 +53,7 @@
 
 #pragma mark - getVariation methods
 /**
- * Use the getVariation method if activate has been called and the current variation assignment 
+ * Use the getVariation method if activate has been called and the current variation assignment
  * is needed for a given experiment and user.
  * This method bypasses redundant network requests to Optimizely.
  */
@@ -138,5 +118,27 @@
             userId:(nonnull NSString *)userId
         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
         eventValue:(nullable NSNumber * )eventValue;
+
+@end
+
+/** 
+ * This class defines the Optimizely SDK interface.
+ * Optimizely Instance
+ */
+@interface Optimizely : NSObject <Optimizely>
+
+@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
+
+/**
+ * Init with builder block
+ * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
+ * @return Optimizely instance.
+ */
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
 
 @end
