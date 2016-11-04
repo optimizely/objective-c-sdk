@@ -48,7 +48,10 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:[self stringForDataTypeEnum:fileType]];
     NSString *filePath = [self filePathFor:fileName type:fileType];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
+    bool isDir = true;
+    if (![fileManager fileExistsAtPath:fileDir isDirectory:&isDir]) {
+        [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
+    }
     [fileManager createFileAtPath:filePath contents:data attributes:nil];
 }
 
@@ -83,6 +86,11 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
     [fileManager removeItemAtPath:filePath error:error];
 }
 
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:self.baseDir error:error];
+}
 # pragma mark - Helper Methods
 
 - (NSString *)filePathFor:(NSString *)fileName
