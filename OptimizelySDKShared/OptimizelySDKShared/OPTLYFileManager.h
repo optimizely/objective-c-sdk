@@ -58,7 +58,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
                        error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Deterimes if a file exists in the documents directory.
+ * Determines if a file exists in the documents directory.
  *
  * @param fileName A string that represents the name of the file to check.
  * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
