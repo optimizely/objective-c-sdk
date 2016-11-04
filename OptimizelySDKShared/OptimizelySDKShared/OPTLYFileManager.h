@@ -19,7 +19,7 @@
 /*
  * This class handles all file-related methods.
  * The files are saved in the Library directory so that the file can not be read by app users.
- * The file directories are further broken down into data file types:
+ * The file directories are further broken down into file types:
  *   /optimizely/datafile
  *   /optimizely/user-profile/
  *   /optimizely/event-dispatcher/
