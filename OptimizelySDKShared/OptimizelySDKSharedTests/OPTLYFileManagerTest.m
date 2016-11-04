@@ -116,4 +116,34 @@ static NSString *const kTestString = @"testString";
     fileExists = [self.fileManager fileExists:kTestFileName type:OPTLYFileManagerDataTypeDatafile];
     XCTAssertFalse(fileExists, @"Deleted file should not exist.");
 }
+
+- (void)testRemoveAllFiles
+{
+    [self.fileManager saveFile:kTestFileName
+                          data:self.testData
+                          type:OPTLYFileManagerDataTypeDatafile
+                         error:nil];
+    [self.fileManager saveFile:kTestFileName
+                          data:self.testData
+                          type:OPTLYFileManagerDataTypeUserProfile
+                         error:nil];
+    [self.fileManager saveFile:kTestFileName
+                          data:self.testData
+                          type:OPTLYFileManagerDataTypeEventDispatcher
+                         error:nil];
+    [self.fileManager saveFile:kTestFileName
+                          data:self.testData
+                          type:OPTLYFileManagerDataTypePreview
+                         error:nil];
+    [self.fileManager saveFile:kTestFileName
+                          data:self.testData
+                          type:OPTLYFileManagerDataTypeEditor
+                         error:nil];
+    [self.fileManager removeAllFiles:nil];
+    
+    bool isDir = true;
+    NSFileManager *defaultFileManager= [NSFileManager defaultManager];
+    bool optlyDir = [defaultFileManager fileExistsAtPath:self.fileManager.baseDir isDirectory:&isDir];
+    XCTAssertFalse(optlyDir, @"Optimizely file folder should not exist.");
+}
 @end

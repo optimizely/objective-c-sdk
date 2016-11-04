@@ -16,7 +16,12 @@
 
 #import <Foundation/Foundation.h>
 
-/** This describes the type of file
+/*
+ This class handles all file-related methods.
+ The files are saved in the Library directory so that the file can not be read by app users.
+ */
+
+/** File type enum
  */
 typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
     OPTLYFileManagerDataTypeDatafile,
@@ -28,7 +33,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
 
 @interface OPTLYFileManager : NSObject
 /**
- * Saves a document file.
+ * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
  *
  * @param fileName A string that represents the name of the file to save.
@@ -44,7 +49,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Gets a document file.
+ * Gets a file.
  *
  * @param fileName A string that represents the name of the file to retrieve.
  * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
@@ -58,7 +63,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
                        error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Determines if a file exists in the documents directory.
+ * Determines if a file exists.
  *
  * @param fileName A string that represents the name of the file to check.
  * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
@@ -69,16 +74,24 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
               type:(OPTLYFileManagerDataType)fileType;
 
 /**
- * Deletes a document file.
+ * Deletes a file.
  *
  * @param fileName A string that represents the name of the file to delete.
  * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
- * @param error An error object which will store any errors if the file deletion fails.
+ * @param error An error object which will store any errors if the file removal fails.
  *  If error is nil, than the file deletion was successful.
  *
  **/
 - (void)removeFile:(nonnull NSString *)fileName
               type:(OPTLYFileManagerDataType)fileType
              error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Removes all document files.
+ *
+ * @param error An error object which will store any errors if the file removal fails.
+ *
+ **/
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
 
 @end
