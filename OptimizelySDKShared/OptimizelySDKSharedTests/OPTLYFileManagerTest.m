@@ -10,6 +10,7 @@
 #import "OPTLYFileManager.h"
 
 static NSString *const kTestFileName = @"testFileManager";
+static NSString *const kBadTestFileName = @"badTestFileManager";
 static NSString *const kTestString = @"testString";
 
 @interface OPTLYFileManager()
@@ -71,10 +72,16 @@ static NSString *const kTestString = @"testString";
                           data:self.testData
                           type:OPTLYFileManagerDataTypeDatafile
                          error:&error];
+    
     NSData *fileData = [self.fileManager getFile:kTestFileName
                                             type:OPTLYFileManagerDataTypeDatafile
                                            error:&error];
-    XCTAssert([fileData isEqualToData:self.testData],  @"Invalid file content from retrieved file.");
+    XCTAssert([fileData isEqualToData:self.testData], @"Invalid file content from retrieved file.");
+    
+    fileData = [self.fileManager getFile:kBadTestFileName
+                                    type:OPTLYFileManagerDataTypeDatafile
+                                   error:&error];
+    XCTAssert(fileData == nil, @"Bad file name. getFile should return nil.");
 }
 
 - (void)testFileExists {
@@ -86,7 +93,11 @@ static NSString *const kTestString = @"testString";
     
     // check that the file exists
     bool fileExists = [self.fileManager fileExists:kTestFileName type:OPTLYFileManagerDataTypeDatafile];
-    XCTAssertTrue(fileExists, @"fileExists does return the correct value.");
+    XCTAssertTrue(fileExists, @"fileExists should return true.");
+    
+    // check that the file does no exist for a bad file name
+    fileExists = [self.fileManager fileExists:kBadTestFileName type:OPTLYFileManagerDataTypeDatafile];
+    XCTAssertFalse(fileExists, @"fileExists should return false.");
 }
 
 - (void)testRemoveFile {
