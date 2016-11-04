@@ -15,28 +15,17 @@
  ***************************************************************************/
 
 #import "Optimizely.h"
-#import "OPTLYAttribute.h"
-#import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYBuilder.h"
-#import "OPTLYCondition.h"
-#import "OPTLYDatafileKeys.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYErrorHandlerMessages.h"
-#import "OPTLYEvent.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYExperiment.h"
-#import "OPTLYGroup.h"
-#import "OPTLYHTTPRequestManager.h"
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
-#import "OPTLYNetworkService.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYTrafficAllocation.h"
-#import "OPTLYEventTicket.h"
-#import "OPTLYDecisionEventTicket.h"
-
+#import "OPTLYVariation.h"
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];
