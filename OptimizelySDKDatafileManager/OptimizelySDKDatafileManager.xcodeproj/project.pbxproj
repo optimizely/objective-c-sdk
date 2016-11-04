@@ -230,9 +230,9 @@
 		EA3C68C91DC1E75900C578CA /* OptimizelySDKDatafileManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA3C68CC1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests-Info.plist */,
 				EA3C68CA1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests.m */,
 				2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */,
-				EA3C68CC1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests-Info.plist */,
 			);
 			path = OptimizelySDKDatafileManagerTests;
 			sourceTree = "<group>";
