@@ -25,7 +25,7 @@
 @class OPTLYClientBuilder;
 
 /// This is a block that takes the builder values.
-typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nullable builder);
+typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nonnull builder);
 
 @interface OPTLYClientBuilder : NSObject
 

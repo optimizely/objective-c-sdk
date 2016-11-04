@@ -34,14 +34,11 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 
 - (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder {
     self = [super init];
-    if (self == nil) {
-        return nil;
-    }
-    else {
+    if (self) {
         _optimizely = builder.optimizely;
         _logger = builder.logger;
-        return self;
     }
+    return self;
 }
 
 #pragma mark activate methods
@@ -123,10 +120,10 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                       withLevel:OptimizelyLogLevelWarning];
         return;
     }
-    [self.optimizely trackEvent:(NSString *)eventKey
-                         userId:(NSString *)userId
-                     attributes:(NSDictionary *)attributes
-                     eventValue:(NSNumber *)eventValue];
+    [self.optimizely trackEvent:eventKey
+                         userId:userId
+                     attributes:attributes
+                     eventValue:eventValue];
 }
 
 @end

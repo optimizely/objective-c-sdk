@@ -30,10 +30,7 @@
 
 - (id)initWithBlock:(OPTLYClientBuilderBlock)block {
     self = [super init];
-    if (self == nil) {
-        return nil;
-    }
-    else { // golden path (self != nil)
+    if (self) {
         block(self);
         _optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
             builder.datafile = _datafile;
@@ -45,8 +42,8 @@
         if (!_logger) {
             _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
         }
-        return self;
     }
+    return self;
 }
 
 @end
