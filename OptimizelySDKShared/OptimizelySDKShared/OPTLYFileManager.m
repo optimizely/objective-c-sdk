@@ -16,14 +16,12 @@
 
 #import "OPTLYFileManager.h"
 
-static NSString * const kOptimizelyDatafilePathSuffix = @"optimizely";
+static NSString * const kOptimizelyFileManagerPath = @"optimizely";
 
 // file manager data types
 static NSString * const kOPTLYFileManagerDataTypeDatafile = @"datafile";
 static NSString * const kOPTLYFileManagerDataTypeUserProfile = @"user-profile";
 static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispatcher";
-static NSString * const kOPTLYFileManagerDataTypePreview = @"preview";
-static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
 
 @interface OPTLYFileManager()
 @property (nonatomic, strong) NSString *baseDir;
@@ -35,7 +33,7 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
     self = [super init];
     if (self != nil) {
         NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        _baseDir = [libraryDirPaths[0] stringByAppendingPathComponent:kOptimizelyDatafilePathSuffix];
+        _baseDir = [libraryDirPaths[0] stringByAppendingPathComponent:kOptimizelyFileManagerPath];
     }
     return self;
 }
@@ -62,7 +60,6 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
 {
     NSString *filePath = [self filePathFor:fileName type:fileType];
     NSData *fileData = [NSData dataWithContentsOfFile:filePath options:0 error:error];
-    
     return fileData;
 }
 
@@ -91,6 +88,7 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:self.baseDir error:error];
 }
+
 # pragma mark - Helper Methods
 
 - (NSString *)filePathFor:(NSString *)fileName
@@ -115,11 +113,7 @@ static NSString * const kOPTLYFileManagerDataTypeEditor = @"editor";
         case OPTLYFileManagerDataTypeEventDispatcher:
             dataTypeString = kOPTLYFileManagerDataTypeEventDispatcher;
             break;
-        case OPTLYFileManagerDataTypePreview:
-            dataTypeString = kOPTLYFileManagerDataTypePreview;
-            break;
-        case OPTLYFileManagerDataTypeEditor:
-            dataTypeString = kOPTLYFileManagerDataTypeEditor;
+        default:
             break;
     }
     

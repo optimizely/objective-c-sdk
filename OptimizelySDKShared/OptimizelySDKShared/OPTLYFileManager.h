@@ -17,8 +17,14 @@
 #import <Foundation/Foundation.h>
 
 /*
- This class handles all file-related methods.
- The files are saved in the Library directory so that the file can not be read by app users.
+ * This class handles all file-related methods.
+ * The files are saved in the Library directory so that the file can not be read by app users.
+ * The file directories are further broken down into data file types:
+ *   /optimizely/datafile
+ *   /optimizely/user-profile/
+ *   /optimizely/event-dispatcher/
+ * All files are stored as .txt files.
+ *
  */
 
 /** File type enum
@@ -27,8 +33,6 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
     OPTLYFileManagerDataTypeDatafile,
     OPTLYFileManagerDataTypeUserProfile,
     OPTLYFileManagerDataTypeEventDispatcher,
-    OPTLYFileManagerDataTypePreview,
-    OPTLYFileManagerDataTypeEditor,
 };
 
 @interface OPTLYFileManager : NSObject
@@ -37,8 +41,8 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * If a file of the same name type exists already, then that file will be overwritten.
  *
  * @param fileName A string that represents the name of the file to save.
- * @param data The data to dave to file.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
+ * @param data The data to save to the file.
+ * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
  *
@@ -52,7 +56,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * Gets a file.
  *
  * @param fileName A string that represents the name of the file to retrieve.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
+ * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @return The file in NSData format.
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
@@ -66,7 +70,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * Determines if a file exists.
  *
  * @param fileName A string that represents the name of the file to check.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
+ * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @return A boolean value that states if a file exists or not (or could not be determined).
  *
  **/
@@ -77,7 +81,7 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * Deletes a file.
  *
  * @param fileName A string that represents the name of the file to delete.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, preview, editor)
+ * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file removal fails.
  *  If error is nil, than the file deletion was successful.
  *
