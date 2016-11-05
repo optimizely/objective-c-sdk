@@ -32,10 +32,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let networkService = OPTLYNetworkService();
-
+        
+        let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
+            builder?.eventHandlerDispatchInterval = 1000;
+        }
+        
+        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
+        
         networkService.downloadProjectConfig(projectId, completionHandler:
             { [weak self] (data, response, error) in
-            let eventDispatcher = OPTLYEventDispatcher();
+
+
             let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
             let errorHandler = OPTLYErrorHandlerNoOp();
     

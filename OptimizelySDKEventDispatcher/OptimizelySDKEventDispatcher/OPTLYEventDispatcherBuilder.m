@@ -14,9 +14,24 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYDataStore.h"
+#import "OPTLYEventDispatcherBuilder.h"
 
-@implementation OPTLYDataStore
+@implementation OPTLYEventDispatcherBuilder
 
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
+
+- (id) init {
+    return [self initWithBlock:nil];
+}
+
+- (id)initWithBlock:(OPTLYEventDispatcherBuilderBlock)block {
+    self = [super init];
+    if (self != nil) {
+        block(self);
+    }
+    return self;
+}
 
 @end

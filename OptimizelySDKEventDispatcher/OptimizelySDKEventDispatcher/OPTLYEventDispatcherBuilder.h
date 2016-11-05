@@ -14,9 +14,31 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYDataStore.h"
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
-@implementation OPTLYDataStore
+/**
+ * This class contains details related to how the Optimizely Event Dispatcher instance is built.
+ */
 
+@class OPTLYEventDispatcherBuilder;
+
+/// This is a block that takes the builder values.
+typedef void (^OPTLYEventDispatcherBuilderBlock)(OPTLYEventDispatcherBuilder * _Nullable builder);
+
+@interface OPTLYEventDispatcherBuilder : NSObject
+
+/**
+* Initializer for Optimizely Event Dispatcher Builder object
+*
+* @param block The builder block with which to initialize the Optimizely Event Dispatcher Builder object
+* @return An instance of OPTLYEventDispatcherBuilder
+*/
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
+
+/// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
+@property (nonatomic, assign, readwrite) NSInteger eventHandlerDispatchInterval;
+/// Logger provided by the user
+@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 
 @end
