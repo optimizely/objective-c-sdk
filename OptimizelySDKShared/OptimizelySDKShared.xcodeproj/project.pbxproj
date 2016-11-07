@@ -52,8 +52,7 @@
 		EA29D94F1DCE778C0034A4FE /* OPTLYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */; };
 		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */; };
-		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };
-		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
+		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -839,6 +838,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */,
 				EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
 				2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
