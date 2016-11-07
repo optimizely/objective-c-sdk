@@ -16,6 +16,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYDatafileManager.h"
 
 @interface OPTLYDatafileManagerBuilderTest : XCTestCase
@@ -24,11 +25,56 @@
 
 @implementation OPTLYDatafileManagerBuilderTest
 
-- (void)testBasicInitialization {
-    OPTLYDatafileManager *datafilemanager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder *builder) {
-        
+NSString *const kProjectID = @"projectID";
+NSTimeInterval const kDatafileFetchInterval = 7;
+
+- (void)testBasicInitializationWorks {
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectID;
     }];
-    XCTAssertNotNil(datafilemanager);
+    XCTAssertNotNil(datafileManager, @"datafile manager should be created");
+    XCTAssertEqual(datafileManager.datafileFetchInterval, 0, @"default fetch interval should be 0");
+    XCTAssertNotNil(datafileManager.projectId);
+    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.logger);
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should b e LogLevelAll");
 }
+
+- (void)testLoggerInBuilderSetsLoggerInDatafileManager {
+    // Initialize logger for this test
+    OPTLYLoggerDefault *defaultLogger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
+    
+    // Initialize datafile manager
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectID;
+        builder.logger = defaultLogger;
+    }];
+    
+    // run checks
+    XCTAssertNotNil(datafileManager, @"datafile manager should be created");
+    XCTAssertEqual(datafileManager.datafileFetchInterval, 0, @"default fetch interval should be 0");
+    XCTAssertNotNil(datafileManager.projectId);
+    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.logger);
+    XCTAssertEqualObjects(datafileManager.logger, defaultLogger);
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelOff, @"should have the same log level as the default logger initialized for this tests");
+}
+
+- (void)testDatafileFetchIntervalIsSetCorrectly {
+    // initialize datafile manager with datafile fetch interval
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectID;
+        builder.datafileFetchInterval = kDatafileFetchInterval;
+    }];
+    
+    // run checks
+    XCTAssertNotNil(datafileManager, @"datafile manager should be created");
+    XCTAssertEqual(datafileManager.datafileFetchInterval, kDatafileFetchInterval, @"datafile fetch interval not set correctly");
+    XCTAssertNotNil(datafileManager.projectId);
+    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.logger);
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should b e LogLevelAll");
+}
+
 
 @end

@@ -15,6 +15,9 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManagerBuilder.h"
+#import <OptimizelySDKCore/OPTLYLogger.h>
+
+static NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage = @"Optimizely Datafile Manager must be initialized with a project ID.";
 
 @implementation OPTLYDatafileManagerBuilder
 
@@ -31,9 +34,11 @@
     self = [super init];
     if (self != nil) {
         block(self);
-    }
-    else {
-        return nil;
+        if (_projectId == nil) {
+            [self.logger logMessage:OPTLYDatafileManagerInitializedWithoutProjectIdMessage
+                          withLevel:OptimizelyLogLevelWarning];
+            return nil;
+        }
     }
     return self;
 }
@@ -44,6 +49,13 @@
         _datafileFetchInterval = 0;
     }
     return _datafileFetchInterval;
+}
+
+- (id<OPTLYLogger>)logger {
+    if (!_logger) {
+        _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+    }
+    return _logger;
 }
 
 @end

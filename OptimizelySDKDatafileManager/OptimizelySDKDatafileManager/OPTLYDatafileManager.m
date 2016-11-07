@@ -28,6 +28,9 @@ static NSString *const CDNAddressFormat = @"https://cdn.optimizely.com/json/%@.j
     NSParameterAssert(builder);
     self = [super init];
     if (self != nil) {
+        _datafileFetchInterval = builder.datafileFetchInterval;
+        _projectId = builder.projectId;
+        _logger = builder.logger;
         // Only fetch the datafile if the polling interval is greater than 0
         if (self.datafileFetchInterval > 0) {
             // TODO: Josh W. start timer to poll for the datafile
