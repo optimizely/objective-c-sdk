@@ -19,6 +19,8 @@
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYNetworkService.h"
 #import "OPTLYDataStore.h"
+#import "OPTLYFileManager.h"
+#import "OPTLYClient.h"
 
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;

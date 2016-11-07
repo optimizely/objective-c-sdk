@@ -44,10 +44,12 @@
 		EA1E16961DC87E0000F00033 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */; };
 		EA1E16971DC87E0100F00033 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */; };
 		EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1E168F1DC87DC700F00033 /* OPTLYTestHelper.h */; };
-		EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; };
+		EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
 		EA29D91D1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */; };
 		EA29D91E1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */; };
+		EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
+		EA29D9731DD144D80034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -404,10 +406,10 @@
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */,
-				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
 				EA5247961DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
+				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
 				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +426,7 @@
 				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */,
 				EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
+				EA29D9731DD144D80034A4FE /* OPTLYFileManager.h in Headers */,
 				EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */,
 				EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
 				EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
