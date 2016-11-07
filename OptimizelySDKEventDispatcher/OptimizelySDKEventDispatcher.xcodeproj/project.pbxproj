@@ -12,7 +12,7 @@
 		88620F49A57781AD90653E9C /* Pods_OptimizelySDKEventDispatcheriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE3CCF1E529546113D4F010 /* Pods_OptimizelySDKEventDispatcheriOS.framework */; };
 		DF8C6B377B170C031FF71C57 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69AAECF8B785E459CC3BFA9 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */; };
 		EA29D8F11DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; };
+		EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D8F31DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
 		EA29D8F41DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
 		EA29D8F91DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */; };

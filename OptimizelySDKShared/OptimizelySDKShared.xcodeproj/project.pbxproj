@@ -419,6 +419,8 @@
 				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
+				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
+				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +436,8 @@
 				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */,
 				EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
+				EA29D9731DD144D80034A4FE /* OPTLYFileManager.h in Headers */,
+				EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

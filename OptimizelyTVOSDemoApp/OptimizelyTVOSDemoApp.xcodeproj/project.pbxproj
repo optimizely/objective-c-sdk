@@ -250,6 +250,7 @@
 				TargetAttributes = {
 					EA52474B1DC71C6900AF6685 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = BDMC9C2X5M;
 						ProvisioningStyle = Automatic;
 					};
 					EA52475C1DC71C6900AF6685 = {
@@ -536,6 +537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				INFOPLIST_FILE = "OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
@@ -550,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				INFOPLIST_FILE = "OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
