@@ -52,7 +52,10 @@
 		EA29D94F1DCE778C0034A4FE /* OPTLYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */; };
 		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */; };
-		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
+		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };
+		EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
+		EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -418,6 +421,7 @@
 				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
+				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +436,7 @@
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
 				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */,
+				EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */,
 				EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -838,7 +843,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */,
+				EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */,
 				EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
 				2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
