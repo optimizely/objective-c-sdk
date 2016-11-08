@@ -18,6 +18,7 @@
 #import "OPTLYManager.h"
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYNetworkService.h"
+#import "OPTLYDataStore.h"
 #import "OPTLYFileManager.h"
 #import "OPTLYClient.h"
 
