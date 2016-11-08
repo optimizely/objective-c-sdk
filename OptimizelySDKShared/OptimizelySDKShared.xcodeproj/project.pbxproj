@@ -53,7 +53,6 @@
 		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */; };
 		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };
-		EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -207,7 +206,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */,
 				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */,
 			);
