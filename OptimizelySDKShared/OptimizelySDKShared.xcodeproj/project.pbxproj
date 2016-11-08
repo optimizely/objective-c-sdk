@@ -206,7 +206,6 @@ EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {is
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */,
 				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */,
 			);
