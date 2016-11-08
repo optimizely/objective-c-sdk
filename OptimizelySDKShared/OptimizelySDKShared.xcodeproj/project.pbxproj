@@ -206,6 +206,7 @@ EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {is
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */,
 				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */,
 			);
@@ -419,8 +420,6 @@ EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {is
 				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
-				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
-				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
