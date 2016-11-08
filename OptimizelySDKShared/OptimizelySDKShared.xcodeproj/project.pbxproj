@@ -48,18 +48,18 @@
 		EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
 		EA29D91D1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */; };
 		EA29D91E1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */; };
-		EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
-		EA29D9731DD144D80034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D94C1DCE778C0034A4FE /* OPTLYDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA29D94F1DCE778C0034A4FE /* OPTLYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */; };
+		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */; };
+		EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */; };
+		EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
 		EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
-		EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247891DC723D300AF6685 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
-		EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */; };
 		EA5247961DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247981DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */; };
@@ -174,6 +174,12 @@
 		EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYFileManager.h; sourceTree = "<group>"; };
 		EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFileManager.m; sourceTree = "<group>"; };
 		EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFileManagerTest.m; sourceTree = "<group>"; };
+		EA29D94C1DCE778C0034A4FE /* OPTLYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatabase.h; sourceTree = "<group>"; };
+		EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatabase.m; sourceTree = "<group>"; };
+		EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatabaseEntity.h; sourceTree = "<group>"; };
+		EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatabaseEntity.m; sourceTree = "<group>"; };
+		EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatabaseTest.m; sourceTree = "<group>"; };
+		EA29D9581DD012160034A4FE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptimizelySDKShared.h; sourceTree = "<group>"; };
 		EA3C682E1DC1E68E00C578CA /* OptimizelySDKShared-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKShared-Info.plist"; sourceTree = "<group>"; };
 		EA3C68381DC1E68E00C578CA /* OptimizelySDKSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKSharedTests.m; sourceTree = "<group>"; };
@@ -186,8 +192,6 @@
 		EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKShared.modulemap; sourceTree = "<group>"; };
 		EA5247831DC7226400AF6685 /* OPTLYManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManager.h; sourceTree = "<group>"; };
 		EA5247841DC7226400AF6685 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
-		EA5247891DC723D300AF6685 /* OPTLYDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDataStore.h; sourceTree = "<group>"; };
-		EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDataStore.m; sourceTree = "<group>"; };
 		EA5247921DC724AF00AF6685 /* OPTLYHTTPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYHTTPRequestManager.h; sourceTree = "<group>"; };
 		EA5247931DC724AF00AF6685 /* OPTLYHTTPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManager.m; sourceTree = "<group>"; };
 		EA5247941DC724AF00AF6685 /* OPTLYNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNetworkService.h; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA29D9591DD012160034A4FE /* libsqlite3.tbd in Frameworks */,
 				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */,
 			);
@@ -332,6 +337,7 @@
 				2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */,
 				EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */,
 				EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */,
+				EA29D9561DCFD12F0034A4FE /* OPTLYDatabaseTest.m */,
 				2D08FB7F1DCA5E59006CA063 /* TestData */,
 			);
 			path = OptimizelySDKSharedTests;
@@ -340,6 +346,7 @@
 		EA5246EE1DC718AD00AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA29D9581DD012160034A4FE /* libsqlite3.tbd */,
 				EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */,
 				EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */,
 				EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */,
@@ -387,10 +394,12 @@
 		EA5247911DC7248200AF6685 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				EA5247891DC723D300AF6685 /* OPTLYDataStore.h */,
-				EA52478A1DC723D300AF6685 /* OPTLYDataStore.m */,
 				EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */,
 				EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */,
+				EA29D94C1DCE778C0034A4FE /* OPTLYDatabase.h */,
+				EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */,
+				EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */,
+				EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -406,11 +415,12 @@
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */,
+				EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */,
 				EA5247961DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
-				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
-				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
 				EA29D8FE1DCBBE250034A4FE /* OPTLYFileManager.h in Headers */,
-				EA52478B1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
+				EA52479A1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
+				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
+				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,8 +436,6 @@
 				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */,
 				EA52479B1DC724AF00AF6685 /* OPTLYNetworkService.h in Headers */,
-				EA29D9731DD144D80034A4FE /* OPTLYFileManager.h in Headers */,
-				EA52478C1DC723D300AF6685 /* OPTLYDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,13 +812,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
-				EA52478D1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
+				EA29D94F1DCE778C0034A4FE /* OPTLYDatabase.m in Sources */,
 				EA5247981DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */,
 				2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				EA52479C1DC724AF00AF6685 /* OPTLYNetworkService.m in Sources */,
 				2DB3D17D1DC816D600ECF72E /* OPTLYManagerBuilder.m in Sources */,
+				EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +829,7 @@
 			files = (
 				2D08FB711DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */,
 				EA1E16961DC87E0000F00033 /* OPTLYTestHelper.m in Sources */,
+				EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */,
 				2DB3D1591DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				EA29D91D1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */,
 				2DB3D1561DC8163900ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
@@ -831,8 +841,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D9701DD144CC0034A4FE /* OPTLYFileManager.m in Sources */,
-				EA52478E1DC723D300AF6685 /* OPTLYDataStore.m in Sources */,
 				EA5247991DC724AF00AF6685 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
 				2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
@@ -1033,6 +1041,9 @@
 					"DEBUG=1",
 					"'OPTIMIZELY_SDK_SHARED_VERSION=@\"$(OPTIMIZELY_SDK_SHARED_VERSION)\"'",
 					"$(inherited)",
+					LOG_FLAG_ERROR,
+					LOG_FLAG_INFO,
+					LOG_FLAG_DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

@@ -77,8 +77,8 @@
 		EA2FAB531DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB4D1DC6F5BE00B1D81B /* OPTLYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB4F1DC6F5BE00B1D81B /* OPTLYLoggerMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB591DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB4F1DC6F5BE00B1D81B /* OPTLYLoggerMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6D1DC6F5F400B1D81B /* OPTLYLog.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6D1DC6F5F400B1D81B /* OPTLYLog.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6D1DC6F5F400B1D81B /* OPTLYLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6D1DC6F5F400B1D81B /* OPTLYLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6F1DC6F5F400B1D81B /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6F1DC6F5F400B1D81B /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA2FAB7C1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB701DC6F5F400B1D81B /* OPTLYValidator.h */; };
@@ -647,8 +647,8 @@
 				EA2FAB481DC6F5B100B1D81B /* OPTLYEventBuilder.h in Headers */,
 				EA2FAB381DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA5249641DC7B69A00AF6685 /* OPTLYEventDispatcher.h in Headers */,
-				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
+				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
 				EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
@@ -1687,6 +1687,9 @@
 					"DEBUG=1",
 					"'OPTIMIZELY_SDK_CORE_VERSION=@\"$(OPTIMIZELY_SDK_CORE_VERSION)\"'",
 					"$(inherited)",
+					LOG_FLAG_ERROR,
+					LOG_FLAG_INFO,
+					LOG_FLAG_DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
