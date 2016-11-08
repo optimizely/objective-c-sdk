@@ -30,6 +30,7 @@
 /** File type enum
  */
 typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
+    OPTLYFileManagerDataTypeDatabase,
     OPTLYFileManagerDataTypeDatafile,
     OPTLYFileManagerDataTypeUserProfile,
     OPTLYFileManagerDataTypeEventDispatcher,
@@ -97,5 +98,13 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  *
  **/
 - (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Gets the directory of a particular file type.
+ *
+ * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ *
+ **/
+- (nullable NSString *)directoryPathForFileType:(OPTLYFileManagerDataType)fileType;
 
 @end

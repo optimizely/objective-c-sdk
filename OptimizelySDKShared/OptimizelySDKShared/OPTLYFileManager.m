@@ -19,6 +19,7 @@
 static NSString * const kOptimizelyFileManagerPath = @"optimizely";
 
 // file manager data types
+static NSString * const kOPTLYFileManagerDataTypeDatabase = @"database";
 static NSString * const kOPTLYFileManagerDataTypeDatafile = @"datafile";
 static NSString * const kOPTLYFileManagerDataTypeUserProfile = @"user-profile";
 static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispatcher";
@@ -89,12 +90,17 @@ static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispa
     [fileManager removeItemAtPath:self.baseDir error:error];
 }
 
+- (NSString *)directoryPathForFileType:(OPTLYFileManagerDataType)fileType {
+    NSString *fileDir = [self.baseDir stringByAppendingPathComponent:[self stringForDataTypeEnum:fileType]];
+    return fileDir;
+}
+
 # pragma mark - Helper Methods
 
 - (NSString *)filePathFor:(NSString *)fileName
                      type:(OPTLYFileManagerDataType)fileType
 {
-    NSString *fileDir = [self.baseDir stringByAppendingPathComponent:[self stringForDataTypeEnum:fileType]];
+    NSString *fileDir = [self directoryPathForFileType:fileType];
     NSString *filePath = [fileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", fileName]];
     return filePath;
 }
@@ -104,6 +110,9 @@ static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispa
     NSString *dataTypeString = @"";
     
     switch (dataType) {
+        case OPTLYFileManagerDataTypeDatabase:
+            dataTypeString = kOPTLYFileManagerDataTypeDatabase;
+            break;
         case OPTLYFileManagerDataTypeDatafile:
             dataTypeString = kOPTLYFileManagerDataTypeDatafile;
             break;

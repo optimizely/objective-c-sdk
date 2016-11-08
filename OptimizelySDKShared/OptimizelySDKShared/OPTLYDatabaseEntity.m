@@ -14,8 +14,23 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import "OPTLYDatabaseEntity.h"
 
-@interface OPTLYDataStore : NSObject
+@implementation OPTLYDatabaseEntity
 
+- (instancetype)initWithEntityId:(NSNumber *)entityId
+                     entityValue:(NSString *)entityValue
+                       timeStamp:(NSNumber *)timestamp {
+    self = [super init];
+    if (self) {
+        _entityId = entityId;
+        _entityValue = entityValue;
+        _timestamp = timestamp;
+    }
+    return self;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"\nentityId: %@\nentityValue: %@\ntimeStamp: %@\n", self.entityId, self.entityValue, self.timestamp];
+}
 @end

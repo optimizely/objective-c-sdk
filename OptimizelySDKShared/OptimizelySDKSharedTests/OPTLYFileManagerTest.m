@@ -146,4 +146,5 @@ static NSString *const kTestString = @"testString";
     bool optlyDir = [defaultFileManager fileExistsAtPath:self.fileManager.baseDir isDirectory:&isDir];
     XCTAssertFalse(optlyDir, @"Optimizely file folder should not exist.");
 }
+
 @end
