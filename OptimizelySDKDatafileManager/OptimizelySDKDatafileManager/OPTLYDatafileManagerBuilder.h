@@ -30,7 +30,7 @@ typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _
 @property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
 /// The projectID of the project we want to get the datafile for.
 @property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
-/// A logger to inject for purposes of error logging. If none is passed in, an logger with log level All will be created.
+/// A logger to inject for purposes of error logging. If none is passed in, a logger with log level `All` will be created.
 @property (nonatomic, readwrite, strong, nonnull) id<OPTLYLogger> logger;
 
 

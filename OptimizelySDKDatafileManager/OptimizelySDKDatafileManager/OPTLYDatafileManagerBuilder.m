@@ -44,7 +44,7 @@ static NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage = 
 }
 
 - (NSTimeInterval)datafileFetchInterval {
-    if(!_datafileFetchInterval) {
+    if (!_datafileFetchInterval) {
         // set default datafile Fetch interval to 0 so we never poll for the datafile
         _datafileFetchInterval = 0;
     }

@@ -37,7 +37,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     XCTAssertNotNil(datafileManager.projectId);
     XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
-    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should b e LogLevelAll");
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should be LogLevelAll");
 }
 
 - (void)testLoggerInBuilderSetsLoggerInDatafileManager {
@@ -73,7 +73,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     XCTAssertNotNil(datafileManager.projectId);
     XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
-    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should b e LogLevelAll");
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should be LogLevelAll");
 }
 
 

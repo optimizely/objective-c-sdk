@@ -37,7 +37,7 @@
 
 /// The time interval to regularly fetch the datafile.
 @property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
-/// The project ID this datafile manager will monitor the datafile for
+/// The project ID of the datafile this datafile manager will monitor
 @property (nonatomic, readonly, strong, nonnull) NSString *projectId;
 /// A logger for the OPTLYDatafileManager to log messages.
 @property (nonatomic, readonly, strong, nonnull) id<OPTLYLogger> logger;
