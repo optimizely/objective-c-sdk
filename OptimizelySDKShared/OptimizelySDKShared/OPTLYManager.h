@@ -21,6 +21,9 @@
 
 @interface OPTLYManager : NSObject
 
+/// The default datafile to initialize an Optimizely Client with
+@property (nonatomic, readwrite, strong, nullable) NSData *datafile;
+
 /**
  * Init with builder block
  * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.

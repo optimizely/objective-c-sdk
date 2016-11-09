@@ -30,6 +30,7 @@ OPTLYClient *optimizelyClient;
     if (builder != nil) {
         self = [super init];
         if (self != nil) {
+            _datafile = builder.datafile;
             // TODO: Josh W. initialize datafile manager
             // TODO: Josh W. initialize event dispatcher
             // TODO: Josh W. initialize user experiment record
@@ -41,6 +42,28 @@ OPTLYClient *optimizelyClient;
         // TODO: Josh W. throw error
         return nil;
     }
+}
+
+- (OPTLYClient *)initializeClient {
+    return [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+        builder.datafile = self.datafile;
+    }];
+}
+
+- (OPTLYClient *)initializeClientWithDatafile:(NSData *)datafile {
+    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+        builder.datafile = datafile;
+    }];
+    if (client.optimizely != nil) {
+        return client;
+    }
+    else {
+        return [self initializeClient];
+    }
+}
+
+- (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
+    
 }
 
 - (OPTLYClient *)getOptimizely {
