@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYManagerBuilder.h"
 
+@class OPTLYClient;
+
 @interface OPTLYManager : NSObject
 
 /**
@@ -25,5 +27,7 @@
  * @return OptimizelyManager instance
  */
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
+
+- (nullable OPTLYClient *)getOptimizely;
 
 @end

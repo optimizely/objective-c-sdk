@@ -15,8 +15,12 @@
  ***************************************************************************/
 
 #import "OPTLYManager.h"
+#import "OPTLYClient.h"
+
 
 @implementation OPTLYManager
+
+OPTLYClient *optimizelyClient;
 
 + (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
     return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
@@ -37,6 +41,10 @@
         // TODO: Josh W. throw error
         return nil;
     }
+}
+
+- (OPTLYClient *)getOptimizely {
+    return optimizelyClient;
 }
 
 @end
