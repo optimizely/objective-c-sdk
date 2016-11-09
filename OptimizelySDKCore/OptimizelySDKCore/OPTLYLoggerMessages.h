@@ -32,6 +32,7 @@ extern NSString *const OPTLYLoggerMessagesEventUnknown;
 extern NSString *const OPTLYLoggerMessagesAttributeUnknown;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknown;
 extern NSString *const OPTLYLoggerMessagesGetVariationFailed;
+extern NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage;
 
 // ---- info ----
 extern NSString *const OPTLYLoggerMessagesAudienceTargetingFail;

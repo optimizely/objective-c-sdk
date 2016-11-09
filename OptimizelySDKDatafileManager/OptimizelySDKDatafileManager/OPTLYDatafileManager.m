@@ -16,7 +16,7 @@
 
 #import "OPTLYDatafileManager.h"
 
-static NSString *const CDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
+static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
 
 @implementation OPTLYDatafileManager
 
@@ -46,7 +46,7 @@ static NSString *const CDNAddressFormat = @"https://cdn.optimizely.com/json/%@.j
 }
 
 - (NSString *)datafileURLForProject:(NSString *)projectID {
-    return [NSString stringWithFormat:CDNAddressFormat, projectID];
+    return [NSString stringWithFormat:kCDNAddressFormat, projectID];
 }
 
 - (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {

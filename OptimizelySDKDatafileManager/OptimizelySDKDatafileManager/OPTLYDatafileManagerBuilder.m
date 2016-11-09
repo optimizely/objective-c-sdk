@@ -16,8 +16,7 @@
 
 #import "OPTLYDatafileManagerBuilder.h"
 #import <OptimizelySDKCore/OPTLYLogger.h>
-
-static NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage = @"Optimizely Datafile Manager must be initialized with a project ID.";
+#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
 @implementation OPTLYDatafileManagerBuilder
 
