@@ -16,7 +16,7 @@
 
 #import "OPTLYManager.h"
 #import "OPTLYClient.h"
-
+#import "OPTLYNetworkService.h"
 
 @implementation OPTLYManager
 
@@ -30,6 +30,7 @@ OPTLYClient *optimizelyClient;
     if (builder != nil) {
         self = [super init];
         if (self != nil) {
+            _projectId = builder.projectId;
             _datafile = builder.datafile;
             // TODO: Josh W. initialize datafile manager
             // TODO: Josh W. initialize event dispatcher
@@ -63,7 +64,19 @@ OPTLYClient *optimizelyClient;
 }
 
 - (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
-    
+    OPTLYNetworkService *networkService = [[OPTLYNetworkService alloc] init];
+    [networkService downloadProjectConfig:self.projectId
+                        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                            if (error != nil) {
+                                callback(error, nil);
+                            }
+                            else {
+                                OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+                                    builder.datafile = data;
+                                }];
+                                callback(nil, client);
+                            }
+                        }];
 }
 
 - (OPTLYClient *)getOptimizely {
