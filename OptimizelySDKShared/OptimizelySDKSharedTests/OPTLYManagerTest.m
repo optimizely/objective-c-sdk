@@ -81,7 +81,7 @@ static NSData *kAlternateDatafile;
     XCTAssertNotNil(client.optimizely);
     XCTAssertNotNil(client.logger);
     XCTAssertEqual(client, manager.getOptimizely);
-
+    
     [self checkConfigIsUsingDefaultDatafile:client.optimizely.config];
 }
 

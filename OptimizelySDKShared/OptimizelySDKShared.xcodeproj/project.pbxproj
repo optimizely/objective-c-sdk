@@ -38,6 +38,7 @@
 		2DB3D1801DC8181100ECF72E /* OPTLYManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB3D17A1DC816D600ECF72E /* OPTLYManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB3D1811DC8181400ECF72E /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */; };
 		2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
+		2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */; };
@@ -870,6 +871,7 @@
 				EA1E16971DC87E0100F00033 /* OPTLYTestHelper.m in Sources */,
 				2DB3D1581DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				EA064BE01DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */,
+				2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
 				2DB3D1571DC8163A00ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
 				EA5249F11DC7F9D400AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */,
 			);
