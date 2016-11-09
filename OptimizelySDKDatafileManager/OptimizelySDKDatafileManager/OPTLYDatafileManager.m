@@ -17,6 +17,7 @@
 #import "OPTLYDatafileManager.h"
 
 static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
+NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 @implementation OPTLYDatafileManager
 
@@ -28,6 +29,7 @@ static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.
     NSParameterAssert(builder);
     self = [super init];
     if (self != nil) {
+        _datafileFetchInterval = kDefaultDatafileFetchInterval;
         _datafileFetchInterval = builder.datafileFetchInterval;
         _projectId = builder.projectId;
         _logger = builder.logger;
@@ -35,14 +37,8 @@ static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.
         if (self.datafileFetchInterval > 0) {
             // TODO: Josh W. start timer to poll for the datafile
         }
-        
-        return self;
     }
-    else {
-        // TODO: Josh W. log an error
-        // TODO: Josh W. throw/handle the error
-        return nil;
-    }
+    return self;
 }
 
 - (NSString *)datafileURLForProject:(NSString *)projectID {
