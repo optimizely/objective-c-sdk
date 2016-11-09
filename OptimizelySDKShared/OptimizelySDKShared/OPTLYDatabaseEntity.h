@@ -13,10 +13,20 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+#import <Foundation/Foundation.h>
 
-#import "OPTLYDataStore.h"
+/*
+    This class contains the column values in a database row.
+ */
 
-@implementation OPTLYDataStore
+@interface OPTLYDatabaseEntity : NSObject
 
+@property (nonatomic, strong) NSNumber *entityId;
+@property (nonatomic, strong) NSString *entityValue;
+@property (nonatomic, assign) NSNumber *timestamp;
+
+- (instancetype)initWithEntityId:(NSNumber *)entityId
+                     entityValue:(NSString *)entityValue
+                       timeStamp:(NSNumber *)timestamp;
 
 @end
