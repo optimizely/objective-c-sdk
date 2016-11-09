@@ -21,6 +21,8 @@
 
 @interface OPTLYManager : NSObject
 
+/// The ID of the Optimizely project to manager
+@property (nonatomic, readonly, strong, nonnull) NSString *projectId;
 /// The default datafile to initialize an Optimizely Client with
 @property (nonatomic, readwrite, strong, nullable) NSData *datafile;
 

@@ -30,6 +30,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYEventDispatcher> eventDispatcher;
 /// The dispatch interval for the event dispatcher.
 @property (nonatomic, readwrite) NSTimeInterval eventDispatchInterval;
+/// The ID of the Optimizely Project the manager will oversee
+@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
 
 /// Create the Optimizely Manager object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYManagerBuilderBlock)block;
