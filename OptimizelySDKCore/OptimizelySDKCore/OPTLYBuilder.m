@@ -33,6 +33,10 @@
 }
 
 - (id)initWithBlock:(OPTLYBuilderBlock)block {
+    // check for nil block
+    if (block == nil) {
+        return nil;
+    }
     self = [super init];
     if (self != nil) {
         block(self);

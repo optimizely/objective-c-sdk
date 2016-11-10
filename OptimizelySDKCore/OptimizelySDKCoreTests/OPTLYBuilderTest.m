@@ -108,4 +108,9 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertEqual(logger, customOptimizely.logger, @"Should be the same object with custom builder");
 }
 
+- (void)testInitializationWithoutBuilder {
+    Optimizely *optimizely = [Optimizely initWithBuilderBlock:nil];
+    XCTAssertNil(optimizely);
+}
+
 @end
