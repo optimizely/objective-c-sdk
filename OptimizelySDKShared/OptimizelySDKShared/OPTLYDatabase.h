@@ -16,7 +16,7 @@
 
 /*
  This class manages all the database reads and writes and will primiarly be used to store events or logs.
- Each row entry contains three columns:
+ Each row entry contains three columns [OPTLYDatabaseEntity]:
     1. id [int]
     2. json [text]
     3. timestamp [int]

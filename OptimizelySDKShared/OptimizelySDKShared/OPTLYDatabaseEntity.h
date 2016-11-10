@@ -16,7 +16,11 @@
 #import <Foundation/Foundation.h>
 
 /*
-    This class contains the column values in a database row.
+ *   This class contains the column values in a database row.
+ *   Each row entry contains three columns:
+ *       1. id [int]
+ *       2. json [text]
+ *       3. timestamp [int]
  */
 
 @interface OPTLYDatabaseEntity : NSObject
