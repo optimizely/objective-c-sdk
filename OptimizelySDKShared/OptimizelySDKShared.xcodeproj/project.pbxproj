@@ -39,6 +39,7 @@
 		2DB3D1811DC8181400ECF72E /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */; };
 		2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
 		2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
+		2DCC50BD1DD535A5006C9815 /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */; };
@@ -53,6 +54,7 @@
 		EA064BE01DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BDE1DD53F3100DF7537 /* OPTLYDataStoreTest.m */; };
 		EA1E16961DC87E0000F00033 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */; };
 		EA1E16971DC87E0100F00033 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */; };
+		EA1E16981DC87E0E00F00033 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1E168F1DC87DC700F00033 /* OPTLYTestHelper.h */; };
 		EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
 		EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D94C1DCE778C0034A4FE /* OPTLYDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
