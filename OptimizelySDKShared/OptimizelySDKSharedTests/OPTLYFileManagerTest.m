@@ -17,8 +17,8 @@
 #import <XCTest/XCTest.h>
 #import "OPTLYFileManager.h"
 
-static NSString *const kTestFileName = @"testFileManager";
-static NSString *const kBadTestFileName = @"badTestFileManager";
+static NSString *const kTestFileName = @"testFileManager.txt";
+static NSString *const kBadTestFileName = @"badTestFileManager.txt";
 static NSString *const kTestString = @"testString";
 
 @interface OPTLYFileManager()
@@ -40,7 +40,7 @@ static NSString *const kTestString = @"testString";
     self.fileManager = [OPTLYFileManager new];
     self.testData = [kTestString dataUsingEncoding:NSUTF8StringEncoding];
     self.fileDir = [self.fileManager.baseDir stringByAppendingPathComponent:[self.fileManager stringForDataTypeEnum:OPTLYFileManagerDataTypeDatafile]];
-    self.filePath = [self.fileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", kTestFileName]];
+    self.filePath = [self.fileDir stringByAppendingPathComponent:kTestFileName];
 }
 
 - (void)tearDown {
@@ -61,7 +61,7 @@ static NSString *const kTestString = @"testString";
                           type:OPTLYFileManagerDataTypeDatafile
                          error:&error];
     
-
+    
     NSFileManager *defaultFileManager= [NSFileManager defaultManager];
     
     // check if the file exists
@@ -114,11 +114,11 @@ static NSString *const kTestString = @"testString";
                           data:self.testData
                           type:OPTLYFileManagerDataTypeDatafile
                          error:&error];
-
+    
     // check that the file exists after the file save
     bool fileExists = [self.fileManager fileExists:kTestFileName type:OPTLYFileManagerDataTypeDatafile];
     XCTAssertTrue(fileExists, @"Saved file should not exist.");
-
+    
     // check that the file does not exist after the file removal
     [self.fileManager removeFile:kTestFileName type:OPTLYFileManagerDataTypeDatafile error:&error];
     fileExists = [self.fileManager fileExists:kTestFileName type:OPTLYFileManagerDataTypeDatafile];

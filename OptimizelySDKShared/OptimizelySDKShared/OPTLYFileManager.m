@@ -101,7 +101,7 @@ static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispa
                      type:(OPTLYFileManagerDataType)fileType
 {
     NSString *fileDir = [self directoryPathForFileType:fileType];
-    NSString *filePath = [fileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", fileName]];
+    NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
     return filePath;
 }
 
