@@ -50,6 +50,9 @@
         return self;
     }
     else {
+        if (_logger == nil) {
+            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+        }
         [_logger logMessage:OPTLYLoggerMessagesBuilderNotValid
                   withLevel:OptimizelyLogLevelError];
         
@@ -57,6 +60,10 @@
                                              code:OPTLYErrorTypesBuilderInvalid
                                          userInfo:@{NSLocalizedDescriptionKey :
                                                         [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesBuilderInvalid, nil)]}];
+        
+        if (_errorHandler == nil) {
+            _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+        }
         [_errorHandler handleError:error];
         return nil;
     }
