@@ -76,5 +76,13 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should be LogLevelAll");
 }
 
+- (void)testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval {
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectID;
+        builder.datafileFetchInterval = -1.0;
+    }];
+    XCTAssertNil(datafileManager, @"A datafile manager cannot be initialized with a negative fetch interval");
+}
+
 
 @end

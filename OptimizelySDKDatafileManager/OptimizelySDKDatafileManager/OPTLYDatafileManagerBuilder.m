@@ -33,6 +33,11 @@
     self = [super init];
     if (self != nil) {
         block(self);
+        if (_datafileFetchInterval < 0) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDatafileFetchIntervalInvalid, _datafileFetchInterval]
+                          withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
         if (_projectId == nil) {
             [self.logger logMessage:OPTLYDatafileManagerInitializedWithoutProjectIdMessage
                           withLevel:OptimizelyLogLevelWarning];
