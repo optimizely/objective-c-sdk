@@ -18,12 +18,11 @@
 
 /*
  * This class handles all file-related methods.
- * The files are saved in the Library directory so that the file can not be read by app users.
+ * The files are saved in the Library directory for iOS and tmp directory for tvOS so that the file can not be read by app users.
  * The file directories are further broken down into file types:
  *   /optimizely/datafile
  *   /optimizely/user-profile/
  *   /optimizely/event-dispatcher/
- * All files are stored as .txt files.
  *
  */
 
@@ -41,7 +40,8 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
  *
- * @param fileName A string that represents the name of the file to save.
+ * @param fileName A string that represents the name of the file to save. 
+ *  Can include a file suffix if desired (e.g., .txt or .json).
  * @param data The data to save to the file.
  * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file save fails.

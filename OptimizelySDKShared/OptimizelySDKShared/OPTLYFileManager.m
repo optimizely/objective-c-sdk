@@ -33,8 +33,16 @@ static NSString * const kOPTLYFileManagerDataTypeEventDispatcher = @"event-dispa
 - (instancetype)init {
     self = [super init];
     if (self != nil) {
+        NSString *filePath = @"";
+#if TARGET_OS_TV
+        // tvOS only allows writing to a temporary file directory
+        // a future enhancement would be save to iCloud
+        filePath = NSTemporaryDirectory();
+#elif TARGET_OS_IOS
         NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        _baseDir = [libraryDirPaths[0] stringByAppendingPathComponent:kOptimizelyFileManagerPath];
+        filePath = libraryDirPaths[0];
+#endif
+        _baseDir = [filePath stringByAppendingPathComponent:kOptimizelyFileManagerPath];
     }
     return self;
 }
