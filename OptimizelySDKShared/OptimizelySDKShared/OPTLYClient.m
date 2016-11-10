@@ -32,6 +32,10 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:block]];
 }
 
+- (instancetype)init {
+    return [self initWithBuilder:nil];
+}
+
 - (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder {
     self = [super init];
     if (self) {

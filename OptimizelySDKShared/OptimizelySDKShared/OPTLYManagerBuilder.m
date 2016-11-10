@@ -15,7 +15,9 @@
  ***************************************************************************/
 
 #import "OPTLYManagerBuilder.h"
-#import <OptimizelySDKCore/OPTLYEventBuilder.h>
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYEventDispatcher.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 
 @implementation OPTLYManagerBuilder
 
@@ -32,12 +34,29 @@
     self = [super init];
     if (self != nil) {
         block(self);
-    }
-    else {
-        return nil;
-    }
-    
+    }    
     return self;
+}
+
+- (id<OPTLYErrorHandler>)errorHandler {
+    if (!_errorHandler) {
+        _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+    }
+    return _errorHandler;
+}
+
+- (id<OPTLYEventDispatcher>)eventDispatcher {
+    if (!_eventDispatcher) {
+        _eventDispatcher = [[OPTLYEventDispatcherNoOp alloc] init];
+    }
+    return _eventDispatcher;
+}
+
+- (id<OPTLYLogger>)logger {
+    if (!_logger) {
+        _logger = [[OPTLYLoggerDefault alloc] init];
+    }
+    return _logger;
 }
 
 @end

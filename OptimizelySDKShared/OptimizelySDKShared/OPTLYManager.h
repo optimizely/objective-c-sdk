@@ -25,6 +25,12 @@
 @property (nonatomic, readonly, strong, nonnull) NSString *projectId;
 /// The default datafile to initialize an Optimizely Client with
 @property (nonatomic, readwrite, strong, nullable) NSData *datafile;
+/// The error handler to be used for the manager, client, and all subcomponents
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
+/// The event dispatcher to initialize an Optimizely Client with
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYEventDispatcher> eventDispatcher;
+/// The logger to be used for the manager, client, and all subcomponents
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 
 /**
  * Init with builder block
