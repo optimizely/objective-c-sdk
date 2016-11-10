@@ -122,7 +122,7 @@ static NSData *kAlternateDatafile;
     XCTAssertEqual(manager.datafile, kDefaultDatafile);
     
     // stub network call
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+    id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
         // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
@@ -150,6 +150,9 @@ static NSData *kAlternateDatafile;
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertEqual(optimizelyClient, manager.getOptimizely);
+    
+    // clean up stub
+    [OHHTTPStubs removeStub:stub];
 }
 
 - (void)checkConfigIsUsingDefaultDatafile: (OPTLYProjectConfig *)config {
