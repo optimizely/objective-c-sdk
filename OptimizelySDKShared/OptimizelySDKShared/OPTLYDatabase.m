@@ -46,8 +46,6 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 @property (nonatomic, strong) FMDatabaseQueue *fmDatabaseQueue;
 @end
 
-#define LOG_FLAG_INFO 1
-
 @implementation OPTLYDatabase
 
 - (id)init
@@ -96,7 +94,6 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         }
     }];
 }
-
 
 - (void)insertData:(NSDictionary *)data
              table:(NSString *)tableName

@@ -21,6 +21,7 @@
     2. json [text]
     3. timestamp [int]
  The table is stored in the Library directory: .../optimizely/database/optly-database.sqlite
+ This feature is not available for tvOS as storage is limited. 
 */
 
 #import <Foundation/Foundation.h>
@@ -56,7 +57,7 @@ NS_ASSUME_NONNULL_END
 /**
  * Deletes data from a database table.
  *
- * @param entityId The entity ids to remove from the table.
+ * @param entityIds The entity ids to remove from the table.
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
@@ -71,8 +72,8 @@ NS_ASSUME_NONNULL_END
  * @param error An error object is returned if an error occurs.
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
-- (NSArray *)retrieveAllEntries:(nonnull NSString *)tableName
-                          error:(NSError * _Nullable * _Nullable)error;
+- (nullable NSArray *)retrieveAllEntries:(nonnull NSString *)tableName
+                                   error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Retrieves a set of N entries from the table.
@@ -82,9 +83,9 @@ NS_ASSUME_NONNULL_END
  * @param error An error object is returned if an error occurs.
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
-- (NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
-                             table:(nonnull NSString *)tableName
-                             error:(NSError * _Nullable * _Nullable)error;
+- (nullable NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
+                                      table:(nonnull NSString *)tableName
+                                      error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Returns the number of rows of a table.
