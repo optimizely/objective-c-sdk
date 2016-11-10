@@ -80,7 +80,8 @@ static NSData *kAlternateDatafile;
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     XCTAssertNotNil(client.logger);
-    
+    XCTAssertEqual(client, manager.getOptimizely);
+
     [self checkConfigIsUsingDefaultDatafile:client.optimizely.config];
 }
 
@@ -103,6 +104,7 @@ static NSData *kAlternateDatafile;
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     XCTAssertNotNil(client.logger);
+    XCTAssertEqual(client, manager.getOptimizely);
     
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
 }
@@ -132,8 +134,11 @@ static NSData *kAlternateDatafile;
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
+    __block OPTLYClient *optimizelyClient;
     [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
         
+        // retain a reference to the client
+        optimizelyClient = client;
         // check client in callback
         XCTAssertNotNil(client);
         XCTAssertNotNil(client.optimizely, @"Client needs to have an optimizely instance");
@@ -144,6 +149,7 @@ static NSData *kAlternateDatafile;
     
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    XCTAssertEqual(optimizelyClient, manager.getOptimizely);
 }
 
 - (void)checkConfigIsUsingDefaultDatafile: (OPTLYProjectConfig *)config {

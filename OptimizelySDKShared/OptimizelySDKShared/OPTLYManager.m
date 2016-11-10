@@ -22,9 +22,13 @@
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
-@implementation OPTLYManager
+@interface OPTLYManager ()
 
-OPTLYClient *optimizelyClient;
+@property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
+
+@end
+
+@implementation OPTLYManager
 
 + (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
     return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
@@ -68,9 +72,13 @@ OPTLYClient *optimizelyClient;
 }
 
 - (OPTLYClient *)initializeClient {
-    return [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = self.datafile;
     }];
+    if (client.optimizely != nil) {
+        self.optimizelyClient = client;
+    }
+    return client;
 }
 
 - (OPTLYClient *)initializeClientWithDatafile:(NSData *)datafile {
@@ -78,6 +86,7 @@ OPTLYClient *optimizelyClient;
         builder.datafile = datafile;
     }];
     if (client.optimizely != nil) {
+        self.optimizelyClient = client;
         return client;
     }
     else {
@@ -96,13 +105,16 @@ OPTLYClient *optimizelyClient;
                                 OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
                                     builder.datafile = data;
                                 }];
+                                if (client.optimizely != nil) {
+                                    self.optimizelyClient = client;
+                                }
                                 callback(nil, client);
                             }
                         }];
 }
 
 - (OPTLYClient *)getOptimizely {
-    return optimizelyClient;
+    return self.optimizelyClient;
 }
 
 @end
