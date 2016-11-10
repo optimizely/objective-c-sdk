@@ -441,6 +441,7 @@
 				2D08FBA01DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
 				EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */,
 				2DB3D1801DC8181100ECF72E /* OPTLYManagerBuilder.h in Headers */,
+				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
 				2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
 				EA5247971DC724AF00AF6685 /* OPTLYHTTPRequestManager.h in Headers */,
