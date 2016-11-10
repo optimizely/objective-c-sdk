@@ -44,6 +44,8 @@ extern NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed;
 extern NSString * const OPTLYErrorHandlerMessagesConfigInvalid;
 
+extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
+
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatafileInvalid = 0,
     OPTLYErrorTypesDataUnknown,

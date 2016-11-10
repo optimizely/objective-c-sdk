@@ -17,6 +17,10 @@
 #import "OPTLYManager.h"
 #import "OPTLYClient.h"
 #import "OPTLYNetworkService.h"
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYErrorHandlerMessages.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
 @implementation OPTLYManager
 
@@ -26,12 +30,24 @@ OPTLYClient *optimizelyClient;
     return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
 }
 
+- (instancetype)init {
+    return [self initWithBuilder:nil];
+}
+
 - (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
     if (builder != nil) {
         self = [super init];
         if (self != nil) {
+            if (builder.projectId == nil) {
+                [builder.logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
+                                 withLevel:OptimizelyLogLevelError];
+                return nil;
+            }
             _projectId = builder.projectId;
             _datafile = builder.datafile;
+            _errorHandler = builder.errorHandler;
+            _eventDispatcher = builder.eventDispatcher;
+            _logger = builder.logger;
             // TODO: Josh W. initialize datafile manager
             // TODO: Josh W. initialize event dispatcher
             // TODO: Josh W. initialize user experiment record
@@ -39,8 +55,14 @@ OPTLYClient *optimizelyClient;
         return self;
     }
     else {
-        // TODO: Josh W. log error
-        // TODO: Josh W. throw error
+        [_logger logMessage:OPTLYLoggerMessagesManagerBuilderNotValid
+                  withLevel:OptimizelyLogLevelError];
+        
+        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesBuilderInvalid
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesManagerBuilderInvalid, nil)]}];
+        [_errorHandler handleError:error];
         return nil;
     }
 }

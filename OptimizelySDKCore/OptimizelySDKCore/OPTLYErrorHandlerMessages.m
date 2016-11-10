@@ -43,5 +43,8 @@ NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown = @"Traffic a
 NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed = @"Event %@ failed to dispatch.";
 NSString * const OPTLYErrorHandlerMessagesConfigInvalid = @"Project config is nil or invalid";
 
+// Manager Errors
+NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid";
+
 @implementation OPTLYErrorHandlerMessages
 @end

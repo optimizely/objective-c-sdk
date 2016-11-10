@@ -25,6 +25,8 @@ extern NSString *const OPTLYLoggerMessagesBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment;
 extern NSString *const OPTLYLoggerMessagesAttributeInvalidFormat;
 extern NSString *const OPTLYLoggerMessagesForcedBucketingFailed;
+extern NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId;
+extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 
 // ---- warnings ----
 extern NSString *const OPTLYLoggerMessagesExperimentUnknown;
