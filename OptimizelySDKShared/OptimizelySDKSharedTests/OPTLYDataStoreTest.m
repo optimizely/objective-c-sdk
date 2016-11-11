@@ -51,7 +51,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     self.testData = nil;
     [super tearDown];
 }
-
+#if TARGET_OS_IOS
 - (void)testDatabaseAPIs {
     NSError *error = nil;
     
@@ -120,6 +120,8 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     numberOfRows = [self.dataStore numberOfRows:OPTLYDatabaseEventsTable error:&error];
     XCTAssert(numberOfRows == 0, @"Deletion failed. Invalid number of results retrieved from database");
 }
+#endif
+
 
 # pragma mark - File Manager Tests
 
