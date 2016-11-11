@@ -18,14 +18,13 @@
 #import <FMDB/FMDB.h>
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYDatabase.h"
-#import "OPTLYFileManager.h"
 #import "OPTLYDatabaseEntity.h"
 
 // table names
 NSString *const OPTLYDatabaseEventsTable = @"EVENTS";
 
 // table file name
-static NSString * const kdatabaseFileName = @"optly-database.sqlite";
+static NSString * const kDatabaseFileName = @"optly-database.sqlite";
 
 // database queries
 static NSString * const kCreateTableQuery = @"CREATE TABLE IF NOT EXISTS %@ (id INTEGER PRIMARY KEY AUTOINCREMENT, json TEXT,timestamp INTEGER)";
@@ -44,30 +43,29 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 @property (nonatomic, strong) NSString *databaseFileDirectory;
 @property (nonatomic, strong) NSString *databaseFilePath;
 @property (nonatomic, strong) FMDatabaseQueue *fmDatabaseQueue;
+@property (nonatomic, strong) NSString *baseDir;
 @end
 
 @implementation OPTLYDatabase
 
-- (id)init
-{
+- (instancetype)initWithBaseDir:(NSString *)baseDir {
     self = [super init];
-    if (self) {
-        OPTLYFileManager *optlyFileManager = [OPTLYFileManager new];
-        _databaseFileDirectory = [optlyFileManager directoryPathForFileType:OPTLYFileManagerDataTypeDatabase];
-        _databaseFilePath = [_databaseFileDirectory stringByAppendingPathComponent:kdatabaseFileName];
+    if (self != nil) {
+        _baseDir = baseDir;
         
         // create directory for the database if it does not exist
         NSFileManager *fileManager = [NSFileManager new];
         bool isDir = true;
-        if (![fileManager fileExistsAtPath:self.databaseFileDirectory isDirectory:&isDir]) {
-            [fileManager createDirectoryAtPath:self.databaseFileDirectory
+        if (![fileManager fileExistsAtPath:_baseDir isDirectory:&isDir]) {
+            [fileManager createDirectoryAtPath:_baseDir
                    withIntermediateDirectories:YES
                                     attributes:nil
                                          error:nil];
         }
         
         // set the database queue
-        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
+        NSString *databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
+        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:databaseFilePath];
         
         // create the events table
         NSError *error = nil;
@@ -76,6 +74,13 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
             OPTLYLogError(@"Error creating database table: %@", error);
         }
     }
+    return self;
+}
+
+- (id)init
+{
+    NSAssert(true, @"Use initWithBaseDir.");
+    self = [super init];
     return self;
 }
 
@@ -223,3 +228,4 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 @end
+

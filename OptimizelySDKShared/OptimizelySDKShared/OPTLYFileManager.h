@@ -19,23 +19,22 @@
 /*
  * This class handles all file-related methods.
  * The files are saved in the Library directory for iOS and tmp directory for tvOS so that the file can not be read by app users.
- * The file directories are further broken down into file types:
+ * The file directories are further broken down into data types:
  *   /optimizely/datafile
  *   /optimizely/user-profile/
  *   /optimizely/event-dispatcher/
  *
  */
 
-/** File type enum
- */
-typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
-    OPTLYFileManagerDataTypeDatabase,
-    OPTLYFileManagerDataTypeDatafile,
-    OPTLYFileManagerDataTypeUserProfile,
-    OPTLYFileManagerDataTypeEventDispatcher,
-};
-
 @interface OPTLYFileManager : NSObject
+/**
+ * File manager initializer.
+ *
+ * @param baseDir The base directory where the file manager data will be stored.
+ * @return an instance of OPTLYFileManager.
+ **/
+- (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir;
+
 /**
  * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
@@ -43,68 +42,70 @@ typedef NS_ENUM (NSUInteger, OPTLYFileManagerDataType) {
  * @param fileName A string that represents the name of the file to save. 
  *  Can include a file suffix if desired (e.g., .txt or .json).
  * @param data The data to save to the file.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
  *
  **/
 - (void)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
-            type:(OPTLYFileManagerDataType)fileType
+          subDir:(nullable NSString *)subDir
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets a file.
  *
  * @param fileName A string that represents the name of the file to retrieve.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
  * @return The file in NSData format.
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
  *
  **/
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
-                        type:(OPTLYFileManagerDataType)fileType
+                      subDir:(nullable NSString *)subDir
                        error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Determines if a file exists.
  *
  * @param fileName A string that represents the name of the file to check.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
  * @return A boolean value that states if a file exists or not (or could not be determined).
  *
  **/
 - (bool)fileExists:(nonnull NSString *)fileName
-              type:(OPTLYFileManagerDataType)fileType;
+            subDir:(nullable NSString *)subDir;
 
 /**
  * Deletes a file.
  *
  * @param fileName A string that represents the name of the file to delete.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file removal fails.
  *  If error is nil, than the file deletion was successful.
  *
  **/
 - (void)removeFile:(nonnull NSString *)fileName
-              type:(OPTLYFileManagerDataType)fileType
+            subDir:(nullable NSString *)subDir
              error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Removes all document files.
+ * Removes all data persisted.
  *
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
+- (void)removeAllData:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Gets the directory of a particular file type.
+ * Removes a particular data type.
  *
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param error An error object which will store any errors if the directory removal fails.
  *
  **/
-- (nullable NSString *)directoryPathForFileType:(OPTLYFileManagerDataType)fileType;
+- (void)removeDataSubDir:(nullable NSString *)subDir
+                   error:(NSError * _Nullable * _Nullable)error;
 
 @end

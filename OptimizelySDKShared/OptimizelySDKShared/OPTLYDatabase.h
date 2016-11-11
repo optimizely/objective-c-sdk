@@ -31,6 +31,13 @@ extern NSString *const OPTLYDatabaseEventsTable;
 NS_ASSUME_NONNULL_END
 
 @interface OPTLYDatabase : NSObject
+/**
+ * File manager initializer.
+ *
+ * @param baseDir The base directory where the database will be stored.
+ * @return an instance of OPTLYDatabase.
+ **/
+- (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir;
 
 /**
  * Inserts data into a database table.
@@ -97,3 +104,4 @@ NS_ASSUME_NONNULL_END
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
                     error:(NSError * _Nullable * _Nullable)error;
 @end
+
