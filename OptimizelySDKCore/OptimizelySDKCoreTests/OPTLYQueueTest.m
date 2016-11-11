@@ -45,13 +45,23 @@ static const NSInteger kMaxQueueSize = 3;
 
 - (void)tearDown {
     self.queue = nil;
+    self.testData1 = nil;
+    self.testData2 = nil;
+    self.testData3 = nil;
+    self.testData4 = nil;
     [super tearDown];
+}
+
+- (void)testQueueInit
+{
+    OPTLYQueue *queue = [OPTLYQueue new];
+    XCTAssert(queue.maxQueueSize == OPTLYQueueDefaultMaxSize, @"Invalid max queue size for default queue initialization.");
 }
 
 - (void)testQueueInitWithQueueSize {
     XCTAssertNotNil(self.queue);
     NSInteger queueCapacity = [self.queue maxQueueSize];
-    XCTAssert(queueCapacity == kMaxQueueSize, @"incorrect max queue size");
+    XCTAssert(queueCapacity == kMaxQueueSize, @"Incorrect max queue size");
 }
 
 // queue insertion should cap off at max size
@@ -62,7 +72,7 @@ static const NSInteger kMaxQueueSize = 3;
 }
 
 // dequeue'd value should be the oldest
-// queue size shoudl decrease
+// queue size should decrease
 - (void)testDequeue
 {
     NSString *dequeuedData = [self.queue dequeue];
