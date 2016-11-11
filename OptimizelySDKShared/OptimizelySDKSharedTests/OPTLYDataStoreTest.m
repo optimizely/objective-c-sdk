@@ -62,7 +62,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 - (void)testRemoveAll
 {
     NSError *error;
-
+    
     [self.dataStore saveData:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression cacheData:NO error:&error];
     [self.dataStore saveData:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression cacheData:YES error:&error];
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
@@ -290,7 +290,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     XCTAssert([results count] == 0, @"Invalid event count when removeAllEvents was called.");
 #if TARGET_OS_IOS
     XCTAssert([impressionQueue size] == 0, @"Cached data not removed as expected.");
-
+    
 #elif TARGET_OS_TV // tvOS data should always be cached
     XCTAssert([impressionQueue size]  == 0, @"Cached data not removed as expected.");
 #endif

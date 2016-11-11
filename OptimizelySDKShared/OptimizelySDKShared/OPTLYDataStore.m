@@ -1,4 +1,3 @@
-<<<<<<< 7539254c98940c1d2a56f7a52d341d4fb72ed226
 /****************************************************************************
  * Copyright 2016, Optimizely, Inc. and contributors                        *
  *                                                                          *
@@ -74,7 +73,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (void)removeAll {
     [self removeAllUserData];
-    [self removeAllFiles:nil]; 
+    [self removeAllFiles:nil];
     [self removeCachedEvents];
 }
 
@@ -269,7 +268,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     } else {
         oldestEvent = oldestEvents[0];
     }
-
+    
     return oldestEvent;
 }
 

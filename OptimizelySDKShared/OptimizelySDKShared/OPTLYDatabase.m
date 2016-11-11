@@ -92,8 +92,8 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 - (void)saveData:(NSDictionary *)data
-             table:(NSString *)tableName
-             error:(NSError **)error
+           table:(NSString *)tableName
+           error:(NSError **)error
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
@@ -207,4 +207,3 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     return rows;
 }
 @end
-
