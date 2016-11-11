@@ -27,6 +27,13 @@
 #import <Foundation/Foundation.h>
 
 @interface OPTLYDatabase : NSObject
+/**
+ * File manager initializer.
+ *
+ * @param baseDir The base directory where the database will be stored.
+ * @return an instance of OPTLYDatabase.
+ **/
+- (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir;
 
 /**
  * Creates a new table.
