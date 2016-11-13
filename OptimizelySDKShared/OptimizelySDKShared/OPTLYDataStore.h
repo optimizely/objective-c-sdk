@@ -35,6 +35,7 @@ typedef enum {
 /// base directory where Optimizely-related data will persist
 @property (nonatomic, strong, readonly, nonnull) NSString *baseDirectory;
 
+// ---- NSFileMAnager ----
 /**
  * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
@@ -42,52 +43,61 @@ typedef enum {
  * @param fileName A string that represents the name of the file to save.
  *  Can include a file suffix if desired (e.g., .txt or .json).
  * @param data The data to save to the file.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
  *
  **/
 - (void)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
-            type:(OPTLYDataStoreDataType)fileType
+            type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets a file.
  *
  * @param fileName A string that represents the name of the file to retrieve.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @return The file in NSData format.
  * @param error An error object which will store any errors if the file save fails.
  *  If error is nil, than the file save was successful.
  *
  **/
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
-                        type:(OPTLYDataStoreDataType)fileType
+                        type:(OPTLYDataStoreDataType)dataType
                        error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Determines if a file exists.
  *
  * @param fileName A string that represents the name of the file to check.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @return A boolean value that states if a file exists or not (or could not be determined).
  *
  **/
 - (bool)fileExists:(nonnull NSString *)fileName
-              type:(OPTLYDataStoreDataType)fileType;
+              type:(OPTLYDataStoreDataType)dataType;
+
+/**
+ * Determines if a data type exists.
+ *
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @return A boolean value that states if a data type exists or not (or could not be determined).
+ *
+ **/
+- (bool)dataTypeExists:(OPTLYDataStoreDataType)dataType;
 
 /**
  * Deletes a file.
  *
  * @param fileName A string that represents the name of the file to delete.
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the file removal fails.
  *  If error is nil, than the file deletion was successful.
  *
  **/
 - (void)removeFile:(nonnull NSString *)fileName
-              type:(OPTLYDataStoreDataType)fileType
+              type:(OPTLYDataStoreDataType)dataType
              error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -101,13 +111,15 @@ typedef enum {
 /**
  * Removes a particular data type.
  *
- * @param fileType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
+ * @param dataType The type of file (e.g., datafile, user profile, event dispatcher, etc.)
  * @param error An error object which will store any errors if the directory removal fails.
  *
  **/
-- (void)removeDataType:(OPTLYDataStoreDataType)fileType
+- (void)removeDataType:(OPTLYDataStoreDataType)dataType
                  error:(NSError * _Nullable * _Nullable)error;
 
+
+// ---- database table ----
 #if TARGET_OS_IOS
 /**
  * Inserts data into a database table.
@@ -174,4 +186,37 @@ typedef enum {
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
                     error:(NSError * _Nullable * _Nullable)error;
 #endif
+
+// ---- NSUserDefault ----
+/**
+ * Saves data in dictionary format in NSUserDefault
+ *
+ * @param data The dictionary data to save.
+ * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
+ */
+- (void)save:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType;
+
+/**
+ * Gets saved data from NSUserDefault.
+ *
+ * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
+ * @return data retrieved.
+ */
+- (nullable NSDictionary *)getDataForType:(OPTLYDataStoreDataType)dataType;
+
+/**
+ * Removes data for a particular type of data in NSUserDefault.
+ *
+ * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
+ */
+- (void)removeDataForType:(OPTLYDataStoreDataType)dataType;
+
+/**
+ * Removes an object from the dictionary data saved in NSUserDefault.
+ *
+ * @param dataKey The key for the dictionary data to remove.
+ * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
+ */
+- (void)removeObjectInData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType;
+
 @end

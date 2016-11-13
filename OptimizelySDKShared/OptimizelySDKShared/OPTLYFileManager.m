@@ -71,6 +71,16 @@
     return fileExists;
 }
 
+- (bool)subDirExists:(nullable NSString *)subDir
+{
+    NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    bool dirExists = [fileManager fileExistsAtPath:fileDir];
+    return dirExists;
+    
+}
+
 
 - (void)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
@@ -85,7 +95,8 @@
                    error:(NSError * _Nullable * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:subDir error:error];
+    NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
+    [fileManager removeItemAtPath:fileDir error:error];
 }
 
 - (void)removeAllData:(NSError * _Nullable * _Nullable)error

@@ -73,34 +73,72 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 }
 #endif
 
+# pragma mark - NSUserDefault Data
+- (void)save:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType
+{
+    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:data forKey:key];
+}
+
+- (nullable NSDictionary *)getDataForType:(OPTLYDataStoreDataType)dataType
+{
+    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *data = [defaults objectForKey:key];
+    return data;
+}
+
+- (void)removeDataForType:(OPTLYDataStoreDataType)dataType
+{
+    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:key];
+}
+
+- (void)removeObjectInData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType
+{
+    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *data = [[defaults objectForKey:key] mutableCopy];
+    [data removeObjectForKey:dataKey];
+    [defaults setObject:data forKey:key];
+}
+
+
 # pragma mark - File Manager Methods
 - (void)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
-            type:(OPTLYDataStoreDataType)fileType
+            type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager saveFile:fileName data:data subDir:[self stringForDataTypeEnum:fileType] error:error];
+    [self.fileManager saveFile:fileName data:data subDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
-                        type:(OPTLYDataStoreDataType)fileType
+                        type:(OPTLYDataStoreDataType)dataType
                        error:(NSError * _Nullable * _Nullable)error {
-    return [self.fileManager getFile:fileName subDir:[self stringForDataTypeEnum:fileType] error:error];
+    return [self.fileManager getFile:fileName subDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
 - (bool)fileExists:(nonnull NSString *)fileName
-              type:(OPTLYDataStoreDataType)fileType {
-    return [self.fileManager fileExists:fileName subDir:[self stringForDataTypeEnum:fileType]];
+              type:(OPTLYDataStoreDataType)dataType {
+    return [self.fileManager fileExists:fileName subDir:[self stringForDataTypeEnum:dataType]];
+}
+                     
+- (bool)dataTypeExists:(OPTLYDataStoreDataType)dataType
+{
+    return [self.fileManager subDirExists:[self stringForDataTypeEnum:dataType]];
 }
 
 - (void)removeFile:(nonnull NSString *)fileName
-              type:(OPTLYDataStoreDataType)fileType
+              type:(OPTLYDataStoreDataType)dataType
              error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager removeFile:fileName subDir:[self stringForDataTypeEnum:fileType] error:error];
+    [self.fileManager removeFile:fileName subDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
-- (void)removeDataType:(OPTLYDataStoreDataType)fileType
+- (void)removeDataType:(OPTLYDataStoreDataType)dataType
                  error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:fileType] error:error];
+    [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
 - (void)removeAllData:(NSError * _Nullable * _Nullable)error {
@@ -163,10 +201,10 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
             dataTypeString = kDatafile;
             break;
         case OPTLYDataStoreDataTypeEventDispatcher:
-            dataTypeString = kUserProfile;
+            dataTypeString = kEventDispatcher;
             break;
         case OPTLYDataStoreDataTypeUserProfile:
-            dataTypeString = kEventDispatcher;
+            dataTypeString = kUserProfile;
             break;
         default:
             break;

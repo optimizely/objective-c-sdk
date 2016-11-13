@@ -78,6 +78,16 @@
             subDir:(nullable NSString *)subDir;
 
 /**
+ * Determines if a sub directory (in the base directory) exists.
+ *
+ * @param subDir A string that represents the sub directory to check.
+ * @return A boolean value that states if a sub directory exists or not. 
+ *  This method will return false if the directory path could not be determined.
+ *
+ **/
+- (bool)subDirExists:(nullable NSString *)subDir;
+
+/**
  * Deletes a file.
  *
  * @param fileName A string that represents the name of the file to delete.
