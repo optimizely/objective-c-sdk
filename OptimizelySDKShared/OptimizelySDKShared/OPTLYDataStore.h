@@ -35,7 +35,7 @@ typedef enum {
 /// base directory where Optimizely-related data will persist
 @property (nonatomic, strong, readonly, nonnull) NSString *baseDirectory;
 
-// ---- NSFileMAnager ----
+// ---- NSFileManager ----
 /**
  * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
@@ -119,7 +119,7 @@ typedef enum {
                  error:(NSError * _Nullable * _Nullable)error;
 
 
-// ---- database table ----
+// ---- SQLite Table ----
 #if TARGET_OS_IOS
 /**
  * Inserts data into a database table.
