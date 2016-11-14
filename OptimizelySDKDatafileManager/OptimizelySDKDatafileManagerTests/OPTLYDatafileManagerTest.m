@@ -112,7 +112,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
                         completionWasCalled = true;
                         XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
                         [expectation fulfill];
-    }];
+                    }];
     
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
@@ -141,8 +141,8 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
     NSError *error;
     NSData *savedData = [self.dataStore getFile:kProjectId
-                                      type:OPTLYDataStoreDataTypeDatafile
-                                     error:&error];
+                                           type:OPTLYDataStoreDataTypeDatafile
+                                          error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(savedData);
     XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
@@ -157,7 +157,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     }];
     XCTAssertNotNil(datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
-
+    
     // setup stubbing and listener expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
@@ -170,15 +170,15 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     }];
     
     // Call download datafile
-
+    
     [datafileManager downloadDatafile:datafileManager.projectId
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                         XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
                         [expectation fulfill];
-    }];
+                    }];
     
     // make sure we were able to save the datafile
-    [self waitForExpectationsWithTimeout:2 handler:nil];    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
     // cleanup stubs
     [OHHTTPStubs removeStub:stub];
 }
