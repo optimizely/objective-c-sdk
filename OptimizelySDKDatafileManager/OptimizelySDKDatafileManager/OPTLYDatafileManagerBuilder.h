@@ -17,14 +17,22 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYDatafileManagerBuilder;
+@protocol OPTLYLogger;
 
 /// This is a block that takes the biulder values
 typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _Nullable builder);
 
 @interface OPTLYDatafileManagerBuilder : NSObject
 
-/// The time interval to regularly fetch the datafile.
+/** The time interval to regularly fetch the datafile.
+ * The default time interval is 0. This means that the datafile manager will NOT regularly poll for a new datafile during the app session.
+ */
 @property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
+/// The projectID of the project we want to get the datafile for.
+@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
+/// A logger to inject for purposes of error logging. If none is passed in, a default logger with log level `All` will be created.
+@property (nonatomic, readwrite, strong, nonnull) id<OPTLYLogger> logger;
+
 
 /// Create an Optimizely Datafile Manager Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
