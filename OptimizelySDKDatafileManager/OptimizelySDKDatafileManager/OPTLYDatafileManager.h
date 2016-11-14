@@ -16,8 +16,31 @@
 
 #import <Foundation/Foundation.h>
 #import "OPTLYDatafileManagerBuilder.h"
+#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 
-@interface OPTLYDatafileManager : NSObject
+@protocol OPTLYLogger;
+
+@protocol OPTLYDatafileManager <NSObject>
+
+/** 
+ * Request the datafile for the project ID
+ * @param projectId The project ID of the datafile to request.
+ * @param completion Completion handler.
+ */
+- (void)requestDatafile:(nonnull NSString *)projectId
+      completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+@end
+
+@interface OPTLYDatafileManager : NSObject<OPTLYDatafileManager>
+
+/// The time interval to regularly fetch the datafile.
+@property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
+/// The project ID of the datafile this datafile manager will monitor
+@property (nonatomic, readonly, strong, nonnull) NSString *projectId;
+/// A logger for the OPTLYDatafileManager to log messages.
+@property (nonatomic, readonly, strong, nonnull) id<OPTLYLogger> logger;
 
 /**
  * Init with builder block
