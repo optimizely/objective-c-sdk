@@ -37,6 +37,8 @@
 		2DB3D17D1DC816D600ECF72E /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */; };
 		2DB3D1801DC8181100ECF72E /* OPTLYManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB3D17A1DC816D600ECF72E /* OPTLYManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB3D1811DC8181400ECF72E /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */; };
+		2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
+		2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */; };
@@ -156,6 +158,7 @@
 		2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilderTest.m; sourceTree = "<group>"; };
 		2DB3D17A1DC816D600ECF72E /* OPTLYManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManagerBuilder.h; sourceTree = "<group>"; };
 		2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilder.m; sourceTree = "<group>"; };
+		2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerTest.m; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6042179012EFD11109128C34 /* Pods-OptimizelySDKSharedTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +337,7 @@
 				EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */,
 				EA3C68381DC1E68E00C578CA /* OptimizelySDKSharedTests.m */,
 				2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */,
+				2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */,
 				2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */,
 				EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */,
 				EA29D91C1DCC0F690034A4FE /* OPTLYFileManagerTest.m */,
@@ -829,6 +833,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
 				2D08FB711DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */,
 				EA1E16961DC87E0000F00033 /* OPTLYTestHelper.m in Sources */,
 				EA29D9571DCFD12F0034A4FE /* OPTLYDatabaseTest.m in Sources */,
@@ -861,6 +866,7 @@
 				EA1E16971DC87E0100F00033 /* OPTLYTestHelper.m in Sources */,
 				2DB3D1581DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				EA29D91E1DCC0F690034A4FE /* OPTLYFileManagerTest.m in Sources */,
+				2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
 				2DB3D1571DC8163A00ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
 				EA5249F11DC7F9D400AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */,
 			);
