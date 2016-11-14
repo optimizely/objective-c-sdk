@@ -25,6 +25,7 @@ extern NSString *const OPTLYLoggerMessagesBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment;
 extern NSString *const OPTLYLoggerMessagesAttributeInvalidFormat;
 extern NSString *const OPTLYLoggerMessagesForcedBucketingFailed;
+extern NSString *const OPTLYLoggerMessagesDatafileFetchIntervalInvalid;
 extern NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId;
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 
@@ -34,6 +35,7 @@ extern NSString *const OPTLYLoggerMessagesEventUnknown;
 extern NSString *const OPTLYLoggerMessagesAttributeUnknown;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknown;
 extern NSString *const OPTLYLoggerMessagesGetVariationFailed;
+extern NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage;
 
 // ---- info ----
 extern NSString *const OPTLYLoggerMessagesAudienceTargetingFail;
