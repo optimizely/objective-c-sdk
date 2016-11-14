@@ -15,6 +15,8 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManagerBuilder.h"
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
 @implementation OPTLYDatafileManagerBuilder
 
@@ -31,11 +33,33 @@
     self = [super init];
     if (self != nil) {
         block(self);
-    }
-    else {
-        return nil;
+        if (_datafileFetchInterval < 0) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDatafileFetchIntervalInvalid, _datafileFetchInterval]
+                          withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
+        if (_projectId == nil) {
+            [self.logger logMessage:OPTLYDatafileManagerInitializedWithoutProjectIdMessage
+                          withLevel:OptimizelyLogLevelWarning];
+            return nil;
+        }
     }
     return self;
+}
+
+- (NSTimeInterval)datafileFetchInterval {
+    if (!_datafileFetchInterval) {
+        // set default datafile Fetch interval to 0 so we never poll for the datafile
+        _datafileFetchInterval = 0;
+    }
+    return _datafileFetchInterval;
+}
+
+- (id<OPTLYLogger>)logger {
+    if (!_logger) {
+        _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+    }
+    return _logger;
 }
 
 @end
