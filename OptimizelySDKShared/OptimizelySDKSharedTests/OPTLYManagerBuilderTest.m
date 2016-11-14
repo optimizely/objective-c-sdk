@@ -16,8 +16,13 @@
 
 #import <XCTest/XCTest.h>
 
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYEventDispatcher.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"
+
+static NSString *const kProjectId = @"6372300739";
 
 @interface OPTLYManagerBuilderTest : XCTestCase
 
@@ -25,11 +30,83 @@
 
 @implementation OPTLYManagerBuilderTest
 
-- (void)testBasicBuilderReturnsManager {
+- (void)testManagerBuilderRequiresBuilderBlock {
+    OPTLYManager *manager = [[OPTLYManager alloc] init];
+    XCTAssertNil(manager);
+}
+
+- (void)testManagerBuilderRequiresProjectId {
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         
     }];
-    XCTAssertNotNil(manager);
+    XCTAssertNil(manager);
 }
+
+- (void)testManagerBuilderBuildsSuccessfulWithProjectId {
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    XCTAssertNotNil(manager);
+    XCTAssertNotNil(manager.projectId);
+    XCTAssertEqual(manager.projectId, kProjectId);
+    XCTAssertNotNil(manager.errorHandler);
+    XCTAssertNotNil(manager.eventDispatcher);
+    XCTAssertNotNil(manager.logger);
+}
+
+- (void)testBuilderCanAssignErrorHandler {
+    OPTLYErrorHandlerDefault *errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
+    
+    OPTLYManager *defaultManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    OPTLYManager *customManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.errorHandler = errorHandler;
+    }];
+    
+    XCTAssertNotNil(customManager);
+    XCTAssertNotNil(customManager.errorHandler);
+    XCTAssertNotEqual(errorHandler, defaultManager.errorHandler, @"Default OPTLYBuilder should create its own Error Handler");
+    XCTAssertEqual(errorHandler, customManager.errorHandler, @"Should be same object with custom Builder");
+}
+
+- (void)testBuilderCanAssignEventDispatcher {
+    id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
+    
+    OPTLYManager *defaultManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    OPTLYManager *customManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.eventDispatcher = eventDispatcher;
+    }];
+    
+    XCTAssertNotNil(customManager);
+    XCTAssertNotNil(customManager.eventDispatcher);
+    XCTAssertNotEqual(eventDispatcher, defaultManager.eventDispatcher, @"Default OPTLYBuilder should create its own Event Dispatcher");
+    XCTAssertEqual(eventDispatcher, customManager.eventDispatcher, @"Should be the same object with custom Builder");
+}
+
+- (void)testBuilderCanAssignLogger {
+    OPTLYLoggerDefault *logger = [[OPTLYLoggerDefault alloc] init];
+    
+    OPTLYManager *defaultOptimizely = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    OPTLYManager *customManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.logger = logger;
+    }];
+    
+    XCTAssertNotNil(customManager);
+    XCTAssertNotNil(customManager.logger);
+    XCTAssertNotEqual(logger, defaultOptimizely.logger, @"Default OPTLYBuilder should create its own Logger");
+    XCTAssertEqual(logger, customManager.logger, @"Should be the same object with custom builder");
+}
+
 
 @end

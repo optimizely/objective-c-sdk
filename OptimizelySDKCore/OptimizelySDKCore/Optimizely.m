@@ -36,6 +36,10 @@
     return [[self alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:block]];
 }
 
+- (instancetype)init {
+    return [self initWithBuilder:nil];
+}
+
 - (instancetype)initWithBuilder:(OPTLYBuilder *)builder {
     if (builder != nil) {
         self = [super init];
