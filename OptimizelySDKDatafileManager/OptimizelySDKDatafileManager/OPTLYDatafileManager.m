@@ -86,7 +86,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
                         data:datafile
                         type:OPTLYDataStoreDataTypeDatafile
                        error:&error];
-
+    
 }
 
 @end
