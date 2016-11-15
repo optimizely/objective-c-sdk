@@ -58,6 +58,16 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
     return item;
 }
 
+- (NSArray *)firstNItems:(NSInteger)numberOfItems {
+    NSArray *items;
+    if (!self.isEmpty) {
+        NSInteger endOfRange = numberOfItems > [self size] ? [self size] : numberOfItems;
+        NSRange range = NSMakeRange(0, endOfRange);
+        items = [self.mutableQueue subarrayWithRange:range];
+    }
+    return items;
+}
+
 - (id)dequeue {
     id item = nil;
     if (!self.isEmpty) {
@@ -65,6 +75,17 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
         [self.mutableQueue removeObject:item];
     }
     return item;
+}
+
+- (NSArray *)dequeueNItems:(NSInteger)numberOfItems {
+    NSArray *items;
+    if (!self.isEmpty) {
+        NSInteger endOfRange = numberOfItems > [self size] ? [self size] : numberOfItems;
+        NSRange range = NSMakeRange(0, endOfRange);
+        items = [self.mutableQueue subarrayWithRange:range];
+        [self.mutableQueue removeObjectsInRange:range];
+    }
+    return items;
 }
 
 - (NSInteger)size {
