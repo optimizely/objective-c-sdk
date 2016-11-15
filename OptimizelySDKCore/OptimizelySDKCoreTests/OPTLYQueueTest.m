@@ -45,23 +45,13 @@ static const NSInteger kMaxQueueSize = 3;
 
 - (void)tearDown {
     self.queue = nil;
-    self.testData1 = nil;
-    self.testData2 = nil;
-    self.testData3 = nil;
-    self.testData4 = nil;
     [super tearDown];
-}
-
-- (void)testQueueInit
-{
-    OPTLYQueue *queue = [OPTLYQueue new];
-    XCTAssert(queue.maxQueueSize == OPTLYQueueDefaultMaxSize, @"Invalid max queue size for default queue initialization.");
 }
 
 - (void)testQueueInitWithQueueSize {
     XCTAssertNotNil(self.queue);
     NSInteger queueCapacity = [self.queue maxQueueSize];
-    XCTAssert(queueCapacity == kMaxQueueSize, @"Incorrect max queue size");
+    XCTAssert(queueCapacity == kMaxQueueSize, @"incorrect max queue size");
 }
 
 // queue insertion should cap off at max size
@@ -72,7 +62,7 @@ static const NSInteger kMaxQueueSize = 3;
 }
 
 // dequeue'd value should be the oldest
-// queue size should decrease
+// queue size shoudl decrease
 - (void)testDequeue
 {
     NSString *dequeuedData = [self.queue dequeue];
@@ -81,13 +71,37 @@ static const NSInteger kMaxQueueSize = 3;
     XCTAssert(size == kMaxQueueSize-1, @"Invalid queue size after dequeue.");
 }
 
+- (void)testDequeueNItems
+{
+    NSInteger numberOfItems = 3;
+    NSArray *firstNItems = [self.queue dequeueNItems:numberOfItems];
+    XCTAssert([firstNItems count] == numberOfItems, @"Invalid number of items retrieved.");
+    XCTAssert([firstNItems[0] isEqualToString:self.testData1], @"Invalid data dequeued.");
+    XCTAssert([firstNItems[1] isEqualToString:self.testData2], @"Invalid data dequeued.");
+    XCTAssert([firstNItems[2] isEqualToString:self.testData3], @"Invalid data dequeued.");
+    NSInteger size = [self.queue size];
+    XCTAssert(size == 0, @"Invalid queue size.");
+}
+
 // the front value should be the oldest
 - (void)testFront
 {
     NSString *front = [self.queue front];
     XCTAssert([front isEqualToString:self.testData1], @"Invalid data dequeued.");
     NSInteger size = [self.queue size];
-    XCTAssert(size == kMaxQueueSize, @"Invalid queue size after dequeue.");
+    XCTAssert(size == kMaxQueueSize, @"Invalid queue size.");
+}
+
+- (void)testFirstNItems
+{
+    NSInteger numberOfItems = 3;
+    NSArray *firstNItems = [self.queue firstNItems:numberOfItems];
+    XCTAssert([firstNItems count] == numberOfItems, @"Invalid number of items retrieved.");
+    XCTAssert([firstNItems[0] isEqualToString:self.testData1], @"Invalid data dequeued.");
+    XCTAssert([firstNItems[1] isEqualToString:self.testData2], @"Invalid data dequeued.");
+    XCTAssert([firstNItems[2] isEqualToString:self.testData3], @"Invalid data dequeued.");
+    NSInteger size = [self.queue size];
+    XCTAssert(size == kMaxQueueSize, @"Invalid queue size.");
 }
 
 - (void)testIsFull

@@ -53,11 +53,26 @@ extern const NSInteger OPTLYQueueDefaultMaxSize;
 - (id)dequeue;
 
 /**
- * Returns a reference to the oldest item in the queue (the queue is not mutated).
+ * Returns and removes the oldest N item in the queue (the queue is mutated).
  *
- * @return A reference to the oldest item in the queue.
+ * @param numberOfItems The number of itmes to remove.
+ * @return The oldest N items from the queue.
+ */
+- (NSArray *)dequeueNItems:(NSInteger)numberOfItems;
+
+/**
+ * Returns a copy of the oldest item in the queue (the queue is not mutated).
+ *
+ * @return A copy of the oldest item in the queue.
  */
 - (id)front;
+
+/**
+ * Returns a copy of the oldest N items in the queue (the queue is not mutated).
+ *
+ * @return An array with a copy of the oldest N items in the queue.
+ */
+- (NSArray *)firstNItems:(NSInteger)numberOfItems;
 
 /**
  * Gets the size of the queue.
