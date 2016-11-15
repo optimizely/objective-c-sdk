@@ -78,9 +78,7 @@
     
     bool dirExists = [fileManager fileExistsAtPath:fileDir];
     return dirExists;
-    
 }
-
 
 - (void)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
@@ -99,7 +97,7 @@
     [fileManager removeItemAtPath:fileDir error:error];
 }
 
-- (void)removeAllData:(NSError * _Nullable * _Nullable)error
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:self.baseDir error:error];

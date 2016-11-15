@@ -14,6 +14,10 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OptimizelySDKCore/OPTLYLog.h>
+#import <OptimizelySDKCore/OPTLYQueue.h>
+#import "OPTLYDatabase.h"
+#import "OPTLYDatabaseEntity.h"
 #import "OPTLYDataStore.h"
 #import "OPTLYFileManager.h"
 #if TARGET_OS_IOS
@@ -28,11 +32,16 @@ static NSString * const kDatafile = @"datafile";
 static NSString * const kUserProfile = @"user-profile";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
+// table names
+static NSString *const kOPTLYDataStoreEventTypeImpression = @"EVENTS_IMPRESSION";
+static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION";
+
 @interface OPTLYDataStore()
 @property (nonatomic, strong) OPTLYFileManager *fileManager;
 #if TARGET_OS_IOS
 @property (nonatomic, strong) OPTLYDatabase *database;
 #endif
+@property (nonatomic, strong) NSDictionary *eventsCache;
 @end
 
 @implementation OPTLYDataStore
@@ -62,16 +71,44 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     return _fileManager;
 }
 
+- (void)removeAll {
+    [self removeAllData];
+    [self removeAllFiles:nil];
+}
+
 #if TARGET_OS_IOS
 - (OPTLYDatabase *)database
 {
     if (!_database) {
         NSString *databaseDirectory = [self.baseDirectory stringByAppendingPathComponent:[self stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
         _database = [[OPTLYDatabase alloc] initWithBaseDir:databaseDirectory];
+        
+        // create the events table
+        NSError *error = nil;
+        [self createTable:OPTLYDataStoreEventTypeImpression error:&error];
+        if (error) {
+            OPTLYLogError(@"Error creating impression event database table: %@", error);
+        }
+        [self createTable:OPTLYDataStoreEventTypeConversion error:&error];
+        if (error) {
+            OPTLYLogError(@"Error creating conversion event database table: %@", error);
+        }
     }
     return _database;
 }
 #endif
+
+- (NSDictionary *)eventsCache {
+    if (!_eventsCache) {
+        NSMutableDictionary *temp = [NSMutableDictionary new];
+        // create cache of impression events
+        temp[kOPTLYDataStoreEventTypeImpression] = [OPTLYQueue new];
+        // create cache of conversin events
+        temp[kOPTLYDataStoreEventTypeConversion] = [OPTLYQueue new];
+        _eventsCache = [NSDictionary dictionaryWithDictionary:temp];
+    }
+    return _eventsCache;
+}
 
 # pragma mark - NSUserDefault Data
 - (void)save:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType
@@ -93,7 +130,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 {
     NSString *key = [self stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:key];
+    [defaults setObject:nil forKey:key];
 }
 
 - (void)removeObjectInData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType
@@ -105,6 +142,12 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     [defaults setObject:data forKey:key];
 }
 
+- (void)removeAllData
+{
+    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfile; ++i) {
+        [self removeDataForType:i];
+    }
+}
 
 # pragma mark - File Manager Methods
 - (void)saveFile:(nonnull NSString *)fileName
@@ -124,7 +167,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
               type:(OPTLYDataStoreDataType)dataType {
     return [self.fileManager fileExists:fileName subDir:[self stringForDataTypeEnum:dataType]];
 }
-                     
+
 - (bool)dataTypeExists:(OPTLYDataStoreDataType)dataType
 {
     return [self.fileManager subDirExists:[self stringForDataTypeEnum:dataType]];
@@ -136,54 +179,113 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     [self.fileManager removeFile:fileName subDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
-- (void)removeDataType:(OPTLYDataStoreDataType)dataType
-                 error:(NSError * _Nullable * _Nullable)error {
+- (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
+                         error:(NSError * _Nullable * _Nullable)error {
     [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:dataType] error:error];
 }
 
-- (void)removeAllData:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager removeAllData:error];
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error {
+    [self.fileManager removeAllFiles:error];
+}
+
+# pragma mark - Cached Data Methods
+- (void)insertCachedData:(nonnull NSDictionary *)data
+               eventType:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    [queue enqueue:data];
+}
+
+- (nullable NSDictionary *)retrieveCachedItem:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    return [queue front];
+}
+
+- (nullable NSArray *)retrieveNCachedItems:(NSInteger)numberOfItems
+                                 eventType:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    return [queue firstNItems:numberOfItems];
+}
+
+- (void)removeCachedItem:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    [queue dequeue];
+}
+
+- (void)removeNCachedItem:(NSInteger)numberOfItems
+                eventType:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    [queue dequeueNItems:numberOfItems];
+}
+
+- (NSInteger)numberOfCachedItems:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    OPTLYQueue *queue = self.eventsCache[eventTypeName];
+    return [queue size];
 }
 
 # pragma mark - Database Methods (only available on iOS)
 #if TARGET_OS_IOS
+- (void)createTable:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error
+{
+    NSString *tableName = [self stringForDataEventEnum:eventType];
+    [self.database createTable:tableName error:error];
+}
+
 - (void)insertData:(nonnull NSDictionary *)data
-             table:(nonnull NSString *)tableName
+         eventType:(OPTLYDataStoreEventType)eventType
              error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     [self.database insertData:data table:tableName error:error];
 }
 
-- (void)deleteEntity:(nonnull NSString *)entityId
-               table:(nonnull NSString *)tableName
-               error:(NSError * _Nullable * _Nullable)error
+- (void)deleteEvent:(nonnull NSString *)entityId
+          eventType:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     [self.database deleteEntity:entityId table:tableName error:error];
 }
 
-- (void)deleteEntities:(nonnull NSArray *)entityIds
-                 table:(nonnull NSString *)tableName
-                 error:(NSError * _Nullable * _Nullable)error
+- (void)deleteEvents:(nonnull NSArray *)entityIds
+           eventType:(OPTLYDataStoreEventType)eventType
+               error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     [self.database deleteEntities:entityIds table:tableName error:error];
 }
 
-- (nullable NSArray *)retrieveAllEntries:(nonnull NSString *)tableName
-                                   error:(NSError * _Nullable * _Nullable)error
+- (nullable NSArray *)retrieveAllEvents:(OPTLYDataStoreEventType)eventType
+                                  error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     return [self.database retrieveAllEntries:tableName error:error];
 }
 
-- (nullable NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
-                                      table:(nonnull NSString *)tableName
-                                      error:(NSError * _Nullable * _Nullable)error
+- (nullable NSArray *)retrieveFirstNEvents:(NSInteger)numberOfEntries
+                                 eventType:(OPTLYDataStoreEventType)eventType
+                                     error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     return [self.database retrieveFirstNEntries:numberOfEntries table:tableName error:error];
 }
 
-- (NSInteger)numberOfRows:(nonnull NSString *)tableName
-                    error:(NSError * _Nullable * _Nullable)error
+- (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
+                      error:(NSError * _Nullable * _Nullable)error
 {
+    NSString *tableName = [self stringForDataEventEnum:eventType];
     return [self.database numberOfRows:tableName error:error];
 }
 #endif
@@ -209,7 +311,23 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
         default:
             break;
     }
-    
     return dataTypeString;
+}
+
+- (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType
+{
+    NSString *eventTypeString = @"";
+    
+    switch (eventType) {
+        case OPTLYDataStoreEventTypeImpression:
+            eventTypeString = kOPTLYDataStoreEventTypeImpression;
+            break;
+        case OPTLYDataStoreEventTypeConversion:
+            eventTypeString = kOPTLYDataStoreEventTypeConversion;
+            break;
+        default:
+            break;
+    }
+    return eventTypeString;
 }
 @end

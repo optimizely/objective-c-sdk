@@ -39,7 +39,7 @@
  * Saves a file.
  * If a file of the same name type exists already, then that file will be overwritten.
  *
- * @param fileName A string that represents the name of the file to save. 
+ * @param fileName A string that represents the name of the file to save.
  *  Can include a file suffix if desired (e.g., .txt or .json).
  * @param data The data to save to the file.
  * @param subDir A path sub directory to help segment data (e.g., datafile, user profile, event dispatcher, etc.)
@@ -81,7 +81,7 @@
  * Determines if a sub directory (in the base directory) exists.
  *
  * @param subDir A string that represents the sub directory to check.
- * @return A boolean value that states if a sub directory exists or not. 
+ * @return A boolean value that states if a sub directory exists or not.
  *  This method will return false if the directory path could not be determined.
  *
  **/
@@ -106,7 +106,7 @@
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (void)removeAllData:(NSError * _Nullable * _Nullable)error;
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Removes a particular data type.

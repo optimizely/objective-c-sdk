@@ -31,12 +31,14 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 @interface OPTLYDataStore(Test)
 - (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
+- (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
 @end
 
 @interface OPTLYDataStoreTest : XCTestCase
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
-@property (nonatomic, strong) NSData *testData;
+@property (nonatomic, strong) NSData *testFileData;
 @property (nonatomic, strong) NSDictionary *testDataNSUserDefault;
+@property (nonatomic, strong) NSDictionary *testDatabaseData;
 @end
 
 @implementation OPTLYDataStoreTest
@@ -44,22 +46,9 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 - (void)setUp {
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
-    self.testData = [kTestString dataUsingEncoding:NSUTF8StringEncoding];
+    self.testFileData = [kTestString dataUsingEncoding:NSUTF8StringEncoding];
     self.testDataNSUserDefault = @{@"testKey1":@"testValue1", @"testKey2" : @"testKey2"};
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-}
-
-- (void)tearDown {
-    [self.dataStore removeAllData:nil];
-    self.testData = nil;
-    [super tearDown];
-}
-
-#if TARGET_OS_IOS
-- (void)testDatabaseAPIs {
-    NSError *error = nil;
-    
-    NSDictionary *testData =
+    self.testDatabaseData =
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
@@ -84,34 +73,70 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
       @"clientEngine": @"objective-c-sdk-core",
       @"eventFeatures": @[]
       };
+}
+
+- (void)tearDown {
+    [self.dataStore removeAllData];
+    [self.dataStore removeAllFiles:nil];
+    self.testFileData = nil;
+    self.testDataNSUserDefault = nil;
+    self.testDatabaseData = nil;
+    [super tearDown];
+}
+
+- (void)testRemoveAll
+{
+    NSError *error;
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    
+    [self.dataStore removeAll];
+    
+    // check database
+    NSArray *results = [self.dataStore retrieveAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
+    XCTAssert([results count] == 0, @"RemoveAll failed to remove all events.");
+    
+    // check files
+    bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
+    XCTAssertFalse(fileExists, @"RemoveAll failed to remove file.");
+    
+    // check NSUserDefault
+    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile], @"RemoveAll failed to remove NSUserDefault data.");
+    
+}
+
+#if TARGET_OS_IOS
+- (void)testDatabaseAPIs {
+    NSError *error = nil;
     
     // test insert
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
-    [self.dataStore insertData:testData table:OPTLYDatabaseEventsTable error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
     
     // test retrieveFirstNEntries
     NSInteger n = 3;
-    NSArray *results = [self.dataStore retrieveFirstNEntries:n table:OPTLYDatabaseEventsTable error:&error];
+    NSArray *results = [self.dataStore retrieveFirstNEvents:n eventType:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == n, @"Data insertion failed or invalid number of results retrieved from retrieveFirstNEntries.");
     
     // test retrieveAllEntries
     NSInteger totalEntity = 6;
-    results = [self.dataStore retrieveAllEntries:OPTLYDatabaseEventsTable error:&error];
-    NSInteger numberOfRows = [self.dataStore numberOfRows:OPTLYDatabaseEventsTable error:&error];
+    results = [self.dataStore retrieveAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
+    NSInteger numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == totalEntity, @"Data insertion failed or invalid number of results retrieved from retrieveAllEntries");
     
-    // test numberOfRows
-    XCTAssert(numberOfRows == totalEntity, @"Invalid count from numberOfRows.");
+    // test numberOfEvents
+    XCTAssert(numberOfEvents == totalEntity, @"Invalid count from numberOfEvents.");
     
     // test contents of retrieveAllEntries
     OPTLYDatabaseEntity *entity = results[0];
     NSString *entityString = entity.entityValue;
     NSDictionary *resultData = [NSJSONSerialization JSONObjectWithData:[entityString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    XCTAssert([resultData isEqualToDictionary:testData], @"Invalid result data retrieved.");
+    XCTAssert([resultData isEqualToDictionary:self.testDatabaseData], @"Invalid result data retrieved.");
     
     // test deleteEntities
     NSMutableArray *entityIds = [NSMutableArray new];
@@ -119,10 +144,10 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
         NSNumber *resultId = entity.entityId;
         [entityIds addObject:resultId];
     }
-    [self.dataStore deleteEntities:entityIds table:OPTLYDatabaseEventsTable error:&error];
+    [self.dataStore deleteEvents:entityIds eventType:OPTLYDataStoreEventTypeImpression error:&error];
     
-    numberOfRows = [self.dataStore numberOfRows:OPTLYDatabaseEventsTable error:&error];
-    XCTAssert(numberOfRows == 0, @"Deletion failed. Invalid number of results retrieved from database");
+    numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
+    XCTAssert(numberOfEvents == 0, @"Deletion failed. Invalid number of results retrieved from database");
 }
 #endif
 
@@ -132,7 +157,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 - (void)testSaveFile {
     
     NSError *error;
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
     
     NSFileManager *defaultFileManager= [NSFileManager defaultManager];
     
@@ -146,21 +171,21 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     // check the contents of the file
     NSData *fileData = [NSData dataWithContentsOfFile:filePath options:0 error:&error];
     XCTAssert(fileData != nil, @"Saved file has no content.");
-    XCTAssert([fileData isEqualToData:self.testData],  @"Invalid file content of saved file.");
+    XCTAssert([fileData isEqualToData:self.testFileData],  @"Invalid file content of saved file.");
 }
 
 - (void)testGetFile {
     NSError *error;
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:&error];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:&error];
     NSData *fileData =[self.dataStore getFile:kTestFileName type:OPTLYDataStoreDataTypeDatafile error:&error];
-    XCTAssert([fileData isEqualToData:self.testData], @"Invalid file content from retrieved file.");
+    XCTAssert([fileData isEqualToData:self.testFileData], @"Invalid file content from retrieved file.");
     fileData = [self.dataStore getFile:kBadTestFileName type:OPTLYDataStoreDataTypeDatafile error:&error];
     XCTAssert(fileData == nil, @"Bad file name. getFile should return nil.");
 }
 
 - (void)testFileExists {
     NSError *error;
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:&error];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:&error];
     
     // check that the file exists
     bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatafile];
@@ -173,26 +198,26 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 - (void)testDataTypeExists {
     NSError *error;
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:&error];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:&error];
     
     // check that the file exists after the file save
     bool dataTypeExists = [self.dataStore dataTypeExists:OPTLYDataStoreDataTypeDatafile];
     XCTAssertTrue(dataTypeExists, @"Data type should exist.");
     
     // check that the file does not exist after the file removal
-    [self.dataStore removeDataType:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore removeFilesForDataType:OPTLYDataStoreDataTypeDatafile error:nil];
     dataTypeExists = [self.dataStore dataTypeExists:OPTLYDataStoreDataTypeDatafile];
     XCTAssertFalse(dataTypeExists, @"Deleted data type should not exist.");
 }
 
 - (void)testRemoveDataType
 {
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
     // check that the file exists after the file save
     bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatafile];
     XCTAssertTrue(fileExists, @"Saved file should exist.");
     
-    [self.dataStore removeDataType:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore removeFilesForDataType:OPTLYDataStoreDataTypeDatafile error:nil];
     
     bool isDir = true;
     NSFileManager *defaultFileManager= [NSFileManager defaultManager];
@@ -201,12 +226,12 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     XCTAssertFalse(optlyDir, @"Datafile subdirectory should not exist.");
 }
 
-- (void)testRemoveAllData
+- (void)testRemoveAllFiles
 {
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatabase error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeDatafile error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeEventDispatcher error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testData type:OPTLYDataStoreDataTypeUserProfile error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatabase error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeEventDispatcher error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeUserProfile error:nil];
     
     bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
     XCTAssertTrue(fileExists, @"Saved database file should exist.");
@@ -217,7 +242,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeUserProfile];
     XCTAssertTrue(fileExists, @"Saved user profile file should exist.");
     
-    [self.dataStore removeAllData:nil];
+    [self.dataStore removeAllFiles:nil];
     
     bool isDir = true;
     NSFileManager *defaultFileManager= [NSFileManager defaultManager];
@@ -228,6 +253,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 // NSUserDefault
 - (void)testSaveData
 {
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *retrievedData = [defaults objectForKey:[self.dataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfile]];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data save.");
@@ -235,12 +261,14 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 -(void)testGetDataForType
 {
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data retrieved.");
 }
 
 - (void)testRemoveDataForType
 {
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     [self.dataStore removeDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
     [self.dataStore removeDataForType:OPTLYDataStoreDataTypeUserProfile];
@@ -249,10 +277,23 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 - (void)testRemovedObjectInData
 {
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     [self.dataStore removeObjectInData:@"testKey2" type:OPTLYDataStoreDataTypeUserProfile];
     NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSDictionary *data = @{@"testKey1":@"testValue1"};
     XCTAssert([data isEqualToDictionary:retrievedData], @"Invalid object removed from data.");
 }
 
+- (void)testRemoveAllData
+{
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatabase];
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatafile];
+    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeEventDispatcher];
+    [self.dataStore removeAllData];
+    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile], @"User profile data should not exist.");
+    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeDatabase], @"Database data should not exixt.");
+    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
+    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
+}
 @end

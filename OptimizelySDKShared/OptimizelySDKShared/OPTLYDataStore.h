@@ -16,12 +16,19 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
+{
     OPTLYDataStoreDataTypeDatabase,
     OPTLYDataStoreDataTypeDatafile,
     OPTLYDataStoreDataTypeEventDispatcher,
     OPTLYDataStoreDataTypeUserProfile,
-} OPTLYDataStoreDataType;
+};
+
+typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
+{
+    OPTLYDataStoreEventTypeImpression,
+    OPTLYDataStoreEventTypeConversion,
+};
 
 @class OPTLYFileManager;
 
@@ -34,6 +41,11 @@ typedef enum {
 
 /// base directory where Optimizely-related data will persist
 @property (nonatomic, strong, readonly, nonnull) NSString *baseDirectory;
+
+/**
+ * Removes all data persisted by Optimizely
+ **/
+- (void)removeAll;
 
 // ---- NSFileManager ----
 /**
@@ -106,7 +118,7 @@ typedef enum {
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (void)removeAllData:(NSError * _Nullable * _Nullable)error;
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Removes a particular data type.
@@ -115,76 +127,86 @@ typedef enum {
  * @param error An error object which will store any errors if the directory removal fails.
  *
  **/
-- (void)removeDataType:(OPTLYDataStoreDataType)dataType
-                 error:(NSError * _Nullable * _Nullable)error;
+- (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
+                         error:(NSError * _Nullable * _Nullable)error;
 
 
 // ---- SQLite Table ----
+// Used for event storage
 #if TARGET_OS_IOS
+/**
+ * Creates a new table.
+ *
+ * @param eventType The event type of the data to be stored in the new table.
+ * @param error An error object is returned if an error occurs.
+ **/
+- (void)createTable:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error;
+
 /**
  * Inserts data into a database table.
  *
  * @param data The data to be written into the table.
- * @param tableName The database table name.
+ * @param eventType The event type of the data that needs to be saved.
  * @param error An error object is returned if an error occurs.
  */
 - (void)insertData:(nonnull NSDictionary *)data
-             table:(nonnull NSString *)tableName
+         eventType:(OPTLYDataStoreEventType)eventType
              error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes data from a database table.
  *
  * @param entityId The entity id to remove from the table.
- * @param tableName The database table name.
+ * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteEntity:(nonnull NSString *)entityId
-               table:(nonnull NSString *)tableName
-               error:(NSError * _Nullable * _Nullable)error;
+- (void)deleteEvent:(nonnull NSString *)entityId
+          eventType:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes data from a database table.
  *
  * @param entityIds The entity ids to remove from the table.
- * @param tableName The database table name.
+ * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteEntities:(nonnull NSArray *)entityIds
-                 table:(nonnull NSString *)tableName
-                 error:(NSError * _Nullable * _Nullable)error;
+- (void)deleteEvents:(nonnull NSArray *)entityIds
+           eventType:(OPTLYDataStoreEventType)eventType
+               error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Retrieve all entries from the table.
  *
- * @param tableName The database table name.
+ * @param eventType The event type of the data that needs to be retrieved.
  * @param error An error object is returned if an error occurs.
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
-- (nullable NSArray *)retrieveAllEntries:(nonnull NSString *)tableName
-                                   error:(NSError * _Nullable * _Nullable)error;
+- (nullable NSArray *)retrieveAllEvents:(OPTLYDataStoreEventType)eventType
+                                  error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Retrieves a set of N entries from the table.
  *
  * @param numberOfEntries The number of entries to read from the table
- * @param tableName The database table name.
+ * @param eventType The event type of the data that needs to be retrieved.
  * @param error An error object is returned if an error occurs.
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
-- (nullable NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
-                                      table:(nonnull NSString *)tableName
-                                      error:(NSError * _Nullable * _Nullable)error;
+- (nullable NSArray *)retrieveFirstNEvents:(NSInteger)numberOfEntries
+                                 eventType:(OPTLYDataStoreEventType)eventType
+                                     error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Returns the number of rows of a table.
+ * Returns the number of saved events.
  *
- * @param tableName The database table name.
+ * @param eventType The event type of the data.
  * @param error An error object is returned if an error occurs.
  * @return The number of rows in a table.
  */
-- (NSInteger)numberOfRows:(nonnull NSString *)tableName
-                    error:(NSError * _Nullable * _Nullable)error;
+- (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
+                      error:(NSError * _Nullable * _Nullable)error;
 #endif
 
 // ---- NSUserDefault ----
@@ -212,6 +234,11 @@ typedef enum {
 - (void)removeDataForType:(OPTLYDataStoreDataType)dataType;
 
 /**
+ * Removes all Optimizely-related data in NSUserDefault.
+ */
+- (void)removeAllData;
+
+/**
  * Removes an object from the dictionary data saved in NSUserDefault.
  *
  * @param dataKey The key for the dictionary data to remove.
@@ -219,4 +246,19 @@ typedef enum {
  */
 - (void)removeObjectInData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType;
 
+// ---- Cached Data ----
+- (void)insertCachedData:(nonnull NSDictionary *)data
+               eventType:(OPTLYDataStoreEventType)eventType;
+
+- (nullable NSDictionary *)retrieveCachedItem:(OPTLYDataStoreEventType)eventType;
+
+- (nullable NSArray *)retrieveNCachedItems:(NSInteger)numberOfItems
+                                 eventType:(OPTLYDataStoreEventType)eventType;
+
+- (void)removeCachedItem:(OPTLYDataStoreEventType)eventType;
+
+- (void)removeNCachedItem:(NSInteger)numberOfItems
+                eventType:(OPTLYDataStoreEventType)eventType;
+
+- (NSInteger)numberOfCachedItems:(OPTLYDataStoreEventType)eventType;
 @end

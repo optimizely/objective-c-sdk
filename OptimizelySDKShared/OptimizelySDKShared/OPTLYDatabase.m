@@ -20,9 +20,6 @@
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
 
-// table names
-NSString *const OPTLYDatabaseEventsTable = @"EVENTS";
-
 // table file name
 static NSString * const kDatabaseFileName = @"optly-database.sqlite";
 
@@ -67,12 +64,6 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         NSString *databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
         _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:databaseFilePath];
         
-        // create the events table
-        NSError *error = nil;
-        [self createTable:OPTLYDatabaseEventsTable error:&error];
-        if (error) {
-            OPTLYLogError(@"Error creating database table: %@", error);
-        }
     }
     return self;
 }
@@ -92,8 +83,8 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         if (![db executeUpdate:query]) {
             if (error) {
                 *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                  code:OPTLYErrorTypesDatabase
-                                              userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString([db lastErrorMessage], nil)}];
+                                             code:OPTLYErrorTypesDatabase
+                                         userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString([db lastErrorMessage], nil)}];
             }
             OPTLYLogError(@"Unable to create Optimizely table: %@ %@", tableName, [db lastErrorMessage]);
         }
@@ -105,7 +96,9 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
              error:(NSError **)error
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
-        NSString *json = [self jsonStringFromDictionary:data];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
         NSNumber *timeStamp = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
         NSMutableString *query = [NSMutableString stringWithFormat:kInsertEntityQuery, tableName];
         if (![db executeUpdate:query, json, timeStamp]) {
@@ -115,7 +108,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
                                          userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString([db lastErrorMessage], nil)}];
             }
             OPTLYLogError(@"Unable to store data to Optimizely table: %@ %@ %@", tableName, json, [db lastErrorMessage]);
-        } 
+        }
     }];
 }
 
@@ -136,9 +129,9 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         if (![db executeUpdate:query]) {
             if (error) {
                 *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                            code:OPTLYErrorTypesDatabase
-                                        userInfo:@{NSLocalizedDescriptionKey :
-                                                       NSLocalizedString([db lastErrorMessage], nil)}];
+                                             code:OPTLYErrorTypesDatabase
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        NSLocalizedString([db lastErrorMessage], nil)}];
             }
             OPTLYLogError(@"Unable to remove rows of Optimizely table: %@ %@", tableName, [db lastErrorMessage]);
         }
@@ -212,19 +205,6 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }];
     
     return rows;
-}
-
-# pragma mark -- Helper Methods
-
-- (NSString *)jsonStringFromDictionary:(NSDictionary *)dictionary {
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return jsonStr;
-}
-
-- (NSDictionary *)dictionaryFromJSON:(NSString *)JSON {
-    return [NSJSONSerialization JSONObjectWithData:[JSON dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 }
 
 @end

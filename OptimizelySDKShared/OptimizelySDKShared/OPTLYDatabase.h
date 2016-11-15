@@ -17,20 +17,26 @@
 /*
  This class manages all the database reads and writes and will primiarly be used to store events or logs.
  Each row entry contains three columns [OPTLYDatabaseEntity]:
-    1. id [int]
-    2. json [text]
-    3. timestamp [int]
+ 1. id [int]
+ 2. json [text]
+ 3. timestamp [int]
  The table is stored in the Library directory: .../optimizely/database/optly-database.sqlite
- This feature is not available for tvOS as storage is limited. 
-*/
+ This feature is not available for tvOS as storage is limited.
+ */
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-extern NSString *const OPTLYDatabaseEventsTable;
-NS_ASSUME_NONNULL_END
-
 @interface OPTLYDatabase : NSObject
+
+/**
+ * Creates a new table.
+ *
+ * @param tableName The database table name.
+ * @param error An error object is returned if an error occurs.
+ **/
+- (void)createTable:(nonnull NSString *)tableName
+              error:(NSError * _Nullable * _Nullable)error;
+
 /**
  * File manager initializer.
  *
@@ -53,7 +59,7 @@ NS_ASSUME_NONNULL_END
 /**
  * Deletes data from a database table.
  *
- * @param entityId The entity id to remove from the table. 
+ * @param entityId The entity id to remove from the table.
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
@@ -99,7 +105,7 @@ NS_ASSUME_NONNULL_END
  *
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
- * @return The number of rows in a table. 
+ * @return The number of rows in a table.
  */
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
                     error:(NSError * _Nullable * _Nullable)error;
