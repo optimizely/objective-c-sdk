@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
+#import <OptimizelySDKShared/OPTLYFileManager.h>
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 
 static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
@@ -22,6 +23,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 @interface OPTLYDatafileManager ()
 
+@property OPTLYFileManager *fileManager;
 @property OPTLYNetworkService *networkService;
 
 @end
@@ -41,6 +43,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _projectId = builder.projectId;
             _logger = builder.logger;
             _networkService = [[OPTLYNetworkService alloc] init];
+            _fileManager = [OPTLYFileManager new];
             // Only fetch the datafile if the polling interval is greater than 0
             if (self.datafileFetchInterval > 0) {
                 // TODO: Josh W. start timer to poll for the datafile
@@ -60,6 +63,15 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 - (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
     [self.networkService downloadProjectConfig:self.projectId
                         completionHandler:completion];
+}
+
+- (void)saveDatafile:(NSData *)datafile {
+    NSError *error;
+    [self.fileManager saveFile:self.projectId
+                          data:datafile
+                          type:OPTLYFileManagerDataTypeDatafile
+                         error:&error];
+
 }
 
 @end
