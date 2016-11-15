@@ -87,15 +87,19 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 - (void)testRemoveAll
 {
     NSError *error;
+#if TARGET_OS_IOS
     [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+#endif
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
     [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     
     [self.dataStore removeAll];
     
+#if TARGET_OS_IOS
     // check database
     NSArray *results = [self.dataStore retrieveAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == 0, @"RemoveAll failed to remove all events.");
+#endif
     
     // check files
     bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
