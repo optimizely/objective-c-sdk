@@ -14,10 +14,6 @@
 
 #import "OPTLYDatafileManager.h"
 
-@interface OPTLYDatafileManagerTest : XCTestCase
-
-@end
-
 @interface OPTLYDatafileManager ()
 
 - (void)saveDatafile:(NSData *)datafile;
@@ -40,7 +36,46 @@
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 
+@interface OPTLYDatafileManagerTest : XCTestCase
+
+@property OPTLYDataStore *dataStore;
+
+@end
+
 @implementation OPTLYDatafileManagerTest
+
++ (void)setUp {
+    [super setUp];
+    
+    // stub all requests
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+        // every requests passes this test
+        return true;
+    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        // return bad request
+        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
+                                          statusCode:400
+                                             headers:@{@"Content-Type":@"application/json"}];
+    }];
+}
+
++ (void)tearDown {
+    [super tearDown];
+    // make sure we have removed all stubs
+    [OHHTTPStubs removeAllStubs];
+}
+
+- (void)setUp {
+    [super setUp];
+    self.dataStore = [OPTLYDataStore new];
+    [self.dataStore removeAll:nil];
+}
+
+- (void)tearDown {
+    [super tearDown];
+    [self.dataStore removeAll:nil];
+    self.dataStore = nil;
+}
 
 - (void)testRequestDatafileHandlesCompletionEvenWithBadRequest {
     // setup datafile manager
@@ -79,12 +114,14 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [OHHTTPStubs removeStub:stub];
 }
 
-- (void)testSaveDatafile {
-    // setup datafile manager
+- (void)testSaveDatafileMethod {
+    // setup datafile manager and datastore
+    OPTLYDataStore *dataStore = [OPTLYDataStore new];
     OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
     XCTAssertNotNil(datafileManager);
+    XCTAssertFalse([dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     
     // get the datafile
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
@@ -93,8 +130,6 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [datafileManager saveDatafile:datafile];
     
     // test the datafile was saved correctly
-    // check file storage
-    OPTLYDataStore *dataStore = [OPTLYDataStore new];
     bool fileExists = [dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
     XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
     NSError *error;
@@ -106,4 +141,13 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
     XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivilent to the datafile we wanted to save to disk");
 }
+
+- (void)testDatafileManagerPullsDatafileOnInitialization {
+    // setup stubbing
+    
+    // instantiate datafile manager (it should fire off a request)
+    
+    
+}
+
 @end
