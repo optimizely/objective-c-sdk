@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "OPTLYTestHelper.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKShared/OPTLYDataStore.h>
 #import <OptimizelySDKShared/OPTLYFileManager.h>
 
 #import "OPTLYDatafileManager.h"
@@ -23,10 +24,16 @@
 
 @end
 
+@interface OPTLYDataStore ()
+
+@property OPTLYFileManager *fileManager;
+- (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
+
+@end
+
 @interface OPTLYFileManager ()
 
 @property NSString *baseDir;
-- (NSString *)stringForDataTypeEnum:(OPTLYFileManagerDataType)dataType;
 
 @end
 
@@ -86,20 +93,17 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [datafileManager saveDatafile:datafile];
     
     // test the datafile was saved correctly
-    NSString *expectedFilePath = [self getExpectedFilePathForProjectId:datafileManager.projectId];
-    NSFileManager *defaultFileManager = [NSFileManager defaultManager];
-    bool fileExists = [defaultFileManager fileExistsAtPath:expectedFilePath];
-    XCTAssertTrue(fileExists, @"datafile was not saved properly");
-    NSData *fileData = [NSData dataWithContentsOfFile:expectedFilePath options:0 error:nil];
-    XCTAssert(fileData != nil, @"Saved file has no content.");
-    XCTAssert([fileData isEqualToData:datafile],  @"Invalid file content of saved file.");
+    // check file storage
+    OPTLYDataStore *dataStore = [OPTLYDataStore new];
+    bool fileExists = [dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
+    XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
+    NSError *error;
+    NSData *savedData = [dataStore getFile:kProjectId
+                                      type:OPTLYDataStoreDataTypeDatafile
+                                     error:&error];
+    XCTAssertNil(error);
+    XCTAssertNotNil(savedData);
+    XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
+    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivilent to the datafile we wanted to save to disk");
 }
-
-- (NSString *)getExpectedFilePathForProjectId:(NSString *)projectId {
-    OPTLYFileManager *fileManager = [OPTLYFileManager new];
-    NSString *fileDir = [fileManager.baseDir stringByAppendingPathComponent:[fileManager stringForDataTypeEnum:OPTLYFileManagerDataTypeDatafile]];
-    NSString *filePath = [fileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", projectId]];
-    return filePath;
-}
-
 @end

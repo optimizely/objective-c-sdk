@@ -77,15 +77,15 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 - (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
     [self.networkService downloadProjectConfig:self.projectId
-                        completionHandler:completion];
+                             completionHandler:completion];
 }
 
 - (void)saveDatafile:(NSData *)datafile {
     NSError *error;
     [self.dataStore saveFile:self.projectId
-                          data:datafile
-                          type:OPTLYDataStoreDataTypeDatabase
-                         error:&error];
+                        data:datafile
+                        type:OPTLYDataStoreDataTypeDatafile
+                       error:&error];
 
 }
 
