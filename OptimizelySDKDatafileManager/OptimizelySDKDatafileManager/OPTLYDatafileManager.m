@@ -44,6 +44,10 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _logger = builder.logger;
             _networkService = [[OPTLYNetworkService alloc] init];
             _fileManager = [OPTLYFileManager new];
+            
+            // download datafile when we start the datafile manager
+            [self downloadDatafile];
+            
             // Only fetch the datafile if the polling interval is greater than 0
             if (self.datafileFetchInterval > 0) {
                 // TODO: Josh W. start timer to poll for the datafile
@@ -56,8 +60,19 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     }
 }
 
-- (NSString *)datafileURLForProject:(NSString *)projectID {
-    return [NSString stringWithFormat:kCDNAddressFormat, projectID];
+- (void)downloadDatafile {
+    [self requestDatafile:self.projectId
+        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error != nil) {
+                // TODO: Josh W. handle errors
+            }
+            else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+                [self saveDatafile:data];
+            }
+            else {
+                // TODO: Josh W. handle bad response
+            }
+        }];
 }
 
 - (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
