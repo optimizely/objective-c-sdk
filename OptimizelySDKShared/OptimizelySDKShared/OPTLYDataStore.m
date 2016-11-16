@@ -71,10 +71,10 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     return _fileManager;
 }
 
-- (void)removeAll {
+- (void)removeAll:(NSError * _Nullable * _Nullable)error {
     [self removeAllUserData];
-    [self removeAllFiles:nil]; 
-    [self removeCachedEvents];
+    [self removeEventsData:error];
+    [self removeAllFiles:error];
 }
 
 #if TARGET_OS_IOS
@@ -187,6 +187,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (void)removeAllFiles:(NSError * _Nullable * _Nullable)error {
     [self.fileManager removeAllFiles:error];
+    self.fileManager = nil;
 }
 
 # pragma mark - Event Storage Methods
@@ -203,19 +204,19 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (void)saveData:(nonnull NSDictionary *)data
        eventType:(OPTLYDataStoreEventType)eventType
-       cacheData:(bool)cacheData
+      cachedData:(bool)cachedData
            error:(NSError * _Nullable * _Nullable)error
 {
     // tvOS can only save to cached data
 #if TARGET_OS_TV
-    if (!cacheData) {
-        cacheData = true;
+    if (!cachedData) {
+        cachedData = true;
         OPTLYLogError(@"tvOS can only save to cached data.");
     }
 #endif
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    if (cacheData) {
+    if (cachedData) {
         OPTLYQueue *queue = self.eventsCache[eventTypeName];
         [queue enqueue:data];
     } else {
@@ -227,20 +228,20 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(OPTLYDataStoreEventType)eventType
-                            cacheData:(bool)cacheData
+                           cachedData:(bool)cachedData
                                 error:(NSError * _Nullable * _Nullable)error
 {
     // tvOS can only read from cached data
 #if TARGET_OS_TV
-    if (!cacheData) {
-        cacheData = true;
+    if (!cachedData) {
+        cachedData = true;
         OPTLYLogInfo(@"tvOS can only read from cached data.");
     }
 #endif
     
     NSMutableArray *firstNEvents = [NSMutableArray new];
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    if (cacheData) {
+    if (cachedData) {
         OPTLYQueue *queue = self.eventsCache[eventTypeName];
         [firstNEvents addObjectsFromArray:[queue firstNItems:numberOfEvents]];
     } else {
@@ -257,45 +258,45 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 
 - (nullable NSDictionary *)getOldestEvent:(OPTLYDataStoreEventType)eventType
-                                cacheData:(bool)cacheData
+                               cachedData:(bool)cachedData
                                     error:(NSError * _Nullable * _Nullable)error
 {
     NSDictionary *oldestEvent = nil;
-    NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType cacheData:cacheData error:error];
+    NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType cachedData:cachedData error:error];
     
     if ([oldestEvents count] <= 0) {
         OPTLYLogInfo(@"No event(s).");
     } else {
         oldestEvent = oldestEvents[0];
     }
-
+    
     return oldestEvent;
 }
 
 - (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
-                         cacheData:(bool)cacheData
+                        cachedData:(bool)cachedData
                              error:(NSError * _Nullable * _Nullable)error
 {
-    NSInteger numberOfEvents = [self numberOfEvents:eventType cacheData:cacheData error:error];
-    NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType cacheData:cacheData error:error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
+    NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
     return allEvents;
 }
 
 - (void)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
-                 cacheData:(bool)cacheData
+                cachedData:(bool)cachedData
                      error:(NSError * _Nullable * _Nullable)error
 {
     // tvOS can only delete from cached data
 #if TARGET_OS_TV
-    if (!cacheData) {
-        cacheData = true;
+    if (!cachedData) {
+        cachedData = true;
         OPTLYLogInfo(@"tvOS can only delete cached data.");
     }
 #endif
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    if (cacheData) {
+    if (cachedData) {
         OPTLYQueue *queue = self.eventsCache[eventTypeName];
         [queue dequeueNItems:numberOfEvents];
     } else {
@@ -318,36 +319,36 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 
 - (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
-                cacheData:(bool)cacheData
+               cachedData:(bool)cachedData
                     error:(NSError * _Nullable * _Nullable)error
 {
-    [self removeFirstNEvents:1 eventType:eventType cacheData:cacheData error:error];
+    [self removeFirstNEvents:1 eventType:eventType cachedData:cachedData error:error];
 }
 
 - (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
-              cacheData:(bool)cacheData
+             cachedData:(bool)cachedData
                   error:(NSError * _Nullable * _Nullable)error
 {
-    NSInteger numberOfEvents = [self numberOfEvents:eventType cacheData:cacheData error:error];
-    [self removeFirstNEvents:numberOfEvents eventType:eventType cacheData:cacheData error:error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
+    [self removeFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
 }
 
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
-                  cacheData:(bool)cacheData
+                 cachedData:(bool)cachedData
                       error:(NSError * _Nullable * _Nullable)error
 {
     // tvOS can only read from cached data
 #if TARGET_OS_TV
-    if (!cacheData) {
-        cacheData = true;
+    if (!cachedData) {
+        cachedData = true;
         OPTLYLogInfo(@"tvOS can only read from cached data.");
     }
 #endif
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
     NSInteger numberOfEvents = 0;
-    if (cacheData) {
+    if (cachedData) {
         OPTLYQueue *queue = self.eventsCache[eventTypeName];
         numberOfEvents = [queue size];
     } else {
@@ -359,13 +360,20 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     return numberOfEvents;
 }
 
-- (void)removeCachedEvents {
-    self.eventsCache = nil;
+- (void)removeSavedEvents:(BOOL)cachedData
+                    error:(NSError * _Nullable * _Nullable)error {
+    for (NSInteger i = 0; i <= OPTLYDataStoreEventTypeConversion; ++i ) {
+        [self removeAllEvents:i cachedData:cachedData error:error];
+    }
 }
 
-- (void)removeSavedEvents:(NSError * _Nullable * _Nullable)error {
+- (void)removeEventsData:(NSError * _Nullable * _Nullable)error {
+    [self removeSavedEvents:YES error:error];
+    [self removeSavedEvents:NO error:error];
+    self.eventsCache = nil;
 #if TARGET_OS_IOS
-    [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]  error:error];
+    [self.database deleteDatabase:error];
+    self.database = nil;
 #endif
 }
 

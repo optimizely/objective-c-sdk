@@ -52,7 +52,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         
         // create directory for the database if it does not exist
         NSFileManager *fileManager = [NSFileManager new];
-        bool isDir = true;
+        BOOL isDir;
         if (![fileManager fileExistsAtPath:_baseDir isDirectory:&isDir]) {
             [fileManager createDirectoryAtPath:_baseDir
                    withIntermediateDirectories:YES
@@ -92,8 +92,8 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 - (void)saveData:(NSDictionary *)data
-             table:(NSString *)tableName
-             error:(NSError **)error
+           table:(NSString *)tableName
+           error:(NSError **)error
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
@@ -206,5 +206,10 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     
     return rows;
 }
-@end
 
+- (void)deleteDatabase:(NSError **)error {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    self.fmDatabaseQueue = nil;
+    [fm removeItemAtPath:self.databaseFilePath error:error];
+}
+@end

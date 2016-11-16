@@ -27,6 +27,13 @@
 #import <Foundation/Foundation.h>
 
 @interface OPTLYDatabase : NSObject
+/**
+ * File manager initializer.
+ *
+ * @param baseDir The base directory where the database will be stored.
+ * @return an instance of OPTLYDatabase.
+ **/
+- (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir;
 
 /**
  * Creates a new table.
@@ -53,8 +60,8 @@
  * @param error An error object is returned if an error occurs.
  */
 - (void)saveData:(nonnull NSDictionary *)data
-             table:(nonnull NSString *)tableName
-             error:(NSError * _Nullable * _Nullable)error;
+           table:(nonnull NSString *)tableName
+           error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes data from a database table.
@@ -109,5 +116,12 @@
  */
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
                     error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Deletes the database.
+ *
+ * @param error An error object is returned if an error occurs.
+ */
+- (void)deleteDatabase:(NSError * _Nullable * _Nullable)error;
 @end
 

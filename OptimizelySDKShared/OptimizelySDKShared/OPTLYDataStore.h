@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
+// if adding data store data type, update: removeSavedEvents
 typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
 {
     OPTLYDataStoreDataTypeDatabase,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
     OPTLYDataStoreDataTypeUserProfile,
 };
 
-// if adding event type, update: removeAllUserData!!
+// if adding event type, update: removeAllUserData
 typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 {
     OPTLYDataStoreEventTypeImpression,
@@ -50,7 +51,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * Wipes all Optimizely data (saved and cached).
  *
  **/
-- (void)removeAll;
+- (void)removeAll:(NSError * _Nullable * _Nullable)error;
 
 // -------- File Storage --------
 // Persists data in a file format using NSFileManager.
@@ -144,31 +145,33 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 // If data is cached, then the events are stored in a runtime in-memory queue.
 // If data is not cached, the events are stored in an SQLite table.
 // Events are only persisted in the SQLite table for iOS platforms.
-// tvOS events are only cached to save on very limited memory usage.
-// A future enhancement for tvOS is to store data in iCloud.
+// tvOS events are only cached to save on very limited memory availability.
+// A future enhancement for tvOS is to store event data in iCloud.
 
 /**
  * Saves an event.
  *
  * @param data The data to be saved.
  * @param eventType The event type of the data that needs to be saved.
- * @param cacheData Specify if the data should be cached (default is true for tvOS).
+ * @param cachedData Specify if the data should be saved in the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (void)saveData:(nonnull NSDictionary *)data
        eventType:(OPTLYDataStoreEventType)eventType
-       cacheData:(bool)cacheData
+      cachedData:(bool)cachedData
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets the oldest event.
  *
  * @param eventType The event type of the data that needs to be retrieved.
- * @param cacheData Specify if the data should be retrieved from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be retrieved from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (nullable NSDictionary *)getOldestEvent:(OPTLYDataStoreEventType)eventType
-                                cacheData:(bool)cacheData
+                               cachedData:(bool)cachedData
                                     error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -176,35 +179,38 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *
  * @param numberOfEvents The number of events to retrieve.
  * @param eventType The event type of the data that needs to be removed.
- * @param cacheData Specify if the data should be retrieved from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be retrieved from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(OPTLYDataStoreEventType)eventType
-                            cacheData:(bool)cacheData
+                           cachedData:(bool)cachedData
                                 error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets all events.
  *
  * @param eventType The event type of the data that needs to be retrieved.
- * @param cacheData Specify if the data should be retrieved from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be retrieved from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
 - (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
-                         cacheData:(bool)cacheData
+                        cachedData:(bool)cachedData
                              error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes the oldest event.
  *
  * @param eventType The event type of the data that needs to be removed.
- * @param cacheData Specify if the data should be removed from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be deleted from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
-                cacheData:(bool)cacheData
+               cachedData:(bool)cachedData
                     error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -212,48 +218,50 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *
  * @param numberOfEvents The number of events to retrieve.
  * @param eventType The event type of the data that needs to be removed.
- * @param cacheData Specify if the data should be removed from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be deleted from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (void)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
-                 cacheData:(bool)cacheData
+                cachedData:(bool)cachedData
                      error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes all events.
  *
  * @param eventType The event type of the data that needs to be removed.
- * @param cacheData Specify if the data should be removed from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be deleted from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
-              cacheData:(bool)cacheData
+             cachedData:(bool)cachedData
                   error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Returns the number of saved events.
  *
  * @param eventType The event type of the data.
- * @param cacheData Specify if the event count should be retrieved from cache (this is by default always true for tvOS).
+ * @param cachedData Specify if the data should be retrieved from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  * @return The number of events saved.
  */
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
-                  cacheData:(bool)cacheData
+                 cachedData:(bool)cachedData
                       error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * Removes all cached events.
- */
-- (void)removeCachedEvents;
-
-/**
- * Removes all saved events.
+ * Removes all saved or cached events.
  *
+ * @param cachedData Specify if the data should be deleted from the in-memory
+ *  cache and not saved in the database (this is always true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeSavedEvents:(NSError * _Nullable * _Nullable)error;
+- (void)removeSavedEvents:(BOOL)cachedData
+                    error:(NSError * _Nullable * _Nullable)error;
+
 
 // -------- User Data Storage --------
 // Saves data in dictionary format in NSUserDefault
