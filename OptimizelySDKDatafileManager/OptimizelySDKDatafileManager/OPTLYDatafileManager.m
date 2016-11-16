@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
-#import <OptimizelySDKShared/OPTLYFileManager.h>
+#import <OptimizelySDKShared/OPTLYDataStore.h>
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 
 static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
@@ -23,7 +23,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 @interface OPTLYDatafileManager ()
 
-@property OPTLYFileManager *fileManager;
+@property OPTLYDataStore *dataStore;
 @property OPTLYNetworkService *networkService;
 
 @end
@@ -43,7 +43,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _projectId = builder.projectId;
             _logger = builder.logger;
             _networkService = [[OPTLYNetworkService alloc] init];
-            _fileManager = [OPTLYFileManager new];
+            _dataStore = [OPTLYDataStore new];
             
             // download datafile when we start the datafile manager
             [self downloadDatafile];
@@ -82,9 +82,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 - (void)saveDatafile:(NSData *)datafile {
     NSError *error;
-    [self.fileManager saveFile:self.projectId
+    [self.dataStore saveFile:self.projectId
                           data:datafile
-                          type:OPTLYFileManagerDataTypeDatafile
+                          type:OPTLYDataStoreDataTypeDatabase
                          error:&error];
 
 }
