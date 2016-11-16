@@ -58,7 +58,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
         NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
         filePath = libraryDirPaths[0];
 #endif
-        // the base directory is the file directory for which all Optimizely-related data will be stored
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
     }
     return self;
@@ -73,7 +72,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (void)removeAll:(NSError * _Nullable * _Nullable)error {
     [self removeAllUserData];
-    [self removeEventsData:error];
+    [self removeAllEvents:error];
     [self removeAllFiles:error];
 }
 
@@ -367,7 +366,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     }
 }
 
-- (void)removeEventsData:(NSError * _Nullable * _Nullable)error {
+- (void)removeAllEvents:(NSError * _Nullable * _Nullable)error {
     [self removeSavedEvents:YES error:error];
     [self removeSavedEvents:NO error:error];
     self.eventsCache = nil;
