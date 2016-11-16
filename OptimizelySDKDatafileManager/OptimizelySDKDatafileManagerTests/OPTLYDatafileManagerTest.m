@@ -15,6 +15,10 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
+#import "OPTLYTestHelper.h"
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKShared/OPTLYDataStore.h>
+#import <OptimizelySDKShared/OPTLYFileManager.h>
 
 @interface OptimizelySDKDatafileManagerTests : XCTestCase
 
@@ -32,16 +36,32 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testSaveDatafile {
+    // setup datafile manager
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
     }];
+    XCTAssertNotNil(datafileManager);
+    
+    // get the datafile
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
+    
+    // save the datafile
+    [datafileManager saveDatafile:datafile];
+    
+    // test the datafile was saved correctly
+    // check file storage
+    OPTLYDataStore *dataStore = [OPTLYDataStore new];
+    bool fileExists = [dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
+    XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
+    NSError *error;
+    NSData *savedData = [dataStore getFile:kProjectId
+                                      type:OPTLYDataStoreDataTypeDatafile
+                                     error:&error];
+    XCTAssertNil(error);
+    XCTAssertNotNil(savedData);
+    XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
+    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivilent to the datafile we wanted to save to disk");
 }
 
 @end
