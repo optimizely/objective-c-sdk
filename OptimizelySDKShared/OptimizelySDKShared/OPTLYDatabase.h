@@ -45,14 +45,6 @@
               error:(NSError * _Nullable * _Nullable)error;
 
 /**
- * File manager initializer.
- *
- * @param baseDir The base directory where the database will be stored.
- * @return an instance of OPTLYDatabase.
- **/
-- (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir;
-
-/**
  * Inserts data into a database table.
  *
  * @param data The data to be written into the table.
