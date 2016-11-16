@@ -72,8 +72,9 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 
 - (void)removeAll {
-    [self removeAllData];
-    [self removeAllFiles:nil];
+    [self removeAllUserData];
+    [self removeAllFiles:nil]; 
+    [self removeCachedEvents];
 }
 
 #if TARGET_OS_IOS
@@ -111,14 +112,14 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 
 # pragma mark - NSUserDefault Data
-- (void)save:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType
+- (void)saveUserData:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType
 {
     NSString *key = [self stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:data forKey:key];
 }
 
-- (nullable NSDictionary *)getDataForType:(OPTLYDataStoreDataType)dataType
+- (nullable NSDictionary *)getUserDataForType:(OPTLYDataStoreDataType)dataType
 {
     NSString *key = [self stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -126,14 +127,14 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     return data;
 }
 
-- (void)removeDataForType:(OPTLYDataStoreDataType)dataType
+- (void)removeUserDataForType:(OPTLYDataStoreDataType)dataType
 {
     NSString *key = [self stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:key];
 }
 
-- (void)removeObjectInData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType
+- (void)removeObjectInUserData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType
 {
     NSString *key = [self stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -142,10 +143,10 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     [defaults setObject:data forKey:key];
 }
 
-- (void)removeAllData
+- (void)removeAllUserData
 {
     for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfile; ++i) {
-        [self removeDataForType:i];
+        [self removeUserDataForType:i];
     }
 }
 
@@ -188,53 +189,9 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     [self.fileManager removeAllFiles:error];
 }
 
-# pragma mark - Cached Data Methods
-- (void)insertCachedData:(nonnull NSDictionary *)data
-               eventType:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    [queue enqueue:data];
-}
+# pragma mark - Event Storage Methods
 
-- (nullable NSDictionary *)retrieveCachedItem:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    return [queue front];
-}
-
-- (nullable NSArray *)retrieveNCachedItems:(NSInteger)numberOfItems
-                                 eventType:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    return [queue firstNItems:numberOfItems];
-}
-
-- (void)removeCachedItem:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    [queue dequeue];
-}
-
-- (void)removeNCachedItem:(NSInteger)numberOfItems
-                eventType:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    [queue dequeueNItems:numberOfItems];
-}
-
-- (NSInteger)numberOfCachedItems:(OPTLYDataStoreEventType)eventType
-{
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    OPTLYQueue *queue = self.eventsCache[eventTypeName];
-    return [queue size];
-}
-
-# pragma mark - Database Methods (only available on iOS)
+// SQLite tables are only available for iOS
 #if TARGET_OS_IOS
 - (void)createTable:(OPTLYDataStoreEventType)eventType
               error:(NSError * _Nullable * _Nullable)error
@@ -242,53 +199,175 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     NSString *tableName = [self stringForDataEventEnum:eventType];
     [self.database createTable:tableName error:error];
 }
+#endif
 
-- (void)insertData:(nonnull NSDictionary *)data
-         eventType:(OPTLYDataStoreEventType)eventType
-             error:(NSError * _Nullable * _Nullable)error
+- (void)saveData:(nonnull NSDictionary *)data
+       eventType:(OPTLYDataStoreEventType)eventType
+       cacheData:(bool)cacheData
+           error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    [self.database insertData:data table:tableName error:error];
+    // tvOS can only save to cached data
+#if TARGET_OS_TV
+    if (!cacheData) {
+        cacheData = true;
+        OPTLYLogError(@"tvOS can only save to cached data.");
+    }
+#endif
+    
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    if (cacheData) {
+        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        [queue enqueue:data];
+    } else {
+#if TARGET_OS_IOS
+        [self.database saveData:data table:eventTypeName error:error];
+#endif
+    }
 }
 
-- (void)deleteEvent:(nonnull NSString *)entityId
-          eventType:(OPTLYDataStoreEventType)eventType
-              error:(NSError * _Nullable * _Nullable)error
+- (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
+                            eventType:(OPTLYDataStoreEventType)eventType
+                            cacheData:(bool)cacheData
+                                error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    [self.database deleteEntity:entityId table:tableName error:error];
+    // tvOS can only read from cached data
+#if TARGET_OS_TV
+    if (!cacheData) {
+        cacheData = true;
+        OPTLYLogInfo(@"tvOS can only read from cached data.");
+    }
+#endif
+    
+    NSMutableArray *firstNEvents = [NSMutableArray new];
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    if (cacheData) {
+        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        [firstNEvents addObjectsFromArray:[queue firstNItems:numberOfEvents]];
+    } else {
+#if TARGET_OS_IOS
+        NSArray *firstNEntities = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
+        for (OPTLYDatabaseEntity *entity in firstNEntities) {
+            NSString *entityValue = entity.entityValue;
+            NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
+            [firstNEvents addObject:event];
+        }
+#endif
+    }
+    return firstNEvents;
 }
 
-- (void)deleteEvents:(nonnull NSArray *)entityIds
-           eventType:(OPTLYDataStoreEventType)eventType
-               error:(NSError * _Nullable * _Nullable)error
+- (nullable NSDictionary *)getOldestEvent:(OPTLYDataStoreEventType)eventType
+                                cacheData:(bool)cacheData
+                                    error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    [self.database deleteEntities:entityIds table:tableName error:error];
+    NSDictionary *oldestEvent = nil;
+    NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType cacheData:cacheData error:error];
+    
+    if ([oldestEvents count] <= 0) {
+        OPTLYLogInfo(@"No event(s).");
+    } else {
+        oldestEvent = oldestEvents[0];
+    }
+
+    return oldestEvent;
 }
 
-- (nullable NSArray *)retrieveAllEvents:(OPTLYDataStoreEventType)eventType
-                                  error:(NSError * _Nullable * _Nullable)error
+- (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
+                         cacheData:(bool)cacheData
+                             error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    return [self.database retrieveAllEntries:tableName error:error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType cacheData:cacheData error:error];
+    NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType cacheData:cacheData error:error];
+    return allEvents;
 }
 
-- (nullable NSArray *)retrieveFirstNEvents:(NSInteger)numberOfEntries
-                                 eventType:(OPTLYDataStoreEventType)eventType
-                                     error:(NSError * _Nullable * _Nullable)error
+- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+                 eventType:(OPTLYDataStoreEventType)eventType
+                 cacheData:(bool)cacheData
+                     error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    return [self.database retrieveFirstNEntries:numberOfEntries table:tableName error:error];
+    // tvOS can only delete from cached data
+#if TARGET_OS_TV
+    if (!cacheData) {
+        cacheData = true;
+        OPTLYLogInfo(@"tvOS can only delete cached data.");
+    }
+#endif
+    
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    if (cacheData) {
+        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        [queue dequeueNItems:numberOfEvents];
+    } else {
+        // only iOS can delete from the database table
+#if TARGET_OS_IOS
+        NSArray *firstNEvents = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
+        if ([firstNEvents count] <= 0) {
+            OPTLYLogInfo(@"No event(s) to delete.");
+            return;
+        }
+        
+        NSMutableArray *entityIds = [NSMutableArray new];
+        for (OPTLYDatabaseEntity *entity in firstNEvents) {
+            NSString *entityId = [entity.entityId stringValue];
+            [entityIds addObject:entityId];
+        }
+        [self.database deleteEntities:entityIds table:eventTypeName error:error];
+#endif
+    }
 }
+
+- (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
+                cacheData:(bool)cacheData
+                    error:(NSError * _Nullable * _Nullable)error
+{
+    [self removeFirstNEvents:1 eventType:eventType cacheData:cacheData error:error];
+}
+
+- (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
+              cacheData:(bool)cacheData
+                  error:(NSError * _Nullable * _Nullable)error
+{
+    NSInteger numberOfEvents = [self numberOfEvents:eventType cacheData:cacheData error:error];
+    [self removeFirstNEvents:numberOfEvents eventType:eventType cacheData:cacheData error:error];
+}
+
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
+                  cacheData:(bool)cacheData
                       error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
-    return [self.database numberOfRows:tableName error:error];
-}
+    // tvOS can only read from cached data
+#if TARGET_OS_TV
+    if (!cacheData) {
+        cacheData = true;
+        OPTLYLogInfo(@"tvOS can only read from cached data.");
+    }
 #endif
+    
+    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    NSInteger numberOfEvents = 0;
+    if (cacheData) {
+        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        numberOfEvents = [queue size];
+    } else {
+        // only iOS can read from the database table
+#if TARGET_OS_IOS
+        numberOfEvents = [self.database numberOfRows:eventTypeName error:error];
+#endif
+    }
+    return numberOfEvents;
+}
+
+- (void)removeCachedEvents {
+    self.eventsCache = nil;
+}
+
+- (void)removeSavedEvents:(NSError * _Nullable * _Nullable)error {
+#if TARGET_OS_IOS
+    [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]  error:error];
+#endif
+}
 
 # pragma mark - Helper Methods
 - (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType

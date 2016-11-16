@@ -27,6 +27,7 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 #import "OPTLYLog.h"
+#import "OPTLYQueue.h"
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];

@@ -20,6 +20,10 @@
 #import "OPTLYNetworkService.h"
 #import "OPTLYDataStore.h"
 #import "OPTLYClient.h"
+#if TARGET_OS_IOS
+#import "OPTLYDatabase.h"
+#import "OPTLYDatabaseEntity.h"
+#endif
 
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;

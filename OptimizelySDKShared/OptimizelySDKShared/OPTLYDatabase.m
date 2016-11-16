@@ -61,8 +61,8 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         }
         
         // set the database queue
-        NSString *databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
-        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:databaseFilePath];
+        _databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
+        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
         
     }
     return self;
@@ -91,12 +91,12 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }];
 }
 
-- (void)insertData:(NSDictionary *)data
+- (void)saveData:(NSDictionary *)data
              table:(NSString *)tableName
              error:(NSError **)error
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:&error];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         
         NSNumber *timeStamp = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
@@ -206,6 +206,5 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     
     return rows;
 }
-
 @end
 

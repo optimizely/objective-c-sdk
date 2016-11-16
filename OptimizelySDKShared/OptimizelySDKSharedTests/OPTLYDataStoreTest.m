@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYDatabase.h"
 #import "OPTLYFileManager.h"
 #import "OPTLYDatabaseEntity.h"
@@ -30,6 +31,7 @@ static NSString * const kUserProfile = @"user-profile";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
 @interface OPTLYDataStore(Test)
+@property (nonatomic, strong) NSDictionary *eventsCache;
 - (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
 - (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
 @end
@@ -38,7 +40,6 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSData *testFileData;
 @property (nonatomic, strong) NSDictionary *testDataNSUserDefault;
-@property (nonatomic, strong) NSDictionary *testDatabaseData;
 @end
 
 @implementation OPTLYDataStoreTest
@@ -48,7 +49,53 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     self.dataStore = [OPTLYDataStore new];
     self.testFileData = [kTestString dataUsingEncoding:NSUTF8StringEncoding];
     self.testDataNSUserDefault = @{@"testKey1":@"testValue1", @"testKey2" : @"testKey2"};
-    self.testDatabaseData =
+}
+
+- (void)tearDown {
+    [self.dataStore removeAll];
+    self.dataStore = nil;
+    self.testFileData = nil;
+    self.testDataNSUserDefault = nil;
+    [super tearDown];
+}
+
+- (void)testRemoveAll
+{
+    NSError *error;
+
+    [self.dataStore saveData:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression cacheData:NO error:&error];
+    [self.dataStore saveData:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression cacheData:YES error:&error];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    
+    [self.dataStore removeAll];
+    
+    // check event storage
+    NSArray *results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:NO error:&error];
+    XCTAssert([results count] == 0, @"RemoveAll failed to remove all saved events.");
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:YES error:&error];
+    XCTAssert([results count] == 0, @"RemoveAll failed to remove all cached events.");
+    
+    // check file storage
+    bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
+    XCTAssertFalse(fileExists, @"RemoveAll failed to remove file.");
+    
+    // check NSUserDefault storage
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile], @"RemoveAll failed to remove NSUserDefault data.");
+    
+}
+
+- (void)testEventsStorageNoCache {
+    [self eventsStorageTestSuite:NO];
+}
+
+- (void)testEventsStorageCache {
+    [self eventsStorageTestSuite:YES];
+}
+
+- (void)eventsStorageTestSuite:(bool)cacheData {
+    
+    NSDictionary *testEventData1 =
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
@@ -68,93 +115,192 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              @"name": @"revenue",
                              @"value": @88
                              }],
-      @"visitorId": @"1234",
+      @"visitorId": @"1",
       @"eventName": @"people",
       @"clientEngine": @"objective-c-sdk-core",
       @"eventFeatures": @[]
       };
-}
-
-- (void)tearDown {
-    [self.dataStore removeAllData];
-    [self.dataStore removeAllFiles:nil];
-    self.testFileData = nil;
-    self.testDataNSUserDefault = nil;
-    self.testDatabaseData = nil;
-    [super tearDown];
-}
-
-- (void)testRemoveAll
-{
-    NSError *error;
-#if TARGET_OS_IOS
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-#endif
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     
-    [self.dataStore removeAll];
+    NSDictionary *testEventData2 =
+    @{
+      @"userFeatures": @[@{
+                             @"value": @"alda",
+                             @"shouldIndex": @true,
+                             @"name": @"nameOfPerson",
+                             @"type": @"custom"
+                             }],
+      @"timestamp": @1478510071576,
+      @"clientVersion": @"0.2.0-debug",
+      @"eventEntityId": @"7723870635",
+      @"revision": @"7",
+      @"isGlobalHoldback": @false,
+      @"accountId": @"4902200114",
+      @"layerStates": @[],
+      @"projectId": @"7738070017",
+      @"eventMetrics": @[@{
+                             @"name": @"revenue",
+                             @"value": @88
+                             }],
+      @"visitorId": @"2",
+      @"eventName": @"people",
+      @"clientEngine": @"objective-c-sdk-core",
+      @"eventFeatures": @[]
+      };
     
-#if TARGET_OS_IOS
-    // check database
-    NSArray *results = [self.dataStore retrieveAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
-    XCTAssert([results count] == 0, @"RemoveAll failed to remove all events.");
-#endif
+    NSDictionary *testEventData3 =
+    @{
+      @"userFeatures": @[@{
+                             @"value": @"alda",
+                             @"shouldIndex": @true,
+                             @"name": @"nameOfPerson",
+                             @"type": @"custom"
+                             }],
+      @"timestamp": @1478510071576,
+      @"clientVersion": @"0.2.0-debug",
+      @"eventEntityId": @"7723870635",
+      @"revision": @"7",
+      @"isGlobalHoldback": @false,
+      @"accountId": @"4902200114",
+      @"layerStates": @[],
+      @"projectId": @"7738070017",
+      @"eventMetrics": @[@{
+                             @"name": @"revenue",
+                             @"value": @88
+                             }],
+      @"visitorId": @"3",
+      @"eventName": @"people",
+      @"clientEngine": @"objective-c-sdk-core",
+      @"eventFeatures": @[]
+      };
     
-    // check files
-    bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
-    XCTAssertFalse(fileExists, @"RemoveAll failed to remove file.");
+    NSDictionary *testEventData4 =
+    @{
+      @"userFeatures": @[@{
+                             @"value": @"alda",
+                             @"shouldIndex": @true,
+                             @"name": @"nameOfPerson",
+                             @"type": @"custom"
+                             }],
+      @"timestamp": @1478510071576,
+      @"clientVersion": @"0.2.0-debug",
+      @"eventEntityId": @"7723870635",
+      @"revision": @"7",
+      @"isGlobalHoldback": @false,
+      @"accountId": @"4902200114",
+      @"layerStates": @[],
+      @"projectId": @"7738070017",
+      @"eventMetrics": @[@{
+                             @"name": @"revenue",
+                             @"value": @88
+                             }],
+      @"visitorId": @"4",
+      @"eventName": @"people",
+      @"clientEngine": @"objective-c-sdk-core",
+      @"eventFeatures": @[]
+      };
     
-    // check NSUserDefault
-    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile], @"RemoveAll failed to remove NSUserDefault data.");
-    
-}
-
-#if TARGET_OS_IOS
-- (void)testDatabaseAPIs {
+    NSInteger totalEntity = 4;
     NSError *error = nil;
+    NSString *eventTypeName = [self.dataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression];
+    OPTLYQueue *impressionQueue = nil;
     
     // test insert
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore insertData:self.testDatabaseData eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    [self.dataStore saveData:testEventData2 eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    [self.dataStore saveData:testEventData3 eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    [self.dataStore saveData:testEventData4 eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
     
-    // test retrieveFirstNEntries
+    XCTAssertNil(error, @"Save data failed.");
+    impressionQueue = self.dataStore.eventsCache[eventTypeName];
+#if TARGET_OS_IOS
+    if (cacheData) {
+        XCTAssert([impressionQueue size] == 4, @"Data not cached as expected.");
+    } else {
+        XCTAssert([impressionQueue size] == 0, @"Data should not be cached.");
+    }
+#elif TARGET_OS_TV // tvOS data should always be cached
+    XCTAssert([impressionQueue size] == 4, @"Data not cached as expected.");
+#endif
+    
+    NSArray *results = nil;
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    
+    // test getOldestEvent
+    NSDictionary *result = [self.dataStore getOldestEvent:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssertNotNil(result, @"Data insertion failed or invalid number of results retrieved from getOldestEvent.");
+    XCTAssert([result isEqualToDictionary:testEventData1], @"Invalid result data retrieved for getOldestEvent.");
+    
+    // test getFirstNEvents
     NSInteger n = 3;
-    NSArray *results = [self.dataStore retrieveFirstNEvents:n eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    XCTAssert([results count] == n, @"Data insertion failed or invalid number of results retrieved from retrieveFirstNEntries.");
+    results = [self.dataStore getFirstNEvents:n eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssert([results count] == n, @"Data insertion failed or invalid number of results retrieved from getFirstNEvents.");
+    XCTAssert([results[0] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getFirstNEvents.");
+    XCTAssert([results[1] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getFirstNEvents.");
+    XCTAssert([results[2] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getFirstNEvents.");
     
-    // test retrieveAllEntries
-    NSInteger totalEntity = 6;
-    results = [self.dataStore retrieveAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
-    NSInteger numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
-    XCTAssert([results count] == totalEntity, @"Data insertion failed or invalid number of results retrieved from retrieveAllEntries");
+    // test getAllEntries
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssert([results count] == totalEntity, @"Data insertion failed or invalid number of results retrieved from getAllEvents");
+    XCTAssert([results[0] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getAllEvents.");
+    XCTAssert([results[1] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getAllEvents.");
+    XCTAssert([results[2] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getAllEvents.");
+    XCTAssert([results[3] isEqualToDictionary:testEventData4], @"Invalid result data 4 retrieved for getAllEvents.");
     
     // test numberOfEvents
+    NSInteger numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
     XCTAssert(numberOfEvents == totalEntity, @"Invalid count from numberOfEvents.");
     
-    // test contents of retrieveAllEntries
-    OPTLYDatabaseEntity *entity = results[0];
-    NSString *entityString = entity.entityValue;
-    NSDictionary *resultData = [NSJSONSerialization JSONObjectWithData:[entityString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    XCTAssert([resultData isEqualToDictionary:self.testDatabaseData], @"Invalid result data retrieved.");
-    
-    // test deleteEntities
-    NSMutableArray *entityIds = [NSMutableArray new];
-    for (OPTLYDatabaseEntity *entity in results) {
-        NSNumber *resultId = entity.entityId;
-        [entityIds addObject:resultId];
+    // test removeOldestEvent
+    [self.dataStore removeOldestEvent:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssert(numberOfEvents == totalEntity-1, @"Invalid event count after removeOldestEvent was called.");
+#if TARGET_OS_IOS
+    if (cacheData) {
+        XCTAssert([impressionQueue size] == totalEntity-1, @"Cached data not removed as expected.");
+    } else {
+        XCTAssert([impressionQueue size] == 0, @"Data should not be cached.");
     }
-    [self.dataStore deleteEvents:entityIds eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    
-    numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
-    XCTAssert(numberOfEvents == 0, @"Deletion failed. Invalid number of results retrieved from database");
-}
+#elif TARGET_OS_TV // tvOS data should always be cached
+    XCTAssert([impressionQueue size] == totalEntity-1, @"Cached data not removed as expected.");
 #endif
+    XCTAssert([results[0] isEqualToDictionary:testEventData2], @"Invalid result data 1 retrieved after removeOldestEvent was called.");
+    XCTAssert([results[1] isEqualToDictionary:testEventData3], @"Invalid result data 2 retrieved after removeOldestEvent was called.");
+    XCTAssert([results[2] isEqualToDictionary:testEventData4], @"Invalid result data 3 retrieved after removeOldestEvent was called.");
+    
+    // test removeFirstNEvents
+    NSInteger nEventsToDelete = 2;
+    [self.dataStore removeFirstNEvents:nEventsToDelete eventType:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssert([results count] == totalEntity-1-nEventsToDelete, @"Invalid event count when removeFirstNEvents was called.");
+#if TARGET_OS_IOS
+    if (cacheData) {
+        XCTAssert([impressionQueue size] == totalEntity-1-nEventsToDelete, @"Cached data not removed as expected.");
+    } else {
+        XCTAssert([impressionQueue size] == 0, @"Data should not be cached.");
+    }
+#elif TARGET_OS_TV // tvOS data should always be cached
+    XCTAssert([impressionQueue size] == totalEntity-1-nEventsToDelete, @"Cached data not removed as expected.");
+#endif
+    XCTAssert([results[0] isEqualToDictionary:testEventData4], @"Invalid result data 1 retrieved after removeFirstNEvents was called.");
+    
+    // test removeAllEvents
+    [self.dataStore removeAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cacheData:cacheData error:&error];
+    XCTAssert([results count] == 0, @"Invalid event count when removeAllEvents was called.");
+#if TARGET_OS_IOS
+    XCTAssert([impressionQueue size] == 0, @"Cached data not removed as expected.");
 
+#elif TARGET_OS_TV // tvOS data should always be cached
+    XCTAssert([impressionQueue size]  == 0, @"Cached data not removed as expected.");
+#endif
+    
+    // test removeSavedEvents
+    [self.dataStore removeSavedEvents:&error];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *databaseFileDirectory = [self.dataStore.baseDirectory stringByAppendingPathComponent:[self.dataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
+    XCTAssertFalse([fm fileExistsAtPath:databaseFileDirectory], @"Events database was not removed.");
+}
 
 # pragma mark - File Manager Tests
 
@@ -257,7 +403,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 // NSUserDefault
 - (void)testSaveData
 {
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *retrievedData = [defaults objectForKey:[self.dataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfile]];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data save.");
@@ -265,39 +411,39 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 -(void)testGetDataForType
 {
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data retrieved.");
 }
 
 - (void)testRemoveDataForType
 {
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeDataForType:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     XCTAssertNil(retrievedData, @"Data removal failed.");
 }
 
 - (void)testRemovedObjectInData
 {
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeObjectInData:@"testKey2" type:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore removeObjectInUserData:@"testKey2" type:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSDictionary *data = @{@"testKey1":@"testValue1"};
     XCTAssert([data isEqualToDictionary:retrievedData], @"Invalid object removed from data.");
 }
 
 - (void)testRemoveAllData
 {
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatabase];
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatafile];
-    [self.dataStore save:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeEventDispatcher];
-    [self.dataStore removeAllData];
-    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeUserProfile], @"User profile data should not exist.");
-    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeDatabase], @"Database data should not exixt.");
-    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
-    XCTAssertNil([self.dataStore getDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatabase];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatafile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeEventDispatcher];
+    [self.dataStore removeAllUserData];
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile], @"User profile data should not exist.");
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatabase], @"Database data should not exixt.");
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
 }
 @end
