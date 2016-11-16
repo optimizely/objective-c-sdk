@@ -116,5 +116,12 @@
  */
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
                     error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Deletes the database.
+ *
+ * @param error An error object is returned if an error occurs.
+ */
+- (void)deleteDatabase:(NSError * _Nullable * _Nullable)error;
 @end
 
