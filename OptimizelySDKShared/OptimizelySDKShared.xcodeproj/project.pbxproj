@@ -47,7 +47,7 @@
 		EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BD01DD4030700DF7537 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BD41DD4030700DF7537 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BD11DD4030700DF7537 /* OPTLYDataStore.m */; };
 		EA064BD51DD4030700DF7537 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BD11DD4030700DF7537 /* OPTLYDataStore.m */; };
-		EA064BDC1DD4186400DF7537 /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; };
+		EA064BDC1DD4186400DF7537 /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */; };
 		EA064BDF1DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BDE1DD53F3100DF7537 /* OPTLYDataStoreTest.m */; };
 		EA064BE01DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BDE1DD53F3100DF7537 /* OPTLYDataStoreTest.m */; };
@@ -58,7 +58,7 @@
 		EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */; };
 		EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8FD1DCBBE250034A4FE /* OPTLYFileManager.m */; };
-		EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; };
+		EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8FC1DCBBE250034A4FE /* OPTLYFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52470C1DC7192200AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		EA52472C1DC7193B00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */; };
 		EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
