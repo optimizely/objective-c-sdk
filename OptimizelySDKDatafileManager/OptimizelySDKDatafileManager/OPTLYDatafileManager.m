@@ -46,7 +46,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _dataStore = [OPTLYDataStore new];
             
             // download datafile when we start the datafile manager
-            [self downloadDatafile];
+            [self downloadDatafile:self.projectId completionHandler:nil];
             
             // Only fetch the datafile if the polling interval is greater than 0
             if (self.datafileFetchInterval > 0) {
@@ -60,24 +60,23 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     }
 }
 
-- (void)downloadDatafile {
-    [self requestDatafile:self.projectId
-        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (error != nil) {
-                // TODO: Josh W. handle errors
-            }
-            else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
-                [self saveDatafile:data];
-            }
-            else {
-                // TODO: Josh W. handle bad response
-            }
-        }];
-}
-
-- (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
+- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
     [self.networkService downloadProjectConfig:self.projectId
-                             completionHandler:completion];
+                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                 if (error != nil) {
+                                     // TODO: Josh W. handle errors
+                                 }
+                                 else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+                                     [self saveDatafile:data];
+                                 }
+                                 else {
+                                     // TODO: Josh W. handle bad response
+                                 }
+                                 // call the completion handler
+                                 if (completion != nil) {
+                                     completion(data, response, error);
+                                 }
+                             }];
 }
 
 - (void)saveDatafile:(NSData *)datafile {

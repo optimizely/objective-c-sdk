@@ -24,12 +24,12 @@
 @protocol OPTLYDatafileManager <NSObject>
 
 /** 
- * Request the datafile for the project ID
+ * Download the datafile for the project ID
  * @param projectId The project ID of the datafile to request.
  * @param completion Completion handler.
  */
-- (void)requestDatafile:(nonnull NSString *)projectId
-      completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 @end
 
