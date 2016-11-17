@@ -41,6 +41,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _datafileFetchInterval = kDefaultDatafileFetchInterval;
             _datafileFetchInterval = builder.datafileFetchInterval;
             _projectId = builder.projectId;
+            _errorHandler = builder.errorHandler;
             _logger = builder.logger;
             _networkService = [[OPTLYNetworkService alloc] init];
             _dataStore = [OPTLYDataStore new];
@@ -64,7 +65,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     [self.networkService downloadProjectConfig:self.projectId
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                  if (error != nil) {
-                                     // TODO: Josh W. handle errors
+                                     [self.errorHandler handleError:error];
                                  }
                                  else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
                                      [self saveDatafile:data];
