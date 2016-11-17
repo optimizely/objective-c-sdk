@@ -96,11 +96,11 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     
     // request datafile
-    [datafileManager requestDatafile:datafileManager.projectId
-                   completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                       completionWasCalled = true;
-                       XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
-                       [expectation fulfill];
+    [datafileManager downloadDatafile:datafileManager.projectId
+                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        completionWasCalled = true;
+                        XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
+                        [expectation fulfill];
     }];
     
     // wait for async start to finish
