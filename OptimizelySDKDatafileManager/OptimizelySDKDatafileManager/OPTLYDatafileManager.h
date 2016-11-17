@@ -16,10 +16,12 @@
 
 #import <Foundation/Foundation.h>
 #import "OPTLYDatafileManagerBuilder.h"
-#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
 
-@protocol OPTLYLogger;
+
+@protocol OPTLYErrorHandler, OPTLYLogger;
 
 @protocol OPTLYDatafileManager <NSObject>
 
@@ -39,6 +41,8 @@
 @property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
 /// The project ID of the datafile this datafile manager will monitor
 @property (nonatomic, readonly, strong, nonnull) NSString *projectId;
+/// The error handler to be used for the manager, client, and all subcomponents
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
 /// A logger for the OPTLYDatafileManager to log messages.
 @property (nonatomic, readonly, strong, nonnull) id<OPTLYLogger> logger;
 

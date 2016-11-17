@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManagerBuilder.h"
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
@@ -60,6 +61,13 @@
         _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
     }
     return _logger;
+}
+
+- (id<OPTLYErrorHandler>)errorHandler {
+    if (!_errorHandler) {
+        _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+    }
+    return _errorHandler;
 }
 
 @end
