@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger;
 
 @class OPTLYManagerBuilder;
 
@@ -30,6 +30,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite) NSTimeInterval eventDispatchInterval;
 /// The ID of the Optimizely Project the manager will oversee
 @property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
+/// The datafile manager to be used for the manager
+@property (nonatomic, readwrite, strong, nonnull) id<OPTLYDatafileManager> datafileManager;
 /// The error handler to be used for the manager, client, and all subcomponents
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
 /// The event dispatcher to initialize an Optimizely Client with

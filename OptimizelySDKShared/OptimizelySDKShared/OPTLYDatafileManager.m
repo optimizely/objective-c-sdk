@@ -14,25 +14,27 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
-#import "OPTLYManager.h"
-#import "OPTLYHTTPRequestManager.h"
-#import "OPTLYNetworkService.h"
 #import "OPTLYDatafileManager.h"
-#import "OPTLYDataStore.h"
-#import "OPTLYClient.h"
-#import "OPTLYFileManager.h"
-#if TARGET_OS_IOS
-#import "OPTLYDatabase.h"
-#import "OPTLYDatabaseEntity.h"
-#endif
 
-//! Project version number for OptimizelySDKShared.
-FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
+@implementation OPTLYDatafileManagerUtility
 
-//! Project version string for OptimizelySDKShared.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKSharedVersionString[];
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
+    // compile time check
+    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
+    
+    // runtime check
+    BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
+    
+    return validProtocolDeclaration && implementsDownloadDatafileMethod;
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKShared/PublicHeader.h>
+@end
 
+@implementation OPTLYDatafileManagerNoOp
 
+- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
+    completion(nil, nil, nil);
+    return;
+}
+
+@end
