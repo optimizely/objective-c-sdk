@@ -15,31 +15,35 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYDatafileManagerBuilder.h"
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKShared/OPTLYDatafileManager.h>
 #import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
 
 
 @protocol OPTLYErrorHandler, OPTLYLogger;
 
-@interface OPTLYDatafileManager : NSObject<OPTLYDatafileManager>
-
-/// The time interval to regularly fetch the datafile.
-@property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
-/// The project ID of the datafile this datafile manager will monitor
-@property (nonatomic, readonly, strong, nonnull) NSString *projectId;
-/// The error handler to be used for the manager, client, and all subcomponents
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
-/// A logger for the OPTLYDatafileManager to log messages.
-@property (nonatomic, readonly, strong, nonnull) id<OPTLYLogger> logger;
+@protocol OPTLYDatafileManager <NSObject>
 
 /**
- * Init with builder block
- * @param block The builder block containing the datafile fetch interval.
- * @return an Optimizely Datafile Manager instance.
+ * Download the datafile for the project ID
+ * @param projectId The project ID of the datafile to request.
+ * @param completion Completion handler.
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+@end
+
+@interface OPTLYDatafileManagerUtility : NSObject
+
+/**
+ * Utility method to check if a class conforms to the OPTLYDatafileManager protocol
+ * This method uses compile and run time checks
+ */
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
+
+@end
+
+@interface OPTLYDatafileManagerNoOp : NSObject<OPTLYDatafileManager>
 
 @end

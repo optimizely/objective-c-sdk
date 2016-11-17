@@ -25,6 +25,8 @@
 @property (nonatomic, readonly, strong, nonnull) NSString *projectId;
 /// The default datafile to initialize an Optimizely Client with
 @property (nonatomic, readwrite, strong, nullable) NSData *datafile;
+/// The datafile manager that will download the datafile for the manager
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYDatafileManager> datafileManager;
 /// The error handler to be used for the manager, client, and all subcomponents
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
 /// The event dispatcher to initialize an Optimizely Client with
