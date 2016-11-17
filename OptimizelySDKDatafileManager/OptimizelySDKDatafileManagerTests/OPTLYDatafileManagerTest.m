@@ -113,12 +113,11 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 
 - (void)testSaveDatafileMethod {
     // setup datafile manager and datastore
-    OPTLYDataStore *dataStore = [OPTLYDataStore new];
     OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
     XCTAssertNotNil(datafileManager);
-    XCTAssertFalse([dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
+    XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     
     // get the datafile
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
@@ -127,10 +126,10 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [datafileManager saveDatafile:datafile];
     
     // test the datafile was saved correctly
-    bool fileExists = [dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
+    bool fileExists = [self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
     XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
     NSError *error;
-    NSData *savedData = [dataStore getFile:kProjectId
+    NSData *savedData = [self.dataStore getFile:kProjectId
                                       type:OPTLYDataStoreDataTypeDatafile
                                      error:&error];
     XCTAssertNil(error);
@@ -140,11 +139,32 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 }
 
 - (void)testDatafileManagerPullsDatafileOnInitialization {
-    // setup stubbing
+    // setup stubbing and listener expectation
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
+    id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
+        [expectation fulfill];
+        return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
+                                          statusCode:200
+                                             headers:@{@"Content-Type":@"application/json"}];
+    }];
     
     // instantiate datafile manager (it should fire off a request)
+    XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    XCTAssertNotNil(datafileManager);
     
+    // make sure we were able to save the datafile
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    sleep(2); // not sure if there is a better way for to wait for disk write other than to sleep this thread
+    XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
     
+    // cleanup stubs
+    [OHHTTPStubs removeStub:stub];
 }
 
 @end
