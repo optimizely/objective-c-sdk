@@ -138,29 +138,38 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivilent to the datafile we wanted to save to disk");
 }
 
-- (void)testDatafileManagerPullsDatafileOnInitialization {
+- (void)testDatafileManagerDownloadDatafileSavesDatafile {
+    
+    // instantiate datafile manager
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    XCTAssertNotNil(datafileManager);
+    XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
+
     // setup stubbing and listener expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
         // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
-        [expectation fulfill];
         return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
                                           statusCode:200
                                              headers:@{@"Content-Type":@"application/json"}];
     }];
     
-    // instantiate datafile manager (it should fire off a request)
-    XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
+    // Call download datafile
+    __block Boolean completionWasCalled = false;
+
+    [datafileManager downloadDatafile:datafileManager.projectId
+                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        completionWasCalled = true;
+                        [expectation fulfill];
     }];
-    XCTAssertNotNil(datafileManager);
     
     // make sure we were able to save the datafile
     [self waitForExpectationsWithTimeout:2 handler:nil];
-    sleep(2); // not sure if there is a better way for to wait for disk write other than to sleep this thread
+    XCTAssertTrue(completionWasCalled);
     XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
     
     // cleanup stubs
