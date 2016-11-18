@@ -25,6 +25,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
 #import "OPTLYProjectConfig.h"
+#import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
 #import "OPTLYLog.h"
 #import "OPTLYQueue.h"
