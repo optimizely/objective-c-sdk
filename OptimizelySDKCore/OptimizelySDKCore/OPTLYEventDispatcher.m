@@ -34,6 +34,41 @@
 
 @end
 
+static NSString * const kHTTPRequestMethodPost = @"POST";
+static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
+static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
+
+@implementation OPTLYEventDispatcherBasic
+
+- (void)dispatchEvent:(NSDictionary *)params
+                toURL:(NSURL *)url
+    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
+{
+    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setHTTPMethod:kHTTPRequestMethodPost];
+    
+    NSError *JSONSerializationError = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:params
+                                                   options:kNilOptions
+                                                     error:&JSONSerializationError];
+    
+    [request addValue:kHTTPHeaderFieldValueApplicationJSON forHTTPHeaderField:kHTTPHeaderFieldContentType];
+    
+    if (!JSONSerializationError) {
+        NSURLSessionUploadTask *uploadTask = [ephemeralSession uploadTaskWithRequest:request
+                                                                            fromData:data
+                                                                   completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
+                                                                       if (completion) {
+                                                                           completion(response, error);
+                                                                       }
+                                                                   }];
+        
+        [uploadTask resume];
+    }
+}
+
+@end
 
 @implementation OPTLYEventDispatcherNoOp
 
