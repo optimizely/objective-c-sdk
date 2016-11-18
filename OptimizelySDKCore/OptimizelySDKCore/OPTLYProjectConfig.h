@@ -101,6 +101,11 @@
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
 
 /**
+ * Get a variable for a given live variable key.
+ */
+- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
+
+/**
  * Get variation for experiment and user ID with user attributes.
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
