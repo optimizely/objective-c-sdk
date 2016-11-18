@@ -430,11 +430,11 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNotNil]]);
     
-    float_t variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                          activateExperiments:NO
-                                                       userId:kUserId
-                                                   attributes:self.attributes
-                                                        error:nil];
+    double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                         activateExperiments:NO
+                                                      userId:kUserId
+                                                  attributes:self.attributes
+                                                       error:nil];
     XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
     
     [optimizelyMock stopMocking];
@@ -446,11 +446,11 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    float_t variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                                            activateExperiments:YES
-                                                                         userId:kUserId
-                                                                     attributes:self.attributes
-                                                                          error:nil];
+    double variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                                           activateExperiments:YES
+                                                                        userId:kUserId
+                                                                    attributes:self.attributes
+                                                                         error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableFloatWithActivateExperimentsTrue: %@", error);
@@ -472,11 +472,11 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    float_t variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                                            activateExperiments:YES
-                                                                         userId:kUserId
-                                                                     attributes:self.attributes
-                                                                          error:nil];
+    double variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                                           activateExperiments:YES
+                                                                        userId:kUserId
+                                                                    attributes:self.attributes
+                                                                         error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableFloatWithActivateExperimentsTrue: %@", error);
@@ -502,11 +502,11 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
-    float_t variableFloatWithGroupedExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloatGroupedExperiment
-                                                               activateExperiments:NO
-                                                                            userId:kUserId
-                                                                        attributes:nil
-                                                                             error:nil];
+    double variableFloatWithGroupedExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloatGroupedExperiment
+                                                              activateExperiments:NO
+                                                                           userId:kUserId
+                                                                       attributes:nil
+                                                                            error:nil];
     
     XCTAssertEqualWithAccuracy(variableFloatWithGroupedExperiment, 75.5, 0.0000001);
     

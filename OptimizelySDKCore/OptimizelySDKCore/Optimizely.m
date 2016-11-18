@@ -364,11 +364,11 @@ static NSString *const kValue = @"value";
     return variableValueStringOrNil;
 }
 
-- (float_t)getVariableFloat:(nonnull NSString *)variableKey
-        activateExperiments:(bool)activateExperiments
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-                      error:(NSError * _Nullable * _Nullable)error {
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes
+                     error:(NSError * _Nullable * _Nullable)error {
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
@@ -376,7 +376,7 @@ static NSString *const kValue = @"value";
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
-        float_t variableValue = [variableValueStringOrNil floatValue];
+        double variableValue = [variableValueStringOrNil doubleValue];
         return variableValue;
     }
     

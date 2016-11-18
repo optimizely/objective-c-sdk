@@ -206,11 +206,11 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then 0 is returned,
  *  a warning message is logged, and an error will be propagated to the user.
  */
-- (float_t)getVariableFloat:(nonnull NSString *)variableKey
-        activateExperiments:(bool)activateExperiments
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-                      error:(NSError * _Nullable * _Nullable)error;
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes
+                     error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
