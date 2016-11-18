@@ -43,7 +43,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _projectId = builder.projectId;
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
-            _networkService = [[OPTLYNetworkService alloc] init];
+            _networkService = [OPTLYNetworkService new];
             _dataStore = [OPTLYDataStore new];
             
             // download datafile when we start the datafile manager
