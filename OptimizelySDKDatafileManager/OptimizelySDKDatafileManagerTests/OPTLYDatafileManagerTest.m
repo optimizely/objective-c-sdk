@@ -170,19 +170,15 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     }];
     
     // Call download datafile
-    __block Boolean completionWasCalled = false;
 
     [datafileManager downloadDatafile:datafileManager.projectId
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        completionWasCalled = true;
+                        XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
                         [expectation fulfill];
     }];
     
     // make sure we were able to save the datafile
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    XCTAssertTrue(completionWasCalled);
-    XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
-    
+    [self waitForExpectationsWithTimeout:2 handler:nil];    
     // cleanup stubs
     [OHHTTPStubs removeStub:stub];
 }
