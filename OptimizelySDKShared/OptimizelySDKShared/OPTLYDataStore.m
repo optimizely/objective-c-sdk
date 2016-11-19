@@ -209,8 +209,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     // tvOS can only save to cached data
 #if TARGET_OS_TV
     if (!cachedData) {
-        cachedData = true;
-        OPTLYLogError(@"tvOS can only save to cached data.");
+        NSString *usageWarning = @"tvOS can only save to cached data.";
+        OPTLYLogInfo(usageWarning);
     }
 #endif
     
@@ -233,8 +233,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     // tvOS can only read from cached data
 #if TARGET_OS_TV
     if (!cachedData) {
-        cachedData = true;
-        OPTLYLogInfo(@"tvOS can only read from cached data.");
+        NSString *usageWarning = @"tvOS can only read from cached data.";
+        OPTLYLogInfo(usageWarning);
     }
 #endif
     
@@ -289,8 +289,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     // tvOS can only delete from cached data
 #if TARGET_OS_TV
     if (!cachedData) {
-        cachedData = true;
-        OPTLYLogInfo(@"tvOS can only delete cached data.");
+        NSString *usageWarning = @"tvOS can only read from cached data.";
+        OPTLYLogInfo(usageWarning);
     }
 #endif
     
@@ -337,16 +337,15 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
                  cachedData:(bool)cachedData
                       error:(NSError * _Nullable * _Nullable)error
 {
+    NSInteger numberOfEvents = 0;
     // tvOS can only read from cached data
 #if TARGET_OS_TV
     if (!cachedData) {
-        cachedData = true;
         OPTLYLogInfo(@"tvOS can only read from cached data.");
     }
 #endif
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
-    NSInteger numberOfEvents = 0;
     if (cachedData) {
         OPTLYQueue *queue = self.eventsCache[eventTypeName];
         numberOfEvents = [queue size];

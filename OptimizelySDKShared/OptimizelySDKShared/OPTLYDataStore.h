@@ -219,7 +219,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param numberOfEvents The number of events to retrieve.
  * @param eventType The event type of the data that needs to be removed.
  * @param cachedData Specify if the data should be removed from the in-memory
- *  cache instead of the database (this is always true for tvOS).
+ *  cache instead of the database (this should always be true for tvOS).
  * @param error An error object is returned if an error occurs.
  */
 - (void)removeFirstNEvents:(NSInteger)numberOfEvents

@@ -84,9 +84,11 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile], @"RemoveAll failed to remove NSUserDefault data.");
 }
 
+#if TARGET_OS_IOS
 - (void)testEventsStorageNoCache {
     [self eventsStorageTestSuite:NO];
 }
+#endif
 
 - (void)testEventsStorageCache {
     [self eventsStorageTestSuite:YES];
