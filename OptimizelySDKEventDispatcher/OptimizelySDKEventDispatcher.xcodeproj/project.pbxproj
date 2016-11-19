@@ -28,6 +28,7 @@
 		EA5249C31DC7DD5500AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249CE1DC7DFE000AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A91DC72D0800AF6685 /* OptimizelySDKShared.framework */; };
 		EA5249EC1DC7E76400AF6685 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA87A00B1DDE7356002E9EF7 /* OPTLYEventDispatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -670,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA87A00B1DDE7356002E9EF7 /* OPTLYEventDispatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +852,9 @@
 					"'OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION=@\"$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION)\"'",
 					"$(inherited)",
 					"DEBUG=1",
+					LOG_FLAG_ERROR,
+					LOG_FLAG_INFO,
+					LOG_FLAG_DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
