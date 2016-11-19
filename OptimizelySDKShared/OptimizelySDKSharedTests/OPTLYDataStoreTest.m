@@ -15,11 +15,7 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
-#import "OPTLYDatabase.h"
-#import "OPTLYFileManager.h"
-#import "OPTLYDatabaseEntity.h"
-#import "OPTLYDatastore.h"
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 static NSString *const kTestFileName = @"testFileManager.txt";
 static NSString *const kBadTestFileName = @"badTestFileManager.txt";
