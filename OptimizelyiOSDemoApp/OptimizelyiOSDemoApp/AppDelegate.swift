@@ -55,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 builder!.eventDispatcher = eventDispatcher;
                 builder!.logger = logger;
                 //builder!.errorHandler = errorHandler;
-            }))
-            
+            }));
+
             defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
             defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
                 
