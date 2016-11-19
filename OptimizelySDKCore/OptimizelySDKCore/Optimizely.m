@@ -105,17 +105,17 @@
         
         NSDictionary *impressionEventParams = [impressionEvent toDictionary];
         
-        [self.eventDispatcher dispatchEvent:impressionEventParams
-                                      toURL:[NSURL URLWithString:OPTLYEventBuilderDecisionTicketEventURL]
-                          completionHandler:^(NSURLResponse *response, NSError *error) {
-                              if (error != nil ) {
-                                  [self.errorHandler handleError:error];
-                              } else {
-                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationSuccess, userId, experimentKey];
-                                  [self.logger logMessage:logMessage
-                                                withLevel:OptimizelyLogLevelInfo];
-                              }
-                          }];
+        
+        [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
+                                             callback:^(NSURLResponse *response, NSError *error) {
+              if (error != nil ) {
+                  [self.errorHandler handleError:error];
+              } else {
+                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationSuccess, userId, experimentKey];
+                  [self.logger logMessage:logMessage
+                                withLevel:OptimizelyLogLevelInfo];
+              }
+        }];
     }
     
     return variation;
@@ -192,16 +192,16 @@
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     NSDictionary *conversionEventParams = [conversionEvent toDictionary];
-    NSURL *url = [NSURL URLWithString:OPTLYEventBuilderEventTicketURL];
-    [self.eventDispatcher dispatchEvent:conversionEventParams toURL:url completionHandler:^(NSURLResponse *response, NSError *error) {
-        NSString *logMessage = nil;
-        if (error) {
-            logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNotTrackedDispatchFailed, eventKey, userId];
+    
+    [self.eventDispatcher dispatchConversionEvent:conversionEventParams
+                                         callback:^(NSURLResponse *response, NSError *error) {
+        if (error != nil ) {
+            [self.errorHandler handleError:error];
         } else {
-            logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionSuccess, eventKey, userId];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNotTrackedDispatchFailed, eventKey, userId];
+            [self.logger logMessage:logMessage
+                          withLevel:OptimizelyLogLevelInfo];
         }
-        
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }];
 }
 
