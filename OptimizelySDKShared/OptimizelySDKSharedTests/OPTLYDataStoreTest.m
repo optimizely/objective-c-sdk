@@ -208,7 +208,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     [self.dataStore saveData:testEventData4 eventType:OPTLYDataStoreEventTypeImpression cachedData:cachedData error:&error];
     
     XCTAssertNil(error, @"Save data failed.");
-    impressionQueue = self.dataStore.eventsCache[eventTypeName];
+    impressionQueue = [self.dataStore.eventsCache objectForKey:eventTypeName];
 #if TARGET_OS_IOS
     if (cachedData) {
         XCTAssert([impressionQueue size] == 4, @"Data not cached as expected.");

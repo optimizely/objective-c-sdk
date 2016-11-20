@@ -41,7 +41,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 #if TARGET_OS_IOS
 @property (nonatomic, strong) OPTLYDatabase *database;
 #endif
-@property (nonatomic, strong) NSDictionary *eventsCache;
+@property (nonatomic, strong) NSCache *eventsCache;
 @end
 
 @implementation OPTLYDataStore
@@ -98,14 +98,11 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 #endif
 
-- (NSDictionary *)eventsCache {
+- (NSCache *)eventsCache {
     if (!_eventsCache) {
-        NSMutableDictionary *temp = [NSMutableDictionary new];
-        // create cache of impression events
-        temp[kOPTLYDataStoreEventTypeImpression] = [OPTLYQueue new];
-        // create cache of conversin events
-        temp[kOPTLYDataStoreEventTypeConversion] = [OPTLYQueue new];
-        _eventsCache = [NSDictionary dictionaryWithDictionary:temp];
+        _eventsCache = [NSCache new];
+        [_eventsCache setObject:[OPTLYQueue new] forKey:kOPTLYDataStoreEventTypeImpression];
+        [_eventsCache setObject:[OPTLYQueue new] forKey:kOPTLYDataStoreEventTypeConversion];
     }
     return _eventsCache;
 }
@@ -216,7 +213,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
     if (cachedData) {
-        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [queue enqueue:data];
     } else {
 #if TARGET_OS_IOS
@@ -241,7 +238,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     NSMutableArray *firstNEvents = [NSMutableArray new];
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
     if (cachedData) {
-        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [firstNEvents addObjectsFromArray:[queue firstNItems:numberOfEvents]];
     } else {
 #if TARGET_OS_IOS
@@ -296,7 +293,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
     if (cachedData) {
-        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [queue dequeueNItems:numberOfEvents];
     } else {
         // only iOS can delete from the database table
@@ -347,7 +344,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     
     NSString *eventTypeName = [self stringForDataEventEnum:eventType];
     if (cachedData) {
-        OPTLYQueue *queue = self.eventsCache[eventTypeName];
+        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         numberOfEvents = [queue size];
     } else {
         // only iOS can read from the database table

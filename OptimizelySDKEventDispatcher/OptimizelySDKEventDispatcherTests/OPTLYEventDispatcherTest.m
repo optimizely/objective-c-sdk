@@ -62,7 +62,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [super setUp];
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
-    self.dataStore = [OPTLYDataStore new];
     self.eventDispatcher = [OPTLYEventDispatcher new];
     self.eventDispatcher.dispatchEventBackoffRetries = 0;
 }
@@ -70,8 +69,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)tearDown {
     self.testURL = nil;
     self.parameters = nil;
-    [self.dataStore removeAll:nil];
-    self.dataStore = nil;
     self.eventDispatcher = nil;
     [super tearDown];
 }
@@ -100,12 +97,10 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 }
 
 // Test that a successful dispatch:
-//  - Does not persist events in db or cache.
+//  - data does not persist events in db or cache
+//  - the timer is also disabled
 - (void)testDispatchImpressionEventSuccess {
     [self stubSuccessResponse];
-    //[self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeImpression error:nil];
-    NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:YES error:nil];
-    NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:NO error:nil];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent success."];
     [self.eventDispatcher dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [self eventDispatchSuccessCheck:OPTLYDataStoreEventTypeImpression];
@@ -220,11 +215,10 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     NSInteger numberOfRetries = 10;
     for (NSInteger i = 0; i < numberOfRetries; ++i) {
-        [self.eventDispatcher saveEvent:self.parameters
-                              eventType:OPTLYDataStoreEventTypeImpression
-                                  error:nil];
+        [eventDispatcher saveEvent:self.parameters
+                         eventType:OPTLYDataStoreEventTypeImpression
+                             error:nil];
     }
-    
     __weak typeof(self) weakSelf = self;
     for (NSInteger i = 1; i < numberOfRetries; ++i) {
         //NSLog(@"Dispatch attempt - %ld. Dispatch event call - %u", i, eventDispatcher.dispatchEventCall);
@@ -234,11 +228,10 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
             NSInteger backoffRetryExpected = log2(i)+1;
             XCTAssert(eventDispatcher.dispatchEventBackoffRetries == backoffRetryExpected, @"Invalid value for the backoff retry count - %ld, %u, %ld", i, eventDispatcher.dispatchEventBackoffRetries, backoffRetryExpected);
             
-            XCTAssert(eventDispatcher.dispatchEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %ld", eventDispatcher.dispatchEventBackoffRetries);
+            XCTAssert(eventDispatcher.dispatchEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %u", eventDispatcher.dispatchEventBackoffRetries);
             
-            NSLog(@"dispatchEventCall - %ld", eventDispatcher.dispatchEventCall);
+            NSLog(@"dispatchEventCall - %u", eventDispatcher.dispatchEventCall);
             if (eventDispatcher.dispatchEventCall == numberOfRetries - 1) {
-            //if (eventDispatcher.dispatchEventBackoffRetries == eventDispatcher.maxDispatchBackoffRetries) {
                 [weakSelf checkNetworkTimerIsEnabled:eventDispatcher
                                         timeInterval:kEventHandlerDispatchInterval];
                 [expectation fulfill];
@@ -246,7 +239,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
         }];
     }
 
-    [self waitForExpectationsWithTimeout:100.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
         }
@@ -390,7 +383,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
-- (void)testSaveEvent
+- (void)testSaveEventSuccess
 {
     // save success
     NSError *error = nil;
@@ -409,11 +402,14 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     XCTAssert([savedEvents count] == numberOfSavedEvents, @"Invalid number of saved events.");
     XCTAssert([cachedEvents count] == numberOfCachedEvents, @"Invalid number of cached events.");
-    
+}
+
+- (void)testSavedEventFailure
+{
     // force a save fail to make sure that the event is cached
-    error = [NSError errorWithDomain:@"saveEventTest" code:0 userInfo:nil];
+    NSError *error = [NSError errorWithDomain:@"saveEventTest" code:0 userInfo:nil];
     [self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:YES error:nil];
+    NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:YES error:nil];
     XCTAssert([cachedEvents count] == 1, @"Invalid number of cached events.");
 }
 
