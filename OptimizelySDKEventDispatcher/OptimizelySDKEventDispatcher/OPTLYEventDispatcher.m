@@ -166,11 +166,8 @@ dispatch_queue_t flushEventsQueue()
     [requestManager POSTWithParameters:event completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         __typeof__(self) strongSelf = weakSelf;
         if (!error) {
-            if ([strongSelf haveEventsToSend]) {
-                [strongSelf flushEvents];
-                OPTLYLogInfo(@"Flushing saved events.");
-            }
             OPTLYLogInfo(@"Event [%ld] sent with parameters - %@.", eventType, event);
+            [strongSelf flushEvents];
             if (callback) {
                 callback(data, response, error);
             }
