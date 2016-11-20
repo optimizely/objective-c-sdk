@@ -16,26 +16,20 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYDatafileManagerBuilder;
-@protocol OPTLYErrorHandler, OPTLYLogger;
+@class OPTLYEventBuilderEvent;
 
-/// This is a block that takes the biulder values
-typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _Nullable builder);
+@interface OPTLYTestHelper : NSObject
 
-@interface OPTLYDatafileManagerBuilder : NSObject
+/// Set up mock response with a failure
++ (void)stubFailureResponse;
 
-/** The time interval to regularly fetch the datafile.
- * The default time interval is 0. This means that the datafile manager will NOT regularly poll for a new datafile during the app session.
- */
-@property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
-/// The projectID of the project we want to get the datafile for.
-@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
-/// The error handler to be used for the manager, client, and all subcomponents
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
-/// A logger to inject for purposes of error logging. If none is passed in, a default logger with log level `All` will be created.
-@property (nonatomic, readwrite, strong, nonnull) id<OPTLYLogger> logger;
+/// Set up mock response with a success
++ (void)stubSuccessResponse;
 
-/// Create an Optimizely Datafile Manager Builder object.
-+ (nullable instancetype)builderWithBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
+/// Loads JSON datafile into a JSON object
++ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
+
+/// Loads JSON datafile into an NSData object
++ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
 
 @end

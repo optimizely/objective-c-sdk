@@ -15,27 +15,35 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
 
-@class OPTLYDatafileManagerBuilder;
+
 @protocol OPTLYErrorHandler, OPTLYLogger;
 
-/// This is a block that takes the biulder values
-typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _Nullable builder);
+@protocol OPTLYDatafileManager <NSObject>
 
-@interface OPTLYDatafileManagerBuilder : NSObject
-
-/** The time interval to regularly fetch the datafile.
- * The default time interval is 0. This means that the datafile manager will NOT regularly poll for a new datafile during the app session.
+/**
+ * Download the datafile for the project ID
+ * @param projectId The project ID of the datafile to request.
+ * @param completion Completion handler.
  */
-@property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
-/// The projectID of the project we want to get the datafile for.
-@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
-/// The error handler to be used for the manager, client, and all subcomponents
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
-/// A logger to inject for purposes of error logging. If none is passed in, a default logger with log level `All` will be created.
-@property (nonatomic, readwrite, strong, nonnull) id<OPTLYLogger> logger;
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
-/// Create an Optimizely Datafile Manager Builder object.
-+ (nullable instancetype)builderWithBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block;
+@end
+
+@interface OPTLYDatafileManagerUtility : NSObject
+
+/**
+ * Utility method to check if a class conforms to the OPTLYDatafileManager protocol
+ * This method uses compile and run time checks
+ */
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
+
+@end
+
+@interface OPTLYDatafileManagerNoOp : NSObject<OPTLYDatafileManager>
 
 @end

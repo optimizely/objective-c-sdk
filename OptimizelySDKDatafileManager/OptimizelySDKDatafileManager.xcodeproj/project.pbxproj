@@ -16,6 +16,22 @@
 		2DB3D1891DC818EC00ECF72E /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */; };
 		2DB3D18A1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */; };
 		2DB3D18B1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */; };
+		2DCC50D31DDA7D81006C9815 /* OPTLYDatafileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50D21DDA7D81006C9815 /* OPTLYDatafileManagerTest.m */; };
+		2DCC50D41DDA7D81006C9815 /* OPTLYDatafileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50D21DDA7D81006C9815 /* OPTLYDatafileManagerTest.m */; };
+		2DCC50EF1DDBD19C006C9815 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50EC1DDBD183006C9815 /* OPTLYTestHelper.m */; };
+		2DCC50F01DDBD19D006C9815 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50EC1DDBD183006C9815 /* OPTLYTestHelper.m */; };
+		2DCC51001DDBD7DD006C9815 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F41DDBD219006C9815 /* BucketerTestsDatafile.json */; };
+		2DCC51011DDBD7DD006C9815 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F51DDBD219006C9815 /* datafile_6372300739.json */; };
+		2DCC51021DDBD7DD006C9815 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F61DDBD219006C9815 /* test_data_10_experiments.json */; };
+		2DCC51031DDBD7DD006C9815 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F71DDBD219006C9815 /* test_data_25_experiments.json */; };
+		2DCC51041DDBD7DD006C9815 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F81DDBD219006C9815 /* test_data_50_experiments.json */; };
+		2DCC51051DDBD7DD006C9815 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F91DDBD219006C9815 /* validator_whitelisting_test_datafile.json */; };
+		2DCC51061DDBD7DD006C9815 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F41DDBD219006C9815 /* BucketerTestsDatafile.json */; };
+		2DCC51071DDBD7DD006C9815 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F51DDBD219006C9815 /* datafile_6372300739.json */; };
+		2DCC51081DDBD7DD006C9815 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F61DDBD219006C9815 /* test_data_10_experiments.json */; };
+		2DCC51091DDBD7DD006C9815 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F71DDBD219006C9815 /* test_data_25_experiments.json */; };
+		2DCC510A1DDBD7DD006C9815 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F81DDBD219006C9815 /* test_data_50_experiments.json */; };
+		2DCC510B1DDBD7DD006C9815 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCC50F91DDBD219006C9815 /* validator_whitelisting_test_datafile.json */; };
 		6D5CBB24D7CD0C622634D15B /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E878B599943D437831DAA7F /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework */; };
 		7C30D664EDAC58887076AE8E /* Pods_OptimizelySDKDatafileManageriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11A4F80C7960C4907845910 /* Pods_OptimizelySDKDatafileManageriOSTests.framework */; };
 		8160880F9C1EE3663169C1F5 /* Pods_OptimizelySDKDatafileManageriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E531AA1D0D78410E6B99080 /* Pods_OptimizelySDKDatafileManageriOS.framework */; };
@@ -97,6 +113,15 @@
 		2DB3D1821DC8187900ECF72E /* OPTLYDatafileManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManagerBuilder.h; sourceTree = "<group>"; };
 		2DB3D1831DC8187900ECF72E /* OPTLYDatafileManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilder.m; sourceTree = "<group>"; };
 		2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilderTest.m; sourceTree = "<group>"; };
+		2DCC50D21DDA7D81006C9815 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
+		2DCC50EB1DDBD183006C9815 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
+		2DCC50EC1DDBD183006C9815 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
+		2DCC50F41DDBD219006C9815 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BucketerTestsDatafile.json; path = TestData/BucketerTestsDatafile.json; sourceTree = "<group>"; };
+		2DCC50F51DDBD219006C9815 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = datafile_6372300739.json; path = TestData/datafile_6372300739.json; sourceTree = "<group>"; };
+		2DCC50F61DDBD219006C9815 /* test_data_10_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_10_experiments.json; path = TestData/test_data_10_experiments.json; sourceTree = "<group>"; };
+		2DCC50F71DDBD219006C9815 /* test_data_25_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_25_experiments.json; path = TestData/test_data_25_experiments.json; sourceTree = "<group>"; };
+		2DCC50F81DDBD219006C9815 /* test_data_50_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_50_experiments.json; path = TestData/test_data_50_experiments.json; sourceTree = "<group>"; };
+		2DCC50F91DDBD219006C9815 /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = validator_whitelisting_test_datafile.json; path = TestData/validator_whitelisting_test_datafile.json; sourceTree = "<group>"; };
 		2FEFFF84C21046FA94F7615A /* Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManageriOSTests/Pods-OptimizelySDKDatafileManageriOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C0F2EF1551F96713F44A84E /* Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKDatafileManagerTVOSTests/Pods-OptimizelySDKDatafileManagerTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		57C3406734E932C4DD563494 /* Pods_OptimizelySDKDatafileManagerTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKDatafileManagerTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +193,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DCC50F31DDBD20E006C9815 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				2DCC50F41DDBD219006C9815 /* BucketerTestsDatafile.json */,
+				2DCC50F51DDBD219006C9815 /* datafile_6372300739.json */,
+				2DCC50F61DDBD219006C9815 /* test_data_10_experiments.json */,
+				2DCC50F71DDBD219006C9815 /* test_data_25_experiments.json */,
+				2DCC50F81DDBD219006C9815 /* test_data_50_experiments.json */,
+				2DCC50F91DDBD219006C9815 /* validator_whitelisting_test_datafile.json */,
+			);
+			name = TestData;
+			sourceTree = "<group>";
+		};
 		6AE0BFC884AFE1AFC12765CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,8 +269,12 @@
 			isa = PBXGroup;
 			children = (
 				EA3C68CC1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests-Info.plist */,
+				2DCC50EB1DDBD183006C9815 /* OPTLYTestHelper.h */,
+				2DCC50EC1DDBD183006C9815 /* OPTLYTestHelper.m */,
 				EA3C68CA1DC1E75900C578CA /* OptimizelySDKDatafileManagerTests.m */,
 				2DB3D1861DC818D500ECF72E /* OPTLYDatafileManagerBuilderTest.m */,
+				2DCC50D21DDA7D81006C9815 /* OPTLYDatafileManagerTest.m */,
+				2DCC50F31DDBD20E006C9815 /* TestData */,
 			);
 			path = OptimizelySDKDatafileManagerTests;
 			sourceTree = "<group>";
@@ -466,6 +508,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCC51041DDBD7DD006C9815 /* test_data_50_experiments.json in Resources */,
+				2DCC51021DDBD7DD006C9815 /* test_data_10_experiments.json in Resources */,
+				2DCC51001DDBD7DD006C9815 /* BucketerTestsDatafile.json in Resources */,
+				2DCC51011DDBD7DD006C9815 /* datafile_6372300739.json in Resources */,
+				2DCC51031DDBD7DD006C9815 /* test_data_25_experiments.json in Resources */,
+				2DCC51051DDBD7DD006C9815 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +528,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCC510A1DDBD7DD006C9815 /* test_data_50_experiments.json in Resources */,
+				2DCC51081DDBD7DD006C9815 /* test_data_10_experiments.json in Resources */,
+				2DCC51061DDBD7DD006C9815 /* BucketerTestsDatafile.json in Resources */,
+				2DCC51071DDBD7DD006C9815 /* datafile_6372300739.json in Resources */,
+				2DCC51091DDBD7DD006C9815 /* test_data_25_experiments.json in Resources */,
+				2DCC510B1DDBD7DD006C9815 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,8 +706,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCC50EF1DDBD19C006C9815 /* OPTLYTestHelper.m in Sources */,
 				2DB3D18A1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */,
 				2DB3D1751DC816C600ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */,
+				2DCC50D31DDA7D81006C9815 /* OPTLYDatafileManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,8 +726,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCC50F01DDBD19D006C9815 /* OPTLYTestHelper.m in Sources */,
 				2DB3D18B1DC818F200ECF72E /* OPTLYDatafileManagerBuilderTest.m in Sources */,
 				2DB3D1791DC816C700ECF72E /* OptimizelySDKDatafileManagerTests.m in Sources */,
+				2DCC50D41DDA7D81006C9815 /* OPTLYDatafileManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

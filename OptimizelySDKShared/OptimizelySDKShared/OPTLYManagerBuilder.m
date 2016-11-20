@@ -15,9 +15,11 @@
  ***************************************************************************/
 
 #import "OPTLYManagerBuilder.h"
+#import "OPTLYDatafileManager.h"
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKShared/OPTLYDatafileManager.h>
 
 @implementation OPTLYManagerBuilder
 
@@ -34,8 +36,18 @@
     self = [super init];
     if (self != nil) {
         block(self);
+        if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[self.datafileManager class]]) {
+            return nil;
+        }
     }    
     return self;
+}
+
+- (id<OPTLYDatafileManager>)datafileManager {
+    if (!_datafileManager) {
+        _datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
+    }
+    return _datafileManager;
 }
 
 - (id<OPTLYErrorHandler>)errorHandler {

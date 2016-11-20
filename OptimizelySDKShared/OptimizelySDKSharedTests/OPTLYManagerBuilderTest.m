@@ -21,8 +21,16 @@
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"
+#import "OPTLYDatafileManager.h"
 
 static NSString *const kProjectId = @"6372300739";
+
+@interface OPTLYFakeDatafileManagerClass : NSObject <OPTLYDatafileManager>
+
+@end
+
+@implementation OPTLYFakeDatafileManagerClass
+@end
 
 @interface OPTLYManagerBuilderTest : XCTestCase
 
@@ -52,6 +60,7 @@ static NSString *const kProjectId = @"6372300739";
     XCTAssertNotNil(manager.errorHandler);
     XCTAssertNotNil(manager.eventDispatcher);
     XCTAssertNotNil(manager.logger);
+    XCTAssertNotNil(manager.datafileManager);
 }
 
 - (void)testBuilderCanAssignErrorHandler {
@@ -73,7 +82,7 @@ static NSString *const kProjectId = @"6372300739";
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
-    id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
+    OPTLYEventDispatcherNoOp *eventDispatcher = [[OPTLYEventDispatcherNoOp alloc] init];
     
     OPTLYManager *defaultManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
@@ -108,5 +117,33 @@ static NSString *const kProjectId = @"6372300739";
     XCTAssertEqual(logger, customManager.logger, @"Should be the same object with custom builder");
 }
 
+- (void)testBuilderCanAssignDatafileManager {
+    OPTLYDatafileManagerNoOp *datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
+    
+    OPTLYManager *defaultManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    OPTLYManager *customManager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileManager = datafileManager;
+    }];
+    
+    XCTAssertNotNil(customManager);
+    XCTAssertNotNil(customManager.datafileManager);
+    XCTAssertNotEqual(customManager.datafileManager, defaultManager.datafileManager);
+    XCTAssertEqual(datafileManager, customManager.datafileManager);
+}
+
+- (void)testBuilderCannotAssignDatafileManagerThatDoesNotConformToProtocol {
+    OPTLYFakeDatafileManagerClass *object = [[OPTLYFakeDatafileManagerClass alloc] init];
+    
+    OPTLYManager *managerWithObject = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileManager = object;
+    }];
+    
+    XCTAssertNil(managerWithObject);
+}
 
 @end

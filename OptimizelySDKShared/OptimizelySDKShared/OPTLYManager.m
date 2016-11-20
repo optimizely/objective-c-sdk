@@ -52,7 +52,8 @@
             _errorHandler = builder.errorHandler;
             _eventDispatcher = builder.eventDispatcher;
             _logger = builder.logger;
-            // TODO: Josh W. initialize datafile manager
+            // initialize datafile manager
+            _datafileManager = builder.datafileManager;
             // TODO: Josh W. initialize event dispatcher
             // TODO: Josh W. initialize user experiment record
         }

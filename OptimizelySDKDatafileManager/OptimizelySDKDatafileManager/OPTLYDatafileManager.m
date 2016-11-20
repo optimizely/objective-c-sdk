@@ -15,9 +15,18 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
+#import <OptimizelySDKShared/OPTLYDataStore.h>
+#import <OptimizelySDKShared/OPTLYNetworkService.h>
 
 static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
 NSTimeInterval const kDefaultDatafileFetchInterval = 0;
+
+@interface OPTLYDatafileManager ()
+
+@property OPTLYDataStore *dataStore;
+@property OPTLYNetworkService *networkService;
+
+@end
 
 @implementation OPTLYDatafileManager
 
@@ -32,7 +41,14 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
             _datafileFetchInterval = kDefaultDatafileFetchInterval;
             _datafileFetchInterval = builder.datafileFetchInterval;
             _projectId = builder.projectId;
+            _errorHandler = builder.errorHandler;
             _logger = builder.logger;
+            _networkService = [OPTLYNetworkService new];
+            _dataStore = [OPTLYDataStore new];
+            
+            // download datafile when we start the datafile manager
+            [self downloadDatafile:self.projectId completionHandler:nil];
+            
             // Only fetch the datafile if the polling interval is greater than 0
             if (self.datafileFetchInterval > 0) {
                 // TODO: Josh W. start timer to poll for the datafile
@@ -45,12 +61,32 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     }
 }
 
-- (NSString *)datafileURLForProject:(NSString *)projectID {
-    return [NSString stringWithFormat:kCDNAddressFormat, projectID];
+- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
+    [self.networkService downloadProjectConfig:self.projectId
+                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                 if (error != nil) {
+                                     [self.errorHandler handleError:error];
+                                 }
+                                 else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+                                     [self saveDatafile:data];
+                                 }
+                                 else {
+                                     // TODO: Josh W. handle bad response
+                                 }
+                                 // call the completion handler
+                                 if (completion != nil) {
+                                     completion(data, response, error);
+                                 }
+                             }];
 }
 
-- (void)requestDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
-    
+- (void)saveDatafile:(NSData *)datafile {
+    NSError *error;
+    [self.dataStore saveFile:self.projectId
+                        data:datafile
+                        type:OPTLYDataStoreDataTypeDatafile
+                       error:&error];
+
 }
 
 @end
