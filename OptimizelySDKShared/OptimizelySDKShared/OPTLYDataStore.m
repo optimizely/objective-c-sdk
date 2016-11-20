@@ -365,7 +365,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 - (void)removeAllEvents:(NSError * _Nullable * _Nullable)error {
     [self removeSavedEvents:YES error:error];
     [self removeSavedEvents:NO error:error];
-    self.eventsCache = nil;
 #if TARGET_OS_IOS
     [self.database deleteDatabase:error];
     self.database = nil;
