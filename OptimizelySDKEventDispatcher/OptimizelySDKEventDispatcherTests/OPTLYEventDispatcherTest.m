@@ -69,6 +69,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)tearDown {
     self.testURL = nil;
     self.parameters = nil;
+    [self.eventDispatcher.dataStore removeAll:nil];
+    self.eventDispatcher.dataStore = nil;
     self.eventDispatcher = nil;
     [super tearDown];
 }

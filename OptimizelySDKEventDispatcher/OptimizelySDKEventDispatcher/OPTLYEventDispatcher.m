@@ -131,10 +131,10 @@ dispatch_queue_t flushEventsQueue()
         __typeof__(self) strongSelf = weakSelf;
         [strongSelf.timer invalidate];
         strongSelf.timer = nil;
+        OPTLYLogInfo(@"Network timer disabled.");
         if (completion) {
             completion();
         }
-        OPTLYLogInfo(@"Network timer disabled.");
     };
     
     if ([NSThread isMainThread]) {
