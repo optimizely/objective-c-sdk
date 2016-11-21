@@ -106,7 +106,7 @@ extern NSString *const OPTLYLoggerMessagesActivationFailure;
 // File Manager
 // debug
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesError;
-extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesForDataTypeError;
+extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError;
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError;
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerGetFile;
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile;

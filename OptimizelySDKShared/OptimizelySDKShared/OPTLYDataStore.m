@@ -24,13 +24,6 @@
 #import "OPTLYDatabase.h"
 #endif
 
-typedef NS_ENUM(NSUInteger, OPTLYDataStoreErrorType)
-{
-    OPTLYDataStoreErrorTypeSave,
-    OPTLYDataStoreErrorTypeGet,
-    OPTLYDataStoreErrorTypeRemove,
-};
-
 static NSString * const kOptimizelyDirectory = @"optimizely";
 
 // data type names
@@ -206,7 +199,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
                          error:(NSError * _Nullable * _Nullable)error {
     [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesForDataTypeError, dataType, *error];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError, dataType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
 }
