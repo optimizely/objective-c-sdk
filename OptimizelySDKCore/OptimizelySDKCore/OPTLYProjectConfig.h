@@ -55,8 +55,8 @@
  * Initialize the Project Config from the Data File.
  */
 - (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                                 withLogger:(nullable id<OPTLYLogger>)logger
-                           withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler;
+                               withLogger:(nullable id<OPTLYLogger>)logger
+                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler;
 
 /**
  * Get an Experiment object for a key.

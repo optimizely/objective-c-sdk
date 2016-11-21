@@ -69,7 +69,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
         
         _maxDispatchBackoffRetries = (_eventHandlerDispatchInterval > 0) && (_eventHandlerDispatchTimeout > 0) ? _eventHandlerDispatchTimeout/_eventHandlerDispatchInterval : 0;
         
-        _dataStore = [OPTLYDataStore new];
+        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
 
         [self setupApplicationNotificationHandlers];
         
@@ -319,9 +319,8 @@ dispatch_queue_t flushEventsQueue()
              cachedData:(BOOL)cachedData
                callback:(OPTLYEventDispatcherResponse)callback
 {
-    OPTLYLogInfo(@"Flushing a saved event [%ld] - %@.", eventType, event);
-    
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    OPTLYLogInfo(@"Flushing a saved %@ event - %@.", eventName, event);
     
     if (![self haveEventsToSend:eventType cachedData:cachedData]) {
         
@@ -368,7 +367,6 @@ dispatch_queue_t flushEventsQueue()
             NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, event];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
-
             // if the event failed to send, enable the network timer to retry at a later time
             if (![strongSelf isTimerEnabled]) {
                 [strongSelf setupNetworkTimer:^{
@@ -390,11 +388,18 @@ dispatch_queue_t flushEventsQueue()
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType
               cachedData:(BOOL)cachedData
 {
-    OPTLYLogInfo(@"Flushing saved events [%ld].", eventType);
+    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    OPTLYLogInfo(@"Flushing saved %@ events", eventName);
     
     NSError *error = nil;
     NSInteger totalNumberOfEvents = [self.dataStore numberOfEvents:eventType cachedData:cachedData error:&error];
     NSArray *events = [self.dataStore getAllEvents:eventType cachedData:cachedData error:&error];
+    
+    if (error) {
+        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, nil];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        return;
+    }
     
     // This will be batched in the near future...
     for (NSInteger i = 0 ; i < totalNumberOfEvents; ++i) {

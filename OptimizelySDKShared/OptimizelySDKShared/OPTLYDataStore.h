@@ -41,12 +41,17 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *      - SQLite table (or in-memory queue) for events
  *      - NSUserDefault for user data (e.g., bucketing info).
  */
-
 @interface OPTLYDataStore : NSObject
 
 /// base directory where Optimizely-related data will persist
 @property (nonatomic, strong, readonly, nonnull) NSString *baseDirectory;
+/// optional logger for data store logging
+@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 
+/**
+ * Initialize the data store with optional logger handler.
+ */
+- (nullable instancetype)initWithLogger:(nullable id<OPTLYLogger>)logger;
 /**
  * Wipes all Optimizely data (saved and cached).
  *
