@@ -45,6 +45,8 @@
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
+/// List of live variable objects
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -101,6 +103,11 @@
  * Get an audience for a given audience id.
  */
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
+
+/**
+ * Get a variable for a given live variable key.
+ */
+- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
  * Get variation for experiment and user ID with user attributes.

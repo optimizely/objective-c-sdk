@@ -14,21 +14,25 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "Optimizely.h"
-#import "OPTLYBucketer.h"
-#import "OPTLYBuilder.h"
-#import "OPTLYErrorHandler.h"
-#import "OPTLYErrorHandlerMessages.h"
-#import "OPTLYEventBuilder.h"
-#import "OPTLYEventDispatcher.h"
-#import "OPTLYExperiment.h"
-#import "OPTLYLogger.h"
-#import "OPTLYLoggerMessages.h"
-#import "OPTLYProjectConfig.h"
-#import "OPTLYVariable.h"
-#import "OPTLYVariation.h"
-#import "OPTLYLog.h"
-#import "OPTLYQueue.h"
+#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModelLib.h>
 
-FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
-FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];
+/**
+ * This class is a representation of an Optimizely live variable.
+ */
+
+@protocol OPTLYVariable
+@end
+
+@interface OPTLYVariable : JSONModel
+
+/// The variable's ID.
+@property (nonatomic, strong) NSString *variableId;
+/// The variable's Key.
+@property (nonatomic, strong) NSString *variableKey;
+/// The variable's type.
+@property (nonatomic, strong) NSString *type;
+/// The variable's default value.
+@property (nonatomic, strong) NSString *value;
+
+@end

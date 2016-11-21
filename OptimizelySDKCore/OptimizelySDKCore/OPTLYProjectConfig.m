@@ -27,6 +27,7 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
 #import "OPTLYUserProfile.h"
+#import "OPTLYVariable.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -40,6 +41,7 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 
 @end
 
@@ -214,6 +216,16 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     return nil;
 }
+
+- (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
+    OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
+    if (!variable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    }
+    return variable;
+}
+
 #pragma mark -- Property Getters --
 
 - (NSArray *)allExperiments
@@ -302,6 +314,13 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     return _groupIdToGroupMap;
 }
 
+- (NSDictionary<NSString *, OPTLYVariable *> *)variableKeyToVariableMap {
+    if (!_variableKeyToVariableMap) {
+        _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
+    }
+    return _variableKeyToVariableMap;
+}
+
 #pragma mark -- Generate Mappings --
 
 - (NSDictionary *)generateAudienceIdToAudienceMap
@@ -379,6 +398,14 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     NSMutableDictionary *map = [[NSMutableDictionary alloc] initWithCapacity:groups.count];
     for (OPTLYGroup *group in groups) {
         map[group.groupId] = group;
+    }
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
+- (NSDictionary<NSString *, OPTLYVariable *> *)generateVariableKeyToVariableMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYVariable *variable in self.variables) {
+        map[variable.variableKey] = variable;
     }
     return [NSDictionary dictionaryWithDictionary:map];
 }
