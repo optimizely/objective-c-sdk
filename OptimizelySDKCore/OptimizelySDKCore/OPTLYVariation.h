@@ -30,5 +30,7 @@
 @property (nonatomic, strong) NSString *variationId;
 /// The variation's Key.
 @property (nonatomic, strong) NSString *variationKey;
+/// The array containing the variation's live variable information -- variable ID and variable value.
+@property (nonatomic, strong) NSArray<NSDictionary *> *variables;
 
 @end

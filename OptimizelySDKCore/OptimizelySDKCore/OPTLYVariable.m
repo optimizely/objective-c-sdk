@@ -14,21 +14,16 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "Optimizely.h"
-#import "OPTLYBucketer.h"
-#import "OPTLYBuilder.h"
-#import "OPTLYErrorHandler.h"
-#import "OPTLYErrorHandlerMessages.h"
-#import "OPTLYEventBuilder.h"
-#import "OPTLYEventDispatcher.h"
-#import "OPTLYExperiment.h"
-#import "OPTLYLogger.h"
-#import "OPTLYLoggerMessages.h"
-#import "OPTLYProjectConfig.h"
 #import "OPTLYVariable.h"
-#import "OPTLYVariation.h"
-#import "OPTLYLog.h"
-#import "OPTLYQueue.h"
+#import "OPTLYDatafileKeys.h"
 
-FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
-FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];
+@implementation OPTLYVariable
+
++ (JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableId     : @"variableId",
+                                                        OPTLYDatafileKeysVariableKey    : @"variableKey"
+                                                        }];
+}
+
+@end

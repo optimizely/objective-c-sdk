@@ -51,6 +51,7 @@ NSString *const OPTLYLoggerMessagesNotTrackedNoParams = @"Not tracking event %@ 
 NSString *const OPTLYLoggerMessagesNotTrackedDispatchFailed = @"Not tracking event %@ for user %@. Event dispatch failed."; // event key, userId
 NSString *const OPTLYLoggerMessagesExperimentIdUnknown = @"Experiment id for %@ is not in the datafile."; // experiment key
 NSString *const OPTLYLoggerMessagesEventIdUnknown = @"Event id %@ is not in the datafile."; //event key
+NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
 // conversion and tracking event creation errors
 NSString *const OPTLYLoggerMessagesVariationtNameInvalid = @"Variation name is not valid.";
 NSString *const OPTLYLoggerMessagesUserIdInvalid = @"User id is not valid.";
@@ -68,6 +69,7 @@ NSString *const OPTLYLoggerMessagesEventUnknownForEventKey = @"Event not found f
 NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey = @"Attribute not found for attribute key: %@."; // attribute key
 NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId = @"Audience not found for audience id: %@."; // audience id
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"Group not found for group id: %@."; // group id
+NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"Live variable not found for variable key: %@."; // live variable key
 
 NSString *const OPTLYLoggerMessagesEventDispatcherInterval = @"Event dispatcher interval set: %ld";
 

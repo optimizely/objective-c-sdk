@@ -17,8 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
 
-@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYBucketer;
-@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYExperiment, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
+@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYVariable, OPTLYBucketer;
+@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYVariable, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -45,6 +45,8 @@
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
+/// List of live variable objects
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -97,6 +99,11 @@
  * Get an audience for a given audience id.
  */
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
+
+/**
+ * Get a variable for a given live variable key.
+ */
+- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
  * Get variation for experiment and user ID with user attributes.

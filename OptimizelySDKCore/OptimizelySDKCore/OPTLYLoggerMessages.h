@@ -70,6 +70,8 @@ extern NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInterval;
+extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
+extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
 
 // ---- debug ----
 extern NSString *const OPTLYLoggerMessagesImpressionDispatching;

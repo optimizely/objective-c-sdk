@@ -42,6 +42,7 @@ NSString * const OPTLYErrorHandlerMessagesBucketingIdInvalid = @"Invalid bucketi
 NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown = @"Traffic allocations for %@ does not exist in datafile."; // experiment or group id
 NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed = @"Event %@ failed to dispatch.";
 NSString * const OPTLYErrorHandlerMessagesConfigInvalid = @"Project config is nil or invalid";
+NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown = @"Live variable key %@ is not in datafile."; // live variable key
 
 // Manager Errors
 NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid";
