@@ -17,8 +17,13 @@
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
 
+<<<<<<< HEAD
 @class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYUserProfile, OPTLYVariable, OPTLYVariation;
+=======
+@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYVariable, OPTLYBucketer;
+@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYVariable, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
+>>>>>>> Introduce live variable class and getters (#35)
 
 /*
     This class represents all the data contained in the project datafile 

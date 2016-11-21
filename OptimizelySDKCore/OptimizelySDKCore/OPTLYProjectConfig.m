@@ -26,9 +26,13 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
+<<<<<<< HEAD
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
 #import "OPTLYUserProfile.h"
+=======
+#import "OPTLYVariable.h"
+>>>>>>> Introduce live variable class and getters (#35)
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -203,19 +207,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     }
     return group;
-}
-
-- (OPTLYVariation *)getVariationForVariationKey:(NSString *)variationKey {
-    NSArray *allVariations = [self allVariations];
-    for (OPTLYVariation *variation in allVariations) {
-        if ([variation.variationKey isEqualToString:variationKey]) {
-            return variation;
-        }
-    }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUnknownForVariationKey, variationKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-    return nil;
 }
 
 - (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
