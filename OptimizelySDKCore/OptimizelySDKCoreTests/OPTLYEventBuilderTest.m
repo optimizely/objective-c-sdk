@@ -86,7 +86,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
-    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                    withLogger:nil
+                                              withErrorHandler:nil
+                                               withUserProfile:nil];
     self.eventBuilder = [OPTLYEventBuilderDefault new];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
 }

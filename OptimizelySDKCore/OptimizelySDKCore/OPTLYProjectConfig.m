@@ -26,6 +26,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
+#import "OPTLYUserProfile.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -44,9 +45,10 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 
 @implementation OPTLYProjectConfig
 
-- (instancetype)initWithDatafile:(NSData *)datafile
-                      withLogger:(id<OPTLYLogger>)logger
-                withErrorHandler:(id<OPTLYErrorHandler>)errorHandler
+- (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
+                               withLogger:(nullable id<OPTLYLogger>)logger
+                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler
+                          withUserProfile:(nullable id<OPTLYUserProfile>)userProfile
 {    
     if (errorHandler) {
         if ([OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]]) {
@@ -77,6 +79,13 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             NSString *logMessage = OPTLYErrorHandlerMessagesLoggerInvalid;
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         }
+    }
+    
+    if (userProfile) {
+        if ([OPTLYUserProfile conformsToOPTLYUserProfileProtocol:[userProfile class]]) {
+            _userProfile = userProfile;
+        }
+        // TODO - log error
     }
     
     OPTLYProjectConfig* projectConfig = nil;
@@ -185,6 +194,16 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     return group;
 }
 
+- (OPTLYVariation *)getVariationForVariationKey:(NSString *)variationKey {
+    NSArray *allVariations = [self allVariations];
+    for (OPTLYVariation *variation in allVariations) {
+        if ([variation.variationKey isEqualToString:variationKey]) {
+            return variation;
+        }
+    }
+    // TODO - log error
+    return nil;
+}
 #pragma mark -- Property Getters --
 
 - (NSArray *)allExperiments
@@ -199,6 +218,18 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         _allExperiments = [all copy];
     }
     return _allExperiments;
+}
+
+- (NSArray *)allVariations
+{
+    if (!_allVariations) {
+        NSMutableArray *all = [NSMutableArray new];
+        for (OPTLYExperiment *experiment in [self allExperiments]) {
+            [all addObject:experiment.variations];
+        }
+        _allVariations = [all copy];
+    }
+    return _allVariations;
 }
 
 - (NSDictionary *)audienceIdToAudienceMap

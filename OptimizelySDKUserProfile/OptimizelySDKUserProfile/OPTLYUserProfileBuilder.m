@@ -14,17 +14,24 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <UIKit/UIKit.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileBuilder.h"
 
-//! Project version number for OptimizelySDKUserProfile.
-FOUNDATION_EXPORT double OptimizelySDKUserProfileVersionNumber;
+@implementation OPTLYUserProfileBuilder
 
-//! Project version string for OptimizelySDKUserProfile.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKUserProfileVersionString[];
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYUserProfileBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKUserProfile/PublicHeader.h>
+- (id) init {
+    return [self initWithBlock:nil];
+}
 
+- (id)initWithBlock:(OPTLYUserProfileBuilderBlock)block {
+    self = [super init];
+    if (self != nil) {
+        block(self);
+    }
+    return self;
+}
 
+@end

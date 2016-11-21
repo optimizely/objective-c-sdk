@@ -105,7 +105,10 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 - (void)testBucketExperimentInMutexGroup {
     
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                                          withLogger:nil
+                                                                    withErrorHandler:nil
+                                                                     withUserProfile:nil];
     XCTAssertNotNil(projectConfig);
     OPTLYGroup * group = [projectConfig getGroupForGroupId:@"1886780721"];
     
@@ -132,7 +135,10 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 - (void)testBucketReturnsNilWhenExperimentIsExcludedFromMutex {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                                          withLogger:nil
+                                                                    withErrorHandler:nil
+                                                                     withUserProfile:nil];
     XCTAssertNotNil(projectConfig);
     
     // generate bucketer
@@ -176,7 +182,10 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 - (void)testBucketExperimentWithMutexDoesNotChangeExperimentReference {
     
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                                          withLogger:nil
+                                                                    withErrorHandler:nil
+                                                                     withUserProfile:nil];
     XCTAssertNotNil(projectConfig);
     OPTLYExperiment *experiment = [projectConfig getExperimentForId:@"2"];
     
@@ -191,7 +200,10 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 - (void)testWhitelisting {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                                          withLogger:nil
+                                                                    withErrorHandler:nil
+                                                                     withUserProfile:nil];
     XCTAssertNotNil(projectConfig);
     OPTLYExperiment *experiment = [projectConfig getExperimentForId:@"3"];
     

@@ -18,7 +18,7 @@
 #import <JSONModel/JSONModelLib.h>
 
 @class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYBucketer;
-@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYExperiment, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
+@protocol OPTLYExperiment, OPTLYVariation, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYExperiment, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer, OPTLYUserProfile;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -48,15 +48,19 @@
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariation, Ignore> *allVariations;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile, Ignore> userProfile;
 
 /**
  * Initialize the Project Config from the Data File.
  */
+// TODO - make initializer with builder block
 - (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                                 withLogger:(nullable id<OPTLYLogger>)logger
-                           withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler;
+                               withLogger:(nullable id<OPTLYLogger>)logger
+                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler
+                          withUserProfile:(nullable id<OPTLYUserProfile>)userProfile;
 
 /**
  * Get an Experiment object for a key.
@@ -105,6 +109,11 @@
                                                 userId:(nonnull NSString *)userId
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
+/**
+ * Get variation for given variation key.
+ */
+- (nullable OPTLYVariation *)getVariationForVariationKey:(nonnull NSString *)variationKey;
+
 /*
  * Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
  */

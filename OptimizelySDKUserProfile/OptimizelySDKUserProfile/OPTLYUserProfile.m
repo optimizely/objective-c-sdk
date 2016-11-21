@@ -17,6 +17,89 @@
 #import "OPTLYUserProfile.h"
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 
+@interface OPTLYUserProfile()
+@property (nonatomic, strong) OPTLYDataStore *dataStore;
+@end
+
 @implementation OPTLYUserProfile
 
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYUserProfileBuilder builderWithBlock:block]];
+}
+
+- (instancetype)init {
+    return [self initWithBuilder:nil];
+}
+
+- (instancetype)initWithBuilder:(OPTLYUserProfileBuilder *)builder {
+    self = [super init];
+    if (self != nil) {
+        _logger = builder.logger;
+        //_dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+        _dataStore = [OPTLYDataStore new];
+    }
+    return self;
+}
+
+
+- (void)save:(nonnull NSString *)userId
+  experiment:(nonnull NSString *)experimentKey
+   variation:(nonnull NSString *)variationKey {
+    
+    NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
+    userProfileDataMutable[userId] = @{ experimentKey : variationKey };
+    [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
+}
+
+- (nullable NSString *)getVariationFor:(nonnull NSString *)userId
+                            experiment:(nonnull NSString *)experimentKey {
+    NSDictionary *userData = [self userData:userId];
+    NSString *variationKey = [userData objectForKey:experimentKey];
+    
+    NSString *logMessage = @"";
+    if ([variationKey length]) {
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariation, variationKey, userId, experimentKey];
+    } else {
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileNoVariation, userId, experimentKey];
+    }
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
+    return variationKey;
+}
+
+- (void)remove:(nonnull NSString *)userId
+    experiment:(nonnull NSString *)experimentKey {
+    
+    NSMutableDictionary *userProfileDataMutable = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
+    NSMutableDictionary *userDataMutable = [userProfileDataMutable[userId] mutableCopy];
+    
+    NSString *logMessage = @"";
+    if ([userDataMutable count] > 0) {
+        [userDataMutable removeObjectForKey:experimentKey];
+        userProfileDataMutable[userId] = ([userDataMutable count] > 0) ? [userDataMutable copy] : nil;
+        [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
+        NSString *variationKey = [userDataMutable objectForKey:experimentKey];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileRemoveVariation, variationKey, userId, experimentKey];
+    } else {
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileRemoveVariationNotFound, userId, experimentKey];
+    }
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+}
+
+- (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId {
+    [self.dataStore removeObjectInUserData:userId type:OPTLYDataStoreDataTypeUserProfile];
+}
+
+- (void)removeAllUserExperimentRecords {
+    [self.dataStore removeAllUserData];
+}
+
+# pragma mark - Helper methods
+- (NSDictionary *)userData:(NSString *)userId {
+    NSDictionary *userData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userDataForUserId = [userData objectForKey:userId];
+    return userDataForUserId;
+}
 @end
+

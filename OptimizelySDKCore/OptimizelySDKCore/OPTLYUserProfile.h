@@ -15,22 +15,8 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYUserProfileBuilder.h"
 
-@protocol OPTLYLogger;
-
-@interface OPTLYUserProfile : NSObject
-
-/// Logger provided by the user
-@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
-
-/**
- * Initializer for Optimizely User Profile object
- *
- * @param block The builder block with which to initialize the Optimizely User Profile object
- * @return An instance of OPTLYUserProfile
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
+@protocol OPTLYUserProfile <NSObject>
 
 /**
  * Saves a user id's project-to-experiment-to-variation mapping.
@@ -65,14 +51,15 @@
 - (void)remove:(nonnull NSString *)userId
     experiment:(nonnull NSString *)experimentKey;
 
-/**
- * Cleans and removes all bucketing mapping for specific userId.
- * @param userId The user id to remove all bucketing value.
- **/
-- (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId;
+@end
 
+@interface OPTLYUserProfile : NSObject
 /**
- * Cleans and removes all bucketing mapping.
- **/
-- (void)removeAllUserExperimentRecords;
+ * Utility method to check if a class conforms to the OPTLYUserProfile protocol
+ * This method uses compile and run time checks
+ */
++ (BOOL)conformsToOPTLYUserProfileProtocol:(nonnull Class)instanceClass;
+@end
+
+@interface OPTLYUserProfileNoOp: NSObject<OPTLYUserProfile>
 @end

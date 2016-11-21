@@ -77,6 +77,13 @@ extern NSString *const OPTLYLoggerMessagesConversionDispatching;
 extern NSString *const OPTLYLoggerMessagesDispatchEventNoOp;
 extern NSString *const OPTLYLoggerMessagesBucketAssigned;
 
+// ---- User Profile ----
+// Debug
+extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
+
 @interface OPTLYLoggerMessages : NSObject
 
 @end

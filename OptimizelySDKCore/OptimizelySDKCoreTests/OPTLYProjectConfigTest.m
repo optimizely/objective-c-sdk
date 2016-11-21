@@ -48,7 +48,10 @@ static NSString * const kAccountId = @"6365361536";
 - (void)testInitWithDatafile
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile
+                                                                          withLogger:nil
+                                                                    withErrorHandler:nil
+                                                                     withUserProfile:nil];
     [self checkProjectConfigProperties:projectConfig];
 }
 

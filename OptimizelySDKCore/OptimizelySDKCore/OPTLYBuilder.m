@@ -47,7 +47,10 @@
     if (_datafile == nil) {
         return nil;
     }
-    _config = [[OPTLYProjectConfig alloc] initWithDatafile:_datafile withLogger:_logger withErrorHandler:_errorHandler];
+    _config = [[OPTLYProjectConfig alloc] initWithDatafile:_datafile
+                                                withLogger:_logger
+                                          withErrorHandler:_errorHandler
+                                           withUserProfile:_userProfile];
     
     if (_config == nil) {
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

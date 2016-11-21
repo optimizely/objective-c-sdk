@@ -79,6 +79,13 @@ NSString *const OPTLYLoggerMessagesDispatchEventNoOp = @"Called dispatchEvent wi
 
 NSString *const OPTLYLoggerMessagesBucketAssigned = @"Assigned bucket %@ to user %@.";
 
+// ---- User Profile ----
+// Debug
+NSString *const OPTLYLoggerMessagesUserProfileVariation = @"Variation %@ for user %@, experiment %@ found.";
+NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user %@, experiment %@ not found.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation = @"Removed variation %@ for user %@, experiment %@.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"Not removing variation for user %@, experiment %@. Variation not found.";
+
 @implementation OPTLYLoggerMessages
 
 @end
