@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // Optimizely SDK test parameters
-    let projectId = "7738070017";
-    let attributes = ["nameOfPerson" : "alda"];
-    let eventKey = "people";
+    let projectId = "7871184663";
+    let attributes = ["userType" : "new"];
+    let eventKey = "userEvent";
     let experimentKey = "exp1";
     let userId = "1234";
     let revenue = NSNumber(value: 88);
@@ -59,19 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
             defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
-                
-            // activate user in an experiment
-            if let variation = defaultOptimizely?.activateExperiment("experimentKey", userId: "userId")
-            {
-                if (variation.variationKey == "variation_a") {
-                    // execute code for variation A
-                }
-                else if (variation.variationKey == "variation_b") {
-                    // execute code for variation B
-                }
-            } else {
-                // execute default code
-            }
         });
 
         return true

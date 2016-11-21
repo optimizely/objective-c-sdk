@@ -59,6 +59,9 @@ typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatabase,
     OPTLYErrorTypesDataStore,
     OPTLYErrorTypesUserProfile,
+    OPTLYErrorTypesEventDispatch,
+    OPTLYErrorTypesEventTrack,
+    OPTLYErrorTypesUserActivate,
 };
 
 @interface OPTLYErrorHandlerMessages : NSObject

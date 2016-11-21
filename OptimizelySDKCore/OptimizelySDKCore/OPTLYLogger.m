@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYLogger.h"
+#import "OPTLYLog.h"
 
 NSString *const OPTLYLogLevelCriticalTag = @"CRITICAL";
 NSString *const OPTLYLogLevelErrorTag = @"ERROR";
@@ -86,6 +87,7 @@ NSString *const OPTLYLogLevelVerboseTag = @"VERBOSE";
                 break;
         }
         NSLog(@"[OPTIMIZELY SDK][%@]:%@", levelTag, message);
+
         return;
     }
 }

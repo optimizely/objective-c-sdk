@@ -28,8 +28,6 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 @interface OPTLYDataStore(Test)
 @property (nonatomic, strong) NSDictionary *eventsCache;
-- (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
-- (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
 @end
 
 @interface OPTLYDataStoreTest : XCTestCase
@@ -198,7 +196,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     
     NSInteger totalEntity = 4;
     NSError *error = nil;
-    NSString *eventTypeName = [self.dataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression];
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression];
     OPTLYQueue *impressionQueue = nil;
     
     // test insert
@@ -414,7 +412,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 {
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *retrievedData = [defaults objectForKey:[self.dataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfile]];
+    NSDictionary *retrievedData = [defaults objectForKey:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfile]];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data save.");
 }
 
