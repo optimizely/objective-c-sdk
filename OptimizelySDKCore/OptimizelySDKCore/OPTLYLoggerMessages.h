@@ -69,13 +69,6 @@ extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveV
 // ---- debug ----
 extern NSString *const OPTLYLoggerMessagesBucketAssigned;
 
-// ---- User Profile ----
-// Debug
-extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
-extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
-extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
-extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
-
 // ---- Event Dispatcher ----
 // info
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
@@ -127,6 +120,13 @@ extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning;
+
+// ---- User Profile ----
+// Debug
+extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
 
 @interface OPTLYLoggerMessages : NSObject
 

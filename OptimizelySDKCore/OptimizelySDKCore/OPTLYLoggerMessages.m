@@ -128,7 +128,12 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning = @"[DATABASE
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning = @"[DATABASE] tvOS can only get number of events from cache. eventType: %ld.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATABASE] tvOS can only remove data from cache> Number of events: %ld, eventType: %ld.";
 
-
+// ---- User Profile ----
+// Debug
+NSString *const OPTLYLoggerMessagesUserProfileVariation = @"Variation %@ for user %@, experiment %@ found.";
+NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user %@, experiment %@ not found.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation = @"Removed variation %@ for user %@, experiment %@.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"Not removing variation for user %@, experiment %@. Variation not found.";
 
 @implementation OPTLYLoggerMessages
 

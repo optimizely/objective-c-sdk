@@ -30,9 +30,12 @@
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
 #import "OPTLYUserProfile.h"
+<<<<<<< HEAD
 =======
 #import "OPTLYVariable.h"
 >>>>>>> Introduce live variable class and getters (#35)
+=======
+>>>>>>> User profile feature.
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -90,6 +93,7 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     
     if (userProfile) {
         if ([OPTLYUserProfile conformsToOPTLYUserProfileProtocol:[userProfile class]]) {
+<<<<<<< HEAD
             _userProfile = (id<OPTLYUserProfile, Ignore>)userProfile;
         } else {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -101,6 +105,11 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             NSString *logMessage = OPTLYErrorHandlerMessagesUserProfileInvalid;
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         }
+=======
+            _userProfile = userProfile;
+        }
+        // TODO - log error
+>>>>>>> User profile feature.
     }
     
     OPTLYProjectConfig* projectConfig = nil;

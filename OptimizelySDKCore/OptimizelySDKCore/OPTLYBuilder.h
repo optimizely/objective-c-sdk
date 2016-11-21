@@ -47,6 +47,8 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 /// User profile stores user-specific data, like bucketing.
 @property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
 
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
+
 /// Create an Optimizely Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYBuilderBlock)block;
 

@@ -48,9 +48,13 @@ static NSString * const kVariationKey3c = @"testVariation3";
     }];
     [self.userProfile save:kUserId1 experiment:kExperimentKey1 variation:kVariationKey1];
     [self.userProfile save:kUserId2 experiment:kExperimentKey2 variation:kVariationKey2];
+<<<<<<< HEAD
     [self.userProfile save:kUserId3 experiment:kExperimentKey3a variation:kVariationKey3a];
     [self.userProfile save:kUserId3 experiment:kExperimentKey3b variation:kVariationKey3b];
     [self.userProfile save:kUserId3 experiment:kExperimentKey3c variation:kVariationKey3c];
+=======
+    [self.userProfile save:kUserId3 experiment:kExperimentKey3 variation:kVariationKey3];
+>>>>>>> User profile feature.
     [super setUp];
 }
 
@@ -65,7 +69,11 @@ static NSString * const kVariationKey3c = @"testVariation3";
     XCTAssert([self.userProfile.logger isKindOfClass:[OPTLYLoggerDefault class]]);
 }
 
+<<<<<<< HEAD
 - (void)testSaveUserData
+=======
+- (void)testSave
+>>>>>>> User profile feature.
 {
     NSDictionary *userData = [self.userProfile.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSArray *users = [userData allKeys];
@@ -108,6 +116,7 @@ static NSString * const kVariationKey3c = @"testVariation3";
     
     NSString *variationKey3c = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3c];
     XCTAssert([variationKey3c isEqualToString:kVariationKey3c], @"Invalid variation for userId 3c for getVariation.");
+
 }
 
 - (void)testRemoveVariation
@@ -121,6 +130,7 @@ static NSString * const kVariationKey3c = @"testVariation3";
     XCTAssertNotNil(variationKey2, @"Variation for userId 1 should not have been removed.");
     
     [self.userProfile remove:kUserId3 experiment:kExperimentKey2];
+
     NSString *variationKey3a = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3a];
     XCTAssertNotNil(variationKey3a, @"Variation for userId 3a should not have been removed.");
     
