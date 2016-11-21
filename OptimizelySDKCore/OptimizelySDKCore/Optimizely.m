@@ -104,7 +104,7 @@
     
     if (!impressionEvent) {
         [self handleErrorLogsForActivateUser:userId experiment:experimentKey success:NO];
-        return nil;
+        return variation;
     }
     
     NSDictionary *impressionEventParams = [impressionEvent toDictionary];
@@ -118,26 +118,6 @@
     }];
     
     return variation;
-}
-
-// log and propagate error for a activate failure
-- (void)handleErrorLogsForActivateUser:(NSString *)userId
-                            experiment:(NSString *)experimentKey
-                               success:(BOOL)succeeded
-{
-    if (succeeded) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationSuccess, userId, experimentKey];
-        [self.logger logMessage:logMessage
-                      withLevel:OptimizelyLogLevelInfo];
-    } else {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationFailure, userId, experimentKey];
-        NSDictionary *errorMessage = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesUserActivate
-                                         userInfo:errorMessage];
-        [self.errorHandler handleError:error];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-    }
 }
 
 #pragma mark getVariation methods
@@ -234,6 +214,26 @@
                                              code:OPTLYErrorTypesEventTrack
                                          userInfo:errorMessage];
             
+        [self.errorHandler handleError:error];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    }
+}
+
+// log and propagate error for a activate failure
+- (void)handleErrorLogsForActivateUser:(NSString *)userId
+                            experiment:(NSString *)experimentKey
+                               success:(BOOL)succeeded
+{
+    if (succeeded) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationSuccess, userId, experimentKey];
+        [self.logger logMessage:logMessage
+                      withLevel:OptimizelyLogLevelInfo];
+    } else {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivationFailure, userId, experimentKey];
+        NSDictionary *errorMessage = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesUserActivate
+                                         userInfo:errorMessage];
         [self.errorHandler handleError:error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
     }
