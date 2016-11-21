@@ -19,6 +19,10 @@
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYErrorHandler.h"
 
+static NSString * const kHTTPRequestMethodPost = @"POST";
+static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
+static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
+
 @implementation OPTLYEventDispatcherUtility
 
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
@@ -34,10 +38,6 @@
 }
 
 @end
-
-static NSString * const kHTTPRequestMethodPost = @"POST";
-static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
-static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
 
 @implementation OPTLYEventDispatcherBasic
 
