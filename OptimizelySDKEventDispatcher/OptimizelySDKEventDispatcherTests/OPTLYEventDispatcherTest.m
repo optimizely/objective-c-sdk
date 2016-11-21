@@ -30,8 +30,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger maxDispatchBackoffRetries;
-@property (nonatomic, assign) uint32_t dispatchEventBackoffRetries;
-@property (nonatomic, assign) uint32_t dispatchEventCall;
+@property (nonatomic, assign) uint32_t flushEventBackoffRetries;
+@property (nonatomic, assign) uint32_t flushEventCall;
 - (void)flushSavedEvent:(NSDictionary *)event
               eventType:(OPTLYDataStoreEventType)eventType
              cachedData:(BOOL)cachedData
@@ -63,7 +63,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
     self.eventDispatcher = [OPTLYEventDispatcher new];
-    self.eventDispatcher.dispatchEventBackoffRetries = 0;
+    self.eventDispatcher.flushEventBackoffRetries = 0;
 }
 
 - (void)tearDown {
@@ -198,12 +198,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 // test dispatch attempt does not exceed the max retries
 // also check that the dispatch attempt is only made at power of 2 attempt count
 - (void)testMaxDispatchBackoffRetriesAndPowerOf2 {
-    
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
-    
     [self stubFailureResponse];
     
     OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
@@ -223,17 +217,17 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }
     __weak typeof(self) weakSelf = self;
     for (NSInteger i = 1; i < numberOfRetries; ++i) {
-        //NSLog(@"Dispatch attempt - %ld. Dispatch event call - %u", i, eventDispatcher.dispatchEventCall);
+        //NSLog(@"Dispatch attempt - %ld. Dispatch event call - %u", i, eventDispatcher.flushEventCall);
         [eventDispatcher flushEvents:^{
-            NSLog(@"************ i - %ld, backoff retry - %u, dispatch call - %u", i, eventDispatcher.dispatchEventBackoffRetries, eventDispatcher.dispatchEventCall);
+            NSLog(@"************ i - %ld, backoff retry - %u, dispatch call - %u", i, eventDispatcher.flushEventBackoffRetries, eventDispatcher.flushEventCall);
             // check that the dispatch attempt is only made at power of 2 attempt count
             NSInteger backoffRetryExpected = log2(i)+1;
-            XCTAssert(eventDispatcher.dispatchEventBackoffRetries == backoffRetryExpected, @"Invalid value for the backoff retry count - %ld, %u, %ld", i, eventDispatcher.dispatchEventBackoffRetries, backoffRetryExpected);
+            XCTAssert(eventDispatcher.flushEventBackoffRetries == backoffRetryExpected, @"Invalid value for the backoff retry count - %ld, %u, %ld", i, eventDispatcher.flushEventBackoffRetries, backoffRetryExpected);
             
-            XCTAssert(eventDispatcher.dispatchEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %u", eventDispatcher.dispatchEventBackoffRetries);
+            XCTAssert(eventDispatcher.flushEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %u", eventDispatcher.flushEventBackoffRetries);
             
-            NSLog(@"dispatchEventCall - %u", eventDispatcher.dispatchEventCall);
-            if (eventDispatcher.dispatchEventCall == numberOfRetries - 1) {
+            NSLog(@"flushEventCall - %u", eventDispatcher.flushEventCall);
+            if (eventDispatcher.flushEventCall == numberOfRetries - 1) {
                 [weakSelf checkNetworkTimerIsEnabled:eventDispatcher
                                         timeInterval:kEventHandlerDispatchInterval];
                 [expectation fulfill];
@@ -241,7 +235,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
         }];
     }
 
-    [self waitForExpectationsWithTimeout:20.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
         }
@@ -249,11 +243,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 }
 
 - (void)testflushEventsSuccessSavedEvents {
-    
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
     
     [self stubSuccessResponse];
     
@@ -282,11 +271,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 - (void)testflushEventsSuccessNoSavedEvents {
     
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
-    
     [self stubSuccessResponse];
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
@@ -307,11 +291,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 }
 
 - (void)testflushEventsFailureSavedEvents {
-    
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
     
     [self stubSuccessResponse];
     

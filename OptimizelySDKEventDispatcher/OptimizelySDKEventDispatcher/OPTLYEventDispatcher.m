@@ -17,8 +17,8 @@
 #import "OPTLYEventDispatcher.h"
 
 // --- Event URLs ----
-NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision"; // @"https://p13nlog.dz.optimizely.com/log/decision";
-NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";    // @"https://p13nlog.dz.optimizely.com/log/event";
+NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
+NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
 // Default interval and timeout values (in ms) if not set by users
 NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_ms = 1000;
@@ -27,8 +27,8 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 @interface OPTLYEventDispatcher()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) uint64_t dispatchEventBackoffRetries;
-@property (nonatomic, assign) uint64_t dispatchEventCall;
+@property (nonatomic, assign) uint64_t flushEventBackoffRetries;
+@property (nonatomic, assign) uint64_t flushEventCall;
 @property (nonatomic, assign) uint64_t maxDispatchBackoffRetries;
 @end
 
@@ -45,8 +45,8 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 - (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
     if (self != nil) {
-        _dispatchEventBackoffRetries = 0;
-        _dispatchEventCall = 0;
+        _flushEventBackoffRetries = 0;
+        _flushEventCall = 0;
         _timer = nil;
         _eventHandlerDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
         _eventHandlerDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
@@ -203,8 +203,8 @@ dispatch_queue_t flushEventsQueue()
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             if (![strongSelf isTimerEnabled]) {
-                strongSelf.dispatchEventBackoffRetries = 0;
-                strongSelf.dispatchEventCall = 0;
+                strongSelf.flushEventBackoffRetries = 0;
+                strongSelf.flushEventCall = 0;
                 [strongSelf setupNetworkTimer:^{
                     if (callback) {
                         callback(data, response, error);
@@ -263,18 +263,18 @@ dispatch_queue_t flushEventsQueue()
         
         // setup the network timer if needed and reset all the counters
         if (![strongSelf isTimerEnabled]) {
-            strongSelf.dispatchEventBackoffRetries = 0;
-            strongSelf.dispatchEventCall = 0;
+            strongSelf.flushEventBackoffRetries = 0;
+            strongSelf.flushEventCall = 0;
             [strongSelf setupNetworkTimer:nil];
         }
         
-        strongSelf.dispatchEventCall++;
-        OPTLYLogDebug(@"Dispatch event call - %ld", strongSelf.dispatchEventCall);
+        strongSelf.flushEventCall++;
+        OPTLYLogDebug(@"Dispatch event call - %ld", strongSelf.flushEventCall);
         
         //exponential backoff: only dispatch at a power of two interval; o/w return
-        if (![strongSelf isPowerOf2:strongSelf.dispatchEventCall]) {
+        if (![strongSelf isPowerOf2:strongSelf.flushEventCall]) {
 
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry, strongSelf.dispatchEventCall];
+            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry, strongSelf.flushEventCall];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
             if (callback) {
@@ -284,9 +284,9 @@ dispatch_queue_t flushEventsQueue()
         }
         
         // stop trying to flush if max retries have been exceeded
-        if (strongSelf.dispatchEventBackoffRetries > strongSelf.maxDispatchBackoffRetries) {
+        if (strongSelf.flushEventBackoffRetries > strongSelf.maxDispatchBackoffRetries) {
         
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries, strongSelf.dispatchEventBackoffRetries];
+            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries, strongSelf.flushEventBackoffRetries];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             [self disableNetworkTimer:^{
@@ -297,8 +297,8 @@ dispatch_queue_t flushEventsQueue()
             return;
         }
 
-        strongSelf.dispatchEventBackoffRetries++;
-        OPTLYLogDebug(@"Backoff retry - %ld.", strongSelf.dispatchEventBackoffRetries);
+        strongSelf.flushEventBackoffRetries++;
+        OPTLYLogDebug(@"Backoff retry - %ld.", strongSelf.flushEventBackoffRetries);
         
         [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression cachedData:YES];
         [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion cachedData:YES];
@@ -328,11 +328,7 @@ dispatch_queue_t flushEventsQueue()
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         
         if (callback) {
-            NSDictionary *errorMessage = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
-            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                 code:OPTLYErrorTypesEventDispatch
-                                             userInfo:errorMessage];
-            callback(nil, nil, error);
+            callback(nil, nil, nil);
         }
         return;
     }
