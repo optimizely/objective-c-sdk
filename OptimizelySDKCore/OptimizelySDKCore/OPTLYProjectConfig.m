@@ -28,6 +28,7 @@
 #import "OPTLYValidator.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
+#import "OPTLYUserProfile.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -224,6 +225,17 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     }
     return variable;
+}
+
+- (OPTLYVariation *)getVariationForVariationKey:(NSString *)variationKey {
+    NSArray *allVariations = [self allVariations];
+    for (OPTLYVariation *variation in allVariations) {
+        if ([variation.variationKey isEqualToString:variationKey]) {
+            return variation;
+        }
+    }
+    // TODO - log error
+    return nil;
 }
 
 #pragma mark -- Property Getters --
