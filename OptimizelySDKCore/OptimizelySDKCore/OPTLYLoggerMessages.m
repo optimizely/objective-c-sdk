@@ -95,7 +95,7 @@ NSString *const OPTLYLoggerMessagesActivationFailure = @"Not activating user %@ 
 // File Manager
 // debug
 NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesError = @"File manager remove all files error - %@";
-NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesForDataTypeError = @"File manager remove files for data type - %ld, error - %@";
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError = @"File manager remove files for data type - %ld, error - %@";
 NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError = @"File manager remove file for data type - %ld, file name - %@, error - %@";
 NSString *const OPTLYLoggerMessagesDataStoreFileManagerGetFile = @"File manager get file for data type - %ld, file name - %@, error - %@";
 NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile = @"File manager save file for data type - %ld, file name - %@, error - %@";
@@ -105,7 +105,7 @@ NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile = @"File manager
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseCreateTableError = @"Creating database table %@ error - %@";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"Database save error: data - %@, eventType - %ld, cachedData - %u, error - %@";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError = @"Database get error: number of events - %ld, eventType - %ld, cachedData - %u, error - %@";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"Database can only get number of events error: cachedData - %u, eventType - %ld, error - %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"Database get number of events error: cachedData - %u, eventType - %ld, error - %@.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"Database remove error: number of events - %ld, eventType - %ld, cachedData - %u, error - %@";
 // warning
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents = @"Database get event returned no event: eventType - %ld, cachedData - %u";
