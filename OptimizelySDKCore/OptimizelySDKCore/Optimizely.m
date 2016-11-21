@@ -398,8 +398,8 @@ static NSString *const kValue = @"value";
 
 // log and propagate error for a track failure
 - (void)handleErrorLogsForTrackEvent:(NSString *)eventKey
-                         userId:(NSString *)userId
-                        success:(BOOL)succeeded
+                              userId:(NSString *)userId
+                             success:(BOOL)succeeded
 {
     if (succeeded) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionSuccess, eventKey, userId];
