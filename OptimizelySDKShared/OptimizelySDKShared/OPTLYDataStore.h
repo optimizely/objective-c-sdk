@@ -313,13 +313,13 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *
  * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
  */
-+ (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
++ (nullable NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
 
 /**
  * Helper method to get the string value of a event type enum.
  *
  * @param eventType The event type of the data.
  */
-+ (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
++ (nullable NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
 
 @end
