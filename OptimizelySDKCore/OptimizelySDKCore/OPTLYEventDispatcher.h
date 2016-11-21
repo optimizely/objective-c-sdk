@@ -26,7 +26,7 @@
  */
 
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
-                       callback:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
 
 /**
  * Dispatch a conversion event.
@@ -34,7 +34,7 @@
  * @param callback The completion handler
  */
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
-                       callback:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
 
 @end
 

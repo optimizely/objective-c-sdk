@@ -308,4 +308,18 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  */
 - (void)removeObjectInUserData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType;
 
+/**
+ * Helper method to get the string value of a data type enum.
+ *
+ * @param dataType The type of data (e.g., datafile, user profile, event dispatcher, etc.)
+ */
++ (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
+
+/**
+ * Helper method to get the string value of a event type enum.
+ *
+ * @param eventType The event type of the data.
+ */
++ (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType;
+
 @end

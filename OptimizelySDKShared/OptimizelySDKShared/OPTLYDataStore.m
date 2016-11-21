@@ -33,8 +33,8 @@ static NSString * const kUserProfile = @"user-profile";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
 // table names
-static NSString *const kOPTLYDataStoreEventTypeImpression = @"EVENTS_IMPRESSION";
-static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION";
+static NSString *const kOPTLYDataStoreEventTypeImpression = @"events_impression";
+static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion";
 
 @interface OPTLYDataStore()
 @property (nonatomic, strong) OPTLYFileManager *fileManager;
@@ -80,7 +80,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 - (OPTLYDatabase *)database
 {
     if (!_database) {
-        NSString *databaseDirectory = [self.baseDirectory stringByAppendingPathComponent:[self stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
+        NSString *databaseDirectory = [self.baseDirectory stringByAppendingPathComponent:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
         _database = [[OPTLYDatabase alloc] initWithBaseDir:databaseDirectory];
         
         // create the events table
@@ -110,14 +110,14 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 # pragma mark - NSUserDefault Data
 - (void)saveUserData:(nonnull NSDictionary *)data type:(OPTLYDataStoreDataType)dataType
 {
-    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSString *key = [OPTLYDataStore stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:data forKey:key];
 }
 
 - (nullable NSDictionary *)getUserDataForType:(OPTLYDataStoreDataType)dataType
 {
-    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSString *key = [OPTLYDataStore stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *data = [defaults objectForKey:key];
     return data;
@@ -125,14 +125,14 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 
 - (void)removeUserDataForType:(OPTLYDataStoreDataType)dataType
 {
-    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSString *key = [OPTLYDataStore stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:key];
 }
 
 - (void)removeObjectInUserData:(nonnull id)dataKey type:(OPTLYDataStoreDataType)dataType
 {
-    NSString *key = [self stringForDataTypeEnum:dataType];
+    NSString *key = [OPTLYDataStore stringForDataTypeEnum:dataType];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *data = [[defaults objectForKey:key] mutableCopy];
     [data removeObjectForKey:dataKey];
@@ -151,34 +151,34 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager saveFile:fileName data:data subDir:[self stringForDataTypeEnum:dataType] error:error];
+    [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
 }
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
                         type:(OPTLYDataStoreDataType)dataType
                        error:(NSError * _Nullable * _Nullable)error {
-    return [self.fileManager getFile:fileName subDir:[self stringForDataTypeEnum:dataType] error:error];
+    return [self.fileManager getFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
 }
 
 - (bool)fileExists:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType {
-    return [self.fileManager fileExists:fileName subDir:[self stringForDataTypeEnum:dataType]];
+    return [self.fileManager fileExists:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType]];
 }
 
 - (bool)dataTypeExists:(OPTLYDataStoreDataType)dataType
 {
-    return [self.fileManager subDirExists:[self stringForDataTypeEnum:dataType]];
+    return [self.fileManager subDirExists:[OPTLYDataStore stringForDataTypeEnum:dataType]];
 }
 
 - (void)removeFile:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType
              error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager removeFile:fileName subDir:[self stringForDataTypeEnum:dataType] error:error];
+    [self.fileManager removeFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
 }
 
 - (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
                          error:(NSError * _Nullable * _Nullable)error {
-    [self.fileManager removeDataSubDir:[self stringForDataTypeEnum:dataType] error:error];
+    [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
 }
 
 - (void)removeAllFiles:(NSError * _Nullable * _Nullable)error {
@@ -193,7 +193,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 - (void)createTable:(OPTLYDataStoreEventType)eventType
               error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *tableName = [self stringForDataEventEnum:eventType];
+    NSString *tableName = [OPTLYDataStore stringForDataEventEnum:eventType];
     [self.database createTable:tableName error:error];
 }
 #endif
@@ -211,7 +211,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     }
 #endif
     
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     if (cachedData) {
         OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [queue enqueue:data];
@@ -236,7 +236,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 #endif
     
     NSMutableArray *firstNEvents = [NSMutableArray new];
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     if (cachedData) {
         OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [firstNEvents addObjectsFromArray:[queue firstNItems:numberOfEvents]];
@@ -291,7 +291,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     }
 #endif
     
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     if (cachedData) {
         OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         [queue dequeueNItems:numberOfEvents];
@@ -342,7 +342,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     }
 #endif
     
-    NSString *eventTypeName = [self stringForDataEventEnum:eventType];
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     if (cachedData) {
         OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
         numberOfEvents = [queue size];
@@ -372,7 +372,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
 }
 
 # pragma mark - Helper Methods
-- (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType
++ (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType
 {
     NSString *dataTypeString = @"";
     
@@ -395,7 +395,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"EVENTS_CONVERSION"
     return dataTypeString;
 }
 
-- (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType
++ (NSString *)stringForDataEventEnum:(OPTLYDataStoreEventType)eventType
 {
     NSString *eventTypeString = @"";
     
