@@ -416,5 +416,4 @@ static NSString *const kValue = @"value";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
     }
 }
-
 @end
