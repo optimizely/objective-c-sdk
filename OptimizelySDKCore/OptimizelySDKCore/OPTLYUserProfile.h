@@ -19,7 +19,11 @@
 @protocol OPTLYUserProfile <NSObject>
 
 /**
+<<<<<<< eaea1f01bff1164fa6a86549b9594aa7b0b2a460
  * Saves a user ID's project-to-experiment-to-variation mapping.
+=======
+ * Saves a user id's project-to-experiment-to-variation mapping.
+>>>>>>> User profile feature.
  *
  * @param userId The user id that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.

@@ -30,6 +30,7 @@
 #import "OPTLYVariable.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
+#import "OPTLYUserProfile.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
