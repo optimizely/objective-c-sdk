@@ -46,7 +46,8 @@
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
 /// List of live variable objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable> *variables;
+/// TODO: Make variables required
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
