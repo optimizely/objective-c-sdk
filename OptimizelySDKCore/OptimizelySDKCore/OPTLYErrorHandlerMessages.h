@@ -54,7 +54,6 @@ typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesConfigInvalid,
     OPTLYErrorTypesLoggerInvalid,
     OPTLYErrorTypesErrorHandlerInvalid,
-    OPTLYErrorTypesEventDispatchInvalid,
     OPTLYErrorTypesBuilderInvalid,
     OPTLYErrorTypesDatabase,
     OPTLYErrorTypesDataStore,
