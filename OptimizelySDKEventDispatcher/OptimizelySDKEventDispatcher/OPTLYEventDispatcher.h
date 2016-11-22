@@ -22,8 +22,8 @@
 
 /*
  * This class handles the dispatching of the two Optimizely events:
- *   - Conversion Event
  *   - Impression Event
+ *   - Conversion Event
  * The events are dispatched immediately and are only saved if the dispatch fails.
  * The saved events will be dispatched again opportunistically in the following cases:
  *   - Another event dispatch is called
@@ -41,9 +41,9 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 
 @interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
 
-/// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
+/// The interval at which the SDK will attempt to dispatch any events remaining in our events queue (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventHandlerDispatchInterval;
-/// The time for which the SDK will attempt to continue re-trying an event dispatch (ms)
+/// The time for which the SDK will attempt to continue re-trying an event dispatch (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventHandlerDispatchTimeout;
 
 /// Logger provided by the user
