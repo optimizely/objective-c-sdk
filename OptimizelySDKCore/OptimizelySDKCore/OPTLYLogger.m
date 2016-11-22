@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #import "OPTLYLogger.h"
-#import "OPTLYLog.h"
 
 NSString *const OPTLYLogLevelCriticalTag = @"CRITICAL";
 NSString *const OPTLYLogLevelErrorTag = @"ERROR";
