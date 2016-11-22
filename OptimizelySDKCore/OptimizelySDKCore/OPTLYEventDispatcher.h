@@ -46,8 +46,17 @@
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(nonnull Class)instanceClass;
 @end
 
+/**
+ * OPTLYEventDispatcherBasic is a very simple implementation of the OPTLYEventDispatcher protocol.
+ * It dispatches events without any failure mechanisms (e.g., events are not queued up for a loater 
+ * retry.
+ */
 @interface OPTLYEventDispatcherBasic : NSObject <OPTLYEventDispatcher>
 @end
 
+/**
+ * OPTLYEventDispatcherNoOp comforms to the OPTLYEventDispatcher protocol,
+ * but all methods performa a no op.
+ */
 @interface OPTLYEventDispatcherNoOp : NSObject<OPTLYEventDispatcher>
 @end
