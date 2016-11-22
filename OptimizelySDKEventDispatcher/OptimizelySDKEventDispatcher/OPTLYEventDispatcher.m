@@ -15,8 +15,11 @@
  ***************************************************************************/
 
 #import "OPTLYEventDispatcher.h"
+#import <OptimizelySDKShared/Reachability.h>
+
 
 // --- Event URLs ----
+NSString * const OPTLYEventDispatcherHostName             = @"https://logx.optimizely.com";
 NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
 NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
@@ -391,6 +394,10 @@ dispatch_queue_t flushEventsQueue()
     NSInteger totalNumberOfEvents = [self.dataStore numberOfEvents:eventType cachedData:cachedData error:&error];
     NSArray *events = [self.dataStore getAllEvents:eventType cachedData:cachedData error:&error];
     
+    if (!totalNumberOfEvents) {
+        return;
+    }
+    
     if (error) {
         NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, nil];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -409,6 +416,11 @@ dispatch_queue_t flushEventsQueue()
 - (void)setupApplicationNotificationHandlers {
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     UIApplication *app = [UIApplication sharedApplication];
+    
+    [defaultCenter addObserver:self
+                      selector:@selector(applicationDidFinishLaunching:)
+                          name:UIApplicationDidFinishLaunchingNotification
+                        object:app];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidBecomeActive:)
@@ -436,6 +448,30 @@ dispatch_queue_t flushEventsQueue()
                         object:app];
 }
 
+- (void)applicationDidFinishLaunching:(id)notificaton {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
+    
+    // Initialize Reachability
+    Reachability *hostReachability = [Reachability reachabilityWithHostName:OPTLYEventDispatcherHostName];
+    Reachability *internetReachability = [Reachability reachabilityForInternetConnection];
+    // Start Monitoring
+    [internetReachability startNotifier];
+    [hostReachability startNotifier];
+    
+    OPTLYLogInfo(@"applicationDidBecomeActive");
+}
+
+- (void)reachabilityDidChange:(NSNotification *)notification {
+    Reachability *reachability = (Reachability *)[notification object];
+    
+    if ([reachability currentReachabilityStatus] != NotReachable) {
+        OPTLYLogInfo(@"Network is reachable.");
+    } else {
+        OPTLYLogInfo(@"Network is unreachable");
+    }
+}
+
 - (void)applicationDidBecomeActive:(id)notificaton {
     [self flushEvents];
     OPTLYLogInfo(@"applicationDidBecomeActive");
@@ -443,6 +479,7 @@ dispatch_queue_t flushEventsQueue()
 
 - (void)applicationDidEnterBackground:(id)notification {
     [self flushEvents];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
     OPTLYLogInfo(@"applicationDidEnterBackground");
 }
 
@@ -456,11 +493,8 @@ dispatch_queue_t flushEventsQueue()
 
 - (void)applicationWillTerminate:(id)notification {
     [self flushEvents];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
     OPTLYLogInfo(@"applicationWillTerminate");
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 # pragma mark - Helper Methods
