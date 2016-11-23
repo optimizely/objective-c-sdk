@@ -217,7 +217,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }
     __weak typeof(self) weakSelf = self;
     for (NSInteger i = 1; i < numberOfRetries; ++i) {
-        //NSLog(@"Dispatch attempt - %ld. Dispatch event call - %u", i, eventDispatcher.flushEventCall);
         [eventDispatcher flushEvents:^{
             NSLog(@"************ i - %ld, backoff retry - %u, dispatch call - %u", i, eventDispatcher.flushEventBackoffRetries, eventDispatcher.flushEventCall);
             // check that the dispatch attempt is only made at power of 2 attempt count

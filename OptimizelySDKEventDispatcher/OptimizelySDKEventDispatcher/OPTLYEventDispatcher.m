@@ -131,7 +131,7 @@ dispatch_queue_t flushEventsQueue()
 // The network timer should be reset when:
 //      - max retry time has been reached
 //      - all saved event queue are empty and event is successfully sent
-// Also kept timer invalidation on the main thread.
+// The timer must be disabled on the main thread.
 - (void)disableNetworkTimer:(void(^)())completion {
     
     if (![self isTimerEnabled]) {
@@ -223,6 +223,7 @@ dispatch_queue_t flushEventsQueue()
 
 # pragma mark - Save Events
 
+// save events only when the event dispatch fails or can't be completed at the current moment
 - (void)saveEvent:(NSDictionary *)params
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError **)error {
