@@ -71,7 +71,6 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @end
 
->>>>>>> bring back a basic event dispatcher in core so that it works out of the box
 @implementation OPTLYEventDispatcherNoOp
 
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
