@@ -83,9 +83,17 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     
     if (userProfile) {
         if ([OPTLYUserProfile conformsToOPTLYUserProfileProtocol:[userProfile class]]) {
-            _userProfile = userProfile;
+            _userProfile = (id<OPTLYUserProfile, Ignore>)userProfile;
+        } else {
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesUserProfile
+                                             userInfo:@{NSLocalizedDescriptionKey :
+                                                            NSLocalizedString(OPTLYErrorHandlerMessagesUserProfileInvalid, nil)}];
+            [_errorHandler handleError:error];
+            
+            NSString *logMessage = OPTLYErrorHandlerMessagesUserProfileInvalid;
+            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         }
-        // TODO - log error
     }
     
     OPTLYProjectConfig* projectConfig = nil;
@@ -201,7 +209,9 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             return variation;
         }
     }
-    // TODO - log error
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUnknownForVariationKey, variationKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     return nil;
 }
 #pragma mark -- Property Getters --

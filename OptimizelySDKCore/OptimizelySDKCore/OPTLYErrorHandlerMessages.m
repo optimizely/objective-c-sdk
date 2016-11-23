@@ -25,6 +25,8 @@ NSString * const OPTLYErrorHandlerMessagesErrorHandlerInvalid = @"Provided 'erro
 NSString * const OPTLYErrorHandlerMessagesExperimentUnknown = @"Experiment %@ is not in the datafile."; // experiment id
 NSString * const OPTLYErrorHandlerMessagesEventUnknown = @"Event %@ is not in the datafile." ; //event key
 NSString * const OPTLYErrorHandlerMessagesBuilderInvalid = @"Provided OPTLYBuilder object is invalid";
+NSString * const OPTLYErrorHandlerMessagesUserProfileInvalid = @"Provided user profile object is invalid";
+
 // possibly change to just log
 NSString * const OPTLYErrorHandlerMessagesEventNoExperimentAssociation = @"Event %@ is not associated with any running experiments."; // event key
 NSString * const OPTLYErrorHandlerMessagesBucketingIdUnknown = @"Unable to generate hash key for bucketing ID: %@."; // bucketing id

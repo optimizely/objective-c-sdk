@@ -69,6 +69,7 @@ extern NSString *const OPTLYLoggerMessagesEventUnknownForEventKey;
 extern NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
+extern NSString *const OPTLYLoggerMessagesVariationUnknownForVariationKey;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInterval;
 
 // ---- debug ----
