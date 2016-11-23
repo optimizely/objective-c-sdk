@@ -19,6 +19,9 @@
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYErrorHandler.h"
 
+static NSString * const kEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
+static NSString * const kEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
+
 static NSString * const kHTTPRequestMethodPost = @"POST";
 static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
 static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
@@ -39,15 +42,24 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @end
 
-static NSString * const kHTTPRequestMethodPost = @"POST";
-static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
-static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
-
 @implementation OPTLYEventDispatcherBasic
+
+- (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    NSURL *url = [NSURL URLWithString:kEventDispatcherImpressionEventURL];
+    [self dispatchEvent:params toURL:url completionHandler:callback];
+}
+
+- (void)dispatchConversionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    
+    NSURL *url = [NSURL URLWithString:kEventDispatcherConversionEventURL];
+    [self dispatchEvent:params toURL:url completionHandler:callback];
+}
 
 - (void)dispatchEvent:(NSDictionary *)params
                 toURL:(NSURL *)url
-    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
+    completionHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error))completion
 {
     NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -65,13 +77,15 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
                                                                             fromData:data
                                                                    completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
                                                                        if (completion) {
-                                                                           completion(response, error);
+                                                                           completion(data, response, error);
                                                                        }
                                                                    }];
         
         [uploadTask resume];
     }
 }
+
+
 
 @end
 

@@ -116,7 +116,7 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testGetVariableString"];
     
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"p13nlog.dz.optimizely.com"];
+        return [request.URL.host isEqualToString:@"logx.optimizely.com"];
     } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
         [expectation fulfill];
         return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]

@@ -373,6 +373,7 @@ static NSString *const kValue = @"value";
     }
     
     return 0;
+}
 
 // log and propagate error for a track failure
 - (void)handleErrorLogsForTrackEvent:(NSString *)eventKey
@@ -414,7 +415,6 @@ static NSString *const kValue = @"value";
         [self.errorHandler handleError:error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
     }
->>>>>>> alda/eventDispatcher
 }
 
 @end
