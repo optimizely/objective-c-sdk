@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Optimizely SDK test parameters
     let userId = "1234"
     let revenue = NSNumber(value: 88)
-    let eventHandlerDispatchInterval = 1000
+    let eventDispatcherDispatchInterval = 1000
     
     // default parameters for initializing Optimizely from saved datafile
     let datafileName = "test_data_10_experiments"
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(fileContents)
                 
                 let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
-                    builder?.eventHandlerDispatchInterval = self.eventHandlerDispatchInterval
+                    builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
                 }
                 let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
                 
@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let networkService = OPTLYNetworkService()
         let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {[weak self] (builder)in
-            builder?.eventHandlerDispatchInterval = self!.eventHandlerDispatchInterval
+            builder?.eventDispatcherDispatchInterval = self!.eventDispatcherDispatchInterval
         }
         let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
         

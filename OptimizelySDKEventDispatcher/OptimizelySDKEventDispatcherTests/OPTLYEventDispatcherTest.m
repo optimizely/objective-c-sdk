@@ -78,14 +78,14 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)testEventDispatcherInitWithBuilderBlock
 {
     OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
-        builder.eventHandlerDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventHandlerDispatchTimeout = kEventHandlerDispatchTimeout;
+        builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
+        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
     }];
     
     XCTAssertNotNil(eventDispatcher);
-    XCTAssert(eventDispatcher.eventHandlerDispatchInterval == kEventHandlerDispatchInterval, @"Invalid dispatch timeout set.");
-    XCTAssert(eventDispatcher.eventHandlerDispatchTimeout == kEventHandlerDispatchTimeout, @"Invalid dispatch timeout set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == kEventHandlerDispatchInterval, @"Invalid dispatch timeout set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == kEventHandlerDispatchTimeout, @"Invalid dispatch timeout set.");
     XCTAssertNotNil(eventDispatcher.logger);
     XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
     
@@ -93,8 +93,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
     
     XCTAssertNotNil(eventDispatcher);
-    XCTAssert(eventDispatcher.eventHandlerDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_ms, @"Invalid default dispatch interval set.");
-    XCTAssert(eventDispatcher.eventHandlerDispatchTimeout == OPTLYEventDispatcherDefaultDispatchTimeout_ms, @"Invalid default dispatch timeout set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_ms, @"Invalid default dispatch interval set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == OPTLYEventDispatcherDefaultDispatchTimeout_ms, @"Invalid default dispatch timeout set.");
     XCTAssertNil(eventDispatcher.logger);
 }
 
@@ -201,8 +201,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self stubFailureResponse];
     
     OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
-        builder.eventHandlerDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventHandlerDispatchTimeout = kEventHandlerDispatchTimeout;
+        builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
+        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
     }];
     
