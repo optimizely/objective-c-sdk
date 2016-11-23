@@ -234,7 +234,9 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             return variation;
         }
     }
-    // TODO - log error
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUnknownForVariationKey, variationKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     return nil;
 }
 
