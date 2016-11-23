@@ -256,7 +256,14 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
-        [weakSelf checkNetworkTimerIsEnabled:weakSelf.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
+        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                 cachedData:NO
+                                                                      error:nil];
+        NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                  cachedData:YES
+                                                                       error:nil];
+        XCTAssert([savedEvents count] == 0, @"Saved events should have been removed.");
+        XCTAssert([cachedEvents count] == 0, @"Cached events should have been removed.");
         [expectation fulfill];
         
     }];
@@ -279,7 +286,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self.eventDispatcher flushEvents:^{
         [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
         [expectation fulfill];
-        
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
@@ -301,6 +307,41 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
         [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
         [expectation fulfill];
         
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
+        }
+    }];
+}
+
+// if there are some saved events, then a successful flushSaveEvent should keep the timer enabled
+- (void)testFlushSavedEventSuccessWithSavedEvents
+{
+    BOOL usedCachedData = NO;
+#if TARGET_OS_TV
+    usedCachedData = YES;
+#endif
+    [self stubSuccessResponse];
+    [self.eventDispatcher setupNetworkTimer:nil];
+    
+    for (NSInteger i = 0; i < 3; ++i) {
+        [self.eventDispatcher saveEvent:self.parameters
+                              eventType:OPTLYDataStoreEventTypeConversion
+                                  error:nil];
+    }
+    
+    __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
+    __weak typeof(self) weakSelf = self;
+    [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion cachedData:usedCachedData callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                            cachedData:usedCachedData
+                                                                 error:nil];
+        XCTAssert([events count] == 2, @"Event should have been removed.");
+        [weakSelf checkNetworkTimerIsEnabled:weakSelf.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
+        
+        [expectation fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
