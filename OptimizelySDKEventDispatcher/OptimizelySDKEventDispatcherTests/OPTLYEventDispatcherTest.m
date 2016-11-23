@@ -241,7 +241,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
-- (void)testflushEventsSuccessSavedEvents {
+- (void)testFlushEventsSuccessSavedEvents {
     
     [self stubSuccessResponse];
     
@@ -268,7 +268,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
-- (void)testflushEventsSuccessNoSavedEvents {
+- (void)testFlushEventsSuccessNoSavedEvents {
     
     [self stubSuccessResponse];
     
@@ -289,7 +289,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
-- (void)testflushEventsFailureSavedEvents {
+- (void)testFlushEventsFailureSavedEvents {
     
     [self stubSuccessResponse];
     
