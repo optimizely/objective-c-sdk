@@ -50,32 +50,32 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
         _flushEventBackoffRetries = 0;
         _flushEventCall = 0;
         _timer = nil;
-        _eventHandlerDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
-        _eventHandlerDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
+        _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
+        _eventDispatcherDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
 
         _logger = builder.logger;
         
         if (builder.eventDispatcherDispatchInterval > 0) {
-            _eventHandlerDispatchInterval = builder.eventDispatcherDispatchInterval;
+            _eventDispatcherDispatchInterval = builder.eventDispatcherDispatchInterval;
         } else {
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventDispatcherDispatchInterval];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
         if (builder.eventDispatcherDispatchTimeout > 0) {
-            _eventHandlerDispatchTimeout = builder.eventDispatcherDispatchTimeout;
+            _eventDispatcherDispatchTimeout = builder.eventDispatcherDispatchTimeout;
         } else {
             NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherInvalidTimeout, builder.eventDispatcherDispatchTimeout];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
-        _maxDispatchBackoffRetries = (_eventHandlerDispatchInterval > 0) && (_eventHandlerDispatchTimeout > 0) ? _eventHandlerDispatchTimeout/_eventHandlerDispatchInterval : 0;
+        _maxDispatchBackoffRetries = (_eventDispatcherDispatchInterval > 0) && (_eventDispatcherDispatchTimeout > 0) ? _eventDispatcherDispatchTimeout/_eventDispatcherDispatchInterval : 0;
         
         _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
 
         [self setupApplicationNotificationHandlers];
         
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherProperties, _eventHandlerDispatchInterval, _eventHandlerDispatchTimeout, _maxDispatchBackoffRetries];
+        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherProperties, _eventDispatcherDispatchInterval, _eventDispatcherDispatchTimeout, _maxDispatchBackoffRetries];
         [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return self;
