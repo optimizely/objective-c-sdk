@@ -156,7 +156,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error {
-    
     [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerSaveFile, dataType, fileName, *error];
@@ -380,6 +379,9 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 {
     NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
     [self removeFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreUserDataRemoveAllWarning];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
 }
 
 
