@@ -92,6 +92,9 @@ NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCH] Not ac
 
 
 // ---- Data Store ----
+// warning
+NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning = @"[DATA STORE] Warning: Removing all events from data store! These events will not be tracked by Optimizely.";
+
 // File Manager
 // debug
 NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesError = @"[FILE MANAGER] Remove all files error: %@.";
