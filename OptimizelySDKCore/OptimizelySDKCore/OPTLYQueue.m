@@ -89,15 +89,15 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
 }
 
 - (NSInteger)size {
-    return [self.queue count];
+    return [self.mutableQueue count];
 }
 
 - (bool)isFull {
-    return ([self.queue count] >= self.maxQueueSize);
+    return ([self.mutableQueue count] >= self.maxQueueSize);
 }
 
 - (bool)isEmpty {
-    return [self.queue count] == 0;
+    return [self.mutableQueue count] == 0;
 }
 
 - (NSArray *)queue {
