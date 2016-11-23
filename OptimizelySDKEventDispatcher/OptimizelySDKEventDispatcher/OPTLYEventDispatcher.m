@@ -55,17 +55,17 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 
         _logger = builder.logger;
         
-        if (builder.eventHandlerDispatchInterval > 0) {
-            _eventHandlerDispatchInterval = builder.eventHandlerDispatchInterval;
+        if (builder.eventDispatcherDispatchInterval > 0) {
+            _eventHandlerDispatchInterval = builder.eventDispatcherDispatchInterval;
         } else {
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventHandlerDispatchInterval];
+            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventDispatcherDispatchInterval];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
-        if (builder.eventHandlerDispatchTimeout > 0) {
-            _eventHandlerDispatchTimeout = builder.eventHandlerDispatchTimeout;
+        if (builder.eventDispatcherDispatchTimeout > 0) {
+            _eventHandlerDispatchTimeout = builder.eventDispatcherDispatchTimeout;
         } else {
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherInvalidTimeout, builder.eventHandlerDispatchTimeout];
+            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherInvalidTimeout, builder.eventDispatcherDispatchTimeout];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
@@ -104,14 +104,14 @@ dispatch_queue_t flushEventsQueue()
     __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
         __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf.eventHandlerDispatchInterval > 0) {
-            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:strongSelf.eventHandlerDispatchInterval
+        if (strongSelf.eventDispatcherDispatchInterval > 0) {
+            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:strongSelf.eventDispatcherDispatchInterval
                                                                 target:strongSelf
                                                               selector:@selector(flushEvents)
                                                               userInfo:nil
                                                                repeats:YES];
             
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventHandlerDispatchInterval, self.eventHandlerDispatchTimeout, self.maxDispatchBackoffRetries];
+            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval, self.eventDispatcherDispatchTimeout, self.maxDispatchBackoffRetries];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             if (completion) {
@@ -529,7 +529,7 @@ dispatch_queue_t flushEventsQueue()
 {
     BOOL timerIsNotNil = self.timer != nil;
     BOOL timerIsValid = self.timer.valid;
-    BOOL timerIntervalIsSet = (self.timer.timeInterval == self.eventHandlerDispatchInterval) && (self.eventHandlerDispatchInterval > 0);
+    BOOL timerIntervalIsSet = (self.timer.timeInterval == self.eventDispatcherDispatchInterval) && (self.eventDispatcherDispatchInterval > 0);
     BOOL timeoutIsValid = self.maxDispatchBackoffRetries > 0;
     
     return timerIsNotNil && timerIsValid && timerIntervalIsSet && timeoutIsValid;
