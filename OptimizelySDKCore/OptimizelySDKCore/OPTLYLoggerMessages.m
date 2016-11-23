@@ -35,20 +35,12 @@ NSString *const OPTLYDatafileManagerInitializedWithoutProjectIdMessage = @"Optim
 
 // ---- info ----
 NSString *const OPTLYLoggerMessagesAudienceTargetingFail = @"User %@ does not meet conditions to be in experiment %@.";
-NSString *const OPTLYLoggerMessagesActivationSuccess = @"Activating user %@ in experiment %@.";
-NSString *const OPTLYLoggerMessagesActivationFailure = @"Not activating user %@ for experiment %@.";
-NSString *const OPTLYLoggerMessagesConversionSuccess = @"Tracking event %@ for user %@.";
 NSString *const OPTLYLoggerMessagesNoExperimentsForGoal = @"There are no valid experiments for event %@ to track.";
 NSString *const OPTLYLoggerMessagesVariationUserAssigned = @"User %@ is in variation %@ of experiment %@.";
 NSString *const OPTLYLoggerMessagesForcedVariationUser = @"User %@ is forced in variation %@.";
-NSString *const OPTLYLoggerMessagesConversionFailAudienceTargeting = @"User %@ does not meet conditions to be in experiment %@.";
+NSString *const OPTLYLoggerMessagesFailAudienceTargeting = @"User %@ does not meet conditions to be in experiment %@.";
 NSString *const OPTLYLoggerMessagesExperimentNotRunning = @"Experiment %@ is not running.";
-NSString *const OPTLYLoggerMessagesUserNotTracked = @"Not tracking user if experiment isn’t running or user isn’t in experiment audience";
-
 NSString *const OPTLYLoggerMessagesUserMutuallyExcluded = @"User %ld is mutually excluded"; // user id
-NSString *const OPTLYLoggerMessagesNotTrackedUnknownEvent = @"Not tracking event %@ for user %@. Event is not in datafile."; // event key, userId
-NSString *const OPTLYLoggerMessagesNotTrackedNoParams = @"Not tracking event %@ for user %@. Params not generated."; // event key, userId
-NSString *const OPTLYLoggerMessagesNotTrackedDispatchFailed = @"Not tracking event %@ for user %@. Event dispatch failed."; // event key, userId
 NSString *const OPTLYLoggerMessagesExperimentIdUnknown = @"Experiment id for %@ is not in the datafile."; // experiment key
 NSString *const OPTLYLoggerMessagesEventIdUnknown = @"Event id %@ is not in the datafile."; //event key
 NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
@@ -58,7 +50,6 @@ NSString *const OPTLYLoggerMessagesUserIdInvalid = @"User id is not valid.";
 NSString *const OPTLYLoggerMessagesExperimentKeyInvalid = @"Experiment key is not valid.";
 NSString *const OPTLYLoggerMessagesVariationIdInvalid = @"Variation id is not valid.";
 NSString *const OPTLYLoggerMessagesBucketerInvalid = @"Bucketer is not valid.";
-NSString *const OPTLYLoggerMessagesNoImpressionNoParams = @"No impression sent for experiment %@, user %@. Params not generated."; // experiment key, userId
 NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent = @"Experiment %@ is not associated with event %@.";
 NSString *const OPTLYLoggerMessagesAttributeValueInvalidFormat = @"Provided value for attribute %@ is in an invalid format."; 
 // project config getters
@@ -70,16 +61,65 @@ NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey = @"Attribute
 NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId = @"Audience not found for audience id: %@."; // audience id
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"Group not found for group id: %@."; // group id
 NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"Live variable not found for variable key: %@."; // live variable key
-
 NSString *const OPTLYLoggerMessagesEventDispatcherInterval = @"Event dispatcher interval set: %ld";
 
 // ---- Debug ----
-// Event Dispatcher
-NSString *const OPTLYLoggerMessagesImpressionDispatching = @"Dispatching impression event to URL %@ with params %@.";
-NSString *const OPTLYLoggerMessagesConversionDispatching = @"Dispatching conversion event to URL %@ with params %@.";
-NSString *const OPTLYLoggerMessagesDispatchEventNoOp = @"Called dispatchEvent with URL: %@ and params: %@";
-
 NSString *const OPTLYLoggerMessagesBucketAssigned = @"Assigned bucket %@ to user %@.";
+
+// ---- Event Tracking ----
+// info
+NSString *const OPTLYLoggerMessagesConversionSuccess = @"[EVENT DISPATCH] Tracking event %@ for user %@.";
+NSString *const OPTLYLoggerMessagesActivationSuccess = @"[EVENT DISPATCH] Activating user %@ in experiment %@.";
+// warning
+NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCH] Invalid event handler dispatch interval set: %ld.";
+NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout = @"[EVENT DISPATCH] Invalid event handler dispatch timeout set: %ld.";
+// debug
+NSString *const OPTLYLoggerMessagesDispatchingImpressionEvent = @"[EVENT DISPATCH] Dispatching impression event with params %@.";
+NSString *const OPTLYLoggerMessagesDispatchingConversionEvent = @"[EVENT DISPATCH] Dispatching conversion event with params %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCH] Properties set: %ld [interval], %ld [timeout], %ld [max retries].";
+NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled = @"[EVENT DISPATCH] Network timer enabled with properties: %ld [interval], %ld [timeout], %ld [max retries].";
+NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled = @"[EVENT DISPATCH] Network timer disabled.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents = @"[EVENT DISPATCH] No events to send for flushEvents call.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry = @"[EVENT DISPATCH] At dispatch call %ld. Skipping dispatch retry.";
+NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents =  @"No %@ events to send for flush saved events call.";
+NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess = @"[EVENT DISPATCH] %@ event sent with parameters: %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries = @"[EVENT DISPATCH] Attempt to dispatch saved events failed. Retries have exceeded max allowed time: %ld.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess = @"[EVENT DISPATCH] %@ event successfully sent with parameters: %@. Removing event from storage.";
+NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFailed = @"[EVENT DISPATCH] %@ event not sent. Saving event. Parameters: %@. Error received: %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure = @"[EVENT DISPATCH] %@ event not sent and will not be removed from the queue. Parameters: %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventRetrievalFailure = @"[EVENT DISPATCH] Error retrieving saved event data: %@.";
+// error
+NSString *const OPTLYLoggerMessagesEventNotTracked = @"[EVENT DISPATCH] Not tracking event %@ for experiment %@."; // event key, userId
+NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCH] Not activating user %@ for experiment %@.";
+
+
+// ---- Data Store ----
+// warning
+NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning = @"[DATA STORE] Warning: Removing all events from data store! These events will not be tracked by Optimizely.";
+
+// File Manager
+// debug
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesError = @"[FILE MANAGER] Remove all files error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError = @"[FILE MANAGER] Error removing files for data type %ld. Error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError = @"[FILE MANAGER] Error removing file for data type %ld. File name: %@. Error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerGetFile = @"[FILE MANAGER] Error gettomg file for data type %ld. File name: %@. Error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile = @"[FILE MANAGER] Error saving file for data type %ld. File name: %@. Error: %@.";
+
+// Database
+// debug
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseCreateTableError = @"[DATABASE] Error creating table %@. Error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"[DATABASE] Error saving database. Data: %@, eventType: %ld, cachedData: %u, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError = @"[DATABASE] Error getting events. Number of events requested: %ld, eventType: %ld, cachedData: %u, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"[DATABASE] Error getting number of events. cachedData: %u, eventType: %ld, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"[DATABASE] Error removing data. Number of events to remove: %ld, eventType: %ld, cachedData: %u, error: %@.";
+// warning
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents = @"[DATABASE] Get event returned no event. eventType: %ld, cachedData: %u.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning = @"[DATABASE] tvOS can only save to cached data. Data: %@, eventType: %ld.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning = @"[DATABASE] tvOS can only get data from cache. Number of events: %ld, eventType: %ld.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning = @"[DATABASE] tvOS can only get number of events from cache. eventType: %ld.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATABASE] tvOS can only remove data from cache> Number of events: %ld, eventType: %ld.";
+
+
 
 @implementation OPTLYLoggerMessages
 

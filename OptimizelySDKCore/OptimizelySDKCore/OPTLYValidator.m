@@ -48,7 +48,7 @@
     // check if the user is in the experiment
     BOOL isUserInExperiment = [OPTLYValidator isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
     if (!isUserInExperiment) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailAudienceTargeting, userId, experimentKey];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFailAudienceTargeting, userId, experimentKey];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return false;
     }

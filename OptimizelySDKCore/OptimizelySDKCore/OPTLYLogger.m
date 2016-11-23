@@ -86,6 +86,7 @@ NSString *const OPTLYLogLevelVerboseTag = @"VERBOSE";
                 break;
         }
         NSLog(@"[OPTIMIZELY SDK][%@]:%@", levelTag, message);
+
         return;
     }
 }

@@ -19,6 +19,10 @@
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYErrorHandler.h"
 
+static NSString * const kHTTPRequestMethodPost = @"POST";
+static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
+static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
+
 @implementation OPTLYEventDispatcherUtility
 
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
@@ -27,9 +31,10 @@
     BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
     
     // runtime checks
-    BOOL implementsDispatchEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchEvent:toURL:completionHandler:)];
+    BOOL implementsDispatchImpressionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchImpressionEvent:callback:)];
+    BOOL implementsDispatchConversionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchConversionEvent:callback:)];
     
-    return validProtocolDeclaration && implementsDispatchEventMethod;
+    return validProtocolDeclaration && implementsDispatchImpressionEventMethod && implementsDispatchConversionEventMethod;
 }
 
 @end
@@ -72,10 +77,13 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @implementation OPTLYEventDispatcherNoOp
 
-- (void)dispatchEvent:(NSDictionary *)params
-                toURL:(NSURL *)url
-    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
-{
+- (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    return;
+}
+
+- (void)dispatchConversionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
     return;
 }
 

@@ -23,58 +23,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // Optimizely SDK test parameters
-    let projectId = "7738070017";
-    let attributes = ["nameOfPerson" : "alda"];
-    let eventKey = "people";
-    let experimentKey = "exp1";
-    let userId = "1234";
-    let revenue = NSNumber(value: 88);
+    let userId = "1234"
+    let revenue = NSNumber(value: 88)
+    let eventDispatcherDispatchInterval = 1000
+    
+    // default parameters for initializing Optimizely from saved datafile
+    let datafileName = "test_data_10_experiments"
+    var projectId = "6377970066"
+    var attributes = ["browser_type" : "firefox"]
+    var eventKey = "testEventWithAudiences"
+    var experimentKey = "testExperimentWithFirefoxAudience" // experiment ID: 6383811281
+    let downloadDatafile = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let networkService = OPTLYNetworkService();
         
-        let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
-            builder?.eventHandlerDispatchInterval = 1000;
+        // use different parameters if initializing Optimizely from downloaded datafile
+        if self.downloadDatafile == true {
+            projectId = "7871184663"
+            attributes = ["userType" : "new"]
+            eventKey = "userEvent"
+            experimentKey = "exp1"
+            
+            // initialize Optimizely from a datafile download
+            initializeOptimizely(projectId:projectId, completionHandler: { (optimizely) in
+                let OPTLYVariation = optimizely?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+                print("bucketed variation:", OPTLYVariation)
+                optimizely?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
+            })
+        } else {
+            // initialize Optimizely from a saved datafile
+            let optimizely = initializeOptimizely(datafileName: datafileName)
+            optimizely.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+            optimizely.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
         }
         
-        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
-        
-        networkService.downloadProjectConfig(projectId, completionHandler:
-            { [weak self] (data, response, error) in
-
-
-            let logger : OPTLYLoggerDefault? = OPTLYLoggerDefault();
-            let errorHandler = OPTLYErrorHandlerNoOp();
-    
-            let projectConfig = OPTLYProjectConfig.init(datafile: data, with: logger, with: errorHandler);
-                print(projectConfig);
-            
-            
-            let defaultOptimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
-                builder!.datafile = data;
-                builder!.eventDispatcher = eventDispatcher;
-                builder!.logger = logger;
-                //builder!.errorHandler = errorHandler;
-            }))
-            
-            defaultOptimizely?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self?.attributes);
-            defaultOptimizely?.trackEvent(self!.eventKey, userId: self!.userId, attributes: (self?.attributes)!, eventValue: (self?.revenue)!);
-                
-            // activate user in an experiment
-            if let variation = defaultOptimizely?.activateExperiment("experimentKey", userId: "userId")
-            {
-                if (variation.variationKey == "variation_a") {
-                    // execute code for variation A
-                }
-                else if (variation.variationKey == "variation_b") {
-                    // execute code for variation B
-                }
-            } else {
-                // execute default code
-            }
-        });
-
-        return true
+        return true;
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -99,6 +82,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    // --- initialize Optimizely from a saved datafile ----
+    func initializeOptimizely(datafileName:String) -> Optimizely {
+        
+        var optimizely : Optimizely? = nil
+        let bundle = Bundle.init(for: self.classForCoder)
+        if let filePath = bundle.path(forResource: datafileName, ofType: "json") {
+            do {
+                let fileContents = try String.init(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+                let jsonData = fileContents.data(using: String.Encoding.utf8)!
+                print(fileContents)
+                
+                let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
+                    builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
+                }
+                let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
+                
+                optimizely = (Optimizely.initWithBuilderBlock({(builder)in
+                    builder!.datafile = jsonData
+                    builder!.eventDispatcher = eventDispatcher
+                }))
+            } catch {
+                print("invalid json data")
+            }
+        }
+        
+        return optimizely!
+    }
+    
+    // ----  initialize Optimizely from a datafile download ----
+    func initializeOptimizely(projectId:String, completionHandler: @escaping (_ optimizely:Optimizely?) -> Void) -> Void {
+        
+        let networkService = OPTLYNetworkService()
+        let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {[weak self] (builder)in
+            builder?.eventDispatcherDispatchInterval = self!.eventDispatcherDispatchInterval
+        }
+        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
+        
+        networkService.downloadProjectConfig(projectId) { (data, response, error) in
+            let projectConfig = OPTLYProjectConfig.init(datafile: data, with:nil, with:nil)
+            print(projectConfig)
+            
+            let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
+                builder!.datafile = data;
+                builder!.eventDispatcher = eventDispatcher;
+            }));
+            
+            completionHandler(optimizely)
+        }
+    }
+    
 }
 
