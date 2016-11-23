@@ -21,13 +21,13 @@
 + (BOOL)conformsToOPTLYErrorHandlerProtocol:(Class)instanceClass
 {
     // compile-time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYErrorHandler)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYErrorHandler)];
     
     // runtime checks
     BOOL implementsHandleErrorMethod = [instanceClass instancesRespondToSelector:@selector(handleError:)];
     BOOL implementsHandleExceptionMethod = [instanceClass instancesRespondToSelector:@selector(handleException:)];
     
-    return validProtocolDeclaration && implementsHandleErrorMethod && implementsHandleExceptionMethod;
+    return isValidProtocolDeclaration && implementsHandleErrorMethod && implementsHandleExceptionMethod;
     
 }
 

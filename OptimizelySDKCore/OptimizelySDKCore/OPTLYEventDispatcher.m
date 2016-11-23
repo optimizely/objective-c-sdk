@@ -24,12 +24,12 @@
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
 {
     // compile-time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
     
     // runtime checks
     BOOL implementsDispatchEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchEvent:toURL:completionHandler:)];
     
-    return validProtocolDeclaration && implementsDispatchEventMethod;
+    return isValidProtocolDeclaration && implementsDispatchEventMethod;
 }
 
 @end

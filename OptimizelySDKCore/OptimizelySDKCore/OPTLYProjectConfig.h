@@ -17,8 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
 
-@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYBucketer;
-@protocol OPTLYExperiment, OPTLYVariation, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYExperiment, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer, OPTLYUserProfile;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation;
+@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYUserProfile, OPTLYVariation;
 
 /*
     This class represents all the data contained in the project datafile 

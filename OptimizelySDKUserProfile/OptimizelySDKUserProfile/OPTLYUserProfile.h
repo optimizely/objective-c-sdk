@@ -33,7 +33,7 @@
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
 
 /**
- * Saves a user id's project-to-experiment-to-variation mapping.
+ * Saves a user ID's project-to-experiment-to-variation mapping.
  *
  * @param userId The user id that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.

@@ -28,14 +28,14 @@ NSString *const OPTLYLogLevelVerboseTag = @"VERBOSE";
 + (BOOL)conformsToOPTLYLoggerProtocol:(Class)instanceClass
 {
     // compile-time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYLogger)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYLogger)];
     
     // runtime checks
     BOOL implementsLogLevelProperty = [instanceClass instancesRespondToSelector:@selector(logLevel)];
     BOOL implementsInitWithLogLevelMethod = [instanceClass instancesRespondToSelector:@selector(initWithLogLevel:)];
     BOOL implementsLogMessageMethod = [instanceClass instancesRespondToSelector:@selector(logMessage:withLevel:)];
     
-    return validProtocolDeclaration && implementsLogLevelProperty && implementsInitWithLogLevelMethod && implementsLogMessageMethod;
+    return isValidProtocolDeclaration && implementsLogLevelProperty && implementsInitWithLogLevelMethod && implementsLogMessageMethod;
 }
 @end
 

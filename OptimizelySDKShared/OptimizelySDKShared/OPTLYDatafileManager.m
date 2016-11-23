@@ -20,12 +20,12 @@
 
 + (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
     // compile time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
     
     // runtime check
     BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
     
-    return validProtocolDeclaration && implementsDownloadDatafileMethod;
+    return isValidProtocolDeclaration && implementsDownloadDatafileMethod;
 }
 
 @end
