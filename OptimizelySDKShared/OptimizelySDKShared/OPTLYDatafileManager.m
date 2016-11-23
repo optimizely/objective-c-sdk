@@ -26,6 +26,16 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 @property OPTLYDataStore *dataStore;
 @property OPTLYNetworkService *networkService;
 
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
+    // compile time check
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
+    
+    // runtime check
+    BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
+    
+    return isValidProtocolDeclaration && implementsDownloadDatafileMethod;
+}
+
 @end
 
 @implementation OPTLYDatafileManager

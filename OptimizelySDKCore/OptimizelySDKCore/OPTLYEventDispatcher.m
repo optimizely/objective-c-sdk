@@ -44,38 +44,6 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @implementation OPTLYEventDispatcherBasic
 
-- (void)dispatchEvent:(NSDictionary *)params
-                toURL:(NSURL *)url
-    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
-{
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setHTTPMethod:kHTTPRequestMethodPost];
-    
-    NSError *JSONSerializationError = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:params
-                                                   options:kNilOptions
-                                                     error:&JSONSerializationError];
-    
-    [request addValue:kHTTPHeaderFieldValueApplicationJSON forHTTPHeaderField:kHTTPHeaderFieldContentType];
-    
-    if (!JSONSerializationError) {
-        NSURLSessionUploadTask *uploadTask = [ephemeralSession uploadTaskWithRequest:request
-                                                                            fromData:data
-                                                                   completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-                                                                       if (completion) {
-                                                                           completion(response, error);
-                                                                       }
-                                                                   }];
-        
-        [uploadTask resume];
-    }
-}
-
-@end
-
-@implementation OPTLYEventDispatcherBasic
-
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
     NSURL *url = [NSURL URLWithString:kEventDispatcherImpressionEventURL];
