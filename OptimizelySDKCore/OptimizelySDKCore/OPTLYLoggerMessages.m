@@ -128,6 +128,11 @@ NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user
 NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation = @"Removed variation %@ for user %@, experiment %@.";
 NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"Not removing variation for user %@, experiment %@. Variation not found.";
 
+// ---- Bucketing ----
+// Debug
+NSString *const OPTLYLoggerMessagesBucketerSavingUserData = @"Saving bucketing data for user: %@, experiment: %@, variation: %@.";
+NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved = @"Retrieved bucketing data for user: %@, experiment: %@, variation: %@.";
+
 @implementation OPTLYLoggerMessages
 
 @end

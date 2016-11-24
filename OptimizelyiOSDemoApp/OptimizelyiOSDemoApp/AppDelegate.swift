@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["browser_type" : "firefox"]
     var eventKey = "testEventWithAudiences"
     var experimentKey = "testExperimentWithFirefoxAudience" // experiment ID: 6383811281
-    let downloadDatafile = true
+    let downloadDatafile = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

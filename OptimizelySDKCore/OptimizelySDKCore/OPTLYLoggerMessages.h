@@ -128,6 +128,11 @@ extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
 
+// ---- Bucketing ----
+// Debug
+extern NSString *const OPTLYLoggerMessagesBucketerSavingUserData;
+extern NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved;
+
 @interface OPTLYLoggerMessages : NSObject
 
 @end
