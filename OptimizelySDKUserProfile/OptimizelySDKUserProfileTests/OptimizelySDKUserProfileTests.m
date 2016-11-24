@@ -48,13 +48,9 @@ static NSString * const kVariationKey3c = @"testVariation3";
     }];
     [self.userProfile save:kUserId1 experiment:kExperimentKey1 variation:kVariationKey1];
     [self.userProfile save:kUserId2 experiment:kExperimentKey2 variation:kVariationKey2];
-<<<<<<< HEAD
     [self.userProfile save:kUserId3 experiment:kExperimentKey3a variation:kVariationKey3a];
     [self.userProfile save:kUserId3 experiment:kExperimentKey3b variation:kVariationKey3b];
     [self.userProfile save:kUserId3 experiment:kExperimentKey3c variation:kVariationKey3c];
-=======
-    [self.userProfile save:kUserId3 experiment:kExperimentKey3 variation:kVariationKey3];
->>>>>>> User profile feature.
     [super setUp];
 }
 
@@ -69,11 +65,7 @@ static NSString * const kVariationKey3c = @"testVariation3";
     XCTAssert([self.userProfile.logger isKindOfClass:[OPTLYLoggerDefault class]]);
 }
 
-<<<<<<< HEAD
 - (void)testSaveUserData
-=======
-- (void)testSave
->>>>>>> User profile feature.
 {
     NSDictionary *userData = [self.userProfile.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSArray *users = [userData allKeys];
