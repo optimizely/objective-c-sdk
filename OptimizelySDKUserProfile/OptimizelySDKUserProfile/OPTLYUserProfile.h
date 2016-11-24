@@ -41,7 +41,7 @@
 /**
  * Saves a user ID's project-to-experiment-to-variation mapping.
  *
- * @param userId The user id that was used to generate the bucket value.
+ * @param userId The user ID that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.
  * @param variationKey The bucketed variation key.
  *
@@ -51,9 +51,9 @@
    variation:(nonnull NSString *)variationKey;
 
 /**
- * Gets the saved variation for a given user id, project id, and experiment key.
+ * Gets the saved variation for a given user ID, project ID, and experiment key.
  *
- * @param userId The user id that was used to generate the bucket value.
+ * @param userId The user ID that was used to generate the bucket value.
  * @param experimentKey An active experiment which the user was bucketed into.
  * @returns The variation that the user was bucketed into for the given project id and experiment key.
  *
@@ -62,9 +62,9 @@
                             experiment:(nonnull NSString *)experimentKey;
 
 /**
- * Removes a user id's project-to-experiment-to-variation mapping.
+ * Removes a user ID's project-to-experiment-to-variation mapping.
  *
- * @param userId The user id that was used to generate the bucket value.
+ * @param userId The user ID that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.
  *
  **/
@@ -73,7 +73,7 @@
 
 /**
  * Cleans and removes all bucketing mapping for specific userId.
- * @param userId The user id to remove all bucketing value.
+ * @param userId The user ID to remove all bucketing value.
  **/
 - (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId;
 
