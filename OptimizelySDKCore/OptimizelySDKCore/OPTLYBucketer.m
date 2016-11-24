@@ -69,9 +69,8 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     
     NSString *stickyBucketingVariationKey = [self.config.userProfile getVariationFor:userId experiment:experiment.experimentKey];
     if ([stickyBucketingVariationKey length] > 0) {
-        OPTLYVariation *stickyBucketingVariation = [self.config getVariationForVariationKey:stickyBucketingVariationKey];
+        OPTLYVariation *stickyBucketingVariation = [experiment getVariationForVariationKey:stickyBucketingVariationKey];
         if (stickyBucketingVariation) {
-            
             NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesBucketerUserDataRetrieved, userId, experiment.experimentKey, stickyBucketingVariation.variationKey];
             [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             

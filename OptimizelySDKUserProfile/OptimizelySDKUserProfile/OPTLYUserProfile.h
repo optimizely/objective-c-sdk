@@ -15,8 +15,8 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYUserProfileBuilder.h"
 #import <OptimizelySDKCore/OPTLYUserProfile.h>
+#import "OPTLYUserProfileBuilder.h"
 
 @protocol OPTLYLogger;
 

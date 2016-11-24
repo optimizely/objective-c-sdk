@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["browser_type" : "firefox"]
     var eventKey = "testEventWithAudiences"
     var experimentKey = "testExperimentWithFirefoxAudience" // experiment ID: 6383811281
-    let downloadDatafile = true
+    let downloadDatafile = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -107,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 optimizely = (Optimizely.initWithBuilderBlock({(builder)in
                     builder!.datafile = jsonData
                     builder!.eventDispatcher = eventDispatcher
+                    builder!.userProfile = OPTLYUserProfile.init()
                 }))
             } catch {
                 print("invalid json data")
@@ -135,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({(builder)in
                 builder!.datafile = data;
                 builder!.eventDispatcher = eventDispatcher;
+                builder!.userProfile = OPTLYUserProfile.init()
             }));
             
             completionHandler(optimizely)

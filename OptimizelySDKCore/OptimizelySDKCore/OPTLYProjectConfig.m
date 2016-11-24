@@ -223,19 +223,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     return variable;
 }
 
-- (OPTLYVariation *)getVariationForVariationKey:(NSString *)variationKey {
-    NSArray *allVariations = [self allVariations];
-    for (OPTLYVariation *variation in allVariations) {
-        if ([variation.variationKey isEqualToString:variationKey]) {
-            return variation;
-        }
-    }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUnknownForVariationKey, variationKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-    return nil;
-}
-
 #pragma mark -- Property Getters --
 
 - (NSArray *)allExperiments
@@ -250,18 +237,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         _allExperiments = [all copy];
     }
     return _allExperiments;
-}
-
-- (NSArray *)allVariations
-{
-    if (!_allVariations) {
-        NSMutableArray *all = [NSMutableArray new];
-        for (OPTLYExperiment *experiment in [self allExperiments]) {
-            [all addObject:experiment.variations];
-        }
-        _allVariations = [all copy];
-    }
-    return _allVariations;
 }
 
 - (NSDictionary *)audienceIdToAudienceMap
