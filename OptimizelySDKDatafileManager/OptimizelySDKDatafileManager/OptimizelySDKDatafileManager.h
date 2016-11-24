@@ -16,6 +16,7 @@
 
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYDatafileManager.h"
+#import "OPTLYDatafileManagerBuilder.h"
 
 //! Project version number for OptimizelySDKDatafileManager.
 FOUNDATION_EXPORT double OptimizelySDKDatafileManagerVersionNumber;

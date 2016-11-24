@@ -88,10 +88,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     
     if (userProfile) {
         if ([OPTLYUserProfile conformsToOPTLYUserProfileProtocol:[userProfile class]]) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Updated logs.
             _userProfile = (id<OPTLYUserProfile, Ignore>)userProfile;
         } else {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -102,16 +98,7 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             
             NSString *logMessage = OPTLYErrorHandlerMessagesUserProfileInvalid;
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-<<<<<<< HEAD
         }
-=======
-            _userProfile = userProfile;
-        }
-        // TODO - log error
->>>>>>> User profile feature.
-=======
-        }
->>>>>>> Updated logs.
     }
     
     OPTLYProjectConfig* projectConfig = nil;

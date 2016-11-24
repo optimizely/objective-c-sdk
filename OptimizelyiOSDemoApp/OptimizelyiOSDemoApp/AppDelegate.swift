@@ -120,8 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
         
         networkService.downloadProjectConfig(projectId) { (data, response, error) in
-            let projectConfig = OPTLYProjectConfig.init(datafile: data, with:nil, with:nil)
-            print(projectConfig)
+//            let projectConfig = OPTLYProjectConfig.init(datafile: data, with:nil, with:nil)
+//            print(projectConfig)
             
             let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
                 builder!.datafile = data;

@@ -380,8 +380,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
     NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
     [self removeFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    [self.logger logMessage:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning withLevel:OptimizelyLogLevelWarning];
 }
 
 

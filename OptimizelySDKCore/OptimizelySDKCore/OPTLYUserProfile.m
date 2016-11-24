@@ -20,22 +20,14 @@
 
 + (BOOL)conformsToOPTLYUserProfileProtocol:(nonnull Class)instanceClass {
     // compile-time check
-<<<<<<< eaea1f01bff1164fa6a86549b9594aa7b0b2a460
     BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfile)];
-=======
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfile)];
->>>>>>> User profile feature.
     
     // runtime checks
     BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(save:experiment:variation:)];
     BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationFor:experiment:)];
     BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(remove:experiment:)];
     
-<<<<<<< eaea1f01bff1164fa6a86549b9594aa7b0b2a460
     return isValidProtocolDeclaration && implementsHandleSaveVariationMethod && implementsHandleGetVariationMethod && implementsHandleRemoveVariationMethod;
-=======
-    return validProtocolDeclaration && implementsHandleSaveVariationMethod && implementsHandleGetVariationMethod && implementsHandleRemoveVariationMethod;
->>>>>>> User profile feature.
 }
 
 @end

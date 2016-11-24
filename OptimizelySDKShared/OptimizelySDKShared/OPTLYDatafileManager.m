@@ -15,88 +15,26 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
-#import <OptimizelySDKShared/OPTLYDataStore.h>
-#import <OptimizelySDKShared/OPTLYNetworkService.h>
 
-static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
-NSTimeInterval const kDefaultDatafileFetchInterval = 0;
-
-@interface OPTLYDatafileManager ()
-
-@property OPTLYDataStore *dataStore;
-@property OPTLYNetworkService *networkService;
+@implementation OPTLYDatafileManagerUtility
 
 + (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
     // compile time check
-    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
+    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
     
     // runtime check
     BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
     
-    return isValidProtocolDeclaration && implementsDownloadDatafileMethod;
+    return validProtocolDeclaration && implementsDownloadDatafileMethod;
 }
 
 @end
 
-@implementation OPTLYDatafileManager
-
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:block]];
-}
-
-- (instancetype)initWithBuilder:(OPTLYDatafileManagerBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
-            _datafileFetchInterval = kDefaultDatafileFetchInterval;
-            _datafileFetchInterval = builder.datafileFetchInterval;
-            _projectId = builder.projectId;
-            _errorHandler = builder.errorHandler;
-            _logger = builder.logger;
-            _networkService = [OPTLYNetworkService new];
-            _dataStore = [OPTLYDataStore new];
-            
-            // download datafile when we start the datafile manager
-            [self downloadDatafile:self.projectId completionHandler:nil];
-            
-            // Only fetch the datafile if the polling interval is greater than 0
-            if (self.datafileFetchInterval > 0) {
-                // TODO: Josh W. start timer to poll for the datafile
-            }
-        }
-        return self;
-    }
-    else {
-        return nil;
-    }
-}
+@implementation OPTLYDatafileManagerNoOp
 
 - (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
-    [self.networkService downloadProjectConfig:self.projectId
-                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                                 if (error != nil) {
-                                     [self.errorHandler handleError:error];
-                                 }
-                                 else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
-                                     [self saveDatafile:data];
-                                 }
-                                 else {
-                                     // TODO: Josh W. handle bad response
-                                 }
-                                 // call the completion handler
-                                 if (completion != nil) {
-                                     completion(data, response, error);
-                                 }
-                             }];
-}
-
-- (void)saveDatafile:(NSData *)datafile {
-    NSError *error;
-    [self.dataStore saveFile:self.projectId
-                        data:datafile
-                        type:OPTLYDataStoreDataTypeDatafile
-                       error:&error];
-    
+    completion(nil, nil, nil);
+    return;
 }
 
 @end
