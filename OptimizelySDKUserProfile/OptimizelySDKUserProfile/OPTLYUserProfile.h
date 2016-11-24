@@ -16,10 +16,11 @@
 
 #import <Foundation/Foundation.h>
 #import "OPTLYUserProfileBuilder.h"
+#import <OptimizelySDKCore/OPTLYUserProfile.h>
 
 @protocol OPTLYLogger;
 
-@interface OPTLYUserProfile : NSObject
+@interface OPTLYUserProfile : NSObject<OPTLYUserProfile>
 
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
@@ -31,6 +32,11 @@
  * @return An instance of OPTLYUserProfile
  */
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
+
+/**
+ * Default initializer for Optimizely User Profile object
+ */
+- (instancetype)init;
 
 /**
  * Saves a user ID's project-to-experiment-to-variation mapping.

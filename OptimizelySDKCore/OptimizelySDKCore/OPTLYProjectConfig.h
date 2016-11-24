@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
+#import "OPTLYProjectConfigBuilder.h"
 
 @class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYUserProfile, OPTLYVariable, OPTLYVariation;
@@ -57,13 +58,15 @@
 @property (nonatomic, strong, nullable) id<OPTLYUserProfile, Ignore> userProfile;
 
 /**
- * Initialize the Project Config from the Data File.
+ * Initialize the Project Config from a builder block.
  */
-// TODO - make initializer with builder block
-- (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                               withLogger:(nullable id<OPTLYLogger>)logger
-                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler
-                          withUserProfile:(nullable id<OPTLYUserProfile>)userProfile;
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
+
+/**
+ * Initialize the Project Config from a datafile.
+ */
+- (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile;
+
 /**
  * Get an Experiment object for a key.
  */

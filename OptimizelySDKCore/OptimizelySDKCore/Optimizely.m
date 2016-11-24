@@ -55,6 +55,7 @@ static NSString *const kValue = @"value";
             _eventBuilder = builder.eventBuilder;
             _eventDispatcher = builder.eventDispatcher;
             _logger = builder.logger;
+            _userProfile = builder.userProfile;
         }
         return self;
     }

@@ -56,7 +56,7 @@
 
 /**
  * OPTLYEventDispatcherNoOp comforms to the OPTLYEventDispatcher protocol,
- * but all methods performa a no op.
+ * but all methods perform a no op.
  */
 @interface OPTLYEventDispatcherNoOp : NSObject<OPTLYEventDispatcher>
 @end

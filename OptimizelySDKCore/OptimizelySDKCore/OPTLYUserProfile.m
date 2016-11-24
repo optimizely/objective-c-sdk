@@ -16,7 +16,7 @@
 
 #import "OPTLYUserProfile.h"
 
-@implementation OPTLYUserProfile
+@implementation OPTLYUserProfileUtility
 
 + (BOOL)conformsToOPTLYUserProfileProtocol:(nonnull Class)instanceClass {
     // compile-time check

@@ -30,7 +30,6 @@
 #import "OPTLYVariable.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
-#import "OPTLYUserProfile.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -50,14 +49,44 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 
 @implementation OPTLYProjectConfig
 
-- (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                               withLogger:(nullable id<OPTLYLogger>)logger
-                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler
-                          withUserProfile:(nullable id<OPTLYUserProfile>)userProfile
-{    
-    if (errorHandler) {
-        if ([OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]]) {
-            _errorHandler = (id<OPTLYErrorHandler, Ignore>)errorHandler;
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:block]];
+}
+
+- (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
+    
+    if (!builder.datafile) {
+        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesDatafileInvalid
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        NSLocalizedString(OPTLYErrorHandlerMessagesDataFileInvalid, nil)}];
+        [_errorHandler handleError:error];
+        
+        NSString *logMessage = OPTLYErrorHandlerMessagesDataFileInvalid;
+        [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    
+    NSError *datafileError;
+    @try {
+        self = [super initWithData:builder.datafile error:&datafileError];
+    }
+    @catch (NSException *datafileException) {
+        [_errorHandler handleException:datafileException];
+    }
+    
+    if (datafileError)
+    {
+        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesDatafileInvalid
+                                         userInfo:datafileError.userInfo];
+        [_errorHandler handleError:error];
+        return nil;
+    }
+    
+    if (builder.errorHandler) {
+        if ([OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
+            _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
         } else {
             _errorHandler = [OPTLYErrorHandlerDefault new];
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -71,10 +100,11 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         }
     }
     
-    if (logger) {
-        if ([logger conformsToProtocol:@protocol(OPTLYLogger)]) {
-            _logger = (id<OPTLYLogger, Ignore>)logger;
+    if (builder.logger) {
+        if ([builder.logger conformsToProtocol:@protocol(OPTLYLogger)]) {
+            _logger = (id<OPTLYLogger, Ignore>)builder.logger;
         } else {
+            _logger = [OPTLYLoggerDefault new];
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesLoggerInvalid
                                              userInfo:@{NSLocalizedDescriptionKey :
@@ -86,9 +116,9 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         }
     }
     
-    if (userProfile) {
-        if ([OPTLYUserProfile conformsToOPTLYUserProfileProtocol:[userProfile class]]) {
-            _userProfile = (id<OPTLYUserProfile, Ignore>)userProfile;
+    if (builder.userProfile) {
+        if ([OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
+            _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
         } else {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesUserProfile
@@ -100,36 +130,13 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         }
     }
-    
-    OPTLYProjectConfig* projectConfig = nil;
-    NSError *datafileError;
-    @try {
-        if (!datafile) {
-            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                 code:OPTLYErrorTypesDatafileInvalid
-                                             userInfo:@{NSLocalizedDescriptionKey :
-                                                            NSLocalizedString(OPTLYErrorHandlerMessagesDataFileInvalid, nil)}];
-            [_errorHandler handleError:error];
-            
-            NSString *logMessage = OPTLYErrorHandlerMessagesDataFileInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-        } else {
-            projectConfig = [[OPTLYProjectConfig alloc] initWithData:datafile error:&datafileError];
-        }
-    }
-    @catch (NSException *datafileException) {
-        [_errorHandler handleException:datafileException];
-    }
-    
-    if (datafileError)
-    {
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesDatafileInvalid
-                                         userInfo:datafileError.userInfo];
-        [_errorHandler handleError:error];
-    }
-    
-    return projectConfig;
+    return self;
+}
+
+- (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
+    return [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+    }];
 }
 
 #pragma mark -- Getters --

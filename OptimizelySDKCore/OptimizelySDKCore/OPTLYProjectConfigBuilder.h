@@ -15,48 +15,34 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYErrorHandlerMessages.h"
 
 /**
- * This class determines how the Optimizely SDK will handle exceptions and errors.
+ * This class contains details related to how the Optimizely Project Config instance is built.
  */
-@protocol OPTLYErrorHandler <NSObject>
+
+@class OPTLYProjectConfigBuilder;
+@protocol OPTLYErrorHandler, OPTLYLogger, OPTLYUserProfile;
+
+/// This is a block that takes the builder values.
+typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Nullable builder);
+
+@interface OPTLYProjectConfigBuilder : NSObject
 
 /**
- * Handle an error thrown by the SDK.
- * @param error The error object to be handled.
+ * Initializer for Optimizely Project Config Builder object
+ *
+ * @param block The builder block with which to initialize the Optimizely Project Config Builder object
+ * @return An instance of OPTLYProjectConfigBuilder
  */
-- (void)handleError:(NSError *)error;
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
 
-/**
- * Handle an exception thrown by the SDK.
- * @param exception The exception object to be handled.
- */
-- (void)handleException:(NSException *)exception;
+/// optional error handler
+@property (nonatomic, strong, nullable) id<OPTLYErrorHandler> errorHandler;
+/// optional logger
+@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
+/// optional user profile
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// the non optional datafile contents
+@property (nonatomic, strong, nonnull) NSData *datafile;
 
-@end
-
-@interface OPTLYErrorHandler : NSObject
-/**
- * Utility method to check if a class conforms to the OPTLYErrorHandler protocol
- * This method uses compile and run time checks
- */
-+ (BOOL)conformsToOPTLYErrorHandlerProtocol:(Class)instanceClass;
-
-/**
- * Utility method to package Apple-specific errors which then calls the error handler.
- */
-+ (void)handleError:(id<OPTLYErrorHandler>) errorHandler
-               code:(NSInteger)code
-        description:(NSString *)localizedDescription;
-@end
-
-@interface OPTLYErrorHandlerDefault : NSObject <OPTLYErrorHandler>
-@end
-
-/**
- * OPTLYErrorHandlerNoOp comforms to the OPTLYErrorHandler protocol,
- * but all methods perform a no op.
- */
-@interface OPTLYErrorHandlerNoOp : NSObject <OPTLYErrorHandler>
 @end

@@ -14,23 +14,24 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "Optimizely.h"
-#import "OPTLYBucketer.h"
-#import "OPTLYBuilder.h"
-#import "OPTLYErrorHandler.h"
-#import "OPTLYErrorHandlerMessages.h"
-#import "OPTLYEventBuilder.h"
-#import "OPTLYEventDispatcher.h"
-#import "OPTLYExperiment.h"
-#import "OPTLYLogger.h"
-#import "OPTLYLoggerMessages.h"
-#import "OPTLYProjectConfig.h"
 #import "OPTLYProjectConfigBuilder.h"
-#import "OPTLYVariable.h"
-#import "OPTLYVariation.h"
-#import "OPTLYLog.h"
-#import "OPTLYQueue.h"
-#import "OPTLYUserProfile.h"
 
-FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
-FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];
+@implementation OPTLYProjectConfigBuilder
+
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYProjectConfigBuilderBlock)block {
+    return [[self alloc] initWithBlock:block];
+}
+
+- (id) init {
+    return [self initWithBlock:nil];
+}
+
+- (id)initWithBlock:(OPTLYProjectConfigBuilderBlock)block {
+    self = [super init];
+    if (self != nil) {
+        block(self);
+    }
+    return self;
+}
+
+@end

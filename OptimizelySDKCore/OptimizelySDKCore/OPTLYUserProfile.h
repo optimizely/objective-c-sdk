@@ -19,11 +19,7 @@
 @protocol OPTLYUserProfile <NSObject>
 
 /**
-<<<<<<< eaea1f01bff1164fa6a86549b9594aa7b0b2a460
  * Saves a user ID's project-to-experiment-to-variation mapping.
-=======
- * Saves a user id's project-to-experiment-to-variation mapping.
->>>>>>> User profile feature.
  *
  * @param userId The user id that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.
@@ -35,9 +31,9 @@
    variation:(nonnull NSString *)variationKey;
 
 /**
- * Gets the saved variation for a given user id, project id, and experiment key.
+ * Gets the saved variation for a given user ID, project ID, and experiment key.
  *
- * @param userId The user id that was used to generate the bucket value.
+ * @param userId The user ID that was used to generate the bucket value.
  * @param experimentKey An active experiment which the user was bucketed into.
  * @returns The variation that the user was bucketed into for the given project id and experiment key.
  *
@@ -46,9 +42,9 @@
                             experiment:(nonnull NSString *)experimentKey;
 
 /**
- * Removes a user id's project-to-experiment-to-variation mapping.
+ * Removes a user ID's project-to-experiment-to-variation mapping.
  *
- * @param userId The user id that was used to generate the bucket value.
+ * @param userId The user ID that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.
  *
  **/
@@ -57,7 +53,7 @@
 
 @end
 
-@interface OPTLYUserProfile : NSObject
+@interface OPTLYUserProfileUtility : NSObject
 /**
  * Utility method to check if a class conforms to the OPTLYUserProfile protocol
  * This method uses compile and run time checks
@@ -65,5 +61,9 @@
 + (BOOL)conformsToOPTLYUserProfileProtocol:(nonnull Class)instanceClass;
 @end
 
-@interface OPTLYUserProfileNoOp: NSObject<OPTLYUserProfile>
+/**
+ * OPTLYUserProfileNoOp comforms to the OPTLYUserProfile protocol,
+ * but all methods perform a no op.
+ */
+@interface OPTLYUserProfileNoOp : NSObject <OPTLYUserProfile>
 @end

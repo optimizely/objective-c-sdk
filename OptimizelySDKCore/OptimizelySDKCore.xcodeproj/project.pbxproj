@@ -22,6 +22,10 @@
 		EA064BCA1DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
 		EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */; };
 		EA064BCF1DD3FCD800DF7537 /* OPTLYQueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */; };
+		EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
+		EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
 		EA2FA8071DC5DBA000B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA8271DC5DBB100B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; };
@@ -206,8 +210,8 @@
 		EA5249651DC7B69A00AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249631DC7B69A00AF6685 /* OPTLYEventDispatcher.m */; };
 		EA5249771DC7C6EF00AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5249621DC7B69A00AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249F21DC7FACF00AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249631DC7B69A00AF6685 /* OPTLYEventDispatcher.m */; };
-		EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */; };
-		EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */; };
+		EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA87A02C1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */; };
 		EA87A02D1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */; };
 /* End PBXBuildFile section */
@@ -256,6 +260,8 @@
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
 		EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueueTest.m; sourceTree = "<group>"; };
+		EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYProjectConfigBuilder.h; sourceTree = "<group>"; };
+		EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYProjectConfigBuilder.m; sourceTree = "<group>"; };
 		EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA8061DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKCoreiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +543,8 @@
 			children = (
 				EA2FAB1D1DC6F58800B1D81B /* OPTLYBuilder.h */,
 				EA2FAB1E1DC6F58800B1D81B /* OPTLYBuilder.m */,
+				EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */,
+				EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */,
 			);
 			name = Builder;
 			sourceTree = "<group>";
@@ -674,7 +682,6 @@
 				EA2FAA4C1DC6F53E00B1D81B /* Optimizely.h in Headers */,
 				EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB321DC6F59D00B1D81B /* OPTLYErrorHandler.h in Headers */,
-				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
 				EA2FAB281DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAB201DC6F58800B1D81B /* OPTLYBuilder.h in Headers */,
@@ -687,6 +694,8 @@
 				EA2FAB381DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA5249641DC7B69A00AF6685 /* OPTLYEventDispatcher.h in Headers */,
 				EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
+				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
+				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
@@ -721,7 +730,6 @@
 				EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB291DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */,
-				EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA2FAB0D1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
 				EA2FAB331DC6F59D00B1D81B /* OPTLYErrorHandler.h in Headers */,
 				EA2FAB211DC6F58800B1D81B /* OPTLYBuilder.h in Headers */,
@@ -734,7 +742,9 @@
 				EA2FAB391DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA5249771DC7C6EF00AF6685 /* OPTLYEventDispatcher.h in Headers */,
 				EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
+				EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
+				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA2FAC7B1DC70EBC00B1D81B /* murmur3.h in Headers */,
 				EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
@@ -1112,6 +1122,7 @@
 				EA2FAC151DC6FFC600B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
 				EA5249651DC7B69A00AF6685 /* OPTLYEventDispatcher.m in Sources */,
+				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
@@ -1178,6 +1189,7 @@
 				EA2FABF01DC6FFA100B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FABF11DC6FFA100B1D81B /* OPTLYEventLayerState.m in Sources */,
 				EA5249F21DC7FACF00AF6685 /* OPTLYEventDispatcher.m in Sources */,
+				EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,

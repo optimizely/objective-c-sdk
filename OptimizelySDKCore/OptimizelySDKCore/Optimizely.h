@@ -226,6 +226,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfile> userProfile;
 
 /**
  * Init with builder block
