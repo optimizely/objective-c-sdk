@@ -74,6 +74,9 @@ extern NSString * const OPTLYDatafileKeysVariableId;
 extern NSString * const OPTLYDatafileKeysVariableKey;
 extern NSString * const OPTLYDatafileKeysVariableType;
 extern NSString * const OPTLYDatafileKeysVariableValue;
+// Variation Live Variable
+extern NSString * const OPTLYDatafileKeysVariationVariableId;
+extern NSString * const OPTLYDatafileKeysVariationVariableValue;
 
 @interface OPTLYDatafileKeys : NSObject
 

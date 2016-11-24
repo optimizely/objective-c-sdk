@@ -36,7 +36,7 @@
 /**
  * Default initializer for Optimizely User Profile object
  */
-- (instancetype)init;
+- (nullable instancetype)init;
 
 /**
  * Saves a user ID's project-to-experiment-to-variation mapping.

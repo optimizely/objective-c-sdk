@@ -26,6 +26,10 @@
 		EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
 		EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
+		EA2C24331DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; };
+		EA2C24341DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; };
+		EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */; };
+		EA2C24361DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */; };
 		EA2FA8071DC5DBA000B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA8271DC5DBB100B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; };
@@ -262,6 +266,8 @@
 		EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueueTest.m; sourceTree = "<group>"; };
 		EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYProjectConfigBuilder.h; sourceTree = "<group>"; };
 		EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYProjectConfigBuilder.m; sourceTree = "<group>"; };
+		EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariationVariable.h; sourceTree = "<group>"; };
+		EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariationVariable.m; sourceTree = "<group>"; };
 		EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA8061DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKCoreiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,6 +509,8 @@
 				5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */,
 				EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */,
 				EA2FAA831DC6F57100B1D81B /* OPTLYVariation.m */,
+				EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */,
+				EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -710,6 +718,7 @@
 				EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EA2FAAAC1DC6F57200B1D81B /* OPTLYEvent.h in Headers */,
 				EA2FAAD01DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */,
+				EA2C24331DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */,
 				EA2FAABE1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */,
 				EA2FAAA61DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */,
 				EA2FAAC41DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */,
@@ -758,6 +767,7 @@
 				EA2FAB071DC6F57200B1D81B /* OPTLYGroup.h in Headers */,
 				EA2FAAE91DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */,
 				EA2FAAFB1DC6F57200B1D81B /* OPTLYEventView.h in Headers */,
+				EA2C24341DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */,
 				EA2FAABF1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */,
 				EA2FAAD71DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */,
 				EA2FAAD11DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */,
@@ -1142,6 +1152,7 @@
 				5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
+				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
 				EA2FAC2A1DC6FFC600B1D81B /* OPTLYValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1209,6 +1220,7 @@
 				5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,
+				EA2C24361DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
 				EA2FAC051DC6FFA100B1D81B /* OPTLYValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

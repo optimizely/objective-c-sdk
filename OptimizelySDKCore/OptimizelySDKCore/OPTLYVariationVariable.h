@@ -18,20 +18,29 @@
 #import <JSONModel/JSONModelLib.h>
 
 /**
- * This class is a representation of an Optimizely variation.
+ * This class is a representation of an Optimizely live variable scoped within a variation:
+ * "variations": [
+ *           {
+ *             "id": "6451680205",
+ *             "key": "a",
+ *             "variables": [
+ *               {
+ *                 "id": "73483201090",
+ *                 "value": "testValue"
+ *               },
+ *               ...
+ *               ]
+ *           }
  */
-@protocol OPTLYVariationVariable;
-@protocol OPTLYVariation
+
+@protocol OPTLYVariationVariable
 @end
 
-@interface OPTLYVariation : JSONModel
+@interface OPTLYVariationVariable : JSONModel
 
-/// The variation's ID.
-@property (nonatomic, strong) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong) NSString *variationKey;
-/// The array containing the variation's live variable information -- variable ID and variable value.
-/// TODO: Make variables required and add in NSDictionary * back into NSArray
-@property (nonatomic, strong) NSArray<OPTLYVariationVariable, Optional> *variables;
+/// The variable's ID.
+@property (nonatomic, strong) NSString *variableId;
+/// The variable's assigned value within that variation
+@property (nonatomic, strong) NSString *value;
 
 @end

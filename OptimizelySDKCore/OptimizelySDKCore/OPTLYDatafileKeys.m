@@ -70,6 +70,9 @@ NSString * const OPTLYDatafileKeysVariableId = @"id";
 NSString * const OPTLYDatafileKeysVariableKey = @"key";
 NSString * const OPTLYDatafileKeysVariableType = @"type";
 NSString * const OPTLYDatafileKeysVariableValue = @"value";
+// Variation Live Variable
+NSString * const OPTLYDatafileKeysVariationVariableId = @"id";
+NSString * const OPTLYDatafileKeysVariationVariableValue = @"value";
 
 @implementation OPTLYDatafileKeys
 @end
