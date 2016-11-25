@@ -326,10 +326,7 @@ static NSString *const kValue = @"value";
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
                   error:(NSError * _Nullable * _Nullable)error {
-<<<<<<< HEAD
-=======
     BOOL variableValue = false;
->>>>>>> alda/userProfile
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
