@@ -35,9 +35,7 @@
     self = [super init];
     if (self != nil) {
         _logger = builder.logger;
-        // TODO - uncomment when this has been merged with the event dispatcher code
-        //_dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
-        _dataStore = [OPTLYDataStore new];
+        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
     }
     return self;
 }
