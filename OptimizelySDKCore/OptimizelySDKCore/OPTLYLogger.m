@@ -23,7 +23,7 @@ NSString *const OPTLYLogLevelInfoTag = @"INFO";
 NSString *const OPTLYLogLevelDebugTag = @"DEBUG";
 NSString *const OPTLYLogLevelVerboseTag = @"VERBOSE";
 
-@implementation OPTLYLogger
+@implementation OPTLYLoggerUtility
 
 + (BOOL)conformsToOPTLYLoggerProtocol:(Class)instanceClass
 {
