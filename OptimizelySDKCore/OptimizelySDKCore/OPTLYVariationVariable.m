@@ -14,16 +14,14 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import "OPTLYVariationVariable.h"
+#import "OPTLYDatafileKeys.h"
 
-//! Project version number for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT double OptimizelySDKDatafileManagerVersionNumber;
+@implementation OPTLYVariationVariable
++ (JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationVariableId     : @"variableId",
+                                                        }];
+}
 
-//! Project version string for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKDatafileManagerVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKDatafileManager/PublicHeader.h>
-
-
+@end

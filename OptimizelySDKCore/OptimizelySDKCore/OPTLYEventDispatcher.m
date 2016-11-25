@@ -31,13 +31,13 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
 {
     // compile-time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
     
     // runtime checks
     BOOL implementsDispatchImpressionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchImpressionEvent:callback:)];
     BOOL implementsDispatchConversionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchConversionEvent:callback:)];
     
-    return validProtocolDeclaration && implementsDispatchImpressionEventMethod && implementsDispatchConversionEventMethod;
+    return isValidProtocolDeclaration && implementsDispatchImpressionEventMethod && implementsDispatchConversionEventMethod;
 }
 
 @end

@@ -15,33 +15,13 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYUserProfile.h>
-#import "OPTLYUserProfileBuilder.h"
 
-@protocol OPTLYLogger;
-
-@interface OPTLYUserProfile : NSObject<OPTLYUserProfile>
-
-/// Logger provided by the user
-@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
-
-/**
- * Initializer for Optimizely User Profile object
- *
- * @param block The builder block with which to initialize the Optimizely User Profile object
- * @return An instance of OPTLYUserProfile
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
-
-/**
- * Default initializer for Optimizely User Profile object
- */
-- (nullable instancetype)init;
+@protocol OPTLYUserProfile <NSObject>
 
 /**
  * Saves a user ID's project-to-experiment-to-variation mapping.
  *
- * @param userId The user ID that was used to generate the bucket value.
+ * @param userId The user id that was used to generate the bucket value.
  * @param experimentKey An active experiment for which the user should be bucketed into.
  * @param variationKey The bucketed variation key.
  *
@@ -71,14 +51,19 @@
 - (void)remove:(nonnull NSString *)userId
     experiment:(nonnull NSString *)experimentKey;
 
+@end
+
+@interface OPTLYUserProfileUtility : NSObject
 /**
- * Cleans and removes all bucketing mapping for specific userId.
- * @param userId The user ID to remove all bucketing value.
- **/
-- (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId;
+ * Utility method to check if a class conforms to the OPTLYUserProfile protocol
+ * This method uses compile and run time checks
+ */
++ (BOOL)conformsToOPTLYUserProfileProtocol:(nonnull Class)instanceClass;
+@end
 
 /**
- * Cleans and removes all bucketing mapping.
- **/
-- (void)removeAllUserExperimentRecords;
+ * OPTLYUserProfileNoOp comforms to the OPTLYUserProfile protocol,
+ * but all methods perform a no op.
+ */
+@interface OPTLYUserProfileNoOp : NSObject <OPTLYUserProfile>
 @end

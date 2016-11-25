@@ -14,16 +14,35 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import <Foundation/Foundation.h>
 
-//! Project version number for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT double OptimizelySDKDatafileManagerVersionNumber;
+/**
+ * This class contains details related to how the Optimizely Project Config instance is built.
+ */
 
-//! Project version string for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKDatafileManagerVersionString[];
+@class OPTLYProjectConfigBuilder;
+@protocol OPTLYErrorHandler, OPTLYLogger, OPTLYUserProfile;
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKDatafileManager/PublicHeader.h>
+/// This is a block that takes the builder values.
+typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Nullable builder);
 
+@interface OPTLYProjectConfigBuilder : NSObject
 
+/**
+ * Initializer for Optimizely Project Config Builder object
+ *
+ * @param block The builder block with which to initialize the Optimizely Project Config Builder object
+ * @return An instance of OPTLYProjectConfigBuilder
+ */
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
+
+/// optional error handler
+@property (nonatomic, strong, nullable) id<OPTLYErrorHandler> errorHandler;
+/// optional logger
+@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
+/// optional user profile
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// the non optional datafile contents
+@property (nonatomic, strong, nonnull) NSData *datafile;
+
+@end

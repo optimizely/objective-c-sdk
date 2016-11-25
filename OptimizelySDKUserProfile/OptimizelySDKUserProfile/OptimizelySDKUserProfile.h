@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBuilder.h"
 
 //! Project version number for OptimizelySDKUserProfile.
 FOUNDATION_EXPORT double OptimizelySDKUserProfileVersionNumber;

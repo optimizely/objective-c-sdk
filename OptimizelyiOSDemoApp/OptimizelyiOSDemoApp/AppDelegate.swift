@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["browser_type" : "firefox"]
     var eventKey = "testEventWithAudiences"
     var experimentKey = "testExperimentWithFirefoxAudience" // experiment ID: 6383811281
-    let downloadDatafile = true
+    let downloadDatafile = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -93,6 +93,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let jsonData = fileContents.data(using: String.Encoding.utf8)!
                 print(fileContents)
                 
+<<<<<<< HEAD
+=======
+                let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
+                    builder?.datafile = jsonData
+                    builder?.userProfile = OPTLYUserProfile.init()
+                });
+                print("projectConfig: ", projectConfig)
+                
+>>>>>>> alda/userProfile
                 let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
                     builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
                 }
@@ -101,6 +110,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 optimizely = (Optimizely.initWithBuilderBlock({(builder)in
                     builder!.datafile = jsonData
                     builder!.eventDispatcher = eventDispatcher
+<<<<<<< HEAD
+=======
+                    builder!.userProfile = OPTLYUserProfile.init()
+>>>>>>> alda/userProfile
                 }))
             } catch {
                 print("invalid json data")
@@ -120,12 +133,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
         
         networkService.downloadProjectConfig(projectId) { (data, response, error) in
-            let projectConfig = OPTLYProjectConfig.init(datafile: data, with:nil, with:nil)
-            print(projectConfig)
+            let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
+                builder?.datafile = data!
+                builder?.userProfile = OPTLYUserProfile.init()
+            });
+            print("projectConfig: ", projectConfig)
             
-            let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({ (builder)in
+            let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({(builder)in
                 builder!.datafile = data;
                 builder!.eventDispatcher = eventDispatcher;
+                builder!.userProfile = OPTLYUserProfile.init()
             }));
             
             completionHandler(optimizely)

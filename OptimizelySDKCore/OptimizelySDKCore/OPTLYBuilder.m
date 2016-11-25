@@ -21,6 +21,7 @@
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
+#import "OPTLYUserProfile.h"
 
 @implementation OPTLYBuilder
 
@@ -47,7 +48,13 @@
     if (_datafile == nil) {
         return nil;
     }
-    _config = [[OPTLYProjectConfig alloc] initWithDatafile:_datafile withLogger:_logger withErrorHandler:_errorHandler];
+    
+    _config = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = _datafile;
+        builder.userProfile = _userProfile;
+        builder.logger = _logger;
+        builder.errorHandler = _errorHandler;
+    }];
     
     if (_config == nil) {
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -98,5 +105,13 @@
     }
     return _logger;
 }
+
+- (id<OPTLYUserProfile>)userProfile {
+    if (!_userProfile) {
+        _userProfile = [[OPTLYUserProfileNoOp alloc] init];
+    }
+    return _userProfile;
+}
+
 
 @end

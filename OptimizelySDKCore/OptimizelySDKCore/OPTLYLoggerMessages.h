@@ -61,6 +61,7 @@ extern NSString *const OPTLYLoggerMessagesEventUnknownForEventKey;
 extern NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey;
 extern NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
+extern NSString *const OPTLYLoggerMessagesVariationUnknownForVariationKey;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInterval;
 extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
@@ -119,6 +120,18 @@ extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning;
+
+// ---- User Profile ----
+// Debug
+extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
+
+// ---- Bucketing ----
+// Debug
+extern NSString *const OPTLYLoggerMessagesBucketerSavingUserData;
+extern NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved;
 
 @interface OPTLYLoggerMessages : NSObject
 

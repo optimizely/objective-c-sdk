@@ -18,7 +18,20 @@
 #import <JSONModel/JSONModelLib.h>
 
 /**
+<<<<<<< HEAD
  * This class is a representation of an Optimizely live variable.
+=======
+ * This class is a representation of an Optimizely live variable scoped within a project:
+ *   "variables": [
+ *    {
+ *      "id": "6384881128",
+ *      "key": "someString",
+ *      "type": "string",
+ *      "value": "defaultStringValue"
+ *    },
+ *     ...
+ *    ]
+>>>>>>> alda/userProfile
  */
 
 @protocol OPTLYVariable

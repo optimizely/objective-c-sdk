@@ -57,7 +57,7 @@ static NSString * const kAttributeValue = @"firefox";
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
-    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     self.attributes = @{kAttributeKey : kAttributeValue};
 }
 

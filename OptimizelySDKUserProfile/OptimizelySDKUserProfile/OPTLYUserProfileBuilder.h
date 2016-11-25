@@ -14,16 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 
-//! Project version number for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT double OptimizelySDKDatafileManagerVersionNumber;
+@interface OPTLYUserProfileBuilder : NSObject
 
-//! Project version string for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKDatafileManagerVersionString[];
+/// This is a block that takes the builder values.
+typedef void (^OPTLYUserProfileBuilderBlock)(OPTLYUserProfileBuilder * _Nullable builder);
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKDatafileManager/PublicHeader.h>
+/**
+ * Initializer for Optimizely User Profile Builder object
+ *
+ * @param block The builder block with which to initialize the Optimizely User Profile Builder object
+ * @return An instance of OPTYUserProfileBuilder
+ */
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
 
-
+/// Logger provided by the user
+@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
+@end

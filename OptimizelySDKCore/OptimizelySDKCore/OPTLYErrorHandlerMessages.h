@@ -37,6 +37,7 @@ extern NSString * const OPTLYErrorHandlerMessagesAttributeFormatInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesGroupInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesVariationUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesEventTypeUnknown;
+extern NSString * const OPTLYErrorHandlerMessagesUserProfileInvalid;
 
 extern NSString * const OPTLYErrorHandlerMessagesTrafficAllocationNotInRange;
 extern NSString * const OPTLYErrorHandlerMessagesBucketingIdInvalid;
@@ -56,6 +57,7 @@ typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesBuilderInvalid,
     OPTLYErrorTypesDatabase,
     OPTLYErrorTypesDataStore,
+    OPTLYErrorTypesUserProfile,
     OPTLYErrorTypesEventDispatch,
     OPTLYErrorTypesEventTrack,
     OPTLYErrorTypesUserActivate,

@@ -16,9 +16,10 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
+#import "OPTLYProjectConfigBuilder.h"
 
-@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYVariable, OPTLYBucketer;
-@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYVariable, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
+@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYUserProfile, OPTLYVariable, OPTLYVariation;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -53,13 +54,17 @@
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile, Ignore> userProfile;
 
 /**
- * Initialize the Project Config from the Data File.
+ * Initialize the Project Config from a builder block.
  */
-- (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                               withLogger:(nullable id<OPTLYLogger>)logger
-                         withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler;
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
+
+/**
+ * Initialize the Project Config from a datafile.
+ */
+- (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile;
 
 /**
  * Get an Experiment object for a key.
@@ -113,6 +118,7 @@
                                                 userId:(nonnull NSString *)userId
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
+
 /*
  * Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
  */

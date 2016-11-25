@@ -14,16 +14,33 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import "OPTLYDatafileManager.h"
-#import "OPTLYDatafileManagerBuilder.h"
+#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModelLib.h>
 
-//! Project version number for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT double OptimizelySDKDatafileManagerVersionNumber;
+/**
+ * This class is a representation of an Optimizely live variable scoped within a variation:
+ * "variations": [
+ *           {
+ *             "id": "6451680205",
+ *             "key": "a",
+ *             "variables": [
+ *               {
+ *                 "id": "73483201090",
+ *                 "value": "testValue"
+ *               },
+ *               ...
+ *               ]
+ *           }
+ */
 
-//! Project version string for OptimizelySDKDatafileManager.
-FOUNDATION_EXPORT const unsigned char OptimizelySDKDatafileManagerVersionString[];
+@protocol OPTLYVariationVariable
+@end
 
-// In this header, you should import all the public headers of your framework using statements like #import <OptimizelySDKDatafileManager/PublicHeader.h>
+@interface OPTLYVariationVariable : JSONModel
 
+/// The variable's ID.
+@property (nonatomic, strong) NSString *variableId;
+/// The variable's assigned value within that variation
+@property (nonatomic, strong) NSString *value;
 
+@end

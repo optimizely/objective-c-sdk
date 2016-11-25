@@ -53,6 +53,7 @@ NSString *const OPTLYLoggerMessagesBucketerInvalid = @"Bucketer is not valid.";
 NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent = @"Experiment %@ is not associated with event %@.";
 NSString *const OPTLYLoggerMessagesAttributeValueInvalidFormat = @"Provided value for attribute %@ is in an invalid format."; 
 // project config getters
+// warning
 NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey = @"Experiment id not found for experiment key: %@."; // experiment id
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"Experiment not found for experiment key: %@."; // experiment key
 NSString *const OPTLYLoggerMessagesEventIdUnknownForEventKey = @"Event id not found for event key: %@."; // event key
@@ -60,6 +61,7 @@ NSString *const OPTLYLoggerMessagesEventUnknownForEventKey = @"Event not found f
 NSString *const OPTLYLoggerMessagesAttributeUnknownForAttributeKey = @"Attribute not found for attribute key: %@."; // attribute key
 NSString *const OPTLYLoggerMessagesAudienceUnknownForAudienceId = @"Audience not found for audience id: %@."; // audience id
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"Group not found for group id: %@."; // group id
+NSString *const OPTLYLoggerMessagesVariationUnknownForVariationKey = @"Unknown variation for variation key: %@."; // variation key
 NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"Live variable not found for variable key: %@."; // live variable key
 NSString *const OPTLYLoggerMessagesEventDispatcherInterval = @"Event dispatcher interval set: %ld";
 
@@ -119,7 +121,17 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning = @"[DATABASE
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning = @"[DATABASE] tvOS can only get number of events from cache. eventType: %ld.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATABASE] tvOS can only remove data from cache> Number of events: %ld, eventType: %ld.";
 
+// ---- User Profile ----
+// Debug
+NSString *const OPTLYLoggerMessagesUserProfileVariation = @"Variation %@ for user %@, experiment %@ found.";
+NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user %@, experiment %@ not found.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation = @"Removed variation %@ for user %@, experiment %@.";
+NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"Not removing variation for user %@, experiment %@. Variation not found.";
 
+// ---- Bucketing ----
+// Debug
+NSString *const OPTLYLoggerMessagesBucketerSavingUserData = @"Saving bucketing data for user: %@, experiment: %@, variation: %@.";
+NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved = @"Retrieved bucketing data for user: %@, experiment: %@, variation: %@.";
 
 @implementation OPTLYLoggerMessages
 

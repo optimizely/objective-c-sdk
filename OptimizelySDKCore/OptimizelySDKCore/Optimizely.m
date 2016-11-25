@@ -16,6 +16,7 @@
 
 #import "Optimizely.h"
 #import "OPTLYBucketer.h"
+#import "OPTLYDatafileKeys.h"
 #import "OPTLYDecisionEventTicket.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventBuilder.h"
@@ -30,6 +31,7 @@
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
+#import "OPTLYVariationVariable.h"
 
 static NSString *const kExperimentKey = @"experimentKey";
 static NSString *const kId = @"id";
@@ -55,6 +57,7 @@ static NSString *const kValue = @"value";
             _eventBuilder = builder.eventBuilder;
             _eventDispatcher = builder.eventDispatcher;
             _logger = builder.logger;
+            _userProfile = builder.userProfile;
         }
         return self;
     }
@@ -202,7 +205,7 @@ static NSString *const kValue = @"value";
     }];
 }
 
-#pragma mark Live variable getters
+#pragma mark - Live variable getters
 
 /**
  * Finds experiment(s) that contain the live variable.
@@ -221,10 +224,10 @@ static NSString *const kValue = @"value";
         OPTLYVariation *firstVariation = [experiment.variations objectAtIndex:0];
         NSArray *firstVariationVariables = firstVariation.variables;
         
-        for (OPTLYVariable *firstVariationVariable in firstVariationVariables) {
-            NSString *firstVariationVariableId = [firstVariationVariable valueForKey:kId];
+        for (OPTLYVariationVariable *firstVariationVariable in firstVariationVariables) {
+            NSString *firstVariationVariableId = firstVariationVariable.variableId;
             if ([firstVariationVariableId isEqualToString:variableId]) {
-                NSString *experimentKey = [experiment valueForKey:kExperimentKey];
+                NSString *experimentKey = experiment.experimentKey;
                 [experimentsForLiveVariable addObject:experimentKey];
             }
         }
@@ -268,10 +271,10 @@ static NSString *const kValue = @"value";
  */
 - (NSString *)getValueForLiveVariable:(NSString *)variableId
                             variation:(OPTLYVariation *)variation {
-    for (OPTLYVariable *variable in variation.variables) {
-        NSString *variationVariableId = [variable valueForKey:kId];
+    for (OPTLYVariationVariable *variable in variation.variables) {
+        NSString *variationVariableId = variable.variableId;
         if ([variationVariableId isEqualToString:variableId]) {
-            NSString *variableValue = [variable valueForKey:kValue];
+            NSString *variableValue = variable.value;
             return variableValue;
         }
     }
@@ -323,6 +326,10 @@ static NSString *const kValue = @"value";
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
                   error:(NSError * _Nullable * _Nullable)error {
+<<<<<<< HEAD
+=======
+    BOOL variableValue = false;
+>>>>>>> alda/userProfile
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
@@ -330,11 +337,10 @@ static NSString *const kValue = @"value";
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
-        BOOL variableValue = [[variableValueStringOrNil lowercaseString] boolValue];
-        return variableValue;
+        variableValue = [variableValueStringOrNil boolValue];
     }
     
-    return variableValueStringOrNil;
+    return variableValue;
 }
 
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
@@ -342,6 +348,7 @@ static NSString *const kValue = @"value";
                          userId:(nonnull NSString *)userId
                      attributes:(nullable NSDictionary *)attributes
                           error:(NSError * _Nullable * _Nullable)error {
+    NSInteger variableValue = 0;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
@@ -349,11 +356,10 @@ static NSString *const kValue = @"value";
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
-        NSInteger variableValue = [variableValueStringOrNil intValue];
-        return variableValue;
+        variableValue = [variableValueStringOrNil integerValue];
     }
     
-    return variableValueStringOrNil;
+    return variableValue;
 }
 
 - (double)getVariableFloat:(nonnull NSString *)variableKey
@@ -361,6 +367,7 @@ static NSString *const kValue = @"value";
                     userId:(nonnull NSString *)userId
                 attributes:(nullable NSDictionary *)attributes
                      error:(NSError * _Nullable * _Nullable)error {
+    double variableValue = 0.0;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
@@ -368,13 +375,13 @@ static NSString *const kValue = @"value";
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
-        double variableValue = [variableValueStringOrNil doubleValue];
-        return variableValue;
+        variableValue = [variableValueStringOrNil doubleValue];
     }
     
-    return 0;
+    return variableValue;
 }
 
+# pragma mark - Helper methods
 // log and propagate error for a track failure
 - (void)handleErrorLogsForTrackEvent:(NSString *)eventKey
                               userId:(NSString *)userId
@@ -416,5 +423,4 @@ static NSString *const kValue = @"value";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
     }
 }
-
 @end

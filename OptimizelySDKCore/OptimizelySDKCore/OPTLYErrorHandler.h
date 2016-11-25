@@ -54,5 +54,9 @@
 @interface OPTLYErrorHandlerDefault : NSObject <OPTLYErrorHandler>
 @end
 
+/**
+ * OPTLYErrorHandlerNoOp comforms to the OPTLYErrorHandler protocol,
+ * but all methods perform a no op.
+ */
 @interface OPTLYErrorHandlerNoOp : NSObject <OPTLYErrorHandler>
 @end

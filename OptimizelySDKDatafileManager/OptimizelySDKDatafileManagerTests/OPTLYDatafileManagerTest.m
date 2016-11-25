@@ -18,36 +18,18 @@
 #import "OPTLYTestHelper.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
-#import <OptimizelySDKShared/OPTLYFileManager.h>
-
 #import "OPTLYDatafileManager.h"
-
-@interface OPTLYDatafileManager ()
-
-- (void)saveDatafile:(NSData *)datafile;
-
-@end
-
-@interface OPTLYDataStore ()
-
-@property OPTLYFileManager *fileManager;
-- (NSString *)stringForDataTypeEnum:(OPTLYDataStoreDataType)dataType;
-
-@end
-
-@interface OPTLYFileManager ()
-
-@property NSString *baseDir;
-
-@end
 
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 
+@interface OPTLYDatafileManager(test)
+- (void)saveDatafile:(NSData *)datafile;
+@end
+
 @interface OPTLYDatafileManagerTest : XCTestCase
-
-@property OPTLYDataStore *dataStore;
-
+@property (nonatomic, strong) OPTLYDatafileManager *datafileManager;
+@property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
 
 @implementation OPTLYDatafileManagerTest
@@ -141,12 +123,12 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     XCTAssertTrue(fileExists, @"save Datafile did not save the datafile to disk");
     NSError *error;
     NSData *savedData = [self.dataStore getFile:kProjectId
-                                      type:OPTLYDataStoreDataTypeDatafile
-                                     error:&error];
+                                           type:OPTLYDataStoreDataTypeDatafile
+                                          error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(savedData);
     XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
-    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivilent to the datafile we wanted to save to disk");
+    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
 }
 
 - (void)testDatafileManagerDownloadDatafileSavesDatafile {
