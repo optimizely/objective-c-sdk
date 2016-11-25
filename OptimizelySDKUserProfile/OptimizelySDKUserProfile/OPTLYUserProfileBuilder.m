@@ -34,4 +34,11 @@
     return self;
 }
 
+- (id<OPTLYLogger>)logger {
+    if (!_logger) {
+        _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+    }
+    return _logger;
+}
+
 @end
