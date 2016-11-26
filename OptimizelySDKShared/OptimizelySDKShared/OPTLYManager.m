@@ -16,14 +16,13 @@
 
 #import <OptimizelySDKCore/OPTLYDatafileManager.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYErrorHandlerMessages.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 #import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import "OPTLYClient.h"
 #import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"
-#import "OPTLYNetworkService.h"
 
 @interface OPTLYManager()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;

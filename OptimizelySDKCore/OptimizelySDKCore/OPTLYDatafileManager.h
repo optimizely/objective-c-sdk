@@ -15,7 +15,9 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
 
+@protocol OPTLYErrorHandler, OPTLYLogger;
 @protocol OPTLYDatafileManager <NSObject>
 
 /**

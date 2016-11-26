@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+<<<<<<< HEAD
 #import <UIKit/UIKit.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLog.h>
@@ -21,6 +22,13 @@
 #import <OptimizelySDKShared/OPTLYDataStore.h>
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
+=======
+#import "OPTLYDatafileManager.h"
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
+#import <OptimizelySDKShared/OPTLYDataStore.h>
+>>>>>>> Moved the network manager code to the Core. This is needed for basic event dispatch and datafile download.
 
 NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 

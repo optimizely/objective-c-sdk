@@ -222,6 +222,14 @@
 		EA8FD0FD1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8FD0FE1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
 		EA8FD0FF1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
+		EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0D71DE9798E00D950AD /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0D71DE9798E00D950AD /* OPTLYHTTPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0DD1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0D81DE9798E00D950AD /* OPTLYHTTPRequestManager.m */; };
+		EA8FD0DE1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0D81DE9798E00D950AD /* OPTLYHTTPRequestManager.m */; };
+		EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */; };
+		EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +383,10 @@
 		EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfile.m; path = OptimizelySDKCore/OPTLYUserProfile.m; sourceTree = "<group>"; };
 		EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
 		EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
+		EA8FD0D71DE9798E00D950AD /* OPTLYHTTPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYHTTPRequestManager.h; sourceTree = "<group>"; };
+		EA8FD0D81DE9798E00D950AD /* OPTLYHTTPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManager.m; sourceTree = "<group>"; };
+		EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNetworkService.h; sourceTree = "<group>"; };
+		EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkService.m; sourceTree = "<group>"; };
 		F5B1C4BBC7682A657C92ABD3 /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -639,6 +651,7 @@
 				EA5249611DC7B64C00AF6685 /* Event Dispatcher */,
 				EA87A0271DE3142A002E9EF7 /* UserProfile */,
 				EA2FA8451DC5E1A300B1D81B /* Loggers */,
+				EA8FD0C81DE978E400D950AD /* Network */,
 				EA2FA83D1DC5E0E900B1D81B /* Utilities */,
 			);
 			path = OptimizelySDKCore;
@@ -694,6 +707,15 @@
 				EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */,
 			);
 			name = "Datafile Manager";
+		EA8FD0C81DE978E400D950AD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FD0D71DE9798E00D950AD /* OPTLYHTTPRequestManager.h */,
+				EA8FD0D81DE9798E00D950AD /* OPTLYHTTPRequestManager.m */,
+				EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */,
+				EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -722,6 +744,8 @@
 				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
+				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
+				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
 				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
@@ -772,6 +796,8 @@
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA8FD0FD1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
+				EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
+				EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
 				EA2FAC7B1DC70EBC00B1D81B /* murmur3.h in Headers */,
 				EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
@@ -1151,6 +1177,7 @@
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
 				EA5249651DC7B69A00AF6685 /* OPTLYEventDispatcher.m in Sources */,
 				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
+				EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
@@ -1166,6 +1193,7 @@
 				EA87A02C1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */,
 				EA2FAC221DC6FFC600B1D81B /* OPTLYErrorHandlerMessages.m in Sources */,
 				EA2FAC241DC6FFC600B1D81B /* OPTLYEventBuilder.m in Sources */,
+				EA8FD0DD1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA2FAC251DC6FFC600B1D81B /* OPTLYLogger.m in Sources */,
 				5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
@@ -1220,6 +1248,7 @@
 				EA2FABF11DC6FFA100B1D81B /* OPTLYEventLayerState.m in Sources */,
 				EA5249F21DC7FACF00AF6685 /* OPTLYEventDispatcher.m in Sources */,
 				EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
+				EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
@@ -1235,6 +1264,7 @@
 				EA87A02D1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */,
 				EA2FABFD1DC6FFA100B1D81B /* OPTLYErrorHandlerMessages.m in Sources */,
 				EA2FABFF1DC6FFA100B1D81B /* OPTLYEventBuilder.m in Sources */,
+				EA8FD0DE1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA2FAC001DC6FFA100B1D81B /* OPTLYLogger.m in Sources */,
 				5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
