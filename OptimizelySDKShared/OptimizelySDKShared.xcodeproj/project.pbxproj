@@ -73,8 +73,6 @@
 		EA52497E1DC7C9C500AF6685 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */; };
 		EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA5249F01DC7F9D300AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */; };
-		EA5249F11DC7F9D400AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,7 +197,6 @@
 		EA5247841DC7226400AF6685 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
 		EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-erjurkichwjuqxdcgaywtbodfztf/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "/Users/aluong/src/objective-c-sdk-public/OptimizelySDKCore/Pods/../build/Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = "<absolute>"; };
-		EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManagerTest.m; sourceTree = "<group>"; };
 		EEA436FFCE95FFFF3CAC0BC8 /* Pods-OptimizelySDKSharediOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharediOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharediOS/Pods-OptimizelySDKSharediOS.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -345,7 +342,6 @@
 				2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */,
 				2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */,
 				2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */,
-				EA5249EE1DC7E8A200AF6685 /* OPTLYHTTPRequestManagerTest.m */,
 				EA064BDE1DD53F3100DF7537 /* OPTLYDataStoreTest.m */,
 				2D08FB7F1DCA5E59006CA063 /* TestData */,
 			);
@@ -833,7 +829,6 @@
 				2DB3D1591DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				2DB3D1561DC8163900ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
 				EA064BDF1DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */,
-				EA5249F01DC7F9D300AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,7 +856,6 @@
 				EA064BE01DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */,
 				2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
 				2DB3D1571DC8163A00ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
-				EA5249F11DC7F9D400AF6685 /* OPTLYHTTPRequestManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

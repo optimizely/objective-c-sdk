@@ -226,6 +226,8 @@
 		EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */; };
 		EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */; };
+		EA8FD0EA1DE97DD700D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */; };
+		EA8FD0EB1DE97DD900D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +383,7 @@
 		EA8FD0D81DE9798E00D950AD /* OPTLYHTTPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManager.m; sourceTree = "<group>"; };
 		EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNetworkService.h; sourceTree = "<group>"; };
 		EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkService.m; sourceTree = "<group>"; };
+		EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManagerTest.m; sourceTree = "<group>"; };
 		F5B1C4BBC7682A657C92ABD3 /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -663,6 +666,7 @@
 				EA2FAB8B1DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m */,
 				EA2FAB8C1DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m */,
 				EA2FAB8D1DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m */,
+				EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */,
 				EA2FAB8F1DC6FDFA00B1D81B /* OPTLYLoggerTest.m */,
 				EA2FAB901DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m */,
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
@@ -1199,6 +1203,7 @@
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */,
 				EA2FABB41DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
+				EA8FD0EA1DE97DD700D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
@@ -1269,6 +1274,7 @@
 				EA2FABBE1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCF1DD3FCD800DF7537 /* OPTLYQueueTest.m in Sources */,
 				EA2FABB51DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
+				EA8FD0EB1DE97DD900D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
