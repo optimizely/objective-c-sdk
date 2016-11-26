@@ -16,11 +16,9 @@
 
 #import "OPTLYManager.h"
 #import "OPTLYClient.h"
-#import "OPTLYNetworkService.h"
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYErrorHandlerMessages.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 
 @interface OPTLYManager ()
 
