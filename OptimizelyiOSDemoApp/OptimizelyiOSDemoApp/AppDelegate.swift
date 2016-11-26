@@ -93,15 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let jsonData = fileContents.data(using: String.Encoding.utf8)!
                 print(fileContents)
                 
-<<<<<<< HEAD
-=======
                 let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
                     builder?.datafile = jsonData
                     builder?.userProfile = OPTLYUserProfile.init()
                 });
                 print("projectConfig: ", projectConfig)
                 
->>>>>>> alda/userProfile
                 let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
                     builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
                 }
@@ -110,10 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 optimizely = (Optimizely.initWithBuilderBlock({(builder)in
                     builder!.datafile = jsonData
                     builder!.eventDispatcher = eventDispatcher
-<<<<<<< HEAD
-=======
                     builder!.userProfile = OPTLYUserProfile.init()
->>>>>>> alda/userProfile
                 }))
             } catch {
                 print("invalid json data")

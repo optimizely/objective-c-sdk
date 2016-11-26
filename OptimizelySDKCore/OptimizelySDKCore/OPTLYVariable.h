@@ -18,9 +18,6 @@
 #import <JSONModel/JSONModelLib.h>
 
 /**
-<<<<<<< HEAD
- * This class is a representation of an Optimizely live variable.
-=======
  * This class is a representation of an Optimizely live variable scoped within a project:
  *   "variables": [
  *    {
@@ -31,7 +28,6 @@
  *    },
  *     ...
  *    ]
->>>>>>> alda/userProfile
  */
 
 @protocol OPTLYVariable
