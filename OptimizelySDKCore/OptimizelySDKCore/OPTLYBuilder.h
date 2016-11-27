@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig;
-@protocol OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYProjectConfig, OPTLYUserProfile;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
 
 /**
  * This class contains the information on how your Optimizely instance will be built.
@@ -46,6 +46,8 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile stores user-specific data, like bucketing.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// The datafile manager that will download the datafile for the manager
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYDatafileManager> datafileManager;
 
 /// Create an Optimizely Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYBuilderBlock)block;

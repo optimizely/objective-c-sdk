@@ -16,6 +16,7 @@
 
 #import "OPTLYBucketer.h"
 #import "OPTLYBuilder.h"
+#import "OPTLYDatafileManager.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventDispatcher.h"
@@ -83,6 +84,13 @@
         return nil;
     }
     return _datafile;
+}
+
+- (id<OPTLYDatafileManager>)datafileManager {
+    if (!_datafileManager) {
+        _datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
+    }
+    return _datafileManager;
 }
 
 - (id<OPTLYErrorHandler>)errorHandler {

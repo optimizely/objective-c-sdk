@@ -15,13 +15,10 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYDatafileManager.h>
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
 #import "OPTLYDatafileManagerBuilder.h"
 
-@protocol OPTLYErrorHandler, OPTLYLogger;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYLogger;
 
 @interface OPTLYDatafileManager : NSObject<OPTLYDatafileManager>
 

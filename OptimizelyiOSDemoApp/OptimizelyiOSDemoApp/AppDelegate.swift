@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let userId = "1234"
     let revenue = NSNumber(value: 88)
     let eventDispatcherDispatchInterval = 1000
+    let datafileManagerDownloadInterval = 10
     
     // default parameters for initializing Optimizely from saved datafile
     let datafileName = "test_data_10_experiments"
@@ -56,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             optimizely.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
             optimizely.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
         }
+    
         
         return true;
     }
@@ -99,15 +101,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 });
                 print("projectConfig: ", projectConfig)
                 
+                // create the event dispatcher
                 let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
                     builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
                 }
                 let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
                 
+                // create the datafile manager
+                let datafileBuilderBlock : OPTLYDatafileManagerBuilderBlock = {[weak self] (builder) in
+                    builder?.datafileFetchInterval = TimeInterval(self!.datafileManagerDownloadInterval)
+                    builder?.projectId = self!.projectId
+                }
+                let datafileManager = OPTLYDatafileManager.initWithBuilderBlock(datafileBuilderBlock)
+                
                 optimizely = (Optimizely.initWithBuilderBlock({(builder)in
                     builder!.datafile = jsonData
                     builder!.eventDispatcher = eventDispatcher
                     builder!.userProfile = OPTLYUserProfile.init()
+                    builder!.datafileManager = datafileManager;
                 }))
             } catch {
                 print("invalid json data")
@@ -121,10 +132,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initializeOptimizely(projectId:String, completionHandler: @escaping (_ optimizely:Optimizely?) -> Void) -> Void {
         
         let networkService = OPTLYNetworkService()
+        
+        // create the event dispatcher
         let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {[weak self] (builder)in
             builder?.eventDispatcherDispatchInterval = self!.eventDispatcherDispatchInterval
         }
         let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
+        
+        // create the datafile manager
+        let datafileBuilderBlock : OPTLYDatafileManagerBuilderBlock = {[weak self] (builder) in
+            builder?.datafileFetchInterval = TimeInterval(self!.datafileManagerDownloadInterval)
+            builder?.projectId = self!.projectId
+        }
+        let datafileManager = OPTLYDatafileManager.initWithBuilderBlock(datafileBuilderBlock)
         
         networkService.downloadProjectConfig(projectId) { (data, response, error) in
             let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
@@ -137,6 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 builder!.datafile = data;
                 builder!.eventDispatcher = eventDispatcher;
                 builder!.userProfile = OPTLYUserProfile.init()
+                builder!.datafileManager = datafileManager
             }));
             
             completionHandler(optimizely)

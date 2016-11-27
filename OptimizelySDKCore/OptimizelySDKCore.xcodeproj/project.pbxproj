@@ -218,6 +218,10 @@
 		EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA87A02C1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */; };
 		EA87A02D1DE31453002E9EF7 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */; };
+		EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0FD1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0FE1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
+		EA8FD0FF1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -369,6 +373,8 @@
 		EA5249631DC7B69A00AF6685 /* OPTLYEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDispatcher.m; sourceTree = "<group>"; };
 		EA87A0281DE31453002E9EF7 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfile.h; path = OptimizelySDKCore/OPTLYUserProfile.h; sourceTree = "<group>"; };
 		EA87A0291DE31453002E9EF7 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfile.m; path = OptimizelySDKCore/OPTLYUserProfile.m; sourceTree = "<group>"; };
+		EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
+		EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
 		F5B1C4BBC7682A657C92ABD3 /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -627,9 +633,10 @@
 				EA2FA83F1DC5E11F00B1D81B /* Bucketer */,
 				EA2FA90B1DC6F17400B1D81B /* Builder */,
 				EA2FA8401DC5E13A00B1D81B /* Data Models */,
+				EA8FD0F91DEB120C00D950AD /* Datafile Manager */,
 				EA2FA8411DC5E14700B1D81B /* Error Handler */,
 				EA2FA8421DC5E15700B1D81B /* Event Builder */,
-				EA5249611DC7B64C00AF6685 /* EventDispatcher */,
+				EA5249611DC7B64C00AF6685 /* Event Dispatcher */,
 				EA87A0271DE3142A002E9EF7 /* UserProfile */,
 				EA2FA8451DC5E1A300B1D81B /* Loggers */,
 				EA2FA83D1DC5E0E900B1D81B /* Utilities */,
@@ -661,13 +668,13 @@
 			path = OptimizelySDKCoreTests;
 			sourceTree = "<group>";
 		};
-		EA5249611DC7B64C00AF6685 /* EventDispatcher */ = {
+		EA5249611DC7B64C00AF6685 /* Event Dispatcher */ = {
 			isa = PBXGroup;
 			children = (
 				EA5249621DC7B69A00AF6685 /* OPTLYEventDispatcher.h */,
 				EA5249631DC7B69A00AF6685 /* OPTLYEventDispatcher.m */,
 			);
-			name = EventDispatcher;
+			name = "Event Dispatcher";
 			sourceTree = "<group>";
 		};
 		EA87A0271DE3142A002E9EF7 /* UserProfile */ = {
@@ -678,6 +685,15 @@
 			);
 			name = UserProfile;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		EA8FD0F91DEB120C00D950AD /* Datafile Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */,
+				EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */,
+			);
+			name = "Datafile Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -705,6 +721,7 @@
 				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
+				EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
 				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
@@ -753,6 +770,7 @@
 				EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
 				EA87A02B1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
+				EA8FD0FD1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA2FAC7B1DC70EBC00B1D81B /* murmur3.h in Headers */,
 				EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
@@ -1153,6 +1171,7 @@
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
+				EA8FD0FE1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */,
 				EA2FAC2A1DC6FFC600B1D81B /* OPTLYValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1221,6 +1240,7 @@
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24361DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
+				EA8FD0FF1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */,
 				EA2FAC051DC6FFA100B1D81B /* OPTLYValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

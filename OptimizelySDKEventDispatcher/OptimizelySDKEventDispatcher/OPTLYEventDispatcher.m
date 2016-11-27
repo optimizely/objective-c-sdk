@@ -531,7 +531,7 @@ dispatch_queue_t flushEventsQueue()
     BOOL timerIsNotNil = self.timer != nil;
     BOOL timerIsValid = self.timer.valid;
     BOOL timerIntervalIsSet = (self.timer.timeInterval == self.eventDispatcherDispatchInterval) && (self.eventDispatcherDispatchInterval > 0);
-    BOOL timeoutIsValid = self.maxDispatchBackoffRetries > 0;
+    BOOL timeoutIsValid = self.eventDispatcherDispatchTimeout > 0;
     
     return timerIsNotNil && timerIsValid && timerIntervalIsSet && timeoutIsValid;
 }

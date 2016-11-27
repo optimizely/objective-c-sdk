@@ -22,8 +22,10 @@
 
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
+static NSTimeInterval kDatafileDownloadInteval = 5;
 
 @interface OPTLYDatafileManager(test)
+@property (nonatomic, strong) NSTimer *datafileDownloadTimer;
 - (void)saveDatafile:(NSData *)datafile;
 @end
 
@@ -163,6 +165,42 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [self waitForExpectationsWithTimeout:2 handler:nil];    
     // cleanup stubs
     [OHHTTPStubs removeStub:stub];
+}
+
+// timer is enabled if the download intervao is > 0
+- (void)testNetworkTimerIsEnabled
+{
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = kDatafileDownloadInteval;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNotNil(datafileManager.datafileDownloadTimer, @"Timer should not be nil.");
+    XCTAssertTrue(datafileManager.datafileDownloadTimer.valid, @"Timer is not valid.");
+    XCTAssert(datafileManager.datafileDownloadTimer.timeInterval == kDatafileDownloadInteval, @"Invalid time interval set - %f.", datafileManager.datafileDownloadTimer.timeInterval);
+}
+
+// timer is disabled if the datafile download interval is <= 0
+- (void)testNetworkTimerIsDisabled
+{
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = 0;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
+    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer shoul not be valid.");
+    
+    datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = -5;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
+    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
 }
 
 @end

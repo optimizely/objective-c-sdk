@@ -15,11 +15,10 @@
  ***************************************************************************/
 
 #import "OPTLYManagerBuilder.h"
-#import "OPTLYDatafileManager.h"
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKShared/OPTLYDatafileManager.h>
 
 @implementation OPTLYManagerBuilder
 

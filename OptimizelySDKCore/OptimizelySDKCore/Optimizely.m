@@ -51,11 +51,12 @@ static NSString *const kValue = @"value";
     if (builder != nil) {
         self = [super init];
         if (self != nil) {
-            _config = builder.config;
             _bucketer = builder.bucketer;
-            _errorHandler = builder.errorHandler;
+            _config = builder.config;
+            _datafileManager = builder.datafileManager;
             _eventBuilder = builder.eventBuilder;
             _eventDispatcher = builder.eventDispatcher;
+            _errorHandler = builder.errorHandler;
             _logger = builder.logger;
             _userProfile = builder.userProfile;
         }

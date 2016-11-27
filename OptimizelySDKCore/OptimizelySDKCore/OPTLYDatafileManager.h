@@ -15,12 +15,6 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
-
-
-@protocol OPTLYErrorHandler, OPTLYLogger;
 
 @protocol OPTLYDatafileManager <NSObject>
 
@@ -30,7 +24,7 @@
  * @param completion Completion handler.
  */
 - (void)downloadDatafile:(nonnull NSString *)projectId
-       completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+       completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
 @end
 

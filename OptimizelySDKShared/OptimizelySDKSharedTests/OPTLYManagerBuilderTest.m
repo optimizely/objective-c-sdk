@@ -15,13 +15,12 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"
-#import "OPTLYDatafileManager.h"
 
 static NSString *const kProjectId = @"6372300739";
 
