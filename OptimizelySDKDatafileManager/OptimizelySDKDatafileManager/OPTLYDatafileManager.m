@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #import <UIKit/UIKit.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLog.h>
@@ -24,11 +25,18 @@
 #import "OPTLYDatafileManager.h"
 =======
 #import "OPTLYDatafileManager.h"
+=======
+#import <UIKit/UIKit.h>
+#import <OptimizelySDKCore/OPTLYLog.h>
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
+<<<<<<< HEAD
 >>>>>>> Moved the network manager code to the Core. This is needed for basic event dispatch and datafile download.
+=======
+#import <OptimizelySDKShared/OPTLYNetworkService.h>
+#import "OPTLYDatafileManager.h"
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 
 NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
@@ -69,6 +77,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 }
 
 - (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
+<<<<<<< HEAD
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileDownloading, projectId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
@@ -76,9 +85,13 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDate, lastSavedModifiedDate];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
+=======
+    OPTLYLogInfo(@"Downloading datafile: %@", projectId);
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
     [self.networkService downloadProjectConfig:self.projectId
                                   lastModified:lastSavedModifiedDate
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+<<<<<<< HEAD
          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
          NSInteger statusCode = [httpResponse statusCode];
          NSString *logMessage = @"";
@@ -113,6 +126,27 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
              completion(data, response, error);
          }
      }];
+}
+
+- (void)downloadDatafile {
+    [self downloadDatafile:self.projectId completionHandler:nil];
+=======
+                                 if (error != nil) {
+                                     [self.errorHandler handleError:error];
+                                 }
+                                 else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+                                     [self saveDatafile:data];
+                                     OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile.");
+                                 }
+                                 else {
+                                     // TODO: Josh W. handle bad response
+                                 }
+                                 // call the completion handler
+                                 if (completion != nil) {
+                                     completion(data, response, error);
+                                 }
+                             }];
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 }
 
 - (void)downloadDatafile {
@@ -158,7 +192,6 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     
     return lastModifiedDate;
 }
-
 
 #pragma mark - Application Lifecycle Handlers
 - (void)setupApplicationNotificationHandlers {

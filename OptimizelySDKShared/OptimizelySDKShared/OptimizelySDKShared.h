@@ -16,12 +16,16 @@
 
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYClient.h"
+<<<<<<< HEAD
 #import "OPTLYClientBuilder.h"
 #import "OPTLYDataStore.h"
+=======
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 #if TARGET_OS_IOS
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
 #endif
+<<<<<<< HEAD
 #import "OPTLYFileManager.h"
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYManager.h"
@@ -30,6 +34,13 @@
 
 
 
+=======
+#import "OPTLYDataStore.h"
+#import "OPTLYFileManager.h"
+#import "OPTLYHTTPRequestManager.h"
+#import "OPTLYManager.h"
+#import "OPTLYNetworkService.h"
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;

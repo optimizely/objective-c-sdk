@@ -232,6 +232,10 @@
 		EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */; };
 		EA8FD0EA1DE97DD700D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */; };
 		EA8FD0EB1DE97DD900D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */; };
+		EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0FD1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD0FE1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
+		EA8FD0FF1DEB12A400D950AD /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +394,8 @@
 		EA8FD0D91DE9798E00D950AD /* OPTLYNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNetworkService.h; sourceTree = "<group>"; };
 		EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkService.m; sourceTree = "<group>"; };
 		EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYHTTPRequestManagerTest.m; sourceTree = "<group>"; };
+		EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
+		EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
 		F5B1C4BBC7682A657C92ABD3 /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -720,6 +726,13 @@
 				EA8FD0DA1DE9798E00D950AD /* OPTLYNetworkService.m */,
 			);
 			name = Network;
+		EA8FD0F91DEB120C00D950AD /* Datafile Manager */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FD0FA1DEB12A400D950AD /* OPTLYDatafileManager.h */,
+				EA8FD0FB1DEB12A400D950AD /* OPTLYDatafileManager.m */,
+			);
+			name = "Datafile Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -750,6 +763,7 @@
 				EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
 				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
 				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
+				EA8FD0FC1DEB12A400D950AD /* OPTLYDatafileManager.h in Headers */,
 				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,

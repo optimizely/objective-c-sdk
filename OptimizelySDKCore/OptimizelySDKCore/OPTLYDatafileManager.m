@@ -37,7 +37,6 @@
     if (completion) {
         completion(nil, nil, nil);
     }
-    return;
 }
 
 @end

@@ -24,11 +24,17 @@
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5;
+<<<<<<< HEAD
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
 - (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
+=======
+
+@interface OPTLYDatafileManager(test)
+@property (nonatomic, strong) NSTimer *datafileDownloadTimer;
+>>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 - (void)saveDatafile:(NSData *)datafile;
 - (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId;
 @end
@@ -226,6 +232,4 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
                                                        @"Last-Modified":kLastModifiedDate}];
     }];
 }
-
-     
 @end
