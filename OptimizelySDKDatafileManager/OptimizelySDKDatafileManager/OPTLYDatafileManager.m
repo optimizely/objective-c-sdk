@@ -15,8 +15,8 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import <OptimizelySDKCore/OPTLYLog.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYLog.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
@@ -64,21 +64,21 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     OPTLYLogInfo(@"Downloading datafile: %@", projectId);
     [self.networkService downloadProjectConfig:self.projectId
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                                 if (error != nil) {
-                                     [self.errorHandler handleError:error];
-                                 }
-                                 else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
-                                     [self saveDatafile:data];
-                                     OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile.");
-                                 }
-                                 else {
-                                     // TODO: Josh W. handle bad response
-                                 }
-                                 // call the completion handler
-                                 if (completion != nil) {
-                                     completion(data, response, error);
-                                 }
-                             }];
+         if (error != nil) {
+             [self.errorHandler handleError:error];
+         }
+         else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+             [self saveDatafile:data];
+             OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile.");
+         }
+         else {
+             // TODO: Josh W. handle bad response
+         }
+         // call the completion handler
+         if (completion != nil) {
+             completion(data, response, error);
+         }
+     }];
 }
 
 - (void)downloadDatafile {
@@ -92,6 +92,11 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
                         type:OPTLYDataStoreDataTypeDatafile
                        error:&error];
     
+}
+
+- (BOOL)isDatafileCached {
+    BOOL isCached = [self.dataStore fileExists:self.projectId type:OPTLYDataStoreDataTypeDatafile];
+    return isCached;
 }
 
 #pragma mark - Application Lifecycle Handlers

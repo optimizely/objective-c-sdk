@@ -203,4 +203,22 @@ static NSTimeInterval kDatafileDownloadInteval = 5;
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
 }
 
+- (void)testIsDatafileCachedFlag
+{
+    // setup datafile manager and datastore
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    XCTAssertFalse(datafileManager.isDatafileCached, @"Datafile cached flag should be false.");
+    
+    // get the datafile
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
+    
+    // save the datafile
+    [datafileManager saveDatafile:datafile];
+    
+    XCTAssertTrue(datafileManager.isDatafileCached, @"Datafile cached flag should be true.");
+}
+
 @end
