@@ -17,10 +17,28 @@
 #import "OPTLYNetworkService.h"
 
 // ---- Datafile Download URLs ----
-NSString * const OPTLYNetworkServiceCDNServerURL = @"https://cdn.optimizely.com/";
-NSString * const OPTLYNetworkServiceS3ServerURL = @"https://optimizely.s3.amazonaws.com/";
+NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/";
+NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 @implementation OPTLYNetworkService
+
+- (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 lastModified:(nonnull NSString *)lastModifiedDate
+            completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
+{
+    NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:cdnURL withProjectId:projectId];
+    
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
+    
+     [requestManager GETIfModifiedSince:lastModifiedDate
+                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+        if (completion) {
+            completion(data, response, error);
+        }
+    }];
+}
 
 - (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
@@ -28,20 +46,11 @@ NSString * const OPTLYNetworkServiceS3ServerURL = @"https://optimizely.s3.amazon
     NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:cdnURL withProjectId:projectId];
     
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error)
-        {
-            // TODO (Alda) - Handle error. Possible ways of handling error:
-            //     1. Log GET error when the logger class is implemented
-            //     2. Retry download with backoff
-            //     3. Return error to users
-            //     4. Telemetry error log?
-        }
-            
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
+   [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
+       if (completion) {
+           completion(data, response, error);
+       }
+   }];
 }
 
 # pragma mark - Helper Methods

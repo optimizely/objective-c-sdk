@@ -14,18 +14,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYManager.h"
-#import "OPTLYClient.h"
-#import "OPTLYNetworkService.h"
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYErrorHandlerMessages.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+#import "OPTLYClient.h"
+#import "OPTLYManager.h"
+#import "OPTLYManagerBuilder.h"
+#import "OPTLYNetworkService.h"
 
-@interface OPTLYManager ()
-
+@interface OPTLYManager()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
-
 @end
 
 @implementation OPTLYManager
@@ -103,22 +104,23 @@
 }
 
 - (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
-    OPTLYNetworkService *networkService = [[OPTLYNetworkService alloc] init];
-    [networkService downloadProjectConfig:self.projectId
-                        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                            if (error != nil) {
-                                callback(error, nil);
-                            }
-                            else {
-                                OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
-                                    builder.datafile = data;
-                                }];
-                                if (client.optimizely != nil) {
-                                    self.optimizelyClient = client;
-                                }
-                                callback(nil, client);
-                            }
-                        }];
+    [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        OPTLYClient *client = nil;
+        if (!error) {
+            client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+                builder.datafile = data;
+            }];
+            if (client.optimizely) {
+                self.optimizelyClient = client;
+            }
+        } else {
+            // TODO - log error
+        }
+        
+        if (callback) {
+            callback(error, client);
+        }
+    }];
 }
 
 - (OPTLYClient *)getOptimizely {

@@ -23,15 +23,15 @@
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYExperiment.h"
+#import "OPTLYLog.h"
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYProjectConfigBuilder.h"
-#import "OPTLYVariable.h"
-#import "OPTLYVariation.h"
-#import "OPTLYLog.h"
 #import "OPTLYQueue.h"
 #import "OPTLYUserProfile.h"
+#import "OPTLYVariable.h"
+#import "OPTLYVariation.h"
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];

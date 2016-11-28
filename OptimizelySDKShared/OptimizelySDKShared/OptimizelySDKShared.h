@@ -15,16 +15,21 @@
  ***************************************************************************/
 
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
-#import "OPTLYManager.h"
-#import "OPTLYHTTPRequestManager.h"
-#import "OPTLYNetworkService.h"
-#import "OPTLYDataStore.h"
 #import "OPTLYClient.h"
-#import "OPTLYFileManager.h"
+#import "OPTLYClientBuilder.h"
+#import "OPTLYDataStore.h"
 #if TARGET_OS_IOS
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
 #endif
+#import "OPTLYFileManager.h"
+#import "OPTLYHTTPRequestManager.h"
+#import "OPTLYManager.h"
+#import "OPTLYManagerBuilder.h"
+#import "OPTLYNetworkService.h"
+
+
+
 
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;

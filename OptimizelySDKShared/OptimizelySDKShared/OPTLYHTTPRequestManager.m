@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OptimizelySDKCore/OPTLYLog.h>
 #import "OPTLYHTTPRequestManager.h"
 
 static NSString * const kHTTPRequestMethodGet = @"GET";
@@ -91,8 +92,28 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
         
         [uploadTask resume];
     }
+}
+
+- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
+         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self url]];
+    [request setValue:lastModifiedDate forHTTPHeaderField:@"If-Modified-Since"];
     
-    // TODO (Alda) - Log NSJSONSerializationnerror when the logger class is implemented
+    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    NSURLSessionDataTask *dataTask = [ephemeralSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    
+        int responseCode = (int)[httpResponse statusCode];
+        OPTLYLogInfo(@"All headers: %@", [httpResponse allHeaderFields]);
+        OPTLYLogInfo(@"Status code:: %d", responseCode);
+        
+        if (completion) {
+            completion(data, response, error);
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 # pragma mark - Helper Methods

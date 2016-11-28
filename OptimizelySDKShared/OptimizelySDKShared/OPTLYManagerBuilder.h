@@ -17,7 +17,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger;
-
 @class OPTLYManagerBuilder;
 
 typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder);

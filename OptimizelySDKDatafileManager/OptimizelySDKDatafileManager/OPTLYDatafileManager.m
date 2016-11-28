@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLog.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
@@ -62,14 +63,23 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 - (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
     OPTLYLogInfo(@"Downloading datafile: %@", projectId);
+    
+    NSString *lastSavedModifiedDate = [self getLastModifiedDate:projectId];
     [self.networkService downloadProjectConfig:self.projectId
+                                  lastModified:lastSavedModifiedDate
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
          if (error != nil) {
              [self.errorHandler handleError:error];
          }
          else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
              [self saveDatafile:data];
-             OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile.");
+             
+             // save the last modified date
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSDictionary *dictionary = [httpResponse allHeaderFields];
+             NSString *lastModifiedDate = [dictionary valueForKey:@"Last-Modified"];
+             [self saveLastModifiedDate:lastModifiedDate project:projectId];
+             OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile and last modified date: %@", lastModifiedDate);
          }
          else {
              // TODO: Josh W. handle bad response
@@ -98,6 +108,33 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
     BOOL isCached = [self.dataStore fileExists:self.projectId type:OPTLYDataStoreDataTypeDatafile];
     return isCached;
 }
+
+# pragma mark - Persistence for Last Modified Date
+- (void)saveLastModifiedDate:(nonnull NSString *)lastModifiedDate
+                     project:(nonnull NSString *)projectId {
+    
+    NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile];
+    NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
+    userProfileDataMutable[projectId] = lastModifiedDate;
+    [self.dataStore saveUserData:userProfileDataMutable
+                            type:OPTLYDataStoreDataTypeDatafile];
+}
+
+- (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId {
+    NSDictionary *userData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile];
+    NSString *lastModifiedDate = [userData objectForKey:projectId];
+
+    NSString *logMessage = @"";
+    if ([lastModifiedDate length]) {
+        logMessage = [NSString stringWithFormat:@"[DATAFILE MANAGER] Last modified date %@ found for project %@.", lastModifiedDate, projectId];
+    } else {
+        logMessage = [NSString stringWithFormat:@"[DATAFILE MANAGER] Last modified date not found for project %@.", projectId];
+    }
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
+    return lastModifiedDate;
+}
+
 
 #pragma mark - Application Lifecycle Handlers
 - (void)setupApplicationNotificationHandlers {
