@@ -62,28 +62,46 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 }
 
 - (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
-    OPTLYLogInfo(@"Downloading datafile: %@", projectId);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileDownloading, projectId];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     NSString *lastSavedModifiedDate = [self getLastModifiedDate:projectId];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDate, lastSavedModifiedDate];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
     [self.networkService downloadProjectConfig:self.projectId
                                   lastModified:lastSavedModifiedDate
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+         NSInteger statusCode = [httpResponse statusCode];
+         NSString *logMessage = @"";
          if (error != nil) {
              [self.errorHandler handleError:error];
          }
-         else if ([(NSHTTPURLResponse *)response statusCode] == 200) { // got datafile OK
+         else if (statusCode == 200) { // got datafile OK
              [self saveDatafile:data];
              
              // save the last modified date
-             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             
              NSDictionary *dictionary = [httpResponse allHeaderFields];
              NSString *lastModifiedDate = [dictionary valueForKey:@"Last-Modified"];
              [self saveLastModifiedDate:lastModifiedDate project:projectId];
-             OPTLYLogInfo(@"Datafile for project ID %@ downloaded. Saving datafile and last modified date: %@", lastModifiedDate);
+             
+             logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileDownloaded, projectId, lastModifiedDate];
+             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+         }
+         else if (statusCode == 304) {
+              logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges, projectId];
+              [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
          }
          else {
              // TODO: Josh W. handle bad response
+             logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError, projectId, error];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
          }
+                                 
+       
+                                 
          // call the completion handler
          if (completion != nil) {
              completion(data, response, error);
@@ -126,9 +144,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
     NSString *logMessage = @"";
     if ([lastModifiedDate length]) {
-        logMessage = [NSString stringWithFormat:@"[DATAFILE MANAGER] Last modified date %@ found for project %@.", lastModifiedDate, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDate, lastModifiedDate, projectId];
     } else {
-        logMessage = [NSString stringWithFormat:@"[DATAFILE MANAGER] Last modified date not found for project %@.", projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound, projectId];
     }
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     

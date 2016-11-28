@@ -133,6 +133,17 @@ NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"Not re
 NSString *const OPTLYLoggerMessagesBucketerSavingUserData = @"Saving bucketing data for user: %@, experiment: %@, variation: %@.";
 NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved = @"Retrieved bucketing data for user: %@, experiment: %@, variation: %@.";
 
+// ---- Datafile Nanager ----
+// Info
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloading = @"[DATAFILE MANAGER] Downloading datafile for project %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloaded = @"[DATAFILE MANAGER] Datafile for project %@ downloaded. Saving datafile and last modified date: %@.";
+// Debug
+NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDate = @"[DATAFILE MANAGER] Datafile was last modified on %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. No datafile changes have been made.";
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. Error received: %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDate = @"[DATAFILE MANAGER] Last modified date %@ found for project %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound = @"[DATAFILE MANAGER] Last modified date not found for project %@.";
+
 @implementation OPTLYLoggerMessages
 
 @end

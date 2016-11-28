@@ -133,6 +133,17 @@ extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
 extern NSString *const OPTLYLoggerMessagesBucketerSavingUserData;
 extern NSString *const OPTLYLoggerMessagesBucketerUserDataRetrieved;
 
+// ---- Datafile Nanager ----
+// Info
+extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloading;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloaded;
+// Debug
+extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDate;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDate;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound;
+
 @interface OPTLYLoggerMessages : NSObject
 
 @end
