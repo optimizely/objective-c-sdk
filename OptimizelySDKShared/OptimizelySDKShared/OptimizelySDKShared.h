@@ -16,8 +16,6 @@
 
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYManager.h"
-#import "OPTLYHTTPRequestManager.h"
-#import "OPTLYNetworkService.h"
 #import "OPTLYDatafileManager.h"
 #import "OPTLYDataStore.h"
 #import "OPTLYClient.h"

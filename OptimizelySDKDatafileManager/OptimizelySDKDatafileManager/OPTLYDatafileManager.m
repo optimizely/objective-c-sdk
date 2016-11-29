@@ -15,8 +15,10 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
-#import <OptimizelySDKShared/OPTLYNetworkService.h>
 
 static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
 NSTimeInterval const kDefaultDatafileFetchInterval = 0;

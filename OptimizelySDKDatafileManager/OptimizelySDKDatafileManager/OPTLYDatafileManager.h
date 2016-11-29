@@ -16,9 +16,6 @@
 
 #import <Foundation/Foundation.h>
 #import <OptimizelySDKShared/OPTLYDatafileManager.h>
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKShared/OPTLYHTTPRequestManager.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYDatafileManagerBuilder.h"
 
 @protocol OPTLYErrorHandler, OPTLYLogger;
