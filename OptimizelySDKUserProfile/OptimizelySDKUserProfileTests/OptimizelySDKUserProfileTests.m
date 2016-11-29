@@ -131,7 +131,7 @@ static NSString * const kVariationKey3c = @"testVariation3";
     XCTAssertNil(variationKey3c, @"Variation for userId 3c should have been removed.");
 }
 
-- (void)testFlearUserExperimentRecordsForUser
+- (void)testClearUserExperimentRecordsForUser
 {
     [self.userProfile removeUserExperimentRecordsForUser:kUserId1];
     
