@@ -177,4 +177,8 @@ static NSString * const kVariationKey3c = @"testVariation3";
     XCTAssert([userData count] == 0, @"User data should have been removed.");
 }
 
+- (void)testBucketingPersistsWhenDatafileIsUpdated {
+    
+}
+
 @end

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2B2097A5E4C881CEECF8B701 /* Pods_OptimizelySDKUserProfileTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */; };
+		2D56A9971DEE07670052AD54 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */; };
+		2D56A9981DEE07670052AD54 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */; };
+		2D56A99B1DEE077E0052AD54 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */; };
+		2D56A99C1DEE077F0052AD54 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */; };
 		81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */; };
 		A3C8D9A6919F619B78EE7A6E /* Pods_OptimizelySDKUserProfileTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */; };
 		C59C96115DB572352F06B35C /* Pods_OptimizelySDKUserProfileiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */; };
@@ -94,6 +98,8 @@
 		0E98DBE48E244F260EA2A9F4 /* Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		1C62B7FF941C777EC3DEB0F8 /* Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		234097C09F518FB25E8F1B9E /* Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
+		2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -229,6 +235,8 @@
 			children = (
 				EA2FA7951DC5B38900B1D81B /* OptimizelySDKUserProfileTests-Info.plist */,
 				EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */,
+				2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */,
+				2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */,
 			);
 			path = OptimizelySDKUserProfileTests;
 			sourceTree = "<group>";
@@ -259,6 +267,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		2D56A9991DEE07780052AD54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D56A99B1DEE077E0052AD54 /* OPTLYTestHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D56A99A1DEE077B0052AD54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D56A99C1DEE077F0052AD54 /* OPTLYTestHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA5248411DC72B5500AF6685 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +337,7 @@
 				EA52484A1DC72B5500AF6685 /* Resources */,
 				2CC4A3354B1D7184A6195DE1 /* [CP] Embed Pods Frameworks */,
 				C70EFA43A522360FCE1393F6 /* [CP] Copy Pods Resources */,
+				2D56A9991DEE07780052AD54 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -355,6 +380,7 @@
 				EA52486A1DC72B6500AF6685 /* Resources */,
 				DE211E9FF9EE69717C4B2847 /* [CP] Embed Pods Frameworks */,
 				5EC0CEA800A7D1403316F31B /* [CP] Copy Pods Resources */,
+				2D56A99A1DEE077B0052AD54 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -648,6 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D56A9971DEE07670052AD54 /* OPTLYTestHelper.m in Sources */,
 				EA87A0251DE2F033002E9EF7 /* OptimizelySDKUserProfileTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D56A9981DEE07670052AD54 /* OPTLYTestHelper.m in Sources */,
 				EA87A0261DE2F034002E9EF7 /* OptimizelySDKUserProfileTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
