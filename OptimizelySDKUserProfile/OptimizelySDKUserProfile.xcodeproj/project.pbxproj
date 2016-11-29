@@ -12,6 +12,10 @@
 		2D56A9981DEE07670052AD54 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */; };
 		2D56A99B1DEE077E0052AD54 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */; };
 		2D56A99C1DEE077F0052AD54 /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */; };
+		2D56A99F1DEE2DE10052AD54 /* InitialDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */; };
+		2D56A9A01DEE2DE10052AD54 /* InitialDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */; };
+		2D56A9A21DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */; };
+		2D56A9A31DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */; };
 		81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */; };
 		A3C8D9A6919F619B78EE7A6E /* Pods_OptimizelySDKUserProfileTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */; };
 		C59C96115DB572352F06B35C /* Pods_OptimizelySDKUserProfileiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */; };
@@ -100,6 +104,8 @@
 		234097C09F518FB25E8F1B9E /* Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileiOSTests/Pods-OptimizelySDKUserProfileiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
 		2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
+		2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InitialDatafile.json; path = TestData/InitialDatafile.json; sourceTree = "<group>"; };
+		2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UpdatedDatafile.json; sourceTree = "<group>"; };
 		2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +177,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D56A99D1DEE2DA00052AD54 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */,
+				2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */,
+			);
+			name = TestData;
+			sourceTree = "<group>";
+		};
 		438FD1AB741702F19CA39AB1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +252,7 @@
 				EA2FA7931DC5B38900B1D81B /* OptimizelySDKUserProfileTests.m */,
 				2D56A9911DEE07560052AD54 /* OPTLYTestHelper.h */,
 				2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */,
+				2D56A99D1DEE2DA00052AD54 /* TestData */,
 			);
 			path = OptimizelySDKUserProfileTests;
 			sourceTree = "<group>";
@@ -488,6 +504,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D56A99F1DEE2DE10052AD54 /* InitialDatafile.json in Resources */,
+				2D56A9A21DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +520,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D56A9A01DEE2DE10052AD54 /* InitialDatafile.json in Resources */,
+				2D56A9A31DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

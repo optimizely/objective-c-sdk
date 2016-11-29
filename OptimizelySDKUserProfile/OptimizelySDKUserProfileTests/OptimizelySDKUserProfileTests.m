@@ -15,8 +15,13 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import <OptimizelySDKShared/OPTLYDataStore.h>
+#import "OPTLYTestHelper.h"
+#import <OHHTTPStubs/OHHTTPStubs.h>
+
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import "OPTLYUserProfile.h"
+
 
 static NSString * const kUserId1 = @"6369992311";
 static NSString * const kExperimentKey1 = @"testExperiment1";
@@ -32,6 +37,14 @@ static NSString * const kVariationKey3b = @"testVariation3";
 static NSString * const kExperimentKey3c = @"testExperiment3";
 static NSString * const kVariationKey3c = @"testVariation3";
 
+NSString * const kOriginalDatafileName = @"InitialDatafile";
+NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
+NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
+NSString * const kUserProfileExperimentOriginalVariationKey = @"original";
+NSString * const kUserProfileExperimentTreatmentVariationKey = @"treatment";
+NSData *originalDatafile;
+NSData *updatedDatafile;
+
 @interface OPTLYUserProfile(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
@@ -41,6 +54,30 @@ static NSString * const kVariationKey3c = @"testVariation3";
 @end
 
 @implementation OptimizelySDKUserProfileTests
+
++ (void)setUp {
+    [super setUp];
+    
+    // load the datafiles
+    originalDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kOriginalDatafileName];
+    updatedDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kUpdatedDatafileName];
+    
+    // stub all requests
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+        // every requests passes this test
+        return true;
+    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        // return bad request
+        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
+                                          statusCode:400
+                                             headers:@{@"Content-Type":@"application/json"}];
+    }];
+}
+
++ (void)tearDown {
+    [super tearDown];
+    [OHHTTPStubs removeAllStubs];
+}
 
 - (void)setUp {
     self.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder *builder) {
@@ -179,6 +216,33 @@ static NSString * const kVariationKey3c = @"testVariation3";
 
 - (void)testBucketingPersistsWhenDatafileIsUpdated {
     
+    // make sure we have 2 different datafiles
+    XCTAssertNotNil(originalDatafile);
+    XCTAssertNotNil(updatedDatafile);
+    XCTAssertNotEqualObjects(originalDatafile, updatedDatafile);
+    
+    // instantiate the manager
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = @"projectId";
+    }];
+    XCTAssertNotNil(manager);
+    
+    OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
+    XCTAssertNotNil(originalClient);
+    OPTLYVariation *originalVariation = [originalClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
+    XCTAssertNotNil(originalVariation);
+    XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
+    
+    
+    OPTLYClient *updatedClient = [manager initializeClientWithDatafile:updatedDatafile];
+    XCTAssertNotNil(updatedClient);
+    OPTLYVariation *updatedVaraition = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId2];
+    XCTAssertNotNil(updatedVaraition);
+    XCTAssertEqualObjects(updatedVaraition.variationKey, kUserProfileExperimentTreatmentVariationKey);
+    OPTLYVariation *variationForUser1 = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
+    XCTAssertNotNil(variationForUser1);
+    XCTAssertEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
+    XCTAssertEqualObjects(originalVariation.variationId, variationForUser1.variationId);
 }
 
 @end
