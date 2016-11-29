@@ -16,8 +16,8 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
-#import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
 #import "OPTLYTestHelper.h"
 

@@ -41,8 +41,8 @@
 		EA5249DF1DC7E3C300AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248921DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
 		EA5249E01DC7E3CF00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248961DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
 		EA524A3D1DC846CE00AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA8FD10D1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; };
-		EA8FD10E1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; };
+		EA8FD10D1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA8FD10E1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8FD10F1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD10C1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.m */; };
 		EA8FD1101DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FD10C1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.m */; };
 /* End PBXBuildFile section */

@@ -18,8 +18,8 @@
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYLog.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
-#import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
 
 NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
