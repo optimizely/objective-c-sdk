@@ -34,7 +34,9 @@
 
 - (void)downloadDatafile:(nonnull NSString *)projectId
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
-    completion(nil, nil, nil);
+    if (completion) {
+        completion(nil, nil, nil);
+    }
     return;
 }
 

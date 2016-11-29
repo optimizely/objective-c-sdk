@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let userId = "1234"
     let revenue = NSNumber(value: 88)
     let eventDispatcherDispatchInterval = 1000
-    let datafileManagerDownloadInterval = 10
+    let datafileManagerDownloadInterval = 20
     
     // default parameters for initializing Optimizely from saved datafile
     let datafileName = "test_data_10_experiments"
@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["browser_type" : "firefox"]
     var eventKey = "testEventWithAudiences"
     var experimentKey = "testExperimentWithFirefoxAudience" // experiment ID: 6383811281
-    let downloadDatafile = false
+    let downloadDatafile = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // use different parameters if initializing Optimizely from downloaded datafile
         if self.downloadDatafile == true {
-            projectId = "7871184663"
+            projectId = "7791451651"
             attributes = ["userType" : "new"]
             eventKey = "userEvent"
             experimentKey = "exp1"

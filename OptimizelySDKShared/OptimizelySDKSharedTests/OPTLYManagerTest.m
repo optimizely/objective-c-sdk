@@ -16,29 +16,37 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
+#import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import <OptimizelySDKShared/OPTLYNetworkService.h>
+#import "OPTLYClient.h"
+#import "OPTLYManager.h"
 #import "OPTLYTestHelper.h"
 
-#import <OptimizelySDKCore/OPTLYProjectConfig.h>
-#import "OPTLYManager.h"
-#import "OPTLYClient.h"
 
 // static datafile name
-static NSString *const kDefaultDatafileFileName = @"datafile_6372300739";
+static NSString *const defaultDatafileFileName = @"datafile_6372300739";
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_datafile";
-static NSData *kDefaultDatafile;
-static NSData *kAlternateDatafile;
 
 @interface OPTLYManagerTest : XCTestCase
-
+@property (nonatomic, strong) NSData *defaultDatafile;
+@property (nonatomic, strong) NSData *alternateDatafile;
 @end
 
 @implementation OPTLYManagerTest
 
-+ (void)setUp {
+- (void)setUp {
     [super setUp];
-    kDefaultDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDefaultDatafileFileName];
-    kAlternateDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kAlternateDatafilename];
+    self.defaultDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:defaultDatafileFileName];
+    self.alternateDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kAlternateDatafilename];
+}
+
+- (void)tearDown {
+    [super tearDown];
+    [OHHTTPStubs removeAllStubs];
+    self.defaultDatafile = nil;
+    self.alternateDatafile = nil;
 }
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
@@ -64,14 +72,14 @@ static NSData *kAlternateDatafile;
 - (void)testInitializeClientWithDefaults {
     // initialize manager
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
-        builder.datafile = kDefaultDatafile;
+        builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
     
     // make sure manager is initialized correctly
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafile);
-    XCTAssertEqual(manager.datafile, kDefaultDatafile);
+    XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // initialize client
     OPTLYClient *client = [manager initializeClient];
@@ -88,17 +96,17 @@ static NSData *kAlternateDatafile;
 - (void)testInitializeClientWithCustomDatafile {
     // initialize manager
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
-        builder.datafile = kDefaultDatafile;
+        builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
     
     // make sure manager is initialized correctly
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafile);
-    XCTAssertEqual(manager.datafile, kDefaultDatafile);
+    XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // initialize client
-    OPTLYClient *client = [manager initializeClientWithDatafile:kAlternateDatafile];
+    OPTLYClient *client = [manager initializeClientWithDatafile:self.alternateDatafile];
     
     // test client initialization
     XCTAssertNotNil(client);
@@ -112,31 +120,24 @@ static NSData *kAlternateDatafile;
 - (void)testInitializeClientAsync {
     // initialize manager
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
-        builder.datafile = kDefaultDatafile;
+        builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
+        builder.datafileManager = [OPTLYDatafileManagerNoOp new];
     }];
     
     // make sure manager is initialized correctly
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafile);
-    XCTAssertEqual(manager.datafile, kDefaultDatafile);
+    XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // stub network call
-    id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
-    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
-        return [OHHTTPStubsResponse responseWithData:kAlternateDatafile
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
-    }];
+    [self stubResponse:200];
     
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
     __block OPTLYClient *optimizelyClient;
     [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
-        
         // retain a reference to the client
         optimizelyClient = client;
         // check client in callback
@@ -150,9 +151,6 @@ static NSData *kAlternateDatafile;
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertEqual(optimizelyClient, manager.getOptimizely);
-    
-    // clean up stub
-    [OHHTTPStubs removeStub:stub];
 }
 
 - (void)checkConfigIsUsingDefaultDatafile: (OPTLYProjectConfig *)config {
@@ -167,6 +165,18 @@ static NSData *kAlternateDatafile;
     XCTAssertEqualObjects(config.accountId, @"3244610124");
 }
 
-
+# pragma mark - Helper Methods
+- (void)stubResponse:(int)statusCode {
+    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSString *hostName = [hostURL host];
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return [request.URL.host isEqualToString:hostName];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:self.alternateDatafile
+                                          statusCode:statusCode
+                                             headers:@{@"Content-Type":@"application/json"}];
+    }];
+}
 
 @end

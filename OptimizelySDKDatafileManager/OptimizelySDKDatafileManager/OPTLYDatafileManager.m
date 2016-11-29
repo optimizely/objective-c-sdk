@@ -22,7 +22,6 @@
 #import <OptimizelySDKShared/OPTLYNetworkService.h>
 #import "OPTLYDatafileManager.h"
 
-static NSString *const kCDNAddressFormat = @"https://cdn.optimizely.com/json/%@.json";
 NSTimeInterval const kDefaultDatafileFetchInterval = 0;
 
 @interface OPTLYDatafileManager ()
@@ -82,7 +81,6 @@ NSTimeInterval const kDefaultDatafileFetchInterval = 0;
              [self saveDatafile:data];
              
              // save the last modified date
-             
              NSDictionary *dictionary = [httpResponse allHeaderFields];
              NSString *lastModifiedDate = [dictionary valueForKey:@"Last-Modified"];
              [self saveLastModifiedDate:lastModifiedDate project:projectId];
