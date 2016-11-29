@@ -68,7 +68,7 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.errorHandler);
     XCTAssertNotEqual(errorHandler, defaultOptimizely.errorHandler, @"Default OPTLYBuilder should create its own Error Handler");
-    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"Should be same object with custom Builder");
+    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
@@ -121,7 +121,7 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.datafileManager);
-    XCTAssertEqualObjects(datafileManager, customOptimizely.datafileManager, @"Should be same object with custom Builder");
+    XCTAssertEqualObjects(datafileManager, customOptimizely.datafileManager, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testInitializationWithoutBuilder {

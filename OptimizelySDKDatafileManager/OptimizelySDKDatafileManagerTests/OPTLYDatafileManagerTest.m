@@ -23,20 +23,14 @@
 
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
-static NSTimeInterval kDatafileDownloadInteval = 5;
-<<<<<<< HEAD
+static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
-- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
-=======
-
-@interface OPTLYDatafileManager(test)
-@property (nonatomic, strong) NSTimer *datafileDownloadTimer;
->>>>>>> Added a timer to the datafile manager to periodically download the datafile. Also moved the datafile manager protocol to core as the core should have a basic datafile downloader (the network classes will be moved to core as well in another commit.). Cleaned up the headers and was being more deligent about alphabetizing imports and initializing modules.
 - (void)saveDatafile:(NSData *)datafile;
 - (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId;
+- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
 @end
 
 @interface OPTLYDatafileManagerTest : XCTestCase
@@ -154,7 +148,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     [self waitForExpectationsWithTimeout:2 handler:nil];    
 }
 
-// timer is enabled if the download intervao is > 0
+// timer is enabled if the download interval is > 0
 - (void)testNetworkTimerIsEnabled
 {
     OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
@@ -178,7 +172,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     
     // check that the timer is set correctly
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
-    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer shoul not be valid.");
+    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
     datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;

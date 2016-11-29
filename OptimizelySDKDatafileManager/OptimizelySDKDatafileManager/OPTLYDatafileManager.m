@@ -22,6 +22,7 @@
 #import <OptimizelySDKShared/OPTLYDataStore.h>
 #import "OPTLYDatafileManager.h"
 
+// default datafile download interval is 2 minutes
 NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
 
 @interface OPTLYDatafileManager ()

@@ -77,7 +77,7 @@ static NSString *const kProjectId = @"6372300739";
     XCTAssertNotNil(customManager);
     XCTAssertNotNil(customManager.errorHandler);
     XCTAssertNotEqual(errorHandler, defaultManager.errorHandler, @"Default OPTLYBuilder should create its own Error Handler");
-    XCTAssertEqual(errorHandler, customManager.errorHandler, @"Should be same object with custom Builder");
+    XCTAssertEqual(errorHandler, customManager.errorHandler, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
