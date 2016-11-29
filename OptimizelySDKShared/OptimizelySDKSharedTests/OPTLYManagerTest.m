@@ -122,7 +122,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
-        builder.datafileManager = [OPTLYDatafileManagerNoOp new];
+        builder.datafileManager = [OPTLYDatafileManagerDefault new];
     }];
     
     // make sure manager is initialized correctly

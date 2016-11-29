@@ -53,6 +53,18 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
    }];
 }
 
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+                toURL:(nonnull NSURL *)url
+    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion
+{
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
+    [requestManager POSTWithParameters:params completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (completion) {
+            completion(data, response, error);
+        }
+    }];
+}
+
 # pragma mark - Helper Methods
 
 - (NSURL *)projectConfigURLPath:(NSURL *)url

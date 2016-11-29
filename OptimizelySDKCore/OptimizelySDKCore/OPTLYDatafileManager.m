@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
+#import "OPTLYNetworkService.h"
 
 @implementation OPTLYDatafileManagerUtility
 
@@ -28,6 +29,16 @@
     return validProtocolDeclaration && implementsDownloadDatafileMethod;
 }
 
+@end
+
+@implementation OPTLYDatafileManagerDefault
+
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
+    OPTLYNetworkService *networkService = [OPTLYNetworkService new];
+    [networkService downloadProjectConfig:projectId
+                        completionHandler:completion];
+}
 @end
 
 @implementation OPTLYDatafileManagerNoOp

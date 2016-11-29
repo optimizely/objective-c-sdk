@@ -40,6 +40,10 @@
 
 @end
 
+@interface OPTLYDatafileManagerDefault : NSObject<OPTLYDatafileManager>
+
+@end
+
 @interface OPTLYDatafileManagerNoOp : NSObject<OPTLYDatafileManager>
 
 @end

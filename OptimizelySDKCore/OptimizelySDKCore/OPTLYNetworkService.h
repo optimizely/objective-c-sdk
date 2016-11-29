@@ -44,4 +44,14 @@ NS_ASSUME_NONNULL_END
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
+/**
+ * Dispatches an event to a url
+ * @param params Dictionary of the event parameter values
+ * @param url The url to dispatch the event
+ * @param completion The completion handler
+ */
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+                toURL:(nonnull NSURL *)url
+    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
+
 @end
