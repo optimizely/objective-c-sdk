@@ -15,16 +15,22 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYTestHelper.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKShared/OPTLYDataStore.h>
 #import "OPTLYDatafileManager.h"
+#import "OPTLYTestHelper.h"
 
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
+static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
+static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
 @interface OPTLYDatafileManager(test)
+@property (nonatomic, strong) NSTimer *datafileDownloadTimer;
 - (void)saveDatafile:(NSData *)datafile;
+- (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId;
+- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
 @end
 
 @interface OPTLYDatafileManagerTest : XCTestCase
@@ -59,37 +65,31 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
+    self.datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
 }
 
 - (void)tearDown {
     [super tearDown];
     [self.dataStore removeAll:nil];
     self.dataStore = nil;
+    self.datafileManager = nil;
 }
 
 - (void)testRequestDatafileHandlesCompletionEvenWithBadRequest {
-    // setup datafile manager
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
-    }];
-    XCTAssertNotNil(datafileManager);
+
+    XCTAssertNotNil(self.datafileManager);
     
     // stub network call
-    id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
-    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
-        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
-                                          statusCode:400
-                                             headers:@{@"Content-Type":@"application/json"}];
-    }];
+    [self stubResponse:400];
     
     // setup async expectation
     __block Boolean completionWasCalled = false;
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     
     // request datafile
-    [datafileManager downloadDatafile:datafileManager.projectId
+    [self.datafileManager downloadDatafile:self.datafileManager.projectId
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                         completionWasCalled = true;
                         XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
@@ -99,24 +99,18 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertTrue(completionWasCalled);
-    
-    // clean stubs
-    [OHHTTPStubs removeStub:stub];
+
 }
 
 - (void)testSaveDatafileMethod {
-    // setup datafile manager and datastore
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
-    }];
-    XCTAssertNotNil(datafileManager);
+    XCTAssertNotNil(self.datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     
     // get the datafile
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     
     // save the datafile
-    [datafileManager saveDatafile:datafile];
+    [self.datafileManager saveDatafile:datafile];
     
     // test the datafile was saved correctly
     bool fileExists = [self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
@@ -131,38 +125,105 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
     XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
 }
 
+// if 200 response, save the {projectID : lastModifiedDate} and datafile
 - (void)testDatafileManagerDownloadDatafileSavesDatafile {
     
-    // instantiate datafile manager
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
-    }];
-    XCTAssertNotNil(datafileManager);
+    XCTAssertNotNil(self.datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
 
     // setup stubbing and listener expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
-    id<OHHTTPStubsDescriptor> stub = [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"cdn.optimizely.com"];
-    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
-        return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
-    }];
+    [self stubResponse:200];
     
     // Call download datafile
-
-    [datafileManager downloadDatafile:datafileManager.projectId
+    [self.datafileManager downloadDatafile:self.datafileManager.projectId
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                         XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
+                        NSString *savedLastModifiedDate = [self.datafileManager getLastModifiedDate:kProjectId];
+                        XCTAssert([savedLastModifiedDate isEqualToString:kLastModifiedDate], @"Modified date saved is invalid: %@.", savedLastModifiedDate);
                         [expectation fulfill];
     }];
     
     // make sure we were able to save the datafile
     [self waitForExpectationsWithTimeout:2 handler:nil];    
-    // cleanup stubs
-    [OHHTTPStubs removeStub:stub];
 }
 
+// timer is enabled if the download interval is > 0
+- (void)testNetworkTimerIsEnabled
+{
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = kDatafileDownloadInteval;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNotNil(datafileManager.datafileDownloadTimer, @"Timer should not be nil.");
+    XCTAssertTrue(datafileManager.datafileDownloadTimer.valid, @"Timer is not valid.");
+    XCTAssert(datafileManager.datafileDownloadTimer.timeInterval == kDatafileDownloadInteval, @"Invalid time interval set - %f.", datafileManager.datafileDownloadTimer.timeInterval);
+}
+
+// timer is disabled if the datafile download interval is <= 0
+- (void)testNetworkTimerIsDisabled
+{
+    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = 0;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
+    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
+    
+    datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileFetchInterval = -5;
+    }];
+    
+    // check that the timer is set correctly
+    XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
+    XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
+}
+
+- (void)testIsDatafileCachedFlag
+{
+    XCTAssertFalse(self.datafileManager.isDatafileCached, @"Datafile cached flag should be false.");
+    
+    // get the datafile
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
+    
+    // save the datafile
+    [self.datafileManager saveDatafile:datafile];
+    
+    XCTAssertTrue(self.datafileManager.isDatafileCached, @"Datafile cached flag should be true.");
+}
+
+// if 304 response datafile and last modified date should not have been saved
+- (void)test304Response
+{
+    [self stubResponse:304];
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"downloadDatafile304Response"];
+    [self.datafileManager downloadDatafile:kProjectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"Datafile should not have been saved.");
+        NSString *savedLastModifiedData = [self.datafileManager getLastModifiedDate:kProjectId];
+        XCTAssertNil(savedLastModifiedData, @"No modified date should have been saved.");
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+# pragma mark - Helper Methods
+- (void)stubResponse:(int)statusCode {
+    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSString *hostName = [hostURL host];
+    
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return [request.URL.host isEqualToString:hostName];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
+                                          statusCode:statusCode
+                                             headers:@{@"Content-Type":@"application/json",
+                                                       @"Last-Modified":kLastModifiedDate}];
+    }];
+}
 @end

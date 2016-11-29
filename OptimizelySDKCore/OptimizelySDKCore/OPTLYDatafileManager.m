@@ -14,33 +14,40 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
+#import "OPTLYDatafileManager.h"
+#import "OPTLYNetworkService.h"
 
-@protocol OPTLYErrorHandler, OPTLYLogger;
+@implementation OPTLYDatafileManagerUtility
 
-@protocol OPTLYDatafileManager <NSObject>
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
+    // compile time check
+    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
+    
+    // runtime check
+    BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
+    
+    return validProtocolDeclaration && implementsDownloadDatafileMethod;
+}
 
-/**
- * Download the datafile for the project ID
- * @param projectId The project ID of the datafile to request.
- * @param completion Completion handler.
- */
+@end
+
+@implementation OPTLYDatafileManagerDefault
+
 - (void)downloadDatafile:(nonnull NSString *)projectId
-       completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
+       completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
+    OPTLYNetworkService *networkService = [OPTLYNetworkService new];
+    [networkService downloadProjectConfig:projectId
+                        completionHandler:completion];
+}
 @end
 
-@interface OPTLYDatafileManagerUtility : NSObject
+@implementation OPTLYDatafileManagerNoOp
 
-/**
- * Utility method to check if a class conforms to the OPTLYDatafileManager protocol
- * This method uses compile and run time checks
- */
-+ (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
-
-@end
-
-@interface OPTLYDatafileManagerNoOp : NSObject<OPTLYDatafileManager>
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
+    if (completion) {
+        completion(nil, nil, nil);
+    }
+}
 
 @end

@@ -39,10 +39,6 @@
 		2DB3D1811DC8181400ECF72E /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */; };
 		2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
 		2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
-		2DCC51231DDE3C90006C9815 /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCC51221DDE3C90006C9815 /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2DCC51241DDE3C90006C9815 /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCC51221DDE3C90006C9815 /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2DCC51261DDE3CA4006C9815 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC51251DDE3CA4006C9815 /* OPTLYDatafileManager.m */; };
-		2DCC51271DDE3CA4006C9815 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC51251DDE3CA4006C9815 /* OPTLYDatafileManager.m */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */; };
@@ -155,8 +151,6 @@
 		2DB3D17A1DC816D600ECF72E /* OPTLYManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManagerBuilder.h; sourceTree = "<group>"; };
 		2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilder.m; sourceTree = "<group>"; };
 		2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerTest.m; sourceTree = "<group>"; };
-		2DCC51221DDE3C90006C9815 /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
-		2DCC51251DDE3CA4006C9815 /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6042179012EFD11109128C34 /* Pods-OptimizelySDKSharedTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -264,15 +258,6 @@
 			name = TestData;
 			sourceTree = "<group>";
 		};
-		2DCC51211DDE3C74006C9815 /* DatafileManager */ = {
-			isa = PBXGroup;
-			children = (
-				2DCC51221DDE3C90006C9815 /* OPTLYDatafileManager.h */,
-				2DCC51251DDE3CA4006C9815 /* OPTLYDatafileManager.m */,
-			);
-			name = DatafileManager;
-			sourceTree = "<group>";
-		};
 		B770041BA173BC0CC7E9DB5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +311,6 @@
 				EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */,
 				EA52478F1DC7246C00AF6685 /* Manager */,
 				2D08FB671DCA5A78006CA063 /* Client */,
-				2DCC51211DDE3C74006C9815 /* DatafileManager */,
 				EA5247911DC7248200AF6685 /* DataStore */,
 			);
 			path = OptimizelySDKShared;
@@ -408,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FB9F1DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
-				2DCC51231DDE3C90006C9815 /* OPTLYDatafileManager.h in Headers */,
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247851DC7226400AF6685 /* OPTLYManager.h in Headers */,
@@ -427,7 +410,6 @@
 				2D08FBA01DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
 				EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */,
 				2DB3D1801DC8181100ECF72E /* OPTLYManagerBuilder.h in Headers */,
-				2DCC51241DDE3C90006C9815 /* OPTLYDatafileManager.h in Headers */,
 				2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
 				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
@@ -810,7 +792,6 @@
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
 				EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */,
-				2DCC51261DDE3CA4006C9815 /* OPTLYDatafileManager.m in Sources */,
 				2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				2DB3D17D1DC816D600ECF72E /* OPTLYManagerBuilder.m in Sources */,
@@ -842,7 +823,6 @@
 				2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				2D08FBA31DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				2DB3D1811DC8181400ECF72E /* OPTLYManagerBuilder.m in Sources */,
-				2DCC51271DDE3CA4006C9815 /* OPTLYDatafileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

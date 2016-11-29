@@ -59,6 +59,9 @@
  */
 - (void)initializeClientWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
 
+/*
+ * Gets the cached Optimizely client. 
+ */
 - (nullable OPTLYClient *)getOptimizely;
 
 @end

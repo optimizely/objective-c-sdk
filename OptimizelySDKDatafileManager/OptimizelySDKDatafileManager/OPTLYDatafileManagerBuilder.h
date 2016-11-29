@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYDatafileManager.h>
 
 @class OPTLYDatafileManagerBuilder;
 @protocol OPTLYErrorHandler, OPTLYLogger;

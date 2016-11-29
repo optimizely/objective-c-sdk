@@ -14,27 +14,36 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYDatafileManager.h"
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
 
-@implementation OPTLYDatafileManagerUtility
+@protocol OPTLYErrorHandler, OPTLYLogger;
+@protocol OPTLYDatafileManager <NSObject>
 
-+ (BOOL)conformsToOPTLYDatafileManagerProtocol:(Class)instanceClass {
-    // compile time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYDatafileManager)];
-    
-    // runtime check
-    BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
-    
-    return validProtocolDeclaration && implementsDownloadDatafileMethod;
-}
+/**
+ * Download the datafile for the project ID
+ * @param projectId The project ID of the datafile to request.
+ * @param completion Completion handler.
+ */
+- (void)downloadDatafile:(nonnull NSString *)projectId
+       completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
 @end
 
-@implementation OPTLYDatafileManagerNoOp
+@interface OPTLYDatafileManagerUtility : NSObject
 
-- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion {
-    completion(nil, nil, nil);
-    return;
-}
+/**
+ * Utility method to check if a class conforms to the OPTLYDatafileManager protocol
+ * This method uses compile and run time checks
+ */
++ (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
+
+@end
+
+@interface OPTLYDatafileManagerDefault : NSObject<OPTLYDatafileManager>
+
+@end
+
+@interface OPTLYDatafileManagerNoOp : NSObject<OPTLYDatafileManager>
 
 @end

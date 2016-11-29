@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYDatafileManager.h"
 

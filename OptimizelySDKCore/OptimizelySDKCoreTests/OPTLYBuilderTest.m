@@ -15,12 +15,12 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYTestHelper.h"
-
 #import "Optimizely.h"
+#import "OPTLYDatafileManager.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
+#import "OPTLYTestHelper.h"
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
@@ -45,6 +45,7 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(optimizely);
     XCTAssertNotNil(optimizely.bucketer);
     XCTAssertNotNil(optimizely.config);
+    XCTAssertNotNil(optimizely.datafileManager);
     XCTAssertNotNil(optimizely.errorHandler);
     XCTAssertNotNil(optimizely.eventBuilder);
     XCTAssertNotNil(optimizely.eventDispatcher);
@@ -67,7 +68,7 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.errorHandler);
     XCTAssertNotEqual(errorHandler, defaultOptimizely.errorHandler, @"Default OPTLYBuilder should create its own Error Handler");
-    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"Should be same object with custom Builder");
+    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
@@ -106,6 +107,21 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(customOptimizely.logger);
     XCTAssertNotEqual(logger, defaultOptimizely.logger, @"Default OPTLYBuilder should create its own Logger");
     XCTAssertEqual(logger, customOptimizely.logger, @"Should be the same object with custom builder");
+}
+
+- (void)testBuilderCanAssignDatafileManager {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    
+    id<OPTLYDatafileManager> datafileManager = [OPTLYDatafileManagerNoOp new];
+    
+    Optimizely *customOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+        builder.datafile = datafile;
+        builder.datafileManager = datafileManager;
+    }];
+    
+    XCTAssertNotNil(customOptimizely);
+    XCTAssertNotNil(customOptimizely.datafileManager);
+    XCTAssertEqualObjects(datafileManager, customOptimizely.datafileManager, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testInitializationWithoutBuilder {

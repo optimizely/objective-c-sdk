@@ -18,7 +18,7 @@
 #import "OPTLYBuilder.h"
 
 @class OPTLYProjectConfig, OPTLYVariation;
-@protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
+@protocol OPTLYBucketer, OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
 // ---- Live Variable Getter Errors ----
 
@@ -220,8 +220,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 @interface Optimizely : NSObject <Optimizely>
 
-@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
+@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYDatafileManager> datafileManager;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;

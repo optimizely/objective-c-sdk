@@ -15,9 +15,10 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYProjectConfig.h"
-#import "OPTLYEventDispatcher.h"
 #import "OPTLYErrorHandler.h"
+#import "OPTLYEventDispatcher.h"
+#import "OPTLYProjectConfig.h"
+#import "OPTLYNetworkService.h"
 
 static NSString * const kEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
 static NSString * const kEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
@@ -42,7 +43,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @end
 
-@implementation OPTLYEventDispatcherBasic
+@implementation OPTLYEventDispatcherDefault
 
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
@@ -59,33 +60,10 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 - (void)dispatchEvent:(NSDictionary *)params
                 toURL:(NSURL *)url
-    completionHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error))completion
-{
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setHTTPMethod:kHTTPRequestMethodPost];
-    
-    NSError *JSONSerializationError = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:params
-                                                   options:kNilOptions
-                                                     error:&JSONSerializationError];
-    
-    [request addValue:kHTTPHeaderFieldValueApplicationJSON forHTTPHeaderField:kHTTPHeaderFieldContentType];
-    
-    if (!JSONSerializationError) {
-        NSURLSessionUploadTask *uploadTask = [ephemeralSession uploadTaskWithRequest:request
-                                                                            fromData:data
-                                                                   completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
-                                                                       if (completion) {
-                                                                           completion(data, response, error);
-                                                                       }
-                                                                   }];
-        
-        [uploadTask resume];
-    }
+    completionHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error))completion {
+    OPTLYNetworkService *networkService = [OPTLYNetworkService new];
+    [networkService dispatchEvent:params toURL:url completionHandler:completion];
 }
-
-
 
 @end
 
