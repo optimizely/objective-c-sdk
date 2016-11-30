@@ -20,6 +20,7 @@
 
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYUserProfile.h"
 
 
@@ -224,6 +225,10 @@ NSData *updatedDatafile;
     // instantiate the manager
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
+        __block id<OPTLYLogger> logger = builder.logger;
+        builder.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+            builder.logger = logger;
+        }];
     }];
     XCTAssertNotNil(manager);
     

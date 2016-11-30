@@ -28,6 +28,7 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
+#import "OPTLYUserProfile.h"
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
@@ -141,11 +142,24 @@ static NSString *const kValue = @"value";
                                        userId:(NSString *)userId
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
+    if (self.userProfile != nil) {
+        NSString *storedVaraitionKey = [self.userProfile getVariationFor:userId experiment:experimentKey];
+        if (storedVaraitionKey != nil) {
+            OPTLYVariation *storedVariation = [[self.config getExperimentForKey:experimentKey]
+                                               getVariationForVariationKey:storedVaraitionKey];
+            if (storedVariation != nil) {
+                return storedVariation;
+            }
+        }
+    }
     OPTLYVariation *bucketedVariation = nil;
     bucketedVariation = [self.config getVariationForExperiment:experimentKey
                                                         userId:userId
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
+    [self.userProfile save:userId
+                experiment:experimentKey
+                 variation:bucketedVariation.variationKey];
     return bucketedVariation;
 }
 

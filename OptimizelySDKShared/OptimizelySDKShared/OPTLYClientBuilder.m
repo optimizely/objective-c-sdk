@@ -37,6 +37,7 @@
             builder.errorHandler = _errorHandler;
             builder.eventDispatcher = _eventDispatcher;
             builder.logger = _logger;
+            builder.userProfile = _userProfile;
         }];
         _logger = _optimizely.logger;
         if (!_logger) {
