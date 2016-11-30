@@ -41,9 +41,9 @@
 }
 
 
-- (void)save:(nonnull NSString *)userId
-  experiment:(nonnull NSString *)experimentKey
-   variation:(nonnull NSString *)variationKey {
+- (void)saveUser:(nonnull NSString *)userId
+      experiment:(nonnull NSString *)experimentKey
+       variation:(nonnull NSString *)variationKey {
     
     NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
@@ -51,8 +51,8 @@
     [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
 }
 
-- (nullable NSString *)getVariationFor:(nonnull NSString *)userId
-                            experiment:(nonnull NSString *)experimentKey {
+- (nullable NSString *)getVariationForUser:(nonnull NSString *)userId
+                                experiment:(nonnull NSString *)experimentKey {
     NSDictionary *userData = [self userData:userId];
     NSString *variationKey = [userData objectForKey:experimentKey];
     
@@ -67,8 +67,8 @@
     return variationKey;
 }
 
-- (void)remove:(nonnull NSString *)userId
-    experiment:(nonnull NSString *)experimentKey {
+- (void)removeUser:(nonnull NSString *)userId
+        experiment:(nonnull NSString *)experimentKey {
     
     NSMutableDictionary *userProfileDataMutable = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
     NSMutableDictionary *userDataMutable = [userProfileDataMutable[userId] mutableCopy];

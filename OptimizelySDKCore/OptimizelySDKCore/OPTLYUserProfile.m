@@ -23,9 +23,9 @@
     BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfile)];
     
     // runtime checks
-    BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(save:experiment:variation:)];
-    BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationFor:experiment:)];
-    BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(remove:experiment:)];
+    BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(saveUser:experiment:variation:)];
+    BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationForUser:experiment:)];
+    BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(removeUser:experiment:)];
     
     return isValidProtocolDeclaration && implementsHandleSaveVariationMethod && implementsHandleGetVariationMethod && implementsHandleRemoveVariationMethod;
 }
@@ -34,20 +34,19 @@
 
 @implementation OPTLYUserProfileNoOp
 
-- (void)save:(nonnull NSString *)userId
-  experiment:(nonnull NSString *)experimentKey
-   variation:(nonnull NSString *)variationKey {
+- (void)saveUser:(nonnull NSString *)userId
+      experiment:(nonnull NSString *)experimentKey
+       variation:(nonnull NSString *)variationKey {
     return;
 }
 
-- (nullable NSString *)getVariationFor:(nonnull NSString *)userId
-                            experiment:(nonnull NSString *)experimentKey
-{
+- (nullable NSString *)getVariationForUser:(nonnull NSString *)userId
+                                experiment:(nonnull NSString *)experimentKey {
     return nil;
 }
 
-- (void)remove:(nonnull NSString *)userId
-    experiment:(nonnull NSString *)experimentKey {
+- (void)removeUser:(nonnull NSString *)userId
+        experiment:(nonnull NSString *)experimentKey {
     return;
 }
 

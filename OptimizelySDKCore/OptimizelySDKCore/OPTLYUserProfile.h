@@ -26,9 +26,9 @@
  * @param variationKey The bucketed variation key.
  *
  **/
-- (void)save:(nonnull NSString *)userId
-  experiment:(nonnull NSString *)experimentKey
-   variation:(nonnull NSString *)variationKey;
+- (void)saveUser:(nonnull NSString *)userId
+      experiment:(nonnull NSString *)experimentKey
+       variation:(nonnull NSString *)variationKey;
 
 /**
  * Gets the saved variation for a given user ID, project ID, and experiment key.
@@ -38,8 +38,8 @@
  * @returns The variation that the user was bucketed into for the given project id and experiment key.
  *
  **/
-- (nullable NSString *)getVariationFor:(nonnull NSString *)userId
-                            experiment:(nonnull NSString *)experimentKey;
+- (nullable NSString *)getVariationForUser:(nonnull NSString *)userId
+                                experiment:(nonnull NSString *)experimentKey;
 
 /**
  * Removes a user ID's project-to-experiment-to-variation mapping.
@@ -48,8 +48,8 @@
  * @param experimentKey An active experiment for which the user should be bucketed into.
  *
  **/
-- (void)remove:(nonnull NSString *)userId
-    experiment:(nonnull NSString *)experimentKey;
+- (void)removeUser:(nonnull NSString *)userId
+        experiment:(nonnull NSString *)experimentKey;
 
 @end
 
