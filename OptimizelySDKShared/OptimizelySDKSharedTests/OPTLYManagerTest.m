@@ -16,7 +16,8 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
-#import <OptimizelySDKCore/OPTLYDatafileManager.h>
+
+#import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
 #import "OPTLYClient.h"
@@ -47,6 +48,39 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     [OHHTTPStubs removeAllStubs];
     self.defaultDatafile = nil;
     self.alternateDatafile = nil;
+}
+
+- (void)testInitializationSettingsGetPropogatedToClientAndCore {
+    // initialize manager settings
+    id<OPTLYDatafileManager> datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
+    id<OPTLYErrorHandler> errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+    id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+    id<OPTLYLogger> logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
+    id<OPTLYUserProfile> userProfile = [[OPTLYUserProfileNoOp alloc] init];
+    
+    // initialize Manager
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.datafile = self.defaultDatafile;
+        builder.datafileManager = datafileManager;
+        builder.errorHandler = errorHandler;
+        builder.eventDispatcher = eventDispatcher;
+        builder.logger = logger;
+        builder.projectId = kProjectId;
+        builder.userProfile = userProfile;
+    }];
+    XCTAssertEqual(manager.datafileManager, datafileManager);
+    
+    // get the client
+    OPTLYClient *client = [manager initializeClient];
+    XCTAssertEqual(client.logger, logger);
+    
+    // check optimizely core has been initialized correclty
+    Optimizely *optimizely = client.optimizely;
+    XCTAssertNotNil(optimizely);
+    XCTAssertEqual(optimizely.errorHandler, errorHandler);
+    XCTAssertEqual(optimizely.eventDispatcher, eventDispatcher);
+    XCTAssertEqual(optimizely.logger, logger);
+    XCTAssertEqual(optimizely.userProfile, userProfile);
 }
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
