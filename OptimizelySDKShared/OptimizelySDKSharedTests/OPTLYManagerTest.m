@@ -74,7 +74,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     OPTLYClient *client = [manager initializeClient];
     XCTAssertEqual(client.logger, logger);
     
-    // check optimizely core has been initialized correclty
+    // check optimizely core has been initialized correctly
     Optimizely *optimizely = client.optimizely;
     XCTAssertNotNil(optimizely);
     XCTAssertEqual(optimizely.errorHandler, errorHandler);
