@@ -26,8 +26,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSData *kDatafileData;
-static NSDictionary *const kCDNResponseHeaders =@{@"Content-Type":@"application/json",
-                                                  @"Last-Modified":kLastModifiedDate};
+static NSDictionary *kCDNResponseHeaders = nil;
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
@@ -46,6 +45,8 @@ static NSDictionary *const kCDNResponseHeaders =@{@"Content-Type":@"application/
 + (void)setUp {
     [super setUp];
     
+    kCDNResponseHeaders = @{@"Content-Type":@"application/json",
+                            @"Last-Modified":kLastModifiedDate};
     kDatafileData = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     
     // stub all requests
