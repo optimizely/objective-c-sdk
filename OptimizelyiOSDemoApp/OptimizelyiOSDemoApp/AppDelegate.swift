@@ -38,24 +38,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // get the datafile
+        let bundle = Bundle.init(for: self.classForCoder)
+        let filePath = bundle.path(forResource: datafileName, ofType: "json")
+        var jsonDatafile: Data? = nil
+        do {
+            let fileContents = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+            jsonDatafile = fileContents.data(using: String.Encoding.utf8)!
+        }
+        catch {
+            print("invalid JSON Data")
+        }
+        
+        // create the event dispatcher
+        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock{(builder)in
+            builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
+        }
+
+        // create the datafile manager
+        let datafileManager = OPTLYDatafileManager.initWithBuilderBlock{(builder) in
+            builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
+            builder!.projectId = self.projectId
+        }
+        
+        let optimizelyManager = OPTLYManager.initWithBuilderBlock {(builder) in
+            builder!.datafile = jsonDatafile
+            builder!.projectId = self.projectId
+            builder!.datafileManager = datafileManager!
+            builder!.eventDispatcher = eventDispatcher
+        }
+        
         // use different parameters if initializing Optimizely from downloaded datafile
         if self.downloadDatafile == true {
-            projectId = "7791451651"
             attributes = ["userType" : "new"]
             eventKey = "userEvent"
             experimentKey = "exp1"
             
-            // initialize Optimizely from a datafile download
-            initializeOptimizely(projectId:projectId, completionHandler: { (optimizely) in
-                let OPTLYVariation = optimizely?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
-                print("bucketed variation:", OPTLYVariation)
-                optimizely?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
+            // initialize Optimizely Client from a datafile download
+            optimizelyManager?.initializeClient(callback: { (error, optimizelyClient) in
+                let variation = optimizelyClient?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+                if (variation != nil) {
+                    print("bucketed variation:", variation!.variationKey)
+                }
+                optimizelyClient?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
             })
         } else {
-            // initialize Optimizely from a saved datafile
-            let optimizely = initializeOptimizely(datafileName: datafileName)
-            optimizely.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
-            optimizely.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
+            // initialize Optimizely Client from a saved datafile
+            let optimizelyClient = optimizelyManager?.initializeClient()
+            let variation = optimizelyClient?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+            if (variation != nil) {
+                print("bucketed variation:", variation!.variationKey)
+            }
+            optimizelyClient?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
         }
     
         
@@ -83,86 +117,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    // --- initialize Optimizely from a saved datafile ----
-    func initializeOptimizely(datafileName:String) -> Optimizely {
-        
-        var optimizely : Optimizely? = nil
-        let bundle = Bundle.init(for: self.classForCoder)
-        if let filePath = bundle.path(forResource: datafileName, ofType: "json") {
-            do {
-                let fileContents = try String.init(contentsOfFile: filePath, encoding: String.Encoding.utf8)
-                let jsonData = fileContents.data(using: String.Encoding.utf8)!
-                print(fileContents)
-                
-                let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
-                    builder?.datafile = jsonData
-                    builder?.userProfile = OPTLYUserProfile.init()
-                });
-                print("projectConfig: ", projectConfig)
-                
-                // create the event dispatcher
-                let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {(builder)in
-                    builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
-                }
-                let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
-                
-                // create the datafile manager
-                let datafileBuilderBlock : OPTLYDatafileManagerBuilderBlock = {[weak self] (builder) in
-                    builder?.datafileFetchInterval = TimeInterval(self!.datafileManagerDownloadInterval)
-                    builder?.projectId = self!.projectId
-                }
-                let datafileManager = OPTLYDatafileManager.initWithBuilderBlock(datafileBuilderBlock)
-                
-                optimizely = (Optimizely.initWithBuilderBlock({(builder)in
-                    builder!.datafile = jsonData
-                    builder!.eventDispatcher = eventDispatcher
-                    builder!.userProfile = OPTLYUserProfile.init()
-                    builder!.datafileManager = datafileManager;
-                }))
-            } catch {
-                print("invalid json data")
-            }
-        }
-        
-        return optimizely!
-    }
-    
-    // ----  initialize Optimizely from a datafile download ----
-    func initializeOptimizely(projectId:String, completionHandler: @escaping (_ optimizely:Optimizely?) -> Void) -> Void {
-        
-        let networkService = OPTLYNetworkService()
-        
-        // create the event dispatcher
-        let eventDispatcherBuilderBlock : OPTLYEventDispatcherBuilderBlock = {[weak self] (builder)in
-            builder?.eventDispatcherDispatchInterval = self!.eventDispatcherDispatchInterval
-        }
-        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock(eventDispatcherBuilderBlock)
-        
-        // create the datafile manager
-        let datafileBuilderBlock : OPTLYDatafileManagerBuilderBlock = {[weak self] (builder) in
-            builder?.datafileFetchInterval = TimeInterval(self!.datafileManagerDownloadInterval)
-            builder?.projectId = self!.projectId
-        }
-        let datafileManager = OPTLYDatafileManager.initWithBuilderBlock(datafileBuilderBlock)
-        
-        networkService.downloadProjectConfig(projectId) { (data, response, error) in
-            let projectConfig = OPTLYProjectConfig.initWithBuilderBlock({ (builder) in
-                builder?.datafile = data!
-                builder?.userProfile = OPTLYUserProfile.init()
-            });
-            print("projectConfig: ", projectConfig)
-            
-            let optimizely : Optimizely? = (Optimizely.initWithBuilderBlock({(builder)in
-                builder!.datafile = data;
-                builder!.eventDispatcher = eventDispatcher;
-                builder!.userProfile = OPTLYUserProfile.init()
-                builder!.datafileManager = datafileManager
-            }));
-            
-            completionHandler(optimizely)
-        }
-    }
-    
 }
 
