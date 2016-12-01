@@ -26,6 +26,8 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSData *kDatafileData;
+static NSDictionary *const kCDNResponseHeaders =@{@"Content-Type":@"application/json",
+                                                  @"Last-Modified":kLastModifiedDate};
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
@@ -148,6 +150,8 @@ static NSData *kDatafileData;
     
     // make sure we were able to save the datafile
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // clean up stub
     [OHHTTPStubs removeStub:stub];
 }
 
@@ -242,8 +246,7 @@ static NSData *kDatafileData;
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithData:kDatafileData
                                           statusCode:200
-                                             headers:@{@"Content-Type":@"application/json",
-                                                       @"Last-Modified":kLastModifiedDate}];
+                                             headers:kCDNResponseHeaders];
     }];
 }
 
@@ -258,14 +261,12 @@ static NSData *kDatafileData;
         if ([request.allHTTPHeaderFields objectForKey:@"If-Modified-Since"] != nil) {
             return [OHHTTPStubsResponse responseWithData:nil
                                               statusCode:304
-                                                 headers:@{@"Content-Type":@"application/json",
-                                                           @"Last-Modified":kLastModifiedDate}];
+                                                 headers:kCDNResponseHeaders];
         }
         else {
             return [OHHTTPStubsResponse responseWithData:kDatafileData
                                               statusCode:200
-                                                 headers:@{@"Content-Type":@"application/json",
-                                                           @"Last-Modified":kLastModifiedDate}];
+                                                 headers:kCDNResponseHeaders];
 
         }
     }];
@@ -281,8 +282,7 @@ static NSData *kDatafileData;
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [OHHTTPStubsResponse responseWithData:nil
                                           statusCode:400
-                                             headers:@{@"Content-Type":@"application/json",
-                                                       @"Last-Modified":kLastModifiedDate}];
+                                             headers:kCDNResponseHeaders];
     }];
 }
 
