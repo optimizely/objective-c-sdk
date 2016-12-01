@@ -122,6 +122,8 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning =
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATABASE] tvOS can only remove data from cache> Number of events: %ld, eventType: %ld.";
 
 // ---- User Profile ----
+//warning
+NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile = @"Variation %@ for experiment %@ no longer found in datafile.";
 // Debug
 NSString *const OPTLYLoggerMessagesUserProfileVariation = @"Variation %@ for user %@, experiment %@ found.";
 NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user %@, experiment %@ not found.";
