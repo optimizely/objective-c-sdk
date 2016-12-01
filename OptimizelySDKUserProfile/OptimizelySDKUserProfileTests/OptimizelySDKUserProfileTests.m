@@ -38,13 +38,13 @@ static NSString * const kVariationKey3b = @"testVariation3";
 static NSString * const kExperimentKey3c = @"testExperiment3";
 static NSString * const kVariationKey3c = @"testVariation3";
 
-NSString * const kOriginalDatafileName = @"InitialDatafile";
-NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
-NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
-NSString * const kUserProfileExperimentOriginalVariationKey = @"original";
-NSString * const kUserProfileExperimentTreatmentVariationKey = @"treatment";
-NSData *originalDatafile;
-NSData *updatedDatafile;
+static NSString * const kOriginalDatafileName = @"InitialDatafile";
+static NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
+static NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
+static NSString * const kUserProfileExperimentOriginalVariationKey = @"original";
+static NSString * const kUserProfileExperimentTreatmentVariationKey = @"treatment";
+static NSData *originalDatafile;
+static NSData *updatedDatafile;
 
 @interface OPTLYUserProfile(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
