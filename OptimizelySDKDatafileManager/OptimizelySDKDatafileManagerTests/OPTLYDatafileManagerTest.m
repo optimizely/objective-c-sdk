@@ -25,6 +25,8 @@ static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
+static NSData *kDatafileData;
+static NSDictionary *kCDNResponseHeaders = nil;
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
@@ -42,6 +44,10 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
 + (void)setUp {
     [super setUp];
+    
+    kCDNResponseHeaders = @{@"Content-Type":@"application/json",
+                            @"Last-Modified":kLastModifiedDate};
+    kDatafileData = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     
     // stub all requests
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
@@ -82,7 +88,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     XCTAssertNotNil(self.datafileManager);
     
     // stub network call
-    [self stubResponse:400];
+    id<OHHTTPStubsDescriptor> stub = [self stub400Response];
     
     // setup async expectation
     __block Boolean completionWasCalled = false;
@@ -100,17 +106,16 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertTrue(completionWasCalled);
 
+    // clean up stub
+    [OHHTTPStubs removeStub:stub];
 }
 
 - (void)testSaveDatafileMethod {
     XCTAssertNotNil(self.datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     
-    // get the datafile
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    
     // save the datafile
-    [self.datafileManager saveDatafile:datafile];
+    [self.datafileManager saveDatafile:kDatafileData];
     
     // test the datafile was saved correctly
     bool fileExists = [self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
@@ -121,8 +126,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
                                           error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(savedData);
-    XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
-    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
+    XCTAssertNotEqual(kDatafileData, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
+    XCTAssertEqualObjects(kDatafileData, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
 }
 
 // if 200 response, save the {projectID : lastModifiedDate} and datafile
@@ -133,7 +138,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
     // setup stubbing and listener expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
-    [self stubResponse:200];
+    id<OHHTTPStubsDescriptor> stub = [self stub200Response];
     
     // Call download datafile
     [self.datafileManager downloadDatafile:self.datafileManager.projectId
@@ -145,7 +150,10 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     }];
     
     // make sure we were able to save the datafile
-    [self waitForExpectationsWithTimeout:2 handler:nil];    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // clean up stub
+    [OHHTTPStubs removeStub:stub];
 }
 
 // timer is enabled if the download interval is > 0
@@ -188,11 +196,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 {
     XCTAssertFalse(self.datafileManager.isDatafileCached, @"Datafile cached flag should be false.");
     
-    // get the datafile
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    
     // save the datafile
-    [self.datafileManager saveDatafile:datafile];
+    [self.datafileManager saveDatafile:kDatafileData];
     
     XCTAssertTrue(self.datafileManager.isDatafileCached, @"Datafile cached flag should be true.");
 }
@@ -200,30 +205,86 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 // if 304 response datafile and last modified date should not have been saved
 - (void)test304Response
 {
-    [self stubResponse:304];
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"downloadDatafile304Response"];
+    // stub response
+    id<OHHTTPStubsDescriptor> stub = [self stub304Response];
+    
+    // make sure we get a 200 the first time around and save that datafile
+    __weak XCTestExpectation *expect200 = [self expectationWithDescription:@"should get a 200 on first try"];
+    XCTAssertFalse([self.datafileManager isDatafileCached]);
+    [self.datafileManager downloadDatafile:kProjectId
+                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                             XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode , 200);
+                             XCTAssertTrue([self.datafileManager isDatafileCached]);
+                             [expect200 fulfill];
+                         }];
+    // wait for datafile download to finish
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    
+    __weak XCTestExpectation *expect304 = [self expectationWithDescription:@"downloadDatafile304Response"];
+    XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
+    XCTAssertNotNil([self.datafileManager getLastModifiedDate:kProjectId]);
     [self.datafileManager downloadDatafile:kProjectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"Datafile should not have been saved.");
-        NSString *savedLastModifiedData = [self.datafileManager getLastModifiedDate:kProjectId];
-        XCTAssertNil(savedLastModifiedData, @"No modified date should have been saved.");
-        [expectation fulfill];
+        XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode, 304);
+        XCTAssertNotNil(data);
+        XCTAssertEqualObjects(data, kDatafileData);
+        [expect304 fulfill];
     }];
 
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // remove stub
+    [OHHTTPStubs removeStub:stub];
 }
 
 # pragma mark - Helper Methods
-- (void)stubResponse:(int)statusCode {
+- (id<OHHTTPStubsDescriptor>)stub200Response {
     NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
     NSString *hostName = [hostURL host];
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+    return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
-                                          statusCode:statusCode
-                                             headers:@{@"Content-Type":@"application/json",
-                                                       @"Last-Modified":kLastModifiedDate}];
+        return [OHHTTPStubsResponse responseWithData:kDatafileData
+                                          statusCode:200
+                                             headers:kCDNResponseHeaders];
     }];
 }
+
+// 304 returns nil data
+- (id<OHHTTPStubsDescriptor>)stub304Response {
+    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSString *hostName = [hostURL host];
+    
+    return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return [request.URL.host isEqualToString:hostName];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        if ([request.allHTTPHeaderFields objectForKey:@"If-Modified-Since"] != nil) {
+            return [OHHTTPStubsResponse responseWithData:nil
+                                              statusCode:304
+                                                 headers:kCDNResponseHeaders];
+        }
+        else {
+            return [OHHTTPStubsResponse responseWithData:kDatafileData
+                                              statusCode:200
+                                                 headers:kCDNResponseHeaders];
+
+        }
+    }];
+}
+
+// 400 returns nil data
+- (id<OHHTTPStubsDescriptor>)stub400Response {
+    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSString *hostName = [hostURL host];
+    
+    return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return [request.URL.host isEqualToString:hostName];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:nil
+                                          statusCode:400
+                                             headers:kCDNResponseHeaders];
+    }];
+}
+
 @end
