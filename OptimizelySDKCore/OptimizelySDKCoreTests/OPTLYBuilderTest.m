@@ -129,4 +129,11 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNil(optimizely);
 }
 
+- (void)testBuilderReturnsNilWithBadDatafile {
+    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [[NSData alloc] init];
+    }];
+    XCTAssertNil(optimizely);
+}
+
 @end
