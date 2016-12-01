@@ -40,11 +40,13 @@ static NSString * const kVariationKey3c = @"testVariation3";
 
 static NSString * const kOriginalDatafileName = @"InitialDatafile";
 static NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
+static NSString * const kRemovedVariationDatafileName = @"RemovedVariationDatafile";
 static NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
 static NSString * const kUserProfileExperimentOriginalVariationKey = @"original";
 static NSString * const kUserProfileExperimentTreatmentVariationKey = @"treatment";
 static NSData *originalDatafile;
 static NSData *updatedDatafile;
+static NSData *removedVariationDatafile;
 
 @interface OPTLYUserProfile(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
@@ -62,6 +64,7 @@ static NSData *updatedDatafile;
     // load the datafiles
     originalDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kOriginalDatafileName];
     updatedDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kUpdatedDatafileName];
+    removedVariationDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kRemovedVariationDatafileName];
     
     // stub all requests
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
@@ -237,7 +240,7 @@ static NSData *updatedDatafile;
     OPTLYVariation *originalVariation = [originalClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
     XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
-    
+    XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
     
     OPTLYClient *updatedClient = [manager initializeClientWithDatafile:updatedDatafile];
     XCTAssertNotNil(updatedClient);
@@ -248,6 +251,40 @@ static NSData *updatedDatafile;
     XCTAssertNotNil(variationForUser1);
     XCTAssertEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
     XCTAssertEqualObjects(originalVariation.variationId, variationForUser1.variationId);
+}
+
+- (void)testStickyBucketingRevertsWhenVariationIsRemoved {
+    // make sure we have 2 different datafiles
+    XCTAssertNotNil(originalDatafile);
+    XCTAssertNotNil(removedVariationDatafile);
+    XCTAssertNotEqualObjects(originalDatafile, removedVariationDatafile);
+    
+    // instantiate the manager
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = @"projectId";
+        __block id<OPTLYLogger> logger = builder.logger;
+        builder.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+            builder.logger = logger;
+        }];
+    }];
+    XCTAssertNotNil(manager);
+    
+    OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
+    XCTAssertNotNil(originalClient);
+    OPTLYVariation *originalVariation = [originalClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
+    XCTAssertNotNil(originalVariation);
+    XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
+    XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
+    
+    // update client with a new datafile
+    OPTLYClient *updatedClient = [manager initializeClientWithDatafile:removedVariationDatafile];
+    XCTAssertNotNil(updatedClient);
+    XCTAssertNotNil([updatedClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be same as original client");
+    OPTLYVariation *variationForUser1 = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
+    XCTAssertNotNil(variationForUser1);
+    XCTAssertNotEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
+    XCTAssertNotEqualObjects(originalVariation.variationId, variationForUser1.variationId);
+    XCTAssertEqualObjects(variationForUser1.variationKey, kUserProfileExperimentTreatmentVariationKey, @"treatment should be the new variation since original was removed");
 }
 
 @end
