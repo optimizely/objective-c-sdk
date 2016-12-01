@@ -241,9 +241,9 @@ static NSData *updatedDatafile;
     
     OPTLYClient *updatedClient = [manager initializeClientWithDatafile:updatedDatafile];
     XCTAssertNotNil(updatedClient);
-    OPTLYVariation *updatedVaraition = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId2];
-    XCTAssertNotNil(updatedVaraition);
-    XCTAssertEqualObjects(updatedVaraition.variationKey, kUserProfileExperimentTreatmentVariationKey);
+    OPTLYVariation *updatedVariation = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId2];
+    XCTAssertNotNil(updatedVariation);
+    XCTAssertEqualObjects(updatedVariation.variationKey, kUserProfileExperimentTreatmentVariationKey);
     OPTLYVariation *variationForUser1 = [updatedClient activateExperiment:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(variationForUser1);
     XCTAssertEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
