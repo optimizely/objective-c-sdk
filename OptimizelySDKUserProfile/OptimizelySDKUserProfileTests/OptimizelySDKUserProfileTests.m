@@ -46,11 +46,11 @@ static NSString * const kVariationKey3c = @"testVariation3";
     self.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder *builder) {
         builder.logger = [OPTLYLoggerDefault new];
     }];
-    [self.userProfile save:kUserId1 experiment:kExperimentKey1 variation:kVariationKey1];
-    [self.userProfile save:kUserId2 experiment:kExperimentKey2 variation:kVariationKey2];
-    [self.userProfile save:kUserId3 experiment:kExperimentKey3a variation:kVariationKey3a];
-    [self.userProfile save:kUserId3 experiment:kExperimentKey3b variation:kVariationKey3b];
-    [self.userProfile save:kUserId3 experiment:kExperimentKey3c variation:kVariationKey3c];
+    [self.userProfile saveUser:kUserId1 experiment:kExperimentKey1 variation:kVariationKey1];
+    [self.userProfile saveUser:kUserId2 experiment:kExperimentKey2 variation:kVariationKey2];
+    [self.userProfile saveUser:kUserId3 experiment:kExperimentKey3a variation:kVariationKey3a];
+    [self.userProfile saveUser:kUserId3 experiment:kExperimentKey3b variation:kVariationKey3b];
+    [self.userProfile saveUser:kUserId3 experiment:kExperimentKey3c variation:kVariationKey3c];
     [super setUp];
 }
 
@@ -94,40 +94,40 @@ static NSString * const kVariationKey3c = @"testVariation3";
 
 - (void)testGetVariation
 {
-    NSString *variationKey1 = [self.userProfile getVariationFor:kUserId1 experiment:kExperimentKey1];
+    NSString *variationKey1 = [self.userProfile getVariationForUser:kUserId1 experiment:kExperimentKey1];
     XCTAssert([variationKey1 isEqualToString:kVariationKey1], @"Invalid variation for userId 1 for getVariation.");
     
-    NSString *variationKey2 = [self.userProfile getVariationFor:kUserId2 experiment:kExperimentKey2];
+    NSString *variationKey2 = [self.userProfile getVariationForUser:kUserId2 experiment:kExperimentKey2];
     XCTAssert([variationKey2 isEqualToString:kVariationKey2], @"Invalid variation for userId 2 for getVariation.");
     
-    NSString *variationKey3a = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3a];
+    NSString *variationKey3a = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3a];
     XCTAssert([variationKey3a isEqualToString:kVariationKey3a], @"Invalid variation for userId 3a for getVariation.");
     
-    NSString *variationKey3b = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3b];
+    NSString *variationKey3b = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3b];
     XCTAssert([variationKey3b isEqualToString:kVariationKey3b], @"Invalid variation for userId 3b for getVariation.");
     
-    NSString *variationKey3c = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3c];
+    NSString *variationKey3c = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3c];
     XCTAssert([variationKey3c isEqualToString:kVariationKey3c], @"Invalid variation for userId 3c for getVariation.");
 
 }
 
 - (void)testRemoveVariation
 {
-    [self.userProfile remove:kUserId1 experiment:kExperimentKey1];
-    NSString *variationKey1 = [self.userProfile getVariationFor:kUserId1 experiment:kExperimentKey1];
+    [self.userProfile removeUser:kUserId1 experiment:kExperimentKey1];
+    NSString *variationKey1 = [self.userProfile getVariationForUser:kUserId1 experiment:kExperimentKey1];
     XCTAssertNil(variationKey1, @"Variation for userId 1 should be removed.");
     
-    [self.userProfile remove:kUserId2 experiment:kExperimentKey1];
-    NSString *variationKey2 = [self.userProfile getVariationFor:kUserId2 experiment:kExperimentKey2];
+    [self.userProfile removeUser:kUserId2 experiment:kExperimentKey1];
+    NSString *variationKey2 = [self.userProfile getVariationForUser:kUserId2 experiment:kExperimentKey2];
     XCTAssertNotNil(variationKey2, @"Variation for userId 1 should not have been removed.");
     
-    [self.userProfile remove:kUserId3 experiment:kExperimentKey2];
+    [self.userProfile removeUser:kUserId3 experiment:kExperimentKey2];
 
-    NSString *variationKey3a = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3a];
+    NSString *variationKey3a = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3a];
     XCTAssertNotNil(variationKey3a, @"Variation for userId 3a should not have been removed.");
     
-    [self.userProfile remove:kUserId3 experiment:kExperimentKey3c];
-    NSString *variationKey3c = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3c];
+    [self.userProfile removeUser:kUserId3 experiment:kExperimentKey3c];
+    NSString *variationKey3c = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3c];
     XCTAssertNil(variationKey3c, @"Variation for userId 3c should have been removed.");
 }
 
@@ -135,19 +135,19 @@ static NSString * const kVariationKey3c = @"testVariation3";
 {
     [self.userProfile removeUserExperimentRecordsForUser:kUserId1];
     
-    NSString *variationKey1 = [self.userProfile getVariationFor:kUserId1 experiment:kExperimentKey1];
+    NSString *variationKey1 = [self.userProfile getVariationForUser:kUserId1 experiment:kExperimentKey1];
     XCTAssertNil(variationKey1, @"Variation for userId 1 should have been removed.");
     
-    NSString *variationKey2 = [self.userProfile getVariationFor:kUserId2 experiment:kExperimentKey2];
+    NSString *variationKey2 = [self.userProfile getVariationForUser:kUserId2 experiment:kExperimentKey2];
     XCTAssertNotNil(variationKey2, @"Variation for userId 2 should not be removed.");
     
-    NSString *variationKey3a = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3a];
+    NSString *variationKey3a = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3a];
     XCTAssertNotNil(variationKey3a, @"Variation for userId 3a should not be removed.");
     
-    NSString *variationKey3b = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3b];
+    NSString *variationKey3b = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3b];
     XCTAssertNotNil(variationKey3b, @"Variation for userId 3b should not be removed.");
     
-    NSString *variationKey3c = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3c];
+    NSString *variationKey3c = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3c];
     XCTAssertNotNil(variationKey3c, @"Variation for userId 3c should not be removed.");
     
     NSDictionary *userData = [self.userProfile.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
@@ -158,19 +158,19 @@ static NSString * const kVariationKey3c = @"testVariation3";
 {
     [self.userProfile removeAllUserExperimentRecords];
     
-    NSString *variationKey1 = [self.userProfile getVariationFor:kUserId1 experiment:kExperimentKey1];
+    NSString *variationKey1 = [self.userProfile getVariationForUser:kUserId1 experiment:kExperimentKey1];
     XCTAssertNil(variationKey1, @"Variation for userId 1 should be removed.");
     
-    NSString *variationKey2 = [self.userProfile getVariationFor:kUserId2 experiment:kExperimentKey2];
+    NSString *variationKey2 = [self.userProfile getVariationForUser:kUserId2 experiment:kExperimentKey2];
     XCTAssertNil(variationKey2, @"Variation for userId 2 should be removed.");
     
-    NSString *variationKey3a = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3a];
+    NSString *variationKey3a = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3a];
     XCTAssertNil(variationKey3a, @"Variation for userId 3 should be removed.");
 
-    NSString *variationKey3b = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3b];
+    NSString *variationKey3b = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3b];
     XCTAssertNil(variationKey3b, @"Variation for userId 3b should be removed.");
     
-    NSString *variationKey3c = [self.userProfile getVariationFor:kUserId3 experiment:kExperimentKey3c];
+    NSString *variationKey3c = [self.userProfile getVariationForUser:kUserId3 experiment:kExperimentKey3c];
     XCTAssertNil(variationKey3c, @"Variation for userId 3c should be removed.");
     
     NSDictionary *userData = [self.userProfile.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
