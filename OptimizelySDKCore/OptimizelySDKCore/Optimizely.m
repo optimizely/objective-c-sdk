@@ -150,6 +150,11 @@ static NSString *const kValue = @"value";
             if (storedVariation != nil) {
                 return storedVariation;
             }
+            else { // stored variation is no longer in datafile
+                [self.userProfile removeUser:userId experiment:experimentKey];
+                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationKey, experimentKey]
+                              withLevel:OptimizelyLogLevelWarning];
+            }
         }
     }
     OPTLYVariation *bucketedVariation = nil;
