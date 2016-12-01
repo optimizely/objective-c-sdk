@@ -25,6 +25,7 @@ static NSString *const kProjectId = @"6372300739";
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
+static NSData *kDatafileData;
 
 @interface OPTLYDatafileManager(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
@@ -42,6 +43,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 
 + (void)setUp {
     [super setUp];
+    
+    kDatafileData = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     
     // stub all requests
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
@@ -108,11 +111,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     XCTAssertNotNil(self.datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     
-    // get the datafile
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    
     // save the datafile
-    [self.datafileManager saveDatafile:datafile];
+    [self.datafileManager saveDatafile:kDatafileData];
     
     // test the datafile was saved correctly
     bool fileExists = [self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile];
@@ -123,8 +123,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
                                           error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(savedData);
-    XCTAssertNotEqual(datafile, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
-    XCTAssertEqualObjects(datafile, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
+    XCTAssertNotEqual(kDatafileData, savedData, @"we should not be referencing the same object. Saved data should be a new NSData object created from disk.");
+    XCTAssertEqualObjects(kDatafileData, savedData, @"retrieved saved data from disk should be equivalent to the datafile we wanted to save to disk");
 }
 
 // if 200 response, save the {projectID : lastModifiedDate} and datafile
@@ -191,11 +191,8 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 {
     XCTAssertFalse(self.datafileManager.isDatafileCached, @"Datafile cached flag should be false.");
     
-    // get the datafile
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    
     // save the datafile
-    [self.datafileManager saveDatafile:datafile];
+    [self.datafileManager saveDatafile:kDatafileData];
     
     XCTAssertTrue(self.datafileManager.isDatafileCached, @"Datafile cached flag should be true.");
 }
@@ -225,7 +222,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     [self.datafileManager downloadDatafile:kProjectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode, 304);
         XCTAssertNotNil(data);
-        XCTAssertEqualObjects(data, [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]);
+        XCTAssertEqualObjects(data, kDatafileData);
         [expect304 fulfill];
     }];
 
@@ -243,7 +240,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
+        return [OHHTTPStubsResponse responseWithData:kDatafileData
                                           statusCode:200
                                              headers:@{@"Content-Type":@"application/json",
                                                        @"Last-Modified":kLastModifiedDate}];
@@ -265,7 +262,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
                                                            @"Last-Modified":kLastModifiedDate}];
         }
         else {
-            return [OHHTTPStubsResponse responseWithData:[OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName]
+            return [OHHTTPStubsResponse responseWithData:kDatafileData
                                               statusCode:200
                                                  headers:@{@"Content-Type":@"application/json",
                                                            @"Last-Modified":kLastModifiedDate}];
