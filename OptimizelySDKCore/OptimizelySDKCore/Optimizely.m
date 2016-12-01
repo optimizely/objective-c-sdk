@@ -53,7 +53,6 @@ static NSString *const kValue = @"value";
         if (self != nil) {
             _bucketer = builder.bucketer;
             _config = builder.config;
-            _datafileManager = builder.datafileManager;
             _eventBuilder = builder.eventBuilder;
             _eventDispatcher = builder.eventDispatcher;
             _errorHandler = builder.errorHandler;

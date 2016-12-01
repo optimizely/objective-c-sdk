@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileManager.h"
-#import "OPTLYNetworkService.h"
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 
 @implementation OPTLYDatafileManagerUtility
 
