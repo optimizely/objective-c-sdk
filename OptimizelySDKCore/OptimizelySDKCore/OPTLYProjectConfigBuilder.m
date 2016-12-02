@@ -31,6 +31,13 @@
     if (self != nil) {
         block(self);
     }
+    else {
+        return nil;
+    }
+    if (_datafile == nil) {
+        return nil;
+    }
+    
     return self;
 }
 

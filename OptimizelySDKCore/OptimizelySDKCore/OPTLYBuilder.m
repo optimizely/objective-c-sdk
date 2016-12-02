@@ -51,10 +51,10 @@
     }
     
     _config = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
-        builder.datafile = _datafile;
-        builder.userProfile = _userProfile;
-        builder.logger = _logger;
-        builder.errorHandler = _errorHandler;
+        builder.datafile = self.datafile;
+        builder.userProfile = self.userProfile;
+        builder.logger = self.logger;
+        builder.errorHandler = self.errorHandler;
     }];
     
     if (_config == nil) {
