@@ -74,7 +74,7 @@ static NSString * const kAccountId = @"6365361536";
     XCTAssertNil(projectConfig, @"project config should be nil.");
 }
 
-- (void)testInitWithBuilderBlockInvalidModules {
+- (void)testInitWithBuilderBlockInvalidModulesFails {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     
     id<OPTLYUserProfile> userProfile = [NSObject new];
@@ -88,10 +88,7 @@ static NSString * const kAccountId = @"6365361536";
         builder.errorHandler = errorHandler;
     }];
     
-    XCTAssertNotNil(projectConfig, @"project config should not be nil.");
-    XCTAssertNil(projectConfig.userProfile, @"userProfile should be nil.");
-    XCTAssert(projectConfig.logger, @"logger should not be nil.");  // default logger is set
-    XCTAssert(projectConfig.errorHandler, @"error handler should not be nil."); // default error handler is set
+    XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
 }
 
 - (void)testInitWithDatafile
@@ -150,4 +147,5 @@ static NSString * const kAccountId = @"6365361536";
         NSAssert([event isKindOfClass:[OPTLYEvent class]], @"deserializeJSONArray failed to deserialize the event object in project config.");
     }
 }
+
 @end

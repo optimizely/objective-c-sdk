@@ -30,6 +30,9 @@
     self = [super init];
     if (self != nil) {
         block(self);
+        if (!_datafile) {
+            return nil;
+        }
     }
     return self;
 }

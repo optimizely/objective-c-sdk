@@ -54,82 +54,88 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 }
 
 - (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
+    // check for valid error handler
+    if (builder.errorHandler) {
+        if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesErrorHandlerInvalid
+                                             userInfo:@{NSLocalizedDescriptionKey :
+                                                            NSLocalizedString(OPTLYErrorHandlerMessagesErrorHandlerInvalid, nil)}];
+            [[[OPTLYErrorHandlerNoOp alloc] init] handleError:error];
+            
+            NSString *logMessage = OPTLYErrorHandlerMessagesErrorHandlerInvalid;
+            [[[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll] logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
+    }
     
+    // check for valid logger
+    if (builder.logger) {
+        if (![builder.logger conformsToProtocol:@protocol(OPTLYLogger)]) {
+            builder.logger = [OPTLYLoggerDefault new];
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesLoggerInvalid
+                                             userInfo:@{NSLocalizedDescriptionKey :
+                                                            NSLocalizedString(OPTLYErrorHandlerMessagesLoggerInvalid, nil)}];
+            [builder.errorHandler handleError:error];
+            
+            NSString *logMessage = OPTLYErrorHandlerMessagesLoggerInvalid;
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
+    }
+    
+    // check that datafile exists
     if (!builder.datafile) {
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                              code:OPTLYErrorTypesDatafileInvalid
                                          userInfo:@{NSLocalizedDescriptionKey :
                                                         NSLocalizedString(OPTLYErrorHandlerMessagesDataFileInvalid, nil)}];
-        [_errorHandler handleError:error];
+        [builder.errorHandler handleError:error];
         
         NSString *logMessage = OPTLYErrorHandlerMessagesDataFileInvalid;
-        [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         return nil;
     }
     
-    NSError *datafileError;
-    @try {
-        self = [super initWithData:builder.datafile error:&datafileError];
-    }
-    @catch (NSException *datafileException) {
-        [_errorHandler handleException:datafileException];
-    }
-    
-    if (datafileError)
-    {
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesDatafileInvalid
-                                         userInfo:datafileError.userInfo];
-        [_errorHandler handleError:error];
-        return nil;
-    }
-    
-    if (builder.errorHandler) {
-        if ([OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
-            _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
-        } else {
-            _errorHandler = [OPTLYErrorHandlerDefault new];
-            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                 code:OPTLYErrorTypesErrorHandlerInvalid
-                                             userInfo:@{NSLocalizedDescriptionKey :
-                                                            NSLocalizedString(OPTLYErrorHandlerMessagesErrorHandlerInvalid, nil)}];
-            [_errorHandler handleError:error];
-            
-            NSString *logMessage = OPTLYErrorHandlerMessagesErrorHandlerInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-        }
-    }
-    
-    if (builder.logger) {
-        if ([builder.logger conformsToProtocol:@protocol(OPTLYLogger)]) {
-            _logger = (id<OPTLYLogger, Ignore>)builder.logger;
-        } else {
-            _logger = [OPTLYLoggerDefault new];
-            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                 code:OPTLYErrorTypesLoggerInvalid
-                                             userInfo:@{NSLocalizedDescriptionKey :
-                                                            NSLocalizedString(OPTLYErrorHandlerMessagesLoggerInvalid, nil)}];
-            [_errorHandler handleError:error];
-            
-            NSString *logMessage = OPTLYErrorHandlerMessagesLoggerInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-        }
-    }
-    
+    // check for valid user profile
     if (builder.userProfile) {
-        if ([OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
-            _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
-        } else {
+        if (![OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesUserProfile
                                              userInfo:@{NSLocalizedDescriptionKey :
                                                             NSLocalizedString(OPTLYErrorHandlerMessagesUserProfileInvalid, nil)}];
-            [_errorHandler handleError:error];
+            [builder.errorHandler handleError:error];
             
             NSString *logMessage = OPTLYErrorHandlerMessagesUserProfileInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            return nil;
         }
     }
+    
+    // check datafile is valid
+    @try {
+        NSError *datafileError;
+        OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
+        if (datafileError)
+        {
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesDatafileInvalid
+                                             userInfo:datafileError.userInfo];
+            [builder.errorHandler handleError:error];
+            return nil;
+        }
+        else {
+            self = projectConfig;
+        }
+    }
+    @catch (NSException *datafileException) {
+        [builder.errorHandler handleException:datafileException];
+    }
+    
+    _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
+    _logger = (id<OPTLYLogger, Ignore>)builder.logger;
+    _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
     return self;
 }
 
