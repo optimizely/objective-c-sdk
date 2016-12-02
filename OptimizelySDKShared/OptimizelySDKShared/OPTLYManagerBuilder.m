@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYManagerBuilder.h"
-#import <OptimizelySDKCore/OPTLYDatafileManager.h>
+#import "OPTLYDatafilemanager.h"
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>

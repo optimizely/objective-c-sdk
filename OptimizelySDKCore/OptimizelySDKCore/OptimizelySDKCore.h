@@ -17,7 +17,6 @@
 #import "Optimizely.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYBuilder.h"
-#import "OPTLYDatafileManager.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYErrorHandlerMessages.h"
 #import "OPTLYEventBuilder.h"
