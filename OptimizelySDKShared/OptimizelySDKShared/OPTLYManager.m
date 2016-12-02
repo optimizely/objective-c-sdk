@@ -98,6 +98,9 @@
 
 - (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
     [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if ([(NSHTTPURLResponse *)response statusCode] == 304) {
+            data = [self.datafileManager getSavedDatafile];
+        }
         if (!error) {
             OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:data];
             if (client.optimizely) {

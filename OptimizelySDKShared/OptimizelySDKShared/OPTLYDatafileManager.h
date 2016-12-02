@@ -21,6 +21,13 @@
 @protocol OPTLYDatafileManager <NSObject>
 
 /**
+ * Retrieve the datafile that is currently saved on the device.
+ * @return NSData object that should be the most recently downloaded datafile.
+ *      Will be nil if no datafile has been successfully downloaded.
+ */
+- (NSData *)getSavedDatafile;
+
+/**
  * Download the datafile for the project ID
  * @param projectId The project ID of the datafile to request.
  * @param completion Completion handler.
