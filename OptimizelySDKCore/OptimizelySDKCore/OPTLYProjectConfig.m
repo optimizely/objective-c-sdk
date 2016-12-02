@@ -54,7 +54,7 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 }
 
 - (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
-    // check for valid error handler and logger
+    // check for valid error handler
     if (builder.errorHandler) {
         if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

@@ -27,17 +27,13 @@
 }
 
 - (id)initWithBlock:(OPTLYProjectConfigBuilderBlock)block {
+    if (!_datafile) {
+        return nil;
+    }
     self = [super init];
     if (self != nil) {
         block(self);
     }
-    else {
-        return nil;
-    }
-    if (_datafile == nil) {
-        return nil;
-    }
-    
     return self;
 }
 
