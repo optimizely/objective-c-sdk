@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class Optimizely, OPTLYProjectConfig, OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault;
-@protocol OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
+@protocol OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
 
 /**
  * This class contains the informaation on how your Optimizely Client instance will be built.
@@ -39,6 +39,8 @@ typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nonnull builder);
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYEventDispatcher> eventDispatcher;
 /// The logger is by default set to one that is created by Optimizely. This default logger can be overridden by any object that conforms to the OPTLYLogger protocol.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
+/// User profile to be used by the Optimizely instance to store user-specific data.
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
 
 /// Create an Optimizely Client object.
 + (nonnull instancetype)builderWithBlock:(nonnull OPTLYClientBuilderBlock)block;

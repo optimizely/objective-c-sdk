@@ -28,6 +28,7 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
+#import "OPTLYUserProfile.h"
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
@@ -140,11 +141,29 @@ static NSString *const kValue = @"value";
                                        userId:(NSString *)userId
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
+    if (self.userProfile != nil) {
+        NSString *storedVariationKey = [self.userProfile getVariationForUser:userId experiment:experimentKey];
+        if (storedVariationKey != nil) {
+            OPTLYVariation *storedVariation = [[self.config getExperimentForKey:experimentKey]
+                                               getVariationForVariationKey:storedVariationKey];
+            if (storedVariation != nil) {
+                return storedVariation;
+            }
+            else { // stored variation is no longer in datafile
+                [self.userProfile removeUser:userId experiment:experimentKey];
+                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationKey, experimentKey]
+                              withLevel:OptimizelyLogLevelWarning];
+            }
+        }
+    }
     OPTLYVariation *bucketedVariation = nil;
     bucketedVariation = [self.config getVariationForExperiment:experimentKey
                                                         userId:userId
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
+    [self.userProfile saveUser:userId
+                experiment:experimentKey
+                 variation:bucketedVariation.variationKey];
     return bucketedVariation;
 }
 

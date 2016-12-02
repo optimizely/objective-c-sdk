@@ -14,37 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYClientBuilder.h"
-#import <OptimizelySDKCore/Optimizely.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <Foundation/Foundation.h>
 
-@implementation OPTLYClientBuilder: NSObject
+@class OPTLYEventBuilderEvent;
 
-+ (instancetype)builderWithBlock:(OPTLYClientBuilderBlock)block {
-    return [[self alloc] initWithBlock:block];
-}
+@interface OPTLYTestHelper : NSObject
 
-- (id)init {
-    return [self initWithBlock:nil];
-}
+/// Set up mock response with a failure
++ (void)stubFailureResponse;
 
-- (id)initWithBlock:(OPTLYClientBuilderBlock)block {
-    self = [super init];
-    if (self) {
-        block(self);
-        _optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
-            builder.datafile = _datafile;
-            builder.errorHandler = _errorHandler;
-            builder.eventDispatcher = _eventDispatcher;
-            builder.logger = _logger;
-            builder.userProfile = _userProfile;
-        }];
-        _logger = _optimizely.logger;
-        if (!_logger) {
-            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
-        }
-    }
-    return self;
-}
+/// Set up mock response with a success
++ (void)stubSuccessResponse;
+
+/// Loads JSON datafile into a JSON object
++ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
+
+/// Loads JSON datafile into an NSData object
++ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
 
 @end

@@ -92,6 +92,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                                  else if (statusCode == 304) {
                                      logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges, projectId];
                                      [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                                     data = [self getSavedDatafile];
                                  }
                                  else {
                                      // TODO: Josh W. handle bad response
@@ -118,7 +119,20 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                         data:datafile
                         type:OPTLYDataStoreDataTypeDatafile
                        error:&error];
-    
+    if (error != nil) {
+        [self.errorHandler handleError:error];
+    }
+}
+
+- (NSData *)getSavedDatafile {
+    NSError *error;
+    NSData *datafile = [self.dataStore getFile:self.projectId
+                       type:OPTLYDataStoreDataTypeDatafile
+                      error:&error];
+    if (error != nil) {
+        [self.errorHandler handleError:error];
+    }
+    return datafile;
 }
 
 - (BOOL)isDatafileCached {

@@ -47,15 +47,13 @@
                                  withLevel:OptimizelyLogLevelError];
                 return nil;
             }
-            _projectId = builder.projectId;
             _datafile = builder.datafile;
+            _datafileManager = builder.datafileManager;
             _errorHandler = builder.errorHandler;
             _eventDispatcher = builder.eventDispatcher;
             _logger = builder.logger;
-            // initialize datafile manager
-            _datafileManager = builder.datafileManager;
-            // TODO: Josh W. initialize event dispatcher
-            // TODO: Josh W. initialize user experiment record
+            _projectId = builder.projectId;
+            _userProfile = builder.userProfile;
         }
         return self;
     }
@@ -80,9 +78,7 @@
 }
 
 - (OPTLYClient *)initializeClient {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
-        builder.datafile = self.datafile;
-    }];
+    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
     if (client.optimizely != nil) {
         self.optimizelyClient = client;
     }
@@ -90,9 +86,7 @@
 }
 
 - (OPTLYClient *)initializeClientWithDatafile:(NSData *)datafile {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
-        builder.datafile = datafile;
-    }];
+    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:datafile];
     if (client.optimizely != nil) {
         self.optimizelyClient = client;
         return client;
@@ -104,11 +98,8 @@
 
 - (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
     [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        OPTLYClient *client = nil;
         if (!error) {
-            client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
-                builder.datafile = data;
-            }];
+            OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:data];
             if (client.optimizely) {
                 self.optimizelyClient = client;
             }
@@ -117,13 +108,24 @@
         }
         
         if (callback) {
-            callback(error, client);
+            callback(error, self.optimizelyClient);
         }
     }];
 }
 
 - (OPTLYClient *)getOptimizely {
     return self.optimizelyClient;
+}
+
+- (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
+    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+        builder.datafile = datafile;
+        builder.errorHandler = self.errorHandler;
+        builder.eventDispatcher = self.eventDispatcher;
+        builder.logger = self.logger;
+        builder.userProfile = self.userProfile;
+    }];
+    return client;
 }
 
 @end
