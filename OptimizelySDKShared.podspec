@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKShared"
-  s.version                 = "0.2.0"
+  s.version                 = "0.2.1-alpha"
   s.summary                 = "Optimizely server-side testing shared framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
