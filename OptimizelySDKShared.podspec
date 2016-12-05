@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target  = "9.0"
   s.source                  = {
     :git => "https://github.com/optimizely/objective-c-sdk.git",
-    :tag => "userProfile-"+s.version.to_s
+    :tag => "shared-"+s.version.to_s
   }
   s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}"
   s.public_header_files     = "OptimizelySDKShared/OptimizelySDKShared/*.h"
@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKCore'
+  s.dependency 'OptimizelySDKCore', '=0.2.1-alpha'
 end
