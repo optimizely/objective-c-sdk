@@ -44,8 +44,7 @@
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
     NSString *filePath = [self filePathFor:fileName subDir:subDir];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    bool isDir = true;
-    if (![fileManager fileExistsAtPath:fileDir isDirectory:&isDir]) {
+    if (![fileManager fileExistsAtPath:fileDir isDirectory:nil]) {
         [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
     }
     [fileManager createFileAtPath:filePath contents:data attributes:nil];

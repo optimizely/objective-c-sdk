@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKCore'
+  s.dependency 'OptimizelySDKCore', '0.2.1-alpha1'
 end
