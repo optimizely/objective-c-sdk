@@ -1,6 +1,0 @@
-framework module Pods_OptimizelyTVOSDemoApp {
-  umbrella header "Pods-OptimizelyTVOSDemoApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
