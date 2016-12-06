@@ -41,8 +41,6 @@ static NSString *const kVariableKeyForBoolNotInExperimentVariation = @"boolNotIn
 static NSString *const kVariableKeyForIntegerNotInExperimentVariation = @"integerNotInVariation";
 static NSString *const kVariableKeyForFloatNotInExperimentVariation = @"floatNotInVariation";
 
-static NSString *const kVariableKeyForStringInExperimentVariationWithoutLiveVariables = @"testExperiment1";
-
 static NSString *const kVariableStringValue = @"Hello";
 static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
 static NSString *const kVariableStringNotInExperimentVariation = @"default string value";
@@ -248,18 +246,6 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertEqualObjects(variableStringNotInExperimentVariation, kVariableStringNotInExperimentVariation, "Variable string value should be \"default string value\".");
     
     [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableStringInExperimentVariationWithoutLiveVariables {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringInExperimentVariationWithoutLiveVariables
-                                                                      activateExperiments:NO
-                                                                                   userId:kUserId
-                                                                               attributes:nil
-                                                                                    error:nil];
-    
-    NSLog(@"%@", kVariableKeyForStringInExperimentVariationWithoutLiveVariables);
 }
 
 - (void)testGetVariableBool {
