@@ -41,6 +41,8 @@ static NSString *const kVariableKeyForBoolNotInExperimentVariation = @"boolNotIn
 static NSString *const kVariableKeyForIntegerNotInExperimentVariation = @"integerNotInVariation";
 static NSString *const kVariableKeyForFloatNotInExperimentVariation = @"floatNotInVariation";
 
+static NSString *const kVariableKeyForStringInExperimentVariationWithoutLiveVariables = @"testExperiment1";
+
 static NSString *const kVariableStringValue = @"Hello";
 static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
 static NSString *const kVariableStringNotInExperimentVariation = @"default string value";
@@ -158,7 +160,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                                       attributes:self.attributes
                                                            error:nil];
     
-    XCTAssertTrue([variableString isEqualToString:kVariableStringValue], "Variable string value should be \"Hello\".");
+    XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
     
     [optimizelyMock stopMocking];
 }
@@ -178,7 +180,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
         }
     }];
     
-    XCTAssertTrue([variableStringActivateExperiment isEqualToString:kVariableStringValue], "Variable string value should be \"Hello\".");
+    XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
     // Ensure activateExperiment is called
     OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
                                           userId:[OCMArg isNotNil]
@@ -202,7 +204,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
         }
     }];
     
-    XCTAssertTrue([variableStringActivateExperiment isEqualToString:kVariableStringValue], "Variable string value should be \"Hello\".");
+    XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
     // Ensure activateExperiment is called
     OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
                                           userId:[OCMArg isNotNil]
@@ -224,7 +226,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                                                                userId:kUserId
                                                                            attributes:nil
                                                                                 error:nil];
-    XCTAssertTrue([variableStringWithGroupedExperiment isEqualToString:kVariableStringValueGroupedExperiment], "Variable string value should be \"Ciao\".");
+    XCTAssertEqualObjects(variableStringWithGroupedExperiment, kVariableStringValueGroupedExperiment, "Variable string value should be \"Ciao\".");
     
     [optimizelyMock stopMocking];
 }
@@ -243,9 +245,21 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                                                                attributes:nil
                                                                                     error:nil];
     
-    XCTAssertTrue([variableStringNotInExperimentVariation isEqualToString:kVariableStringNotInExperimentVariation], "Variable string value should be \"default string value\".");
+    XCTAssertEqualObjects(variableStringNotInExperimentVariation, kVariableStringNotInExperimentVariation, "Variable string value should be \"default string value\".");
     
     [optimizelyMock stopMocking];
+}
+
+- (void) testGetVariableStringInExperimentVariationWithoutLiveVariables {
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    
+    NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringInExperimentVariationWithoutLiveVariables
+                                                                      activateExperiments:NO
+                                                                                   userId:kUserId
+                                                                               attributes:nil
+                                                                                    error:nil];
+    
+    NSLog(@"%@", kVariableKeyForStringInExperimentVariationWithoutLiveVariables);
 }
 
 - (void)testGetVariableBool {

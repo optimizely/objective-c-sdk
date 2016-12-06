@@ -142,7 +142,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return;
+        return nil;
     }
     return [self.optimizely getVariableString:variableKey
                           activateExperiments:activateExperiments
@@ -161,7 +161,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return;
+        return nil;
     }
     return [self.optimizely getVariableBool:variableKey
                         activateExperiments:activateExperiments
@@ -180,7 +180,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return;
+        return nil;
     }
     return [self.optimizely getVariableInteger:variableKey
                            activateExperiments:activateExperiments
@@ -199,7 +199,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return;
+        return nil;
     }
     return [self.optimizely getVariableFloat:variableKey
                          activateExperiments:activateExperiments

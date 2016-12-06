@@ -327,10 +327,7 @@ static NSString *const kValue = @"value";
         }
     }
     
-    // If live variable value was not found in a variation, use default variable value
-    if (variable.defaultValue != nil) {
-        return variable.defaultValue;
-    }
+    return variable.defaultValue;
     
     if (error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
@@ -342,8 +339,6 @@ static NSString *const kValue = @"value";
                                  userInfo:@{NSLocalizedDescriptionKey :
                                                 [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
     }
-    
-    return nil;
 }
 
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
