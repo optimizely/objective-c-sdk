@@ -24,7 +24,7 @@
  *      "id": "6384881128",
  *      "key": "someString",
  *      "type": "string",
- *      "value": "defaultStringValue"
+ *      "defaultValue": "defaultStringValue"
  *    },
  *     ...
  *    ]
@@ -42,6 +42,6 @@
 /// The variable's type.
 @property (nonatomic, strong) NSString *type;
 /// The variable's default value.
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSString *defaultValue;
 
 @end

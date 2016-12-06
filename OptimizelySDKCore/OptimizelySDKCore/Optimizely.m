@@ -297,6 +297,7 @@ static NSString *const kValue = @"value";
             return variableValue;
         }
     }
+    
     return nil;
 }
 
@@ -335,9 +336,11 @@ static NSString *const kValue = @"value";
                                      code:OPTLYLiveVariableErrorKeyUnknown
                                  userInfo:@{NSLocalizedDescriptionKey :
                                                 [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
+        
+        return nil;
     }
     
-    return nil;
+    return variable.defaultValue;
 }
 
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
@@ -359,12 +362,12 @@ static NSString *const kValue = @"value";
     return variableValue;
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-            activateExperiments:(bool)activateExperiments
-                         userId:(nonnull NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-                          error:(NSError * _Nullable * _Nullable)error {
-    NSInteger variableValue = 0;
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+               attributes:(nullable NSDictionary *)attributes
+                    error:(NSError * _Nullable * _Nullable)error {
+    int variableValue = 0;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
@@ -372,7 +375,7 @@ static NSString *const kValue = @"value";
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
-        variableValue = [variableValueStringOrNil integerValue];
+        variableValue = [variableValueStringOrNil intValue];
     }
     
     return variableValue;
