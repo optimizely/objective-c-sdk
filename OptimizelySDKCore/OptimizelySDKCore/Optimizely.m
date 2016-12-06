@@ -297,6 +297,7 @@ static NSString *const kValue = @"value";
             return variableValue;
         }
     }
+    
     return nil;
 }
 
@@ -326,6 +327,11 @@ static NSString *const kValue = @"value";
         }
     }
     
+    // If live variable value was not found in a variation, use default variable value
+    if (variable.defaultValue != nil) {
+        return variable.defaultValue;
+    }
+    
     if (error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
         [_logger logMessage:logMessage
@@ -345,7 +351,7 @@ static NSString *const kValue = @"value";
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
                   error:(NSError * _Nullable * _Nullable)error {
-    BOOL variableValue = false;
+    BOOL variableValue = nil;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
