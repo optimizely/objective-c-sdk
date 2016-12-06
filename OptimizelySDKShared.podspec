@@ -22,4 +22,5 @@ Pod::Spec.new do |s|
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
   s.dependency 'OptimizelySDKCore', '0.2.1-alpha1'
+  s.ios.dependency 'FMDB', '2.6.2'
 end
