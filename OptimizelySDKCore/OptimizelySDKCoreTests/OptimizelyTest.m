@@ -19,6 +19,7 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "Optimizely.h"
 #import "OPTLYExperiment.h"
+#import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYTestHelper.h"
 #import "OPTLYVariation.h"
@@ -61,6 +62,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     self.optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
         builder.datafile = self.datafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     }];
     
     XCTAssertNotNil(self.optimizely);
