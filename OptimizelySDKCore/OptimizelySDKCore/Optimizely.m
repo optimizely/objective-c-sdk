@@ -327,8 +327,6 @@ static NSString *const kValue = @"value";
         }
     }
     
-    return variable.defaultValue;
-    
     if (error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
         [_logger logMessage:logMessage
@@ -338,7 +336,11 @@ static NSString *const kValue = @"value";
                                      code:OPTLYLiveVariableErrorKeyUnknown
                                  userInfo:@{NSLocalizedDescriptionKey :
                                                 [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
+        
+        return nil;
     }
+    
+    return variable.defaultValue;
 }
 
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
@@ -346,7 +348,7 @@ static NSString *const kValue = @"value";
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
                   error:(NSError * _Nullable * _Nullable)error {
-    BOOL variableValue = nil;
+    BOOL variableValue = false;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
                                              activateExperiments:activateExperiments
                                                           userId:userId
