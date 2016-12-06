@@ -13,14 +13,14 @@ Pod::Spec.new do |s|
     :tag => "shared-"+s.version.to_s
   }
   s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}"
+  s.tvos.exclude_files      = "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabase.{h,m}",\
+                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}",\
+                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDataStore.{h,m}"
   s.public_header_files     = "OptimizelySDKShared/OptimizelySDKShared/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_SHARED_VERSION=@\\\"#{s.version}\\\"" }
-  s.subspec "JSONModel" do |ss|
-      ss.dependency 'JSONModel', '= 1.3.0'
-      ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
-  end
+  s.dependency 'JSONModel', '1.3.0'
   s.dependency 'OptimizelySDKCore', '0.2.1-alpha1'
   s.ios.dependency 'FMDB', '2.6.2'
 end
