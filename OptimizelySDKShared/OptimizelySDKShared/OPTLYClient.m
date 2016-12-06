@@ -161,7 +161,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return nil;
+        return false;
     }
     return [self.optimizely getVariableBool:variableKey
                         activateExperiments:activateExperiments
@@ -170,17 +170,17 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                       error:error];
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-            activateExperiments:(bool)activateExperiments
-                         userId:(nonnull NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-                          error:(NSError * _Nullable * _Nullable)error {
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+               attributes:(nullable NSDictionary *)attributes
+                    error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return nil;
+        return 0;
     }
     return [self.optimizely getVariableInteger:variableKey
                            activateExperiments:activateExperiments
@@ -199,7 +199,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
                                  OPTLYClientDummyOptimizelyWarning,
                                  [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
                       withLevel:OptimizelyLogLevelWarning];
-        return nil;
+        return 0;
     }
     return [self.optimizely getVariableFloat:variableKey
                          activateExperiments:activateExperiments
