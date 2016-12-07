@@ -69,8 +69,8 @@
 		EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA5247831DC7226400AF6685 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
 		EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5247841DC7226400AF6685 /* OPTLYManager.m */; };
-		EA52497A1DC7C83E00AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246F71DC718D300AF6685 /* OptimizelySDKCore.framework */; };
-		EA52497E1DC7C9C500AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */; };
+		EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246F71DC718D300AF6685 /* OptimizelySDKCore.framework */; };
+		EA52497E1DC7C9C500AF6685 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */; };
 		EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -205,7 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA52497A1DC7C83E00AF6685 /* ReferenceProxy in Frameworks */,
+				EA52497A1DC7C83E00AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA52497E1DC7C9C500AF6685 /* ReferenceProxy in Frameworks */,
+				EA52497E1DC7C9C500AF6685 /* OptimizelySDKCore.framework in Frameworks */,
 				6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -990,7 +990,7 @@
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 0;
 				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 2;
 				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-alpha1";
+				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-alpha3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
