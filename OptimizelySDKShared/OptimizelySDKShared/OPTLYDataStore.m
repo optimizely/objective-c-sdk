@@ -18,6 +18,7 @@
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import "OPTLYDataStore.h"
 #import "OPTLYFileManager.h"
+
 #if TARGET_OS_IOS
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
