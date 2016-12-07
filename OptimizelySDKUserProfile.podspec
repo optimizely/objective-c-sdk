@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKUserProfile"
-  s.version                 = "0.2.1-alpha2"
+  s.version                 = "0.2.1-alpha3"
   s.summary                 = "Optimizely server-side testing user profile framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKShared', '0.2.1-alpha3'
+  s.dependency 'OptimizelySDKShared', '0.2.1-alpha4'
 end
