@@ -26,8 +26,8 @@
 		EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
 		EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C242C1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m */; };
-		EA2C24331DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; };
-		EA2C24341DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; };
+		EA2C24331DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2C24341DE7887C0063ADA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */; };
 		EA2C24361DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */; };
 		EA2FA8071DC5DBA000B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
@@ -35,50 +35,50 @@
 		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; };
 		EA2FAA4C1DC6F53E00B1D81B /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA491DC6F53E00B1D81B /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA491DC6F53E00B1D81B /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */; };
-		EA2FAA891DC6F57100B1D81B /* OPTLYAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */; };
-		EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */; };
-		EA2FAA8F1DC6F57100B1D81B /* OPTLYAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */; };
-		EA2FAA941DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */; };
-		EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */; };
-		EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */; };
-		EA2FAA9B1DC6F57100B1D81B /* OPTLYCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */; };
-		EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5A1DC6F57100B1D81B /* OPTLYDatafileKeys.h */; };
-		EA2FAAA11DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5A1DC6F57100B1D81B /* OPTLYDatafileKeys.h */; };
-		EA2FAAA61DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5C1DC6F57100B1D81B /* OPTLYDecisionEventTicket.h */; };
-		EA2FAAA71DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5C1DC6F57100B1D81B /* OPTLYDecisionEventTicket.h */; };
-		EA2FAAAC1DC6F57200B1D81B /* OPTLYEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5E1DC6F57100B1D81B /* OPTLYEvent.h */; };
-		EA2FAAAD1DC6F57200B1D81B /* OPTLYEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5E1DC6F57100B1D81B /* OPTLYEvent.h */; };
-		EA2FAAB21DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA601DC6F57100B1D81B /* OPTLYEventAudience.h */; };
-		EA2FAAB31DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA601DC6F57100B1D81B /* OPTLYEventAudience.h */; };
-		EA2FAABE1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA641DC6F57100B1D81B /* OPTLYEventDecision.h */; };
-		EA2FAABF1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA641DC6F57100B1D81B /* OPTLYEventDecision.h */; };
-		EA2FAAC41DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA661DC6F57100B1D81B /* OPTLYEventDecisionTicket.h */; };
-		EA2FAAC51DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA661DC6F57100B1D81B /* OPTLYEventDecisionTicket.h */; };
-		EA2FAAD01DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6A1DC6F57100B1D81B /* OPTLYEventFeature.h */; };
-		EA2FAAD11DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6A1DC6F57100B1D81B /* OPTLYEventFeature.h */; };
-		EA2FAAD61DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6C1DC6F57100B1D81B /* OPTLYEventHeader.h */; };
-		EA2FAAD71DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6C1DC6F57100B1D81B /* OPTLYEventHeader.h */; };
-		EA2FAADC1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6E1DC6F57100B1D81B /* OPTLYEventLayerState.h */; };
-		EA2FAADD1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6E1DC6F57100B1D81B /* OPTLYEventLayerState.h */; };
-		EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA701DC6F57100B1D81B /* OPTLYEventMetric.h */; };
-		EA2FAAE31DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA701DC6F57100B1D81B /* OPTLYEventMetric.h */; };
-		EA2FAAE81DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA721DC6F57100B1D81B /* OPTLYEventParameterKeys.h */; };
-		EA2FAAE91DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA721DC6F57100B1D81B /* OPTLYEventParameterKeys.h */; };
-		EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; };
-		EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; };
-		EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; };
-		EA2FAAF51DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; };
-		EA2FAAFA1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; };
-		EA2FAAFB1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; };
+		EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA891DC6F57100B1D81B /* OPTLYAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA8F1DC6F57100B1D81B /* OPTLYAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA941DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAA9B1DC6F57100B1D81B /* OPTLYCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5A1DC6F57100B1D81B /* OPTLYDatafileKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAA11DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5A1DC6F57100B1D81B /* OPTLYDatafileKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAA61DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5C1DC6F57100B1D81B /* OPTLYDecisionEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAA71DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5C1DC6F57100B1D81B /* OPTLYDecisionEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAAC1DC6F57200B1D81B /* OPTLYEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5E1DC6F57100B1D81B /* OPTLYEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAAD1DC6F57200B1D81B /* OPTLYEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA5E1DC6F57100B1D81B /* OPTLYEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAB21DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA601DC6F57100B1D81B /* OPTLYEventAudience.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAB31DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA601DC6F57100B1D81B /* OPTLYEventAudience.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAABE1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA641DC6F57100B1D81B /* OPTLYEventDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAABF1DC6F57200B1D81B /* OPTLYEventDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA641DC6F57100B1D81B /* OPTLYEventDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAC41DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA661DC6F57100B1D81B /* OPTLYEventDecisionTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAC51DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA661DC6F57100B1D81B /* OPTLYEventDecisionTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAD01DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6A1DC6F57100B1D81B /* OPTLYEventFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAD11DC6F57200B1D81B /* OPTLYEventFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6A1DC6F57100B1D81B /* OPTLYEventFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAD61DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6C1DC6F57100B1D81B /* OPTLYEventHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAD71DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6C1DC6F57100B1D81B /* OPTLYEventHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAADC1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6E1DC6F57100B1D81B /* OPTLYEventLayerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAADD1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA6E1DC6F57100B1D81B /* OPTLYEventLayerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA701DC6F57100B1D81B /* OPTLYEventMetric.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAE31DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA701DC6F57100B1D81B /* OPTLYEventMetric.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAE81DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA721DC6F57100B1D81B /* OPTLYEventParameterKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAE91DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA721DC6F57100B1D81B /* OPTLYEventParameterKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAF51DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAFA1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAAFB1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAB061DC6F57200B1D81B /* OPTLYGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7C1DC6F57100B1D81B /* OPTLYGroup.h */; };
-		EA2FAB071DC6F57200B1D81B /* OPTLYGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7C1DC6F57100B1D81B /* OPTLYGroup.h */; };
+		EA2FAB061DC6F57200B1D81B /* OPTLYGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7C1DC6F57100B1D81B /* OPTLYGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAB071DC6F57200B1D81B /* OPTLYGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7C1DC6F57100B1D81B /* OPTLYGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7E1DC6F57100B1D81B /* OPTLYProjectConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB0D1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7E1DC6F57100B1D81B /* OPTLYProjectConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA801DC6F57100B1D81B /* OPTLYTrafficAllocation.h */; };
-		EA2FAB131DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA801DC6F57100B1D81B /* OPTLYTrafficAllocation.h */; };
+		EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA801DC6F57100B1D81B /* OPTLYTrafficAllocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAB131DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA801DC6F57100B1D81B /* OPTLYTrafficAllocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB181DC6F57200B1D81B /* OPTLYVariation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB191DC6F57200B1D81B /* OPTLYVariation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB201DC6F58800B1D81B /* OPTLYBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB1D1DC6F58800B1D81B /* OPTLYBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -99,8 +99,8 @@
 		EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6D1DC6F5F400B1D81B /* OPTLYLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6F1DC6F5F400B1D81B /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB6F1DC6F5F400B1D81B /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA2FAB7C1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB701DC6F5F400B1D81B /* OPTLYValidator.h */; };
-		EA2FAB7D1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB701DC6F5F400B1D81B /* OPTLYValidator.h */; };
+		EA2FAB7C1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB701DC6F5F400B1D81B /* OPTLYValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA2FAB7D1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAB701DC6F5F400B1D81B /* OPTLYValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68081DC1E66C00C578CA /* OptimizelySDKCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB831DC6FCD300B1D81B /* OptimizelySDKCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68081DC1E66C00C578CA /* OptimizelySDKCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB9C1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAB841DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m */; };
@@ -715,33 +715,30 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
 				EA2FAA4C1DC6F53E00B1D81B /* Optimizely.h in Headers */,
-				EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
-				EA2FAB321DC6F59D00B1D81B /* OPTLYErrorHandler.h in Headers */,
-				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
 				EA2FAB281DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAB201DC6F58800B1D81B /* OPTLYBuilder.h in Headers */,
-				EA2FAB521DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */,
-				5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */,
-				EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */,
-				EA2FAB181DC6F57200B1D81B /* OPTLYVariation.h in Headers */,
-				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
-				EA2FAB481DC6F5B100B1D81B /* OPTLYEventBuilder.h in Headers */,
 				EA2FAB381DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
+				EA2FAB481DC6F5B100B1D81B /* OPTLYEventBuilder.h in Headers */,
 				EA5249641DC7B69A00AF6685 /* OPTLYEventDispatcher.h in Headers */,
-				EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
-				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
-				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
-				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
-				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
-				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
-				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
+				EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
+				EA2FAB321DC6F59D00B1D81B /* OPTLYErrorHandler.h in Headers */,
+				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
+				EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
+				EA2FAB521DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */,
+				EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */,
+				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
+				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
+				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
+				5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */,
+				EA2FAB181DC6F57200B1D81B /* OPTLYVariation.h in Headers */,
+				EA87A02A1DE31453002E9EF7 /* OPTLYUserProfile.h in Headers */,
 				EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
 				EA2FAAB21DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */,
 				EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */,
-				EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */,
 				EA2FAB7C1DC6F5F400B1D81B /* OPTLYValidator.h in Headers */,
 				EA2FAAE81DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */,
 				EA2FAADC1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */,
@@ -759,6 +756,9 @@
 				EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */,
 				EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
+				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
+				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
+				EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,8 +786,6 @@
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
 				EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
-				EA2FAC7B1DC70EBC00B1D81B /* murmur3.h in Headers */,
-				EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
 				EA2FAADD1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */,
 				EA2FAB131DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
@@ -810,6 +808,8 @@
 				EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EA2FAAF51DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAAA71DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */,
+				EA2FAB7A1DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
+				EA2FAC7B1DC70EBC00B1D81B /* murmur3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
