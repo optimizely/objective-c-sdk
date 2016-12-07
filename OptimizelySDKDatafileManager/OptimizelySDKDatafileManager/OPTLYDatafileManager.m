@@ -92,7 +92,6 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                                  else if (statusCode == 304) {
                                      logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges, projectId];
                                      [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                                     data = [self getSavedDatafile];
                                  }
                                  else {
                                      // TODO: Josh W. handle bad response

@@ -16,8 +16,9 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
-#import <OptimizelySDKShared/OPTLYDataStore.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYDatafileManager.h"
 #import "OPTLYTestHelper.h"
 
@@ -226,12 +227,40 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil([self.datafileManager getLastModifiedDate:kProjectId]);
     [self.datafileManager downloadDatafile:kProjectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode, 304);
-        XCTAssertNotNil(data);
-        XCTAssertEqualObjects(data, kDatafileData);
+        XCTAssertEqual([data length], 0);
         [expect304 fulfill];
     }];
 
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // test datafile manager works in optly manager class
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafileManager = self.datafileManager;
+    }];
+    XCTAssertNotNil(manager);
+    XCTAssertNotNil(manager.datafileManager);
+    XCTAssertEqual(manager.datafileManager, self.datafileManager);
+    
+    // setup async expectation
+    __weak XCTestExpectation *clientExpectation = [self expectationWithDescription:@"testInitializeClientAsync"];
+    // initialize client
+    __block OPTLYClient *optimizelyClient;
+    [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+        // retain a reference to the client
+        optimizelyClient = client;
+        // check client in callback
+        XCTAssertNotNil(client);
+        XCTAssertNotNil(client.optimizely, @"Client needs to have an optimizely instance");
+        OPTLYProjectConfig *expectedConfig = [[OPTLYProjectConfig alloc] initWithDatafile:kDatafileData];
+        XCTAssertEqualObjects(client.optimizely.config.accountId, expectedConfig.accountId);
+        [clientExpectation fulfill];
+    }];
+    
+    // wait for async start to finish
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    XCTAssertEqual(optimizelyClient, manager.getOptimizely);
+    
     
     // remove stub
     [OHHTTPStubs removeStub:stub];
