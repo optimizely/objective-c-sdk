@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     :tag => "userProfile-"+s.version.to_s
   }
   s.source_files            = "OptimizelySDKUserProfile/OptimizelySDKUserProfile/*.{h,m}"
-  s.public_header_files     = "OptimizelySDKCore/OptimizelySDKUserProfile/*.h"
+  s.public_header_files     = "OptimizelySDKUserProfile/OptimizelySDKUserProfile/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_USER_PROFILE_VERSION=@\\\"#{s.version}\\\"" }
