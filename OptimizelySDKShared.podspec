@@ -14,8 +14,7 @@ Pod::Spec.new do |s|
   }
   s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}"
   s.tvos.exclude_files      = "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabase.{h,m}",\
-                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}",\
-                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDataStore.{h,m}"
+                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}"
   s.public_header_files     = "OptimizelySDKShared/OptimizelySDKShared/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true

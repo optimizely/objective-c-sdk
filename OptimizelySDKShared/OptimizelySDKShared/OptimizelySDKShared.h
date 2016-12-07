@@ -20,8 +20,8 @@
 #if TARGET_OS_IOS
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
-#import "OPTLYDataStore.h"
 #endif
+#import "OPTLYDataStore.h"
 #import "OPTLYDatafileManager.h"
 #import "OPTLYFileManager.h"
 #import "OPTLYManager.h"
