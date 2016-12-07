@@ -25,7 +25,7 @@
  * @return NSData object that should be the most recently downloaded datafile.
  *      Will be nil if no datafile has been successfully downloaded.
  */
-- (NSData *)getSavedDatafile;
+- (NSData * _Nullable)getSavedDatafile;
 
 /**
  * Download the datafile for the project ID

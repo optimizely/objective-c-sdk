@@ -31,17 +31,37 @@
 
 @end
 
+@interface OPTLYDatafileManagerDefault ()
+
+@property NSData *savedDatafile;
+
+@end
+
 @implementation OPTLYDatafileManagerDefault
+
+- (NSData *)getSavedDatafile {
+    return self.savedDatafile;
+}
 
 - (void)downloadDatafile:(nonnull NSString *)projectId
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     OPTLYNetworkService *networkService = [OPTLYNetworkService new];
     [networkService downloadProjectConfig:projectId
-                        completionHandler:completion];
+                        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                            self.savedDatafile = data;
+                            // call the completion handler
+                            if (completion != nil) {
+                                completion(data, response, error);
+                            }
+                        }];
 }
 @end
 
 @implementation OPTLYDatafileManagerNoOp
+
+- (NSData *)getSavedDatafile {
+    return nil;
+}
 
 - (void)downloadDatafile:(nonnull NSString *)projectId
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
