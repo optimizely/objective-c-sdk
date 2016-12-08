@@ -139,8 +139,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param error An error value if the value is not valid for the following reasons:
  *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
  * @return The string value for the live variable.
- *  If no matching variable key is found, then nil is returned,
- *  a warning message is logged, and an error will be propagated to the user.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
 - (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
                      activateExperiments:(bool)activateExperiments
@@ -160,8 +160,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param error An error value if the value is not valid for the following reasons:
  *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
  * @return The boolean value for the live variable.
- *  If no matching variable key is found, then false is returned,
- *  a warning message is logged, and an error will be propagated to the user.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
     activateExperiments:(bool)activateExperiments
@@ -182,8 +182,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param error An error value if the value is not valid for the following reasons:
  *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
  * @return The number value for the live variable.
- *  If no matching variable key is found, then nil is returned,
- *  a warning message is logged, and an error will be propagated to the user.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
 - (int)getVariableInteger:(nonnull NSString *)variableKey
       activateExperiments:(bool)activateExperiments
@@ -203,8 +203,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param error An error value if the value is not valid for the following reasons:
  *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
  * @return The number value for the live variable.
- *  If no matching variable key is found, then 0 is returned,
- *  a warning message is logged, and an error will be propagated to the user.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
 - (double)getVariableFloat:(nonnull NSString *)variableKey
        activateExperiments:(bool)activateExperiments

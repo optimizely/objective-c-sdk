@@ -64,7 +64,6 @@ extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesVariationUnknownForVariationKey;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInterval;
 extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
-extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
 
 // ---- debug ----
 extern NSString *const OPTLYLoggerMessagesBucketAssigned;
@@ -145,6 +144,12 @@ extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNo
 extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError;
 extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDate;
 extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound;
+
+// ---- Live Variables ----
+// Info
+extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
+// Warning
+extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
 
 @interface OPTLYLoggerMessages : NSObject
 
