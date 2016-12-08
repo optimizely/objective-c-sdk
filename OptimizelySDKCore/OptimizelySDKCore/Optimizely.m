@@ -310,6 +310,13 @@ static NSString *const kValue = @"value";
     NSString *variableId = variable.variableId;
     
     NSArray *experimentKeysForLiveVariable = [self getExperimentKeysForLiveVariable:variableId];
+    
+    if ([experimentKeysForLiveVariable count] == 0) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNoExperimentsContainVariable, variableKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        return variable.defaultValue;
+    }
+    
     for (NSString *experimentKey in experimentKeysForLiveVariable) {
         OPTLYVariation *variation = [self getVariationForExperiment:experimentKey
                                                 activateExperiments:activateExperiments

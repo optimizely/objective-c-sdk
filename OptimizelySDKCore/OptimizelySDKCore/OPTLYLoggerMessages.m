@@ -43,7 +43,6 @@ NSString *const OPTLYLoggerMessagesExperimentNotRunning = @"Experiment %@ is not
 NSString *const OPTLYLoggerMessagesUserMutuallyExcluded = @"User %ld is mutually excluded"; // user id
 NSString *const OPTLYLoggerMessagesExperimentIdUnknown = @"Experiment id for %@ is not in the datafile."; // experiment key
 NSString *const OPTLYLoggerMessagesEventIdUnknown = @"Event id %@ is not in the datafile."; //event key
-NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
 // conversion and tracking event creation errors
 NSString *const OPTLYLoggerMessagesVariationtNameInvalid = @"Variation name is not valid.";
 NSString *const OPTLYLoggerMessagesUserIdInvalid = @"User id is not valid.";
@@ -145,6 +144,12 @@ NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. Error received: %@.";
 NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDate = @"[DATAFILE MANAGER] Last modified date %@ found for project %@.";
 NSString *const OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound = @"[DATAFILE MANAGER] Last modified date not found for project %@.";
+
+// ---- Live Variables ----
+// Info
+NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
+// Warning
+NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"No experiment was found to contain variable key: %@.";
 
 @implementation OPTLYLoggerMessages
 
