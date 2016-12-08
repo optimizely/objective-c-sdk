@@ -20,7 +20,7 @@
 
 @protocol OPTLYLogger;
 
-@interface OPTLYUserProfile : NSObject<OPTLYUserProfile>
+@interface OPTLYUserProfileDefault : NSObject<OPTLYUserProfile>
 
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;

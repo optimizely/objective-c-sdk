@@ -43,7 +43,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @end
 
-@implementation OPTLYEventDispatcherDefault
+@implementation OPTLYEventDispatcherBasic
 
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {

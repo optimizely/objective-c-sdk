@@ -55,7 +55,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     // initialize manager settings
     id<OPTLYDatafileManager> datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
     id<OPTLYErrorHandler> errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-    id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+    id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     id<OPTLYLogger> logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     id<OPTLYUserProfile> userProfile = [[OPTLYUserProfileNoOp alloc] init];
     
@@ -157,7 +157,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
-        builder.datafileManager = [OPTLYDatafileManagerDefault new];
+        builder.datafileManager = [OPTLYDatafileManagerBasic new];
     }];
     
     // make sure manager is initialized correctly

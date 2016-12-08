@@ -17,11 +17,11 @@
 #import "OPTLYUserProfile.h"
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 
-@interface OPTLYUserProfile()
+@interface OPTLYUserProfileDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
 
-@implementation OPTLYUserProfile
+@implementation OPTLYUserProfileDefault
 
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block {
     return [[self alloc] initWithBuilder:[OPTLYUserProfileBuilder builderWithBlock:block]];

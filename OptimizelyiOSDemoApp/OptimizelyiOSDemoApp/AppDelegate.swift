@@ -51,12 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // create the event dispatcher
-        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock{(builder)in
+        let eventDispatcher = OPTLYEventDispatcherDefault.initWithBuilderBlock{(builder)in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
         }
 
         // create the datafile manager
-        let datafileManager = OPTLYDatafileManager.initWithBuilderBlock{(builder) in
+        let datafileManager = OPTLYDatafileManagerDefault.initWithBuilderBlock{(builder) in
             builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
             builder!.projectId = self.projectId
         }

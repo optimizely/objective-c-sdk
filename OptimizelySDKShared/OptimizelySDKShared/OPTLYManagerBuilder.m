@@ -44,7 +44,7 @@
 
 - (id<OPTLYDatafileManager>)datafileManager {
     if (!_datafileManager) {
-        _datafileManager = [[OPTLYDatafileManagerDefault alloc] init];
+        _datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
     }
     return _datafileManager;
 }
@@ -58,7 +58,7 @@
 
 - (id<OPTLYEventDispatcher>)eventDispatcher {
     if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+        _eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     }
     return _eventDispatcher;
 }

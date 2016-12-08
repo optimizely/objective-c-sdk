@@ -31,13 +31,13 @@
 
 @end
 
-@interface OPTLYDatafileManagerDefault ()
+@interface OPTLYDatafileManagerBasic ()
 
 @property NSData *savedDatafile;
 
 @end
 
-@implementation OPTLYDatafileManagerDefault
+@implementation OPTLYDatafileManagerBasic
 
 - (NSData *)getSavedDatafile {
     return self.savedDatafile;
