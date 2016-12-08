@@ -26,7 +26,7 @@ static NSString * const kTestURLString = @"testURL";
 
 typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
-@interface OPTLYEventDispatcher(test)
+@interface OPTLYEventDispatcherDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger maxDispatchBackoffRetries;
@@ -53,7 +53,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @property (nonatomic, strong ) NSURL *testURL;
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
-@property (nonatomic, strong) OPTLYEventDispatcher *eventDispatcher;
+@property (nonatomic, strong) OPTLYEventDispatcherDefault *eventDispatcher;
 @end
 
 @implementation OPTLYEventDispatcherTest
@@ -62,7 +62,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [super setUp];
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
-    self.eventDispatcher = [OPTLYEventDispatcher new];
+    self.eventDispatcher = [OPTLYEventDispatcherDefault new];
     self.eventDispatcher.flushEventBackoffRetries = 0;
 }
 
@@ -77,7 +77,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 - (void)testEventDispatcherInitWithBuilderBlock
 {
-    OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
         builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
         builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
@@ -89,7 +89,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     XCTAssertNotNil(eventDispatcher.logger);
     XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
     
-    eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+    eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
     }];
     
     XCTAssertNotNil(eventDispatcher);
@@ -200,7 +200,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)testMaxDispatchBackoffRetriesAndPowerOf2 {
     [self stubFailureResponse];
     
-    OPTLYEventDispatcher *eventDispatcher = [OPTLYEventDispatcher initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
         builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
         builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
@@ -436,7 +436,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 #pragma mark -- Helper Methods
 
-- (void)checkNetworkTimerIsEnabled:(OPTLYEventDispatcher *)eventDispatcher timeInterval:(NSInteger)timeInterval
+- (void)checkNetworkTimerIsEnabled:(OPTLYEventDispatcherDefault *)eventDispatcher timeInterval:(NSInteger)timeInterval
 {
     // check that the timer is set correctly
     XCTAssertNotNil(eventDispatcher.timer, @"Timer should not be nil.");
@@ -444,7 +444,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     XCTAssert(eventDispatcher.timer.timeInterval == timeInterval, @"Invalid time interval set - %f.", eventDispatcher.timer.timeInterval);
 }
 
-- (void)checkNetworkTimerIsDisabled:(OPTLYEventDispatcher *)eventDispatcher
+- (void)checkNetworkTimerIsDisabled:(OPTLYEventDispatcherDefault *)eventDispatcher
 {
     // check that the timer is reset
     XCTAssertNil(eventDispatcher.timer, @"Timer should be nil.");

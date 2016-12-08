@@ -39,7 +39,7 @@ extern NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms;
 
 typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
-@interface OPTLYEventDispatcher : NSObject <OPTLYEventDispatcher>
+@interface OPTLYEventDispatcherDefault : NSObject <OPTLYEventDispatcher>
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchInterval;

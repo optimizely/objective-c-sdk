@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // create the event dispatcher
-        let eventDispatcher = OPTLYEventDispatcher.initWithBuilderBlock{(builder)in
+        let eventDispatcher = OPTLYEventDispatcherDefault.initWithBuilderBlock{(builder)in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
         }
 

@@ -26,7 +26,7 @@ NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optim
 NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_ms = 1000;
 NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 
-@interface OPTLYEventDispatcher()
+@interface OPTLYEventDispatcherDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) uint64_t flushEventBackoffRetries;
@@ -34,7 +34,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 @property (nonatomic, assign) uint64_t maxDispatchBackoffRetries;
 @end
 
-@implementation OPTLYEventDispatcher : NSObject
+@implementation OPTLYEventDispatcherDefault : NSObject
 
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block {
     return [[self alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:block]];
