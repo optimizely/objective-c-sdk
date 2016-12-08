@@ -58,7 +58,7 @@
 
 - (id<OPTLYEventDispatcher>)eventDispatcher {
     if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+        _eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     }
     return _eventDispatcher;
 }
