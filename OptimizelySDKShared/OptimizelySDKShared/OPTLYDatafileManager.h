@@ -47,7 +47,7 @@
 
 @end
 
-@interface OPTLYDatafileManagerDefault : NSObject<OPTLYDatafileManager>
+@interface OPTLYDatafileManagerBasic : NSObject<OPTLYDatafileManager>
 
 @end
 

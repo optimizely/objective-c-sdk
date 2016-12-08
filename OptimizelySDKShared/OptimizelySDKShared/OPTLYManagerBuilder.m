@@ -44,7 +44,7 @@
 
 - (id<OPTLYDatafileManager>)datafileManager {
     if (!_datafileManager) {
-        _datafileManager = [[OPTLYDatafileManagerDefault alloc] init];
+        _datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
     }
     return _datafileManager;
 }
