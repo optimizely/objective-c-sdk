@@ -48,12 +48,12 @@ static NSData *originalDatafile;
 static NSData *updatedDatafile;
 static NSData *removedVariationDatafile;
 
-@interface OPTLYUserProfile(test)
+@interface OPTLYUserProfileDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
 
 @interface OptimizelySDKUserProfileTests : XCTestCase
-@property (nonatomic, strong) OPTLYUserProfile *userProfile;
+@property (nonatomic, strong) OPTLYUserProfileDefault *userProfile;
 @end
 
 @implementation OptimizelySDKUserProfileTests
@@ -84,7 +84,7 @@ static NSData *removedVariationDatafile;
 }
 
 - (void)setUp {
-    self.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder *builder) {
+    self.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder *builder) {
         builder.logger = [OPTLYLoggerDefault new];
     }];
     [self.userProfile saveUser:kUserId1 experiment:kExperimentKey1 variation:kVariationKey1];
@@ -229,7 +229,7 @@ static NSData *removedVariationDatafile;
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+        builder.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
             builder.logger = logger;
         }];
     }];
@@ -263,7 +263,7 @@ static NSData *removedVariationDatafile;
     OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfile = [OPTLYUserProfile initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+        builder.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
             builder.logger = logger;
         }];
     }];
