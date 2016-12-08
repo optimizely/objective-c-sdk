@@ -29,7 +29,7 @@ static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSData *kDatafileData;
 static NSDictionary *kCDNResponseHeaders = nil;
 
-@interface OPTLYDatafileManager(test)
+@interface OPTLYDatafileManagerDefault(test)
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
 - (void)saveDatafile:(NSData *)datafile;
 - (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId;
@@ -37,7 +37,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 @end
 
 @interface OPTLYDatafileManagerTest : XCTestCase
-@property (nonatomic, strong) OPTLYDatafileManager *datafileManager;
+@property (nonatomic, strong) OPTLYDatafileManagerDefault *datafileManager;
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
 
@@ -72,7 +72,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
-    self.datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
 }
@@ -160,7 +160,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is enabled if the download interval is > 0
 - (void)testNetworkTimerIsEnabled
 {
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = kDatafileDownloadInteval;
     }];
@@ -174,7 +174,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is disabled if the datafile download interval is <= 0
 - (void)testNetworkTimerIsDisabled
 {
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = 0;
     }];
@@ -183,7 +183,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
-    datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = -5;
     }];

@@ -28,7 +28,7 @@ NSString *const kProjectID = @"projectID";
 NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testBasicInitializationWorks {
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
     }];
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
@@ -36,7 +36,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     XCTAssertNotNil(datafileManager.projectId);
     XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
-    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should be LogLevelAll");
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManagerDefault Logger should be LogLevelAll");
 }
 
 - (void)testLoggerInBuilderSetsLoggerInDatafileManager {
@@ -44,7 +44,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     OPTLYLoggerDefault *defaultLogger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     
     // Initialize datafile manager
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.logger = defaultLogger;
     }];
@@ -61,7 +61,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testDatafileFetchIntervalIsSetCorrectly {
     // initialize datafile manager with datafile fetch interval
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.datafileFetchInterval = kDatafileFetchInterval;
     }];
@@ -72,11 +72,11 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     XCTAssertNotNil(datafileManager.projectId);
     XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
-    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManager Logger should be LogLevelAll");
+    XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManagerDefault Logger should be LogLevelAll");
 }
 
 - (void)testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval {
-    OPTLYDatafileManager *datafileManager = [OPTLYDatafileManager initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.datafileFetchInterval = -1.0;
     }];

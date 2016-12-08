@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // create the datafile manager
-        let datafileManager = OPTLYDatafileManager.initWithBuilderBlock{(builder) in
+        let datafileManager = OPTLYDatafileManagerDefault.initWithBuilderBlock{(builder) in
             builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
             builder!.projectId = self.projectId
         }

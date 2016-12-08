@@ -20,7 +20,7 @@
 
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYLogger;
 
-@interface OPTLYDatafileManager : NSObject<OPTLYDatafileManager>
+@interface OPTLYDatafileManagerDefault : NSObject<OPTLYDatafileManager>
 
 /// The time interval to regularly fetch the datafile.
 @property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
