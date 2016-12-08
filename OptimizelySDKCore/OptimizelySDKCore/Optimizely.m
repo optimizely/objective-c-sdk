@@ -161,6 +161,7 @@ static NSString *const kValue = @"value";
                                                         userId:userId
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
+    // TOOD: Josh W. log attempting to save user profile
     [self.userProfile saveUser:userId
                 experiment:experimentKey
                  variation:bucketedVariation.variationKey];

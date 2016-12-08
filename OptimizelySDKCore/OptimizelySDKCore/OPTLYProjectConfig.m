@@ -28,7 +28,6 @@
 #import "OPTLYValidator.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
-#import "OPTLYUserProfile.h"
 #import "OPTLYVariable.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
@@ -98,21 +97,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         return nil;
     }
     
-    // check for valid user profile
-    if (builder.userProfile) {
-        if (![OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
-            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                                 code:OPTLYErrorTypesUserProfile
-                                             userInfo:@{NSLocalizedDescriptionKey :
-                                                            NSLocalizedString(OPTLYErrorHandlerMessagesUserProfileInvalid, nil)}];
-            [builder.errorHandler handleError:error];
-            
-            NSString *logMessage = OPTLYErrorHandlerMessagesUserProfileInvalid;
-            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-            return nil;
-        }
-    }
-    
     // check datafile is valid
     @try {
         NSError *datafileError;
@@ -135,7 +119,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     
     _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
     _logger = (id<OPTLYLogger, Ignore>)builder.logger;
-    _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
     return self;
 }
 
@@ -419,10 +402,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         
         // bucket user into a variation
         variation = [bucketer bucketExperiment:experiment withUserId:userId];
-        if (variation != nil) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, variation.variationKey, experiment.experimentKey];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        }
     }
     
     return variation;

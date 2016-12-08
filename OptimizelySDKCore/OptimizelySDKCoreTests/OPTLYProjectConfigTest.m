@@ -54,13 +54,11 @@ static NSString * const kAccountId = @"6365361536";
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
-        builder.userProfile = [OPTLYUserProfileNoOp new];
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
-    XCTAssertNotNil(projectConfig.userProfile, @"userProfile should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
 }
@@ -83,7 +81,6 @@ static NSString * const kAccountId = @"6365361536";
     
     OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
-        builder.userProfile = userProfile;
         builder.logger = logger;
         builder.errorHandler = errorHandler;
     }];
