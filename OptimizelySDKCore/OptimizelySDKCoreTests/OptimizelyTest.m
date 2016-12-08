@@ -231,7 +231,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void) testGetVariableStringNotInExperimentVariation {
+- (void) testGetVariableStringNotInExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -239,8 +239,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
+    // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringNotInExperimentVariation
-                                                                      activateExperiments:NO
+                                                                      activateExperiments:YES
                                                                                    userId:kUserId
                                                                                attributes:nil
                                                                                     error:nil];
@@ -338,7 +339,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolNotInExperimentVariation {
+- (void)testGetVariableBoolNotInExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -346,8 +347,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
+    // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBool:kVariableKeyForBoolNotInExperimentVariation
-                                                            activateExperiments:NO
+                                                            activateExperiments:YES
                                                                          userId:kUserId
                                                                      attributes:nil
                                                                           error:nil];
@@ -441,7 +443,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void) testGetVariableIntegerNotInExperimentVariation {
+- (void) testGetVariableIntegerNotInExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -449,8 +451,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
+    // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     NSInteger variableIntNotInExperimentVariation = [self.optimizely getVariableInteger:kVariableKeyForIntegerNotInExperimentVariation
-                                                                    activateExperiments:NO
+                                                                    activateExperiments:YES
                                                                                  userId:kUserId
                                                                              attributes:nil
                                                                                   error:nil];
@@ -544,7 +547,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void) testGetVariableFloatNotInExperimentVariation {
+- (void) testGetVariableFloatNotInExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -552,8 +555,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
+    // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     double variableFloatNotInExperimentVariation = [self.optimizely getVariableFloat:kVariableKeyForFloatNotInExperimentVariation
-                                                                 activateExperiments:NO
+                                                                 activateExperiments:YES
                                                                               userId:kUserId
                                                                           attributes:nil
                                                                                error:nil];
