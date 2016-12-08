@@ -47,11 +47,11 @@
 @end
 
 /**
- * OPTLYEventDispatcherDefault is a very simple implementation of the OPTLYEventDispatcher protocol.
+ * OPTLYEventDispatcherBasic is a very simple implementation of the OPTLYEventDispatcher protocol.
  * It dispatches events without any failure mechanisms (e.g., events are not queued up for a loater 
  * retry.
  */
-@interface OPTLYEventDispatcherDefault : NSObject <OPTLYEventDispatcher>
+@interface OPTLYEventDispatcherBasic : NSObject <OPTLYEventDispatcher>
 @end
 
 /**
