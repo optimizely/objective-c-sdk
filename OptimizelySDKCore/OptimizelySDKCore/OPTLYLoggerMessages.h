@@ -123,6 +123,7 @@ extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning;
 // ---- User Profile ----
 // warning
 extern NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile;
+extern NSString *const OPTLYLoggerMessagesUserProfileUnableToSaveVariation;
 // Debug
 extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;

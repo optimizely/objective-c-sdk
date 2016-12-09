@@ -123,6 +123,7 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATAB
 // ---- User Profile ----
 //warning
 NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile = @"Variation %@ for experiment %@ no longer found in datafile.";
+NSString *const OPTLYLoggerMessagesUserProfileUnableToSaveVariation = @"Unable to save experiment %@ with variation %@ for user %@.";
 // Debug
 NSString *const OPTLYLoggerMessagesUserProfileVariation = @"Variation %@ for user %@, experiment %@ found.";
 NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"Variation for user %@, experiment %@ not found.";

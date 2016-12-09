@@ -45,7 +45,13 @@
 - (void)saveUser:(nonnull NSString *)userId
       experiment:(nonnull NSString *)experimentKey
        variation:(nonnull NSString *)variationKey {
-    
+    if (!userId
+        || !experimentKey
+        || !variationKey) {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileUnableToSaveVariation, experimentKey, variationKey, userId]
+                      withLevel:OptimizelyLogLevelWarning];
+        return;
+    }
     NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
     userProfileDataMutable[userId] = @{ experimentKey : variationKey };
