@@ -168,7 +168,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 - (void)testGetVariableStringShortAPI {
     
-    NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
+    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
                                              activateExperiments:NO
                                                           userId:kUserId];
     
@@ -302,7 +302,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 - (void)testGetVariableBoolShortAPI {
     
-    BOOL variableBool = [optimizelyMock getVariableBool:kVariableKeyForBool
+    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
                                     activateExperiments:NO
                                                  userId:kUserId];
     
@@ -438,7 +438,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 - (void)testGetVariableIntegerShortAPI {
     
-    int variableInt = [optimizelyMock getVariableInteger:kVariableKeyForInt
+    int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
                                            activateExperiments:NO
                                                         userId:kUserId];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");

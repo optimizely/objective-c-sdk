@@ -379,7 +379,7 @@ static NSString *const kValue = @"value";
              activateExperiments:activateExperiments
                           userId:userId
                       attributes:nil
-                           error:&error];
+                           error:nil];
 }
 
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
@@ -408,7 +408,7 @@ static NSString *const kValue = @"value";
                 activateExperiments:activateExperiments
                              userId:userId
                          attributes:nil
-                              error:&error];
+                              error:nil];
 }
 
 - (int)getVariableInteger:(nonnull NSString *)variableKey
@@ -437,7 +437,7 @@ static NSString *const kValue = @"value";
               activateExperiments:activateExperiments
                            userId:userId
                        attributes:nil
-                            error:&error];
+                            error:nil];
 }
 
 - (double)getVariableFloat:(nonnull NSString *)variableKey
