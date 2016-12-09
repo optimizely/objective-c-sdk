@@ -166,6 +166,25 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
+- (void)testGetVariableStringShortAPI {
+    
+    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
+                                             activateExperiments:NO
+                                                          userId:kUserId];
+    
+    XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
+}
+
+- (void)testGetVariableStringShortAPIWithAttributes {
+    
+    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
+                                              activateExperiments:NO
+                                                           userId:kUserId
+                                                       attributes:self.attributes];
+    
+    XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+}
+
 - (void)testGetVariableStringWithActivateExperimentsTrue {
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -289,6 +308,25 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
     
     [optimizelyMock stopMocking];
+}
+
+- (void)testGetVariableBoolShortAPI {
+    
+    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
+                                    activateExperiments:NO
+                                                 userId:kUserId];
+    
+    XCTAssertFalse(variableBool, "Variable boolean value should be false.");
+}
+
+- (void)testGetVariableBoolShortAPIWithAttributes {
+    
+    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
+                                     activateExperiments:NO
+                                                  userId:kUserId
+                                              attributes:self.attributes];
+    
+    XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
 - (void)testGetVariableBoolWithActivateExperimentsTrue {
@@ -418,6 +456,23 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
+- (void)testGetVariableIntegerShortAPI {
+    
+    int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
+                                           activateExperiments:NO
+                                                        userId:kUserId];
+    XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
+}
+
+- (void)testGetVariableIntegerShortAPIWithAttributes {
+    
+    int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
+                                      activateExperiments:NO
+                                                   userId:kUserId
+                                               attributes:self.attributes];
+    XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
+}
+
 - (void)testGetVariableIntegerWithActivateExperimentsTrue {
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -538,6 +593,21 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
     
     [optimizelyMock stopMocking];
+}
+
+- (void)testGetVariableFloatShortAPI {
+    double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                         activateExperiments:NO
+                                                      userId:kUserId];
+    XCTAssertEqualWithAccuracy(variableFloat, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
+}
+
+- (void)testGetVariableFloatShortAPIWithAttributes {
+    double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                         activateExperiments:NO
+                                                      userId:kUserId
+                                                  attributes:self.attributes];
+    XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
 }
 
 - (void) testGetVariableFloatWithActivateExperimentsTrue {
