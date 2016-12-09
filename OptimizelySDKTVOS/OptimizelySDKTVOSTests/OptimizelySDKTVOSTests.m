@@ -15,33 +15,82 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import "OPTLYTestHelper.h"
+
+#import "OptimizelySDKTVOS.h"
+
+// static datafile name
+static NSString *const defaultDatafileFileName = @"datafile_6372300739";
+static NSString *const kProjectId = @"6372300739";
+static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
+static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
+static NSData *kDefaultDatafile;
+static NSDictionary *kCDNResponseHeaders = nil;
 
 @interface OptimizelySDKTVOSTests : XCTestCase
-
 @end
 
 @implementation OptimizelySDKTVOSTests
 
-- (void)setUp {
++ (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+    
+    kCDNResponseHeaders = @{@"Content-Type":@"application/json",
+                            @"Last-Modified":kLastModifiedDate};
+    kDefaultDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:defaultDatafileFileName];
+    
+    // stub all requests
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+        // every requests passes this test
+        return true;
+    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        // return bad request
+        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
+                                          statusCode:400
+                                             headers:@{@"Content-Type":@"application/json"}];
     }];
+}
+
++ (void)tearDown {
+    [super tearDown];
+    [OHHTTPStubs removeAllStubs];
+    kDefaultDatafile = nil;
+}
+
+- (void)testTVOSSDKInitializedWithOverrides {
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.datafile = kDefaultDatafile;
+        builder.projectId = kProjectId;
+    }];
+    XCTAssertNotNil(manager);
+    XCTAssertNotNil(manager.datafileManager);
+    XCTAssertNotNil(manager.errorHandler);
+    XCTAssertNotNil(manager.eventDispatcher);
+    XCTAssertNotNil(manager.logger);
+//    XCTAssertNotNil(manager.userProfile);
+//    XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
+//    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
+//    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
+    
+    OPTLYClient *client = [manager initializeClient];
+    XCTAssertNotNil(client);
+    XCTAssertNotNil(client.optimizely);
+    
+    Optimizely *optimizely = client.optimizely;
+    XCTAssertNotNil(optimizely.config);
+    XCTAssertNotNil(optimizely.errorHandler);
+    XCTAssertNotNil(optimizely.eventDispatcher);
+    XCTAssertNotNil(optimizely.logger);
+//    XCTAssertNotNil(optimizely.userProfile);
+    XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
+    XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
+    XCTAssertEqual(optimizely.logger, manager.logger);
+    XCTAssertEqual(optimizely.userProfile, manager.userProfile);
+    
+    // test client engine and version were swizzled
+    XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
+    XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_TVOS_VERSION);
 }
 
 @end

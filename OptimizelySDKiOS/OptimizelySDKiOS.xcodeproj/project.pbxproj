@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0A40C71D7B825E4BFD61A110 /* Pods_OptimizelySDKiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B2266C94E7767CEB55292 /* Pods_OptimizelySDKiOSTests.framework */; };
+		2D3503941DFA52D100B0A822 /* OPTLYProjectConfig+iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D3503931DFA52D100B0A822 /* OPTLYProjectConfig+iOS.h */; };
+		2D35039F1DFA530A00B0A822 /* OPTLYProjectConfig+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D35039E1DFA530A00B0A822 /* OPTLYProjectConfig+iOS.m */; };
+		2D3503FD1DFA78CB00B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */; };
+		2D3503FE1DFA78CB00B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */; };
+		2D3503FF1DFA78CB00B0A822 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F81DFA78CB00B0A822 /* datafile_6372300739.json */; };
+		2D3504001DFA78CB00B0A822 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F91DFA78CB00B0A822 /* test_data_10_experiments.json */; };
+		2D3504011DFA78CB00B0A822 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503FA1DFA78CB00B0A822 /* test_data_25_experiments.json */; };
+		2D3504021DFA78CB00B0A822 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503FB1DFA78CB00B0A822 /* test_data_50_experiments.json */; };
+		2D3504031DFA78CB00B0A822 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503FC1DFA78CB00B0A822 /* validator_whitelisting_test_datafile.json */; };
 		2D54570B1DC8223F0095E286 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457041DC822130095E286 /* OptimizelySDKDatafileManager.framework */; };
 		6112539CF7A5064D0D4B344C /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CF46AA2858603BBBB43C69 /* Pods_OptimizelySDKiOS.framework */; };
 		EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,6 +142,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3503931DFA52D100B0A822 /* OPTLYProjectConfig+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OPTLYProjectConfig+iOS.h"; sourceTree = "<group>"; };
+		2D35039E1DFA530A00B0A822 /* OPTLYProjectConfig+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OPTLYProjectConfig+iOS.m"; sourceTree = "<group>"; };
+		2D3503F41DFA78CB00B0A822 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
+		2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
+		2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BucketerTestsDatafile.json; sourceTree = "<group>"; };
+		2D3503F81DFA78CB00B0A822 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = datafile_6372300739.json; sourceTree = "<group>"; };
+		2D3503F91DFA78CB00B0A822 /* test_data_10_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_10_experiments.json; sourceTree = "<group>"; };
+		2D3503FA1DFA78CB00B0A822 /* test_data_25_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_25_experiments.json; sourceTree = "<group>"; };
+		2D3503FB1DFA78CB00B0A822 /* test_data_50_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_50_experiments.json; sourceTree = "<group>"; };
+		2D3503FC1DFA78CB00B0A822 /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = validator_whitelisting_test_datafile.json; sourceTree = "<group>"; };
 		2D5456FC1DC822120095E286 /* OptimizelySDKDatafileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKDatafileManager.xcodeproj; path = ../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj; sourceTree = "<group>"; };
 		2D54570C1DC8224C0095E286 /* OptimizelySDKUserProfile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfile.xcodeproj; path = ../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj; sourceTree = "<group>"; };
 		386DDAA1E39D8E12BACD053C /* Pods-OptimizelySDKiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +198,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D3503F61DFA78CB00B0A822 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */,
+				2D3503F81DFA78CB00B0A822 /* datafile_6372300739.json */,
+				2D3503F91DFA78CB00B0A822 /* test_data_10_experiments.json */,
+				2D3503FA1DFA78CB00B0A822 /* test_data_25_experiments.json */,
+				2D3503FB1DFA78CB00B0A822 /* test_data_50_experiments.json */,
+				2D3503FC1DFA78CB00B0A822 /* validator_whitelisting_test_datafile.json */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
 		2D5456FD1DC822120095E286 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +273,8 @@
 			children = (
 				EA52495C1DC736B100AF6685 /* OptimizelySDKiOS.modulemap */,
 				EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */,
+				2D3503931DFA52D100B0A822 /* OPTLYProjectConfig+iOS.h */,
+				2D35039E1DFA530A00B0A822 /* OPTLYProjectConfig+iOS.m */,
 				EA3C68521DC1E6B600C578CA /* OptimizelySDKiOS-Info.plist */,
 			);
 			path = OptimizelySDKiOS;
@@ -249,6 +283,9 @@
 		EA3C685B1DC1E6B600C578CA /* OptimizelySDKiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				2D3503F41DFA78CB00B0A822 /* OPTLYTestHelper.h */,
+				2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */,
+				2D3503F61DFA78CB00B0A822 /* TestData */,
 				EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */,
 				EA3C685E1DC1E6B600C578CA /* OptimizelySDKiOSTests-Info.plist */,
 			);
@@ -286,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */,
+				2D3503941DFA52D100B0A822 /* OPTLYProjectConfig+iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +522,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3504021DFA78CB00B0A822 /* test_data_50_experiments.json in Resources */,
+				2D3504001DFA78CB00B0A822 /* test_data_10_experiments.json in Resources */,
+				2D3503FE1DFA78CB00B0A822 /* BucketerTestsDatafile.json in Resources */,
+				2D3503FF1DFA78CB00B0A822 /* datafile_6372300739.json in Resources */,
+				2D3504011DFA78CB00B0A822 /* test_data_25_experiments.json in Resources */,
+				2D3504031DFA78CB00B0A822 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D35039F1DFA530A00B0A822 /* OPTLYProjectConfig+iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +624,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3503FD1DFA78CB00B0A822 /* OPTLYTestHelper.m in Sources */,
 				EA3C685D1DC1E6B600C578CA /* OptimizelySDKiOSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
