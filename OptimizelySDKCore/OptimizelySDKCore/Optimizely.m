@@ -313,6 +313,25 @@ static NSString *const kValue = @"value";
                               attributes:(nullable NSDictionary *)attributes
                                    error:(NSError * _Nullable * _Nullable)error {
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
+    
+    if (!variable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+        [_logger logMessage:logMessage
+                  withLevel:OptimizelyLogLevelError];
+        
+        NSError *variableUnknownForVariableKey = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                                     code:OPTLYLiveVariableErrorKeyUnknown
+                                                                 userInfo:@{NSLocalizedDescriptionKey :
+                                                                                [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
+        if (error) {
+            *error = variableUnknownForVariableKey;
+        } else {
+            [self.errorHandler handleError:variableUnknownForVariableKey];
+        }
+        
+        return nil;
+    }
+    
     NSString *variableId = variable.variableId;
     
     NSArray *experimentKeysForLiveVariable = [self getExperimentKeysForLiveVariable:variableId];
@@ -338,19 +357,6 @@ static NSString *const kValue = @"value";
             return [self getValueForLiveVariable:variableId
                                        variation:variation];
         }
-    }
-    
-    if (error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
-        [_logger logMessage:logMessage
-                  withLevel:OptimizelyLogLevelError];
-
-        *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                     code:OPTLYLiveVariableErrorKeyUnknown
-                                 userInfo:@{NSLocalizedDescriptionKey :
-                                                [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
-        
-        return nil;
     }
     
     return variable.defaultValue;
