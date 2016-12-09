@@ -172,7 +172,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                              activateExperiments:NO
                                                           userId:kUserId];
     
-    XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+    XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableStringWithActivateExperimentsTrue {
@@ -441,7 +441,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
                                            activateExperiments:NO
                                                         userId:kUserId];
-    XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
+    XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableIntegerWithActivateExperimentsTrue {
@@ -570,7 +570,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
                                          activateExperiments:NO
                                                       userId:kUserId];
-    XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
+    XCTAssertEqualWithAccuracy(variableFloat, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
 }
 
 - (void) testGetVariableFloatWithActivateExperimentsTrue {
