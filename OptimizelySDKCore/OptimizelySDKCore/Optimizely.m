@@ -317,6 +317,17 @@ static NSString *const kValue = @"value";
                                                error:nil];
 }
 
+- (nullable NSString *)getVariableString:(NSString *)variableKey
+                     activateExperiments:(bool)activateExperiments
+                                  userId:(NSString *)userId
+                              attributes:(nullable NSDictionary *)attributes {
+    return [self getVariableString:variableKey
+               activateExperiments:activateExperiments
+                            userId:userId
+                        attributes:attributes
+                             error:nil];
+}
+
 - (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
                      activateExperiments:(bool)activateExperiments
                                   userId:(nonnull NSString *)userId
@@ -382,6 +393,17 @@ static NSString *const kValue = @"value";
                            error:nil];
 }
 
+- (BOOL)getVariableBool:(NSString *)variableKey
+    activateExperiments:(bool)activateExperiments
+                 userId:(NSString *)userId
+             attributes:(nullable NSDictionary *)attributes {
+    return [self getVariableBool:variableKey
+             activateExperiments:activateExperiments
+                          userId:userId
+                      attributes:attributes
+                           error:nil];
+}
+
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
     activateExperiments:(bool)activateExperiments
                  userId:(nonnull NSString *)userId
@@ -411,6 +433,17 @@ static NSString *const kValue = @"value";
                               error:nil];
 }
 
+- (int)getVariableInteger:(NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                   userId:(NSString *)userId
+               attributes:(nullable NSDictionary *)attributes {
+    return [self getVariableInteger:variableKey
+                activateExperiments:activateExperiments
+                             userId:userId
+                         attributes:attributes
+                              error:nil];
+}
+
 - (int)getVariableInteger:(nonnull NSString *)variableKey
       activateExperiments:(bool)activateExperiments
                     userId:(nonnull NSString *)userId
@@ -437,6 +470,17 @@ static NSString *const kValue = @"value";
               activateExperiments:activateExperiments
                            userId:userId
                        attributes:nil
+                            error:nil];
+}
+
+- (double)getVariableFloat:(NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(NSString *)userId
+                attributes:(nullable NSDictionary *)attributes {
+    return [self getVariableFloat:variableKey
+              activateExperiments:activateExperiments
+                           userId:userId
+                       attributes:attributes
                             error:nil];
 }
 
