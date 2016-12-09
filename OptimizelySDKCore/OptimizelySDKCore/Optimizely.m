@@ -144,6 +144,8 @@ static NSString *const kValue = @"value";
     if (self.userProfile != nil) {
         NSString *storedVariationKey = [self.userProfile getVariationForUser:userId experiment:experimentKey];
         if (storedVariationKey != nil) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesBucketerUserDataRetrieved, userId, experimentKey, storedVariationKey]
+                          withLevel:OptimizelyLogLevelDebug];
             OPTLYVariation *storedVariation = [[self.config getExperimentForKey:experimentKey]
                                                getVariationForVariationKey:storedVariationKey];
             if (storedVariation != nil) {
@@ -161,7 +163,10 @@ static NSString *const kValue = @"value";
                                                         userId:userId
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
-    // TOOD: Josh W. log attempting to save user profile
+    
+    //Attempt to save user profile
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation, userId]
+                   withLevel:OptimizelyLogLevelDebug];
     [self.userProfile saveUser:userId
                 experiment:experimentKey
                  variation:bucketedVariation.variationKey];
