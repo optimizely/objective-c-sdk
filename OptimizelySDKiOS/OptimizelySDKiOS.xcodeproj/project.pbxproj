@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A40C71D7B825E4BFD61A110 /* Pods_OptimizelySDKiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B2266C94E7767CEB55292 /* Pods_OptimizelySDKiOSTests.framework */; };
+		2D3503941DFA52D100B0A822 /* OPTLYiOSProjectConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D3503931DFA52D100B0A822 /* OPTLYiOSProjectConfig.h */; };
+		2D35039F1DFA530A00B0A822 /* OPTLYiOSProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D35039E1DFA530A00B0A822 /* OPTLYiOSProjectConfig.m */; };
 		2D54570B1DC8223F0095E286 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457041DC822130095E286 /* OptimizelySDKDatafileManager.framework */; };
 		6112539CF7A5064D0D4B344C /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CF46AA2858603BBBB43C69 /* Pods_OptimizelySDKiOS.framework */; };
 		EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,6 +135,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3503931DFA52D100B0A822 /* OPTLYiOSProjectConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYiOSProjectConfig.h; sourceTree = "<group>"; };
+		2D35039E1DFA530A00B0A822 /* OPTLYiOSProjectConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYiOSProjectConfig.m; sourceTree = "<group>"; };
 		2D5456FC1DC822120095E286 /* OptimizelySDKDatafileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKDatafileManager.xcodeproj; path = ../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj; sourceTree = "<group>"; };
 		2D54570C1DC8224C0095E286 /* OptimizelySDKUserProfile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfile.xcodeproj; path = ../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj; sourceTree = "<group>"; };
 		386DDAA1E39D8E12BACD053C /* Pods-OptimizelySDKiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 			children = (
 				EA52495C1DC736B100AF6685 /* OptimizelySDKiOS.modulemap */,
 				EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */,
+				2D3503931DFA52D100B0A822 /* OPTLYiOSProjectConfig.h */,
+				2D35039E1DFA530A00B0A822 /* OPTLYiOSProjectConfig.m */,
 				EA3C68521DC1E6B600C578CA /* OptimizelySDKiOS-Info.plist */,
 			);
 			path = OptimizelySDKiOS;
@@ -286,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */,
+				2D3503941DFA52D100B0A822 /* OPTLYiOSProjectConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D35039F1DFA530A00B0A822 /* OPTLYiOSProjectConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
