@@ -1,0 +1,119 @@
+{
+    "experiments": [
+                    {
+                    "id" : "1886780721",
+                    "status": "Running",
+                    "layerId": "12341886780721",
+                    "key": "Basic_Experiment",
+                    "trafficAllocation": [
+                                          {
+                                          "entityId": "6030714421",
+                                          "endOfRange": 5000
+                                          },
+                                          {
+                                          "entityId": "6030714422",
+                                          "endOfRange": 10000
+                                          }
+                                          ],
+                    "variations": [
+                                   {
+                                   "id": "6030714421",
+                                   "key": "Variation_A",
+                                   "variables": [{"id": "6384881128", "value": "Hello"}, {"id": "63234881124", "value": "2"}]
+                                   },
+                                   {
+                                   "id": "6030714422",
+                                   "key": "Variation_B",
+                                   "variables": [{"id": "6384881128", "value": "GoodBye"}, {"id": "63234881124", "value": "8"}]
+                                   }
+                                   ],
+                    "audienceIds": [ ],
+                    "forcedVariations": { }
+                    },
+                    {
+                    "id" : "3",
+                    "status": "Running",
+                    "layerId": "12343",
+                    "key": "whiteListExperiment",
+                    "trafficAllocation":[],
+                    "variations" : [
+                                    {
+                                    "id" : "variation4",
+                                    "key" : "whiteListedVariation",
+                                    "variables": [{"id": "6684886128", "value": "1.8"}, {"id": "6384881125", "value": "False"}]
+                                    }
+                                    ],
+                    "audienceIds" : [],
+                    "forcedVariations": {
+                    "userId" : "whiteListedVariation"
+                    }
+                    }
+                    ],
+    "version": "1",
+    "audiences": [],
+    "attributes": [],
+    "groups": [
+               {
+               "id": "1886780721",
+               "policy": "random",
+               "trafficAllocation": [
+                                     {
+                                     "entityId": "1",
+                                     "endOfRange": 5000
+                                     },
+                                     {
+                                     "entityId": "2",
+                                     "endOfRange": 6000
+                                     }
+                                     ],
+               "experiments": [
+                               {
+                               "id": "1",
+                               "status": "Running",
+                               "layerId": "12341",
+                               "key": "experiment1",
+                               "trafficAllocation": [
+                                                     {
+                                                     "entityId": "11",
+                                                     "endOfRange": 10000
+                                                     }
+                                                     ],
+                               "audienceIds": [],
+                               "variations": [
+                                              {
+                                              "id": "11",
+                                              "key": "variationOfExperiment1",
+                                              "variables": []
+                                              }
+                                              ],
+                               "forcedVariations": { }
+                               },
+                               {
+                               "id": "2",
+                               "status": "Running",
+                               "layerId": "12342",
+                               "key": "experiment2",
+                               "trafficAllocation": [
+                                                     {
+                                                     "entityId": "21",
+                                                     "endOfRange": 10000
+                                                     }],
+                               "audienceIds": [],
+                               "variations": [
+                                              {
+                                              "id": "21",
+                                              "key": "variationOfExperiment2",
+                                              "variables": []
+                                              }
+                                              ],
+                               "forcedVariations": { }
+                               }
+                               ]
+               }
+               ],
+    "projectId": "6031093773",
+    "accountId": "3244610124",
+    "events": [],
+    "variables": [{"id": "6384881128", "key": "someString", "type": "string", "defaultValue": "defaultStringValue"}, {"id": "6384881125", "key": "someBoolean", "type": "bool", "defaultValue": "False"}, {"id": "63234881124", "key": "someInteger", "type": "integer", "defaultValue": "1"}, {"id": "6684886128", "key": "someFloat", "type": "float", "defaultValue": "0.5"}],
+    "revision": "25"
+}

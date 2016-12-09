@@ -13,21 +13,9 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 
-#import "OPTLYiOSProjectConfig.h"
-
-NSString * const kClientEngine = @"objective-c-sdk-iOS";
-
-@implementation OPTLYiOSProjectConfig
-
-- (NSString *)clientEngine
-{
-    return kClientEngine;
-}
-
-- (NSString *)clientVersion
-{
-    return OPTIMIZELY_SDK_iOS_VERSION;
-}
+@interface OPTLYProjectConfig (OptimizelySDKiOS)
 
 @end

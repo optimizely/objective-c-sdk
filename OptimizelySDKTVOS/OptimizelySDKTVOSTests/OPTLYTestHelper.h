@@ -13,9 +13,23 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-#import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
 
-@interface OPTLYiOSProjectConfig : OPTLYProjectConfig
+#import <Foundation/Foundation.h>
+
+@class OPTLYEventBuilderEvent;
+
+@interface OPTLYTestHelper : NSObject
+
+/// Set up mock response with a failure
++ (void)stubFailureResponse;
+
+/// Set up mock response with a success
++ (void)stubSuccessResponse;
+
+/// Loads JSON datafile into a JSON object
++ (NSDictionary *)loadJSONDatafile:(NSString *)datafileName;
+
+/// Loads JSON datafile into an NSData object
++ (NSData *)loadJSONDatafileIntoDataObject:(NSString *)datafileName;
 
 @end
