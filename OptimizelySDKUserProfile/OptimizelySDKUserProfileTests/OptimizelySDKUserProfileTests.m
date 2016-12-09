@@ -287,4 +287,17 @@ static NSData *removedVariationDatafile;
     XCTAssertEqualObjects(variationForUser1.variationKey, kUserProfileExperimentTreatmentVariationKey, @"treatment should be the new variation since original was removed");
 }
 
+- (void)testLoggerDoesntCrashWhenAskedToSaveNilvalues {
+    OPTLYUserProfileDefault *userProfile = [[OPTLYUserProfileDefault alloc] init];
+    [userProfile removeAllUserExperimentRecords];
+    XCTAssertNotNil(userProfile);
+    [userProfile saveUser:nil experiment:kExperimentKey1 variation:kVariationKey1];
+    [userProfile saveUser:kUserId1 experiment:nil variation:kVariationKey1];
+    [userProfile saveUser:kUserId1 experiment:kExperimentKey1 variation:nil];
+    [userProfile saveUser:nil experiment:nil variation:kVariationKey1];
+    [userProfile saveUser:kUserId1 experiment:nil variation:nil];
+    [userProfile saveUser:nil experiment:nil variation:nil];
+    XCTAssertEqual(0, [[userProfile.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] count]);
+}
+
 @end
