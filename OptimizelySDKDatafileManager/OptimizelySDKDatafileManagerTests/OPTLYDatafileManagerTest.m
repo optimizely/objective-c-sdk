@@ -72,6 +72,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
+    [self stub400Response];
     self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];

@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYUserProfile.h"
+#import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @interface OPTLYUserProfileDefault()
@@ -49,6 +50,8 @@
     NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
     userProfileDataMutable[userId] = @{ experimentKey : variationKey };
     [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSavedVariation, experimentKey, variationKey, userId]
+                  withLevel:OptimizelyLogLevelDebug];
 }
 
 - (nullable NSString *)getVariationForUser:(nonnull NSString *)userId

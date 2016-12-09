@@ -21,7 +21,6 @@
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYUserProfile.h"
 
 @implementation OPTLYBuilder
 
@@ -51,7 +50,6 @@
     
     _config = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
-        builder.userProfile = self.userProfile;
         builder.logger = self.logger;
         builder.errorHandler = self.errorHandler;
     }];
@@ -104,13 +102,6 @@
         _logger = [[OPTLYLoggerDefault alloc] init];
     }
     return _logger;
-}
-
-- (id<OPTLYUserProfile>)userProfile {
-    if (!_userProfile) {
-        _userProfile = [[OPTLYUserProfileNoOp alloc] init];
-    }
-    return _userProfile;
 }
 
 

@@ -21,7 +21,6 @@
 #import "murmur3.h"
 #import "OPTLYLogger.h"
 #import "OPTLYErrorHandler.h"
-#import "OPTLYUserProfile.h"
 
 NSString *const OPTLYBucketerMutexPolicy = @"random";
 NSString *const OPTLYBucketerOverlappingPolicy = @"overlapping";
@@ -67,17 +66,6 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
         return whitelistedVariation;
     }
     
-    NSString *stickyBucketingVariationKey = [self.config.userProfile getVariationForUser:userId experiment:experiment.experimentKey];
-    if ([stickyBucketingVariationKey length] > 0) {
-        OPTLYVariation *stickyBucketingVariation = [experiment getVariationForVariationKey:stickyBucketingVariationKey];
-        if (stickyBucketingVariation) {
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesBucketerUserDataRetrieved, userId, experiment.experimentKey, stickyBucketingVariation.variationKey];
-            [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            return stickyBucketingVariation;
-        }
-    }
-    
     // check for mutex
     NSString *groupId = experiment.groupId;
     if (groupId != nil) {
@@ -102,12 +90,6 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     // bucket to variation only if experiment passes Mutex check
     if (experiment != nil) {
         OPTLYVariation *variation = [self bucketToVariation:experiment withUserId:userId];
-        if (variation) {
-            [self.config.userProfile saveUser:userId experiment:experiment.experimentKey variation:variation.variationKey];
-            
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesBucketerSavingUserData, userId, experiment.experimentKey, variation.variationKey];
-            [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        }
         return variation;
     }
     else {
