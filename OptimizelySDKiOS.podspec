@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKiOS"
-  s.version                 = "0.1.9"
+  s.version                 = "0.2.1"
   s.summary                 = "Optimizely server-side testing framework for iOS."
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.author                  = "Optimizely"
-  s.platform                = :ios, '9.3'
+  s.platform                = :ios, '10.1'
   s.ios.deployment_target   = "8.0"
   s.source                  = {
     :git => "https://github.com/optimizely/objective-c-sdk.git",
@@ -17,8 +17,10 @@ Pod::Spec.new do |s|
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_iOS_VERSION=@\\\"#{s.version}\\\"" }
   s.subspec "JSONModel" do |ss|
-      ss.dependency 'JSONModel', '~> 1.3.0'
+      ss.dependency 'JSONModel', '=1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKCore'
+  s.dependency 'OptimizelySDKEventDispatcher', '0.2.1'
+  s.dependency 'OptimizelySDKUserProfile', '0.2.1'
+  s.dependency 'OptimizelySDKDatafileManager', '0.2.1'
 end

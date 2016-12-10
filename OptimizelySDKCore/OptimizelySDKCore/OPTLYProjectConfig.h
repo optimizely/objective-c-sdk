@@ -16,9 +16,10 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
+#import "OPTLYProjectConfigBuilder.h"
 
-@class OPTLYExperiment, OPTLYGroup, OPTLYEvent, OPTLYAttribute, OPTLYAudience, OPTLYVariation, OPTLYBucketer;
-@protocol OPTLYExperiment, OPTLYEvent, OPTLYAudience, OPTLYAttribute, OPTLYGroup, OPTLYExperiment, OPTLYLogger, OPTLYErrorHandler, OPTLYBucketer;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
+@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -45,6 +46,9 @@
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
+/// List of live variable objects
+/// TODO: Make variables required
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -52,11 +56,14 @@
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
 
 /**
- * Initialize the Project Config from the Data File.
+ * Initialize the Project Config from a builder block.
  */
-- (nullable instancetype)initWithDatafile:(nullable NSData *)datafile
-                                 withLogger:(nullable id<OPTLYLogger>)logger
-                           withErrorHandler:(nullable id<OPTLYErrorHandler>)errorHandler;
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
+
+/**
+ * Initialize the Project Config from a datafile.
+ */
+- (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile;
 
 /**
  * Get an Experiment object for a key.
@@ -99,12 +106,18 @@
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
 
 /**
+ * Get a variable for a given live variable key.
+ */
+- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
+
+/**
  * Get variation for experiment and user ID with user attributes.
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
                                                 userId:(nonnull NSString *)userId
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
+
 /*
  * Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
  */

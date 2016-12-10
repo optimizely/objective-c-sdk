@@ -20,17 +20,25 @@
 @protocol OPTLYEventDispatcher <NSObject>
 
 /**
- * Dispatch an event to a specific URL. 
+ * Dispatch an impression event.
  * @param params Dictionary of the event parameter values
- * @param url The URL to send the event to.
+ * @param callback The completion handler
  */
-- (void)dispatchEvent:(nonnull NSDictionary *)params
-                toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
+
+- (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
+
+/**
+ * Dispatch a conversion event.
+ * @param params Dictionary of the event parameter values
+ * @param callback The completion handler
+ */
+- (void)dispatchConversionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback;
 
 @end
 
-@interface OPTLYEventDispatcher : NSObject
+@interface OPTLYEventDispatcherUtility : NSObject
 /**
  * Utility method to check if a class conforms to the OPTLYEventDispatcher protocol
  * This method uses compile and run time checks
@@ -38,5 +46,17 @@
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(nonnull Class)instanceClass;
 @end
 
-@interface OPTLYEventDispatcherDefault : NSObject <OPTLYEventDispatcher>
+/**
+ * OPTLYEventDispatcherBasic is a very simple implementation of the OPTLYEventDispatcher protocol.
+ * It dispatches events without any failure mechanisms (e.g., events are not queued up for a loater 
+ * retry.
+ */
+@interface OPTLYEventDispatcherBasic : NSObject <OPTLYEventDispatcher>
+@end
+
+/**
+ * OPTLYEventDispatcherNoOp comforms to the OPTLYEventDispatcher protocol,
+ * but all methods perform a no op.
+ */
+@interface OPTLYEventDispatcherNoOp : NSObject<OPTLYEventDispatcher>
 @end

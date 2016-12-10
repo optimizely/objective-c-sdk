@@ -36,11 +36,11 @@
 - (void)testConformsToOPTLYEventDispatcherProtocol
 {
     id<OPTLYEventDispatcher> eventDispatcher = [NSObject new];
-    BOOL conformsToProtocol = [OPTLYEventDispatcher conformsToOPTLYEventDispatcherProtocol:[eventDispatcher class]];
+    BOOL conformsToProtocol = [OPTLYEventDispatcherUtility conformsToOPTLYEventDispatcherProtocol:[eventDispatcher class]];
     NSAssert(conformsToProtocol == FALSE, @"Object does not conform to protocol.");
     
-    eventDispatcher = [OPTLYEventDispatcherDefault new];
-    conformsToProtocol = [OPTLYEventDispatcher conformsToOPTLYEventDispatcherProtocol:[eventDispatcher class]];
+    eventDispatcher = [OPTLYEventDispatcherNoOp new];
+    conformsToProtocol = [OPTLYEventDispatcherUtility conformsToOPTLYEventDispatcherProtocol:[eventDispatcher class]];
     NSAssert(conformsToProtocol == TRUE, @"Object should conform to protocol.");
 }
 

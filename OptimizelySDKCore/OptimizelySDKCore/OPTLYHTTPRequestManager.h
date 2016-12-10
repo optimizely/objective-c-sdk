@@ -34,8 +34,7 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * GET data from the URL inititialized
  *
- * @param:
- *      completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
  */
 
 - (void)GET:(nullable OPTLYHTTPRequestManagerResponse)completion;
@@ -43,9 +42,8 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * GET data with parameters
  *
- * @param:
- *      parameters - Dictionary of GET request parameter values
- *      completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param parameters - Dictionary of GET request parameter values
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithParameters:(nullable NSDictionary *)parameters
         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
@@ -53,11 +51,22 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * POST data with parameters
  *
- * @param:
- *      parameters - Dictionary of POST request parameter values
- *      completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param parameters - Dictionary of POST request parameter values
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)POSTWithParameters:(nullable NSDictionary *)parameters
+         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * A GET response with the following condition:
+ * If the requested variant has not been modified since the time specified in the 
+ * "If-Modified-Since" field, an entity will not be returned from the server; instead, 
+ * a 304 (not modified) response will be returned without any message-body.
+ *
+ * @param lastModifiedDate - The date since the URL request was last modified
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 @end

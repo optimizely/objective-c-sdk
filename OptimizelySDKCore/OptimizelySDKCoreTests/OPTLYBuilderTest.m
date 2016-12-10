@@ -15,12 +15,11 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYTestHelper.h"
-
 #import "Optimizely.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
+#import "OPTLYTestHelper.h"
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
@@ -67,12 +66,12 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.errorHandler);
     XCTAssertNotEqual(errorHandler, defaultOptimizely.errorHandler, @"Default OPTLYBuilder should create its own Error Handler");
-    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"Should be same object with custom Builder");
+    XCTAssertEqual(errorHandler, customOptimizely.errorHandler, @"This module should be the same as that created in the OPLTYManager builder.");
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+    id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
@@ -106,6 +105,18 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(customOptimizely.logger);
     XCTAssertNotEqual(logger, defaultOptimizely.logger, @"Default OPTLYBuilder should create its own Logger");
     XCTAssertEqual(logger, customOptimizely.logger, @"Should be the same object with custom builder");
+}
+
+- (void)testInitializationWithoutBuilder {
+    Optimizely *optimizely = [Optimizely initWithBuilderBlock:nil];
+    XCTAssertNil(optimizely);
+}
+
+- (void)testBuilderReturnsNilWithBadDatafile {
+    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [[NSData alloc] init];
+    }];
+    XCTAssertNil(optimizely);
 }
 
 @end

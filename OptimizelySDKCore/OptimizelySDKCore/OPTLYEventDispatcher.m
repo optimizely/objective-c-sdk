@@ -15,38 +15,68 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYProjectConfig.h"
-#import "OPTLYEventDispatcher.h"
-#import "OPTLYHTTPRequestManager.h"
 #import "OPTLYErrorHandler.h"
+#import "OPTLYEventDispatcher.h"
+#import "OPTLYProjectConfig.h"
+#import "OPTLYNetworkService.h"
 
-@implementation OPTLYEventDispatcher
+static NSString * const kEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
+static NSString * const kEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
+
+static NSString * const kHTTPRequestMethodPost = @"POST";
+static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
+static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
+
+@implementation OPTLYEventDispatcherUtility
 
 + (BOOL)conformsToOPTLYEventDispatcherProtocol:(Class)instanceClass
 {
     // compile-time check
-    BOOL validProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
+    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYEventDispatcher)];
     
     // runtime checks
-    BOOL implementsDispatchEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchEvent:toURL:completionHandler:)];
+    BOOL implementsDispatchImpressionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchImpressionEvent:callback:)];
+    BOOL implementsDispatchConversionEventMethod = [instanceClass instancesRespondToSelector:@selector(dispatchConversionEvent:callback:)];
     
-    return validProtocolDeclaration && implementsDispatchEventMethod;
+    return isValidProtocolDeclaration && implementsDispatchImpressionEventMethod && implementsDispatchConversionEventMethod;
 }
 
 @end
 
-@implementation OPTLYEventDispatcherDefault
+@implementation OPTLYEventDispatcherBasic
+
+- (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    NSURL *url = [NSURL URLWithString:kEventDispatcherImpressionEventURL];
+    [self dispatchEvent:params toURL:url completionHandler:callback];
+}
+
+- (void)dispatchConversionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    
+    NSURL *url = [NSURL URLWithString:kEventDispatcherConversionEventURL];
+    [self dispatchEvent:params toURL:url completionHandler:callback];
+}
 
 - (void)dispatchEvent:(NSDictionary *)params
                 toURL:(NSURL *)url
-    completionHandler:(void(^)(NSURLResponse *response, NSError *error))completion
-{
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (completion) {
-            completion(response, error);
-        }
-    }];
+    completionHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error))completion {
+    OPTLYNetworkService *networkService = [OPTLYNetworkService new];
+    [networkService dispatchEvent:params toURL:url completionHandler:completion];
+}
+
+@end
+
+@implementation OPTLYEventDispatcherNoOp
+
+- (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    return;
+}
+
+- (void)dispatchConversionEvent:(nonnull NSDictionary *)params
+                       callback:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))callback {
+    return;
 }
 
 @end

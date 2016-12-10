@@ -26,11 +26,32 @@ NS_ASSUME_NONNULL_END
 /**
  * Download the project config file from remote server
  *
- * @param:
-        projectId - projectId of the project config to download
- *      completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param projectId The project ID of the datafile to download.
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * Download the project config file from remote server only if it
+ * has been modified.
+ *
+ * @param projectId The project ID of the datafile to download.
+ * @param lastModifiedDate The date the datafile was last modified.
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 lastModified:(nonnull NSString *)lastModifiedDate
+            completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * Dispatches an event to a url
+ * @param params Dictionary of the event parameter values
+ * @param url The url to dispatch the event
+ * @param completion The completion handler
+ */
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+                toURL:(nonnull NSURL *)url
+    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
 @end

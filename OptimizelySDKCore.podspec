@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKCore"
-  s.version                 = "0.1.9"
+  s.version                 = "0.2.1"
   s.summary                 = "Optimizely server-side testing core framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.author                  = { "Optimizely" => "support@optimizely.com" }
-  s.platform                = :ios, '9.3', :tvos, '9.2'
+  s.platform                = :ios, '10.1', :tvos, '10.1'
   s.ios.deployment_target   = "8.0"
   s.tvos.deployment_target  = "9.0"
   s.source                  = {

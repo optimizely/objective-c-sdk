@@ -20,27 +20,14 @@
 @class OPTLYProjectConfig, OPTLYVariation;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
-/** 
- * This class defines the Optimizely SDK interface.
- * Optimizely Instance
- */
-@interface Optimizely : NSObject
+// ---- Live Variable Getter Errors ----
 
-@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
+typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
+    OPTLYLiveVariableErrorNone = 0,
+    OPTLYLiveVariableErrorKeyUnknown
+};
 
-/**
- * Init with builder block
- * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
- * @return Optimizely instance.
- */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
-
-
+@protocol Optimizely <NSObject>
 
 #pragma mark - activateExperiment methods
 /**
@@ -73,7 +60,7 @@
 
 #pragma mark - getVariation methods
 /**
- * Use the getVariation method if activate has been called and the current variation assignment 
+ * Use the getVariation method if activate has been called and the current variation assignment
  * is needed for a given experiment and user.
  * This method bypasses redundant network requests to Optimizely.
  */
@@ -89,7 +76,7 @@
 
 /**
  * Get variation for experiment and user ID with user attributes.
- * @param experiment The key for the experiment.
+ * @param experimentKey The key for the experiment.
  * @param userId The user ID to be used for bucketing.
  * @param attributes A map of attribute names to current user attribute values.
  * @return The variation the user was bucketed into. This value can be nil.
@@ -138,5 +125,259 @@
             userId:(nonnull NSString *)userId
         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
         eventValue:(nullable NSNumber * )eventValue;
+
+#pragma mark - Live Variable Getters
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
+                     activateExperiments:(bool)activateExperiments
+                                  userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
+                     activateExperiments:(bool)activateExperiments
+                                  userId:(nonnull NSString *)userId
+                              attributes:(nullable NSDictionary *)attributes;
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param error An error value if the value is not valid for the following reasons:
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
+                     activateExperiments:(bool)activateExperiments
+                                  userId:(nonnull NSString *)userId
+                              attributes:(nullable NSDictionary *)attributes
+                                   error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)getVariableBool:(nonnull NSString *)variableKey
+    activateExperiments:(bool)activateExperiments
+                 userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)getVariableBool:(nonnull NSString *)variableKey
+    activateExperiments:(bool)activateExperiments
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes;
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param error An error value if the value is not valid for the following reasons:
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (BOOL)getVariableBool:(nonnull NSString *)variableKey
+    activateExperiments:(bool)activateExperiments
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+                  error:(NSError * _Nullable * _Nullable)error;
+
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                   userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                   userId:(nonnull NSString *)userId
+               attributes:(nullable NSDictionary *)attributes;
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param error An error value if the value is not valid for the following reasons:
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+      activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+               attributes:(nullable NSDictionary *)attributes
+                    error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Gets the float value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the float value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes;
+
+/**
+ * Gets the float value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param activateExperiments Indicates if the experiment(s) should be activated
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param error An error value if the value is not valid for the following reasons:
+ *  - OPTLYLiveVariableErrorKeyUnknown - key does not exist
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+       activateExperiments:(bool)activateExperiments
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes
+                     error:(NSError * _Nullable * _Nullable)error;
+
+@end
+
+/** 
+ * This class defines the Optimizely SDK interface.
+ * Optimizely Instance
+ */
+@interface Optimizely : NSObject <Optimizely>
+
+@property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
+@property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfile> userProfile;
+
+/**
+ * Init with builder block
+ * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
+ * @return Optimizely instance.
+ */
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
 
 @end

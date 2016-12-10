@@ -1,0 +1,660 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4BE2E6BA66AD1489F14B85B3 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C910DE729732A5108C9AFD6E /* Pods_OptimizelyTVOSDemoApp.framework */; };
+		EA5247501DC71C6900AF6685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA52474F1DC71C6900AF6685 /* AppDelegate.swift */; };
+		EA5247521DC71C6900AF6685 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5247511DC71C6900AF6685 /* ViewController.swift */; };
+		EA5247551DC71C6900AF6685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5247531DC71C6900AF6685 /* Main.storyboard */; };
+		EA5247571DC71C6900AF6685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5247561DC71C6900AF6685 /* Assets.xcassets */; };
+		EA5247621DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5247611DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift */; };
+		EA52476D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA52476C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA52475E1DC71C6900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5247441DC71C6900AF6685 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA52474B1DC71C6900AF6685;
+			remoteInfo = OptimizelyTVOSDemoApp;
+		};
+		EA5247691DC71C6900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5247441DC71C6900AF6685 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA52474B1DC71C6900AF6685;
+			remoteInfo = OptimizelyTVOSDemoApp;
+		};
+		EA5249391DC72F3900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA2FA7241DC1FA9F00B1D81B;
+			remoteInfo = OptimizelySDKTVOS;
+		};
+		EA52493B1DC72F3900AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA2FA72D1DC1FAA000B1D81B;
+			remoteInfo = OptimizelySDKTVOSTests;
+		};
+		EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA7231DC1FA9F00B1D81B;
+			remoteInfo = OptimizelySDKTVOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		111141A39D08F15D09B441B4 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
+		C910DE729732A5108C9AFD6E /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyTVOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52474C1DC71C6900AF6685 /* OptimizelyTVOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyTVOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52474F1DC71C6900AF6685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA5247511DC71C6900AF6685 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA5247541DC71C6900AF6685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA5247561DC71C6900AF6685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA5247581DC71C6900AF6685 /* OptimizelyTVOSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelyTVOSDemoApp-Info.plist"; sourceTree = "<group>"; };
+		EA52475D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyTVOSDemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5247611DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelyTVOSDemoAppTests.swift; sourceTree = "<group>"; };
+		EA5247631DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelyTVOSDemoAppTests-Info.plist"; sourceTree = "<group>"; };
+		EA5247681DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyTVOSDemoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52476C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelyTVOSDemoAppUITests.swift; sourceTree = "<group>"; };
+		EA52476E1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelyTVOSDemoAppUITests-Info.plist"; sourceTree = "<group>"; };
+		EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKTVOS.xcodeproj; path = ../OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj; sourceTree = "<group>"; };
+		F44B3380BE8765933FB79907 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA5247491DC71C6900AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BE2E6BA66AD1489F14B85B3 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52475A1DC71C6900AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247651DC71C6900AF6685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		195CDDEB5B9046C3F29ACE3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F44B3380BE8765933FB79907 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */,
+				111141A39D08F15D09B441B4 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA5247431DC71C6900AF6685 = {
+			isa = PBXGroup;
+			children = (
+				EA52474E1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */,
+				EA5247601DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests */,
+				EA52476B1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests */,
+				EA52474D1DC71C6900AF6685 /* Products */,
+				EA5248C41DC72E9500AF6685 /* Frameworks */,
+				195CDDEB5B9046C3F29ACE3B /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		EA52474D1DC71C6900AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA52474C1DC71C6900AF6685 /* OptimizelyTVOSDemoApp.app */,
+				EA52475D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.xctest */,
+				EA5247681DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA52474E1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				EA52474F1DC71C6900AF6685 /* AppDelegate.swift */,
+				EA5247511DC71C6900AF6685 /* ViewController.swift */,
+				EA5247531DC71C6900AF6685 /* Main.storyboard */,
+				EA5247561DC71C6900AF6685 /* Assets.xcassets */,
+				EA5247581DC71C6900AF6685 /* OptimizelyTVOSDemoApp-Info.plist */,
+			);
+			path = OptimizelyTVOSDemoApp;
+			sourceTree = "<group>";
+		};
+		EA5247601DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA5247611DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift */,
+				EA5247631DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests-Info.plist */,
+			);
+			path = OptimizelyTVOSDemoAppTests;
+			sourceTree = "<group>";
+		};
+		EA52476B1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EA52476C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift */,
+				EA52476E1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests-Info.plist */,
+			);
+			path = OptimizelyTVOSDemoAppUITests;
+			sourceTree = "<group>";
+		};
+		EA5248C41DC72E9500AF6685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */,
+				C910DE729732A5108C9AFD6E /* Pods_OptimizelyTVOSDemoApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA5249351DC72F3900AF6685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA52493A1DC72F3900AF6685 /* OptimizelySDKTVOS.framework */,
+				EA52493C1DC72F3900AF6685 /* OptimizelySDKTVOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5247711DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoApp" */;
+			buildPhases = (
+				EB2EFBDA80C54AA2EF091F77 /* [CP] Check Pods Manifest.lock */,
+				EA5247481DC71C6900AF6685 /* Sources */,
+				EA5247491DC71C6900AF6685 /* Frameworks */,
+				EA52474A1DC71C6900AF6685 /* Resources */,
+				605CAA8B3CF38602C7CCE09E /* [CP] Embed Pods Frameworks */,
+				56063B6687991B60E85B3532 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52495B1DC7363600AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelyTVOSDemoApp;
+			productName = OptimizelyTVOSDemoApp;
+			productReference = EA52474C1DC71C6900AF6685 /* OptimizelyTVOSDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA52475C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5247741DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoAppTests" */;
+			buildPhases = (
+				EA5247591DC71C6900AF6685 /* Sources */,
+				EA52475A1DC71C6900AF6685 /* Frameworks */,
+				EA52475B1DC71C6900AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52475F1DC71C6900AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelyTVOSDemoAppTests;
+			productName = OptimizelyTVOSDemoAppTests;
+			productReference = EA52475D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA5247671DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5247771DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoAppUITests" */;
+			buildPhases = (
+				EA5247641DC71C6900AF6685 /* Sources */,
+				EA5247651DC71C6900AF6685 /* Frameworks */,
+				EA5247661DC71C6900AF6685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52476A1DC71C6900AF6685 /* PBXTargetDependency */,
+			);
+			name = OptimizelyTVOSDemoAppUITests;
+			productName = OptimizelyTVOSDemoAppUITests;
+			productReference = EA5247681DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA5247441DC71C6900AF6685 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Optimizely;
+				TargetAttributes = {
+					EA52474B1DC71C6900AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
+					};
+					EA52475C1DC71C6900AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EA52474B1DC71C6900AF6685;
+					};
+					EA5247671DC71C6900AF6685 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EA52474B1DC71C6900AF6685;
+					};
+				};
+			};
+			buildConfigurationList = EA5247471DC71C6900AF6685 /* Build configuration list for PBXProject "OptimizelyTVOSDemoApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA5247431DC71C6900AF6685;
+			productRefGroup = EA52474D1DC71C6900AF6685 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA5249351DC72F3900AF6685 /* Products */;
+					ProjectRef = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */,
+				EA52475C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests */,
+				EA5247671DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EA52493A1DC72F3900AF6685 /* OptimizelySDKTVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKTVOS.framework;
+			remoteRef = EA5249391DC72F3900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA52493C1DC72F3900AF6685 /* OptimizelySDKTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKTVOSTests.xctest;
+			remoteRef = EA52493B1DC72F3900AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA52474A1DC71C6900AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5247571DC71C6900AF6685 /* Assets.xcassets in Resources */,
+				EA5247551DC71C6900AF6685 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52475B1DC71C6900AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247661DC71C6900AF6685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56063B6687991B60E85B3532 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		605CAA8B3CF38602C7CCE09E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB2EFBDA80C54AA2EF091F77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA5247481DC71C6900AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5247521DC71C6900AF6685 /* ViewController.swift in Sources */,
+				EA5247501DC71C6900AF6685 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247591DC71C6900AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5247621DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5247641DC71C6900AF6685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52476D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA52475F1DC71C6900AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */;
+			targetProxy = EA52475E1DC71C6900AF6685 /* PBXContainerItemProxy */;
+		};
+		EA52476A1DC71C6900AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */;
+			targetProxy = EA5247691DC71C6900AF6685 /* PBXContainerItemProxy */;
+		};
+		EA52495B1DC7363600AF6685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKTVOS;
+			targetProxy = EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA5247531DC71C6900AF6685 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA5247541DC71C6900AF6685 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA52476F1DC71C6900AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		EA5247701DC71C6900AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA5247721DC71C6900AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F44B3380BE8765933FB79907 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = "OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EA5247731DC71C6900AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 111141A39D08F15D09B441B4 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = "OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		EA5247751DC71C6900AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "OptimizelyTVOSDemoAppTests/OptimizelyTVOSDemoAppTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OptimizelyTVOSDemoApp.app/OptimizelyTVOSDemoApp";
+			};
+			name = Debug;
+		};
+		EA5247761DC71C6900AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "OptimizelyTVOSDemoAppTests/OptimizelyTVOSDemoAppTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OptimizelyTVOSDemoApp.app/OptimizelyTVOSDemoApp";
+			};
+			name = Release;
+		};
+		EA5247781DC71C6900AF6685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "OptimizelyTVOSDemoAppUITests/OptimizelyTVOSDemoAppUITests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = OptimizelyTVOSDemoApp;
+			};
+			name = Debug;
+		};
+		EA5247791DC71C6900AF6685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "OptimizelyTVOSDemoAppUITests/OptimizelyTVOSDemoAppUITests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = OptimizelyTVOSDemoApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA5247471DC71C6900AF6685 /* Build configuration list for PBXProject "OptimizelyTVOSDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA52476F1DC71C6900AF6685 /* Debug */,
+				EA5247701DC71C6900AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA5247711DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5247721DC71C6900AF6685 /* Debug */,
+				EA5247731DC71C6900AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA5247741DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5247751DC71C6900AF6685 /* Debug */,
+				EA5247761DC71C6900AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA5247771DC71C6900AF6685 /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5247781DC71C6900AF6685 /* Debug */,
+				EA5247791DC71C6900AF6685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA5247441DC71C6900AF6685 /* Project object */;
+}

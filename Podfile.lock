@@ -1,0 +1,35 @@
+PODS:
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - JSONModel (1.3.0)
+  - OCMock (3.3.1)
+  - OHHTTPStubs (5.2.2):
+    - OHHTTPStubs/Default (= 5.2.2)
+  - OHHTTPStubs/Core (5.2.2)
+  - OHHTTPStubs/Default (5.2.2):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (5.2.2):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (5.2.2):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (5.2.2)
+
+DEPENDENCIES:
+  - FMDB (= 2.6.2)
+  - JSONModel (= 1.3.0)
+  - OCMock (= 3.3.1)
+  - OHHTTPStubs (= 5.2.2)
+
+SPEC CHECKSUMS:
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  JSONModel: 81c06ecf99190a25fa6aafceea5faffa7880868a
+  OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
+  OHHTTPStubs: 34d9d0994e64fcf8552dbfade5ce82ada913ee31
+
+PODFILE CHECKSUM: d1381925c273f6db656308828c7ac3032e3d383d
+
+COCOAPODS: 1.1.1

@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_END
 
 @end
 
-@interface OPTLYLogger : NSObject
+@interface OPTLYLoggerUtility : NSObject
 /**
  * Utility method to check if a class conforms to the OPTLYLogger protocol
  * This method uses compile and run time checks

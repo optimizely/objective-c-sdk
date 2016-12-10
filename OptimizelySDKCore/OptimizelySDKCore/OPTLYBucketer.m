@@ -89,7 +89,8 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     
     // bucket to variation only if experiment passes Mutex check
     if (experiment != nil) {
-        return [self bucketToVariation:experiment withUserId:userId];
+        OPTLYVariation *variation = [self bucketToVariation:experiment withUserId:userId];
+        return variation;
     }
     else {
         // log message if the user is mutually excluded

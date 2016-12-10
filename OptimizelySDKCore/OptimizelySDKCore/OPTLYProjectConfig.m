@@ -26,6 +26,9 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
+#import "OPTLYUserProfile.h"
+#import "OPTLYVariable.h"
+#import "OPTLYVariable.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
 
@@ -39,75 +42,90 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 
 @end
 
 @implementation OPTLYProjectConfig
 
-- (instancetype)initWithDatafile:(NSData *)datafile
-                      withLogger:(id<OPTLYLogger>)logger
-                withErrorHandler:(id<OPTLYErrorHandler>)errorHandler
-{    
-    if (errorHandler) {
-        if ([OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]]) {
-            _errorHandler = (id<OPTLYErrorHandler, Ignore>)errorHandler;
-        } else {
-            _errorHandler = [OPTLYErrorHandlerDefault new];
++ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block {
+    return [[self alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:block]];
+}
+
+- (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
+    // check for valid error handler
+    if (builder.errorHandler) {
+        if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesErrorHandlerInvalid
                                              userInfo:@{NSLocalizedDescriptionKey :
                                                             NSLocalizedString(OPTLYErrorHandlerMessagesErrorHandlerInvalid, nil)}];
-            [_errorHandler handleError:error];
+            [[[OPTLYErrorHandlerNoOp alloc] init] handleError:error];
             
             NSString *logMessage = OPTLYErrorHandlerMessagesErrorHandlerInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            [[[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll] logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            return nil;
         }
     }
     
-    if (logger) {
-        if ([logger conformsToProtocol:@protocol(OPTLYLogger)]) {
-            _logger = (id<OPTLYLogger, Ignore>)logger;
-        } else {
+    // check for valid logger
+    if (builder.logger) {
+        if (![builder.logger conformsToProtocol:@protocol(OPTLYLogger)]) {
+            builder.logger = [OPTLYLoggerDefault new];
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesLoggerInvalid
                                              userInfo:@{NSLocalizedDescriptionKey :
                                                             NSLocalizedString(OPTLYErrorHandlerMessagesLoggerInvalid, nil)}];
-            [_errorHandler handleError:error];
+            [builder.errorHandler handleError:error];
             
             NSString *logMessage = OPTLYErrorHandlerMessagesLoggerInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+            return nil;
         }
     }
     
-    OPTLYProjectConfig* projectConfig = nil;
-    NSError *datafileError;
+    // check that datafile exists
+    if (!builder.datafile) {
+        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesDatafileInvalid
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        NSLocalizedString(OPTLYErrorHandlerMessagesDataFileInvalid, nil)}];
+        [builder.errorHandler handleError:error];
+        
+        NSString *logMessage = OPTLYErrorHandlerMessagesDataFileInvalid;
+        [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    
+    // check datafile is valid
     @try {
-        if (!datafile) {
+        NSError *datafileError;
+        OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
+        if (datafileError)
+        {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesDatafileInvalid
-                                             userInfo:@{NSLocalizedDescriptionKey :
-                                                            NSLocalizedString(OPTLYErrorHandlerMessagesDataFileInvalid, nil)}];
-            [_errorHandler handleError:error];
-            
-            NSString *logMessage = OPTLYErrorHandlerMessagesDataFileInvalid;
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
-        } else {
-            projectConfig = [[OPTLYProjectConfig alloc] initWithData:datafile error:&datafileError];
+                                             userInfo:datafileError.userInfo];
+            [builder.errorHandler handleError:error];
+            return nil;
+        }
+        else {
+            self = projectConfig;
         }
     }
     @catch (NSException *datafileException) {
-        [_errorHandler handleException:datafileException];
+        [builder.errorHandler handleException:datafileException];
     }
     
-    if (datafileError)
-    {
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesDatafileInvalid
-                                         userInfo:datafileError.userInfo];
-        [_errorHandler handleError:error];
-    }
-    
-    return projectConfig;
+    _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
+    _logger = (id<OPTLYLogger, Ignore>)builder.logger;
+    return self;
+}
+
+- (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
+    return [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+    }];
 }
 
 #pragma mark -- Getters --
@@ -185,6 +203,15 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     return group;
 }
 
+- (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
+    OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
+    if (!variable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    }
+    return variable;
+}
+
 #pragma mark -- Property Getters --
 
 - (NSArray *)allExperiments
@@ -259,6 +286,13 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         _groupIdToGroupMap = [OPTLYProjectConfig generateGroupIdToGroupMapFromGroupsArray:_groups];
     }
     return _groupIdToGroupMap;
+}
+
+- (NSDictionary<NSString *, OPTLYVariable *> *)variableKeyToVariableMap {
+    if (!_variableKeyToVariableMap) {
+        _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
+    }
+    return _variableKeyToVariableMap;
 }
 
 #pragma mark -- Generate Mappings --
@@ -342,6 +376,14 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     return [NSDictionary dictionaryWithDictionary:map];
 }
 
+- (NSDictionary<NSString *, OPTLYVariable *> *)generateVariableKeyToVariableMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYVariable *variable in self.variables) {
+        map[variable.variableKey] = variable;
+    }
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
 # pragma mark - Helper Methods
 
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
@@ -360,10 +402,6 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
         
         // bucket user into a variation
         variation = [bucketer bucketExperiment:experiment withUserId:userId];
-        if (variation != nil) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, variation.variationKey, experiment.experimentKey];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        }
     }
     
     return variation;

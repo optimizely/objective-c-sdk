@@ -15,13 +15,17 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYTestHelper.h"
-#import "OPTLYProjectConfig.h"
-#import "OPTLYExperiment.h"
-#import "OPTLYAudience.h"
-#import "OPTLYEvent.h"
-#import "OPTLYGroup.h"
+
 #import "OPTLYAttribute.h"
+#import "OPTLYAudience.h"
+#import "OPTLYErrorHandler.h"
+#import "OPTLYEvent.h"
+#import "OPTLYExperiment.h"
+#import "OPTLYGroup.h"
+#import "OPTLYLogger.h"
+#import "OPTLYProjectConfig.h"
+#import "OPTLYUserProfile.h"
+#import "OPTLYTestHelper.h"
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
@@ -45,10 +49,49 @@ static NSString * const kAccountId = @"6365361536";
     [super tearDown];
 }
 
+- (void)testInitWithBuilderBlock
+{
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+        builder.datafile = datafile;
+        builder.logger = [OPTLYLoggerDefault new];
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }];
+    
+    XCTAssertNotNil(projectConfig, @"project config should not be nil.");
+    XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
+    XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
+}
+
+- (void)testInitWithBuilderBlockNoDatafile
+{
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+        builder.datafile = nil;
+    }];
+    
+    XCTAssertNil(projectConfig, @"project config should be nil.");
+}
+
+- (void)testInitWithBuilderBlockInvalidModulesFails {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    
+    id<OPTLYUserProfile> userProfile = [NSObject new];
+    id<OPTLYLogger> logger = [NSObject new];
+    id<OPTLYErrorHandler> errorHandler = [NSObject new];
+    
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+        builder.datafile = datafile;
+        builder.logger = logger;
+        builder.errorHandler = errorHandler;
+    }];
+    
+    XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
+}
+
 - (void)testInitWithDatafile
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile withLogger:nil withErrorHandler:nil];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     [self checkProjectConfigProperties:projectConfig];
 }
 
@@ -101,4 +144,5 @@ static NSString * const kAccountId = @"6365361536";
         NSAssert([event isKindOfClass:[OPTLYEvent class]], @"deserializeJSONArray failed to deserialize the event object in project config.");
     }
 }
+
 @end

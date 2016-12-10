@@ -32,9 +32,11 @@
     return [self initWithBlock:nil];
 }
 
-- (id)initWithBlock:(OPTLYBuilderBlock)block;
-{
-    NSParameterAssert(block);
+- (id)initWithBlock:(OPTLYBuilderBlock)block {
+    // check for nil block
+    if (block == nil) {
+        return nil;
+    }
     self = [super init];
     if (self != nil) {
         block(self);
@@ -45,7 +47,12 @@
     if (_datafile == nil) {
         return nil;
     }
-    _config = [[OPTLYProjectConfig alloc] initWithDatafile:_datafile withLogger:_logger withErrorHandler:_errorHandler];
+    
+    _config = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = self.logger;
+        builder.errorHandler = self.errorHandler;
+    }];
     
     if (_config == nil) {
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -85,7 +92,7 @@
 
 - (id<OPTLYEventDispatcher>)eventDispatcher {
     if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherDefault alloc] init];
+        _eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     }
     return _eventDispatcher;
 }
@@ -96,5 +103,6 @@
     }
     return _logger;
 }
+
 
 @end

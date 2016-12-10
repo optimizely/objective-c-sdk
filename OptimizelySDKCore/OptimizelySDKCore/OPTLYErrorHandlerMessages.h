@@ -37,12 +37,16 @@ extern NSString * const OPTLYErrorHandlerMessagesAttributeFormatInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesGroupInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesVariationUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesEventTypeUnknown;
+extern NSString * const OPTLYErrorHandlerMessagesUserProfileInvalid;
 
 extern NSString * const OPTLYErrorHandlerMessagesTrafficAllocationNotInRange;
 extern NSString * const OPTLYErrorHandlerMessagesBucketingIdInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed;
 extern NSString * const OPTLYErrorHandlerMessagesConfigInvalid;
+extern NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown;
+
+extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
 
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatafileInvalid = 0,
@@ -50,8 +54,13 @@ typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesConfigInvalid,
     OPTLYErrorTypesLoggerInvalid,
     OPTLYErrorTypesErrorHandlerInvalid,
-    OPTLYErrorTypesEventDispatchInvalid,
-    OPTLYErrorTypesBuilderInvalid
+    OPTLYErrorTypesBuilderInvalid,
+    OPTLYErrorTypesDatabase,
+    OPTLYErrorTypesDataStore,
+    OPTLYErrorTypesUserProfile,
+    OPTLYErrorTypesEventDispatch,
+    OPTLYErrorTypesEventTrack,
+    OPTLYErrorTypesUserActivate,
 };
 
 @interface OPTLYErrorHandlerMessages : NSObject
