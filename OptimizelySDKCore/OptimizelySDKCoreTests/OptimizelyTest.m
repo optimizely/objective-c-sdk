@@ -175,7 +175,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 - (void)testGetVariableStringShortAPIWithActivateExperiments {
     NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                                          userId:kUserId
+                                                           userId:kUserId
                                               activateExperiments:NO];
     
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
@@ -297,7 +297,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBool {
+- (void)testgetVariableBoolean {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -305,7 +305,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNotNil]]);
     
-    BOOL variableBool = [optimizelyMock getVariableBool:kVariableKeyForBool
+    BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                  userId:kUserId
                                              attributes:self.attributes
                                     activateExperiments:NO
@@ -316,23 +316,23 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolShortAPI {
-    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
+- (void)testgetVariableBooleanShortAPI {
+    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
                                                   userId:kUserId];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
-- (void)testGetVariableBoolShortAPIWithActivateExperiments {
-    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
-                                                 userId:kUserId
+- (void)testgetVariableBooleanShortAPIWithActivateExperiments {
+    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
+                                                  userId:kUserId
                                      activateExperiments:NO];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
-- (void)testGetVariableBoolShortAPIWithAttributes {
-    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
+- (void)testgetVariableBooleanShortAPIWithAttributes {
+    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
                                                   userId:kUserId
                                               attributes:self.attributes
                                      activateExperiments:NO];
@@ -340,11 +340,11 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
-- (void)testGetVariableBoolWithActivateExperimentsTrue {
+- (void)testgetVariableBooleanWithActivateExperimentsTrue {
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBool:kVariableKeyForBool
+    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                                    userId:kUserId
                                                                attributes:self.attributes
                                                       activateExperiments:YES
@@ -352,7 +352,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for testGetVariableBoolWithActivateExperimentsTrue: %@", error);
+            NSLog(@"Timeout error for testgetVariableBooleanWithActivateExperimentsTrue: %@", error);
         }
     }];
     
@@ -365,11 +365,11 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolWithActivateExperimentsTrueAndFailureResponseForEventRequest {
+- (void)testgetVariableBooleanWithActivateExperimentsTrueAndFailureResponseForEventRequest {
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBool:kVariableKeyForBool
+    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                                    userId:kUserId
                                                                attributes:self.attributes
                                                       activateExperiments:YES
@@ -377,7 +377,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for testGetVariableBoolWithActivateExperimentsTrue: %@", error);
+            NSLog(@"Timeout error for testgetVariableBooleanWithActivateExperimentsTrue: %@", error);
         }
     }];
     
@@ -390,7 +390,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolWithGroupedExperiment {
+- (void)testgetVariableBooleanWithGroupedExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -398,7 +398,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNil]]);
     
-    BOOL variableBoolWithGroupedExperiment = [optimizelyMock getVariableBool:kVariableKeyForBoolGroupedExperiment
+    BOOL variableBoolWithGroupedExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBoolGroupedExperiment
                                                                       userId:kUserId
                                                                   attributes:nil
                                                          activateExperiments:NO
@@ -409,7 +409,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolVariableNotInAnyExperiments {
+- (void)testgetVariableBooleanVariableNotInAnyExperiments {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -418,7 +418,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNil]]);
     
     // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
-    BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBool:kVariableKeyForBoolNotInExperimentVariation
+    BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBoolean:kVariableKeyForBoolNotInExperimentVariation
                                                                          userId:kUserId
                                                                      attributes:nil
                                                             activateExperiments:YES
@@ -429,7 +429,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableBoolUserNotBucketedIntoExperiment {
+- (void)testgetVariableBooleanUserNotBucketedIntoExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
@@ -437,7 +437,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                           userId:[OCMArg isNotNil]
                                       attributes:[OCMArg isNotNil]]);
     
-    BOOL variableBool = [optimizelyMock getVariableBool:kVariableKeyForBool
+    BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                  userId:kUserId
                                              attributes:nil
                                     activateExperiments:NO

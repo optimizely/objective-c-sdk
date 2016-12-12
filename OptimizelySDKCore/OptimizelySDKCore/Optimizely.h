@@ -208,8 +208,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (BOOL)getVariableBool:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId;
+- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
+                    userId:(nonnull NSString *)userId;
 
 /**
  * Gets the boolean value of the live variable.
@@ -223,9 +223,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (BOOL)getVariableBool:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-    activateExperiments:(bool)activateExperiments;
+- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
+                    userId:(nonnull NSString *)userId
+       activateExperiments:(bool)activateExperiments;
 
 /**
  * Gets the boolean value of the live variable.
@@ -240,10 +240,10 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (BOOL)getVariableBool:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-             attributes:(nullable NSDictionary *)attributes
-    activateExperiments:(bool)activateExperiments;
+- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes
+       activateExperiments:(bool)activateExperiments;
 
 /**
  * Gets the boolean value of the live variable.
@@ -260,11 +260,11 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
-- (BOOL)getVariableBool:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-             attributes:(nullable NSDictionary *)attributes
-    activateExperiments:(bool)activateExperiments
-                  error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
+                    userId:(nonnull NSString *)userId
+                attributes:(nullable NSDictionary *)attributes
+       activateExperiments:(bool)activateExperiments
+                     error:(NSError * _Nullable * _Nullable)error;
 
 
 /**
