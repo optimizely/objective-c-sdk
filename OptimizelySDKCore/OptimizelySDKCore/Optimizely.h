@@ -135,6 +135,20 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable
  * @param userId The user ID
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
+                                  userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param userId The user ID
  * @param activateExperiments Indicates if the experiment(s) should be activated
  * @return The string value for the live variable.
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, nil is returned.
@@ -182,6 +196,20 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                               attributes:(nullable NSDictionary *)attributes
                      activateExperiments:(bool)activateExperiments
                                    error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param userId The user ID
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)getVariableBool:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId;
 
 /**
  * Gets the boolean value of the live variable.
@@ -246,6 +274,20 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable number
  * @param userId The user ID
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (int)getVariableInteger:(nonnull NSString *)variableKey
+                   userId:(nonnull NSString *)userId;
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param userId The user ID
  * @param activateExperiments Indicates if the experiment(s) should be activated
  * @return The number value for the live variable.
  *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0 is returned.
@@ -293,6 +335,20 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                attributes:(nullable NSDictionary *)attributes
       activateExperiments:(bool)activateExperiments
                     error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ * Gets the float value of the live variable.
+ * The value is cached when client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable number
+ * @param userId The user ID
+ * @return The number value for the live variable.
+ *  If no matching variable key is found, then default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)getVariableFloat:(nonnull NSString *)variableKey
+                    userId:(nonnull NSString *)userId;
 
 /**
  * Gets the float value of the live variable.

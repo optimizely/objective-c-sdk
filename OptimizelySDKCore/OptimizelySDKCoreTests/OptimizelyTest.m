@@ -167,7 +167,13 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 }
 
 - (void)testGetVariableStringShortAPI {
+    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
+                                                           userId:kUserId];
     
+    XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
+}
+
+- (void)testGetVariableStringShortAPIWithActivateExperiments {
     NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
                                                           userId:kUserId
                                               activateExperiments:NO];
@@ -311,7 +317,13 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 }
 
 - (void)testGetVariableBoolShortAPI {
+    BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
+                                                  userId:kUserId];
     
+    XCTAssertFalse(variableBool, "Variable boolean value should be false.");
+}
+
+- (void)testGetVariableBoolShortAPIWithActivateExperiments {
     BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
                                                  userId:kUserId
                                      activateExperiments:NO];
@@ -320,7 +332,6 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 }
 
 - (void)testGetVariableBoolShortAPIWithAttributes {
-    
     BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
                                                   userId:kUserId
                                               attributes:self.attributes
@@ -457,7 +468,12 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 }
 
 - (void)testGetVariableIntegerShortAPI {
-    
+    int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
+                                                   userId:kUserId];
+    XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
+}
+
+- (void)testGetVariableIntegerShortAPIWithActivateExperiments {
     int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
                                                    userId:kUserId
                                       activateExperiments:NO];
@@ -596,6 +612,12 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 }
 
 - (void)testGetVariableFloatShortAPI {
+    double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
+                                                      userId:kUserId];
+    XCTAssertEqualWithAccuracy(variableFloat, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
+}
+
+- (void)testGetVariableFloatShortAPIWithActivateExperiments {
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
                                                       userId:kUserId
                                          activateExperiments:NO];

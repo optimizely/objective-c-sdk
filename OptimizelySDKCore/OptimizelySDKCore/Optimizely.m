@@ -308,6 +308,15 @@ static NSString *const kValue = @"value";
 }
 
 - (nullable NSString *)getVariableString:(NSString *)variableKey
+                                  userId:(NSString *)userId {
+    return [self getVariableString:variableKey
+                            userId:userId
+                        attributes:nil
+               activateExperiments:NO
+                             error:nil];
+}
+
+- (nullable NSString *)getVariableString:(NSString *)variableKey
                                   userId:(NSString *)userId
                      activateExperiments:(bool)activateExperiments {
     return [self getVariableString:variableKey
@@ -384,6 +393,15 @@ static NSString *const kValue = @"value";
 }
 
 - (BOOL)getVariableBool:(NSString *)variableKey
+                 userId:(NSString *)userId {
+    return [self getVariableBool:variableKey
+                          userId:userId
+                      attributes:nil
+             activateExperiments:NO
+                           error:nil];
+}
+
+- (BOOL)getVariableBool:(NSString *)variableKey
                  userId:(NSString *)userId
     activateExperiments:(bool)activateExperiments {
     return [self getVariableBool:variableKey
@@ -424,6 +442,15 @@ static NSString *const kValue = @"value";
 }
 
 - (int)getVariableInteger:(NSString *)variableKey
+                   userId:(NSString *)userId {
+    return [self getVariableInteger:variableKey
+                             userId:userId
+                         attributes:nil
+                activateExperiments:NO
+                              error:nil];
+}
+
+- (int)getVariableInteger:(NSString *)variableKey
                    userId:(NSString *)userId
       activateExperiments:(bool)activateExperiments {
     return [self getVariableInteger:variableKey
@@ -461,6 +488,15 @@ static NSString *const kValue = @"value";
     }
     
     return variableValue;
+}
+
+- (double)getVariableFloat:(NSString *)variableKey
+                    userId:(NSString *)userId {
+    return [self getVariableFloat:variableKey
+                           userId:userId
+                       attributes:nil
+              activateExperiments:NO
+                            error:nil];
 }
 
 - (double)getVariableFloat:(NSString *)variableKey
