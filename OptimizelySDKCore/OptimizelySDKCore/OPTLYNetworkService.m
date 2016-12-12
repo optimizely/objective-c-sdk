@@ -15,9 +15,10 @@
  ***************************************************************************/
 
 #import "OPTLYNetworkService.h"
+#import "OPTLYProjectConfig.h"
 
 // ---- Datafile Download URLs ----
-NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/";
+NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 @implementation OPTLYNetworkService
@@ -70,7 +71,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 - (NSURL *)projectConfigURLPath:(NSURL *)url
                   withProjectId:(NSString *)projectId
 {
-    NSString *filePath = [NSString stringWithFormat:@"%@json/%@.json", url.absoluteString, projectId];
+    NSString *filePath = [NSString stringWithFormat:@"%@/datafile_v%@.json", url.absoluteString, projectId, kExpectedDatafileVersion];
     return [NSURL URLWithString:filePath];
 }
 

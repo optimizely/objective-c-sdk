@@ -154,6 +154,10 @@ extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveV
 // Warning
 extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
 
+// ---- Datafile Versioning ----
+// Warning
+extern NSString *const OPTLYLoggerMessagesInvalidDatafileVersion;
+
 @interface OPTLYLoggerMessages : NSObject
 
 @end

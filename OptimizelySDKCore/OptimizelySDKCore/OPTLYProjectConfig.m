@@ -31,6 +31,7 @@
 #import "OPTLYVariable.h"
 
 NSString * const kClientEngine             = @"objective-c-sdk-core";
+NSString * const kExpectedDatafileVersion  = @"3";
 
 @interface OPTLYProjectConfig()
 
@@ -101,6 +102,13 @@ NSString * const kClientEngine             = @"objective-c-sdk-core";
     @try {
         NSError *datafileError;
         OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
+        
+        // check if project config's datafile version matches expected datafile version
+        if (projectConfig.version != kExpectedDatafileVersion) {
+            NSString *logMessage = OPTLYLoggerMessagesInvalidDatafileVersion;
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        
         if (datafileError)
         {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

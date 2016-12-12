@@ -154,6 +154,10 @@ NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable
 // Warning
 NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"No experiment was found to contain variable key: %@.";
 
+// ---- Datafile Versioning ----
+// Warning
+NSString *const OPTLYLoggerMessagesInvalidDatafileVersion = @"Datafile version is invalid for this SDK version."; // datafile version
+
 @implementation OPTLYLoggerMessages
 
 @end

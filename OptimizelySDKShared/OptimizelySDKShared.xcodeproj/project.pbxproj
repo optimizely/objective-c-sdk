@@ -45,6 +45,8 @@
 		2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
+		5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
+		5E4C07F71DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
 		6433BEBF70E8BE35397D1778 /* Pods_OptimizelySDKSharedTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */; };
 		C8050A341951F76A21ACD3BB /* Pods_OptimizelySDKSharedTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20CE07D300154F64C6B211A /* Pods_OptimizelySDKSharedTVOSTests.framework */; };
 		EA064BD21DD4030700DF7537 /* OPTLYDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BD01DD4030700DF7537 /* OPTLYDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,6 +160,7 @@
 		2DB3D17B1DC816D600ECF72E /* OPTLYManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilder.m; sourceTree = "<group>"; };
 		2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerTest.m; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6042179012EFD11109128C34 /* Pods-OptimizelySDKSharedTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		777829E224F9AB001A46FE0E /* Pods-OptimizelySDKSharediOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharediOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharediOS/Pods-OptimizelySDKSharediOS.rc.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 				2D08FB831DCA5E66006CA063 /* test_data_50_experiments.json */,
 				2D08FB841DCA5E66006CA063 /* BucketerTestsDatafile.json */,
 				2D08FB851DCA5E66006CA063 /* validator_whitelisting_test_datafile.json */,
+				5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 			);
 			name = TestData;
 			sourceTree = "<group>";
@@ -622,6 +626,7 @@
 				2D08FB921DCA5E6D006CA063 /* datafile_6372300739.json in Resources */,
 				2D08FB951DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */,
 				2D08FB931DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */,
+				5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				2D08FB941DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */,
 				2D08FB971DCA5E6D006CA063 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
@@ -642,6 +647,7 @@
 				2D08FB981DCA5E6D006CA063 /* datafile_6372300739.json in Resources */,
 				2D08FB9B1DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */,
 				2D08FB991DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */,
+				5E4C07F71DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				2D08FB9A1DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */,
 				2D08FB9D1DCA5E6E006CA063 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
