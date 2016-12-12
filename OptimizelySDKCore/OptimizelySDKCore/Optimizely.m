@@ -265,15 +265,15 @@ static NSString *const kValue = @"value";
  * Buckets user into a variation of the provided experiment.
  *
  * @param experimentKey Key of experiment that user is being bucketed into
- * @param activateExperiments Indicates if the user should be activated into the experiment
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiments Indicates if the user should be activated into the experiment
  * @return Variation of the experiment that the user has been bucketed into
  */
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                          activateExperiments:(bool)activateExperiments
                                        userId:(nonnull NSString *)userId
-                                   attributes:(nullable NSDictionary *)attributes {
+                                   attributes:(nullable NSDictionary *)attributes
+                          activateExperiments:(bool)activateExperiments {
     OPTLYVariation *variation = nil;
     if (activateExperiments) {
         variation = [self activateExperiment:experimentKey
@@ -308,30 +308,30 @@ static NSString *const kValue = @"value";
 }
 
 - (nullable NSString *)getVariableString:(NSString *)variableKey
-                     activateExperiments:(bool)activateExperiments
-                                  userId:(NSString *)userId {
+                                  userId:(NSString *)userId
+                     activateExperiments:(bool)activateExperiments {
     return [self getVariableString:variableKey
-                                 activateExperiments:activateExperiments
-                                              userId:userId
-                                          attributes:nil
-                                               error:nil];
+                            userId:userId
+                        attributes:nil
+               activateExperiments:activateExperiments
+                             error:nil];
 }
 
 - (nullable NSString *)getVariableString:(NSString *)variableKey
-                     activateExperiments:(bool)activateExperiments
                                   userId:(NSString *)userId
-                              attributes:(nullable NSDictionary *)attributes {
+                              attributes:(nullable NSDictionary *)attributes
+                     activateExperiments:(bool)activateExperiments {
     return [self getVariableString:variableKey
-               activateExperiments:activateExperiments
                             userId:userId
                         attributes:attributes
+               activateExperiments:activateExperiments
                              error:nil];
 }
 
 - (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                     activateExperiments:(bool)activateExperiments
                                   userId:(nonnull NSString *)userId
                               attributes:(nullable NSDictionary *)attributes
+                     activateExperiments:(bool)activateExperiments
                                    error:(NSError * _Nullable * _Nullable)error {
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
     
@@ -365,9 +365,9 @@ static NSString *const kValue = @"value";
     
     for (NSString *experimentKey in experimentKeysForLiveVariable) {
         OPTLYVariation *variation = [self getVariationForExperiment:experimentKey
-                                                activateExperiments:activateExperiments
                                                              userId:userId
-                                                         attributes:attributes];
+                                                         attributes:attributes
+                                                activateExperiments:activateExperiments];
         
         if (variation == nil) {
             // If user is not bucketed into experiment, then continue to another experiment
@@ -384,36 +384,36 @@ static NSString *const kValue = @"value";
 }
 
 - (BOOL)getVariableBool:(NSString *)variableKey
-    activateExperiments:(bool)activateExperiments
-                 userId:(NSString *)userId {
+                 userId:(NSString *)userId
+    activateExperiments:(bool)activateExperiments {
     return [self getVariableBool:variableKey
-             activateExperiments:activateExperiments
                           userId:userId
                       attributes:nil
+             activateExperiments:activateExperiments
                            error:nil];
 }
 
 - (BOOL)getVariableBool:(NSString *)variableKey
-    activateExperiments:(bool)activateExperiments
                  userId:(NSString *)userId
-             attributes:(nullable NSDictionary *)attributes {
+             attributes:(nullable NSDictionary *)attributes
+    activateExperiments:(bool)activateExperiments {
     return [self getVariableBool:variableKey
-             activateExperiments:activateExperiments
                           userId:userId
                       attributes:attributes
+             activateExperiments:activateExperiments
                            error:nil];
 }
 
 - (BOOL)getVariableBool:(nonnull NSString *)variableKey
-    activateExperiments:(bool)activateExperiments
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
+    activateExperiments:(bool)activateExperiments
                   error:(NSError * _Nullable * _Nullable)error {
     BOOL variableValue = false;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                             activateExperiments:activateExperiments
                                                           userId:userId
                                                       attributes:attributes
+                                             activateExperiments:activateExperiments
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
@@ -424,36 +424,36 @@ static NSString *const kValue = @"value";
 }
 
 - (int)getVariableInteger:(NSString *)variableKey
-      activateExperiments:(bool)activateExperiments
-                   userId:(NSString *)userId {
+                   userId:(NSString *)userId
+      activateExperiments:(bool)activateExperiments {
     return [self getVariableInteger:variableKey
-                activateExperiments:activateExperiments
                              userId:userId
                          attributes:nil
+                activateExperiments:activateExperiments
                               error:nil];
 }
 
 - (int)getVariableInteger:(NSString *)variableKey
-      activateExperiments:(bool)activateExperiments
                    userId:(NSString *)userId
-               attributes:(nullable NSDictionary *)attributes {
+               attributes:(nullable NSDictionary *)attributes
+      activateExperiments:(bool)activateExperiments {
     return [self getVariableInteger:variableKey
-                activateExperiments:activateExperiments
                              userId:userId
                          attributes:attributes
+                activateExperiments:activateExperiments
                               error:nil];
 }
 
 - (int)getVariableInteger:(nonnull NSString *)variableKey
-      activateExperiments:(bool)activateExperiments
                     userId:(nonnull NSString *)userId
                attributes:(nullable NSDictionary *)attributes
+      activateExperiments:(bool)activateExperiments
                     error:(NSError * _Nullable * _Nullable)error {
     int variableValue = 0;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                             activateExperiments:activateExperiments
                                                           userId:userId
                                                       attributes:attributes
+                                             activateExperiments:activateExperiments
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {
@@ -464,36 +464,36 @@ static NSString *const kValue = @"value";
 }
 
 - (double)getVariableFloat:(NSString *)variableKey
-       activateExperiments:(bool)activateExperiments
-                    userId:(NSString *)userId {
+                    userId:(NSString *)userId
+       activateExperiments:(bool)activateExperiments {
     return [self getVariableFloat:variableKey
-              activateExperiments:activateExperiments
                            userId:userId
                        attributes:nil
+              activateExperiments:activateExperiments
                             error:nil];
 }
 
 - (double)getVariableFloat:(NSString *)variableKey
-       activateExperiments:(bool)activateExperiments
                     userId:(NSString *)userId
-                attributes:(nullable NSDictionary *)attributes {
+                attributes:(nullable NSDictionary *)attributes
+       activateExperiments:(bool)activateExperiments {
     return [self getVariableFloat:variableKey
-              activateExperiments:activateExperiments
                            userId:userId
                        attributes:attributes
+              activateExperiments:activateExperiments
                             error:nil];
 }
 
 - (double)getVariableFloat:(nonnull NSString *)variableKey
-       activateExperiments:(bool)activateExperiments
                     userId:(nonnull NSString *)userId
                 attributes:(nullable NSDictionary *)attributes
+       activateExperiments:(bool)activateExperiments
                      error:(NSError * _Nullable * _Nullable)error {
     double variableValue = 0.0;
     NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                             activateExperiments:activateExperiments
                                                           userId:userId
                                                       attributes:attributes
+                                             activateExperiments:activateExperiments
                                                            error:error];
     
     if (variableValueStringOrNil != nil) {

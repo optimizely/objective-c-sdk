@@ -156,9 +156,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
-                                             activateExperiments:NO
                                                           userId:kUserId
                                                       attributes:self.attributes
+                                             activateExperiments:NO
                                                            error:nil];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
@@ -169,8 +169,8 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 - (void)testGetVariableStringShortAPI {
     
     NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                             activateExperiments:NO
-                                                          userId:kUserId];
+                                                          userId:kUserId
+                                              activateExperiments:NO];
     
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
@@ -178,9 +178,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 - (void)testGetVariableStringShortAPIWithAttributes {
     
     NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                              activateExperiments:NO
                                                            userId:kUserId
-                                                       attributes:self.attributes];
+                                                       attributes:self.attributes
+                                              activateExperiments:NO];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
 }
@@ -190,9 +190,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     NSString *variableStringActivateExperiment = [optimizelyMock getVariableString:kVariableKeyForString
-                                                               activateExperiments:YES
                                                                             userId:kUserId
                                                                         attributes:self.attributes
+                                                               activateExperiments:YES
                                                                              error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -214,9 +214,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     NSString *variableStringActivateExperiment = [optimizelyMock getVariableString:kVariableKeyForString
-                                                               activateExperiments:YES
                                                                             userId:kUserId
                                                                         attributes:self.attributes
+                                                               activateExperiments:YES
                                                                              error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -242,9 +242,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNil]]);
     
     NSString *variableStringWithGroupedExperiment = [optimizelyMock getVariableString:kVariableKeyForStringGroupedExperiment
-                                                                  activateExperiments:NO
                                                                                userId:kUserId
                                                                            attributes:nil
+                                                                  activateExperiments:NO
                                                                                 error:nil];
     XCTAssertEqualObjects(variableStringWithGroupedExperiment, kVariableStringValueGroupedExperiment, "Variable string value should be \"Ciao\".");
     
@@ -261,9 +261,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringNotInExperimentVariation
-                                                                      activateExperiments:YES
                                                                                    userId:kUserId
                                                                                attributes:nil
+                                                                      activateExperiments:YES
                                                                                     error:nil];
     
     XCTAssertEqualObjects(variableStringNotInExperimentVariation, kVariableStringNotInExperimentVariation, "Variable string value should be \"default string value\".");
@@ -280,9 +280,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
-                                             activateExperiments:NO
                                                           userId:kUserId
                                                       attributes:nil
+                                             activateExperiments:NO
                                                            error:nil];
     
     // Should return default value
@@ -300,9 +300,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     BOOL variableBool = [optimizelyMock getVariableBool:kVariableKeyForBool
-                                    activateExperiments:NO
                                                  userId:kUserId
                                              attributes:self.attributes
+                                    activateExperiments:NO
                                                   error:nil];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
@@ -313,8 +313,8 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 - (void)testGetVariableBoolShortAPI {
     
     BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
-                                    activateExperiments:NO
-                                                 userId:kUserId];
+                                                 userId:kUserId
+                                     activateExperiments:NO];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
@@ -322,9 +322,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 - (void)testGetVariableBoolShortAPIWithAttributes {
     
     BOOL variableBool = [self.optimizely getVariableBool:kVariableKeyForBool
-                                     activateExperiments:NO
                                                   userId:kUserId
-                                              attributes:self.attributes];
+                                              attributes:self.attributes
+                                     activateExperiments:NO];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
@@ -334,9 +334,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBool:kVariableKeyForBool
-                                                      activateExperiments:YES
                                                                    userId:kUserId
                                                                attributes:self.attributes
+                                                      activateExperiments:YES
                                                                     error:nil];
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
@@ -359,9 +359,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBool:kVariableKeyForBool
-                                                      activateExperiments:YES
                                                                    userId:kUserId
                                                                attributes:self.attributes
+                                                      activateExperiments:YES
                                                                     error:nil];
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
@@ -388,9 +388,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNil]]);
     
     BOOL variableBoolWithGroupedExperiment = [optimizelyMock getVariableBool:kVariableKeyForBoolGroupedExperiment
-                                                         activateExperiments:NO
                                                                       userId:kUserId
                                                                   attributes:nil
+                                                         activateExperiments:NO
                                                                        error:nil];
     
     XCTAssertTrue(variableBoolWithGroupedExperiment);
@@ -408,9 +408,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBool:kVariableKeyForBoolNotInExperimentVariation
-                                                            activateExperiments:YES
                                                                          userId:kUserId
                                                                      attributes:nil
+                                                            activateExperiments:YES
                                                                           error:nil];
     
     XCTAssertTrue(variableBoolNotInExperimentVariation);
@@ -427,9 +427,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     BOOL variableBool = [optimizelyMock getVariableBool:kVariableKeyForBool
-                                    activateExperiments:NO
                                                  userId:kUserId
                                              attributes:nil
+                                    activateExperiments:NO
                                                   error:nil];
     
     // Should return default value
@@ -447,9 +447,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     NSInteger variableInt = [optimizelyMock getVariableInteger:kVariableKeyForInt
-                                           activateExperiments:NO
                                                         userId:kUserId
                                                     attributes:self.attributes
+                                           activateExperiments:NO
                                                          error:nil];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
     
@@ -459,17 +459,17 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 - (void)testGetVariableIntegerShortAPI {
     
     int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                           activateExperiments:NO
-                                                        userId:kUserId];
+                                                   userId:kUserId
+                                      activateExperiments:NO];
     XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableIntegerShortAPIWithAttributes {
     
     int variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                      activateExperiments:NO
                                                    userId:kUserId
-                                               attributes:self.attributes];
+                                               attributes:self.attributes
+                                      activateExperiments:NO];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
 }
 
@@ -478,9 +478,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     NSInteger variableIntActivateExperiment = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                              activateExperiments:YES
                                                                            userId:kUserId
                                                                        attributes:self.attributes
+                                                              activateExperiments:YES
                                                                             error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -502,9 +502,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     NSInteger variableIntActivateExperiment = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                              activateExperiments:YES
                                                                            userId:kUserId
                                                                        attributes:self.attributes
+                                                              activateExperiments:YES
                                                                             error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -530,9 +530,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNil]]);
     
     NSInteger variableIntWithGroupedExperiment = [self.optimizely getVariableInteger:kVariableKeyForIntegerGroupedExperiment
-                                                                 activateExperiments:NO
                                                                               userId:kUserId
                                                                           attributes:nil
+                                                                 activateExperiments:NO
                                                                                error:nil];
     XCTAssertEqual(variableIntWithGroupedExperiment, 90, "Variable integer value should be 90.");
     
@@ -549,9 +549,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     NSInteger variableIntNotInExperimentVariation = [self.optimizely getVariableInteger:kVariableKeyForIntegerNotInExperimentVariation
-                                                                    activateExperiments:YES
                                                                                  userId:kUserId
                                                                              attributes:nil
+                                                                    activateExperiments:YES
                                                                                   error:nil];
     XCTAssertEqual(variableIntNotInExperimentVariation, 101010101, "Variable integer value should be 101010101.");
     
@@ -567,9 +567,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     NSInteger variableInt = [optimizelyMock getVariableInteger:kVariableKeyForInt
-                                           activateExperiments:NO
                                                         userId:kUserId
                                                     attributes:nil
+                                           activateExperiments:NO
                                                          error:nil];
     // Should return default value
     XCTAssertEqual(variableInt, 1, "Variable integer value should be 1.");
@@ -586,9 +586,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                         activateExperiments:NO
                                                       userId:kUserId
                                                   attributes:self.attributes
+                                         activateExperiments:NO
                                                        error:nil];
     XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
     
@@ -597,16 +597,16 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 - (void)testGetVariableFloatShortAPI {
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                         activateExperiments:NO
-                                                      userId:kUserId];
+                                                      userId:kUserId
+                                         activateExperiments:NO];
     XCTAssertEqualWithAccuracy(variableFloat, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
 }
 
 - (void)testGetVariableFloatShortAPIWithAttributes {
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                         activateExperiments:NO
                                                       userId:kUserId
-                                                  attributes:self.attributes];
+                                                  attributes:self.attributes
+                                         activateExperiments:NO];
     XCTAssertEqualWithAccuracy(variableFloat, 1.8, 0.0000001);
 }
 
@@ -615,9 +615,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     double variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                                           activateExperiments:YES
                                                                         userId:kUserId
                                                                     attributes:self.attributes
+                                                           activateExperiments:YES
                                                                          error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -639,9 +639,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     double variableFloatActivateExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                                           activateExperiments:YES
                                                                         userId:kUserId
                                                                     attributes:self.attributes
+                                                           activateExperiments:YES
                                                                          error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -667,9 +667,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNil]]);
     
     double variableFloatWithGroupedExperiment = [self.optimizely getVariableFloat:kVariableKeyForFloatGroupedExperiment
-                                                              activateExperiments:NO
                                                                            userId:kUserId
                                                                        attributes:nil
+                                                              activateExperiments:NO
                                                                             error:nil];
     
     XCTAssertEqualWithAccuracy(variableFloatWithGroupedExperiment, 75.5, 0.0000001, "Variable float value should be 75.5.");
@@ -687,9 +687,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     
     // Even though activateExperiments is set to YES, activate will not be called because there is no experiment associated with the variable
     double variableFloatNotInExperimentVariation = [self.optimizely getVariableFloat:kVariableKeyForFloatNotInExperimentVariation
-                                                                 activateExperiments:YES
                                                                               userId:kUserId
                                                                           attributes:nil
+                                                                 activateExperiments:YES
                                                                                error:nil];
     
     XCTAssertEqualWithAccuracy(variableFloatNotInExperimentVariation, 10101.101, 0.0000001, "Variable float value should be 10101.101.");
@@ -706,9 +706,9 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                       attributes:[OCMArg isNotNil]]);
     
     double variableFloat = [self.optimizely getVariableFloat:kVariableKeyForFloat
-                                         activateExperiments:NO
                                                       userId:kUserId
                                                   attributes:nil
+                                         activateExperiments:NO
                                                        error:nil];
     // Should return default value
     XCTAssertEqualWithAccuracy(variableFloat, 0.5, 0.0000001);
