@@ -143,6 +143,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     }
     return [self.optimizely getVariableString:variableKey
                                        userId:userId];
+}
 
 - (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
                                   userId:(nonnull NSString *)userId
