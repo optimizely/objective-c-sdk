@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable
  * @param userId The user ID
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The string value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -166,7 +166,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The string value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @param error An error value if the value is not valid
  * @return The string value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
@@ -217,7 +217,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable boolean
  * @param userId The user ID
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The boolean value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -234,7 +234,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable boolean
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The boolean value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -252,7 +252,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable boolean
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @param error An error value if the value is not valid
  * @return The boolean value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
@@ -286,7 +286,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable integer
  * @param userId The user ID
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The integer value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -303,7 +303,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable integer
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The integer value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -321,7 +321,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable integer
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @param error An error value if the value is not valid
  * @return The integer value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
@@ -354,7 +354,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *
  * @param variableKey The name of the live variable double
  * @param userId The user ID
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The double value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -371,7 +371,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable double
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @return The double value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
@@ -389,7 +389,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param variableKey The name of the live variable double
  * @param userId The user ID
  * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment(s) should be activated
+ * @param activateExperiment Indicates if the experiment should be activated
  * @param error An error value if the value is not valid
  * @return The double value for the live variable.
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
