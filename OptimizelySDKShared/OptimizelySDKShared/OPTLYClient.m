@@ -261,7 +261,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 }
 
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                                    userId:(nonnull NSString *)userId {
+                         userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
@@ -274,8 +274,8 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 }
     
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                                    userId:(nonnull NSString *)userId
-                        activateExperiment:(BOOL)activateExperiment {
+                         userId:(nonnull NSString *)userId
+             activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
@@ -289,9 +289,9 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 }
 
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                                    userId:(nonnull NSString *)userId
-                                attributes:(nullable NSDictionary *)attributes
-                        activateExperiment:(BOOL)activateExperiment {
+                         userId:(nonnull NSString *)userId
+                     attributes:(nullable NSDictionary *)attributes
+             activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
@@ -306,10 +306,10 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 }
 
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                                    userId:(nonnull NSString *)userId
-                                attributes:(nullable NSDictionary *)attributes
-                        activateExperiment:(BOOL)activateExperiment
-                                     error:(NSError * _Nullable * _Nullable)error {
+                         userId:(nonnull NSString *)userId
+                     attributes:(nullable NSDictionary *)attributes
+             activateExperiment:(BOOL)activateExperiment
+                          error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,

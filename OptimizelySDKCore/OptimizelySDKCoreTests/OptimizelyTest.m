@@ -173,7 +173,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
-- (void)testGetVariableStringShortAPIWithActivateExperiment {
+- (void)testGetVariableStringShortAPIWithActivateExperimentParamIncluded {
     NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
                                                            userId:kUserId
                                                activateExperiment:NO];
@@ -323,7 +323,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
-- (void)testGetVariableBooleanShortAPIWithActivateExperiment {
+- (void)testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded {
     BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
                                                      userId:kUserId
                                          activateExperiment:NO];
@@ -473,7 +473,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
 }
 
-- (void)testGetVariableIntegerShortAPIWithActivateExperiment {
+- (void)testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded {
     NSInteger variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
                                                          userId:kUserId
                                              activateExperiment:NO];
@@ -617,7 +617,7 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     XCTAssertEqualWithAccuracy(variableDoubleShortAPI, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
 }
 
-- (void)testGetVariableFloatShortAPIWithActivateExperiment {
+- (void)testGetVariableFloatShortAPIWithActivateExperimentParamIncluded {
     double variableDoubleShortAPIWithActivateExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
                                                                                       userId:kUserId
                                                                           activateExperiment:NO];
