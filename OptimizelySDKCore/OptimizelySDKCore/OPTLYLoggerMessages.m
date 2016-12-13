@@ -156,7 +156,7 @@ NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"No experimen
 
 // ---- Datafile Versioning ----
 // Warning
-NSString *const OPTLYLoggerMessagesInvalidDatafileVersion = @"Datafile version is invalid for this SDK version."; // datafile version
+NSString *const OPTLYLoggerMessagesInvalidDatafileVersion = @"Datafile version is invalid for this SDK version: expected %@ and received %@."; // datafile version
 
 @implementation OPTLYLoggerMessages
 

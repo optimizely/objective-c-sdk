@@ -97,21 +97,6 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     [self checkProjectConfigProperties:projectConfig];
 }
 
-
--(void)testInitWithDatafileVersionIncorrectLogsWarning {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kInvalidDatafileVersionDatafileName];
-    id<OPTLYLogger> logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
-    id loggerMock = OCMPartialMock(logger);
-    
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
-        builder.datafile = datafile;
-        builder.logger = logger;
-    }];
-    
-    OCMVerify([loggerMock logMessage:OPTLYLoggerMessagesInvalidDatafileVersion withLevel:OptimizelyLogLevelWarning]);
-    NSLog(@"%@ herro", projectConfig);
-}
-
 #pragma mark - Helper Methods
 
 // Check all properties in an ProjectConfig object
