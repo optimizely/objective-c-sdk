@@ -17,6 +17,16 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYBuilder.h"
 
+extern NSString * _Nonnull const kOptimizelyExperimentActivatedNotificationName;
+extern NSString * _Nonnull const kOptimizelyEventTrackedNotificationName;
+extern NSString * _Nonnull const kOptimizelyNotificationExperimentKey;
+extern NSString * _Nonnull const kOptimizelyNotificationVariationKey;
+extern NSString * _Nonnull const kOptimizelyNotificationUserIdKey;
+extern NSString * _Nonnull const kOptimizelyNotificationUserAttributesKey;
+extern NSString * _Nonnull const kOptimizelyNotificationEventNameKey;
+extern NSString * _Nonnull const kOptimizelyNotificationEventValueKey;
+extern NSString * _Nonnull const kOptimizelyNotificationExperimentVariationMappingKey;
+
 @class OPTLYProjectConfig, OPTLYVariation;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
