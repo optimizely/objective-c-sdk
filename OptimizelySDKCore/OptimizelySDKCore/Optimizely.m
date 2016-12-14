@@ -271,7 +271,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
             OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
             OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];
             if (experiment != nil && variation != nil) {
-                experimentVariationMapping[expeirment] = variation;
+                experimentVariationMapping[experiment] = variation;
             }
         }
         if (experimentVariationMapping.count > 0) {
