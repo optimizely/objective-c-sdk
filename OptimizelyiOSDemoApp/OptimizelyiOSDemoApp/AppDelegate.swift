@@ -38,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        if self.downloadDatafile == true {
+            projectId = "8012880345"
+            attributes = ["attribute1" : "value1"]
+            eventKey = "event1"
+            experimentKey = "exp1"
+        }
+        
         // get the datafile
         let bundle = Bundle.init(for: self.classForCoder)
         let filePath = bundle.path(forResource: datafileName, ofType: "json")
@@ -54,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let eventDispatcher = OPTLYEventDispatcherDefault.initWithBuilderBlock{(builder)in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
         }
-
+        
         // create the datafile manager
         let datafileManager = OPTLYDatafileManagerDefault.initWithBuilderBlock{(builder) in
             builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
@@ -70,28 +77,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // use different parameters if initializing Optimizely from downloaded datafile
         if self.downloadDatafile == true {
-            attributes = ["userType" : "new"]
-            eventKey = "userEvent"
-            experimentKey = "exp1"
             
             // initialize Optimizely Client from a datafile download
-            optimizelyManager?.initializeClient(callback: { (error, optimizelyClient) in
-                let variation = optimizelyClient?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+            optimizelyManager?.initializeClient(callback: { [weak self] (error, optimizelyClient) in
+                let variation = optimizelyClient?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
                 if (variation != nil) {
                     print("bucketed variation:", variation!.variationKey)
                 }
-                optimizelyClient?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
-            })
+                optimizelyClient?.trackEvent(self!.eventKey, userId: self!.userId, attributes: self!.attributes, eventValue: self!.revenue)
+                })
         } else {
             // initialize Optimizely Client from a saved datafile
             let optimizelyClient = optimizelyManager?.initializeClient()
-            let variation = optimizelyClient?.activateExperiment(self.experimentKey, userId: self.userId, attributes: self.attributes)
+            let variation = optimizelyClient?.activateExperiment(experimentKey, userId: userId, attributes: attributes)
             if (variation != nil) {
                 print("bucketed variation:", variation!.variationKey)
             }
-            optimizelyClient?.trackEvent(self.eventKey, userId: self.userId, attributes: self.attributes, eventValue: self.revenue)
+            optimizelyClient?.trackEvent(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
         }
-    
+        
         
         return true;
     }
