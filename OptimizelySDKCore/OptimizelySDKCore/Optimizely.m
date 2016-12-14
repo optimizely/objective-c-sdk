@@ -40,8 +40,8 @@ static NSString *const kValue = @"value";
 NSString *const kOptimizelyExperimentActivatedNotificationName = @"OptimizelyExperimentActivated";
 NSString *const kOptimizelyNotificationExperimentKey = @"OptimizelyExperiment";
 NSString *const kOptimizelyNotificationVariationKey = @"OptimizelyVariation";
-NSString *const kOptimizelyNotificationUserId = @"UserId";
-NSString *const kOptimizelyNotificationUserAttributes = @"UserAttributes";
+NSString *const kOptimizelyNotificationUserIdKey = @"UserId";
+NSString *const kOptimizelyNotificationUserAttributesKey = @"UserAttributes";
 
 @implementation Optimizely
 
@@ -135,8 +135,8 @@ NSString *const kOptimizelyNotificationUserAttributes = @"UserAttributes";
                                                         object:self
                                                       userInfo:@{
                                                                  kOptimizelyNotificationExperimentKey: [self.config getExperimentForKey:experimentKey],
-                                                                 kOptimizelyNotificationUserId: userId,
-                                                                 kOptimizelyNotificationUserAttributes: attributes,
+                                                                 kOptimizelyNotificationUserIdKey: userId,
+                                                                 kOptimizelyNotificationUserAttributesKey: attributes,
                                                                  kOptimizelyNotificationVariationKey: variation
                                                                  }];
     

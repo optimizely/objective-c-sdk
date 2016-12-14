@@ -20,8 +20,8 @@
 extern NSString * _Nonnull const kOptimizelyExperimentActivatedNotificationName;
 extern NSString * _Nonnull const kOptimizelyNotificationExperimentKey;
 extern NSString * _Nonnull const kOptimizelyNotificationVariationKey;
-extern NSString * _Nonnull const kOptimizelyNotificationUserId;
-extern NSString * _Nonnull const kOptimizelyNotificationUserAttibutes;
+extern NSString * _Nonnull const kOptimizelyNotificationUserIdKey;
+extern NSString * _Nonnull const kOptimizelyNotificationUserAttributesKey;
 
 @class OPTLYProjectConfig, OPTLYVariation;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;

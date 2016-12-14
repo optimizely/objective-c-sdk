@@ -738,4 +738,34 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
     [optimizelyMock stopMocking];
 }
 
+# pragma mark -- integration tests
+
+- (void)testOptimizelyPostsActivateExperimentNotification {
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
+    
+    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kOptimizelyExperimentActivatedNotificationName
+                                                                                          object:nil
+                                                                                           queue:nil
+                                                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                                                          XCTAssertNotNil(note);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKey]);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserIdKey], kUserId);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserAttributesKey], self.attributes);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationVariationKey], [self.optimizely getVariationForExperiment:kExperimentKey userId:kUserId attributes:self.attributes]);
+                                                                                          [expectation fulfill];
+                                                                                      }];
+    
+    OPTLYVariation *variation = [self.optimizely activateExperiment:kExperimentKey
+                                                             userId:kUserId
+                                                         attributes:self.attributes];
+    XCTAssertNotNil(variation);
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
+    
+    [self waitForExpectationsWithTimeout:2
+                                 handler:nil];
+}
+
+
 @end
