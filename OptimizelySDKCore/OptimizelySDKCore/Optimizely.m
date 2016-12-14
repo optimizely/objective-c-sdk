@@ -131,14 +131,18 @@ NSString *const kOptimizelyNotificationUserAttributesKey = @"UserAttributes";
          }
     }];
     
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                    kOptimizelyNotificationExperimentKey: [self.config getExperimentForKey:experimentKey],
+                                                                                    kOptimizelyNotificationUserIdKey: userId,
+                                                                                    kOptimizelyNotificationVariationKey: variation
+                                                                                    }];
+    if (attributes != nil) {
+        userInfo[kOptimizelyNotificationUserAttributesKey] = attributes;
+    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kOptimizelyExperimentActivatedNotificationName
                                                         object:self
-                                                      userInfo:@{
-                                                                 kOptimizelyNotificationExperimentKey: [self.config getExperimentForKey:experimentKey],
-                                                                 kOptimizelyNotificationUserIdKey: userId,
-                                                                 kOptimizelyNotificationUserAttributesKey: attributes,
-                                                                 kOptimizelyNotificationVariationKey: variation
-                                                                 }];
+                                                      userInfo:userInfo];
     
     return variation;
 }
