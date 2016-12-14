@@ -47,6 +47,8 @@ static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
 static NSString *const kVariableStringDefaultValue = @"defaultStringValue";
 static NSString *const kVariableStringNotInExperimentVariation = @"default string value";
 
+static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultipleExperiments";
+
 @interface OptimizelyTest : XCTestCase
 
 @property (nonatomic, strong) NSData *datafile;
@@ -767,5 +769,38 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
                                  handler:nil];
 }
 
+- (void)testOptimizelyPostsEventTrackedNotification {
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
+    
+    NSNumber *eventValue = @10;
+    
+    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kOptimizelyEventTrackedNotificationName
+                                                                                          object:nil
+                                                                                           queue:nil
+                                                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                                                          XCTAssertNotNil(note);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationEventNameKey], kEventNameWithMultipleExperiments);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserIdKey], kUserId);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserAttributesKey], self.attributes);
+                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationEventValueKey], eventValue);
+                                                                                          XCTAssertNotNil(note.userInfo[kOptimizelyNotificationExperimentVariationMappingKey]);
+                                                                                          [note.userInfo[kOptimizelyNotificationExperimentVariationMappingKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                                                                                              XCTAssertTrue([key isKindOfClass:[OPTLYExperiment class]]);
+                                                                                              XCTAssertTrue([obj isKindOfClass:[OPTLYVariation class]]);
+                                                                                          }];
+                                                                                          [expectation fulfill];
+                                                                                      }];
+    
+    [self.optimizely trackEvent:kEventNameWithMultipleExperiments
+                         userId:kUserId
+                     attributes:self.attributes
+                     eventValue:eventValue];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
+    
+    [self waitForExpectationsWithTimeout:2
+                                 handler:nil];
+}
 
 @end
