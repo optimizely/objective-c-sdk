@@ -22,6 +22,7 @@
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventDecision.h"
 #import "OPTLYEventDispatcher.h"
+#import "OPTLYEventLayerState.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventTicket.h"
@@ -38,10 +39,14 @@ static NSString *const kExperimentKey = @"experimentKey";
 static NSString *const kId = @"id";
 static NSString *const kValue = @"value";
 NSString *const kOptimizelyExperimentActivatedNotificationName = @"OptimizelyExperimentActivated";
+NSString *const kOptimizelyEventTrackedNotificationName = @"OptimizelyEventTracked";
 NSString *const kOptimizelyNotificationExperimentKey = @"OptimizelyExperiment";
 NSString *const kOptimizelyNotificationVariationKey = @"OptimizelyVariation";
 NSString *const kOptimizelyNotificationUserIdKey = @"UserId";
 NSString *const kOptimizelyNotificationUserAttributesKey = @"UserAttributes";
+NSString *const kOptimizelyNotificationEventNameKey = @"EventName";
+NSString *const kOptimizelyNotificationEventValueKey = @"EventValue";
+NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"ExperimentVariationMapping";
 
 @implementation Optimizely
 
@@ -246,6 +251,30 @@ NSString *const kOptimizelyNotificationUserAttributesKey = @"UserAttributes";
             [self handleErrorLogsForTrackEvent:eventKey userId:userId success:YES];
         }
     }];
+    
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                    kOptimizelyNotificationEventNameKey: eventKey,
+                                                                                    kOptimizelyNotificationUserIdKey: userId,
+                                                                                    // TODO: Josh W. add experiment variation mappings
+                                                                                    }];
+    if (attributes != nil) {
+        userInfo[kOptimizelyNotificationUserAttributesKey] = attributes;
+    }
+    if (eventValue != nil) {
+        userInfo[kOptimizelyNotificationEventValueKey] = eventValue;
+    }
+    if (conversionEvent.layerStates.count > 0) {
+        NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:conversionEvent.layerStates.count];
+        for (OPTLYEventLayerState *layerState in conversionEvent.layerStates) {
+            OPTLYEventDecision *eventDecision = layerState.decision;
+            OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
+            experimentVariationMapping[experiment] = [experiment getVariationForVariationId:eventDecision.variationId];
+        }
+        userInfo[kOptimizelyNotificationExperimentVariationMappingKey] = [experimentVariationMapping copy];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOptimizelyEventTrackedNotificationName
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 #pragma mark - Live variable getters
