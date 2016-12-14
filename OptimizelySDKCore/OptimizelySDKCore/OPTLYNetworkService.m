@@ -27,7 +27,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:projectId];
+    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
     
@@ -42,7 +42,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 
 - (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:projectId];
+    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
    [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -66,7 +66,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 
 # pragma mark - Helper Methods
 
-- (NSURL *)projectConfigURLPath:(NSString *)projectId
++ (NSURL *)projectConfigURLPath:(NSString *)projectId
 {
     NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
     NSString *filePath = [NSString stringWithFormat:@"%@%@/datafile_v%@.json", cdnURL.absoluteString, projectId, kExpectedDatafileVersion];
