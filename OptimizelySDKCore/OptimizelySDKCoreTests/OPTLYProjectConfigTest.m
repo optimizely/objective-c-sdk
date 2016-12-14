@@ -116,6 +116,9 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     // validate revision number
     NSAssert([projectConfig.revision isEqualToString:kRevision], @"Invalid revision number.");
     
+    // validate IP anonymization value
+    XCTAssertTrue(proectConfig.anonymizeIP, @"IP anonymization should be set to true.");
+    
     // check experiments
     NSAssert([projectConfig.experiments count] == 48, @"deserializeJSONArray failed to deserialize the right number of experiments objects in project config.");
     for (id experiment in projectConfig.experiments) {

@@ -170,6 +170,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysClientEngine] = StringOrEmpty([config clientEngine]);
     params[OPTLYEventParameterKeysClientVersion] = StringOrEmpty([config clientVersion]);
     params[OPTLYEventParameterKeysUserFeatures] = [self createUserFeatures:config attributes:attributes];
+    params[OPTLYEventParameterKeysAnonymizeIP] = StringOrEmpty(config.anonymizeIP);
     // This may be removed (https://optimizely.atlassian.net/browse/NB-1493)
     params[OPTLYEventParameterKeysIsGlobalHoldback] = @false;
     
