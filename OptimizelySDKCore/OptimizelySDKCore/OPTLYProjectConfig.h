@@ -18,6 +18,10 @@
 #import <JSONModel/JSONModelLib.h>
 #import "OPTLYProjectConfigBuilder.h"
 
+NS_ASSUME_NONNULL_BEGIN
+extern NSString * const kExpectedDatafileVersion;
+NS_ASSUME_NONNULL_END
+
 @class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
 

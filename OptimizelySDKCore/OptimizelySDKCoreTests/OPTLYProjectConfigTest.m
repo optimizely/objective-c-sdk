@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
 
 #import "OPTLYAttribute.h"
@@ -29,10 +30,11 @@
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
-static NSString * const kVersion = @"1";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
 static NSString * const kAccountId = @"6365361536";
+
+static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
 
 @interface OPTLYProjectConfigTest : XCTestCase
 @end
@@ -109,7 +111,7 @@ static NSString * const kAccountId = @"6365361536";
     NSAssert([projectConfig.accountId isEqualToString:kAccountId], @"Invalid account id.");
     
     // validate version number
-    NSAssert([projectConfig.version isEqualToString:kVersion], @"Invalid version number.");
+    NSAssert([projectConfig.version isEqualToString:kExpectedDatafileVersion], @"Invalid version number.");
     
     // validate revision number
     NSAssert([projectConfig.revision isEqualToString:kRevision], @"Invalid revision number.");
