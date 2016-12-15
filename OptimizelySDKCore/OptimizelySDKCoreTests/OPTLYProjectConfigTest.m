@@ -30,6 +30,7 @@
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
+static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
 static NSString * const kAccountId = @"6365361536";
@@ -95,6 +96,13 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     [self checkProjectConfigProperties:projectConfig];
+}
+
+- (void)testInitWithAnonymizeIPFalse {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    
+    XCTAssertFalse(projectConfig.anonymizeIP, @"IP anonymization should be set to false.");
 }
 
 #pragma mark - Helper Methods

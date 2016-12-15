@@ -172,12 +172,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysUserFeatures] = [self createUserFeatures:config attributes:attributes];
     // This may be removed (https://optimizely.atlassian.net/browse/NB-1493)
     params[OPTLYEventParameterKeysIsGlobalHoldback] = @false;
-    
-    if (config.anonymizeIP) {
-        params[OPTLYEventParameterKeysAnonymizeIP] = [NSNumber numberWithBool:config.anonymizeIP];
-    } else {
-        params[OPTLYEventParameterKeysAnonymizeIP] = @false;
-    }
+    params[OPTLYEventParameterKeysAnonymizeIP] = [NSNumber numberWithBool:config.anonymizeIP];
     
     return [params copy];
     
