@@ -50,6 +50,7 @@
                     }
                     ],
     "version": "3",
+    "anonymizeIP": true,
     "audiences": [],
     "attributes": [],
     "groups": [

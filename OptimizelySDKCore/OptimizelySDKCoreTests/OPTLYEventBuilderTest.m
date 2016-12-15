@@ -386,6 +386,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSString *clientVersion = params[OPTLYEventParameterKeysClientVersion];
     NSAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
     
+    // check anonymizeIP
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSLog(@"%@", OPTLYEventParameterKeysAnonymizeIP);
+    NSAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
+    
     // check global holdback
     NSNumber *isGlobalHoldback = params[OPTLYEventParameterKeysIsGlobalHoldback];
     NSAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");

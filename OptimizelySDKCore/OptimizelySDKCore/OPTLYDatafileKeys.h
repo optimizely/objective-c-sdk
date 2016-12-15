@@ -25,6 +25,7 @@ extern NSString * const OPTLYDatafileKeysAccountId;
 extern NSString * const OPTLYDatafileKeysProjectId;
 extern NSString * const OPTLYDatafileKeysVersion;
 extern NSString * const OPTLYDatafileKeysRevision;
+extern NSString * const OPTLYDatafileKeysAnonymizeIP;
 extern NSString * const OPTLYDatafileKeysExperiments;
 extern NSString * const OPTLYDatafileKeysEvents;
 extern NSString * const OPTLYDatafileKeysAudiences;
