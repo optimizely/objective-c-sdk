@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_END
 /// Datafile Revision number
 @property (nonatomic, strong, nonnull) NSString *revision;
 /// Flag for IP anonymization
-@property BOOL anonymizeIP;
+@property (nonatomic, assign) BOOL anonymizeIP;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects

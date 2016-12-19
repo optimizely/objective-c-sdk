@@ -68,6 +68,6 @@
 // If true, all experiences were held back at the global level
 @property (nonatomic, assign) BOOL isGlobalHoldback;
 // If true, then anonymize IP.
-@property (nonatomic) BOOL anonymizeIP;
+@property (nonatomic, assign) BOOL anonymizeIP;
 
 @end
