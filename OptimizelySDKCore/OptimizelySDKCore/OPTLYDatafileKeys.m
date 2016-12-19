@@ -21,6 +21,7 @@ NSString * const OPTLYDatafileKeysAccountId = @"accountId";
 NSString * const OPTLYDatafileKeysProjectId = @"projectId";
 NSString * const OPTLYDatafileKeysVersion = @"version";
 NSString * const OPTLYDatafileKeysRevision =  @"revision";
+NSString * const OPTLYDatafileKeysAnonymizeIP = @"anonymizeIP";
 NSString * const OPTLYDatafileKeysExperiments = @"experiments";
 NSString * const OPTLYDatafileKeysEvents = @"events";
 NSString * const OPTLYDatafileKeysAudiences = @"audiences";

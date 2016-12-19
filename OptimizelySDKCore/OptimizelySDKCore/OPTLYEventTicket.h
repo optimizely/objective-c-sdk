@@ -67,5 +67,7 @@
 @property (nonatomic, strong, nullable) NSArray<OPTLYEventView, Optional> *activeViews;
 // If true, all experiences were held back at the global level
 @property (nonatomic, assign) BOOL isGlobalHoldback;
+// If true, then anonymize IP.
+@property (nonatomic, assign) BOOL anonymizeIP;
 
 @end

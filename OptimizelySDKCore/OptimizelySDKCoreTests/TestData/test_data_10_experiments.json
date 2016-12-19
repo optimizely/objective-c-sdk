@@ -16,5 +16,6 @@
                {"experimentIds": ["6450630664", "6383811281", "6376870125"], "id": "6316734272", "key": "Total Revenue"}
                ],
     "variables": [{"id": "6384881128", "key": "someString", "type": "string", "defaultValue": "defaultStringValue"}, {"id": "6384881125", "key": "someBoolean", "type": "bool", "defaultValue": "False"}, {"id": "63234881124", "key": "someInteger", "type": "integer", "defaultValue": "1"}, {"id": "6684886128", "key": "someDouble", "type": "float", "defaultValue": "0.5"}, {"id": "73483201090", "key": "someStringForGroupedExperiment", "type": "string", "defaultValue": "Bonjour"}, {"id": "73483201091", "key": "someBooleanForGroupedExperiment", "type": "boolean", "defaultValue": "True"}, {"id": "73483201092", "key": "someIntegerForGroupedExperiment", "type": "integer", "defaultValue": "100"}, {"id": "73483201093", "key": "someDoubleForGroupedExperiment", "type": "float", "defaultValue": "300.5"}, {"id": "1000001", "key": "stringNotInVariation", "type": "string", "defaultValue": "default string value"}, {"id": "1000002", "key": "boolNotInVariation", "type": "bool", "defaultValue": "True"}, {"id": "1000003", "key": "integerNotInVariation", "type": "integer", "defaultValue": "101010101"}, {"id": "1000004", "key": "doubleNotInVariation", "type": "float", "defaultValue": "10101.101"}],
-    "revision": "83"
+    "revision": "83",
+    "anonymizeIP": true
 }
