@@ -104,7 +104,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
         OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
         
         // check if project config's datafile version matches expected datafile version
-        if ([projectConfig.version isEqualToString:kExpectedDatafileVersion]) {
+        if (![projectConfig.version isEqualToString:kExpectedDatafileVersion]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesInvalidDatafileVersion, kExpectedDatafileVersion, projectConfig.version];
             [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
