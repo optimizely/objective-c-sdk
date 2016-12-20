@@ -35,6 +35,10 @@
 @property (nonatomic, readonly, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the client to store user-specific data.
 @property (nonatomic, readonly, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// The client version
+@property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
+/// The client engine
+@property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
 
 /**
  * Init with builder block
