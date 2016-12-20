@@ -61,7 +61,6 @@ static NSData *datafile;
 }
 
 - (void)testBuilderCanAssignErrorHandler {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYErrorHandlerDefault *errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
@@ -80,7 +79,6 @@ static NSData *datafile;
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
@@ -99,7 +97,6 @@ static NSData *datafile;
 }
 
 - (void)testBuilderCanAssignLogger {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYLoggerDefault *logger = [[OPTLYLoggerDefault alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
