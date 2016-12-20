@@ -16,6 +16,8 @@
 
 #import "OPTLYProjectConfigBuilder.h"
 
+NSString * const kClientEngine             = @"objective-c-sdk-core";
+
 @implementation OPTLYProjectConfigBuilder
 
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYProjectConfigBuilderBlock)block {
@@ -30,6 +32,12 @@
     self = [super init];
     if (self != nil) {
         block(self);
+        if (!_clientEngine) {
+            _clientEngine = kClientEngine;
+        }
+        if (!_clientVersion) {
+            _clientVersion = OPTIMIZELY_SDK_CORE_VERSION;
+        }
         if (!_datafile) {
             return nil;
         }
