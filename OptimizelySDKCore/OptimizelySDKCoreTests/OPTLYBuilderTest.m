@@ -19,16 +19,22 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
+#import "OPTLYProjectConfig.h"
 #import "OPTLYTestHelper.h"
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
+static NSData *datafile;
 
 @interface OPTLYBuilderTest : XCTestCase
 
 @end
 
 @implementation OPTLYBuilderTest
+
++ (void)setUp {
+    datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+}
 
 - (void)testBuilderRequiresDatafile {
     Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
@@ -48,6 +54,10 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(optimizely.eventBuilder);
     XCTAssertNotNil(optimizely.eventDispatcher);
     XCTAssertNotNil(optimizely.logger);
+    XCTAssertNotNil(optimizely.config.clientEngine);
+    XCTAssertNotNil(optimizely.config.clientVersion);
+    XCTAssertEqualObjects(optimizely.config.clientEngine, @"objective-c-sdk-core");
+    XCTAssertEqualObjects(optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 
 - (void)testBuilderCanAssignErrorHandler {
@@ -117,6 +127,25 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
         builder.datafile = [[NSData alloc] init];
     }];
     XCTAssertNil(optimizely);
+}
+
+/**
+ * Make sure the OPTLYBuilder can pass the client engine and version properly to the OPTLYProjectConfig initialization.
+ */
+- (void)testBuilderCanPassClientEngineAndVersionToProjectConfig {
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    
+    XCTAssertNotNil(optimizely);
+    XCTAssertNotNil(optimizely.config);
+    XCTAssertEqualObjects(optimizely.config.clientEngine, clientEngine);
+    XCTAssertEqualObjects(optimizely.config.clientVersion, clientVersion);
 }
 
 @end
