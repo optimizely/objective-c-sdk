@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C6B9074803B4D4970B342BB /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB412018B98235E5A62E95F /* Pods_OptimizelyiOSDemoApp.framework */; };
-		EA2C23C11DE3F6300063ADA0 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = EA2C23C01DE3F6300063ADA0 /* test_data_10_experiments.json */; };
+		EA2C23C11DE3F6300063ADA0 /* iOSDemoTestData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */; };
 		EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C01DC7186800AF6685 /* AppDelegate.swift */; };
 		EA5246C31DC7186800AF6685 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C21DC7186800AF6685 /* ViewController.swift */; };
 		EA5246C61DC7186800AF6685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C41DC7186800AF6685 /* Main.storyboard */; };
@@ -61,7 +61,7 @@
 		0AD2B4CCAE039F03823867E5 /* Pods-OptimizelyiOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 		1FB412018B98235E5A62E95F /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
-		EA2C23C01DE3F6300063ADA0 /* test_data_10_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_10_experiments.json; path = "Test Data/test_data_10_experiments.json"; sourceTree = "<group>"; };
+		EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = iOSDemoTestData.json; path = "Test Data/iOSDemoTestData.json"; sourceTree = "<group>"; };
 		EA5246BD1DC7186800AF6685 /* OptimizelyiOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyiOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5246C01DC7186800AF6685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA5246C21DC7186800AF6685 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		EA2C23BE1DE3F5CE0063ADA0 /* Test Data */ = {
 			isa = PBXGroup;
 			children = (
-				EA2C23C01DE3F6300063ADA0 /* test_data_10_experiments.json */,
+				EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */,
 			);
 			name = "Test Data";
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5246CB1DC7186800AF6685 /* LaunchScreen.storyboard in Resources */,
-				EA2C23C11DE3F6300063ADA0 /* test_data_10_experiments.json in Resources */,
+				EA2C23C11DE3F6300063ADA0 /* iOSDemoTestData.json in Resources */,
 				EA5246C81DC7186800AF6685 /* Assets.xcassets in Resources */,
 				EA5246C61DC7186800AF6685 /* Main.storyboard in Resources */,
 			);
