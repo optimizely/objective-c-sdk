@@ -31,7 +31,11 @@
 @implementation OPTLYManager
 
 + (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+}
+
++ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    return [[self alloc] initWithBuilder:builder];
 }
 
 - (instancetype)init {

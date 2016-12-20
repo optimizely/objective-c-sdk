@@ -35,10 +35,10 @@
 @property (nonatomic, readonly, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the client to store user-specific data.
 @property (nonatomic, readonly, strong, nullable) id<OPTLYUserProfile> userProfile;
-/// The client version
-@property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
 /// The client engine
 @property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
+/// The client version
+@property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
 
 /**
  * Init with builder block
@@ -47,6 +47,12 @@
  */
 + (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
 
+/**
+ * Init with a builder
+ * @param builder The Optimizely Manager Builder where datafile manager, event dispatcher, and other configurations will be set.
+ * @return OPTLYManager instance
+ */
++ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance
  */
