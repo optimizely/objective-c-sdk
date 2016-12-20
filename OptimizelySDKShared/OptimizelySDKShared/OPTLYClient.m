@@ -79,10 +79,10 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
                                        userId:(NSString *)userId
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes {
-    if (self.optimizely == nil ) {
+    if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyError,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationFailed, userId, experimentKey]]
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationFailure, userId, experimentKey]]
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -120,7 +120,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyError,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesEventNotTracked, eventKey, userId]]
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey, userId]]
                       withLevel:OptimizelyLogLevelError];
         return;
     }

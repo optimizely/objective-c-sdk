@@ -163,7 +163,7 @@ dispatch_queue_t flushEventsQueue()
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
     
-    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingImpressionEvent, params];
+    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchingImpressionEvent, params];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     [self dispatchEvent:params eventType:OPTLYDataStoreEventTypeImpression callback:callback];
@@ -172,7 +172,7 @@ dispatch_queue_t flushEventsQueue()
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
     
-    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingConversionEvent, params];
+    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchingConversionEvent, params];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     [self dispatchEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];

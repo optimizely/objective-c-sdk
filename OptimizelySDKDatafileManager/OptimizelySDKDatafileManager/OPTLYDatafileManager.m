@@ -66,7 +66,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     NSString *lastSavedModifiedDate = [self getLastModifiedDate:projectId];
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDate, lastSavedModifiedDate];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound, lastSavedModifiedDate];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     [self.networkService downloadProjectConfig:self.projectId
@@ -156,9 +156,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     
     NSString *logMessage = @"";
     if ([lastModifiedDate length]) {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDate, lastModifiedDate, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound, lastModifiedDate, projectId];
     } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateNotFound, projectId];
     }
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     

@@ -179,7 +179,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
 - (OPTLYExperiment *)getExperimentForId:(NSString *)experimentId {
     OPTLYExperiment *experiment = self.experimentIdToExperimentMap[experimentId];
     if (!experiment) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentUnknown, experimentId];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentUnknownForExperimentId, experimentId];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     }
     return experiment;
