@@ -30,7 +30,7 @@ NSString * const OPTLYEventParameterKeysClientVersion                   = @"clie
 NSString * const OPTLYEventParameterKeysHeader                          = @"header";
 NSString * const OPTLYEventParameterKeysUserFeatures                    = @"userFeatures";      // nonnull
 NSString * const OPTLYEventParameterKeysIsGlobalHoldback                = @"isGlobalHoldback";  // nonnull
-extern NSString * const OPTLYEventParameterKeysAnonymizeIP              = @"anonymizeIP";
+NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymizeIP";
 
 // --- Decision Ticket Event Parameters ("Impression Event") ----
 NSString * const OPTLYEventParameterKeysDecisionId                      = @"decisionId";
