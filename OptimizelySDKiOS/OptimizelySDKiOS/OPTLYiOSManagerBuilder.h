@@ -24,7 +24,7 @@ typedef void (^OPTLYiOSManagerBuilderBlock)(OPTLYiOSManagerBuilder * _Nullable b
 
 @interface OPTLYiOSManagerBuilder : OPTLYManagerBuilder
 
-/// Create the Optimizely Manager object.
+/// Create the Optimizely iOS Manager Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYiOSManagerBuilderBlock)block;
 
 @end
