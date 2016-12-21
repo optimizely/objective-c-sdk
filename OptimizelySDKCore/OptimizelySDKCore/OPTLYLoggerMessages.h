@@ -37,10 +37,10 @@ extern NSString *const OPTLYLoggerMessagesUserMutuallyExcluded;
 extern NSString *const OPTLYLoggerMessagesForcedBucketingFailed;
 
 // ---- Client ----
-// warning
+// error
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
-extern NSString *const OPTLYLoggerMessagesConversionFailure;
 extern NSString *const OPTLYLoggerMessagesGetVariationFailure;
+extern NSString *const OPTLYLoggerMessagesTrackFailure;
 
 // ---- Data Store ----
 // Event Data Store
@@ -87,12 +87,11 @@ extern NSString *const OPTLYLoggerMessagesInvalidDatafileVersion;
 // debug
 extern NSString *const OPTLYLoggerMessagesAttributeInvalidFormat;
 extern NSString *const OPTLYLoggerMessagesAttributeValueInvalidFormat;
-extern NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent;
-// warning
 extern NSString *const OPTLYLoggerMessagesBucketerInvalid;
 extern NSString *const OPTLYLoggerMessagesEventKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment;
 extern NSString *const OPTLYLoggerMessagesExperimentKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent;
 extern NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;

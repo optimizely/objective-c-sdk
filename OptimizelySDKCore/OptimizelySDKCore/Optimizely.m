@@ -606,7 +606,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
         [self.logger logMessage:logMessage
                       withLevel:OptimizelyLogLevelInfo];
     } else {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey, userId];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackFailure, eventKey, userId];
         
         NSDictionary *errorMessage = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

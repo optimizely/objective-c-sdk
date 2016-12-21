@@ -51,17 +51,17 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     }
     
     if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
     if ([experimentKey length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesExperimentKeyInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesExperimentKeyInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
     if ([variationId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
@@ -75,7 +75,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     
     if (!experiment) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNotBuildingDecisionEventTicket, experimentKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
@@ -100,17 +100,17 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     }
     
     if (!bucketer) {
-        [config.logger logMessage:OPTLYLoggerMessagesBucketerInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesBucketerInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
     if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
     if ([eventName length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
@@ -227,7 +227,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     
     if ([eventExperimentIds count] == 0) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventNotAssociatedWithExperiment, eventKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return [layerStates copy];
     }
     
