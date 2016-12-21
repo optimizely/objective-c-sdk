@@ -69,7 +69,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 + (NSURL *)projectConfigURLPath:(NSString *)projectId
 {
     NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@datafile_v%@.json", cdnURL.absoluteString, projectId, kExpectedDatafileVersion];
+    NSString *filePath = [NSString stringWithFormat:@"%@%@/datafile_v%@.json", cdnURL.absoluteString, projectId, kExpectedDatafileVersion];
     return [NSURL URLWithString:filePath];
 }
 
