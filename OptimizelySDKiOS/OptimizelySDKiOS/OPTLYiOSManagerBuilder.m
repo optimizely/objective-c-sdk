@@ -14,13 +14,13 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYiOSManagerBuilder.h"
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
 #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
 #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
+#import "OPTLYiOSManagerBuilder.h"
 
 static NSString * const kClientEngine = @"objective-c-sdk-iOS";
 
@@ -38,17 +38,17 @@ static NSString * const kClientEngine = @"objective-c-sdk-iOS";
     NSParameterAssert(block);
     if (self != nil) {
         block(self);
-        if (!self.errorHandler) {
-            self.errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-        }
         if (!self.logger) {
             self.logger = [[OPTLYLoggerDefault alloc] init];
+        }
+        if (!self.errorHandler) {
+            self.errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
         }
         
         // set datafile manager
         if (!self.datafileManager) {
             self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-                builder.datafileFetchInterval = 0;
+                builder.datafileFetchInterval = 120;
                 builder.projectId = self.projectId;
                 builder.errorHandler = self.errorHandler;
                 builder.logger = self.logger;
