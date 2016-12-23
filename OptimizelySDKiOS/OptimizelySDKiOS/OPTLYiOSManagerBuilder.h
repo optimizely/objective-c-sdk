@@ -15,10 +15,16 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
+#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
 
-@class OPTLYProjectConfig;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
+@class OPTLYiOSManagerBuilder;
 
-@interface OPTLYTVOSProjectConfig : OPTLYProjectConfig
+typedef void (^OPTLYiOSManagerBuilderBlock)(OPTLYiOSManagerBuilder * _Nullable builder);
+
+@interface OPTLYiOSManagerBuilder : OPTLYManagerBuilder
+
+/// Create the Optimizely iOS Manager Builder object.
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYiOSManagerBuilderBlock)block;
 
 @end

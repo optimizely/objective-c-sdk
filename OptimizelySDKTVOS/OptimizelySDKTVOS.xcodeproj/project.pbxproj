@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D3503A11DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */; };
-		2D3503AC1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */; };
+		2D14BCB31E0B0D2900D2FE5B /* OPTLYtvOSManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D14BCB21E0B0D2900D2FE5B /* OPTLYtvOSManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D14BCB51E0B0DDA00D2FE5B /* OPTLYtvOSManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14BCB41E0B0DDA00D2FE5B /* OPTLYtvOSManagerBuilder.m */; };
 		2D3504161DFA78D600B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */; };
 		2D3504171DFA78D600B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */; };
 		2D3504181DFA78D600B0A822 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504111DFA78D600B0A822 /* datafile_6372300739.json */; };
@@ -143,8 +143,8 @@
 /* Begin PBXFileReference section */
 		1273AF90BC689BE6B17EFDC5 /* Pods_OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DE410B256E509B248B59A2 /* Pods-OptimizelySDKTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.beta.xcconfig"; sourceTree = "<group>"; };
-		2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OPTLYProjectConfig+tvOS.h"; sourceTree = "<group>"; };
-		2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OPTLYProjectConfig+tvOS.m"; sourceTree = "<group>"; };
+		2D14BCB21E0B0D2900D2FE5B /* OPTLYtvOSManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYtvOSManagerBuilder.h; sourceTree = "<group>"; };
+		2D14BCB41E0B0DDA00D2FE5B /* OPTLYtvOSManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYtvOSManagerBuilder.m; sourceTree = "<group>"; };
 		2D35040D1DFA78D600B0A822 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
 		2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BucketerTestsDatafile.json; sourceTree = "<group>"; };
@@ -260,8 +260,8 @@
 			children = (
 				EA52495D1DC736DF00AF6685 /* OptimizelySDKTVOS.modulemap */,
 				EA2FA7271DC1FA9F00B1D81B /* OptimizelySDKTVOS.h */,
-				2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */,
-				2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */,
+				2D14BCB21E0B0D2900D2FE5B /* OPTLYtvOSManagerBuilder.h */,
+				2D14BCB41E0B0DDA00D2FE5B /* OPTLYtvOSManagerBuilder.m */,
 				EA2FA7281DC1FA9F00B1D81B /* OptimizelySDKTVOS-Info.plist */,
 			);
 			path = OptimizelySDKTVOS;
@@ -321,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA2FA7351DC1FAA000B1D81B /* OptimizelySDKTVOS.h in Headers */,
-				2D3503A11DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h in Headers */,
+				2D14BCB31E0B0D2900D2FE5B /* OPTLYtvOSManagerBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,7 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D3503AC1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m in Sources */,
+				2D14BCB51E0B0DDA00D2FE5B /* OPTLYtvOSManagerBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

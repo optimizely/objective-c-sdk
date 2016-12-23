@@ -41,6 +41,10 @@ typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nonnull builder);
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the Optimizely instance to store user-specific data.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// The client version
+@property (nonatomic, strong, nonnull) NSString *clientVersion;
+/// The client engine
+@property (nonatomic, strong, nonnull) NSString *clientEngine;
 
 /// Create an Optimizely Client object.
 + (nonnull instancetype)builderWithBlock:(nonnull OPTLYClientBuilderBlock)block;

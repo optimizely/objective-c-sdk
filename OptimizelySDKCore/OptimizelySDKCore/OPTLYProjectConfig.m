@@ -30,7 +30,6 @@
 #import "OPTLYVariable.h"
 #import "OPTLYVariable.h"
 
-NSString * const kClientEngine             = @"objective-c-sdk-core";
 NSString * const kExpectedDatafileVersion  = @"3";
 
 @interface OPTLYProjectConfig()
@@ -124,6 +123,9 @@ NSString * const kExpectedDatafileVersion  = @"3";
     @catch (NSException *datafileException) {
         [builder.errorHandler handleException:datafileException];
     }
+    
+    _clientEngine = builder.clientEngine;
+    _clientVersion = builder.clientVersion;
     
     _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
     _logger = (id<OPTLYLogger, Ignore>)builder.logger;
@@ -413,16 +415,6 @@ NSString * const kExpectedDatafileVersion  = @"3";
     }
     
     return variation;
-}
-
-- (NSString *)clientEngine
-{
-    return kClientEngine;
-}
-
-- (NSString *)clientVersion
-{
-    return OPTIMIZELY_SDK_CORE_VERSION;
 }
 
 @end

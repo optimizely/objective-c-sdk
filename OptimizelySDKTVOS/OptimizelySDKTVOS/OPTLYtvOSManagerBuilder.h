@@ -13,9 +13,18 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-#import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 
-@interface OPTLYProjectConfig (OptimizelySDKiOS)
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
+@class OPTLYtvOSManagerBuilder;
+
+typedef void (^OPTLYtvOSManagerBuilderBlock)(OPTLYtvOSManagerBuilder * _Nullable builder);
+
+@interface OPTLYtvOSManagerBuilder : OPTLYManagerBuilder
+
+/// Create the Optimizely tvOS Manager Builder object.
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYtvOSManagerBuilderBlock)block;
 
 @end

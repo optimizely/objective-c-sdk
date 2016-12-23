@@ -39,6 +39,10 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the client to store user-specific data.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
+/// The client engine
+@property (nonatomic, readwrite, strong, nonnull) NSString *clientEngine;
+/// The client version
+@property (nonatomic, readwrite, strong, nonnull) NSString *clientVersion;
 
 /// Create the Optimizely Manager object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYManagerBuilderBlock)block;

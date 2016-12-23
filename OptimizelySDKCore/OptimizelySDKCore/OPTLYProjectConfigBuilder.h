@@ -42,5 +42,10 @@ typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Null
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 /// the non optional datafile contents
 @property (nonatomic, strong, nonnull) NSData *datafile;
+/// The client version
+@property (nonatomic, strong, nonnull) NSString *clientVersion;
+/// The client engine
+@property (nonatomic, strong, nonnull) NSString *clientEngine;
+
 
 @end

@@ -64,6 +64,26 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
+    XCTAssertEqualObjects(projectConfig.clientEngine, @"objective-c-sdk-core");
+    XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
+}
+
+/**
+ * Make sure we can pass in different values for client engine and client version to override the defaults.
+ */
+- (void)testClientEngineAndClientVersionAreConfigurable {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    XCTAssertNotNil(projectConfig);
+    XCTAssertEqualObjects(projectConfig.clientEngine, clientEngine);
+    XCTAssertEqualObjects(projectConfig.clientVersion, clientVersion);
 }
 
 - (void)testInitWithBuilderBlockNoDatafile
