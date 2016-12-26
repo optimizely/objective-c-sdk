@@ -256,7 +256,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                     OptimizelyNotificationsUserDictionaryEventNameKey: eventKey,
                                                                                     OptimizelyNotificationsUserDictionaryUserIdKey: userId,
-                                                                                    // TODO: Josh W. add experiment variation mappings
                                                                                     }];
     if (attributes != nil) {
         userInfo[OptimizelyNotificationsUserDictionaryAttributesKey] = attributes;
