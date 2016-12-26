@@ -37,13 +37,13 @@
 
 NSString *const OptimizelyDidActivateExperimentNotification = @"OptimizelyExperimentActivated";
 NSString *const OptimizelyDidTrackEventNotification = @"OptimizelyEventTracked";
-NSString *const kOptimizelyNotificationExperimentKey = @"experiment";
-NSString *const kOptimizelyNotificationVariationKey = @"variation";
-NSString *const kOptimizelyNotificationUserIdKey = @"userId";
-NSString *const kOptimizelyNotificationUserAttributesKey = @"attributes";
-NSString *const kOptimizelyNotificationEventNameKey = @"eventKey";
-NSString *const kOptimizelyNotificationEventValueKey = @"eventValue";
-NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"ExperimentVariationMapping";
+NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
+NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
+NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
+NSString *const OptimizelyNotificationsUserDictionaryAttributesKey = @"attributes";
+NSString *const OptimizelyNotificationsUserDictionaryEventNameKey = @"eventKey";
+NSString *const OptimizelyNotificationsUserDictionaryEventValueKey = @"eventValue";
+NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey = @"ExperimentVariationMapping";
 
 @implementation Optimizely
 
@@ -134,16 +134,16 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
     }];
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                    kOptimizelyNotificationVariationKey: variation
+                                                                                    OptimizelyNotificationsUserDictionaryVariationKey: variation
                                                                                     }];
     if (attributes != nil) {
-        userInfo[kOptimizelyNotificationUserAttributesKey] = attributes;
+        userInfo[OptimizelyNotificationsUserDictionaryAttributesKey] = attributes;
     }
     if (experimentKey != nil) {
-        userInfo[kOptimizelyNotificationExperimentKey] = [self.config getExperimentForKey:experimentKey];
+        userInfo[OptimizelyNotificationsUserDictionaryExperimentKey] = [self.config getExperimentForKey:experimentKey];
     }
     if (userId != nil) {
-        userInfo[kOptimizelyNotificationUserIdKey] = userId;
+        userInfo[OptimizelyNotificationsUserDictionaryUserIdKey] = userId;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidActivateExperimentNotification
@@ -254,15 +254,15 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
     }];
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                    kOptimizelyNotificationEventNameKey: eventKey,
-                                                                                    kOptimizelyNotificationUserIdKey: userId,
+                                                                                    OptimizelyNotificationsUserDictionaryEventNameKey: eventKey,
+                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey: userId,
                                                                                     // TODO: Josh W. add experiment variation mappings
                                                                                     }];
     if (attributes != nil) {
-        userInfo[kOptimizelyNotificationUserAttributesKey] = attributes;
+        userInfo[OptimizelyNotificationsUserDictionaryAttributesKey] = attributes;
     }
     if (eventValue != nil) {
-        userInfo[kOptimizelyNotificationEventValueKey] = eventValue;
+        userInfo[OptimizelyNotificationsUserDictionaryEventValueKey] = eventValue;
     }
     if (conversionEvent.layerStates.count > 0) {
         NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:conversionEvent.layerStates.count];
@@ -275,7 +275,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
             }
         }
         if (experimentVariationMapping.count > 0) {
-            userInfo[kOptimizelyNotificationExperimentVariationMappingKey] = [experimentVariationMapping copy];
+            userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
         }
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification

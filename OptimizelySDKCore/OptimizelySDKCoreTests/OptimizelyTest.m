@@ -751,10 +751,10 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                                                                            queue:nil
                                                                                       usingBlock:^(NSNotification * _Nonnull note) {
                                                                                           XCTAssertNotNil(note);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKey]);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserIdKey], kUserId);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserAttributesKey], self.attributes);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationVariationKey], [self.optimizely getVariationForExperiment:kExperimentKey userId:kUserId attributes:self.attributes]);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKey]);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], self.attributes);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely getVariationForExperiment:kExperimentKey userId:kUserId attributes:self.attributes]);
                                                                                           [expectation fulfill];
                                                                                       }];
     
@@ -780,12 +780,12 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                                                                            queue:nil
                                                                                       usingBlock:^(NSNotification * _Nonnull note) {
                                                                                           XCTAssertNotNil(note);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationEventNameKey], kEventNameWithMultipleExperiments);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserIdKey], kUserId);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationUserAttributesKey], self.attributes);
-                                                                                          XCTAssertEqual(note.userInfo[kOptimizelyNotificationEventValueKey], eventValue);
-                                                                                          XCTAssertNotNil(note.userInfo[kOptimizelyNotificationExperimentVariationMappingKey]);
-                                                                                          [note.userInfo[kOptimizelyNotificationExperimentVariationMappingKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryEventNameKey], kEventNameWithMultipleExperiments);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], self.attributes);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryEventValueKey], eventValue);
+                                                                                          XCTAssertNotNil(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey]);
+                                                                                          [note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                                                                                               XCTAssertTrue([key isKindOfClass:[OPTLYExperiment class]]);
                                                                                               XCTAssertTrue([obj isKindOfClass:[OPTLYVariation class]]);
                                                                                           }];

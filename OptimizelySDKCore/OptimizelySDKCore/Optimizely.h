@@ -19,13 +19,13 @@
 
 extern NSString * _Nonnull const OptimizelyDidActivateExperimentNotification;
 extern NSString * _Nonnull const OptimizelyDidTrackEventNotification;
-extern NSString * _Nonnull const kOptimizelyNotificationExperimentKey;
-extern NSString * _Nonnull const kOptimizelyNotificationVariationKey;
-extern NSString * _Nonnull const kOptimizelyNotificationUserIdKey;
-extern NSString * _Nonnull const kOptimizelyNotificationUserAttributesKey;
-extern NSString * _Nonnull const kOptimizelyNotificationEventNameKey;
-extern NSString * _Nonnull const kOptimizelyNotificationEventValueKey;
-extern NSString * _Nonnull const kOptimizelyNotificationExperimentVariationMappingKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryVariationKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryUserIdKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryAttributesKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventValueKey;
+extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
 @class OPTLYProjectConfig, OPTLYVariation;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
