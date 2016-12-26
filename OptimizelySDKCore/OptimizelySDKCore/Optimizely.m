@@ -35,8 +35,8 @@
 #import "OPTLYVariation.h"
 #import "OPTLYVariationVariable.h"
 
-NSString *const kOptimizelyExperimentActivatedNotificationName = @"OptimizelyExperimentActivated";
-NSString *const kOptimizelyEventTrackedNotificationName = @"OptimizelyEventTracked";
+NSString *const OptimizelyDidActivateExperimentNotification = @"OptimizelyExperimentActivated";
+NSString *const OptimizelyDidTrackEventNotification = @"OptimizelyEventTracked";
 NSString *const kOptimizelyNotificationExperimentKey = @"experiment";
 NSString *const kOptimizelyNotificationVariationKey = @"variation";
 NSString *const kOptimizelyNotificationUserIdKey = @"userId";
@@ -146,7 +146,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
         userInfo[kOptimizelyNotificationUserIdKey] = userId;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kOptimizelyExperimentActivatedNotificationName
+    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidActivateExperimentNotification
                                                         object:self
                                                       userInfo:userInfo];
     
@@ -278,7 +278,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
             userInfo[kOptimizelyNotificationExperimentVariationMappingKey] = [experimentVariationMapping copy];
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kOptimizelyEventTrackedNotificationName
+    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification
                                                         object:self
                                                       userInfo:userInfo];
 }

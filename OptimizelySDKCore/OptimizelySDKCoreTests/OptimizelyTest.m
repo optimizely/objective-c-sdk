@@ -746,7 +746,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
     
-    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kOptimizelyExperimentActivatedNotificationName
+    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:OptimizelyDidActivateExperimentNotification
                                                                                           object:nil
                                                                                            queue:nil
                                                                                       usingBlock:^(NSNotification * _Nonnull note) {
@@ -775,7 +775,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     NSNumber *eventValue = @10;
     
-    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kOptimizelyEventTrackedNotificationName
+    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:OptimizelyDidTrackEventNotification
                                                                                           object:nil
                                                                                            queue:nil
                                                                                       usingBlock:^(NSNotification * _Nonnull note) {

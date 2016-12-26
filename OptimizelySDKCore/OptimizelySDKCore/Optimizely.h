@@ -17,8 +17,8 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYBuilder.h"
 
-extern NSString * _Nonnull const kOptimizelyExperimentActivatedNotificationName;
-extern NSString * _Nonnull const kOptimizelyEventTrackedNotificationName;
+extern NSString * _Nonnull const OptimizelyDidActivateExperimentNotification;
+extern NSString * _Nonnull const OptimizelyDidTrackEventNotification;
 extern NSString * _Nonnull const kOptimizelyNotificationExperimentKey;
 extern NSString * _Nonnull const kOptimizelyNotificationVariationKey;
 extern NSString * _Nonnull const kOptimizelyNotificationUserIdKey;
