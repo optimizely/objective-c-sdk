@@ -296,7 +296,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 }
 
 // removes all events, including the data structures that store the events
-- (void)removeEventsStorage:(NSError * _Nullable * _Nullable)error {
+- (void)removeEventsStorage:(NSError * _Nullable * _Nullable)error
 {
     [self removeAllEvents:error];
     self.eventDataStore = nil;

@@ -23,7 +23,6 @@
 #endif
 #import "OPTLYDataStore.h"
 #import "OPTLYDatafileManager.h"
-#import "OPTLYEventDataStore.h"
 #import "OPTLYFileManager.h"
 #import "OPTLYManager.h"
 #import "OPTLYManagerBuilder.h"

@@ -78,7 +78,7 @@
 		EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; };
 		EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
 		EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
 /* End PBXBuildFile section */
@@ -448,8 +448,8 @@
 				2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
 				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
-				EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 				EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */,
+				EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
