@@ -112,13 +112,9 @@ extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseCreateTableError;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError;
 // warning
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents;
 
 // ---- User Profile ----
 // warning

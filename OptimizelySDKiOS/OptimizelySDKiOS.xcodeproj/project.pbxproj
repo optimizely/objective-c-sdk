@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A40C71D7B825E4BFD61A110 /* Pods_OptimizelySDKiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B2266C94E7767CEB55292 /* Pods_OptimizelySDKiOSTests.framework */; };
-		2D14BCA61E09DC2A00D2FE5B /* OPTLYiOSManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D14BCA51E09DC2A00D2FE5B /* OPTLYiOSManagerBuilder.h */; };
+		2D14BCA61E09DC2A00D2FE5B /* OPTLYiOSManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D14BCA51E09DC2A00D2FE5B /* OPTLYiOSManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D14BCA81E09DC7000D2FE5B /* OPTLYiOSManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14BCA71E09DC7000D2FE5B /* OPTLYiOSManagerBuilder.m */; };
 		2D3503FD1DFA78CB00B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */; };
 		2D3503FE1DFA78CB00B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */; };

@@ -14,15 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OPTLYQueue.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYQueue.h>
 #import "OPTLYDataStore.h"
+#import "OPTLYEventDataStore.h"
 #import "OPTLYFileManager.h"
-
-#if TARGET_OS_IOS
-#import "OPTLYDatabase.h"
-#import "OPTLYDatabaseEntity.h"
-#endif
 
 static NSString * const kOptimizelyDirectory = @"optimizely";
 
@@ -38,10 +34,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 @interface OPTLYDataStore()
 @property (nonatomic, strong) OPTLYFileManager *fileManager;
-#if TARGET_OS_IOS
-@property (nonatomic, strong) OPTLYDatabase *database;
-#endif
-@property (nonatomic, strong) NSCache *eventsCache;
+@property (nonatomic, strong) id<OPTLYEventDataStore> eventDataStore;
 @end
 
 @implementation OPTLYDataStore
@@ -61,15 +54,22 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
     self = [super init];
     if (self) {
         NSString *filePath = @"";
-#if TARGET_OS_TV
+        NSError *initError = nil;
+#if TARGET_OS_IOS
+        NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        filePath = libraryDirPaths[0];
+        _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
+        _eventDataStore = [[OPTLYEventDataStoreiOS alloc] initWithBaseDir:_baseDirectory error:&initError];
+        // TODO: log error
+#elif TARGET_OS_TV
         // tvOS only allows writing to a temporary file directory
         // a future enhancement would be save to iCloud
         filePath = NSTemporaryDirectory();
-#elif TARGET_OS_IOS
-        NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        filePath = libraryDirPaths[0];
-#endif
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
+        _eventDataStore = [[OPTLYEventDataStoreTVOS alloc] initWithBaseDir:_baseDirectory error:&initError];
+        // TODO: log error
+#endif
+
     }
     return self;
 }
@@ -83,33 +83,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 - (void)removeAll:(NSError * _Nullable * _Nullable)error {
     [self removeAllUserData];
-    [self removeAllEvents:error];
+    [self removeEventsStorage:error];
     [self removeAllFiles:error];
-}
-
-#if TARGET_OS_IOS
-- (OPTLYDatabase *)database
-{
-    if (!_database) {
-        NSString *databaseDirectory = [self.baseDirectory stringByAppendingPathComponent:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
-        _database = [[OPTLYDatabase alloc] initWithBaseDir:databaseDirectory];
-        
-        // create the events table
-        NSError *error = nil;
-        [self createTable:OPTLYDataStoreEventTypeImpression error:&error];
-        [self createTable:OPTLYDataStoreEventTypeConversion error:&error];
-    }
-    return _database;
-}
-#endif
-
-- (NSCache *)eventsCache {
-    if (!_eventsCache) {
-        _eventsCache = [NSCache new];
-        [_eventsCache setObject:[OPTLYQueue new] forKey:kOPTLYDataStoreEventTypeImpression];
-        [_eventsCache setObject:[OPTLYQueue new] forKey:kOPTLYDataStoreEventTypeConversion];
-    }
-    return _eventsCache;
 }
 
 # pragma mark - NSUserDefault Data
@@ -155,7 +130,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 - (void)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
-           error:(NSError * _Nullable * _Nullable)error {
+           error:(NSError * _Nullable * _Nullable)error
+{
     [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerSaveFile, dataType, fileName, *error];
@@ -165,7 +141,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
                         type:(OPTLYDataStoreDataType)dataType
-                       error:(NSError * _Nullable * _Nullable)error {
+                       error:(NSError * _Nullable * _Nullable)error
+{
     NSData *fileData = [self.fileManager getFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerGetFile, dataType, fileName, *error];
@@ -175,7 +152,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 }
 
 - (bool)fileExists:(nonnull NSString *)fileName
-              type:(OPTLYDataStoreDataType)dataType {
+              type:(OPTLYDataStoreDataType)dataType
+{
     return [self.fileManager fileExists:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType]];
 }
 
@@ -186,7 +164,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 - (void)removeFile:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType
-             error:(NSError * _Nullable * _Nullable)error {
+             error:(NSError * _Nullable * _Nullable)error
+{
     [self.fileManager removeFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError, dataType, fileName, *error];
@@ -195,7 +174,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 }
 
 - (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
-                         error:(NSError * _Nullable * _Nullable)error {
+                         error:(NSError * _Nullable * _Nullable)error
+{
     [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError, dataType, *error];
@@ -203,7 +183,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
     }
 }
 
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error {
+- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error
+{
     [self.fileManager removeAllFiles:error];
     self.fileManager = nil;
     if (error && *error) {
@@ -214,83 +195,27 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 # pragma mark - Event Storage Methods
 
-// SQLite tables are only available for iOS
-#if TARGET_OS_IOS
-- (void)createTable:(OPTLYDataStoreEventType)eventType
-              error:(NSError * _Nullable * _Nullable)error
-{
-    NSString *tableName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    [self.database createTable:tableName error:error];
-    
-    if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseCreateTableError, tableName, *error];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    }
-}
-#endif
-
 - (void)saveData:(nonnull NSDictionary *)data
        eventType:(OPTLYDataStoreEventType)eventType
-      cachedData:(bool)cachedData
            error:(NSError * _Nullable * _Nullable)error
 {
-    // tvOS can only save to cached data
-#if TARGET_OS_TV
-    if (!cachedData) {
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning, data, eventType];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        return;
-    }
-#endif
-    
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    if (cachedData) {
-        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-        [queue enqueue:data];
-    } else {
-#if TARGET_OS_IOS
-        [self.database saveData:data table:eventTypeName error:error];
-#endif
-    }
-    
+    [self.eventDataStore saveData:data eventType:eventTypeName error:error];
     if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveError, data, eventType, cachedData, *error];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveError, data, eventType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(OPTLYDataStoreEventType)eventType
-                           cachedData:(bool)cachedData
                                 error:(NSError * _Nullable * _Nullable)error
 {
-    // tvOS can only read from cached data
-#if TARGET_OS_TV
-    if (!cachedData) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning, numberOfEvents, eventType];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        return nil;
-    }
-#endif
-    
-    NSMutableArray *firstNEvents = [NSMutableArray new];
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    if (cachedData) {
-        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-        [firstNEvents addObjectsFromArray:[queue firstNItems:numberOfEvents]];
-    } else {
-#if TARGET_OS_IOS
-        NSArray *firstNEntities = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
-        for (OPTLYDatabaseEntity *entity in firstNEntities) {
-            NSString *entityValue = entity.entityValue;
-            NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
-            [firstNEvents addObject:event];
-        }
-#endif
-    }
+    NSArray *firstNEvents = [self.eventDataStore getFirstNEvents:numberOfEvents eventType:eventTypeName error:error];
     
     if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetError, numberOfEvents, eventType, cachedData, *error];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetError, numberOfEvents, eventType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     
@@ -298,14 +223,13 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 }
 
 - (nullable NSDictionary *)getOldestEvent:(OPTLYDataStoreEventType)eventType
-                               cachedData:(bool)cachedData
                                     error:(NSError * _Nullable * _Nullable)error
 {
     NSDictionary *oldestEvent = nil;
-    NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType cachedData:cachedData error:error];
+    NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType error:error];
     
     if ([oldestEvents count] <= 0) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents, eventType, cachedData];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents, eventType];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     } else {
         oldestEvent = oldestEvents[0];
@@ -315,122 +239,67 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 }
 
 - (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
-                        cachedData:(bool)cachedData
                              error:(NSError * _Nullable * _Nullable)error
 {
-    NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
-    NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType error:error];
+    NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType error:error];
     return allEvents;
 }
 
 - (void)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
-                cachedData:(bool)cachedData
                      error:(NSError * _Nullable * _Nullable)error
 {
-    // tvOS can only delete from cached data
-#if TARGET_OS_TV
-    if (!cachedData) {
-        NSString *logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning, numberOfEvents, eventType];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        return;
-    }
-#endif
-    
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    if (cachedData) {
-        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-        [queue dequeueNItems:numberOfEvents];
-    } else {
-        // only iOS can delete from the database table
-#if TARGET_OS_IOS
-        NSArray *firstNEvents = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
-        if ([firstNEvents count] <= 0) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents, eventType, cachedData];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-            return;
-        }
-        
-        NSMutableArray *entityIds = [NSMutableArray new];
-        for (OPTLYDatabaseEntity *entity in firstNEvents) {
-            NSString *entityId = [entity.entityId stringValue];
-            [entityIds addObject:entityId];
-        }
-        [self.database deleteEntities:entityIds table:eventTypeName error:error];
-#endif
-    }
+    [self.eventDataStore removeFirstNEvents:numberOfEvents eventType:eventTypeName error:error];
     
     if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemoveError, numberOfEvents, eventType, cachedData, *error];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemoveError, numberOfEvents, eventType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
 }
 
 - (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
-               cachedData:(bool)cachedData
                     error:(NSError * _Nullable * _Nullable)error
 {
-    [self removeFirstNEvents:1 eventType:eventType cachedData:cachedData error:error];
+    [self removeFirstNEvents:1 eventType:eventType error:error];
 }
 
 - (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
-             cachedData:(bool)cachedData
                   error:(NSError * _Nullable * _Nullable)error
 {
-    NSInteger numberOfEvents = [self numberOfEvents:eventType cachedData:cachedData error:error];
-    [self removeFirstNEvents:numberOfEvents eventType:eventType cachedData:cachedData error:error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType error:error];
+    [self removeFirstNEvents:numberOfEvents eventType:eventType error:error];
     
     [self.logger logMessage:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning withLevel:OptimizelyLogLevelWarning];
 }
 
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
-                 cachedData:(bool)cachedData
                       error:(NSError * _Nullable * _Nullable)error
 {
-    NSInteger numberOfEvents = 0;
-    // tvOS can only read from cached data
-#if TARGET_OS_TV
-    if (!cachedData) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning, eventType];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        return numberOfEvents;
-    }
-#endif
-    
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    if (cachedData) {
-        OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-        numberOfEvents = [queue size];
-    } else {
-        // only iOS can read from the database table
-#if TARGET_OS_IOS
-        numberOfEvents = [self.database numberOfRows:eventTypeName error:error];
-#endif
-    }
+    NSInteger numberOfEvents = [self.eventDataStore numberOfEvents:eventTypeName error:error];
     
     if (error && *error) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents, cachedData, eventType, *error];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents, eventType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     
     return numberOfEvents;
 }
 
-- (void)removeSavedEvents:(BOOL)cachedData
-                    error:(NSError * _Nullable * _Nullable)error {
+- (void)removeAllEvents:(NSError * _Nullable * _Nullable)error {
     for (NSInteger i = 0; i <= OPTLYDataStoreEventTypeConversion; ++i ) {
-        [self removeAllEvents:i cachedData:cachedData error:error];
+        [self removeAllEvents:i error:error];
     }
 }
 
-- (void)removeAllEvents:(NSError * _Nullable * _Nullable)error {
-    [self removeSavedEvents:YES error:error];
-    [self removeSavedEvents:NO error:error];
-#if TARGET_OS_IOS
-    [self.database deleteDatabase:error];
-    self.database = nil;
-#endif
+// removes all events, including the data structures that store the events
+- (void)removeEventsStorage:(NSError * _Nullable * _Nullable)error {
+{
+    [self removeAllEvents:error];
+    self.eventDataStore = nil;
 }
 
 # pragma mark - Helper Methods

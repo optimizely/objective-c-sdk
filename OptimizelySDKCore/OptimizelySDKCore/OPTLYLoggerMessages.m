@@ -109,16 +109,12 @@ NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile = @"[FILE MANAGE
 // Database
 // debug
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseCreateTableError = @"[DATABASE] Error creating table %@. Error: %@.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"[DATABASE] Error saving database. Data: %@, eventType: %ld, cachedData: %u, error: %@.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError = @"[DATABASE] Error getting events. Number of events requested: %ld, eventType: %ld, cachedData: %u, error: %@.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"[DATABASE] Error getting number of events. cachedData: %u, eventType: %ld, error: %@.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"[DATABASE] Error removing data. Number of events to remove: %ld, eventType: %ld, cachedData: %u, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"[DATABASE] Error saving database. Data: %@, eventType: %ld, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError = @"[DATABASE] Error getting events. Number of events requested: %ld, eventType: %ld, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"[DATABASE] Error getting number of events. eventType: %ld, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"[DATABASE] Error removing data. Number of events to remove: %ld, eventType: %ld, error: %@.";
 // warning
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents = @"[DATABASE] Get event returned no event. eventType: %ld, cachedData: %u.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveTVOSWarning = @"[DATABASE] tvOS can only save to cached data. Data: %@, eventType: %ld.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetTVOSWarning = @"[DATABASE] tvOS can only get data from cache. Number of events: %ld, eventType: %ld.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEventsTVOSWarning = @"[DATABASE] tvOS can only get number of events from cache. eventType: %ld.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveTVOSWarning = @"[DATABASE] tvOS can only remove data from cache> Number of events: %ld, eventType: %ld.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents = @"[DATABASE] Get event returned no event. eventType: %ld.";
 
 // ---- User Profile ----
 //warning

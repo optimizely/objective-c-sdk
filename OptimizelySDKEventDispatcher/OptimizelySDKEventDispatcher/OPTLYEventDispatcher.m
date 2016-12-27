@@ -199,7 +199,7 @@ dispatch_queue_t flushEventsQueue()
             }
         } else {
             NSError *saveError = nil;
-            [strongSelf saveEvent:event eventType:eventType error:&saveError];
+            [strongSelf.dataStore saveData:event eventType:eventType error:&saveError];
             
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -219,24 +219,6 @@ dispatch_queue_t flushEventsQueue()
             }
         }
     }];
-}
-
-# pragma mark - Save Events
-
-// save events only when the event dispatch fails or can't be completed at the current moment
-- (void)saveEvent:(NSDictionary *)params
-        eventType:(OPTLYDataStoreEventType)eventType
-            error:(NSError **)error {
-    // on iOS, save data to the database and only cache when database save fails
-#if TARGET_OS_IOS
-    [self.dataStore saveData:params eventType:eventType cachedData:NO error:error];
-    if (error && *error) {
-        [self.dataStore saveData:params eventType:eventType cachedData:YES error:error];
-    }
-    // database saves are not enabled for tvOS, cache for now
-#elif TARGET_OS_TV
-    [self.dataStore saveData:params eventType:eventType cachedData:YES error:error];
-#endif
 }
 
 - (void)flushEvents {
@@ -303,13 +285,10 @@ dispatch_queue_t flushEventsQueue()
         strongSelf.flushEventBackoffRetries++;
         OPTLYLogDebug(@"Backoff retry - %ld.", strongSelf.flushEventBackoffRetries);
         
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression cachedData:YES];
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion cachedData:YES];
-#if TARGET_OS_IOS
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression cachedData:NO];
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion cachedData:NO];
-#endif
-        if (callback) {
+        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression];
+        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion];
+
+         if (callback) {
             callback();
         }
         return;
@@ -319,13 +298,12 @@ dispatch_queue_t flushEventsQueue()
 // flushing saved events require deletion upon successfully dispatch
 - (void)flushSavedEvent:(NSDictionary *)event
               eventType:(OPTLYDataStoreEventType)eventType
-             cachedData:(BOOL)cachedData
                callback:(OPTLYEventDispatcherResponse)callback
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     OPTLYLogInfo(@"Flushing a saved %@ event - %@.", eventName, event);
     
-    if (![self haveEventsToSend:eventType cachedData:cachedData]) {
+    if (![self haveEventsToSend:eventType]) {
         
         NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -346,7 +324,7 @@ dispatch_queue_t flushEventsQueue()
             NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess, eventName, event];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
-            [strongSelf.dataStore removeOldestEvent:eventType cachedData:cachedData error:&error];
+            [strongSelf.dataStore removeOldestEvent:eventType error:&error];
             // if the event has been successfully dispatched and there are no saved events, disable the timer
             if (![strongSelf haveEventsToSend]) {
                 [strongSelf disableNetworkTimer:^{
@@ -385,14 +363,13 @@ dispatch_queue_t flushEventsQueue()
 }
 
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType
-              cachedData:(BOOL)cachedData
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     OPTLYLogInfo(@"Flushing saved %@ events", eventName);
     
     NSError *error = nil;
-    NSInteger totalNumberOfEvents = [self.dataStore numberOfEvents:eventType cachedData:cachedData error:&error];
-    NSArray *events = [self.dataStore getAllEvents:eventType cachedData:cachedData error:&error];
+    NSInteger totalNumberOfEvents = [self.dataStore numberOfEvents:eventType error:&error];
+    NSArray *events = [self.dataStore getAllEvents:eventType error:&error];
     
     if (!totalNumberOfEvents) {
         return;
@@ -407,7 +384,7 @@ dispatch_queue_t flushEventsQueue()
     // This will be batched in the near future...
     for (NSInteger i = 0 ; i < totalNumberOfEvents; ++i) {
         NSDictionary *event = events[i];
-        [self flushSavedEvent:event eventType:eventType cachedData:cachedData callback:nil];
+        [self flushSavedEvent:event eventType:eventType callback:nil];
     }
 }
 
@@ -481,25 +458,20 @@ dispatch_queue_t flushEventsQueue()
 }
 
 # pragma mark - Helper Methods
-- (BOOL)haveEventsToSend:(OPTLYDataStoreEventType)eventType cachedData:(BOOL)cachedData
+- (BOOL)haveEventsToSend:(OPTLYDataStoreEventType)eventType
 {
     NSInteger numberOfEvents = [self.dataStore numberOfEvents:eventType
-                                                   cachedData:cachedData
                                                         error:nil];
     return numberOfEvents;
 }
 
 - (BOOL)haveEventsToSend
 {
-    NSInteger numberOfImpressionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeImpression cachedData:NO];
-    NSInteger numberOfImpressionEventsCached = [self haveEventsToSend:OPTLYDataStoreEventTypeImpression cachedData:YES];
-    NSInteger numberOfConversionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeConversion cachedData:NO];
-    NSInteger numberOfConversionEventsCached = [self haveEventsToSend:OPTLYDataStoreEventTypeConversion cachedData:YES];
+    NSInteger numberOfImpressionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeImpression];
+    NSInteger numberOfConversionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeConversion];
     
     return (numberOfImpressionEventsSaved > 0 ||
-            numberOfImpressionEventsCached > 0  ||
-            numberOfConversionEventsSaved > 0 ||
-            numberOfConversionEventsCached > 0);
+            numberOfConversionEventsSaved > 0);
 }
 
 - (bool)isPowerOf2:(uint64_t)x {
