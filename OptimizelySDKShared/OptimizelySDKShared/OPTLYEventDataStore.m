@@ -85,7 +85,7 @@
             *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                           code:OPTLYErrorTypesDataStore
                                       userInfo:@{NSLocalizedDescriptionKey :
-                                                     [NSString stringWithFormat:NSLocalizedString(@"[DATA STORE] Unable to remove events for event type: %@. No saved events.", nil), eventTypeName]}];
+                                                     [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents, nil), eventTypeName]}];
         }
         return;
     }

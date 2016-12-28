@@ -49,5 +49,8 @@ NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown = @"Live variab
 // Manager Errors
 NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid";
 
+// Event Data Store
+NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents = @"[EVENT DATA STORE] Unable to remove events for event type: %@. No saved events.";
+
 @implementation OPTLYErrorHandlerMessages
 @end

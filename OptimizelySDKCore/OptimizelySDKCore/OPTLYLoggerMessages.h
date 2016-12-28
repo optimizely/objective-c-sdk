@@ -95,6 +95,7 @@ extern NSString *const OPTLYLoggerMessagesEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
 
 // ---- Data Store ----
+// Event Data Store
 // debug
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError;

@@ -95,6 +95,7 @@ NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCH] Not ac
 
 
 // ---- Data Store ----
+// Event Data Store
 // debug
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError = @"[DATA STORE] Event data store initialization failed with the following error: %@";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"[DATA STORE] Error saving events to database. Data: %@, eventType: %@, error: %@.";

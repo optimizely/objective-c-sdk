@@ -307,8 +307,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
         [self removeAllEvents:i error:error];
     }
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    [self.logger logMessage:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning withLevel:OptimizelyLogLevelDebug];
 }
 
 // removes all events, including the data structures that store the events
