@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import "OPTLYDataStore.h"
 #import "OPTLYEventDataStore.h"
 
@@ -67,8 +68,6 @@
     NSArray *firstNEntities = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
     for (OPTLYDatabaseEntity *entity in firstNEntities) {
         NSString *entityValue = entity.entityValue;
-        NSString *entityId = [entity.entityId stringValue];
-        [self.eventToEventIdMap setObject:entityId forKey:entityValue];
         NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
         [firstNEvents addObject:event];
     }
@@ -82,7 +81,12 @@
 {
     NSArray *firstNEvents = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
     if ([firstNEvents count] <= 0) {
-        // TODO: propagate error
+        if (error) {
+            *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                          code:OPTLYErrorTypesDataStore
+                                      userInfo:@{NSLocalizedDescriptionKey :
+                                                     [NSString stringWithFormat:NSLocalizedString(@"[DATA STORE] Unable to remove events for event type: %@. No saved events.", nil), eventTypeName]}];
+        }
         return;
     }
     

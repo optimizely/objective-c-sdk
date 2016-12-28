@@ -95,8 +95,16 @@ extern NSString *const OPTLYLoggerMessagesEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
 
 // ---- Data Store ----
+// debug
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveEventError;
 // warning
 extern NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents;
 
 // File Manager
 // debug
@@ -105,16 +113,6 @@ extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForData
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError;
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerGetFile;
 extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile;
-
-// Database
-// debug
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseCreateTableError;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents;
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError;
-// warning
-extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents;
 
 // ---- User Profile ----
 // warning
