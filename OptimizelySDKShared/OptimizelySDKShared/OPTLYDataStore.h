@@ -162,9 +162,9 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be saved.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveData:(nonnull NSDictionary *)data
-       eventType:(OPTLYDataStoreEventType)eventType
-           error:(NSError * _Nullable * _Nullable)error;
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(OPTLYDataStoreEventType)eventType
+            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets the oldest event.

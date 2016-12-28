@@ -197,12 +197,12 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
 
 # pragma mark - Event Storage Methods
 
-- (void)saveData:(nonnull NSDictionary *)data
-       eventType:(OPTLYDataStoreEventType)eventType
-           error:(NSError * _Nullable * _Nullable)error
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(OPTLYDataStoreEventType)eventType
+            error:(NSError * _Nullable * _Nullable)error
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    [self.eventDataStore saveData:data eventType:eventTypeName error:error];
+    [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveError, data, eventTypeName, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];

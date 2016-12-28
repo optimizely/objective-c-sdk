@@ -52,11 +52,11 @@
     [self.database createTable:eventTypeName error:error];
 }
 
-- (void)saveData:(nonnull NSDictionary *)data
-       eventType:(nonnull NSString *)eventTypeName
-           error:(NSError * _Nullable * _Nullable)error
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(nonnull NSString *)eventTypeName
+            error:(NSError * _Nullable * _Nullable)error
 {
-     [self.database saveData:data table:eventTypeName error:error];
+     [self.database saveEvent:data table:eventTypeName error:error];
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
@@ -149,9 +149,9 @@
     return self;
 }
 
-- (void)saveData:(nonnull NSDictionary *)data
-       eventType:(nonnull NSString *)eventTypeName
-           error:(NSError * _Nullable * _Nullable)error
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(nonnull NSString *)eventTypeName
+            error:(NSError * _Nullable * _Nullable)error
 {
     OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
     [queue enqueue:data];

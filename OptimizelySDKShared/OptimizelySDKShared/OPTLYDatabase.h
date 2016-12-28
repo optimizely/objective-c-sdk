@@ -51,9 +51,9 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveData:(nonnull NSDictionary *)data
-           table:(nonnull NSString *)tableName
-           error:(NSError * _Nullable * _Nullable)error;
+- (void)saveEvent:(nonnull NSDictionary *)data
+            table:(nonnull NSString *)tableName
+            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Deletes a row from a database table given an ID.

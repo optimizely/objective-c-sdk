@@ -39,9 +39,9 @@
  * @param eventTypeName The name of the event type of the data that needs to be saved.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveData:(nonnull NSDictionary *)data
-       eventType:(nonnull NSString *)eventTypeName
-           error:(NSError * _Nullable * _Nullable)error;
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(nonnull NSString *)eventTypeName
+            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Gets the first N entries (i.e., the N oldest events).

@@ -57,7 +57,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 {
     NSError *error;
     
-    [self.dataStore saveData:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression error:&error];
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:&error];
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
     
@@ -185,10 +185,10 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     NSError *error = nil;
     
     // test insert
-    [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore saveData:testEventData2 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore saveData:testEventData3 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore saveData:testEventData4 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData2 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData3 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData4 eventType:OPTLYDataStoreEventTypeImpression error:&error];
     
     XCTAssertNil(error, @"Save data failed.");
     NSArray *results = nil;
@@ -241,14 +241,14 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     XCTAssert([results count] == 0, @"Invalid event count when removeAllEvents was called.");
     
     // ---- test removeEvent ----
-    [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
     [self.dataStore removeEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == 0, @"Invalid impression event count when removeEvent was called.");
     
     // ---- test removeAllEvents ----
-    [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore saveData:testEventData2 eventType:OPTLYDataStoreEventTypeConversion error:&error];
+    [self.dataStore saveEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore saveEvent:testEventData2 eventType:OPTLYDataStoreEventTypeConversion error:&error];
     [self.dataStore removeAll:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == 0, @"Invalid impression event count when removeSavedEvents was called.");

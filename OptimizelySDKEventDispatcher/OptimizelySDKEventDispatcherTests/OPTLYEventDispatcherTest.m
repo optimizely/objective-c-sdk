@@ -194,9 +194,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     NSInteger numberOfRetries = 10;
     for (NSInteger i = 0; i < numberOfRetries; ++i) {
-        [self.eventDispatcher.dataStore saveData:self.parameters
-                                       eventType:OPTLYDataStoreEventTypeImpression
-                                           error:nil];
+        [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                        eventType:OPTLYDataStoreEventTypeImpression
+                                            error:nil];
     }
     __weak typeof(self) weakSelf = self;
     for (NSInteger i = 1; i < numberOfRetries; ++i) {
@@ -232,9 +232,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self.eventDispatcher setupNetworkTimer:nil];
     
     for (NSInteger i = 0; i < 3; ++i) {
-        [self.eventDispatcher.dataStore saveData:self.parameters
-                                       eventType:OPTLYDataStoreEventTypeImpression
-                                           error:nil];
+        [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                        eventType:OPTLYDataStoreEventTypeImpression
+                                            error:nil];
     }
     
     __weak typeof(self) weakSelf = self;
@@ -301,9 +301,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self.eventDispatcher setupNetworkTimer:nil];
     
     for (NSInteger i = 0; i < 3; ++i) {
-        [self.eventDispatcher.dataStore saveData:self.parameters
-                                       eventType:OPTLYDataStoreEventTypeConversion
-                                           error:nil];
+        [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                        eventType:OPTLYDataStoreEventTypeConversion
+                                            error:nil];
     }
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
@@ -328,9 +328,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 {
     [self stubSuccessResponse];
     [self.eventDispatcher setupNetworkTimer:nil];
-    [self.eventDispatcher.dataStore saveData:self.parameters
-                                   eventType:OPTLYDataStoreEventTypeConversion
-                                       error:nil];
+    [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                    eventType:OPTLYDataStoreEventTypeConversion
+                                        error:nil];
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
     [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
@@ -351,9 +351,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 {
     [self stubFailureResponse];
     [self.eventDispatcher setupNetworkTimer:nil];
-    [self.eventDispatcher.dataStore saveData:self.parameters
-                                   eventType:OPTLYDataStoreEventTypeConversion
-                                       error:nil];
+    [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                    eventType:OPTLYDataStoreEventTypeConversion
+                                        error:nil];
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
     [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion

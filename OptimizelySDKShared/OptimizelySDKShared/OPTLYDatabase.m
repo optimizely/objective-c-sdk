@@ -92,9 +92,9 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }];
 }
 
-- (void)saveData:(NSDictionary *)data
-           table:(NSString *)tableName
-           error:(NSError **)error
+- (void)saveEvent:(NSDictionary *)data
+            table:(NSString *)tableName
+            error:(NSError **)error
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];

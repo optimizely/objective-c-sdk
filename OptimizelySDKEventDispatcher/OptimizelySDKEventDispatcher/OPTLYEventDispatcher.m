@@ -199,7 +199,7 @@ dispatch_queue_t flushEventsQueue()
             }
         } else {
             NSError *saveError = nil;
-            [strongSelf.dataStore saveData:event eventType:eventType error:&saveError];
+            [strongSelf.dataStore saveEvent:event eventType:eventType error:&saveError];
             
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
