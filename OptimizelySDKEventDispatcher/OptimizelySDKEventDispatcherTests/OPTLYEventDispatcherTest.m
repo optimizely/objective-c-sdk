@@ -194,9 +194,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     NSInteger numberOfRetries = 10;
     for (NSInteger i = 0; i < numberOfRetries; ++i) {
-        [self.eventDispatcher.dataStore saveEvent:self.parameters
-                                        eventType:OPTLYDataStoreEventTypeImpression
-                                            error:nil];
+        [eventDispatcher.dataStore saveEvent:self.parameters
+                                   eventType:OPTLYDataStoreEventTypeImpression
+                                       error:nil];
     }
     __weak typeof(self) weakSelf = self;
     for (NSInteger i = 1; i < numberOfRetries; ++i) {
