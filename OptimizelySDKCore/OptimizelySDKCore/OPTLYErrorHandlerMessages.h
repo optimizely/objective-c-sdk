@@ -48,6 +48,8 @@ extern NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown;
 
 extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
 
+extern NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents;
+
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatafileInvalid = 0,
     OPTLYErrorTypesDataUnknown,

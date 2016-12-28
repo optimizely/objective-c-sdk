@@ -77,6 +77,10 @@
 		EA52497E1DC7C9C500AF6685 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */; };
 		EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; };
+		EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
+		EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +207,8 @@
 		EA5247841DC7226400AF6685 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
 		EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-erjurkichwjuqxdcgaywtbodfztf/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "/Users/aluong/src/objective-c-sdk-public/OptimizelySDKCore/Pods/../build/Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = "<absolute>"; };
+		EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventDataStore.h; sourceTree = "<group>"; };
+		EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDataStore.m; sourceTree = "<group>"; };
 		EEA436FFCE95FFFF3CAC0BC8 /* Pods-OptimizelySDKSharediOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharediOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharediOS/Pods-OptimizelySDKSharediOS.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -404,6 +410,8 @@
 				EA29D94D1DCE778C0034A4FE /* OPTLYDatabase.m */,
 				EA29D9521DCED4580034A4FE /* OPTLYDatabaseEntity.h */,
 				EA29D9531DCED4580034A4FE /* OPTLYDatabaseEntity.m */,
+				EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */,
+				EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -425,6 +433,7 @@
 				EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				EA064BDC1DD4186400DF7537 /* OPTLYFileManager.h in Headers */,
+				EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +449,7 @@
 				EA5247861DC7226400AF6685 /* OPTLYManager.h in Headers */,
 				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
 				EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */,
+				EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +830,7 @@
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
 				EA5247871DC7226400AF6685 /* OPTLYManager.m in Sources */,
+				EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
 				2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				2DB3D17D1DC816D600ECF72E /* OPTLYManagerBuilder.m in Sources */,
@@ -848,6 +859,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */,
+				EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
 				EA064BD51DD4030700DF7537 /* OPTLYDataStore.m in Sources */,
 				EA5247881DC7226400AF6685 /* OPTLYManager.m in Sources */,
 				2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
