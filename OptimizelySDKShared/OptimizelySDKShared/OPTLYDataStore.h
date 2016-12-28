@@ -217,6 +217,17 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
                      error:(NSError * _Nullable * _Nullable)error;
 
 /**
+ * Removes an event
+ *
+ * @param event The event to remove.
+ * @param eventType The event type of the data that needs to be removed.
+ * @param error An error object is returned if an error occurs.
+ */
+- (void)removeEvent:(nonnull NSDictionary *)event
+          eventType:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error;
+
+/**
  * Deletes all events.
  *
  * @param eventType The event type of the data that needs to be removed.

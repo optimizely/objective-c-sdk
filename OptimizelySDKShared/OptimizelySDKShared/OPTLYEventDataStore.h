@@ -85,7 +85,6 @@
  */
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName
                       error:(NSError * _Nullable * _Nullable)error;
-
 @end
 
 #if TARGET_OS_IOS
@@ -93,7 +92,7 @@
 @end
 #endif
 
-#if TARGET_OS_TVOS
+#if TARGET_OS_TV
 @interface OPTLYEventDataStoreTVOS : NSObject<OPTLYEventDataStore>
 @end
 #endif

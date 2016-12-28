@@ -77,8 +77,8 @@
 		EA52497E1DC7C9C500AF6685 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */; };
 		EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; };
+		EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; };
+		EA58C5231E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
 		EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */; };
 /* End PBXBuildFile section */
@@ -432,8 +432,8 @@
 				2DB3D17C1DC816D600ECF72E /* OPTLYManagerBuilder.h in Headers */,
 				EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
-				EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 				EA064BDC1DD4186400DF7537 /* OPTLYFileManager.h in Headers */,
+				EA58C5221E12E58400EE44AE /* OPTLYEventDataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

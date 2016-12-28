@@ -61,6 +61,13 @@ extern const NSInteger OPTLYQueueDefaultMaxSize;
 - (NSArray *)dequeueNItems:(NSInteger)numberOfItems;
 
 /**
+ * Removes an item from the queue
+ *
+ * @param item The item to be removed.
+ */
+- (void)removeItem:(id)item;
+
+/**
  * Returns a copy of the oldest item in the queue (the queue is not mutated).
  *
  * @return A copy of the oldest item in the queue.

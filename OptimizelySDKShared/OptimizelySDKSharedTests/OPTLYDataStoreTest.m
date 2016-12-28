@@ -191,16 +191,6 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     [self.dataStore saveData:testEventData4 eventType:OPTLYDataStoreEventTypeImpression error:&error];
     
     XCTAssertNil(error, @"Save data failed.");
-#if TARGET_OS_TV
-    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression];
-    OPTLYQueue *impressionQueue = nil;
-    impressionQueue = [self.dataStore.eventsCache objectForKey:eventTypeName];
-#endif
-
-#if TARGET_OS_TV // tvOS data should always be cached
-    XCTAssert([impressionQueue size] == 4, @"Data not cached as expected.");
-#endif
-    
     NSArray *results = nil;
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     
@@ -234,9 +224,6 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert(numberOfEvents == totalEntity-1, @"Invalid event count after removeOldestEvent was called.");
-#if TARGET_OS_TV // tvOS data should always be cached
-    XCTAssert([impressionQueue size] == totalEntity-1, @"Cached data not removed as expected.");
-#endif
     XCTAssert([results[0] isEqualToDictionary:testEventData2], @"Invalid result data 1 retrieved after removeOldestEvent was called.");
     XCTAssert([results[1] isEqualToDictionary:testEventData3], @"Invalid result data 2 retrieved after removeOldestEvent was called.");
     XCTAssert([results[2] isEqualToDictionary:testEventData4], @"Invalid result data 3 retrieved after removeOldestEvent was called.");
@@ -246,27 +233,18 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     [self.dataStore removeFirstNEvents:nEventsToDelete eventType:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == totalEntity-1-nEventsToDelete, @"Invalid event count when removeFirstNEvents was called.");
-#if TARGET_OS_TV // tvOS data should always be cached
-    XCTAssert([impressionQueue size] == totalEntity-1-nEventsToDelete, @"Cached data not removed as expected.");
-#endif
     XCTAssert([results[0] isEqualToDictionary:testEventData4], @"Invalid result data 1 retrieved after removeFirstNEvents was called.");
     
-    // ---- test removeAllEvents ----
+    // ---- test removeAllEvents of an event type ----
     [self.dataStore removeAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == 0, @"Invalid event count when removeAllEvents was called.");
-#if TARGET_OS_TV // tvOS data should always be cached
-    XCTAssert([impressionQueue size]  == 0, @"Cached data not removed as expected.");
-#endif
     
-    // ---- test removeSavedEvents ----
+    // ---- test removeEvent ----
     [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore saveData:testEventData2 eventType:OPTLYDataStoreEventTypeConversion error:&error];
-    [self.dataStore removeAllEvents:&error];
+    [self.dataStore removeEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
-    XCTAssert([results count] == 0, @"Invalid impression event count when removeSavedEvents was called.");
-    results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion error:&error];
-    XCTAssert([results count] == 0, @"Invalid conversion event count when removeSavedEvents was called.");
+    XCTAssert([results count] == 0, @"Invalid impression event count when removeEvent was called.");
     
     // ---- test removeAllEvents ----
     [self.dataStore saveData:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];

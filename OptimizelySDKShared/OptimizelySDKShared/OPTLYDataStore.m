@@ -274,6 +274,13 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion"
     [self.logger logMessage:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning withLevel:OptimizelyLogLevelWarning];
 }
 
+- (void)removeEvent:(nonnull NSDictionary *)event
+          eventType:(OPTLYDataStoreEventType)eventType
+              error:(NSError * _Nullable * _Nullable)error
+{
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    [self.eventDataStore removeEvent:event eventType:eventTypeName error:error];
+}
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
                       error:(NSError * _Nullable * _Nullable)error

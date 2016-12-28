@@ -16,15 +16,14 @@
 #import "OPTLYDataStore.h"
 #import "OPTLYEventDataStore.h"
 
-// SQLite tables are only available for iOS
 #if TARGET_OS_IOS
+// SQLite tables are only available for iOS
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
 
 @interface OPTLYEventDataStoreiOS()
 @property (nonatomic, strong) OPTLYDatabase *database;
-/// base directory where Optimizely-related data will persist
-@property (nonatomic, strong, readonly, nonnull) NSString *databaseDirectory;
+@property (nonatomic, strong) NSString *databaseDirectory;
 @end
 
 @implementation OPTLYEventDataStoreiOS
@@ -68,6 +67,8 @@
     NSArray *firstNEntities = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
     for (OPTLYDatabaseEntity *entity in firstNEntities) {
         NSString *entityValue = entity.entityValue;
+        NSString *entityId = [entity.entityId stringValue];
+        [self.eventToEventIdMap setObject:entityId forKey:entityValue];
         NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
         [firstNEvents addObject:event];
     }
@@ -97,7 +98,9 @@
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
-    // TODO : Implement this
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:event options:NSJSONWritingPrettyPrinted error:error];
+    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [self.database deleteEntityWithJSON:json table:eventTypeName error:error];
 }
 
 - (NSInteger)numberOfEvents:(NSString *)eventTypeName
@@ -110,8 +113,6 @@
 - (void)removeDataStore:(NSError * _Nullable * _Nullable)error
 {
     [self.database deleteDatabase:error];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    [fm removeItemAtPath:self.databaseDirectory error:error];
     self.database = nil;
 }
 
@@ -119,11 +120,10 @@
 {
     [self removeDataStore:nil];
 }
-
 @end
 #endif
 
-#if TARGET_OS_TVOS
+#if TARGET_OS_TV
 #import <OptimizelySDKCore/OPTLYQueue.h>
 
 @interface OPTLYEventDataStoreTVOS()
@@ -158,7 +158,7 @@
                                 error:(NSError * _Nullable * _Nullable)error
 {
     OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-    NSArray *firstNEvents = [queue firstNItems:numberOfEvents]];
+    NSArray *firstNEvents = [queue firstNItems:numberOfEvents];
     return firstNEvents;
 }
 
@@ -174,7 +174,8 @@
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
-    // TODO : Implement this
+    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
+    [queue removeItem:event];
 }
 
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName
