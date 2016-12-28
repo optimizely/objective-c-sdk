@@ -60,6 +60,8 @@ static NSString *const kProjectId = @"6372300739";
     XCTAssertNotNil(manager.eventDispatcher);
     XCTAssertNotNil(manager.logger);
     XCTAssertNotNil(manager.datafileManager);
+    XCTAssertNil(manager.clientEngine);
+    XCTAssertNil(manager.clientVersion);
 }
 
 - (void)testBuilderCanAssignErrorHandler {
@@ -143,6 +145,26 @@ static NSString *const kProjectId = @"6372300739";
     }];
     
     XCTAssertNil(managerWithObject);
+}
+
+/**
+ * Test the manager builder can properly assign the manager's client engine and client version
+ */
+- (void)testManagerBuilderCanAssignClientEngineAndClientVersion {
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    
+    XCTAssertNotNil(manager);
+    XCTAssertNotNil(manager.clientEngine);
+    XCTAssertNotNil(manager.clientVersion);
+    XCTAssertEqualObjects(manager.clientEngine, clientEngine);
+    XCTAssertEqualObjects(manager.clientVersion, clientVersion);
 }
 
 @end

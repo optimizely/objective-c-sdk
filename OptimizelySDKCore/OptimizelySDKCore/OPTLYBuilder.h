@@ -48,6 +48,11 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
 /// The datafile manager that will download the datafile for the manager
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYDatafileManager> datafileManager;
+/// The client version
+@property (nonatomic, strong, nonnull) NSString *clientVersion;
+/// The client engine
+@property (nonatomic, strong, nonnull) NSString *clientEngine;
+
 
 /// Create an Optimizely Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYBuilderBlock)block;

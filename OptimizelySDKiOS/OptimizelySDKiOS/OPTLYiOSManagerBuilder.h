@@ -13,9 +13,18 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-#import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 
-@interface OPTLYProjectConfig (OptimizelySDKiOS)
+#import <Foundation/Foundation.h>
+#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
+@class OPTLYiOSManagerBuilder;
+
+typedef void (^OPTLYiOSManagerBuilderBlock)(OPTLYiOSManagerBuilder * _Nullable builder);
+
+@interface OPTLYiOSManagerBuilder : OPTLYManagerBuilder
+
+/// Create the Optimizely iOS Manager Builder object.
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYiOSManagerBuilderBlock)block;
 
 @end

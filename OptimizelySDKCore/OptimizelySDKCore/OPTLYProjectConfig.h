@@ -18,6 +18,10 @@
 #import <JSONModel/JSONModelLib.h>
 #import "OPTLYProjectConfigBuilder.h"
 
+NS_ASSUME_NONNULL_BEGIN
+extern NSString * const kExpectedDatafileVersion;
+NS_ASSUME_NONNULL_END
+
 @class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
 
@@ -36,6 +40,8 @@
 @property (nonatomic, strong, nonnull) NSString *version;
 /// Datafile Revision number
 @property (nonatomic, strong, nonnull) NSString *revision;
+/// Flag for IP anonymization
+@property (nonatomic, assign) BOOL anonymizeIP;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
@@ -54,6 +60,11 @@
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
+
+/// Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
+@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
+/// Returns the client version number
+@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
 
 /**
  * Initialize the Project Config from a builder block.
@@ -117,15 +128,5 @@
                                                 userId:(nonnull NSString *)userId
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
-
-/*
- * Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
- */
-- (nonnull NSString *)clientEngine;
-
-/*
- * Returns the client version number
- */
-- (nonnull NSString *)clientVersion;
 
 @end

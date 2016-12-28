@@ -39,5 +39,6 @@
     "variables": [],
     "accountId": "6384711706",
     "events": [],
-    "revision": "3"
+    "revision": "3",
+    "anonymizeIP": true
 }

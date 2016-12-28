@@ -38,6 +38,8 @@
             builder.eventDispatcher = _eventDispatcher;
             builder.logger = _logger;
             builder.userProfile = _userProfile;
+            builder.clientEngine = _clientEngine;
+            builder.clientVersion = _clientVersion;
         }];
         _logger = _optimizely.logger;
         if (!_logger) {

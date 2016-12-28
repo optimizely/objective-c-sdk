@@ -31,7 +31,11 @@
 @implementation OPTLYManager
 
 + (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
+}
+
++ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    return [[self alloc] initWithBuilder:builder];
 }
 
 - (instancetype)init {
@@ -54,6 +58,8 @@
             _logger = builder.logger;
             _projectId = builder.projectId;
             _userProfile = builder.userProfile;
+            _clientEngine = builder.clientEngine;
+            _clientVersion = builder.clientVersion;
         }
         return self;
     }
@@ -127,6 +133,8 @@
         builder.eventDispatcher = self.eventDispatcher;
         builder.logger = self.logger;
         builder.userProfile = self.userProfile;
+        builder.clientEngine = self.clientEngine;
+        builder.clientVersion = self.clientVersion;
     }];
     return client;
 }

@@ -54,4 +54,10 @@ NS_ASSUME_NONNULL_END
                 toURL:(nonnull NSURL *)url
     completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
+/**
+ * Returns the URL path for the datafile of a particular project.
+ * @param projectId The project ID of the datafile whose URL path we are looking for.
+ */
++ (NSURL * _Nonnull)projectConfigURLPath:(nonnull NSString *)projectId;
+
 @end

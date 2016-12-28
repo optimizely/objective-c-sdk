@@ -52,6 +52,8 @@
         builder.datafile = self.datafile;
         builder.logger = self.logger;
         builder.errorHandler = self.errorHandler;
+        builder.clientEngine = self.clientEngine;
+        builder.clientVersion = self.clientVersion;
     }];
     
     if (_config == nil) {

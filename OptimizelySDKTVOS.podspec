@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKTVOS"
-  s.version                 = "0.2.1"
+  s.version                 = "0.3.0"
   s.summary                 = "Optimizely server-side testing framework for tvOS."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKEventDispatcher', '0.2.1'
-  s.dependency 'OptimizelySDKUserProfile', '0.2.1'
-  s.dependency 'OptimizelySDKDatafileManager', '0.2.1'
+  s.dependency 'OptimizelySDKEventDispatcher', '0.3.0'
+  s.dependency 'OptimizelySDKUserProfile', '0.3.0'
+  s.dependency 'OptimizelySDKDatafileManager', '0.3.0'
 end

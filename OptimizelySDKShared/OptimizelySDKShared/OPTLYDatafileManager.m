@@ -29,6 +29,10 @@
     return validProtocolDeclaration && implementsDownloadDatafileMethod;
 }
 
++ (NSURL *)projectConfigURLPath:(NSString *)projectId {
+    return [OPTLYNetworkService projectConfigURLPath:projectId];
+}
+
 @end
 
 @interface OPTLYDatafileManagerBasic ()

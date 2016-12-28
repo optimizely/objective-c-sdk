@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
 
 #import "OPTLYAttribute.h"
@@ -29,10 +30,12 @@
 
 // static data from datafile
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
-static NSString * const kVersion = @"1";
+static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
 static NSString * const kAccountId = @"6365361536";
+
+static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
 
 @interface OPTLYProjectConfigTest : XCTestCase
 @end
@@ -61,6 +64,26 @@ static NSString * const kAccountId = @"6365361536";
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
+    XCTAssertEqualObjects(projectConfig.clientEngine, @"objective-c-sdk-core");
+    XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
+}
+
+/**
+ * Make sure we can pass in different values for client engine and client version to override the defaults.
+ */
+- (void)testClientEngineAndClientVersionAreConfigurable {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    XCTAssertNotNil(projectConfig);
+    XCTAssertEqualObjects(projectConfig.clientEngine, clientEngine);
+    XCTAssertEqualObjects(projectConfig.clientVersion, clientVersion);
 }
 
 - (void)testInitWithBuilderBlockNoDatafile
@@ -95,6 +118,13 @@ static NSString * const kAccountId = @"6365361536";
     [self checkProjectConfigProperties:projectConfig];
 }
 
+- (void)testInitWithAnonymizeIPFalse {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    
+    XCTAssertFalse(projectConfig.anonymizeIP, @"IP anonymization should be set to false.");
+}
+
 #pragma mark - Helper Methods
 
 // Check all properties in an ProjectConfig object
@@ -109,10 +139,13 @@ static NSString * const kAccountId = @"6365361536";
     NSAssert([projectConfig.accountId isEqualToString:kAccountId], @"Invalid account id.");
     
     // validate version number
-    NSAssert([projectConfig.version isEqualToString:kVersion], @"Invalid version number.");
+    NSAssert([projectConfig.version isEqualToString:kExpectedDatafileVersion], @"Invalid version number.");
     
     // validate revision number
     NSAssert([projectConfig.revision isEqualToString:kRevision], @"Invalid revision number.");
+    
+    // validate IP anonymization value
+    XCTAssertTrue(projectConfig.anonymizeIP, @"IP anonymization should be set to true.");
     
     // check experiments
     NSAssert([projectConfig.experiments count] == 48, @"deserializeJSONArray failed to deserialize the right number of experiments objects in project config.");

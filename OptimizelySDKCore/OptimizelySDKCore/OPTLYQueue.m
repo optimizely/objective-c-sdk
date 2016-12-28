@@ -88,6 +88,14 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
     return items;
 }
 
+- (void)removeItem:(id)item {
+    for (NSInteger i = 0; i < [self size]; ++i) {
+        if ([item isEqual:self.mutableQueue[i]]) {
+            [self.mutableQueue removeObjectAtIndex:i];
+        }
+    }
+}
+
 - (NSInteger)size {
     return [self.mutableQueue count];
 }

@@ -78,6 +78,16 @@
                ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA5247C61DC7272300AF6685"
+               BuildableName = "OptimizelySDKEventDispatcheriOSTests.xctest"
+               BlueprintName = "OptimizelySDKEventDispatcheriOSTests"
+               ReferencedContainer = "container:../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

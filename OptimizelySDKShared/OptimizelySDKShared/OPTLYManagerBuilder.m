@@ -35,39 +35,23 @@
     self = [super init];
     if (self != nil) {
         block(self);
-        if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[self.datafileManager class]]) {
+        if (!self.datafileManager) {
+            self.datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
+        }
+        else if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[self.datafileManager class]]) {
             return nil;
         }
-    }    
+        if (!self.errorHandler) {
+            self.errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+        }
+        if (!self.eventDispatcher) {
+            self.eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
+        }
+        if (!self.logger) {
+            self.logger = [[OPTLYLoggerDefault alloc] init];
+        }
+    }
     return self;
-}
-
-- (id<OPTLYDatafileManager>)datafileManager {
-    if (!_datafileManager) {
-        _datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
-    }
-    return _datafileManager;
-}
-
-- (id<OPTLYErrorHandler>)errorHandler {
-    if (!_errorHandler) {
-        _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-    }
-    return _errorHandler;
-}
-
-- (id<OPTLYEventDispatcher>)eventDispatcher {
-    if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
-    }
-    return _eventDispatcher;
-}
-
-- (id<OPTLYLogger>)logger {
-    if (!_logger) {
-        _logger = [[OPTLYLoggerDefault alloc] init];
-    }
-    return _logger;
 }
 
 @end

@@ -14,11 +14,26 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
+#import <XCTest/XCTest.h>
+#import "OPTLYDatafileManager.h"
+#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 
-@class OPTLYProjectConfig;
+static NSString *const kProjectId = @"6372300739";
+static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/public/%@/datafile_v%@.json";
 
-@interface OPTLYTVOSProjectConfig : OPTLYProjectConfig
+@interface OPTLYDatafileManagerTest : XCTestCase
+
+@end
+
+@implementation OPTLYDatafileManagerTest
+
+- (void)testProjectConfigURLPathReturnsExpectedURL {
+    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId, kExpectedDatafileVersion];
+    NSURL *expectedURL = [NSURL URLWithString:expectedURLString];
+    
+    NSURL *cdnURL = [OPTLYDatafileManagerUtility projectConfigURLPath:kProjectId];
+    
+    XCTAssertEqualObjects(cdnURL, expectedURL, @"Expected CDN URL is https://cdn.optimizely.com/public/6372300739/datafile_v<CURRENT-VERSION>.json");
+}
 
 @end

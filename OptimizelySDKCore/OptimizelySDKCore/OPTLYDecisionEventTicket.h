@@ -57,5 +57,7 @@
 @property (nonatomic, strong, nonnull) NSArray<OPTLYEventFeature> *userFeatures;
 // If true, then the experience in this decision was held back at the global level
 @property (nonatomic, assign) BOOL isGlobalHoldback;
+// If true, then anonymize IP.
+@property (nonatomic) BOOL anonymizeIP;
 
 @end
