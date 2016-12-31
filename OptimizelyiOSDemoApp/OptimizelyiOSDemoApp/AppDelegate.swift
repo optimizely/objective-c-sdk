@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var optimizelyClient : OPTLYClient?
+    
     // Optimizely SDK test parameters
     let userId = "1234"
     let revenue = NSNumber(value: 88)
@@ -34,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["buyerType" : "frequent"]
     var eventKey = "event1"
     var experimentKey = "checkoutButtonTextExp"
-    var downloadDatafile = true
+    var downloadDatafile = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -60,11 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // initialize Optimizely Client from a datafile download
             optimizelyManager?.initializeClient(callback: { [weak self] (error, optimizelyClient) in
-                let variation = optimizelyClient?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
+                self?.optimizelyClient = optimizelyClient;
+                let variation = self?.optimizelyClient?.activateExperiment(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
                 if (variation != nil) {
                     print("bucketed variation:", variation!.variationKey)
                 }
-                optimizelyClient?.trackEvent(self!.eventKey, userId: self!.userId, attributes: self!.attributes, eventValue: self!.revenue)
+                self?.optimizelyClient?.trackEvent(self!.eventKey, userId: self!.userId, attributes: self!.attributes, eventValue: self!.revenue)
                 })
         } else {
             
@@ -86,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (variation != nil) {
                 print("bucketed variation:", variation!.variationKey)
             }
-            optimizelyClient?.trackEvent(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
+            //optimizelyClient?.trackEvent(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
         }
         
         

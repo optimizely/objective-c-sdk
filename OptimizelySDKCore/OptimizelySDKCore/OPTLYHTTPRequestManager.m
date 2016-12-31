@@ -160,7 +160,7 @@ dispatch_queue_t networkTasksQueue()
     [self POSTWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         __typeof__(self) strongSelf = weakSelf;
 
-        if (!error) {
+        if (error) {
             
             uint32_t exponentialMultiplier = pow(2.0, backoffRetryAttempt);
             uint64_t delay_ns = OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms * exponentialMultiplier * NSEC_PER_MSEC;
