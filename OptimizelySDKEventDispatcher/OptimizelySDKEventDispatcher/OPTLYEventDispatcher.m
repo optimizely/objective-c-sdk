@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import "OPTLYEventDispatcher.h"
 
 // TODO - Flush events when network connection has become available. 
@@ -30,6 +31,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) uint64_t maxDispatchBackoffRetries;
+@property (nonatomic, strong) OPTLYNetworkService *networkService;
 @end
 
 @implementation OPTLYEventDispatcherDefault : NSObject
@@ -66,8 +68,6 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
         }
         
         _maxDispatchBackoffRetries = (_eventDispatcherDispatchInterval > 0) && (_eventDispatcherDispatchTimeout > 0) ? _eventDispatcherDispatchTimeout/_eventDispatcherDispatchInterval : 0;
-        
-        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
 
         [self setupApplicationNotificationHandlers];
         
@@ -87,6 +87,20 @@ dispatch_queue_t flushEventsQueue()
         _flushEventsQueue = dispatch_queue_create("com.Optimizely.flushEvents", DISPATCH_QUEUE_SERIAL);
     });
     return _flushEventsQueue;
+}
+
+-(OPTLYNetworkService *)networkService {
+    if (!_networkService) {
+        _networkService = [OPTLYNetworkService new];
+    }
+    return _networkService;
+}
+
+- (OPTLYDataStore *)dataStore {
+    if (!_dataStore) {
+        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+    }
+    return _dataStore;
 }
 
 # pragma mark - Network Timer
@@ -179,40 +193,32 @@ dispatch_queue_t flushEventsQueue()
 
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSURL *url = [self URLForEvent:eventType];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
     __weak typeof(self) weakSelf = self;
-    [requestManager POSTWithParameters:event completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        __typeof__(self) strongSelf = weakSelf;
-        if (!error) {
-            [strongSelf flushEvents];
-            
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            if (callback) {
-                callback(data, response, error);
-            }
-        } else {
-            NSError *saveError = nil;
-            [strongSelf.dataStore saveEvent:event eventType:eventType error:&saveError];
-            
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            if (![strongSelf isTimerEnabled]) {
-                [strongSelf setupNetworkTimer:^{
-                    if (callback) {
-                        callback(data, response, error);
-                    }
-                }];
-            } else {
-                if (callback) {
-                    callback(data, response, error);
-                }
-            }
-        }
-    }];
-}
+    [self.networkService dispatchEvent:event
+                                 toURL:url
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                         __typeof__(self) strongSelf = weakSelf;
+                         if (!error) {
+                             [strongSelf flushEvents];
+                             
+                             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
+                             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                             
+                             if (callback) {
+                                 callback(data, response, error);
+                             }
+                         } else {
+                             NSError *saveError = nil;
+                             [strongSelf.dataStore saveEvent:event eventType:eventType error:&saveError];
+                             
+                             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
+                             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                             
+                             if (callback) {
+                                 callback(data, response, error);
+                             }
+                         }
+                     }];}
 
 - (void)flushEvents {
     [self flushEvents:nil];
