@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (variation != nil) {
                 print("bucketed variation:", variation!.variationKey)
             }
-            //optimizelyClient?.trackEvent(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
+            optimizelyClient?.trackEvent(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
         }
         
         
