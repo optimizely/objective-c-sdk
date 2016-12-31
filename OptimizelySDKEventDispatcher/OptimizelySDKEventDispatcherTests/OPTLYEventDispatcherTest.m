@@ -29,9 +29,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @interface OPTLYEventDispatcherDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) NSInteger maxDispatchBackoffRetries;
-@property (nonatomic, assign) uint32_t flushEventBackoffRetries;
-@property (nonatomic, assign) uint32_t flushEventCall;
 - (void)flushSavedEvent:(NSDictionary *)event
               eventType:(OPTLYDataStoreEventType)eventType
                callback:(OPTLYEventDispatcherResponse)callback;
@@ -58,7 +55,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
     self.eventDispatcher = [OPTLYEventDispatcherDefault new];
-    self.eventDispatcher.flushEventBackoffRetries = 0;
 }
 
 - (void)tearDown {
@@ -176,52 +172,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     [self checkNetworkTimerIsEnabled:self.eventDispatcher
                         timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
-}
-
-// test dispatch attempt does not exceed the max retries
-// also check that the dispatch attempt is only made at power of 2 attempt count
-- (void)testMaxDispatchBackoffRetriesAndPowerOf2 {
-    [self stubFailureResponse];
-    
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
-        builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
-        builder.logger = [OPTLYLoggerDefault new];
-    }];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [eventDispatcher setupNetworkTimer:nil];
-    
-    NSInteger numberOfRetries = 10;
-    for (NSInteger i = 0; i < numberOfRetries; ++i) {
-        [eventDispatcher.dataStore saveEvent:self.parameters
-                                   eventType:OPTLYDataStoreEventTypeImpression
-                                       error:nil];
-    }
-    __weak typeof(self) weakSelf = self;
-    for (NSInteger i = 1; i < numberOfRetries; ++i) {
-        [eventDispatcher flushEvents:^{
-            NSLog(@"************ i - %ld, backoff retry - %u, dispatch call - %u", i, eventDispatcher.flushEventBackoffRetries, eventDispatcher.flushEventCall);
-            // check that the dispatch attempt is only made at power of 2 attempt count
-            NSInteger backoffRetryExpected = log2(i)+1;
-            XCTAssert(eventDispatcher.flushEventBackoffRetries == backoffRetryExpected, @"Invalid value for the backoff retry count - %ld, %u, %ld", i, eventDispatcher.flushEventBackoffRetries, backoffRetryExpected);
-            
-            XCTAssert(eventDispatcher.flushEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %u", eventDispatcher.flushEventBackoffRetries);
-            
-            NSLog(@"flushEventCall - %u", eventDispatcher.flushEventCall);
-            if (eventDispatcher.flushEventCall == numberOfRetries - 1) {
-                [weakSelf checkNetworkTimerIsEnabled:eventDispatcher
-                                        timeInterval:kEventHandlerDispatchInterval];
-                [expectation fulfill];
-            }
-        }];
-    }
-
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
 }
 
 - (void)testFlushEventsSuccessSavedEvents {

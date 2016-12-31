@@ -29,8 +29,6 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 @interface OPTLYEventDispatcherDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) uint64_t flushEventBackoffRetries;
-@property (nonatomic, assign) uint64_t flushEventCall;
 @property (nonatomic, assign) uint64_t maxDispatchBackoffRetries;
 @end
 
@@ -47,8 +45,6 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 - (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
     if (self != nil) {
-        _flushEventBackoffRetries = 0;
-        _flushEventCall = 0;
         _timer = nil;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
         _eventDispatcherDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
@@ -128,9 +124,8 @@ dispatch_queue_t flushEventsQueue()
     }
 }
 
-// The network timer should be reset when:
-//      - max retry time has been reached
-//      - all saved event queue are empty and event is successfully sent
+// The network timer should be reset when all saved event queue
+//  are empty and event is successfully sent
 // The timer must be disabled on the main thread.
 - (void)disableNetworkTimer:(void(^)())completion {
     
@@ -205,8 +200,6 @@ dispatch_queue_t flushEventsQueue()
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             if (![strongSelf isTimerEnabled]) {
-                strongSelf.flushEventBackoffRetries = 0;
-                strongSelf.flushEventCall = 0;
                 [strongSelf setupNetworkTimer:^{
                     if (callback) {
                         callback(data, response, error);
@@ -248,42 +241,8 @@ dispatch_queue_t flushEventsQueue()
         
         // setup the network timer if needed and reset all the counters
         if (![strongSelf isTimerEnabled]) {
-            strongSelf.flushEventBackoffRetries = 0;
-            strongSelf.flushEventCall = 0;
             [strongSelf setupNetworkTimer:nil];
         }
-        
-        strongSelf.flushEventCall++;
-        OPTLYLogDebug(@"Dispatch event call - %ld", strongSelf.flushEventCall);
-        
-        //exponential backoff: only dispatch at a power of two interval; o/w return
-        if (![strongSelf isPowerOf2:strongSelf.flushEventCall]) {
-
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry, strongSelf.flushEventCall];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-            if (callback) {
-                callback();
-            }
-            return;
-        }
-        
-        // stop trying to flush if max retries have been exceeded
-        if (strongSelf.flushEventBackoffRetries > strongSelf.maxDispatchBackoffRetries) {
-        
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries, strongSelf.flushEventBackoffRetries];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            [self disableNetworkTimer:^{
-                if (callback) {
-                    callback();
-                }
-            }];
-            return;
-        }
-
-        strongSelf.flushEventBackoffRetries++;
-        OPTLYLogDebug(@"Backoff retry - %ld.", strongSelf.flushEventBackoffRetries);
         
         [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression];
         [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion];
@@ -462,7 +421,7 @@ dispatch_queue_t flushEventsQueue()
 {
     NSInteger numberOfEvents = [self.dataStore numberOfEvents:eventType
                                                         error:nil];
-    return numberOfEvents;
+    return numberOfEvents > 0;
 }
 
 - (BOOL)haveEventsToSend
@@ -472,15 +431,6 @@ dispatch_queue_t flushEventsQueue()
     
     return (numberOfImpressionEventsSaved > 0 ||
             numberOfConversionEventsSaved > 0);
-}
-
-- (bool)isPowerOf2:(uint64_t)x {
-    uint64_t numberOf1s = 0;
-    while (x) {
-        numberOf1s += x & 1;
-        x >>= 1;
-    }
-    return (numberOf1s == 1);
 }
 
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType {
