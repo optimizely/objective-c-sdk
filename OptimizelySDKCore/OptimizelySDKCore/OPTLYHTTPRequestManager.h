@@ -22,6 +22,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+extern NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryAttempts;
+extern NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms;
+NS_ASSUME_NONNULL_END
+
 typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
 @interface OPTLYHTTPRequestManager : NSObject
@@ -51,10 +56,21 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * POST data with parameters
  *
- * @param parameters - Dictionary of POST request parameter values
- * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param parameters Dictionary of POST request parameter values
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)POSTWithParameters:(nullable NSDictionary *)parameters
+         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * POST data with parameters with the option of doing an exponential backoff and retry
+ *
+ * @param parameters Dictionary of POST request parameter values
+ * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)POSTWithParameters:(nonnull NSDictionary *)parameters
+              backoffRetry:(BOOL)backoffRetry
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**

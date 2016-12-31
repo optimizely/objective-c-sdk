@@ -20,6 +20,11 @@
 
 static NSString * const kTestURLString = @"testURL";
 
+@interface OPTLYHTTPRequestManager(test)
+@property (nonatomic, assign) NSInteger retryAttempt;
+@property (nonatomic, strong) NSMutableArray *delays;
+@end
+
 @interface OPTLYHTTPRequestManagerTest : XCTestCase
 @property (nonatomic, strong ) NSURL *testURL;
 @property (nonatomic, strong) NSDictionary *parameters;
@@ -137,6 +142,36 @@ static NSString * const kTestURLString = @"testURL";
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
     [requestManager POSTWithParameters:self.parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [expectation fulfill];
+        NSAssert(error != nil, @"Network service POSTWithParameters does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for POSTWithParameters: %@", error);
+        }
+    }];
+}
+
+// Tests the following for the POST with backoff retry:
+// 1. correct number of recursive calls
+// 2. the right delays are set at each retry attempt
+- (void)testPOSTWithParametersBackoffRetryFailure
+{
+    NSMutableArray *expectedDelays = [NSMutableArray new];
+    for (NSInteger i = 0; i < OPTLYHTTPRequestManagerMaxBackoffRetryAttempts+1; ++i) {
+        
+        uint32_t exponentialMultiplier = pow(2.0, i);
+        uint64_t delay_ns = OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms * exponentialMultiplier * NSEC_PER_MSEC;
+        expectedDelays[i] = [NSNumber numberWithLongLong:delay_ns];
+    }
+    
+    [OPTLYTestHelper stubFailureResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
+    [requestManager POSTWithParameters:self.parameters backoffRetry:YES completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        XCTAssertTrue(requestManager.retryAttempt == OPTLYHTTPRequestManagerMaxBackoffRetryAttempts+1, @"Invalid number of retries.");
+        XCTAssertTrue([requestManager.delays isEqualToArray:expectedDelays], @"Invalid delays set for backoff retry.");
         [expectation fulfill];
         NSAssert(error != nil, @"Network service POSTWithParameters does not return error as expected.");
     }];

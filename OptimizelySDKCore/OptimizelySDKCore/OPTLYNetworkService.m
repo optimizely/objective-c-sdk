@@ -54,7 +54,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 
 - (void)dispatchEvent:(nonnull NSDictionary *)params
                 toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion
+    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
     [requestManager POSTWithParameters:params completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -62,6 +62,15 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
             completion(data, response, error);
         }
     }];
+}
+
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+                toURL:(nonnull NSURL *)url
+         backoffRetry:(BOOL)backoffRetry
+    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
+{
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
+    [requestManager POSTWithParameters:params backoffRetry:backoffRetry completionHandler:completion];
 }
 
 # pragma mark - Helper Methods
