@@ -28,28 +28,15 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
-    
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    
-     [requestManager GETIfModifiedSince:lastModifiedDate
-                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
+    [requestManager GETIfModifiedSince:lastModifiedDate backoffRetry:YES completionHandler:completion];
 }
 
 - (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
-    
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-   [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
-       if (completion) {
-           completion(data, response, error);
-       }
-   }];
+    [requestManager GETWithBackoffRetry:YES completionHandler:completion];
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)params
@@ -57,20 +44,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
-}
-
-- (void)dispatchEvent:(nonnull NSDictionary *)params
-                toURL:(nonnull NSURL *)url
-         backoffRetry:(BOOL)backoffRetry
-    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
-{
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params backoffRetry:backoffRetry completionHandler:completion];
+    [requestManager POSTWithParameters:params backoffRetry:YES completionHandler:completion];
 }
 
 # pragma mark - Helper Methods

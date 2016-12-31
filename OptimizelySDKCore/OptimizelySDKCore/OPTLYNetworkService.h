@@ -55,18 +55,6 @@ NS_ASSUME_NONNULL_END
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
- * Dispatches an event to a url with an option to exponetially backoff and retry
- * @param params Dictionary of the event parameter values
- * @param url The url to dispatch the event
- * @param backoffRetry Indicates if backoff retry should be attempted
- * @param completion The completion handler
- */
-- (void)dispatchEvent:(nonnull NSDictionary *)params
-                toURL:(nonnull NSURL *)url
-         backoffRetry:(BOOL)backoffRetry
-    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
-/**
  * Returns the URL path for the datafile of a particular project.
  * @param projectId The project ID of the datafile whose URL path we are looking for.
  */

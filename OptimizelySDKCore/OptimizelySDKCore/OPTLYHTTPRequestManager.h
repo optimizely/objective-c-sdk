@@ -39,19 +39,63 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * GET data from the URL inititialized
  *
- * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-
 - (void)GET:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
+ * GET data from the URL inititialized with the option of doing an exponential backoff and retry
+ *
+ * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)GETWithBackoffRetry:(BOOL)backoffRetry
+          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+/**
  * GET data with parameters
  *
- * @param parameters - Dictionary of GET request parameter values
- * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ * @param parameters Dictionary of GET request parameter values
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithParameters:(nullable NSDictionary *)parameters
         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * GET data with parameters with the option of doing an exponential backoff and retry
+ *
+ * @param parameters Dictionary of GET request parameter values
+ * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)GETWithParameters:(nullable NSDictionary *)parameters
+             backoffRetry:(BOOL)backoffRetry
+        completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * A GET response with the following condition:
+ * If the requested variant has not been modified since the time specified in the
+ * "If-Modified-Since" field, an entity will not be returned from the server; instead,
+ * a 304 (not modified) response will be returned without any message-body.
+ *
+ * @param lastModifiedDate - The date since the URL request was last modified
+ * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
+         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * A GET response with the following condition:
+ * If the requested variant has not been modified since the time specified in the
+ * "If-Modified-Since" field, an entity will not be returned from the server; instead,
+ * a 304 (not modified) response will be returned without any message-body.
+ *
+ * @param lastModifiedDate The date since the URL request was last modified
+ * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
+ */
+- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
+              backoffRetry:(BOOL)backoffRetry
+         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * POST data with parameters
@@ -59,7 +103,7 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
  * @param parameters Dictionary of POST request parameter values
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)POSTWithParameters:(nullable NSDictionary *)parameters
+- (void)POSTWithParameters:(nonnull NSDictionary *)parameters
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
@@ -72,17 +116,4 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 - (void)POSTWithParameters:(nonnull NSDictionary *)parameters
               backoffRetry:(BOOL)backoffRetry
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
-/**
- * A GET response with the following condition:
- * If the requested variant has not been modified since the time specified in the 
- * "If-Modified-Since" field, an entity will not be returned from the server; instead, 
- * a 304 (not modified) response will be returned without any message-body.
- *
- * @param lastModifiedDate - The date since the URL request was last modified
- * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
- */
-- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
-         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
 @end

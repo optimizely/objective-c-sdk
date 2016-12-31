@@ -23,15 +23,18 @@ static NSString * const kHTTPRequestMethodPost = @"POST";
 static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
 static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
 
-// the number of re-tries following the first failed attempt
-NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryAttempts = 5;
+// The total backoff and retry interval is
+//  pow(2,OPTLYHTTPRequestManagerMaxBackoffRetryAttempts) * OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms
+
+// The number of re-tries following the first failed attempt
+NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryAttempts = 3;
 // TODO: Confirm with Michael Hood if this is a good time unit
 NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms = 1;
 
 // TODO: Wrap this in a TEST preprocessor definition
 @interface OPTLYHTTPRequestManager()
-@property (nonatomic, assign) NSInteger retryAttempt;
-@property (nonatomic, strong) NSMutableArray *delays;
+@property (nonatomic, assign) NSInteger retryAttemptTest;
+@property (nonatomic, strong) NSMutableArray *delaysTest;
 @end
 
 @implementation OPTLYHTTPRequestManager
@@ -65,17 +68,24 @@ dispatch_queue_t networkTasksQueue()
     return _networkTasksQueue;
 }
 
-# pragma mark - HTTP Requests
-
-- (void)GET:(OPTLYHTTPRequestManagerResponse)completion
-{
-    [self GETWithParameters:nil completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
+# pragma mark - GET
+- (void)GET:(OPTLYHTTPRequestManagerResponse)completion {
+    [self GETWithBackoffRetry:NO completionHandler:completion];
 }
 
+- (void)GETWithBackoffRetry:(BOOL)backoffRetry
+          completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    if (backoffRetry) {
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = [NSMutableArray new];
+        [self GETWithParameters:nil backoffRetryAttempt:0 error:nil completionHandler:completion];
+    } else {
+        [self GETWithParameters:nil completionHandler:completion];
+    }
+}
+
+# pragma mark - GET (with parameters)
 - (void)GETWithParameters:(NSDictionary *)parameters
         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
@@ -91,6 +101,135 @@ dispatch_queue_t networkTasksQueue()
     [downloadTask resume];
 }
 
+- (void)GETWithParameters:(NSDictionary *)parameters
+             backoffRetry:(BOOL)backoffRetry
+        completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    if (backoffRetry) {
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = [NSMutableArray new];
+        [self GETWithParameters:parameters backoffRetryAttempt:0 error:nil completionHandler:completion];
+    } else {
+        [self GETWithParameters:parameters completionHandler:completion];
+    }
+}
+
+- (void)GETWithParameters:(NSDictionary *)parameters
+      backoffRetryAttempt:(NSInteger)backoffRetryAttempt
+                    error:(NSError *)error
+        completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    OPTLYLogDebug(@"GET with parameter attempt: %lu", backoffRetryAttempt);
+    
+    // TODO: Wrap this in a TEST preprocessor definition
+    self.retryAttemptTest = backoffRetryAttempt;
+    
+    if (backoffRetryAttempt > OPTLYHTTPRequestManagerMaxBackoffRetryAttempts) {
+        if (completion) {
+            NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure, error];
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesHTTPRequestManager
+                                             userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+            OPTLYLogDebug(errorMessage);
+            completion(nil, nil, error);
+        }
+        
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = nil;
+        
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self GETWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (error) {
+            dispatch_time_t delayTime = [self backoffDelay:backoffRetryAttempt];
+            dispatch_after(delayTime, networkTasksQueue(), ^(void){
+                [strongSelf GETWithParameters:parameters backoffRetryAttempt:backoffRetryAttempt+1 error:error completionHandler:completion];
+            });
+        } else {
+            if (completion) {
+                completion(data, response, error);
+            }
+        }
+    }];
+}
+
+# pragma mark - GET (if modified)
+- (void)GETIfModifiedSince:(NSString *)lastModifiedDate
+         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self url]];
+    [request setValue:lastModifiedDate forHTTPHeaderField:@"If-Modified-Since"];
+    
+    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    NSURLSessionDataTask *dataTask = [ephemeralSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (completion) {
+            completion(data, response, error);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+- (void)GETIfModifiedSince:(NSString *)lastModifiedDate
+              backoffRetry:(BOOL)backoffRetry
+         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    if (backoffRetry) {
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = [NSMutableArray new];
+        [self GETIfModifiedSince:lastModifiedDate backoffRetryAttempt:0 error:nil completionHandler:completion];
+    } else {
+        [self GETIfModifiedSince:lastModifiedDate completionHandler:completion];
+    }
+}
+
+- (void)GETIfModifiedSince:(NSString *)lastModifiedDate
+       backoffRetryAttempt:(NSInteger)backoffRetryAttempt
+                     error:(NSError *)error
+         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+{
+    OPTLYLogDebug(@"GET if modified attempt: %lu", backoffRetryAttempt);
+    
+    // TODO: Wrap this in a TEST preprocessor definition
+    self.retryAttemptTest = backoffRetryAttempt;
+    
+    if (backoffRetryAttempt > OPTLYHTTPRequestManagerMaxBackoffRetryAttempts) {
+        if (completion) {
+            NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure, error];
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesHTTPRequestManager
+                                             userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+            OPTLYLogDebug(errorMessage);
+            completion(nil, nil, error);
+        }
+        
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = nil;
+
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self GETIfModifiedSince:lastModifiedDate completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (error) {
+            dispatch_time_t delayTime = [self backoffDelay:backoffRetryAttempt];
+            dispatch_after(delayTime, networkTasksQueue(), ^(void){
+                [strongSelf GETIfModifiedSince:lastModifiedDate backoffRetryAttempt:backoffRetryAttempt+1 error:error completionHandler:completion];
+            });
+        } else {
+            if (completion) {
+                completion(data, response, error);
+            }
+        }
+    }];
+}
+
+
+# pragma mark - POST
 - (void)POSTWithParameters:(NSDictionary *)parameters
          completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
@@ -127,7 +266,7 @@ dispatch_queue_t networkTasksQueue()
 {
     if (backoffRetry) {
         // TODO: Wrap this in a TEST preprocessor definition
-        self.delays = [NSMutableArray new];
+        self.delaysTest = [NSMutableArray new];
         [self POSTWithParameters:parameters backoffRetryAttempt:0 error:nil completionHandler:completion];
     } else {
         [self POSTWithParameters:parameters completionHandler:completion];
@@ -142,40 +281,32 @@ dispatch_queue_t networkTasksQueue()
     OPTLYLogDebug(@"POST attempt: %lu", backoffRetryAttempt);
     
     // TODO: Wrap this in a TEST preprocessor definition
-    self.retryAttempt = backoffRetryAttempt;
+    self.retryAttemptTest = backoffRetryAttempt;
     
     if (backoffRetryAttempt > OPTLYHTTPRequestManagerMaxBackoffRetryAttempts) {
         if (completion) {
-            NSString *errorMessage = [NSString stringWithFormat:retryAttemptOPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure, error];
+            NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure, error];
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                  code:OPTLYErrorTypesHTTPRequestManager
                                              userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
             OPTLYLogDebug(errorMessage);
             completion(nil, nil, error);
         }
+        
+        // TODO: Wrap this in a TEST preprocessor definition
+        self.delaysTest = nil;
+        
         return;
     }
     
     __weak typeof(self) weakSelf = self;
     [self POSTWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         __typeof__(self) strongSelf = weakSelf;
-
         if (error) {
-            
-            uint32_t exponentialMultiplier = pow(2.0, backoffRetryAttempt);
-            uint64_t delay_ns = OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms * exponentialMultiplier * NSEC_PER_MSEC;
-            uint64_t currentTime = DISPATCH_TIME_NOW;
-            dispatch_time_t delayTime = dispatch_time(currentTime, delay_ns);
-            
-            OPTLYLogDebug(@"POST retry attempt: %d exponentialMultiplier: %u delay_ns: %lu, current time: %lu, delayTime: %lu", backoffRetryAttempt, exponentialMultiplier, delay_ns, currentTime, delayTime);
-            
-            // TODO: Wrap this in a TEST preprocessor definition
-            strongSelf.delays[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
-            
+            dispatch_time_t delayTime = [self backoffDelay:backoffRetryAttempt];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
                 [strongSelf POSTWithParameters:parameters backoffRetryAttempt:backoffRetryAttempt+1 error:error completionHandler:completion];
             });
-            
         } else {
             if (completion) {
                 completion(data, response, error);
@@ -184,23 +315,22 @@ dispatch_queue_t networkTasksQueue()
     }];
 }
 
-- (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
-         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self url]];
-    [request setValue:lastModifiedDate forHTTPHeaderField:@"If-Modified-Since"];
-    
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-    NSURLSessionDataTask *dataTask = [ephemeralSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
-    
-    [dataTask resume];
-}
-
 # pragma mark - Helper Methods
+
+// calculates the exponential backoff time based on the retry attempt number
+- (dispatch_time_t)backoffDelay:(NSInteger)backoffRetryAttempt
+{
+    uint32_t exponentialMultiplier = pow(2.0, backoffRetryAttempt);
+    uint64_t delay_ns = OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms * exponentialMultiplier * NSEC_PER_MSEC;
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, delay_ns);
+    
+    OPTLYLogDebug(@"Retry attempt: %d exponentialMultiplier: %u delay_ns: %lu, delayTime: %lu", backoffRetryAttempt, exponentialMultiplier, delay_ns, delayTime);
+    
+    // TODO: Wrap this in a TEST preprocessor definition
+    self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
+    
+    return delayTime;
+}
 
 - (NSURL *)buildQueryURL:(NSURL *)url
           withParameters:(NSDictionary *)parameters

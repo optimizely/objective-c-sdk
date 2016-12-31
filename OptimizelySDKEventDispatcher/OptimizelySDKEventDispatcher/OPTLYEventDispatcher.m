@@ -190,7 +190,6 @@ dispatch_queue_t flushEventsQueue()
     __weak typeof(self) weakSelf = self;
     [self.networkService dispatchEvent:event
                             toURL:url
-                     backoffRetry:YES
                 completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     __typeof__(self) strongSelf = weakSelf;
                     if (!error) {

@@ -49,7 +49,10 @@ extern NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
 
 extern NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents;
-extern NSString *const retryAttemptOPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure;
+
 
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatafileInvalid = 0,

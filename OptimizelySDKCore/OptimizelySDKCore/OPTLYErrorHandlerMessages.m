@@ -53,7 +53,9 @@ NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTL
 NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents = @"[EVENT DATA STORE] Unable to remove events for event type: %@. No saved events.";
 
 // ---- HTTP Request Manager ----
-NSString *const retryAttemptOPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure = @"[HTTP] The max backoff retry has been exceeded. POST failed with error: %@";
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure = @"[HTTP] The max backoff retry has been exceeded. POST failed with error: %@";
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure = @"[HTTP] The max backoff retry has been exceeded. GET failed with error: %@";
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure = @"[HTTP] The max backoff retry has been exceeded. GET if modified failed with error: %@";
 
 @implementation OPTLYErrorHandlerMessages
 @end
