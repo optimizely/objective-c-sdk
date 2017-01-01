@@ -204,21 +204,16 @@ dispatch_queue_t flushEventsQueue()
     [self.networkService dispatchEvent:event
                                  toURL:url
                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                         __typeof__(self) strongSelf = weakSelf;
-                         if (!error) {
-                             [strongSelf flushEvents];
-                             logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
-                             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                         } else {
-                             logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
-                             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                         }
-                         
-                         if (callback) {
-                             callback(data, response, error);
-                         }
-                         
-                     }];}
+         __typeof__(self) strongSelf = weakSelf;
+        [strongSelf flushEvents];
+        logMessage = error ? [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error] : [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
+        [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+         if (callback) {
+             callback(data, response, error);
+         }
+         
+    }];
+}
 
 - (void)flushEvents {
     [self flushEvents:nil];
@@ -231,7 +226,7 @@ dispatch_queue_t flushEventsQueue()
     dispatch_async(flushEventsQueue(), ^{
         __typeof__(self) strongSelf = weakSelf;
         
-        // return if no events to save
+        // return if no events to send
         if (![strongSelf haveEventsToSend]) {
             
             NSString *logMessage = OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
@@ -260,73 +255,6 @@ dispatch_queue_t flushEventsQueue()
     });
 }
 
-// flushing saved events require deletion upon successfully dispatch
-- (void)flushSavedEvent:(NSDictionary *)event
-              eventType:(OPTLYDataStoreEventType)eventType
-               callback:(OPTLYEventDispatcherResponse)callback
-{
-    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    OPTLYLogInfo(@"Flushing a saved %@ event - %@.", eventName, event);
-    
-    if (![self haveEventsToSend:eventType]) {
-        
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        
-        if (callback) {
-            callback(nil, nil, nil);
-        }
-        return;
-    }
-    
-    NSURL *url = [self URLForEvent:eventType];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    __weak typeof(self) weakSelf = self;
-    [requestManager POSTWithParameters:event completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        __typeof__(self) strongSelf = weakSelf;
-        if (!error) {
-        
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess, eventName, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            [strongSelf.dataStore removeOldestEvent:eventType error:&error];
-            // if the event has been successfully dispatched and there are no saved events, disable the timer
-            if (![strongSelf haveEventsToSend]) {
-                [strongSelf disableNetworkTimer:^{
-                    if (callback) {
-                        callback(data, response, error);
-                    }
-                }];
-                return;
-            }
-            else {
-                if (callback) {
-                    callback(data, response, error);
-                }
-                return;
-            }
-        } else {
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
-            // if the event failed to send, enable the network timer to retry at a later time
-            if (![strongSelf isTimerEnabled]) {
-                [strongSelf setupNetworkTimer:^{
-                    if (callback) {
-                        callback(data, response, error);
-                    }
-                }];
-                return;
-            } else {
-                if (callback) {
-                    callback(data, response, error);
-                }
-                return;
-            }
-        }
-    }];
-}
-
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
@@ -351,6 +279,46 @@ dispatch_queue_t flushEventsQueue()
         NSDictionary *event = events[i];
         [self flushSavedEvent:event eventType:eventType callback:nil];
     }
+}
+
+// flushing saved events require deletion upon successfully dispatch
+- (void)flushSavedEvent:(NSDictionary *)event
+              eventType:(OPTLYDataStoreEventType)eventType
+               callback:(OPTLYEventDispatcherResponse)callback
+{
+    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    OPTLYLogInfo(@"Flushing a saved %@ event - %@.", eventName, event);
+    
+    __block NSString *logMessage = @"";
+    
+    if (![self haveEventsToSend:eventType]) {
+        logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        if (callback) {
+            callback(nil, nil, nil);
+        }
+        return;
+    }
+
+    NSURL *url = [self URLForEvent:eventType];
+    __weak typeof(self) weakSelf = self;
+    [self.networkService dispatchEvent:event
+                                 toURL:url
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                         __typeof__(self) strongSelf = weakSelf;
+         if (!error) {
+             // remove event if dispatch succeeds
+             [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
+             logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess, eventName, event];
+         } else {
+             logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, event, error];
+         }
+
+         if (callback) {
+             callback(data, response, error);
+         }
+     }];
+    
 }
 
 #pragma mark - Application Lifecycle Handlers
