@@ -191,6 +191,13 @@ dispatch_queue_t flushEventsQueue()
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
 
+    // Save event before attempting to dispatch in case the app crashes or is dismissed
+    // before the event dispatch completes
+    NSError *saveError = nil;
+    [self.dataStore saveEvent:event eventType:eventType error:&saveError];
+    __block NSString *logMessage =  [NSString stringWithFormat:@"[EVENT DISPATCHER] Save event error: %@ for event: %@", saveError, event];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSURL *url = [self URLForEvent:eventType];
     __weak typeof(self) weakSelf = self;
@@ -200,24 +207,17 @@ dispatch_queue_t flushEventsQueue()
                          __typeof__(self) strongSelf = weakSelf;
                          if (!error) {
                              [strongSelf flushEvents];
-                             
-                             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
+                             logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
                              [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                             
-                             if (callback) {
-                                 callback(data, response, error);
-                             }
                          } else {
-                             NSError *saveError = nil;
-                             [strongSelf.dataStore saveEvent:event eventType:eventType error:&saveError];
-                             
-                             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
+                             logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
                              [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                             
-                             if (callback) {
-                                 callback(data, response, error);
-                             }
                          }
+                         
+                         if (callback) {
+                             callback(data, response, error);
+                         }
+                         
                      }];}
 
 - (void)flushEvents {
