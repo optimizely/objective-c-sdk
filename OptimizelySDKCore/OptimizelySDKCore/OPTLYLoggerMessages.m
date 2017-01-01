@@ -94,7 +94,7 @@ NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventRetrievalFailur
 // error
 NSString *const OPTLYLoggerMessagesEventNotTracked = @"[EVENT DISPATCH] Not tracking event %@ for experiment %@."; // event key, userId
 NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCH] Not activating user %@ for experiment %@.";
-
+NSString *const OPTLYLoggerMessagesEventSaved = @"[EVENT DISPATCHER] %@ event saved: %@";
 
 // ---- Data Store ----
 // Event Data Store

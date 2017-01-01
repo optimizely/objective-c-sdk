@@ -92,6 +92,7 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFailed;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventRetrievalFailure;
+extern NSString *const OPTLYLoggerMessagesEventSaved;
 // error
 extern NSString *const OPTLYLoggerMessagesEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
