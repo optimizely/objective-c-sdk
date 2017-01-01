@@ -199,9 +199,9 @@ dispatch_queue_t dispatchEventQueue()
 - (void)dispatchNewEvent:(nonnull NSDictionary *)params
                eventType:(OPTLYDataStoreEventType)eventType
                 callback:(nullable OPTLYEventDispatcherResponse)callback {
-    
+    NSError *saveError = nil;
     [self.dataStore saveEvent:params eventType:eventType error:&saveError];
-    NSString *logMessage = [NSString stringWithFormat:@"[EVENT DISPATCHER] Save event error: %@ for event: %@", saveError, params];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesSaveEventError, saveError, params];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     
     [self dispatchEvent:params eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -225,7 +225,7 @@ dispatch_queue_t dispatchEventQueue()
         
         // prevent the same event from getting dispatched multiple times
         if ([strongSelf.pendingDispatchEvents containsObject:event]) {
-            logMessage = [NSString stringWithFormat:@"[EVENT DISPATCHER] Event already pending dispatch: %@", event];
+            logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesPendingEvent, event];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
             return;
         } else {
@@ -246,9 +246,9 @@ dispatch_queue_t dispatchEventQueue()
             }
             [strongSelf.pendingDispatchEvents removeObject:event];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-             if (callback) {
-                 callback(data, response, error);
-             }
+            if (callback) {
+                callback(data, response, error);
+            }
         }];
     });
 }

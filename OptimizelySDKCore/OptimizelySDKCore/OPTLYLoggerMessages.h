@@ -75,6 +75,8 @@ extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 // warning
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout;
+extern NSString *const OPTLYLoggerMessagesPendingEvent;
+extern NSString *const OPTLYLoggerMessagesSaveEventError;
 // debug
 extern NSString *const OPTLYLoggerMessagesDispatchingImpressionEvent;
 extern NSString *const OPTLYLoggerMessagesDispatchingConversionEvent;

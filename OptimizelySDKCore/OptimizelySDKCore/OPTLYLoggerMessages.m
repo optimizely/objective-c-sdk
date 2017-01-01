@@ -74,6 +74,8 @@ NSString *const OPTLYLoggerMessagesActivationSuccess = @"[EVENT DISPATCH] Activa
 // warning
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCH] Invalid event handler dispatch interval set: %ld.";
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout = @"[EVENT DISPATCH] Invalid event handler dispatch timeout set: %ld.";
+NSString *const OPTLYLoggerMessagesPendingEvent = @"[EVENT DISPATCHER] Event already pending dispatch: %@";
+NSString *const OPTLYLoggerMessagesSaveEventError = @"[EVENT DISPATCHER] Save event error: %@ for event: %@";
 // debug
 NSString *const OPTLYLoggerMessagesDispatchingImpressionEvent = @"[EVENT DISPATCH] Dispatching impression event with params %@.";
 NSString *const OPTLYLoggerMessagesDispatchingConversionEvent = @"[EVENT DISPATCH] Dispatching conversion event with params %@.";
