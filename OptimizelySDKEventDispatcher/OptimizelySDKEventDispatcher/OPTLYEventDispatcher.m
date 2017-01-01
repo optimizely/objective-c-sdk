@@ -32,6 +32,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) uint64_t maxDispatchBackoffRetries;
 @property (nonatomic, strong) OPTLYNetworkService *networkService;
+@property (nonatomic, strong) NSMutableSet *pendingDispatchEvents;
 @end
 
 @implementation OPTLYEventDispatcherDefault : NSObject
@@ -50,7 +51,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
         _timer = nil;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
         _eventDispatcherDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
-
+        _pendingDispatchEvents = [NSMutableSet new];
         _logger = builder.logger;
         
         if (builder.eventDispatcherDispatchInterval > 0) {
@@ -87,6 +88,16 @@ dispatch_queue_t flushEventsQueue()
         _flushEventsQueue = dispatch_queue_create("com.Optimizely.flushEvents", DISPATCH_QUEUE_SERIAL);
     });
     return _flushEventsQueue;
+}
+
+dispatch_queue_t dispatchEventQueue()
+{
+    static dispatch_queue_t _dispatchEventQueue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dispatchEventQueue = dispatch_queue_create("com.Optimizely.dispatchEvent", DISPATCH_QUEUE_CONCURRENT);
+    });
+    return _dispatchEventQueue;
 }
 
 -(OPTLYNetworkService *)networkService {
@@ -171,48 +182,75 @@ dispatch_queue_t flushEventsQueue()
 # pragma mark - Dispatch Events
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    
     NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingImpressionEvent, params];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    [self dispatchEvent:params eventType:OPTLYDataStoreEventTypeImpression callback:callback];
+    [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];
 }
 
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    
     NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingConversionEvent, params];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];
+}
+
+// new events need to be saved before a dispatch attempt is made
+// in case the app crashes or is dismissed before the dispatch completes
+- (void)dispatchNewEvent:(nonnull NSDictionary *)params
+               eventType:(OPTLYDataStoreEventType)eventType
+                callback:(nullable OPTLYEventDispatcherResponse)callback {
     
-    [self dispatchEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];
+    [self.dataStore saveEvent:params eventType:eventType error:&saveError];
+    NSString *logMessage = [NSString stringWithFormat:@"[EVENT DISPATCHER] Save event error: %@ for event: %@", saveError, params];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    
+    [self dispatchEvent:params eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            [self flushEvents];
+        }
+        if (callback) {
+            callback(data, response, error);
+        }
+    }];
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)event
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
-
-    // Save event before attempting to dispatch in case the app crashes or is dismissed
-    // before the event dispatch completes
-    NSError *saveError = nil;
-    [self.dataStore saveEvent:event eventType:eventType error:&saveError];
-    __block NSString *logMessage =  [NSString stringWithFormat:@"[EVENT DISPATCHER] Save event error: %@ for event: %@", saveError, event];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     
-    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    NSURL *url = [self URLForEvent:eventType];
     __weak typeof(self) weakSelf = self;
-    [self.networkService dispatchEvent:event
-                                 toURL:url
-                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-         __typeof__(self) strongSelf = weakSelf;
-        [strongSelf flushEvents];
-        logMessage = error ? [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error] : [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
-        [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-         if (callback) {
-             callback(data, response, error);
-         }
-         
-    }];
+    dispatch_async(dispatchEventQueue(), ^{
+        __typeof__(self) strongSelf = weakSelf;
+        __block NSString *logMessage =  @"";
+        
+        // prevent the same event from getting dispatched multiple times
+        if ([strongSelf.pendingDispatchEvents containsObject:event]) {
+            logMessage = [NSString stringWithFormat:@"[EVENT DISPATCHER] Event already pending dispatch: %@", event];
+            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            return;
+        } else {
+            [strongSelf.pendingDispatchEvents addObject:event];
+        }
+        
+        NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+        NSURL *url = [strongSelf URLForEvent:eventType];
+        [self.networkService dispatchEvent:event
+                                     toURL:url
+                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                             
+             __typeof__(self) strongSelf = weakSelf;
+            if (error) {
+                logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
+            } else {
+                logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
+            }
+            [strongSelf.pendingDispatchEvents removeObject:event];
+            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+             if (callback) {
+                 callback(data, response, error);
+             }
+        }];
+    });
 }
 
 - (void)flushEvents {
@@ -300,25 +338,17 @@ dispatch_queue_t flushEventsQueue()
         return;
     }
 
-    NSURL *url = [self URLForEvent:eventType];
     __weak typeof(self) weakSelf = self;
-    [self.networkService dispatchEvent:event
-                                 toURL:url
-                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                         __typeof__(self) strongSelf = weakSelf;
-         if (!error) {
-             // remove event if dispatch succeeds
-             [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
-             logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess, eventName, event];
-         } else {
-             logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, event, error];
-         }
-
-         if (callback) {
-             callback(data, response, error);
-         }
-     }];
-    
+    [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (!error) {
+            // remove event if dispatch succeeds
+            [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
+        }
+        if (callback) {
+            callback(data, response, error);
+        }
+    }];
 }
 
 #pragma mark - Application Lifecycle Handlers
