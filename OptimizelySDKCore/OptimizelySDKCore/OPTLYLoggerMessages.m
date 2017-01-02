@@ -67,34 +67,25 @@ NSString *const OPTLYLoggerMessagesEventDispatcherInterval = @"Event dispatcher 
 // ---- Debug ----
 NSString *const OPTLYLoggerMessagesBucketAssigned = @"Assigned bucket %@ to user %@.";
 
-// ---- Event Tracking ----
+// ---- Event Dispatcher ----
 // info
-NSString *const OPTLYLoggerMessagesConversionSuccess = @"[EVENT DISPATCH] Tracking event %@ for user %@.";
-NSString *const OPTLYLoggerMessagesActivationSuccess = @"[EVENT DISPATCH] Activating user %@ in experiment %@.";
+NSString *const OPTLYLoggerMessagesConversionSuccess = @"[EVENT DISPATCHER] Tracking event %@ for user %@.";
+NSString *const OPTLYLoggerMessagesActivationSuccess = @"[EVENT DISPATCHER] Activating user %@ in experiment %@.";
 // warning
-NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCH] Invalid event handler dispatch interval set: %ld.";
-NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout = @"[EVENT DISPATCH] Invalid event handler dispatch timeout set: %ld.";
-NSString *const OPTLYLoggerMessagesPendingEvent = @"[EVENT DISPATCHER] Event already pending dispatch: %@";
-NSString *const OPTLYLoggerMessagesSaveEventError = @"[EVENT DISPATCHER] Save event error: %@ for event: %@";
+NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCHER] Invalid event handler dispatch interval set: %ld.";
+NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout = @"[EVENT DISPATCHER] Invalid event handler dispatch timeout set: %ld.";
 // debug
-NSString *const OPTLYLoggerMessagesDispatchingImpressionEvent = @"[EVENT DISPATCH] Dispatching impression event with params %@.";
-NSString *const OPTLYLoggerMessagesDispatchingConversionEvent = @"[EVENT DISPATCH] Dispatching conversion event with params %@.";
-NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCH] Properties set: %ld [interval], %ld [timeout], %ld [max retries].";
-NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled = @"[EVENT DISPATCH] Network timer enabled with properties: %ld [interval], %ld [timeout], %ld [max retries].";
-NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled = @"[EVENT DISPATCH] Network timer disabled.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents = @"[EVENT DISPATCH] No events to send for flushEvents call.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry = @"[EVENT DISPATCH] At dispatch call %ld. Skipping dispatch retry.";
-NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents =  @"No %@ events to send for flush saved events call.";
-NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess = @"[EVENT DISPATCH] %@ event sent with parameters: %@.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries = @"[EVENT DISPATCH] Attempt to dispatch saved events failed. Retries have exceeded max allowed time: %ld.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess = @"[EVENT DISPATCH] %@ event successfully sent with parameters: %@. Removing event from storage.";
-NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFailed = @"[EVENT DISPATCH] %@ event not sent. Saving event. Parameters: %@. Error received: %@.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure = @"[EVENT DISPATCH] %@ event not sent and will not be removed from the queue. Parameters: %@.";
-NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventRetrievalFailure = @"[EVENT DISPATCH] Error retrieving saved event data: %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCHER] Properties set: %ld [interval], %ld [timeout], %ld [max retries].";
+NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled = @"[EVENT DISPATCHER] Network timer enabled with properties: %ld [interval], %ld [timeout], %ld [max retries].";
+NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled = @"[EVENT DISPATCHER] Network timer disabled.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushingEvents = @"[EVENT DISPATCHER] Flushing events.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents = @"[EVENT DISPATCHER] No events to flush.";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents =  @"No %@ to flush.";
+NSString *const OPTLYLoggerMessagesPendingEvent = @"[EVENT DISPATCHER] Event already pending dispatch: %@";
+NSString *const OPTLYLoggerMessagesEventSaved = @"[EVENT DISPATCHER] %@ saved: %@"; // event type, event
 // error
-NSString *const OPTLYLoggerMessagesEventNotTracked = @"[EVENT DISPATCH] Not tracking event %@ for experiment %@."; // event key, userId
-NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCH] Not activating user %@ for experiment %@.";
-NSString *const OPTLYLoggerMessagesEventSaved = @"[EVENT DISPATCHER] %@ event saved: %@";
+NSString *const OPTLYLoggerMessagesEventNotTracked = @"[EVENT DISPATCHER] Not tracking event %@ for experiment %@. Error received: %@."; // event key, userId
+NSString *const OPTLYLoggerMessagesActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@. Error received: %@.";
 
 // ---- Data Store ----
 // Event Data Store

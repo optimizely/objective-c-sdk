@@ -75,23 +75,14 @@ extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 // warning
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout;
-extern NSString *const OPTLYLoggerMessagesPendingEvent;
-extern NSString *const OPTLYLoggerMessagesSaveEventError;
 // debug
-extern NSString *const OPTLYLoggerMessagesDispatchingImpressionEvent;
-extern NSString *const OPTLYLoggerMessagesDispatchingConversionEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherProperties;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushingEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffSkipRetry;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsBackoffMaxRetries;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventSuccess;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherEventDispatchFailed;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventRetrievalFailure;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents;
+extern NSString *const OPTLYLoggerMessagesPendingEvent;
 extern NSString *const OPTLYLoggerMessagesEventSaved;
 // error
 extern NSString *const OPTLYLoggerMessagesEventNotTracked;

@@ -182,59 +182,31 @@ dispatch_queue_t dispatchEventQueue()
 # pragma mark - Dispatch Events
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingImpressionEvent, params];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeImpression callback:callback];
 }
 
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesDispatchingConversionEvent, params];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];
 }
 
 // new events need to be saved before a dispatch attempt is made
-// in case the app crashes or is dismissed before the dispatch completes
+// (in case the app crashes or is dismissed before the dispatch completes)
 - (void)dispatchNewEvent:(nonnull NSDictionary *)params
                eventType:(OPTLYDataStoreEventType)eventType
                 callback:(nullable OPTLYEventDispatcherResponse)callback {
+    
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSError *saveError = nil;
     [self.dataStore saveEvent:params eventType:eventType error:&saveError];
-    NSString *logMessage = @"";
-    if (saveError) {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesSaveEventError, saveError, params];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-    } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventSaved, eventName, params];
+    if (!saveError) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventSaved, eventName, params];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     
     [self dispatchEvent:params eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             [self flushEvents];
-        }
-        if (callback) {
-            callback(data, response, error);
-        }
-    }];
-}
-
-// flushing saved events require deletion upon successfully dispatch
-- (void)dispatchSavedEvent:(NSDictionary *)event
-              eventType:(OPTLYDataStoreEventType)eventType
-               callback:(OPTLYEventDispatcherResponse)callback
-{
-    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    OPTLYLogInfo(@"Flushing a saved %@ event: %@.", eventName, event);
-    
-    __weak typeof(self) weakSelf = self;
-    [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        __typeof__(self) strongSelf = weakSelf;
-        if (!error) {
-            // remove event if dispatch succeeds
-            [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
         }
         if (callback) {
             callback(data, response, error);
@@ -254,23 +226,23 @@ dispatch_queue_t dispatchEventQueue()
         // prevent the same event from getting dispatched multiple times
         if ([strongSelf.pendingDispatchEvents containsObject:event]) {
             logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesPendingEvent, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             return;
         } else {
             [strongSelf.pendingDispatchEvents addObject:event];
         }
         
         NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+        OPTLYLogInfo(@"Dispatching an %@ event: %@.", eventName, event);
+        
         NSURL *url = [strongSelf URLForEvent:eventType];
         [self.networkService dispatchEvent:event
                                      toURL:url
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                              
-             __typeof__(self) strongSelf = weakSelf;
-            if (error) {
-                logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchFailed, eventName, event, error];
-            } else {
-                logMessage = [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherEventDispatchSuccess, eventName, event];
+             __typeof__(self) strongSelf = weakSelf;                
+            if (!error) {
+                [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
             }
             [strongSelf.pendingDispatchEvents removeObject:event];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -288,6 +260,8 @@ dispatch_queue_t dispatchEventQueue()
 // flushed cached and saved events
 - (void)flushEvents:(void(^)())callback
 {
+    [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushingEvents withLevel:OptimizelyLogLevelDebug];
+    
     __weak typeof(self) weakSelf = self;
     dispatch_async(flushEventsQueue(), ^{
         __typeof__(self) strongSelf = weakSelf;
@@ -328,24 +302,22 @@ dispatch_queue_t dispatchEventQueue()
     NSInteger numberOfEvents = [self numberOfEvents:eventType];
     NSArray *events = [self.dataStore getAllEvents:eventType error:&error];
     
-    OPTLYLogInfo(@"Flushing saved %@ events. Number of events: %lu", eventName, numberOfEvents);
-    
-    if (!numberOfEvents) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
+    if (numberOfEvents == 0) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents, eventName];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return;
     }
     
     if (error) {
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushSavedEventFailure, eventName, nil];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return;
     }
+    
+    OPTLYLogInfo(@"Flushing saved %@ events. Number of events: %lu", eventName, numberOfEvents);
     
     // This will be batched in the near future...
     for (NSInteger i = 0 ; i < numberOfEvents; ++i) {
         NSDictionary *event = events[i];
-        [self dispatchSavedEvent:event eventType:eventType callback:nil];
+        [self dispatchEvent:event eventType:eventType callback:nil];
     }
 }
 
