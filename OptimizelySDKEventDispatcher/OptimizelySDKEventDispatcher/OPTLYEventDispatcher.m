@@ -221,6 +221,27 @@ dispatch_queue_t dispatchEventQueue()
     }];
 }
 
+// flushing saved events require deletion upon successfully dispatch
+- (void)dispatchSavedEvent:(NSDictionary *)event
+              eventType:(OPTLYDataStoreEventType)eventType
+               callback:(OPTLYEventDispatcherResponse)callback
+{
+    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    OPTLYLogInfo(@"Flushing a saved %@ event: %@.", eventName, event);
+    
+    __weak typeof(self) weakSelf = self;
+    [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __typeof__(self) strongSelf = weakSelf;
+        if (!error) {
+            // remove event if dispatch succeeds
+            [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
+        }
+        if (callback) {
+            callback(data, response, error);
+        }
+    }];
+}
+
 - (void)dispatchEvent:(nonnull NSDictionary *)event
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
@@ -272,7 +293,7 @@ dispatch_queue_t dispatchEventQueue()
         __typeof__(self) strongSelf = weakSelf;
         
         // return if no events to send
-        if (![strongSelf haveEventsToSend]) {
+        if ([strongSelf numberOfEvents] == 0) {
             
             NSString *logMessage = OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -303,13 +324,15 @@ dispatch_queue_t dispatchEventQueue()
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    OPTLYLogInfo(@"Flushing saved %@ events", eventName);
-    
     NSError *error = nil;
-    NSInteger totalNumberOfEvents = [self.dataStore numberOfEvents:eventType error:&error];
+    NSInteger numberOfEvents = [self numberOfEvents:eventType];
     NSArray *events = [self.dataStore getAllEvents:eventType error:&error];
     
-    if (!totalNumberOfEvents) {
+    OPTLYLogInfo(@"Flushing saved %@ events. Number of events: %lu", eventName, numberOfEvents);
+    
+    if (!numberOfEvents) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return;
     }
     
@@ -320,42 +343,10 @@ dispatch_queue_t dispatchEventQueue()
     }
     
     // This will be batched in the near future...
-    for (NSInteger i = 0 ; i < totalNumberOfEvents; ++i) {
+    for (NSInteger i = 0 ; i < numberOfEvents; ++i) {
         NSDictionary *event = events[i];
-        [self flushSavedEvent:event eventType:eventType callback:nil];
+        [self dispatchSavedEvent:event eventType:eventType callback:nil];
     }
-}
-
-// flushing saved events require deletion upon successfully dispatch
-- (void)flushSavedEvent:(NSDictionary *)event
-              eventType:(OPTLYDataStoreEventType)eventType
-               callback:(OPTLYEventDispatcherResponse)callback
-{
-    NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    OPTLYLogInfo(@"Flushing a saved %@ event - %@.", eventName, event);
-    
-    __block NSString *logMessage = @"";
-    
-    if (![self haveEventsToSend:eventType]) {
-        logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventDispatchFlushSavedEventNoEvents, eventName];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        if (callback) {
-            callback(nil, nil, nil);
-        }
-        return;
-    }
-
-    __weak typeof(self) weakSelf = self;
-    [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        __typeof__(self) strongSelf = weakSelf;
-        if (!error) {
-            // remove event if dispatch succeeds
-            [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
-        }
-        if (callback) {
-            callback(data, response, error);
-        }
-    }];
 }
 
 #pragma mark - Application Lifecycle Handlers
@@ -397,11 +388,11 @@ dispatch_queue_t dispatchEventQueue()
 
 
 - (void)applicationDidFinishLaunching:(id)notificaton {
-    [self flushEvents];
     OPTLYLogInfo(@"applicationDidFinishLaunching");
 }
 
 - (void)applicationDidBecomeActive:(id)notificaton {
+    [self flushEvents];
     OPTLYLogInfo(@"applicationDidBecomeActive");
 }
 
@@ -428,20 +419,18 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 # pragma mark - Helper Methods
-- (BOOL)haveEventsToSend:(OPTLYDataStoreEventType)eventType
+- (NSInteger )numberOfEvents:(OPTLYDataStoreEventType)eventType
 {
     NSInteger numberOfEvents = [self.dataStore numberOfEvents:eventType
                                                         error:nil];
-    return numberOfEvents > 0;
+    return numberOfEvents;
 }
 
-- (BOOL)haveEventsToSend
+- (NSInteger)numberOfEvents
 {
-    NSInteger numberOfImpressionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeImpression];
-    NSInteger numberOfConversionEventsSaved = [self haveEventsToSend:OPTLYDataStoreEventTypeConversion];
-    
-    return (numberOfImpressionEventsSaved > 0 ||
-            numberOfConversionEventsSaved > 0);
+    NSInteger numberOfImpressionEventsSaved = [self numberOfEvents:OPTLYDataStoreEventTypeImpression];
+    NSInteger numberOfConversionEventsSaved = [self numberOfEvents:OPTLYDataStoreEventTypeConversion];
+    return numberOfImpressionEventsSaved + numberOfConversionEventsSaved;
 }
 
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType {
