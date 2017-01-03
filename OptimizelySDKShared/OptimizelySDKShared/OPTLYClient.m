@@ -120,7 +120,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyError,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey, userId]]
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesTrackFailure, eventKey, userId]]
                       withLevel:OptimizelyLogLevelError];
         return;
     }
