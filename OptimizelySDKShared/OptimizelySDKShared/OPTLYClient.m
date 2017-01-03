@@ -57,7 +57,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesActivationFailure, userId, experimentKey]]
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey]]
                       withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
@@ -120,7 +120,7 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesEventNotTracked, eventKey, userId]]
+                                 [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId]]
                       withLevel:OptimizelyLogLevelWarning];
         return;
     }

@@ -70,8 +70,10 @@ extern NSString *const OPTLYLoggerMessagesBucketAssigned;
 
 // ---- Event Dispatcher ----
 // info
-extern NSString *const OPTLYLoggerMessagesConversionSuccess;
-extern NSString *const OPTLYLoggerMessagesActivationSuccess;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingEvent;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherActivatingUser;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess;
 // warning
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout;
@@ -81,12 +83,15 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushingEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushingSavedEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents;
-extern NSString *const OPTLYLoggerMessagesPendingEvent;
-extern NSString *const OPTLYLoggerMessagesEventSaved;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherPendingEvent;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent;
 // error
-extern NSString *const OPTLYLoggerMessagesEventNotTracked;
-extern NSString *const OPTLYLoggerMessagesActivationFailure;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
 // ---- Data Store ----
 // Event Data Store

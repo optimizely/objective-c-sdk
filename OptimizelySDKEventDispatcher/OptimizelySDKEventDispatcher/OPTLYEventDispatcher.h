@@ -27,8 +27,7 @@
  * The events are dispatched immediately and are only saved if the dispatch fails.
  * The saved events will be dispatched again opportunistically in the following cases:
  *   - Another event dispatch is called
- *   - The app enters the background
- *   - If polling is enabled, then after an exponential backoff interval has elapsed.
+ *   - The app enters the background or foreground
  */
 
 // Default interval and timeout values (in ms) if not set by users
