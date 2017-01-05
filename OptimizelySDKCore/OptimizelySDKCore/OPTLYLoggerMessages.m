@@ -23,6 +23,7 @@ NSString *const OPTLYLoggerMessagesAttributeInvalidFormat = @"Provided attribute
 NSString *const OPTLYLoggerMessagesForcedBucketingFailed = @"Entity %@ is not in the datafile. Not activating user %@."; // changed text from from 'variation' to 'entity'
 NSString *const OPTLYLoggerMessagesDatafileFetchIntervalInvalid = @"A datafile fetch interval of %f is invalid. Please set a datafile fetch interval >= 0."; // invalid datafile fetch interval value
 NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"An Optimizely Manager instance must be initialized with a project ID";
+NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"The project ID for the Optimizely Manager instance cannot be an empty string";
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid";
 
 // ---- warnings ----

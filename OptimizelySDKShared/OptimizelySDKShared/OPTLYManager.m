@@ -51,6 +51,10 @@
                                  withLevel:OptimizelyLogLevelError];
                 return nil;
             }
+            else if ([builder.projectId isEqualToString:@""]) {
+                [builder.logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
+                                 withLevel:OptimizelyLogLevelError];
+            }
             _datafile = builder.datafile;
             _datafileManager = builder.datafileManager;
             _errorHandler = builder.errorHandler;
