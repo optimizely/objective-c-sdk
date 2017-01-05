@@ -51,17 +51,17 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     }
     
     if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
     if ([experimentKey length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesExperimentKeyInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesExperimentKeyInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
     if ([variationId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
@@ -75,7 +75,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     
     if (!experiment) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNotBuildingDecisionEventTicket, experimentKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
@@ -100,17 +100,17 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     }
     
     if (!bucketer) {
-        [config.logger logMessage:OPTLYLoggerMessagesBucketerInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesBucketerInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
     if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
     if ([eventName length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelDebug];
+        [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
