@@ -24,7 +24,7 @@ NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optim
 NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
 // Default interval and timeout values (in ms) if not set by users
-NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_ms = 1000;
+NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
 NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 
 @interface OPTLYEventDispatcherDefault()
@@ -48,7 +48,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
     self = [super init];
     if (self != nil) {
         _timer = nil;
-        _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
+        _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
         _eventDispatcherDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
         _pendingDispatchEvents = [NSMutableSet new];
         _logger = builder.logger;
