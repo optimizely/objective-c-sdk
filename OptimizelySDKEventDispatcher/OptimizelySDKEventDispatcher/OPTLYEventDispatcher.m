@@ -23,9 +23,8 @@
 NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
 NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
-// Default interval and timeout values (in ms) if not set by users
+// Default interval and timeout values (in s) if not set by users
 NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
-NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
 
 @interface OPTLYEventDispatcherDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
@@ -49,7 +48,6 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms = 10000;
     if (self != nil) {
         _timer = nil;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
-        _eventDispatcherDispatchTimeout = OPTLYEventDispatcherDefaultDispatchTimeout_ms;
         _pendingDispatchEvents = [NSMutableSet new];
         _logger = builder.logger;
         
