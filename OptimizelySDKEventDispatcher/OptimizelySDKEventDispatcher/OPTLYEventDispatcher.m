@@ -153,6 +153,8 @@ dispatch_queue_t dispatchEventQueue()
     
     [self.timer invalidate];
     self.timer = nil;
+    
+    [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled withLevel:OptimizelyLogLevelDebug];
 }
 
 # pragma mark - Dispatch Events
