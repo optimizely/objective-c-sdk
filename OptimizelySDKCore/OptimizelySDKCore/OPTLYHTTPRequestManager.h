@@ -22,11 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-extern NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryAttempts;
-extern NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms;
-NS_ASSUME_NONNULL_END
-
 typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
 @interface OPTLYHTTPRequestManager : NSObject
@@ -116,4 +111,13 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 - (void)POSTWithParameters:(nonnull NSDictionary *)parameters
               backoffRetry:(BOOL)backoffRetry
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+
+/**
+ * A utility method that returns the time interval for a complete backoff retry cycle.
+ * This value is useful to have for determining minimum polling intervals.
+ *
+ * @return The backoff retry total time interval. 
+ **/
++ (NSInteger)backoffRetryDuration_ms;
+
 @end

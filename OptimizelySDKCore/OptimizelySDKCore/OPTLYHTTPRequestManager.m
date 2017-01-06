@@ -27,9 +27,9 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 //  pow(2,OPTLYHTTPRequestManagerMaxBackoffRetryAttempts) * OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms
 
 // The number of re-tries following the first failed attempt
-NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryAttempts = 3;
+NSInteger kMaxBackoffRetryAttempts = 3;
 // TODO: Confirm with Michael Hood if this is a good time unit
-NSInteger OPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms = 1;
+NSInteger kMaxBackoffRetryTimeInterval_ms = 1;
 
 // TODO: Wrap this in a TEST preprocessor definition
 @interface OPTLYHTTPRequestManager()
@@ -316,6 +316,11 @@ dispatch_queue_t networkTasksQueue()
 }
 
 # pragma mark - Helper Methods
++ (NSInteger)backoffRetryDuration_ms
+{
+    NSInteger duration = (pow(2, kOPTLYHTTPRequestManagerMaxBackoffRetryAttempts+1) - 1) * kOPTLYHTTPRequestManagerMaxBackoffRetryTimeInterval_ms;
+    return duration;
+}
 
 // calculates the exponential backoff time based on the retry attempt number
 - (dispatch_time_t)backoffDelay:(NSInteger)backoffRetryAttempt
