@@ -15,9 +15,10 @@
  ***************************************************************************/
 
 #import "OPTLYNetworkService.h"
+#import "OPTLYProjectConfig.h"
 
 // ---- Datafile Download URLs ----
-NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/";
+NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 @implementation OPTLYNetworkService
@@ -26,8 +27,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
-    NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:cdnURL withProjectId:projectId];
+    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
     
@@ -42,8 +42,7 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 
 - (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
-    NSURL *cdnConfigFilePathURL = [self projectConfigURLPath:cdnURL withProjectId:projectId];
+    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
    [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -67,10 +66,10 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 
 # pragma mark - Helper Methods
 
-- (NSURL *)projectConfigURLPath:(NSURL *)url
-                  withProjectId:(NSString *)projectId
++ (NSURL *)projectConfigURLPath:(NSString *)projectId
 {
-    NSString *filePath = [NSString stringWithFormat:@"%@json/%@.json", url.absoluteString, projectId];
+    NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSString *filePath = [NSString stringWithFormat:@"%@%@/datafile_v%@.json", cdnURL.absoluteString, projectId, kExpectedDatafileVersion];
     return [NSURL URLWithString:filePath];
 }
 

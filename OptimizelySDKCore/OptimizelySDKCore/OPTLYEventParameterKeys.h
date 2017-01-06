@@ -31,6 +31,7 @@ extern NSString * const OPTLYEventParameterKeysClientVersion;
 extern NSString * const OPTLYEventParameterKeysHeader;
 extern NSString * const OPTLYEventParameterKeysUserFeatures;
 extern NSString * const OPTLYEventParameterKeysIsGlobalHoldback;
+extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
 
 // --- Decision Ticket Event Parameters ("Impression Event") ----
 extern NSString * const OPTLYEventParameterKeysDecisionId;

@@ -172,15 +172,15 @@ target 'OptimizelySDKUserProfileTVOSTests' do
 end
 
 # OptimizelyiOSDemoApp target
-#target 'OptimizelyiOSDemoApp' do
-#  project 'OptimizelyiOSDemoApp/OptimizelyiOSDemoApp.xcodeproj/'
-#  platform :ios, '8.0'
-#  common_ios_pods
-#end
+target 'OptimizelyiOSDemoApp' do
+  project 'OptimizelyiOSDemoApp/OptimizelyiOSDemoApp.xcodeproj/'
+  platform :ios, '8.0'
+  common_ios_pods
+end
 
 # OptimizelyTVOSDemoApp targets
-#target 'OptimizelyTVOSDemoApp' do
-#  project 'OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp.xcodeproj/'
-#  platform :tvos, '9.0'
-#  common_tvos_pods
-#end
+target 'OptimizelyTVOSDemoApp' do
+  project 'OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp.xcodeproj/'
+  platform :tvos, '9.0'
+  common_tvos_pods
+end

@@ -45,6 +45,12 @@
  */
 + (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
 
+/**
+ * Utility method that returns the URL path for the datafile of a particular project.
+ * @param projectId The project ID of the datafile whose URL path we are looking for.
+ */
++ (NSURL * _Nonnull)projectConfigURLPath:(nonnull NSString *)projectId;
+
 @end
 
 @interface OPTLYDatafileManagerBasic : NSObject<OPTLYDatafileManager>

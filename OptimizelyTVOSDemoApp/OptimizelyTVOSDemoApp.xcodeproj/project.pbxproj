@@ -14,6 +14,7 @@
 		EA5247571DC71C6900AF6685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5247561DC71C6900AF6685 /* Assets.xcassets */; };
 		EA5247621DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5247611DC71C6900AF6685 /* OptimizelyTVOSDemoAppTests.swift */; };
 		EA52476D1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA52476C1DC71C6900AF6685 /* OptimizelyTVOSDemoAppUITests.swift */; };
+		EAE6E48C1E00DCBC009959E4 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA52493A1DC72F3900AF6685 /* OptimizelySDKTVOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +46,7 @@
 			remoteGlobalIDString = EA2FA72D1DC1FAA000B1D81B;
 			remoteInfo = OptimizelySDKTVOSTests;
 		};
-		EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */ = {
+		EAE6E49D1E00DE11009959E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5249341DC72F3900AF6685 /* OptimizelySDKTVOS.xcodeproj */;
 			proxyType = 1;
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE6E48C1E00DCBC009959E4 /* OptimizelySDKTVOS.framework in Frameworks */,
 				4BE2E6BA66AD1489F14B85B3 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,7 +197,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EA52495B1DC7363600AF6685 /* PBXTargetDependency */,
+				EAE6E49E1E00DE11009959E4 /* PBXTargetDependency */,
 			);
 			name = OptimizelyTVOSDemoApp;
 			productName = OptimizelyTVOSDemoApp;
@@ -377,7 +379,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -421,10 +423,10 @@
 			target = EA52474B1DC71C6900AF6685 /* OptimizelyTVOSDemoApp */;
 			targetProxy = EA5247691DC71C6900AF6685 /* PBXContainerItemProxy */;
 		};
-		EA52495B1DC7363600AF6685 /* PBXTargetDependency */ = {
+		EAE6E49E1E00DE11009959E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKTVOS;
-			targetProxy = EA52495A1DC7363600AF6685 /* PBXContainerItemProxy */;
+			targetProxy = EAE6E49D1E00DE11009959E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -484,6 +486,7 @@
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -525,6 +528,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_PRODUCT = YES;

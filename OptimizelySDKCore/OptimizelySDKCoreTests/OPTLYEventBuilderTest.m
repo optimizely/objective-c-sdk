@@ -28,6 +28,7 @@
 #import "OPTLYEventMetric.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
+static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kUserId = @"6369992312";
 static NSString * const kAccountId = @"6365361536";
 static NSString * const kProjectId = @"6377970066";
@@ -298,6 +299,36 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSAssert(params == nil, @"parameters should not be created with unknown experiment.");
 }
 
+- (void)testBuildEventTicketWithAnonymizeIPFalse {
+    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
+    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
+    
+    OPTLYEventTicket *eventTicket = [eventBuilder buildEventTicket:config
+                                                          bucketer:bucketer
+                                                            userId:kUserId
+                                                         eventName:kEventWithoutAudienceName
+                                                        eventValue:nil
+                                                        attributes:nil];
+    
+    NSDictionary *params = [eventTicket toDictionary];
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+}
+
+- (void)testBuildDecisionTicketWithAnonymizeIPFalse {
+    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
+    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    
+    OPTLYDecisionEventTicket *decisionEventTicket = [eventBuilder buildDecisionEventTicket:config
+                                                                                    userId:kUserId
+                                                                             experimentKey:kExperimentWithoutAudienceKey
+                                                                               variationId:kVariationWithoutAudienceId
+                                                                                attributes:nil];
+    NSDictionary *params = [decisionEventTicket toDictionary];
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+}
 
 #pragma mark - Helper Methods
 
@@ -385,6 +416,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // check clientVersion
     NSString *clientVersion = params[OPTLYEventParameterKeysClientVersion];
     NSAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
+    
+    // check anonymizeIP
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
     
     // check global holdback
     NSNumber *isGlobalHoldback = params[OPTLYEventParameterKeysIsGlobalHoldback];
@@ -502,4 +537,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSNumber *isLayerHoldback = params[OPTLYEventParameterKeysDecisionIsLayerHoldback];
     NSAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
 }
+
+- (OPTLYProjectConfig *)setUpForAnonymizeIPFalse
+{
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
+    return [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+}
+
 @end

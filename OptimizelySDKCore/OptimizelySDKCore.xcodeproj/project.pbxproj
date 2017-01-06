@@ -12,6 +12,10 @@
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
 		5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		5E3C0E711DDF7A3C0025DB85 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
+		5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
+		5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
+		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */; };
@@ -256,6 +260,8 @@
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		535C603DDFD996B277A0E064 /* Pods-OptimizelySDKCoreiOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.rc.xcconfig"; sourceTree = "<group>"; };
+		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
+		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
 		5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariable.h; sourceTree = "<group>"; };
 		5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariable.m; sourceTree = "<group>"; };
 		8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,6 +611,7 @@
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
 				EA2FAB991DC6FDFA00B1D81B /* test_data_50_experiments.json */,
 				EA2FAB9A1DC6FDFA00B1D81B /* validator_whitelisting_test_datafile.json */,
+				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -668,6 +675,7 @@
 				EA2FAB8D1DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m */,
 				EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */,
 				EA2FAB8F1DC6FDFA00B1D81B /* OPTLYLoggerTest.m */,
+				5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */,
 				EA2FAB901DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m */,
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
@@ -961,6 +969,7 @@
 				EA2FABD81DC6FDFA00B1D81B /* validator_whitelisting_test_datafile.json in Resources */,
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
+				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD21DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
 			);
@@ -981,6 +990,7 @@
 				EA2FABD91DC6FDFA00B1D81B /* validator_whitelisting_test_datafile.json in Resources */,
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
+				5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				EA2FABCA1DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD31DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
 			);
@@ -1202,6 +1212,7 @@
 				EA2FABC31DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */,
+				5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */,
 				EA2FABB41DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
 				EA8FD0EA1DE97DD700D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
@@ -1273,6 +1284,7 @@
 				EA2FABC41DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBE1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCF1DD3FCD800DF7537 /* OPTLYQueueTest.m in Sources */,
+				5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */,
 				EA2FABB51DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
 				EA8FD0EB1DE97DD900D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
@@ -1347,8 +1359,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 2;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -1406,8 +1418,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 2;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -1816,8 +1828,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 2;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-debug";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -1874,8 +1886,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 2;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-rc";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
