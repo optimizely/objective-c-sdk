@@ -66,7 +66,7 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     NSString *lastSavedModifiedDate = [self getLastModifiedDate:projectId];
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound, lastSavedModifiedDate];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDate, lastSavedModifiedDate];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     [self.networkService downloadProjectConfig:self.projectId

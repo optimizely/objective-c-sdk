@@ -67,6 +67,7 @@ extern NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile;
 // debug
 extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError;
 extern NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges;
+extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDate;
 extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound;
 extern NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDateNotFound;
 // info
