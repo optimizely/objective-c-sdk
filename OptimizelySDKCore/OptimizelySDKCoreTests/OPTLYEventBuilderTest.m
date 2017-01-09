@@ -238,6 +238,23 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
 }
 
+- (void)testBuildEventTicketWithAnonymizeIPFalse {
+    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
+    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
+    
+    OPTLYEventTicket *eventTicket = [eventBuilder buildEventTicket:config
+                                                          bucketer:bucketer
+                                                            userId:kUserId
+                                                         eventName:kEventWithoutAudienceName
+                                                        eventValue:nil
+                                                        attributes:nil];
+    
+    NSDictionary *params = [eventTicket toDictionary];
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+}
+
 - (void)testBuildDecisionEventTicketWithAllArguments
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
@@ -297,23 +314,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                                      attributes:attributes];
     NSDictionary *params = [decisionEventTicket toDictionary];
     NSAssert(params == nil, @"parameters should not be created with unknown experiment.");
-}
-
-- (void)testBuildEventTicketWithAnonymizeIPFalse {
-    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
-    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
-    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
-    
-    OPTLYEventTicket *eventTicket = [eventBuilder buildEventTicket:config
-                                                          bucketer:bucketer
-                                                            userId:kUserId
-                                                         eventName:kEventWithoutAudienceName
-                                                        eventValue:nil
-                                                        attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 - (void)testBuildDecisionTicketWithAnonymizeIPFalse {

@@ -168,7 +168,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
     if (self.userProfile != nil) {
         NSString *storedVariationKey = [self.userProfile getVariationForUser:userId experiment:experimentKey];
         if (storedVariationKey != nil) {
-            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesBucketerUserDataRetrieved, userId, experimentKey, storedVariationKey]
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentKey, storedVariationKey]
                           withLevel:OptimizelyLogLevelDebug];
             OPTLYVariation *storedVariation = [[self.config getExperimentForKey:experimentKey]
                                                getVariationForVariationKey:storedVariationKey];
@@ -187,6 +187,9 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
                                                         userId:userId
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, bucketedVariation.variationKey, experimentKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     //Attempt to save user profile
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation, userId]
@@ -603,7 +606,7 @@ NSString *const kOptimizelyNotificationExperimentVariationMappingKey = @"Experim
         [self.logger logMessage:logMessage
                       withLevel:OptimizelyLogLevelInfo];
     } else {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventNotTracked, eventKey, userId];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackFailure, eventKey, userId];
         
         NSDictionary *errorMessage = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
