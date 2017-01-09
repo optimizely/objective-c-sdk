@@ -38,8 +38,6 @@ typedef void (^OPTLYEventDispatcherBuilderBlock)(OPTLYEventDispatcherBuilder * _
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
 @property (nonatomic, assign, readwrite) NSInteger eventDispatcherDispatchInterval;
-/// The timeout period in which the SDK will attempt to dispatch any events remaining in our events queue
-@property (nonatomic, assign, readwrite) NSInteger eventDispatcherDispatchTimeout;
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 

@@ -75,13 +75,13 @@ NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess = @"[EVENT DIS
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess = @"[EVENT DISPATCHER] Successfully activated user %@ in experiment %@ success";
 // warning
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCHER] Invalid event handler dispatch interval set: %ld";
-NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout = @"[EVENT DISPATCHER] Invalid event handler dispatch timeout set: %ld";
 // debug
-NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCHER] Properties set: %ld [interval], %ld [timeout]";
-NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled = @"[EVENT DISPATCHER] Network timer enabled with properties: %ld [interval s], %ld [timeout]";
+NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCHER] Event dispatch interval: %ld [s]";
+NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled = @"[EVENT DISPATCHER] Network timer enabled with interval: %ld [s].";
 NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled = @"[EVENT DISPATCHER] Network timer disabled";
 NSString *const OPTLYLoggerMessagesEventDispatcherFlushingEvents = @"[EVENT DISPATCHER] Flushing events";
 NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents = @"[EVENT DISPATCHER] No events to flush";
+NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsMax = @"[EVENT DISPATCHER] Max number of flush events attempted %lu.";
 NSString *const OPTLYLoggerMessagesEventDispatcherFlushingSavedEvents = @"[EVENT DISPATCHER] Flushing saved %@. Number of events: %lu";
 NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents =  @"[EVENT DISPATCHER] No %@ to flush";
 NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed =  @"[EVENT DISPATCHER] %@ dispatch failed with error: %@";

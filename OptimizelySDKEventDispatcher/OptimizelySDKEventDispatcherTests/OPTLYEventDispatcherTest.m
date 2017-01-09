@@ -21,7 +21,6 @@
 #import "OPTLYEventDispatcherBuilder.h"
 
 static NSInteger const kEventHandlerDispatchInterval = 3;
-static NSInteger const kEventHandlerDispatchTimeout = 10;
 static NSString * const kTestURLString = @"testURL";
 
 typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
@@ -29,6 +28,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @interface OPTLYEventDispatcherDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) NSInteger flushEventAttempts;
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType;
 - (void)flushEvents:(void(^)())callback;
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback;
@@ -47,7 +47,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @interface OPTLYEventDispatcherTest : XCTestCase
 @property (nonatomic, strong ) NSURL *testURL;
 @property (nonatomic, strong) NSDictionary *parameters;
-@property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) OPTLYEventDispatcherDefault *eventDispatcher;
 @end
 
@@ -73,13 +72,11 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 {
     OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
         builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
     }];
     
     XCTAssertNotNil(eventDispatcher);
     XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == kEventHandlerDispatchInterval, @"Invalid dispatch timeout set.");
-    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == kEventHandlerDispatchTimeout, @"Invalid dispatch timeout set.");
     XCTAssertNotNil(eventDispatcher.logger);
     XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
     
@@ -87,8 +84,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
     
     XCTAssertNotNil(eventDispatcher);
-    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_ms, @"Invalid default dispatch interval set.");
-    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == OPTLYEventDispatcherDefaultDispatchTimeout_ms, @"Invalid default dispatch timeout set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_s, @"Invalid default dispatch interval set.");
     XCTAssertNil(eventDispatcher.logger);
 }
 
@@ -200,11 +196,16 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsSuccess failure."];
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
-        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                      error:nil];
-        XCTAssert([savedEvents count] == 0, @"No events should be saved.");
-        [weakSelf checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
-        [expectation fulfill];
+        NSArray *savedEvents = [weakSelf.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression
+                                                                          error:nil];
+        XCTAssert([savedEvents count] == 0, @"No events should be saved: %lu.", [savedEvents count]);
+        
+        // next flushEvents call should disalbe the network timer and reset flush attempt count
+        [weakSelf.eventDispatcher flushEvents:^{
+            [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
+            XCTAssert(weakSelf.eventDispatcher.flushEventAttempts == 0, @"Flush event attempts should have been reset %lu.", weakSelf.eventDispatcher.flushEventAttempts);
+           [expectation fulfill];
+        }];
     }];
 
     [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
@@ -219,7 +220,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 //  - events should be stored
 - (void)testFlushEventsWithSavedEventsFailure {
     
-    [self stubSuccessResponse];
+    [self stubFailureResponse];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsFailure failure."];
     [self.eventDispatcher setupNetworkTimer:nil];
     
@@ -232,10 +233,11 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
-        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+        NSArray *savedEvents = [weakSelf.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
                                                                       error:nil];
-        XCTAssert([savedEvents count] == numberOfEventsSaved, @"Events should be saved.");
-        [weakSelf checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
+        XCTAssert([savedEvents count] == numberOfEventsSaved, @"Events should be saved : %lu.", [savedEvents count]);
+        XCTAssert(weakSelf.eventDispatcher.flushEventAttempts == 1, @"Flush event attempts is invalid.");
+        [weakSelf checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_s];
         [expectation fulfill];
     }];
     

@@ -76,13 +76,13 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess;
 // warning
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidTimeout;
 // debug
 extern NSString *const OPTLYLoggerMessagesEventDispatcherProperties;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherNetworkTimerDisabled;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushingEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushEventsMax;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushingSavedEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherFlushSavedEventsNoEvents;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed;

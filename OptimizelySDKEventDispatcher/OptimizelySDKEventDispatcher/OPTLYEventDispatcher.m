@@ -24,13 +24,18 @@ NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optim
 NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
 // Default interval and timeout values (in s) if not set by users
-NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
+const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
+// The max number of events that can be flushed at a time
+const NSInteger OPTLYEventDispatcherMaxDispatchEventBatchSize = 20;
+// The max number of times flush events are attempted
+const NSInteger OPTLYEventDispatcherMaxFlushEventAttempts = 10;
 
 @interface OPTLYEventDispatcherDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) OPTLYNetworkService *networkService;
 @property (nonatomic, strong) NSMutableSet *pendingDispatchEvents;
+@property (nonatomic, assign) NSInteger flushEventAttempts;
 @end
 
 @implementation OPTLYEventDispatcherDefault : NSObject
@@ -46,6 +51,7 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
 - (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
     if (self != nil) {
+        _flushEventAttempts = 0;
         _timer = nil;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
         _pendingDispatchEvents = [NSMutableSet new];
@@ -58,16 +64,9 @@ NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
-        if (builder.eventDispatcherDispatchTimeout > 0) {
-            _eventDispatcherDispatchTimeout = builder.eventDispatcherDispatchTimeout;
-        } else {
-            NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherInvalidTimeout, builder.eventDispatcherDispatchTimeout];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        }
-
         [self setupApplicationNotificationHandlers];
         
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherProperties, _eventDispatcherDispatchInterval, _eventDispatcherDispatchTimeout];
+        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherProperties, _eventDispatcherDispatchInterval];
         [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return self;
@@ -124,7 +123,7 @@ dispatch_queue_t dispatchEventQueue()
                                                               userInfo:nil
                                                                repeats:YES];
             
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval, self.eventDispatcherDispatchTimeout];
+            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             if (completion) {
@@ -181,9 +180,7 @@ dispatch_queue_t dispatchEventQueue()
     }
     
     [self dispatchEvent:params eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (!error) {
-            [self flushEvents];
-        }
+        [self flushEvents];
         if (callback) {
             callback(data, response, error);
         }
@@ -242,11 +239,23 @@ dispatch_queue_t dispatchEventQueue()
     dispatch_async(flushEventsQueue(), ^{
         __typeof__(self) strongSelf = weakSelf;
         
-        // return if no events to send
-        if ([strongSelf numberOfEvents] == 0) {
-            NSString *logMessage = OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents;
+        strongSelf.flushEventAttempts++;
+        
+        if (strongSelf.flushEventAttempts > OPTLYEventDispatcherMaxFlushEventAttempts) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsMax, self.flushEventAttempts];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
+            [strongSelf disableNetworkTimer];
+            if (callback) {
+                callback();
+            }
+            return;
+        }
+        
+        // return if no events to send
+        if ([strongSelf numberOfEvents] == 0) {
+            [strongSelf.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents withLevel:OptimizelyLogLevelDebug];
+            strongSelf.flushEventAttempts = 0;
             [strongSelf disableNetworkTimer];
             if (callback) {
                 callback();
@@ -259,8 +268,9 @@ dispatch_queue_t dispatchEventQueue()
             [strongSelf setupNetworkTimer:nil];
         }
         
-        // call the completion block when the impression and conversion events have completed dispatch
-        // need this for testing
+        // ---- For Testing ----
+        // call the completion block when all impression and conversion events have returned
+        // TODO: Wrap in TEST preprocessor
         if (callback) {
             
             dispatch_group_t dispatchEventsGroup = dispatch_group_create();
@@ -277,22 +287,24 @@ dispatch_queue_t dispatchEventQueue()
             dispatch_group_wait(dispatchEventsGroup, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)));
 
             callback();
-            
-        } else {
-            [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:nil];
-            [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:nil];
+            return;
         }
-
+        
+        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:nil];
+        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:nil];
+        
     });
 }
 
-// completion block is called when dispatch events completes
+// The completion block is called when all dispatch event complete
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSError *error = nil;
-    NSInteger numberOfEvents = [self numberOfEvents:eventType];
-    NSArray *events = [self.dataStore getAllEvents:eventType error:&error];
+    NSArray *events = [self.dataStore getFirstNEvents:OPTLYEventDispatcherMaxDispatchEventBatchSize
+                                            eventType:eventType
+                                                error:&error];
+    NSInteger numberOfEvents = [events count];
     
     if (error) {
         if (callback) {
@@ -314,14 +326,31 @@ dispatch_queue_t dispatchEventQueue()
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushingSavedEvents, eventName, numberOfEvents];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
+    // ---- For Testing ----
+    // call the completion block when ALL event dispatch has completed
+    // TODO: Wrap in TEST preprocessor
+    if (callback) {
+        dispatch_group_t dispatchEventGroup = dispatch_group_create();
+        
+        // This will be batched in the near future...
+        for (NSInteger i = 0 ; i < numberOfEvents; ++i) {
+            NSDictionary *event = events[i];
+            dispatch_group_enter(dispatchEventGroup);
+            
+            [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                dispatch_group_leave(dispatchEventGroup);
+            }];
+        }
+        
+        dispatch_group_wait(dispatchEventGroup, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)));
+        callback();
+        return;
+    }
+    
     // This will be batched in the near future...
     for (NSInteger i = 0 ; i < numberOfEvents; ++i) {
         NSDictionary *event = events[i];
         [self dispatchEvent:event eventType:eventType callback:nil];
-    }
-    
-    if (callback) {
-        callback();
     }
 }
 
@@ -368,13 +397,13 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 - (void)applicationDidBecomeActive:(id)notificaton {
-    [self flushEvents];
+   // [self flushEvents];
     OPTLYLogInfo(@"applicationDidBecomeActive");
 }
 
 - (void)applicationDidEnterBackground:(id)notification {
     // flush events is not guaranteed to finish before the app is suspended
-    [self flushEvents];
+    //[self flushEvents];
     OPTLYLogInfo(@"applicationDidEnterBackground");
 }
 
@@ -387,7 +416,7 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 - (void)applicationWillTerminate:(id)notification {
-    [self flushEvents];
+    //[self flushEvents];
     OPTLYLogInfo(@"applicationWillTerminate");
 }
 
@@ -430,9 +459,8 @@ dispatch_queue_t dispatchEventQueue()
     BOOL timerIsNotNil = self.timer != nil;
     BOOL timerIsValid = self.timer.valid;
     BOOL timerIntervalIsSet = (self.timer.timeInterval == self.eventDispatcherDispatchInterval) && (self.eventDispatcherDispatchInterval > 0);
-    BOOL timeoutIsValid = self.eventDispatcherDispatchTimeout > 0;
     
-    return timerIsNotNil && timerIsValid && timerIntervalIsSet && timeoutIsValid;
+    return timerIsNotNil && timerIntervalIsSet && timerIsValid;
 }
 @end
 

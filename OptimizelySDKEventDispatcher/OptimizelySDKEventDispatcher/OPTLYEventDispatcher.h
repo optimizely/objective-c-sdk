@@ -30,9 +30,8 @@
  *   - The app enters the background or foreground
  */
 
-// Default interval and timeout values (in ms) if not set by users
-extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
-extern NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms;
+// Default dispatch interval if not set by users
+extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
 
 @protocol OPTLYEventDispatcher;
 
@@ -42,8 +41,6 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchInterval;
-/// The time for which the SDK will attempt to continue re-trying an event dispatch (in ms)
-@property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchTimeout;
 
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
