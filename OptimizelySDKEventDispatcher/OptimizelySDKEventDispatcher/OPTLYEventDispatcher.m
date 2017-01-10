@@ -239,8 +239,6 @@ dispatch_queue_t dispatchEventQueue()
     dispatch_async(flushEventsQueue(), ^{
         __typeof__(self) strongSelf = weakSelf;
         
-        strongSelf.flushEventAttempts++;
-        
         if (strongSelf.flushEventAttempts > OPTLYEventDispatcherMaxFlushEventAttempts) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsMax, self.flushEventAttempts];
             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -267,6 +265,8 @@ dispatch_queue_t dispatchEventQueue()
         if (![strongSelf isTimerEnabled]) {
             [strongSelf setupNetworkTimer:nil];
         }
+        
+        strongSelf.flushEventAttempts++;
         
         // ---- For Testing ----
         // call the completion block when all impression and conversion events have returned

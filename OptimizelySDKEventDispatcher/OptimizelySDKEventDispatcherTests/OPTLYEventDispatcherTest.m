@@ -191,7 +191,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 #pragma mark - flushEvents Test Scenarios
 
 // if events are saved and flushEvents succeeds,
-//  - then the timer should be enabled ((the next flushEvents call would disable the timer))
+//  - then the timer should be enabled (the next flushEvents call would disable the timer)
 //  - all events should be flushed
 - (void)testFlushEventsWithSavedEventsSuccess {
     [self stubSuccessResponse];
@@ -208,7 +208,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
                                                                           error:nil];
         XCTAssert([savedEvents count] == 0, @"No events should be saved: %lu.", [savedEvents count]);
         
-        // next flushEvents call should disalbe the network timer and reset flush attempt count
+        // next flushEvents call should disable the network timer and reset flush attempt count
         [weakSelf.eventDispatcher flushEvents:^{
             [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
             XCTAssert(weakSelf.eventDispatcher.flushEventAttempts == 0, @"Flush event attempts should have been reset %lu.", weakSelf.eventDispatcher.flushEventAttempts);
@@ -341,6 +341,48 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testDispatchNewEventFailure: %@", error);
+        }
+    }];
+}
+
+// make sure that if flush events is called more than the max allowed time
+// [OPTLYEventDispatcherMaxFlushEventAttempts], then flush event attempts will stop
+- (void)testFlushEventAttempts {
+    
+    [self stubFailureResponse];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventAttempts failure."];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+        builder.eventDispatcherDispatchInterval = 1;
+        builder.logger = [OPTLYLoggerDefault new];
+    }];
+    
+
+    [eventDispatcher.dataStore saveEvent:self.parameters
+                               eventType:OPTLYDataStoreEventTypeConversion
+                                   error:nil];
+    
+    typedef void (^FlushEventsBlock)();
+    __block __weak FlushEventsBlock weakFlushEvents = nil;
+    __weak typeof(self) weakSelf = self;
+    __block void (^flushEvents)() = ^(){
+        FlushEventsBlock strongFlushEvents = weakFlushEvents;
+        [eventDispatcher flushEvents:^{
+            strongFlushEvents();
+        }];
+        if (attempts == OPTLYEventDispatcherMaxFlushEventAttempts + 1) {
+            [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
+            XCTAssert(eventDispatcher.flushEventAttempts == OPTLYEventDispatcherMaxFlushEventAttempts, @"Flush event attempts should have reached max value %lu.", eventDispatcher.flushEventAttempts);
+            [expectation fulfill];
+            return;
+        }
+    };
+    weakFlushEvents = flushEvents;
+    flushEvents();
+    
+    [self waitForExpectationsWithTimeout:self.eventDispatcher.flushEventAttempts+5 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testFlushEventAttempts: %@", error);
         }
     }];
 }

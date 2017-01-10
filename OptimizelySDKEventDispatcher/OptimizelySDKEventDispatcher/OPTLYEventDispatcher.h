@@ -32,6 +32,10 @@
 
 // Default dispatch interval if not set by users
 extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
+// The max number of events that can be flushed at a time
+extern NSInteger const OPTLYEventDispatcherMaxDispatchEventBatchSize;
+// The max number of times flush events are attempted
+extern NSInteger const OPTLYEventDispatcherMaxFlushEventAttempts;
 
 @protocol OPTLYEventDispatcher;
 
