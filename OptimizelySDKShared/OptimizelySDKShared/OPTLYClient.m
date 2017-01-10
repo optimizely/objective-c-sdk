@@ -118,9 +118,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
         attributes:(NSDictionary *)attributes
         eventValue:(NSNumber *)eventValue {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyError,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesTrackFailure, eventKey, userId]]
+        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@", OPTLYClientDummyOptimizelyError, [NSString stringWithFormat:OPTLYLoggerMessagesTrackFailure, eventKey, userId]]
                       withLevel:OptimizelyLogLevelError];
         return;
     }
