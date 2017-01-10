@@ -160,9 +160,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     
     NSString *logMessage = @"";
     if ([lastModifiedDate length]) {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDate, lastModifiedDate, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound, lastModifiedDate, projectId];
     } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateNotFound, projectId];
     }
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     

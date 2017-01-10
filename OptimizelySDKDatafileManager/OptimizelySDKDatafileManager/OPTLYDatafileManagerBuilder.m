@@ -40,7 +40,7 @@
             return nil;
         }
         if (_projectId == nil) {
-            [self.logger logMessage:OPTLYDatafileManagerInitializedWithoutProjectIdMessage
+            [self.logger logMessage:OPTLYLoggerMessagesDatafileManagerInitializedWithoutProjectIdMessage
                           withLevel:OptimizelyLogLevelWarning];
             return nil;
         }

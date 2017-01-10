@@ -62,7 +62,6 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         if (!self.eventDispatcher) {
             self.eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
                 builder.eventDispatcherDispatchInterval = 0;
-                builder.eventDispatcherDispatchTimeout = 2;
                 builder.logger = self.logger;
             }];
         }
