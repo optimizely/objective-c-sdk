@@ -52,7 +52,7 @@
  * @param builder The Optimizely Manager Builder where datafile manager, event dispatcher, and other configurations will be set.
  * @return OPTLYManager instance
  */
-+ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
++ (nullable instancetype)initWithBuilder:(nonnull OPTLYManagerBuilder *)builder;
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance
  */
