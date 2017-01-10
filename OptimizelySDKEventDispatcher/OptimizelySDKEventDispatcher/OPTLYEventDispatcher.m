@@ -397,13 +397,13 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 - (void)applicationDidBecomeActive:(id)notificaton {
-   // [self flushEvents];
+    [self flushEvents];
     OPTLYLogInfo(@"applicationDidBecomeActive");
 }
 
 - (void)applicationDidEnterBackground:(id)notification {
     // flush events is not guaranteed to finish before the app is suspended
-    //[self flushEvents];
+    [self flushEvents];
     OPTLYLogInfo(@"applicationDidEnterBackground");
 }
 
@@ -416,7 +416,7 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 - (void)applicationWillTerminate:(id)notification {
-    //[self flushEvents];
+    [self flushEvents];
     OPTLYLogInfo(@"applicationWillTerminate");
 }
 
