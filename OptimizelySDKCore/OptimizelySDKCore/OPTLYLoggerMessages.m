@@ -36,7 +36,7 @@ NSString *const OPTLYLoggerMessagesForcedBucketingFailed = @"[BUCKETER] Entity %
 // error
 NSString *const OPTLYLoggerMessagesActivationFailure = @"[CLIENT] Not activating user %@ for experiment %@."; // NOTE: also in Optimizely
 NSString *const OPTLYLoggerMessagesGetVariationFailure = @"[CLIENT] Could not get variation for user %@ for experiment %@."; // user ID, experiment key
-NSString *const OPTLYLoggerMessagesTrackFailure = @"[CLIENT] Not tracking event %@ for experiment %@."; // NOTE: also in Optimizely
+NSString *const OPTLYLoggerMessagesTrackFailure = @"[CLIENT] Not tracking event %@ for user %@."; // NOTE: also in Optimizely
 
 // ---- Data Store ----
 // Event Data Store

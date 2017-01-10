@@ -141,16 +141,20 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 // Test that a failed dispatch:
 //  - Event saved matches expected value
-//  - Timer is disabled
+//  - flushEvents is called
 - (void)testDispatchImpressionEventFailure {
     [self stubFailureResponse];
     
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent failure."];
     __weak typeof(self) weakSelf = self;
-    [self.eventDispatcher dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [eventDispatcherMock dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
         XCTAssert(numberOfSavedEvents == 1, @"Impression events should have been saved.");
-        [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
+        [eventDispatcherMock verify];
         [expectation fulfill];
     }];
     
@@ -164,12 +168,16 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)testDispatchConversionEventFailure {
     [self stubFailureResponse];
     
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
     __weak typeof(self) weakSelf = self;
-    [self.eventDispatcher dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [eventDispatcherMock dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeConversion];
         XCTAssert(numberOfSavedEvents == 1, @"Conversion events should have been saved.");
-        [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
+        [eventDispatcherMock verify];
         [expectation fulfill];
     }];
     
