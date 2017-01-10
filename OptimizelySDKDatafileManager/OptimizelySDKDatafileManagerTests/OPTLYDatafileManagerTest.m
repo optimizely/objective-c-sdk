@@ -208,7 +208,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)test304Response
 {
     // stub response
-    id<OHHTTPStubsDescriptor> stub = [self stub304Response];
+    id<OHHTTPStubsDescriptor> stub200 = [self stub200Response];
     
     // make sure we get a 200 the first time around and save that datafile
     __weak XCTestExpectation *expect200 = [self expectationWithDescription:@"should get a 200 on first try"];
@@ -221,8 +221,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
                          }];
     // wait for datafile download to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    // remove stub
+    [OHHTTPStubs removeStub:stub200];
     
-    
+    id<OHHTTPStubsDescriptor> stub304 = [self stub304Response];
     __weak XCTestExpectation *expect304 = [self expectationWithDescription:@"downloadDatafile304Response"];
     XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     XCTAssertNotNil([self.datafileManager getLastModifiedDate:kProjectId]);
@@ -264,7 +266,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     
     // remove stub
-    [OHHTTPStubs removeStub:stub];
+    [OHHTTPStubs removeStub:stub304];
 }
 
 # pragma mark - Helper Methods
