@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -362,11 +362,13 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
                                eventType:OPTLYDataStoreEventTypeConversion
                                    error:nil];
     
+    __block NSInteger attempts = 0;
     typedef void (^FlushEventsBlock)();
     __block __weak FlushEventsBlock weakFlushEvents = nil;
     __weak typeof(self) weakSelf = self;
     __block void (^flushEvents)() = ^(){
         FlushEventsBlock strongFlushEvents = weakFlushEvents;
+        attempts++;
         [eventDispatcher flushEvents:^{
             strongFlushEvents();
         }];
