@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,6 +21,12 @@
 NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
+// The total backoff and retry interval is
+//  pow(2,OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts) * OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
+// The number of re-tries following the first failed attempt
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 3;
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms = 1000;
+
 @implementation OPTLYNetworkService
 
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
@@ -29,14 +35,14 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    [requestManager GETIfModifiedSince:lastModifiedDate backoffRetry:YES completionHandler:completion];
+    [requestManager GETIfModifiedSince:lastModifiedDate completionHandler:completion];
 }
 
 - (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    [requestManager GETWithBackoffRetry:YES completionHandler:completion];
+    [requestManager GETWithCompletion:completion];
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)params
@@ -44,7 +50,10 @@ NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.am
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params backoffRetry:YES completionHandler:completion];
+    [requestManager POSTWithParameters:params
+                  backoffRetryInterval:OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
+                               retries:OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts
+                     completionHandler:completion];
 }
 
 # pragma mark - Helper Methods

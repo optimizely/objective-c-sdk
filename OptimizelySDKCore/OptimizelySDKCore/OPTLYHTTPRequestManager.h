@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -36,16 +36,18 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
  *
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)GET:(nullable OPTLYHTTPRequestManagerResponse)completion;
+- (void)GETWithCompletion:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * GET data from the URL inititialized with the option of doing an exponential backoff and retry
  *
- * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param backoffRetryInterval The backoff retry time interval for the exponential backoff (in ms)
+ * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)GETWithBackoffRetry:(BOOL)backoffRetry
-          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
+- (void)GETWithBackoffRetryInterval:(NSInteger)backoffRetryInterval
+                            retries:(NSInteger)retries
+                  completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 /**
  * GET data with parameters
  *
@@ -59,11 +61,13 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
  * GET data with parameters with the option of doing an exponential backoff and retry
  *
  * @param parameters Dictionary of GET request parameter values
- * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
+ * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithParameters:(nullable NSDictionary *)parameters
-             backoffRetry:(BOOL)backoffRetry
+     backoffRetryInterval:(NSInteger)backoffRetryInterval
+                  retries:(NSInteger)retries
         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
@@ -79,17 +83,19 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
- * A GET response with the following condition:
+ * A GET with an exponential backoff and retry attempt given the following conditions:
  * If the requested variant has not been modified since the time specified in the
  * "If-Modified-Since" field, an entity will not be returned from the server; instead,
  * a 304 (not modified) response will be returned without any message-body.
  *
  * @param lastModifiedDate The date since the URL request was last modified
- * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
+ * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
-              backoffRetry:(BOOL)backoffRetry
+      backoffRetryInterval:(NSInteger)backoffRetryInterval
+                   retries:(NSInteger)retries
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
@@ -102,22 +108,16 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
- * POST data with parameters with the option of doing an exponential backoff and retry
+ * POST data with parameters with an exponential backoff and retry attempt
  *
  * @param parameters Dictionary of POST request parameter values
- * @param backoffRetry Indicates if backoff retry should be attempted
+ * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
+ * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)POSTWithParameters:(nonnull NSDictionary *)parameters
-              backoffRetry:(BOOL)backoffRetry
+      backoffRetryInterval:(NSInteger)backoffRetryInterval
+                   retries:(NSInteger)retries
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
-/**
- * A utility method that returns the time interval for a complete backoff retry cycle.
- * This value is useful to have for determining minimum polling intervals.
- *
- * @return The backoff retry total time interval. 
- **/
-+ (NSInteger)backoffRetryDuration_ms;
 
 @end

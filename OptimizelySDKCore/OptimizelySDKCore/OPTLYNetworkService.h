@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -20,6 +20,8 @@
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYNetworkServiceCDNServerURL;
 extern NSString * const OPTLYNetworkServiceS3ServerURL;
+extern const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts;
+extern const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms;
 NS_ASSUME_NONNULL_END
 
 @interface OPTLYNetworkService : NSObject
