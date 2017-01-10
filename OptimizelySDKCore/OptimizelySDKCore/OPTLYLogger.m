@@ -45,7 +45,7 @@ NSString *const OPTLYLogLevelVerboseTag = @"VERBOSE";
 {
     self = [super init];
     if (self != nil) {
-        _logLevel = OptimizelyLogLevelDebug;         // default log level is info
+        _logLevel = OptimizelyLogLevelInfo;         // default log level is info
     }
     return self;
 }
