@@ -157,17 +157,20 @@ dispatch_queue_t dispatchEventQueue()
 # pragma mark - Dispatch Events
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeImpression callback:callback];
+    [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeImpression callback:callback];
 }
 
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    [self dispatchNewEvent:params eventType:OPTLYDataStoreEventTypeConversion callback:callback];
+    [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:callback];
 }
+
+
 
 // New events should be saved before a dispatch attempt is made
 // This preserves the event in case the app crashes or is dismissed before the dispatch completes
 - (void)dispatchNewEvent:(nonnull NSDictionary *)params
+            backoffRetry:(BOOL)backoffRetry
                eventType:(OPTLYDataStoreEventType)eventType
                 callback:(nullable OPTLYEventDispatcherResponse)callback {
     
@@ -179,7 +182,7 @@ dispatch_queue_t dispatchEventQueue()
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     
-    [self dispatchEvent:params eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self dispatchEvent:params backoffRetry:backoffRetry eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [self flushEvents];
         if (callback) {
             callback(data, response, error);
@@ -188,6 +191,7 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)event
+         backoffRetry:(BOOL)backoffRetry
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
     
@@ -207,6 +211,7 @@ dispatch_queue_t dispatchEventQueue()
         
         NSURL *url = [strongSelf URLForEvent:eventType];
         [self.networkService dispatchEvent:event
+                              backoffRetry:backoffRetry
                                      toURL:url
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                              
@@ -337,7 +342,7 @@ dispatch_queue_t dispatchEventQueue()
             NSDictionary *event = events[i];
             dispatch_group_enter(dispatchEventGroup);
             
-            [self dispatchEvent:event eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [self dispatchEvent:event backoffRetry:NO eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 dispatch_group_leave(dispatchEventGroup);
             }];
         }
@@ -350,7 +355,7 @@ dispatch_queue_t dispatchEventQueue()
     // This will be batched in the near future...
     for (NSInteger i = 0 ; i < numberOfEvents; ++i) {
         NSDictionary *event = events[i];
-        [self dispatchEvent:event eventType:eventType callback:nil];
+        [self dispatchEvent:event backoffRetry:YES eventType:eventType callback:nil];
     }
 }
 

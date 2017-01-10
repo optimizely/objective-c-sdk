@@ -69,10 +69,15 @@ const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_m
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params
-                  backoffRetryInterval:OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
-                               retries:OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts
-                     completionHandler:completion];
+    if (backoffRetry) {
+        [requestManager POSTWithParameters:params
+                      backoffRetryInterval:OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
+                                   retries:OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts
+                         completionHandler:completion];
+    } else {
+        [requestManager POSTWithParameters:params
+                         completionHandler:completion];
+    }
 }
 
 # pragma mark - Helper Methods
