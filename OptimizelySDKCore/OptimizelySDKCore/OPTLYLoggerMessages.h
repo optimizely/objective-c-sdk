@@ -166,6 +166,13 @@ extern NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile
 extern NSString *const OPTLYLoggerMessagesExperimentNotRunning;
 extern NSString *const OPTLYLoggerMessagesFailAudienceTargeting;
 
+// ---- HTTP Request Manager ----
+// Debug (not through logger handler)
+extern NSString *const OPTLYHTTPRequestManagerGETWithParametersAttempt;
+extern NSString *const OPTLYHTTPRequestManagerGETIfModifiedSince;
+extern NSString *const OPTLYHTTPRequestManagerPOSTWithParameters;
+extern NSString *const OPTLYHTTPRequestManagerBackoffRetryStates;
+
 @interface OPTLYLoggerMessages : NSObject
 
 @end

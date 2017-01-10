@@ -17,6 +17,7 @@
 #import "OPTLYErrorHandlerMessages.h"
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYLog.h"
+#import "OPTLYLoggerMessages.h"
 
 static NSString * const kHTTPRequestMethodGet = @"GET";
 static NSString * const kHTTPRequestMethodPost = @"POST";
@@ -117,7 +118,8 @@ dispatch_queue_t networkTasksQueue()
       backoffRetryAttempt:(NSInteger)backoffRetryAttempt
                     error:(NSError *)error
 {
-    OPTLYLogDebug(@"GET with parameter attempt: %lu", backoffRetryAttempt);
+    
+    OPTLYLogDebug(OPTLYHTTPRequestManagerGETWithParametersAttempt, backoffRetryAttempt);
     
     // TODO: Wrap this in a TEST preprocessor definition
     self.retryAttemptTest = backoffRetryAttempt;
@@ -201,7 +203,7 @@ dispatch_queue_t networkTasksQueue()
        backoffRetryAttempt:(NSInteger)backoffRetryAttempt
                      error:(NSError *)error
 {
-    OPTLYLogDebug(@"GET if modified attempt: %lu", backoffRetryAttempt);
+    OPTLYLogDebug(OPTLYHTTPRequestManagerGETIfModifiedSince, backoffRetryAttempt);
     
     // TODO: Wrap this in a TEST preprocessor definition
     self.retryAttemptTest = backoffRetryAttempt;
@@ -299,7 +301,7 @@ dispatch_queue_t networkTasksQueue()
        backoffRetryAttempt:(NSInteger)backoffRetryAttempt
                      error:(NSError *)error
 {
-    OPTLYLogDebug(@"POST attempt: %lu", backoffRetryAttempt);
+    OPTLYLogDebug(OPTLYHTTPRequestManagerPOSTWithParameters, backoffRetryAttempt);
     
     // TODO: Wrap this in a TEST preprocessor definition
     self.retryAttemptTest = backoffRetryAttempt;
@@ -352,7 +354,7 @@ dispatch_queue_t networkTasksQueue()
     uint64_t delay_ns = backoffRetryInterval * exponentialMultiplier * NSEC_PER_MSEC;
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, delay_ns);
     
-    OPTLYLogDebug(@"Retry attempt: %d exponentialMultiplier: %u delay_ns: %lu, delayTime: %lu", backoffRetryAttempt, exponentialMultiplier, delay_ns, delayTime);
+    OPTLYLogDebug(OPTLYHTTPRequestManagerBackoffRetryStates, backoffRetryAttempt, exponentialMultiplier, delay_ns, delayTime);
     
     // TODO: Wrap this in a TEST preprocessor definition
     self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];

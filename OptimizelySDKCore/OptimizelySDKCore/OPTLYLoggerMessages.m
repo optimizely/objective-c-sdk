@@ -160,6 +160,13 @@ NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile = @"[U
 NSString *const OPTLYLoggerMessagesExperimentNotRunning = @"[VALIDATOR] Experiment %@ is not running.";
 NSString *const OPTLYLoggerMessagesFailAudienceTargeting = @"[VALIDATOR] User %@ does not meet conditions to be in experiment %@.";
 
+// ---- HTTP Request Manager ----
+// Debug (not through logger handler)
+NSString *const OPTLYHTTPRequestManagerGETWithParametersAttempt = @"[HTTP] GET with parameter attempt: %lu";
+NSString *const OPTLYHTTPRequestManagerGETIfModifiedSince = @"[HTTP] GET if modified attempt: %lu";
+NSString *const OPTLYHTTPRequestManagerPOSTWithParameters = @"[HTTP] POST attempt: %lu";
+NSString *const OPTLYHTTPRequestManagerBackoffRetryStates = @"[HTTP] Retry attempt: %d exponentialMultiplier: %u delay_ns: %lu, delayTime: %lu";
+
 @implementation OPTLYLoggerMessages
 
 @end
