@@ -18,34 +18,53 @@
 #import "OPTLYProjectConfig.h"
 
 // ---- Datafile Download URLs ----
+// TODO: Move this to the Datafile manager and parameterize the URL for the datafile download
 NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
-// The total backoff and retry interval is
-//  pow(2,OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts) * OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
-// The number of re-tries following the first failed attempt
-const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 3;
+// ---- The total backoff and retry interval is: pow(2, attempts) * interval ----
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 3; // retries after first failed attempt
 const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms = 1000;
+
+const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts = 3; // retries after first failed attempt
+const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms = 1000;
 
 @implementation OPTLYNetworkService
 
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    [requestManager GETIfModifiedSince:lastModifiedDate completionHandler:completion];
+    if (backoffRetry) {
+        [requestManager GETIfModifiedSince:lastModifiedDate
+                      backoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
+                                   retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
+                         completionHandler:completion];
+    } else {
+        [requestManager GETIfModifiedSince:lastModifiedDate completionHandler:completion];
+    }
 }
 
-- (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+- (void)downloadProjectConfig:(NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
+            completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    [requestManager GETWithCompletion:completion];
+    if (backoffRetry) {
+        [requestManager GETWithBackoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
+                                            retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
+                                  completionHandler:completion];
+    } else {
+        [requestManager GETWithCompletion:completion];
+    }
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)params
+         backoffRetry:(BOOL)backoffRetry
                 toURL:(nonnull NSURL *)url
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
