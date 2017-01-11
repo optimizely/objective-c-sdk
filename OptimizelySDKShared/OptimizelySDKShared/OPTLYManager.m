@@ -30,8 +30,8 @@
 
 @implementation OPTLYManager
 
-+ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
++ (instancetype)init:(OPTLYManagerBuilderBlock)builderBlock {
+    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:builderBlock]];
 }
 
 + (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {

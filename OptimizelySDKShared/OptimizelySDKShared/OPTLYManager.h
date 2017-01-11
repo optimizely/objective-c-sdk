@@ -42,11 +42,10 @@
 
 /**
  * Init with builder block
- * @param block The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
+ * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
  * @return OptimizelyManager instance
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYManagerBuilderBlock)block;
-
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 /**
  * Init with a builder
  * @param builder The Optimizely Manager Builder where datafile manager, event dispatcher, and other configurations will be set.
