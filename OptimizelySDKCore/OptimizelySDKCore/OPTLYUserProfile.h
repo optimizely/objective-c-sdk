@@ -22,34 +22,34 @@
  * Saves a user ID's project-to-experiment-to-variation mapping.
  *
  * @param userId The user id that was used to generate the bucket value.
- * @param experimentKey An active experiment for which the user should be bucketed into.
- * @param variationKey The bucketed variation key.
+ * @param experimentId An active experiment for which the user should be bucketed into.
+ * @param variationId The bucketed variation key.
  *
  **/
-- (void)saveUser:(nonnull NSString *)userId
-      experiment:(nonnull NSString *)experimentKey
-       variation:(nonnull NSString *)variationKey;
+- (void)saveUserId:(nonnull NSString *)userId
+      experimentId:(nonnull NSString *)experimentId
+       variationId:(nonnull NSString *)variationId;
 
 /**
  * Gets the saved variation for a given user ID, project ID, and experiment key.
  *
  * @param userId The user ID that was used to generate the bucket value.
- * @param experimentKey An active experiment which the user was bucketed into.
- * @returns The variation that the user was bucketed into for the given project id and experiment key.
+ * @param experimentId An active experiment which the user was bucketed into.
+ * @returns The variation ID that the user was bucketed into for the given project id and experiment key.
  *
  **/
-- (nullable NSString *)getVariationForUser:(nonnull NSString *)userId
-                                experiment:(nonnull NSString *)experimentKey;
+- (nullable NSString *)getVariationIdForUserId:(nonnull NSString *)userId
+                                  experimentId:(nonnull NSString *)experimentId;
 
 /**
  * Removes a user ID's project-to-experiment-to-variation mapping.
  *
  * @param userId The user ID that was used to generate the bucket value.
- * @param experimentKey An active experiment for which the user should be bucketed into.
+ * @param experimentId An active experiment for which the user should be bucketed into.
  *
  **/
-- (void)removeUser:(nonnull NSString *)userId
-        experiment:(nonnull NSString *)experimentKey;
+- (void)removeUserId:(nonnull NSString *)userId
+        experimentId:(nonnull NSString *)experimentId;
 
 @end
 

@@ -23,9 +23,9 @@
     BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfile)];
     
     // runtime checks
-    BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(saveUser:experiment:variation:)];
-    BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationForUser:experiment:)];
-    BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(removeUser:experiment:)];
+    BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(saveUserId:experimentId:variationId:)];
+    BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationIdForUserId:experimentId:)];
+    BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(removeUserId:experimentId:)];
     
     return isValidProtocolDeclaration && implementsHandleSaveVariationMethod && implementsHandleGetVariationMethod && implementsHandleRemoveVariationMethod;
 }
@@ -34,19 +34,19 @@
 
 @implementation OPTLYUserProfileNoOp
 
-- (void)saveUser:(nonnull NSString *)userId
-      experiment:(nonnull NSString *)experimentKey
-       variation:(nonnull NSString *)variationKey {
+- (void)saveUserId:(nonnull NSString *)userId
+      experimentId:(nonnull NSString *)experimentId
+       variationId:(nonnull NSString *)variationId {
     return;
 }
 
-- (nullable NSString *)getVariationForUser:(nonnull NSString *)userId
-                                experiment:(nonnull NSString *)experimentKey {
+- (nullable NSString *)getVariationIdForUserId:(nonnull NSString *)userId
+                                  experimentId:(nonnull NSString *)experimentId {
     return nil;
 }
 
-- (void)removeUser:(nonnull NSString *)userId
-        experiment:(nonnull NSString *)experimentKey {
+- (void)removeUserId:(nonnull NSString *)userId
+        experimentId:(nonnull NSString *)experimentId {
     return;
 }
 
