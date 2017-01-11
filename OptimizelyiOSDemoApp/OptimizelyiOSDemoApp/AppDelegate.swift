@@ -32,11 +32,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // default parameters for initializing Optimizely from saved datafile
     let datafileName = "iOSDemoTestData"
-    var projectId = "8038273325"
-    var attributes = ["buyerType" : "frequent"]
-    var eventKey = "event1"
-    var experimentKey = "checkoutButtonTextExp"
+    var projectId = "8136462271"
+    var eventKey = "sample_conversion"
+    var experimentKey = "background_experiment"
     var downloadDatafile = true
+    
+    func launchApp(optimizelyClient: OPTLYClient) {
+        DispatchQueue.main.async {
+            let variation = optimizelyClient.activate(self.experimentKey, userId: self.userId)
+            if (variation != nil) {
+                print("Bucketed variation:", variation!.variationKey)
+            }
+            
+            var viewControllerIdentifier = "OPTLYFailureViewController"
+            if let variationKey = variation?.variationKey {
+                switch variationKey {
+                    case "variation_a":
+                        viewControllerIdentifier = "OPTLYVariationAViewController"
+                    case "variation_b":
+                        viewControllerIdentifier = "OPTLYVariationBViewController"
+                    default:
+                        viewControllerIdentifier = "OPTLYFailureViewController"
+                }
+            }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier)
+            if let window = self.window {
+                window.rootViewController = controller
+            }
+            
+            optimizelyClient.track(self.eventKey, userId: self.userId)
+        }
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -60,18 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // use different parameters if initializing Optimizely from downloaded datafile
         if self.downloadDatafile == true {
-            
             // initialize Optimizely Client from a datafile download
             optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
-                self?.optimizelyClient = optimizelyClient;
-                let variation = self?.optimizelyClient?.activate(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
-                if (variation != nil) {
-                    print("bucketed variation:", variation!.variationKey)
-                }
-                self?.optimizelyClient?.track(self!.eventKey, userId: self!.userId, attributes: self!.attributes, eventValue: self!.revenue)
+                self?.launchApp(optimizelyClient: optimizelyClient!)
                 })
         } else {
-            
             // get the datafile
             let bundle = Bundle.init(for: self.classForCoder)
             let filePath = bundle.path(forResource: datafileName, ofType: "json")
@@ -86,13 +107,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // initialize Optimizely Client from a saved datafile
             let optimizelyClient = optimizelyManager?.initialize(withDatafile:jsonDatafile!)
-            let variation = optimizelyClient?.activate(experimentKey, userId: userId, attributes: attributes)
-            if (variation != nil) {
-                print("bucketed variation:", variation!.variationKey)
-            }
-            optimizelyClient?.track(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
+
+            self.launchApp(optimizelyClient: optimizelyClient!)
         }
-        
         
         return true;
     }
