@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -20,11 +20,11 @@
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
 @class OPTLYtvOSManagerBuilder;
 
-typedef void (^OPTLYtvOSManagerBuilderBlock)(OPTLYtvOSManagerBuilder * _Nullable builder);
+typedef void (^OPTLYTVOSManagerBuilderBlock)(OPTLYtvOSManagerBuilder * _Nullable builder);
 
 @interface OPTLYtvOSManagerBuilder : OPTLYManagerBuilder
 
 /// Create the Optimizely tvOS Manager Builder object.
-+ (nullable instancetype)builderWithBlock:(nonnull OPTLYtvOSManagerBuilderBlock)block;
++ (nullable instancetype)builderWithBlock:(nonnull OPTLYTVOSManagerBuilderBlock)block;
 
 @end
