@@ -18,11 +18,11 @@
 #import <OptimizelySDKShared/OPTLYManagerBuilder.h>
 
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
-@class OPTLYtvOSManagerBuilder;
+@class OPTLYTVOSManagerBuilder;
 
-typedef void (^OPTLYTVOSManagerBuilderBlock)(OPTLYtvOSManagerBuilder * _Nullable builder);
+typedef void (^OPTLYTVOSManagerBuilderBlock)(OPTLYTVOSManagerBuilder * _Nullable builder);
 
-@interface OPTLYtvOSManagerBuilder : OPTLYManagerBuilder
+@interface OPTLYTVOSManagerBuilder : OPTLYManagerBuilder
 
 /// Create the Optimizely tvOS Manager Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYTVOSManagerBuilderBlock)block;

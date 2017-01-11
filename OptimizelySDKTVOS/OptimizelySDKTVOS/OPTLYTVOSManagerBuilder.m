@@ -20,11 +20,11 @@
 #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
 #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
 #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
-#import "OPTLYtvOSManagerBuilder.h"
+#import "OPTLYTVOSManagerBuilder.h"
 
 static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
 
-@implementation OPTLYtvOSManagerBuilder
+@implementation OPTLYTVOSManagerBuilder
 
 + (nullable instancetype)builderWithBlock:(OPTLYTVOSManagerBuilderBlock)block {
     return [[self alloc] initWithBlock:block];
