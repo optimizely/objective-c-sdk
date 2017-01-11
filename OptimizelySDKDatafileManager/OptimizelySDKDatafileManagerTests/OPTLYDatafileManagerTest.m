@@ -237,7 +237,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self waitForExpectationsWithTimeout:2 handler:nil];
     
     // test datafile manager works in optly manager class
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = self.datafileManager;
     }];

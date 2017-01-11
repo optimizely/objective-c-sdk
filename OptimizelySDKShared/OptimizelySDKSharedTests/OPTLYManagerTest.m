@@ -62,7 +62,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     NSString *clientVersion = @"clientVersion";
     
     // initialize Manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.datafileManager = datafileManager;
         builder.errorHandler = errorHandler;
@@ -95,7 +95,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
     // initialize manager without datafile
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
     
@@ -115,7 +115,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithDefaults {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
@@ -139,7 +139,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithCustomDatafile {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
@@ -163,7 +163,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientAsync {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
         builder.datafileManager = [OPTLYDatafileManagerBasic new];
