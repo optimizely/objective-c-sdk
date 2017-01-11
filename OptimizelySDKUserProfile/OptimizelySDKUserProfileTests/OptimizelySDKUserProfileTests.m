@@ -237,17 +237,17 @@ static NSData *removedVariationDatafile;
     
     OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
     XCTAssertNotNil(originalClient);
-    OPTLYVariation *originalVariation = [originalClient getVariationForExperiment:kUserProfileExperimentKey userId:kUserId1];
+    OPTLYVariation *originalVariation = [originalClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
     XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
     XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
     
     OPTLYClient *updatedClient = [manager initializeClientWithDatafile:updatedDatafile];
     XCTAssertNotNil(updatedClient);
-    OPTLYVariation *updatedVariation = [updatedClient getVariationForExperiment:kUserProfileExperimentKey userId:kUserId2];
+    OPTLYVariation *updatedVariation = [updatedClient variation:kUserProfileExperimentKey userId:kUserId2];
     XCTAssertNotNil(updatedVariation);
     XCTAssertEqualObjects(updatedVariation.variationKey, kUserProfileExperimentTreatmentVariationKey);
-    OPTLYVariation *variationForUser1 = [updatedClient getVariationForExperiment:kUserProfileExperimentKey userId:kUserId1];
+    OPTLYVariation *variationForUser1 = [updatedClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(variationForUser1);
     XCTAssertEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
     XCTAssertEqualObjects(originalVariation.variationId, variationForUser1.variationId);
@@ -271,7 +271,7 @@ static NSData *removedVariationDatafile;
     
     OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
     XCTAssertNotNil(originalClient);
-    OPTLYVariation *originalVariation = [originalClient getVariationForExperiment:kUserProfileExperimentKey userId:kUserId1];
+    OPTLYVariation *originalVariation = [originalClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
     XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
     XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
@@ -280,7 +280,7 @@ static NSData *removedVariationDatafile;
     OPTLYClient *updatedClient = [manager initializeClientWithDatafile:removedVariationDatafile];
     XCTAssertNotNil(updatedClient);
     XCTAssertNotNil([updatedClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be same as original client");
-    OPTLYVariation *variationForUser1 = [updatedClient getVariationForExperiment:kUserProfileExperimentKey userId:kUserId1];
+    OPTLYVariation *variationForUser1 = [updatedClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(variationForUser1);
     XCTAssertNotEqualObjects(originalVariation.variationKey, variationForUser1.variationKey);
     XCTAssertNotEqualObjects(originalVariation.variationId, variationForUser1.variationId);
