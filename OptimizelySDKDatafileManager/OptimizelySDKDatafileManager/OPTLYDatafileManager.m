@@ -69,7 +69,11 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDate, lastSavedModifiedDate];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
+    // if datafile polling is enabled, then no need for the backoff retry
+    BOOL enableBackoffRetry = self.datafileFetchInterval > 0 ? NO : YES;
+    
     [self.networkService downloadProjectConfig:self.projectId
+                                  backoffRetry:enableBackoffRetry
                                   lastModified:lastSavedModifiedDate
                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                  NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -156,9 +160,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     
     NSString *logMessage = @"";
     if ([lastModifiedDate length]) {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDate, lastModifiedDate, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound, lastModifiedDate, projectId];
     } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifedDateNotFound, projectId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerLastModifiedDateNotFound, projectId];
     }
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     

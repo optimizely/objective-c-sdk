@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,14 +15,24 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
+#import <OHHTTPStubs/OHHTTPStubs.h>
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYTestHelper.h"
 
 static NSString * const kTestURLString = @"testURL";
+static NSString * const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
+static NSInteger const kRetryAttempts = 3;
+static NSInteger const kBackoffRetryInterval = 1;
+
+@interface OPTLYHTTPRequestManager(test)
+@property (nonatomic, assign) NSInteger retryAttemptTest;
+@property (nonatomic, strong) NSMutableArray *delaysTest;
+@end
 
 @interface OPTLYHTTPRequestManagerTest : XCTestCase
-@property (nonatomic, strong ) NSURL *testURL;
+@property (nonatomic, strong) NSURL *testURL;
 @property (nonatomic, strong) NSDictionary *parameters;
+@property (nonatomic, strong) NSMutableArray *expectedDelays;
 @end
 
 @implementation OPTLYHTTPRequestManagerTest
@@ -31,11 +41,21 @@ static NSString * const kTestURLString = @"testURL";
     [super setUp];
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
+    
+    self.expectedDelays = [NSMutableArray new];
+    for (NSInteger i = 0; i < kRetryAttempts+1; ++i) {
+        uint32_t exponentialMultiplier = pow(2.0, i);
+        uint64_t delay_ns = kBackoffRetryInterval * exponentialMultiplier * NSEC_PER_MSEC;
+        self.expectedDelays[i] = [NSNumber numberWithLongLong:delay_ns];
+    }
+    
 }
 
 - (void)tearDown {
+    [OHHTTPStubs removeAllStubs];
     self.testURL = nil;
     self.parameters = nil;
+    self.expectedDelays = nil;
     [super tearDown];
 }
 
@@ -51,7 +71,7 @@ static NSString * const kTestURLString = @"testURL";
     [OPTLYTestHelper stubSuccessResponse];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GET success."];
-    [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithCompletion:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(data != nil, @"Network service GET does not return data as expected.");
     }];
@@ -68,7 +88,7 @@ static NSString * const kTestURLString = @"testURL";
     [OPTLYTestHelper stubFailureResponse];
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GET failure."];
-    [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithCompletion:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(error != nil, @"Network service GET does not return error as expected.");
     }];
@@ -146,5 +166,187 @@ static NSString * const kTestURLString = @"testURL";
             NSLog(@"Timeout error for POSTWithParameters: %@", error);
         }
     }];
+}
+
+// Tests the following for the POST with backoff retry:
+// 1. correct number of recursive calls
+// 2. the right delays are set at each retry attempt
+- (void)testPOSTWithParametersBackoffRetryFailure
+{
+    [OPTLYTestHelper stubFailureResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
+    [requestManager POSTWithParameters:self.parameters
+                  backoffRetryInterval:kBackoffRetryInterval
+                               retries:kRetryAttempts
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkMaxRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error != nil, @"Network service POSTWithParameters does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for POSTWithParameters: %@", error);
+        }
+    }];
+    
+    
+}
+
+- (void)testPOSTWithParametersBackoffRetrySuccess
+{
+    [OPTLYTestHelper stubSuccessResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
+    [requestManager POSTWithParameters:self.parameters
+                  backoffRetryInterval:kBackoffRetryInterval
+                               retries:kRetryAttempts
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkNoRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error == nil, @"Network service POSTWithParameters does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for POSTWithParameters: %@", error);
+        }
+    }];
+}
+- (void)testGETRetryFailure
+{
+    [OPTLYTestHelper stubFailureResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithBackoffRetry failure."];
+    [requestManager GETWithBackoffRetryInterval:kBackoffRetryInterval
+                                        retries:kRetryAttempts
+                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkMaxRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error != nil, @"Network service GETWithBackoffRetry does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETWithBackoffRetry: %@", error);
+        }
+    }];
+}
+
+- (void)testGETBackoffRetrySuccess
+{
+    [OPTLYTestHelper stubSuccessResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithBackoffRetry failure."];
+    [requestManager GETWithBackoffRetryInterval:kBackoffRetryInterval
+                                        retries:kRetryAttempts
+                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkNoRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error == nil, @"Network service GETWithBackoffRetry returns an unexpected error.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETWithBackoffRetry: %@", error);
+        }
+    }];
+}
+
+- (void)testGETWithParametersBackoffRetryFailure
+{
+    [OPTLYTestHelper stubFailureResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters failure."];
+    [requestManager GETWithParameters:self.parameters
+                 backoffRetryInterval:kBackoffRetryInterval
+                              retries:kRetryAttempts
+                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkMaxRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error != nil, @"Network service GETWithParameters does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETWithParameters: %@", error);
+        }
+    }];
+}
+
+- (void)testGETWithParametersBackoffRetrySuccess
+{
+    [OPTLYTestHelper stubSuccessResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters failure."];
+    [requestManager GETWithParameters:self.parameters
+                 backoffRetryInterval:kBackoffRetryInterval
+                              retries:kRetryAttempts
+                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkNoRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error == nil, @"Network service GETWithParameters returns an unexpected error.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETWithParameters: %@", error);
+        }
+    }];
+}
+
+- (void)testGETIfModifiedBackoffRetryFailure
+{
+    [OPTLYTestHelper stubFailureResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETIfModifiedSince failure."];
+    [requestManager GETIfModifiedSince:kLastModifiedDate
+                  backoffRetryInterval:kBackoffRetryInterval
+                               retries:kRetryAttempts
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkMaxRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error != nil, @"Network service GETIfModifiedSince does not return error as expected.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETIfModifiedSince: %@", error);
+        }
+    }];
+}
+
+- (void)testGETIfModifiedBackoffRetrySuccess
+{
+    [OPTLYTestHelper stubSuccessResponse];
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETIfModifiedSince failure."];
+    [requestManager GETIfModifiedSince:kLastModifiedDate
+                  backoffRetryInterval:kBackoffRetryInterval
+                               retries:kRetryAttempts
+                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self checkNoRetries:requestManager];
+        [expectation fulfill];
+        NSAssert(error == nil, @"Network service GETIfModifiedSince returns an unexpected error.");
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for GETIfModifiedSince: %@", error);
+        }
+    }];
+}
+
+#pragma mark - Helper Methods
+
+- (void)checkNoRetries:(OPTLYHTTPRequestManager *)requestManager {
+    XCTAssertTrue(requestManager.retryAttemptTest == 0, @"Invalid number of retries.");
+    XCTAssertTrue([requestManager.delaysTest isEqualToArray:@[]], @"Invalid delays set for backoff retry.");
+}
+
+- (void)checkMaxRetries:(OPTLYHTTPRequestManager *)requestManager {
+    XCTAssertTrue(requestManager.retryAttemptTest == kRetryAttempts+1, @"Invalid number of retries.");
+    XCTAssertTrue([requestManager.delaysTest isEqualToArray:self.expectedDelays], @"Invalid delays set for backoff retry.");
 }
 @end

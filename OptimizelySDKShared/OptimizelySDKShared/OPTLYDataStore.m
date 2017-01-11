@@ -29,8 +29,8 @@ static NSString * const kUserProfile = @"user-profile";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
 // table names
-static NSString *const kOPTLYDataStoreEventTypeImpression = @"events_impression";
-static NSString *const kOPTLYDataStoreEventTypeConversion = @"events_conversion";
+static NSString *const kOPTLYDataStoreEventTypeImpression = @"impression_events";
+static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events";
 
 @interface OPTLYDataStore()
 @property (nonatomic, strong) OPTLYFileManager *fileManager;

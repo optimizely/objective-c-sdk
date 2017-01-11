@@ -65,6 +65,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self stub200Response];
     
     [self.network downloadProjectConfig:kProjectId
+                           backoffRetry:NO
                       completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                           NSDictionary *datafile = [NSJSONSerialization JSONObjectWithData:data
                                                                                    options:kNilOptions
@@ -82,6 +83,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self stub200Response];
     
     [self.network downloadProjectConfig:kProjectId
+                           backoffRetry:NO
                            lastModified:kLastModifiedDate
                       completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                           NSDictionary *datafile = [NSJSONSerialization JSONObjectWithData:data

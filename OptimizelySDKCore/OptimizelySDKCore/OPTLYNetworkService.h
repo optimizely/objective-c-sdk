@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -20,39 +20,49 @@
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYNetworkServiceCDNServerURL;
 extern NSString * const OPTLYNetworkServiceS3ServerURL;
+extern const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts;
+extern const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms;
+extern const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts;
+extern const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms;
 NS_ASSUME_NONNULL_END
 
 @interface OPTLYNetworkService : NSObject
 /**
  * Download the project config file from remote server
  *
- * @param projectId The project ID of the datafile to download.
+ * @param projectId The project ID of the datafile to download
+ * @param backoffRetry Indicates if the exponential backoff retry should be enabled
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * Download the project config file from remote server only if it
  * has been modified.
  *
- * @param projectId The project ID of the datafile to download.
- * @param lastModifiedDate The date the datafile was last modified.
+ * @param projectId The project ID of the exponential the datafile to download
+ * @param backoffRetry Indicates if backoff retry should be enabled
+ * @param lastModifiedDate The date the datafile was last modified
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * Dispatches an event to a url
  * @param params Dictionary of the event parameter values
+ * @param backoffRetry Indicates if the exponential backoff retry should be enabled
  * @param url The url to dispatch the event
  * @param completion The completion handler
  */
 - (void)dispatchEvent:(nonnull NSDictionary *)params
+         backoffRetry:(BOOL)backoffRetry
                 toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
+    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * Returns the URL path for the datafile of a particular project.
