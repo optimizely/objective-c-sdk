@@ -603,34 +603,34 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    double variableDouble = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                        userId:kUserId
-                                                    attributes:self.attributes
-                                            activateExperiment:NO
-                                                         error:nil];
+    double variableDouble = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                     userId:kUserId
+                                                 attributes:self.attributes
+                                         activateExperiment:NO
+                                                      error:nil];
     XCTAssertEqualWithAccuracy(variableDouble, 1.8, 0.0000001);
     
     [optimizelyMock stopMocking];
 }
 
 - (void)testGetVariableDoubleShortAPI {
-    double variableDoubleShortAPI = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                userId:kUserId];
+    double variableDoubleShortAPI = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                             userId:kUserId];
     XCTAssertEqualWithAccuracy(variableDoubleShortAPI, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
 }
 
 - (void)testGetVariableFloatShortAPIWithActivateExperimentParamIncluded {
-    double variableDoubleShortAPIWithActivateExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                                      userId:kUserId
-                                                                          activateExperiment:NO];
+    double variableDoubleShortAPIWithActivateExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                                                   userId:kUserId
+                                                                       activateExperiment:NO];
     XCTAssertEqualWithAccuracy(variableDoubleShortAPIWithActivateExperiment, .5, 0.0000001, @"float value should be 0.5 when user doesn't pass audience conditions");
 }
 
 - (void)testGetVariableFloatShortAPIWithAttributes {
-    double variableDoubleShortAPIWithAttributes = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                              userId:kUserId
-                                                                          attributes:self.attributes
-                                                                  activateExperiment:NO];
+    double variableDoubleShortAPIWithAttributes = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                                           userId:kUserId
+                                                                       attributes:self.attributes
+                                                               activateExperiment:NO];
     XCTAssertEqualWithAccuracy(variableDoubleShortAPIWithAttributes, 1.8, 0.0000001);
 }
 
@@ -638,11 +638,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    double variableDoubleActivateExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                          userId:kUserId
-                                                                      attributes:self.attributes
-                                                              activateExperiment:YES
-                                                                           error:nil];
+    double variableDoubleActivateExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                                       userId:kUserId
+                                                                   attributes:self.attributes
+                                                           activateExperiment:YES
+                                                                        error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableDoubleWithActivateExperimentTrue: %@", error);
@@ -662,11 +662,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    double variableDoubleActivateExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                          userId:kUserId
-                                                                      attributes:self.attributes
-                                                              activateExperiment:YES
-                                                                           error:nil];
+    double variableDoubleActivateExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                                       userId:kUserId
+                                                                   attributes:self.attributes
+                                                           activateExperiment:YES
+                                                                        error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableDoubleWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
@@ -690,11 +690,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    double variableDoubleWithGroupedExperiment = [self.optimizely getVariableDouble:kVariableKeyForDoubleGroupedExperiment
-                                                                             userId:kUserId
-                                                                         attributes:nil
-                                                                 activateExperiment:NO
-                                                                              error:nil];
+    double variableDoubleWithGroupedExperiment = [self.optimizely variableDouble:kVariableKeyForDoubleGroupedExperiment
+                                                                          userId:kUserId
+                                                                      attributes:nil
+                                                              activateExperiment:NO
+                                                                           error:nil];
     
     XCTAssertEqualWithAccuracy(variableDoubleWithGroupedExperiment, 75.5, 0.0000001, "Variable float value should be 75.5.");
     
@@ -710,11 +710,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    double variableDoubleNotInExperimentVariation = [self.optimizely getVariableDouble:kVariableKeyForDoubleNotInExperimentVariation
-                                                                                userId:kUserId
-                                                                            attributes:nil
-                                                                    activateExperiment:YES
-                                                                                 error:nil];
+    double variableDoubleNotInExperimentVariation = [self.optimizely variableDouble:kVariableKeyForDoubleNotInExperimentVariation
+                                                                             userId:kUserId
+                                                                         attributes:nil
+                                                                 activateExperiment:YES
+                                                                              error:nil];
     
     XCTAssertEqualWithAccuracy(variableDoubleNotInExperimentVariation, 10101.101, 0.0000001, "Variable float value should be 10101.101.");
     
@@ -729,11 +729,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    double variableDoubleUserNotBucketedIntoExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
-                                                                                     userId:kUserId
-                                                                                 attributes:nil
-                                                                         activateExperiment:NO
-                                                                                      error:nil];
+    double variableDoubleUserNotBucketedIntoExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                                                  userId:kUserId
+                                                                              attributes:nil
+                                                                      activateExperiment:NO
+                                                                                   error:nil];
     // Should return default value
     XCTAssertEqualWithAccuracy(variableDoubleUserNotBucketedIntoExperiment, 0.5, 0.0000001);
     

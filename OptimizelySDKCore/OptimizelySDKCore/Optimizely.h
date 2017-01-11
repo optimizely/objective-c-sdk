@@ -354,8 +354,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId;
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId;
 
 /**
  * Gets the double value of the live variable.
@@ -369,9 +369,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-         activateExperiment:(BOOL)activateExperiment;
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+      activateExperiment:(BOOL)activateExperiment;
 
 /**
  * Gets the double value of the live variable.
@@ -386,10 +386,10 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-         activateExperiment:(BOOL)activateExperiment;
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment;
 
 /**
  * Gets the double value of the live variable.
@@ -405,11 +405,11 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
  *  If an error is found, a warning message is logged, and an error will be propagated to the user.
  */
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-         activateExperiment:(BOOL)activateExperiment
-                      error:(NSError * _Nullable * _Nullable)error;
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment
+                   error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
