@@ -69,16 +69,16 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
 }
 
 #pragma mark getVariation methods
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId {
-    return [self getVariationForExperiment:experimentKey
-                                    userId:userId
-                                attributes:nil];
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId {
+    return [self variation:experimentKey
+                    userId:userId
+                attributes:nil];
 }
 
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId
-                                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId
+                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyError,
@@ -87,9 +87,9 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
         return nil;
     }
     else {
-        return [self.optimizely getVariationForExperiment:experimentKey
-                                                   userId:userId
-                                               attributes:attributes];
+        return [self.optimizely variation:experimentKey
+                                   userId:userId
+                               attributes:attributes];
     }
 }
 

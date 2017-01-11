@@ -81,8 +81,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID to be used for bucketing.
  * @return The variation the user was bucketed into. This value can be nil.
  */
-- (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
-                                                userId:(nonnull NSString *)userId;
+- (nullable OPTLYVariation *)variation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId;
 
 /**
  * Get variation for experiment and user ID with user attributes.
@@ -91,9 +91,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes A map of attribute names to current user attribute values.
  * @return The variation the user was bucketed into. This value can be nil.
  */
-- (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
-                                                userId:(nonnull NSString *)userId
-                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable OPTLYVariation *)variation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
 #pragma mark - trackEvent methods
 /**

@@ -88,13 +88,13 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     OPTLYVariation *variation;
     
     // test just experiment key
-    variation = [self.optimizely getVariationForExperiment:experimentKey userId:kUserId];
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
     XCTAssertNotNil(variation);
     XCTAssertTrue([variation.variationKey isEqualToString:@"control"]);
     XCTAssertTrue([variation.variationId isEqualToString:@"6384330451"]);
     
     // test with bad experiment key
-    variation = [self.optimizely getVariationForExperiment:@"bad" userId:kUserId];
+    variation = [self.optimizely variation:@"bad" userId:kUserId];
     XCTAssertNil(variation);
     
 }
@@ -108,17 +108,17 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     NSDictionary *attributesWithUserInAudience = @{@"browser_type" : @"firefox"};
     
     // test get experiment without attributes
-    variation = [self.optimizely getVariationForExperiment:experimentKey userId:kUserId];
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
     XCTAssertNil(variation);
     // test get experiment with bad attributes
-    variation = [self.optimizely getVariationForExperiment:experimentKey
-                                                    userId:kUserId
-                                                attributes:attributesWithUserNotInAudience];
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserNotInAudience];
     XCTAssertNil(variation);
     // test get experiment with good attributes
-    variation = [self.optimizely getVariationForExperiment:experimentKey
-                                                    userId:kUserId
-                                                attributes:attributesWithUserInAudience];
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserInAudience];
     XCTAssertNotNil(variation);
 }
 
@@ -754,7 +754,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                                                                           XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKey]);
                                                                                           XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
                                                                                           XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], self.attributes);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely getVariationForExperiment:kExperimentKey userId:kUserId attributes:self.attributes]);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely variation:kExperimentKey userId:kUserId attributes:self.attributes]);
                                                                                           [expectation fulfill];
                                                                                       }];
     

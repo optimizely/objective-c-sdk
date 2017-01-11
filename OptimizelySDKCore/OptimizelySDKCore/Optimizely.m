@@ -102,9 +102,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     
     // get variation
-    OPTLYVariation *variation = [self getVariationForExperiment:experimentKey
-                                                         userId:userId
-                                                     attributes:attributes];
+    OPTLYVariation *variation = [self variation:experimentKey
+                                         userId:userId
+                                     attributes:attributes];
     
     if (!variation) {
         [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
@@ -159,16 +159,16 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 #pragma mark getVariation methods
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId {
-    return [self getVariationForExperiment:experimentKey
-                                    userId:userId
-                                attributes:nil];
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId {
+    return [self variation:experimentKey
+                    userId:userId
+                attributes:nil];
 }
 
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId
-                                   attributes:(NSDictionary<NSString *,NSString *> *)attributes
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId
+                   attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
     if (self.userProfile != nil) {
         NSString *storedVariationKey = [self.userProfile getVariationForUser:userId experiment:experimentKey];
@@ -335,19 +335,19 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
  * @param activateExperiment Indicates if the user should be activated into the experiment
  * @return Variation of the experiment that the user has been bucketed into
  */
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(nonnull NSString *)userId
-                                   attributes:(nullable NSDictionary *)attributes
-                           activateExperiment:(BOOL)activateExperiment {
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(nonnull NSString *)userId
+                   attributes:(nullable NSDictionary *)attributes
+           activateExperiment:(BOOL)activateExperiment {
     OPTLYVariation *variation = nil;
     if (activateExperiment) {
         variation = [self activate:experimentKey
                             userId:userId
                         attributes:attributes];
     } else {
-        variation = [self getVariationForExperiment:experimentKey
-                                             userId:userId
-                                         attributes:attributes];
+        variation = [self variation:experimentKey
+                             userId:userId
+                         attributes:attributes];
     }
     return variation;
 }
@@ -438,10 +438,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     for (NSString *experimentKey in experimentKeysForLiveVariable) {
-        OPTLYVariation *variation = [self getVariationForExperiment:experimentKey
-                                                             userId:userId
-                                                         attributes:attributes
-                                                 activateExperiment:activateExperiment];
+        OPTLYVariation *variation = [self variation:experimentKey
+                                             userId:userId
+                                         attributes:attributes
+                                 activateExperiment:activateExperiment];
         
         if (variation == nil) {
             // If user is not bucketed into experiment, then continue to another experiment
