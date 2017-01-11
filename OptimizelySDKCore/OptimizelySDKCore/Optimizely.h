@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -54,8 +54,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID to be used for bucketing.
  * @return The variation the user was bucketed into. This value can be nil.
  */
-- (nullable OPTLYVariation *)activateExperiment:(nonnull NSString *)experimentKey
-                                         userId:(nonnull NSString *)userId;
+- (nullable OPTLYVariation *)activate:(nonnull NSString *)experimentKey
+                               userId:(nonnull NSString *)userId;
 
 /**
  * Try to activate an experiment based on the experiment key and user ID with user attributes.
@@ -64,9 +64,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes A map of attribute names to current user attribute values.
  * @return The variation the user was bucketed into. This value can be nil.
  */
-- (nullable OPTLYVariation *)activateExperiment:(nonnull NSString *)experimentKey
-                                         userId:(nonnull NSString *)userId
-                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable OPTLYVariation *)activate:(nonnull NSString *)experimentKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
 #pragma mark - getVariation methods
 /**
@@ -413,7 +413,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 
 @end
 
-/** 
+/**
  * This class defines the Optimizely SDK interface.
  * Optimizely Instance
  */

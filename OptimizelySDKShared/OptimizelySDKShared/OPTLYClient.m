@@ -46,14 +46,14 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
 }
 
 #pragma mark activate methods
-- (OPTLYVariation *)activateExperiment:(nonnull NSString *)experimentKey
-                                userId:(nonnull NSString *)userId {
-    return [self activateExperiment:experimentKey userId:userId attributes:nil];
+- (OPTLYVariation *)activate:(nonnull NSString *)experimentKey
+                      userId:(nonnull NSString *)userId {
+    return [self activate:experimentKey userId:userId attributes:nil];
 }
 
-- (OPTLYVariation *)activateExperiment:(NSString *)experimentKey
-                                userId:(NSString *)userId
-                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
                                  OPTLYClientDummyOptimizelyError,
@@ -62,9 +62,9 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
         return nil;
     }
     else {
-        return [self.optimizely activateExperiment:experimentKey
-                                            userId:userId
-                                        attributes:attributes];
+        return [self.optimizely activate:experimentKey
+                                  userId:userId
+                              attributes:attributes];
     }
 }
 
@@ -206,7 +206,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
     return [self.optimizely getVariableBoolean:variableKey
                                         userId:userId];
 }
-    
+
 - (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
                     userId:(nonnull NSString *)userId
         activateExperiment:(BOOL)activateExperiment {
@@ -270,7 +270,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
     return [self.optimizely getVariableInteger:variableKey
                                         userId:userId];
 }
-    
+
 - (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
                          userId:(nonnull NSString *)userId
              activateExperiment:(BOOL)activateExperiment {
@@ -334,7 +334,7 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
     return [self.optimizely getVariableDouble:variableKey
                                        userId:userId];
 }
-    
+
 - (double)getVariableDouble:(nonnull NSString *)variableKey
                      userId:(nonnull NSString *)userId
          activateExperiment:(BOOL)activateExperiment {

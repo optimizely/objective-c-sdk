@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -153,9 +153,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
                                                           userId:kUserId
@@ -210,9 +210,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -234,9 +234,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -245,9 +245,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     NSString *variableStringWithGroupedExperiment = [optimizelyMock getVariableString:kVariableKeyForStringGroupedExperiment
                                                                                userId:kUserId
@@ -263,9 +263,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
     NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringNotInExperimentVariation
@@ -283,9 +283,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
                                                           userId:kUserId
@@ -303,9 +303,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                     userId:kUserId
@@ -320,7 +320,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
 
 - (void)testGetVariableBooleanShortAPI {
     BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
-                                                  userId:kUserId];
+                                                     userId:kUserId];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
@@ -360,9 +360,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertFalse(variableBoolActivateExperiment, "Variable boolean value should be false.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -385,9 +385,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertFalse(variableBoolActivateExperiment, "Variable boolean value should be false.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -396,9 +396,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     BOOL variableBoolWithGroupedExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBoolGroupedExperiment
                                                                          userId:kUserId
@@ -415,9 +415,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
     BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBoolean:kVariableKeyForBoolNotInExperimentVariation
@@ -435,9 +435,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
                                                     userId:kUserId
@@ -455,9 +455,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     NSInteger variableInt = [optimizelyMock getVariableInteger:kVariableKeyForInt
                                                         userId:kUserId
@@ -508,9 +508,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqual(variableIntActivateExperiment, 8, "Variable integer value should be 8.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -532,9 +532,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqual(variableIntActivateExperiment, 8, "Variable integer value should be 8.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -543,9 +543,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     NSInteger variableIntWithGroupedExperiment = [self.optimizely getVariableInteger:kVariableKeyForIntegerGroupedExperiment
                                                                               userId:kUserId
@@ -561,9 +561,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
     NSInteger variableIntNotInExperimentVariation = [self.optimizely getVariableInteger:kVariableKeyForIntegerNotInExperimentVariation
@@ -580,9 +580,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     NSInteger variableIntUserNotBucketedIntoExperiment = [optimizelyMock getVariableInteger:kVariableKeyForInt
                                                                                      userId:kUserId
@@ -599,9 +599,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     double variableDouble = [self.optimizely getVariableDouble:kVariableKeyForDouble
                                                         userId:kUserId
@@ -651,9 +651,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqualWithAccuracy(variableDoubleActivateExperiment, 1.8, 0.0000001, "Variable float value should be 1.8.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -675,9 +675,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     
     XCTAssertEqualWithAccuracy(variableDoubleActivateExperiment, 1.8, 0.0000001, "Variable float value should be 1.8.");
     // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     [optimizelyMock stopMocking];
 }
@@ -686,9 +686,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     double variableDoubleWithGroupedExperiment = [self.optimizely getVariableDouble:kVariableKeyForDoubleGroupedExperiment
                                                                              userId:kUserId
@@ -705,9 +705,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
     double variableDoubleNotInExperimentVariation = [self.optimizely getVariableDouble:kVariableKeyForDoubleNotInExperimentVariation
@@ -725,9 +725,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
     // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activateExperiment:[OCMArg isNotNil]
-                                          userId:[OCMArg isNotNil]
-                                      attributes:[OCMArg isNotNil]]);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]]);
     
     double variableDoubleUserNotBucketedIntoExperiment = [self.optimizely getVariableDouble:kVariableKeyForDouble
                                                                                      userId:kUserId
@@ -758,9 +758,9 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                                                                           [expectation fulfill];
                                                                                       }];
     
-    OPTLYVariation *variation = [self.optimizely activateExperiment:kExperimentKey
-                                                             userId:kUserId
-                                                         attributes:self.attributes];
+    OPTLYVariation *variation = [self.optimizely activate:kExperimentKey
+                                                   userId:kUserId
+                                               attributes:self.attributes];
     XCTAssertNotNil(variation);
     
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];

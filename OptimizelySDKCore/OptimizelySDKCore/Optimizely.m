@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -90,16 +90,16 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
 }
 
-- (OPTLYVariation *)activateExperiment:(NSString *)experimentKey
-                                userId:(NSString *)userId {
-    return [self activateExperiment:experimentKey
-                             userId:userId
-                         attributes:nil];
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId {
+    return [self activate:experimentKey
+                   userId:userId
+               attributes:nil];
 }
 
-- (OPTLYVariation *)activateExperiment:(NSString *)experimentKey
-                                userId:(NSString *)userId
-                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     
     // get variation
     OPTLYVariation *variation = [self getVariationForExperiment:experimentKey
@@ -129,14 +129,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSDictionary *impressionEventParams = [impressionEvent toDictionary];
     [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-         if (error) {
-             [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
-         } else {
-             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experimentKey];
-             [self.logger logMessage:logMessage
-                           withLevel:OptimizelyLogLevelInfo];
-         }
-    }];
+                                             if (error) {
+                                                 [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+                                             } else {
+                                                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experimentKey];
+                                                 [self.logger logMessage:logMessage
+                                                               withLevel:OptimizelyLogLevelInfo];
+                                             }
+                                         }];
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                     OptimizelyNotificationsUserDictionaryVariationKey: variation
@@ -198,10 +198,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     //Attempt to save user profile
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation, userId]
-                   withLevel:OptimizelyLogLevelDebug];
+                  withLevel:OptimizelyLogLevelDebug];
     [self.userProfile saveUser:userId
-                experiment:experimentKey
-                 variation:bucketedVariation.variationKey];
+                    experiment:experimentKey
+                     variation:bucketedVariation.variationKey];
     return bucketedVariation;
 }
 
@@ -257,14 +257,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     [self.eventDispatcher dispatchConversionEvent:conversionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            [self handleErrorLogsForTrackEvent:eventKey userId:userId];
-        } else {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingSuccess, eventKey, userId];
-            [self.logger logMessage:logMessage
-                          withLevel:OptimizelyLogLevelInfo];
-        }
-    }];
+                                             if (error) {
+                                                 [self handleErrorLogsForTrackEvent:eventKey userId:userId];
+                                             } else {
+                                                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingSuccess, eventKey, userId];
+                                                 [self.logger logMessage:logMessage
+                                                               withLevel:OptimizelyLogLevelInfo];
+                                             }
+                                         }];
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                     OptimizelyNotificationsUserDictionaryEventNameKey: eventKey,
@@ -341,9 +341,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                            activateExperiment:(BOOL)activateExperiment {
     OPTLYVariation *variation = nil;
     if (activateExperiment) {
-        variation = [self activateExperiment:experimentKey
-                                      userId:userId
-                                  attributes:attributes];
+        variation = [self activate:experimentKey
+                            userId:userId
+                        attributes:attributes];
     } else {
         variation = [self getVariationForExperiment:experimentKey
                                              userId:userId
