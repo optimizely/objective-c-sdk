@@ -55,20 +55,20 @@
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance
  */
-- (nullable OPTLYClient *)initializeClient;
+- (nullable OPTLYClient *)initialize;
 
 /**
  * Synchronous call that would instantiate the client from the datafile given
  * If the datafile is bad, then the client will try to get the datafile from local cache (if it exists). If it fails to load from local cache it will return a dummy instance
  */
-- (nullable OPTLYClient *)initializeClientWithDatafile:(nonnull NSData *)datafile;
+- (nullable OPTLYClient *)initializeWithDatafile:(nonnull NSData *)datafile;
 
 
 /**
  * Asynchronously gets the client from a datafile downloaded from the CDN.
  * If the client could not be initialized, the error will be set in the callback.
  */
-- (void)initializeClientWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
+- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
 
 /*
  * Gets the cached Optimizely client. 

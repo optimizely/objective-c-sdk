@@ -249,7 +249,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *clientExpectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
     __block OPTLYClient *optimizelyClient;
-    [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+    [manager initializeWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
         // retain a reference to the client
         optimizelyClient = client;
         // check client in callback

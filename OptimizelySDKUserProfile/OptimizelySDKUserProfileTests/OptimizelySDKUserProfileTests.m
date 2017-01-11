@@ -235,14 +235,14 @@ static NSData *removedVariationDatafile;
     }];
     XCTAssertNotNil(manager);
     
-    OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
+    OPTLYClient *originalClient = [manager initializeWithDatafile:originalDatafile];
     XCTAssertNotNil(originalClient);
     OPTLYVariation *originalVariation = [originalClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
     XCTAssertEqualObjects(originalVariation.variationKey, kUserProfileExperimentOriginalVariationKey);
     XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
     
-    OPTLYClient *updatedClient = [manager initializeClientWithDatafile:updatedDatafile];
+    OPTLYClient *updatedClient = [manager initializeWithDatafile:updatedDatafile];
     XCTAssertNotNil(updatedClient);
     OPTLYVariation *updatedVariation = [updatedClient variation:kUserProfileExperimentKey userId:kUserId2];
     XCTAssertNotNil(updatedVariation);
@@ -269,7 +269,7 @@ static NSData *removedVariationDatafile;
     }];
     XCTAssertNotNil(manager);
     
-    OPTLYClient *originalClient = [manager initializeClientWithDatafile:originalDatafile];
+    OPTLYClient *originalClient = [manager initializeWithDatafile:originalDatafile];
     XCTAssertNotNil(originalClient);
     OPTLYVariation *originalVariation = [originalClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
@@ -277,7 +277,7 @@ static NSData *removedVariationDatafile;
     XCTAssertNotNil([originalClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be stored");
     
     // update client with a new datafile
-    OPTLYClient *updatedClient = [manager initializeClientWithDatafile:removedVariationDatafile];
+    OPTLYClient *updatedClient = [manager initializeWithDatafile:removedVariationDatafile];
     XCTAssertNotNil(updatedClient);
     XCTAssertNotNil([updatedClient.optimizely.userProfile getVariationForUser:kUserId1 experiment:kUserProfileExperimentKey], @"User experiment should be same as original client");
     OPTLYVariation *variationForUser1 = [updatedClient variation:kUserProfileExperimentKey userId:kUserId1];

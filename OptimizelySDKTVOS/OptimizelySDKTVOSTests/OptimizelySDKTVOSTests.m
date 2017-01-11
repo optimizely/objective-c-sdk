@@ -73,7 +73,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 //    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
 //    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
     
-    OPTLYClient *client = [manager initializeClient];
+    OPTLYClient *client = [manager initialize];
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     
