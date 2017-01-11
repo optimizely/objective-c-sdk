@@ -111,6 +111,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return nil;
     }
     
+    //Attempt to save variation to user profile
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, variation, userId]
+                  withLevel:OptimizelyLogLevelDebug];
+    [self.userProfile saveUser:userId
+                    experiment:experimentKey
+                     variation:variation.variationKey];
+    
     // send impression event
     OPTLYDecisionEventTicket *impressionEvent = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                      userId:userId
@@ -196,12 +203,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, bucketedVariation.variationKey, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
-    //Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation, userId]
-                   withLevel:OptimizelyLogLevelDebug];
-    [self.userProfile saveUser:userId
-                experiment:experimentKey
-                 variation:bucketedVariation.variationKey];
     return bucketedVariation;
 }
 
