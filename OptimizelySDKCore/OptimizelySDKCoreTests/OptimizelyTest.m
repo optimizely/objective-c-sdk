@@ -307,11 +307,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
-                                                    userId:kUserId
-                                                attributes:self.attributes
-                                        activateExperiment:NO
-                                                     error:nil];
+    BOOL variableBool = [optimizelyMock variableBoolean:kVariableKeyForBool
+                                                 userId:kUserId
+                                             attributes:self.attributes
+                                     activateExperiment:NO
+                                                  error:nil];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
     
@@ -319,25 +319,25 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
 }
 
 - (void)testGetVariableBooleanShortAPI {
-    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
-                                                     userId:kUserId];
+    BOOL variableBool = [self.optimizely variableBoolean:kVariableKeyForBool
+                                                  userId:kUserId];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
 - (void)testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded {
-    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
-                                                     userId:kUserId
-                                         activateExperiment:NO];
+    BOOL variableBool = [self.optimizely variableBoolean:kVariableKeyForBool
+                                                  userId:kUserId
+                                      activateExperiment:NO];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
 - (void)testGetVariableBooleanShortAPIWithAttributes {
-    BOOL variableBool = [self.optimizely getVariableBoolean:kVariableKeyForBool
-                                                     userId:kUserId
-                                                 attributes:self.attributes
-                                         activateExperiment:NO];
+    BOOL variableBool = [self.optimizely variableBoolean:kVariableKeyForBool
+                                                  userId:kUserId
+                                              attributes:self.attributes
+                                      activateExperiment:NO];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
@@ -346,11 +346,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBool
-                                                                      userId:kUserId
-                                                                  attributes:self.attributes
-                                                          activateExperiment:YES
-                                                                       error:nil];
+    BOOL variableBoolActivateExperiment = [optimizelyMock variableBoolean:kVariableKeyForBool
+                                                                   userId:kUserId
+                                                               attributes:self.attributes
+                                                       activateExperiment:YES
+                                                                    error:nil];
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -371,11 +371,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    BOOL variableBoolActivateExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBool
-                                                                      userId:kUserId
-                                                                  attributes:self.attributes
-                                                          activateExperiment:YES
-                                                                       error:nil];
+    BOOL variableBoolActivateExperiment = [optimizelyMock variableBoolean:kVariableKeyForBool
+                                                                   userId:kUserId
+                                                               attributes:self.attributes
+                                                       activateExperiment:YES
+                                                                    error:nil];
     
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
@@ -400,11 +400,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    BOOL variableBoolWithGroupedExperiment = [optimizelyMock getVariableBoolean:kVariableKeyForBoolGroupedExperiment
-                                                                         userId:kUserId
-                                                                     attributes:nil
-                                                             activateExperiment:NO
-                                                                          error:nil];
+    BOOL variableBoolWithGroupedExperiment = [optimizelyMock variableBoolean:kVariableKeyForBoolGroupedExperiment
+                                                                      userId:kUserId
+                                                                  attributes:nil
+                                                          activateExperiment:NO
+                                                                       error:nil];
     
     XCTAssertTrue(variableBoolWithGroupedExperiment);
     
@@ -420,11 +420,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    BOOL variableBoolNotInExperimentVariation = [optimizelyMock getVariableBoolean:kVariableKeyForBoolNotInExperimentVariation
-                                                                            userId:kUserId
-                                                                        attributes:nil
-                                                                activateExperiment:YES
-                                                                             error:nil];
+    BOOL variableBoolNotInExperimentVariation = [optimizelyMock variableBoolean:kVariableKeyForBoolNotInExperimentVariation
+                                                                         userId:kUserId
+                                                                     attributes:nil
+                                                             activateExperiment:YES
+                                                                          error:nil];
     
     XCTAssertTrue(variableBoolNotInExperimentVariation);
     
@@ -439,11 +439,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    BOOL variableBool = [optimizelyMock getVariableBoolean:kVariableKeyForBool
-                                                    userId:kUserId
-                                                attributes:nil
-                                        activateExperiment:NO
-                                                     error:nil];
+    BOOL variableBool = [optimizelyMock variableBoolean:kVariableKeyForBool
+                                                 userId:kUserId
+                                             attributes:nil
+                                     activateExperiment:NO
+                                                  error:nil];
     
     // Should return default value
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");

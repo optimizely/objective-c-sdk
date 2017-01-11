@@ -457,41 +457,41 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return variable.defaultValue;
 }
 
-- (BOOL)getVariableBoolean:(NSString *)variableKey
-                    userId:(NSString *)userId {
-    return [self getVariableBoolean:variableKey
-                             userId:userId
-                         attributes:nil
-                 activateExperiment:NO
-                              error:nil];
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:NO
+                           error:nil];
 }
 
-- (BOOL)getVariableBoolean:(NSString *)variableKey
-                    userId:(NSString *)userId
-        activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableBoolean:variableKey
-                             userId:userId
-                         attributes:nil
-                 activateExperiment:activateExperiment
-                              error:nil];
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId
+     activateExperiment:(BOOL)activateExperiment {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:activateExperiment
+                           error:nil];
 }
 
-- (BOOL)getVariableBoolean:(NSString *)variableKey
-                    userId:(NSString *)userId
-                attributes:(nullable NSDictionary *)attributes
-        activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableBoolean:variableKey
-                             userId:userId
-                         attributes:attributes
-                 activateExperiment:activateExperiment
-                              error:nil];
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:attributes
+              activateExperiment:activateExperiment
+                           error:nil];
 }
 
-- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
-                    userId:(nonnull NSString *)userId
-                attributes:(nullable NSDictionary *)attributes
-        activateExperiment:(BOOL)activateExperiment
-                     error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment
+                  error:(NSError * _Nullable * _Nullable)error {
     BOOL variableValue = false;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
