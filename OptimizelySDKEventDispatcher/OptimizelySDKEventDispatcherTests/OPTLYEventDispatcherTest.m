@@ -33,9 +33,11 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)flushEvents:(void(^)())callback;
 - (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback;
 - (void)dispatchEvent:(nonnull NSDictionary *)params
+         backoffRetry:(BOOL)backoffRetry
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback;
 - (void)dispatchNewEvent:(nonnull NSDictionary *)params
+            backoffRetry:(BOOL)backoffRetry
                eventType:(OPTLYDataStoreEventType)eventType
                 callback:(nullable OPTLYEventDispatcherResponse)callback;
 - (BOOL)isTimerEnabled;
@@ -128,53 +130,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [eventDispatcherMock dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
         XCTAssert(numberOfSavedEvents == 0, @"Conversion events should not have been saved.");
-        [eventDispatcherMock verify];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
-}
-
-// Test that a failed dispatch:
-//  - Event saved matches expected value
-//  - flushEvents is called
-- (void)testDispatchImpressionEventFailure {
-    [self stubFailureResponse];
-    
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
-    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
-    [[eventDispatcherMock expect] flushEvents];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent failure."];
-    [eventDispatcherMock dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSInteger numberOfSavedEvents = [eventDispatcherMock numberOfEvents:OPTLYDataStoreEventTypeImpression];
-        XCTAssert(numberOfSavedEvents == 1, @"Impression events should have been saved.");
-        [eventDispatcherMock verify];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchImpressionEvent: %@", error);
-        }
-    }];
-}
-
-- (void)testDispatchConversionEventFailure {
-    [self stubFailureResponse];
-    
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
-    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
-    [[eventDispatcherMock expect] flushEvents];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [eventDispatcherMock dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSInteger numberOfSavedEvents = [eventDispatcherMock numberOfEvents:OPTLYDataStoreEventTypeConversion];
-        XCTAssert(numberOfSavedEvents == 1, @"Conversion events should have been saved.");
         [eventDispatcherMock verify];
         [expectation fulfill];
     }];
@@ -305,7 +260,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 {
     [self stubSuccessResponse];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventSuccess failure."];
-    [self.eventDispatcher dispatchNewEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self.eventDispatcher dispatchNewEvent:self.parameters backoffRetry:NO eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
                                                                       error:nil];
         XCTAssert([savedEvents count] == 0, @"No events should have been saved.");
@@ -322,11 +277,16 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)testDispatchNewEventFailure
 {
     [self stubFailureResponse];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventFailure failure."];
-    [self.eventDispatcher dispatchNewEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                      error:nil];
-        XCTAssert([savedEvents count] == 1, @"An event should have been saved.");
+    [eventDispatcherMock dispatchNewEvent:self.parameters backoffRetry:NO eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [eventDispatcherMock numberOfEvents:OPTLYDataStoreEventTypeConversion];
+        XCTAssert(numberOfSavedEvents == 1, @"An event should have been saved. Current saved events: %lu.", numberOfSavedEvents);
+        [eventDispatcherMock verify];
         [expectation fulfill];
     }];
     
@@ -354,6 +314,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
                                eventType:OPTLYDataStoreEventTypeConversion
                                    error:nil];
     
+    // recursively call flushEvents
     __block NSInteger attempts = 0;
     typedef void (^FlushEventsBlock)();
     __block __weak FlushEventsBlock weakFlushEvents = nil;

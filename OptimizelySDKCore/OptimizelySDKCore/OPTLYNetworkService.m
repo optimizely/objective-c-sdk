@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -18,50 +18,66 @@
 #import "OPTLYProjectConfig.h"
 
 // ---- Datafile Download URLs ----
+// TODO: Move this to the Datafile manager and parameterize the URL for the datafile download
 NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
+
+// ---- The total backoff and retry interval is: pow(2, attempts) * interval ----
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 3; // retries after first failed attempt
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms = 1000;
+
+const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts = 3; // retries after first failed attempt
+const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms = 1000;
 
 @implementation OPTLYNetworkService
 
 - (void)downloadProjectConfig:(nonnull NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
-    
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-    
-     [requestManager GETIfModifiedSince:lastModifiedDate
-                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
+    if (backoffRetry) {
+        [requestManager GETIfModifiedSince:lastModifiedDate
+                      backoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
+                                   retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
+                         completionHandler:completion];
+    } else {
+        [requestManager GETIfModifiedSince:lastModifiedDate completionHandler:completion];
+    }
 }
 
-- (void)downloadProjectConfig:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion
+- (void)downloadProjectConfig:(NSString *)projectId
+                 backoffRetry:(BOOL)backoffRetry
+            completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
     NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
-    
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:cdnConfigFilePathURL];
-   [requestManager GET:^(NSData *data, NSURLResponse *response, NSError *error) {
-       if (completion) {
-           completion(data, response, error);
-       }
-   }];
+    if (backoffRetry) {
+        [requestManager GETWithBackoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
+                                            retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
+                                  completionHandler:completion];
+    } else {
+        [requestManager GETWithCompletion:completion];
+    }
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)params
+         backoffRetry:(BOOL)backoffRetry
                 toURL:(nonnull NSURL *)url
-    completionHandler:(nullable void(^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion
+    completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
     OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:url];
-    [requestManager POSTWithParameters:params completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (completion) {
-            completion(data, response, error);
-        }
-    }];
+    if (backoffRetry) {
+        [requestManager POSTWithParameters:params
+                      backoffRetryInterval:OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms
+                                   retries:OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts
+                         completionHandler:completion];
+    } else {
+        [requestManager POSTWithParameters:params
+                         completionHandler:completion];
+    }
 }
 
 # pragma mark - Helper Methods

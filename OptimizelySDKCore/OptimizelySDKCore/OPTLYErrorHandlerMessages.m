@@ -43,14 +43,19 @@ NSString * const OPTLYErrorHandlerMessagesTrafficAllocationNotInRange= @"Traffic
 NSString * const OPTLYErrorHandlerMessagesBucketingIdInvalid = @"Invalid bucketing ID: %ld."; // bucketing id
 NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown = @"Traffic allocations for %@ does not exist in datafile."; // experiment or group id
 NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed = @"Event %@ failed to dispatch.";
-NSString * const OPTLYErrorHandlerMessagesConfigInvalid = @"Project config is nil or invalid";
+NSString * const OPTLYErrorHandlerMessagesConfigInvalid = @"Project config is nil or invalid.";
 NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown = @"Live variable key %@ is not in datafile."; // live variable key
 
 // Manager Errors
-NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid";
+NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid.";
 
 // Event Data Store
 NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents = @"[EVENT DATA STORE] Unable to remove events for event type: %@. No saved events.";
+
+// ---- HTTP Request Manager ----
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure = @"[HTTP] The max backoff retry has been exceeded. POST failed with error: %@.";
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure = @"[HTTP] The max backoff retry has been exceeded. GET failed with error: %@.";
+NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure = @"[HTTP] The max backoff retry has been exceeded. GET if modified failed with error: %@.";
 
 @implementation OPTLYErrorHandlerMessages
 @end
