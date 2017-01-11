@@ -506,41 +506,41 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return variableValue;
 }
 
-- (NSInteger)getVariableInteger:(NSString *)variableKey
-                         userId:(NSString *)userId {
-    return [self getVariableInteger:variableKey
-                             userId:userId
-                         attributes:nil
-                 activateExperiment:NO
-                              error:nil];
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:NO
+                           error:nil];
 }
 
-- (NSInteger)getVariableInteger:(NSString *)variableKey
-                         userId:(NSString *)userId
-             activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableInteger:variableKey
-                             userId:userId
-                         attributes:nil
-                 activateExperiment:activateExperiment
-                              error:nil];
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId
+          activateExperiment:(BOOL)activateExperiment {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:activateExperiment
+                           error:nil];
 }
 
-- (NSInteger)getVariableInteger:(NSString *)variableKey
-                         userId:(NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-             activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableInteger:variableKey
-                             userId:userId
-                         attributes:attributes
-                 activateExperiment:activateExperiment
-                              error:nil];
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:attributes
+              activateExperiment:activateExperiment
+                           error:nil];
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                         userId:(nonnull NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-             activateExperiment:(BOOL)activateExperiment
-                          error:(NSError * _Nullable * _Nullable)error {
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment
+                       error:(NSError * _Nullable * _Nullable)error {
     NSInteger variableValue = 0;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId

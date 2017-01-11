@@ -459,35 +459,35 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    NSInteger variableInt = [optimizelyMock getVariableInteger:kVariableKeyForInt
-                                                        userId:kUserId
-                                                    attributes:self.attributes
-                                            activateExperiment:NO
-                                                         error:nil];
+    NSInteger variableInt = [optimizelyMock variableInteger:kVariableKeyForInt
+                                                     userId:kUserId
+                                                 attributes:self.attributes
+                                         activateExperiment:NO
+                                                      error:nil];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
     
     [optimizelyMock stopMocking];
 }
 
 - (void)testGetVariableIntegerShortAPI {
-    NSInteger variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                         userId:kUserId];
+    NSInteger variableInt = [self.optimizely variableInteger:kVariableKeyForInt
+                                                      userId:kUserId];
     XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded {
-    NSInteger variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                         userId:kUserId
-                                             activateExperiment:NO];
+    NSInteger variableInt = [self.optimizely variableInteger:kVariableKeyForInt
+                                                      userId:kUserId
+                                          activateExperiment:NO];
     XCTAssertEqual(variableInt, 1, "Variable integer value should be 1 when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableIntegerShortAPIWithAttributes {
     
-    NSInteger variableInt = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                         userId:kUserId
-                                                     attributes:self.attributes
-                                             activateExperiment:NO];
+    NSInteger variableInt = [self.optimizely variableInteger:kVariableKeyForInt
+                                                      userId:kUserId
+                                                  attributes:self.attributes
+                                          activateExperiment:NO];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
 }
 
@@ -495,11 +495,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSInteger variableIntActivateExperiment = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                                           userId:kUserId
-                                                                       attributes:self.attributes
-                                                               activateExperiment:YES
-                                                                            error:nil];
+    NSInteger variableIntActivateExperiment = [self.optimizely variableInteger:kVariableKeyForInt
+                                                                        userId:kUserId
+                                                                    attributes:self.attributes
+                                                            activateExperiment:YES
+                                                                         error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableIntegerWithActivateExperimentTrue: %@", error);
@@ -519,11 +519,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSInteger variableIntActivateExperiment = [self.optimizely getVariableInteger:kVariableKeyForInt
-                                                                           userId:kUserId
-                                                                       attributes:self.attributes
-                                                               activateExperiment:YES
-                                                                            error:nil];
+    NSInteger variableIntActivateExperiment = [self.optimizely variableInteger:kVariableKeyForInt
+                                                                        userId:kUserId
+                                                                    attributes:self.attributes
+                                                            activateExperiment:YES
+                                                                         error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableIntegerWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
@@ -547,11 +547,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    NSInteger variableIntWithGroupedExperiment = [self.optimizely getVariableInteger:kVariableKeyForIntegerGroupedExperiment
-                                                                              userId:kUserId
-                                                                          attributes:nil
-                                                                  activateExperiment:NO
-                                                                               error:nil];
+    NSInteger variableIntWithGroupedExperiment = [self.optimizely variableInteger:kVariableKeyForIntegerGroupedExperiment
+                                                                           userId:kUserId
+                                                                       attributes:nil
+                                                               activateExperiment:NO
+                                                                            error:nil];
     XCTAssertEqual(variableIntWithGroupedExperiment, 90, "Variable integer value should be 90.");
     
     [optimizelyMock stopMocking];
@@ -566,11 +566,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSInteger variableIntNotInExperimentVariation = [self.optimizely getVariableInteger:kVariableKeyForIntegerNotInExperimentVariation
-                                                                                 userId:kUserId
-                                                                             attributes:nil
-                                                                     activateExperiment:YES
-                                                                                  error:nil];
+    NSInteger variableIntNotInExperimentVariation = [self.optimizely variableInteger:kVariableKeyForIntegerNotInExperimentVariation
+                                                                              userId:kUserId
+                                                                          attributes:nil
+                                                                  activateExperiment:YES
+                                                                               error:nil];
     XCTAssertEqual(variableIntNotInExperimentVariation, 101010101, "Variable integer value should be 101010101.");
     
     [optimizelyMock stopMocking];
@@ -584,11 +584,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    NSInteger variableIntUserNotBucketedIntoExperiment = [optimizelyMock getVariableInteger:kVariableKeyForInt
-                                                                                     userId:kUserId
-                                                                                 attributes:nil
-                                                                         activateExperiment:NO
-                                                                                      error:nil];
+    NSInteger variableIntUserNotBucketedIntoExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
+                                                                                  userId:kUserId
+                                                                              attributes:nil
+                                                                      activateExperiment:NO
+                                                                                   error:nil];
     // Should return default value
     XCTAssertEqual(variableIntUserNotBucketedIntoExperiment, 1, "Variable integer value should be 1.");
     
