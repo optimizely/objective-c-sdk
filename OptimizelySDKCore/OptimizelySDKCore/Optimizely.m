@@ -372,41 +372,41 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return nil;
 }
 
-- (nullable NSString *)getVariableString:(NSString *)variableKey
-                                  userId:(NSString *)userId {
-    return [self getVariableString:variableKey
-                            userId:userId
-                        attributes:nil
-                activateExperiment:NO
-                             error:nil];
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:NO
+                          error:nil];
 }
 
-- (nullable NSString *)getVariableString:(NSString *)variableKey
-                                  userId:(NSString *)userId
-                      activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableString:variableKey
-                            userId:userId
-                        attributes:nil
-                activateExperiment:activateExperiment
-                             error:nil];
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId
+                   activateExperiment:(BOOL)activateExperiment {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:activateExperiment
+                          error:nil];
 }
 
-- (nullable NSString *)getVariableString:(NSString *)variableKey
-                                  userId:(NSString *)userId
-                              attributes:(nullable NSDictionary *)attributes
-                      activateExperiment:(BOOL)activateExperiment {
-    return [self getVariableString:variableKey
-                            userId:userId
-                        attributes:attributes
-                activateExperiment:activateExperiment
-                             error:nil];
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:attributes
+             activateExperiment:activateExperiment
+                          error:nil];
 }
 
-- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                                  userId:(nonnull NSString *)userId
-                              attributes:(nullable NSDictionary *)attributes
-                      activateExperiment:(BOOL)activateExperiment
-                                   error:(NSError * _Nullable * _Nullable)error {
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(NSError * _Nullable * _Nullable)error {
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
     
     if (!variable) {
@@ -493,11 +493,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         activateExperiment:(BOOL)activateExperiment
                      error:(NSError * _Nullable * _Nullable)error {
     BOOL variableValue = false;
-    NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                                          userId:userId
-                                                      attributes:attributes
-                                              activateExperiment:activateExperiment
-                                                           error:error];
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
     
     if (variableValueStringOrNil != nil) {
         variableValue = [variableValueStringOrNil boolValue];
@@ -542,11 +542,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
              activateExperiment:(BOOL)activateExperiment
                           error:(NSError * _Nullable * _Nullable)error {
     NSInteger variableValue = 0;
-    NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                                          userId:userId
-                                                      attributes:attributes
-                                              activateExperiment:activateExperiment
-                                                           error:error];
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
     
     if (variableValueStringOrNil != nil) {
         variableValue = [variableValueStringOrNil intValue];
@@ -591,11 +591,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
          activateExperiment:(BOOL)activateExperiment
                       error:(NSError * _Nullable * _Nullable)error {
     double variableValue = 0.0;
-    NSString *variableValueStringOrNil = [self getVariableString:variableKey
-                                                          userId:userId
-                                                      attributes:attributes
-                                              activateExperiment:activateExperiment
-                                                           error:error];
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
     
     if (variableValueStringOrNil != nil) {
         variableValue = [variableValueStringOrNil doubleValue];

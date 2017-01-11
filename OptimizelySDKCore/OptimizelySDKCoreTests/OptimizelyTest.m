@@ -157,11 +157,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
-                                                          userId:kUserId
-                                                      attributes:self.attributes
-                                              activateExperiment:NO
-                                                           error:nil];
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:NO
+                                                        error:nil];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
     
@@ -169,26 +169,26 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
 }
 
 - (void)testGetVariableStringShortAPI {
-    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                                           userId:kUserId];
+    NSString *variableString = [self.optimizely variableString:kVariableKeyForString
+                                                        userId:kUserId];
     
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableStringShortAPIWithActivateExperimentParamIncluded {
-    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                                           userId:kUserId
-                                               activateExperiment:NO];
+    NSString *variableString = [self.optimizely variableString:kVariableKeyForString
+                                                        userId:kUserId
+                                            activateExperiment:NO];
     
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
 - (void)testGetVariableStringShortAPIWithAttributes {
     
-    NSString *variableString = [self.optimizely getVariableString:kVariableKeyForString
-                                                           userId:kUserId
-                                                       attributes:self.attributes
-                                               activateExperiment:NO];
+    NSString *variableString = [self.optimizely variableString:kVariableKeyForString
+                                                        userId:kUserId
+                                                    attributes:self.attributes
+                                            activateExperiment:NO];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
 }
@@ -197,11 +197,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSString *variableStringActivateExperiment = [optimizelyMock getVariableString:kVariableKeyForString
-                                                                            userId:kUserId
-                                                                        attributes:self.attributes
-                                                                activateExperiment:YES
-                                                                             error:nil];
+    NSString *variableStringActivateExperiment = [optimizelyMock variableString:kVariableKeyForString
+                                                                         userId:kUserId
+                                                                     attributes:self.attributes
+                                                             activateExperiment:YES
+                                                                          error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableStringWithActivateExperimentTrue: %@", error);
@@ -221,11 +221,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSString *variableStringActivateExperiment = [optimizelyMock getVariableString:kVariableKeyForString
-                                                                            userId:kUserId
-                                                                        attributes:self.attributes
-                                                                activateExperiment:YES
-                                                                             error:nil];
+    NSString *variableStringActivateExperiment = [optimizelyMock variableString:kVariableKeyForString
+                                                                         userId:kUserId
+                                                                     attributes:self.attributes
+                                                             activateExperiment:YES
+                                                                          error:nil];
     [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testGetVariableStringWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
@@ -249,11 +249,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    NSString *variableStringWithGroupedExperiment = [optimizelyMock getVariableString:kVariableKeyForStringGroupedExperiment
-                                                                               userId:kUserId
-                                                                           attributes:nil
-                                                                   activateExperiment:NO
-                                                                                error:nil];
+    NSString *variableStringWithGroupedExperiment = [optimizelyMock variableString:kVariableKeyForStringGroupedExperiment
+                                                                            userId:kUserId
+                                                                        attributes:nil
+                                                                activateExperiment:NO
+                                                                             error:nil];
     XCTAssertEqualObjects(variableStringWithGroupedExperiment, kVariableStringValueGroupedExperiment, "Variable string value should be \"Ciao\".");
     
     [optimizelyMock stopMocking];
@@ -268,11 +268,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSString *variableStringNotInExperimentVariation = [self.optimizely getVariableString:kVariableKeyForStringNotInExperimentVariation
-                                                                                   userId:kUserId
-                                                                               attributes:nil
-                                                                       activateExperiment:YES
-                                                                                    error:nil];
+    NSString *variableStringNotInExperimentVariation = [self.optimizely variableString:kVariableKeyForStringNotInExperimentVariation
+                                                                                userId:kUserId
+                                                                            attributes:nil
+                                                                    activateExperiment:YES
+                                                                                 error:nil];
     
     XCTAssertEqualObjects(variableStringNotInExperimentVariation, kVariableStringNotInExperimentVariation, "Variable string value should be \"default string value\".");
     
@@ -287,11 +287,11 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    NSString *variableString = [optimizelyMock getVariableString:kVariableKeyForString
-                                                          userId:kUserId
-                                                      attributes:nil
-                                              activateExperiment:NO
-                                                           error:nil];
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:nil
+                                           activateExperiment:NO
+                                                        error:nil];
     
     // Should return default value
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\".");
