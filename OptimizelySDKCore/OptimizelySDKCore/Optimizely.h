@@ -101,8 +101,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
  */
-- (void)trackEvent:(nonnull NSString *)eventKey
-            userId:(nonnull NSString *)userId;
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId;
 
 /**
  * Track an event
@@ -110,9 +110,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID associated with the event to track
  * @param eventValue The event value (e.g., revenue amount)
  */
-- (void)trackEvent:(nonnull NSString *)eventKey
-            userId:(nonnull NSString *)userId
-        eventValue:(nonnull NSNumber *)eventValue;
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   eventValue:(nonnull NSNumber *)eventValue;
 
 /**
  * Track an event
@@ -120,9 +120,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID associated with the event to track
  * @param attributes A map of attribute names to current user attribute values.
  */
-- (void)trackEvent:(nonnull NSString *)eventKey
-            userId:(nonnull NSString *)userId
-        attributes:(nonnull NSDictionary<NSString *, NSString *> * )attributes;
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   attributes:(nonnull NSDictionary<NSString *, NSString *> * )attributes;
 
 /**
  * Track an event
@@ -131,10 +131,10 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes A map of attribute names to current user attribute values.
  * @param eventValue The event value (e.g., revenue amount)
  */
-- (void)trackEvent:(nonnull NSString *)eventKey
-            userId:(nonnull NSString *)userId
-        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-        eventValue:(nullable NSNumber * )eventValue;
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
+   eventValue:(nullable NSNumber * )eventValue;
 
 #pragma mark - Live Variable Getters
 

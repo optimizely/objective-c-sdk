@@ -206,29 +206,29 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 #pragma mark trackEvent methods
-- (void)trackEvent:(NSString *)eventKey userId:(NSString *)userId
+- (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
-    [self trackEvent:eventKey userId:userId attributes:nil eventValue:nil];
+    [self track:eventKey userId:userId attributes:nil eventValue:nil];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        attributes:(NSDictionary<NSString *, NSString *> * )attributes
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary<NSString *, NSString *> * )attributes
 {
-    [self trackEvent:eventKey userId:userId attributes:attributes eventValue:nil];
+    [self track:eventKey userId:userId attributes:attributes eventValue:nil];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        eventValue:(NSNumber *)eventValue
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   eventValue:(NSNumber *)eventValue
 {
-    [self trackEvent:eventKey userId:userId attributes:nil eventValue:eventValue];
+    [self track:eventKey userId:userId attributes:nil eventValue:eventValue];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        attributes:(NSDictionary *)attributes
-        eventValue:(NSNumber *)eventValue
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+   eventValue:(NSNumber *)eventValue
 {
     
     OPTLYEvent *event = [self.config getEventForKey:eventKey];

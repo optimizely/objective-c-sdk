@@ -792,10 +792,10 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
                                                                                           [expectation fulfill];
                                                                                       }];
     
-    [self.optimizely trackEvent:kEventNameWithMultipleExperiments
-                         userId:kUserId
-                     attributes:self.attributes
-                     eventValue:eventValue];
+    [self.optimizely track:kEventNameWithMultipleExperiments
+                    userId:kUserId
+                attributes:self.attributes
+                eventValue:eventValue];
     
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
     
