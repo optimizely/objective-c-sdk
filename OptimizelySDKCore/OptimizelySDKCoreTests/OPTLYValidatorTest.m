@@ -100,7 +100,7 @@ static NSString * const kAttributeValue = @"firefox";
 
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = whitelistingDatafile;
     }];
     

@@ -88,7 +88,7 @@ static NSData *removedVariationDatafile;
 }
 
 - (void)setUp {
-    self.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder *builder) {
+    self.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder *builder) {
         builder.logger = [OPTLYLoggerDefault new];
     }];
     [self.userProfile saveUserId:kUserId1 experimentId:kExperimentId1 variationId:kVariationId1];
@@ -232,7 +232,7 @@ static NSData *removedVariationDatafile;
     OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+        builder.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
             builder.logger = logger;
         }];
         
@@ -268,7 +268,7 @@ static NSData *removedVariationDatafile;
     OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+        builder.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
             builder.logger = logger;
         }];
     }];

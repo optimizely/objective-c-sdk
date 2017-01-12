@@ -41,12 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // create the event dispatcher
-        let eventDispatcher = OPTLYEventDispatcherDefault.initWithBuilderBlock{(builder)in
+        let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder)in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
         }
         
         // create the datafile manager
-        let datafileManager = OPTLYDatafileManagerDefault.initWithBuilderBlock{(builder) in
+        let datafileManager = OPTLYDatafileManagerDefault.init{(builder) in
             builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
             builder!.projectId = self.projectId
         }

@@ -24,8 +24,8 @@
 
 @implementation OPTLYUserProfileDefault
 
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYUserProfileBuilder builderWithBlock:block]];
++ (nullable instancetype)init:(nonnull OPTLYUserProfileBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYUserProfileBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)init {

@@ -429,9 +429,9 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 
 /**
  * Init with builder block
- * @param block The builder block, where the logger, errorHandler, and eventDispatcher can be set.
+ * @param builderBlock The builder block, where the logger, errorHandler, and eventDispatcher can be set.
  * @return Optimizely instance.
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
 
 @end

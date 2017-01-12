@@ -55,7 +55,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlock
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
@@ -76,7 +76,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
@@ -88,7 +88,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 
 - (void)testInitWithBuilderBlockNoDatafile
 {
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = nil;
     }];
     
@@ -102,7 +102,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     id<OPTLYLogger> logger = [NSObject new];
     id<OPTLYErrorHandler> errorHandler = [NSObject new];
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
         builder.logger = logger;
         builder.errorHandler = errorHandler;

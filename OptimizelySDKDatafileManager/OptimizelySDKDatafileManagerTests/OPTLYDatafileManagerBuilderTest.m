@@ -28,7 +28,7 @@ NSString *const kProjectID = @"projectID";
 NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testBasicInitializationWorks {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
     }];
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
@@ -44,7 +44,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     OPTLYLoggerDefault *defaultLogger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     
     // Initialize datafile manager
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.logger = defaultLogger;
     }];
@@ -61,7 +61,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testDatafileFetchIntervalIsSetCorrectly {
     // initialize datafile manager with datafile fetch interval
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.datafileFetchInterval = kDatafileFetchInterval;
     }];
@@ -76,7 +76,7 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 }
 
 - (void)testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectID;
         builder.datafileFetchInterval = -1.0;
     }];

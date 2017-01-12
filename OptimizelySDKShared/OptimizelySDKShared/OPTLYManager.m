@@ -132,7 +132,7 @@
 }
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;
         builder.errorHandler = self.errorHandler;
         builder.eventDispatcher = self.eventDispatcher;

@@ -28,8 +28,8 @@ NSString *const OPTLYClientDummyOptimizelyError = @"Optimizely is not initialize
  */
 @implementation OPTLYClient
 
-+ (nonnull instancetype)initWithBuilderBlock:(OPTLYClientBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:block]];
++ (nonnull instancetype)init:(OPTLYClientBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)init {

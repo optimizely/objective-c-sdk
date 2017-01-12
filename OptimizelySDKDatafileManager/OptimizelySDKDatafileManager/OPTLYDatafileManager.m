@@ -33,8 +33,8 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
 
 @implementation OPTLYDatafileManagerDefault
 
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYDatafileManagerBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:block]];
++ (nullable instancetype)init:(nonnull OPTLYDatafileManagerBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)initWithBuilder:(OPTLYDatafileManagerBuilder *)builder {

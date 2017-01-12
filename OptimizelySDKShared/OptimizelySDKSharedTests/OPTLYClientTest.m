@@ -31,7 +31,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 @implementation OPTLYClientTest
 
 - (void)testEmptyClientInitializationReturnsDummyClient {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nullable builder) {
+    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nullable builder) {
         
     }];
     XCTAssertNotNil(client);
@@ -41,7 +41,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 }
 
 - (void)testClientBuildsOptimizelyDefaults {
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nullable builder) {
+    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nullable builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
     }];
     XCTAssertNotNil(client);
@@ -55,7 +55,7 @@ static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
 - (void)testClientPassesThroughClientEngineAndVersion {
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
-    OPTLYClient *client = [OPTLYClient initWithBuilderBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
