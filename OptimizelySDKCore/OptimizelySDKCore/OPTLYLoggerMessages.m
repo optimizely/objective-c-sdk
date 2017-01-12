@@ -130,6 +130,7 @@ NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIA
 // error
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"[MANAGER] An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid.";
 NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID.";
+NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"The project ID for the Optimizely Manager instance cannot be an empty string";
 
 // ---- Project Config Getters ----
 // warning

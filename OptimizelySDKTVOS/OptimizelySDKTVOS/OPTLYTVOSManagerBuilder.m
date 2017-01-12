@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -20,13 +20,13 @@
 #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
 #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
 #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
-#import "OPTLYtvOSManagerBuilder.h"
+#import "OPTLYTVOSManagerBuilder.h"
 
 static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
 
-@implementation OPTLYtvOSManagerBuilder
+@implementation OPTLYTVOSManagerBuilder
 
-+ (nullable instancetype)builderWithBlock:(OPTLYtvOSManagerBuilderBlock)block {
++ (nullable instancetype)builderWithBlock:(OPTLYTVOSManagerBuilderBlock)block {
     return [[self alloc] initWithBlock:block];
 }
 
@@ -34,7 +34,7 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
     return [self initWithBlock:nil];
 }
 
-- (id)initWithBlock:(OPTLYtvOSManagerBuilderBlock)block {
+- (id)initWithBlock:(OPTLYTVOSManagerBuilderBlock)block {
     NSParameterAssert(block);
     if (self != nil) {
         block(self);
