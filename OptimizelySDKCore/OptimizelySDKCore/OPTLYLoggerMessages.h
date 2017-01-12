@@ -135,6 +135,10 @@ extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 // ---- Manager ----
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
+extern NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol;
+extern NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol;
+extern NSString *const OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEventDispatcherProtocol;
+extern NSString *const OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol;
 extern NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId;
 extern NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString;
 
