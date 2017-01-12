@@ -191,19 +191,4 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
     XCTAssertNil(variation);
 }
 
-- (void)testWhitelisting {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
-    XCTAssertNotNil(projectConfig);
-    OPTLYExperiment *experiment = [projectConfig getExperimentForId:@"3"];
-    
-    // generate bucketer
-    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:projectConfig];
-    OPTLYVariation *variation = [bucketer bucketExperiment:experiment withUserId:@"userId"];
-    XCTAssertNotNil(variation);
-    XCTAssertEqualObjects(variation.variationId, @"variation4");
-    XCTAssertEqualObjects(variation.variationKey, @"whiteListedVariation");
-}
-
-
 @end

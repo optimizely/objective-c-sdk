@@ -49,6 +49,21 @@ static NSString *const kVariableStringNotInExperimentVariation = @"default strin
 
 static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultipleExperiments";
 
+// datafiles
+static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
+
+// user IDs
+static NSString * const kUserIdForWhitelisting = @"userId";
+
+// experiment Keys
+static NSString * const kExperimentKeyForWhitelisting = @"whiteListExperiment";
+
+// variation Keys
+static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
+
+// variation IDs
+static NSString * const kVariationIDForWhitelisting = @"variation4";
+
 @interface OptimizelyTest : XCTestCase
 
 @property (nonatomic, strong) NSData *datafile;
@@ -802,5 +817,25 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [self waitForExpectationsWithTimeout:2
                                  handler:nil];
 }
+
+
+/**
+ * Test whitelisting works with get variation
+ */
+- (void)testWhitelisting {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
+    
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+    }];
+    XCTAssertNotNil(optimizely);
+    
+    // get variation
+    OPTLYVariation *variation = [optimizely variation:kExperimentKeyForWhitelisting userId:kUserIdForWhitelisting];
+    XCTAssertNotNil(variation);
+    XCTAssertEqualObjects(variation.variationId, kVariationIDForWhitelisting);
+    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForWhitelisting);
+}
+
 
 @end
