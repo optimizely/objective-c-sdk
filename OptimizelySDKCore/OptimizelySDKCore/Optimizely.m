@@ -193,12 +193,12 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                     attributes:attributes
                                                       bucketer:self.bucketer];
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, bucketedVariation.variationKey, experimentKey];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     //Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation, userId]
-                  withLevel:OptimizelyLogLevelDebug];
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation.variationKey, userId]
+                   withLevel:OptimizelyLogLevelDebug];
     [self.userProfile saveUser:userId
                     experiment:experimentKey
                      variation:bucketedVariation.variationKey];
