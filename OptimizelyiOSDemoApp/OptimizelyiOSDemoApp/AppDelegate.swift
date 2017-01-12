@@ -42,24 +42,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let variation = optimizelyClient.activate(self.experimentKey, userId: self.userId)
             if (variation != nil) {
                 print("Bucketed variation:", variation!.variationKey)
-            }
-            
-            var viewControllerIdentifier = "OPTLYFailureViewController"
-            if let variationKey = variation?.variationKey {
-                switch variationKey {
-                    case "variation_a":
-                        viewControllerIdentifier = "OPTLYVariationAViewController"
-                    case "variation_b":
-                        viewControllerIdentifier = "OPTLYVariationBViewController"
-                    default:
-                        viewControllerIdentifier = "OPTLYFailureViewController"
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
+                {
+                    variationViewController.variationKey = "variation_b" // UPDATE ME WHEN DONE TESTING
+                    if let window = self.window {
+                        window.rootViewController = variationViewController
+                        
+                    }
                 }
-            }
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier)
-            if let window = self.window {
-                window.rootViewController = controller
+                
+                // TRACK EVENT SOMEWHERE -- where? If fails, show conversion page
+            } else {
+                // load error page
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let failureViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
+                {
+                    failureViewController.variationKey = "variation_a" // UPDATE ME WHEN DONE TESTING
+                    if let window = self.window {
+                        window.rootViewController = failureViewController
+                        
+                    }
+                }
             }
             
             optimizelyClient.track(self.eventKey, userId: self.userId)
