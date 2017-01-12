@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -17,7 +17,7 @@
 #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
 #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
 #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
-#import "OPTLYiOSManagerBuilder.h"
+#import "OPTLYManager.h"
 
 //! Project version number for OptimizelySDKiOS.
 FOUNDATION_EXPORT double OptimizelySDKiOSVersionNumber;

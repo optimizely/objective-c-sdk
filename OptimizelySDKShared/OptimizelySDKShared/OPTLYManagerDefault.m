@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,78 +15,27 @@
  ***************************************************************************/
 
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYEventDispatcher.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
-#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManager.h"
-#import "OPTLYManager.h"
+#import "OPTLYManagerDefault.h"
 #import "OPTLYManagerBuilder.h"
 
-@interface OPTLYManager()
+@interface OPTLYManagerDefault()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
 @end
 
-@implementation OPTLYManager
+@implementation OPTLYManagerDefault
 
-+ (instancetype)init:(OPTLYManagerBuilderBlock)builderBlock {
-    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:builderBlock]];
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
 }
 
-+ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
-    return [[self alloc] initWithBuilder:builder];
-}
-
-- (instancetype)init {
-    return [self initWithBuilder:nil];
-}
-
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
-            if (builder.projectId == nil) {
-                [builder.logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
-                                 withLevel:OptimizelyLogLevelError];
-                return nil;
-            }
-            else if ([builder.projectId isEqualToString:@""]) {
-                [builder.logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
-                                 withLevel:OptimizelyLogLevelError];
-                return nil;
-            }
-            _datafile = builder.datafile;
-            _datafileManager = builder.datafileManager;
-            _errorHandler = builder.errorHandler;
-            _eventDispatcher = builder.eventDispatcher;
-            _logger = builder.logger;
-            _projectId = builder.projectId;
-            _userProfile = builder.userProfile;
-            _clientEngine = builder.clientEngine;
-            _clientVersion = builder.clientVersion;
-        }
-        return self;
-    }
-    else {
-        if (_logger == nil) {
-            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
-        }
-        [_logger logMessage:OPTLYLoggerMessagesManagerBuilderNotValid
-                  withLevel:OptimizelyLogLevelError];
-        
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesBuilderInvalid
-                                         userInfo:@{NSLocalizedDescriptionKey :
-                                                        [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesManagerBuilderInvalid, nil)]}];
-        
-        if (_errorHandler == nil) {
-            _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-        }
-        [_errorHandler handleError:error];
-        return nil;
-    }
-}
+#pragma mark - Client Getters
 
 - (OPTLYClient *)initialize {
     OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
