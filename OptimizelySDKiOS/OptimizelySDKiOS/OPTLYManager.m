@@ -71,6 +71,12 @@ static NSString * const kClientEngine = @"objective-c-sdk-iOS";
             return nil;
         }
         
+        // --- datafile ----
+        self.datafile = builder.datafile;
+        
+        // --- project id ---
+        self.projectId = builder.projectId;
+        
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set
@@ -102,9 +108,6 @@ static NSString * const kClientEngine = @"objective-c-sdk-iOS";
         } else {
             self.userProfile = builder.userProfile;
         }
-        
-        // --- project id ---
-        self.projectId = builder.projectId;
         
         // --- client engine ---
         if (!builder.clientEngine) {
