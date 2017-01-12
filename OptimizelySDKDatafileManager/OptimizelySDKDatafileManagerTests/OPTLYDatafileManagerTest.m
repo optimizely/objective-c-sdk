@@ -73,7 +73,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
     [self stub400Response];
-    self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
 }
@@ -161,7 +161,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is enabled if the download interval is > 0
 - (void)testNetworkTimerIsEnabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = kDatafileDownloadInteval;
     }];
@@ -175,7 +175,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is disabled if the datafile download interval is <= 0
 - (void)testNetworkTimerIsDisabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = 0;
     }];
@@ -184,7 +184,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
-    datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = -5;
     }];

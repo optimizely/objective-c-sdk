@@ -63,7 +63,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
     [super setUp];
     self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experiments"];
     
-    self.optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = self.datafile;
         builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     }];

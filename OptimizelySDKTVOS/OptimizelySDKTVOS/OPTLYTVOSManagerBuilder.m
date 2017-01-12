@@ -47,7 +47,7 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         
         // set datafile manager
         if (!self.datafileManager) {
-            self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+            self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
                 builder.datafileFetchInterval = 120;
                 builder.projectId = self.projectId;
                 builder.errorHandler = self.errorHandler;
@@ -60,7 +60,7 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         
         // set event dispatcher
         if (!self.eventDispatcher) {
-            self.eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
+            self.eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
                 builder.eventDispatcherDispatchInterval = 0;
                 builder.logger = self.logger;
             }];
@@ -71,7 +71,7 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         
         // set user profile
         if (!self.userProfile) {
-            self.userProfile = [OPTLYUserProfileDefault initWithBuilderBlock:^(OPTLYUserProfileBuilder * _Nullable builder) {
+            self.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
                 builder.logger = self.logger;
             }];
         }

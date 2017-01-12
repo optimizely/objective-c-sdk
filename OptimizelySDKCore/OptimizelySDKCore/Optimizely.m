@@ -47,8 +47,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 @implementation Optimizely
 
-+ (instancetype)initWithBuilderBlock:(OPTLYBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:block]];
++ (instancetype)init:(OPTLYBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)init {

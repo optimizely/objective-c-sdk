@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_END
 /**
  * Initialize the Project Config from a builder block.
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock;
 
 /**
  * Initialize the Project Config from a datafile.

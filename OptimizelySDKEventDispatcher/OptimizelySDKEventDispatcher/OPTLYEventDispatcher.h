@@ -52,10 +52,10 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 /**
  * Initializer for Optimizely Event Dispatcher object
  *
- * @param block The builder block with which to initialize the Optimizely Event Dispatcher object
+ * @param builderBlock The builder block with which to initialize the Optimizely Event Dispatcher object
  * @return An instance of OPTLYEventDispatcher
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYEventDispatcherBuilderBlock)builderBlock;
 
 /**
  * Dispatch an impression event.

@@ -40,8 +40,8 @@ const NSInteger OPTLYEventDispatcherMaxFlushEventAttempts = 10;
 
 @implementation OPTLYEventDispatcherDefault : NSObject
 
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:block]];
++ (nullable instancetype)init:(nonnull OPTLYEventDispatcherBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)init {

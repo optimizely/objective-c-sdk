@@ -48,8 +48,8 @@ NSString * const kExpectedDatafileVersion  = @"3";
 
 @implementation OPTLYProjectConfig
 
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:block]];
++ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
@@ -133,7 +133,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
 }
 
 - (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
-    return [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    return [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
     }];
 }

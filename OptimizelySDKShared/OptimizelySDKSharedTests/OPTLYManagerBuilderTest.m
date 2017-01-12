@@ -171,7 +171,7 @@ static NSString *const kProjectId = @"6372300739";
  * Test the manager is not initialized when an empty string is passed in for the projectID
  */
 - (void)testManagerIsNotInitializedWhenProjectIdIsEmptyString {
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"";
     }];
     XCTAssertNil(manager, @"Manager should not be initialized if we pass in an empty string as the project ID");

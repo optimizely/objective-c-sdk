@@ -28,10 +28,10 @@
 /**
  * Initializer for Optimizely User Profile object
  *
- * @param block The builder block with which to initialize the Optimizely User Profile object
+ * @param builderBlock The builder block with which to initialize the Optimizely User Profile object
  * @return An instance of OPTLYUserProfile
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYUserProfileBuilderBlock)builderBlock;
 
 /**
  * Default initializer for Optimizely User Profile object
