@@ -30,8 +30,8 @@
 
 @implementation OPTLYManager
 
-+ (instancetype)initWithBuilderBlock:(OPTLYManagerBuilderBlock)block {
-    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
++ (instancetype)init:(OPTLYManagerBuilderBlock)builderBlock {
+    return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:builderBlock]];
 }
 
 + (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
@@ -88,7 +88,7 @@
     }
 }
 
-- (OPTLYClient *)initializeClient {
+- (OPTLYClient *)initialize {
     OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
     if (client.optimizely != nil) {
         self.optimizelyClient = client;
@@ -96,18 +96,18 @@
     return client;
 }
 
-- (OPTLYClient *)initializeClientWithDatafile:(NSData *)datafile {
+- (OPTLYClient *)initializeWithDatafile:(NSData *)datafile {
     OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:datafile];
     if (client.optimizely != nil) {
         self.optimizelyClient = client;
         return client;
     }
     else {
-        return [self initializeClient];
+        return [self initialize];
     }
 }
 
-- (void)initializeClientWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
+- (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
     [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if ([(NSHTTPURLResponse *)response statusCode] == 304) {
             data = [self.datafileManager getSavedDatafile];
