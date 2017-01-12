@@ -54,7 +54,15 @@
     }
     NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
     NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
-    userProfileDataMutable[userId] = @{ experimentId : variationId };
+    NSDictionary *experimentVariationMapping = userProfileDataMutable[userId];
+    if (!experimentVariationMapping) {
+        userProfileDataMutable[userId] = @{ experimentId : variationId };
+    }
+    else {
+        NSMutableDictionary *mutableExperimentVariationMapping = [experimentVariationMapping mutableCopy];
+        mutableExperimentVariationMapping[experimentId] = variationId;
+        userProfileDataMutable[userId] = mutableExperimentVariationMapping;
+    }
     [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSavedVariation, experimentId, variationId, userId]
                   withLevel:OptimizelyLogLevelDebug];

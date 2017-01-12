@@ -45,6 +45,9 @@ static NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
 static NSString * const kUserProfileExperimentId = @"7926463378";
 static NSString * const kUserProfileExperimentOriginalVariationId = @"7958211143";
 static NSString * const kUserProfileExperimentTreatmentVariationId = @"7954100907";
+static NSString * const kUserProfileSecondExperimentKey = @"second_experiment";
+static NSString * const kUserProfileSecondExperimentId = @"3";
+static NSString * const kUserProfileSecondExperimentVariation = @"2";
 static NSData *originalDatafile;
 static NSData *updatedDatafile;
 static NSData *removedVariationDatafile;
@@ -303,6 +306,31 @@ static NSData *removedVariationDatafile;
 }
 
 /**
- Test multiple experiment and variations per project
+ * Test multiple experiment and variation mappings can be saved per project
  */
+- (void)testUserProfileCanStoreMultipleExperimentVariationMappings {
+    OPTLYUserProfileDefault *userProfile = [[OPTLYUserProfileDefault alloc] init];
+    [userProfile removeAllUserExperimentRecords];
+    // store experiment variation for variations with 0 traffic allocation
+    [userProfile saveUserId:kUserId1 experimentId:kUserProfileExperimentId variationId:kUserProfileExperimentTreatmentVariationId];
+    [userProfile saveUserId:kUserId1 experimentId:kUserProfileSecondExperimentId variationId:kUserProfileSecondExperimentVariation];
+    
+    // instantiate the manager
+    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = @"projectId";
+        __block id<OPTLYLogger> logger = builder.logger;
+        builder.userProfile = userProfile;
+    }];
+    XCTAssertNotNil(manager);
+    
+    // initialize client
+    OPTLYClient *client = [manager initializeClientWithDatafile:originalDatafile];
+    XCTAssertNotNil(client);
+    
+    OPTLYVariation *firstExperimentVariation = [client getVariationForExperiment:kUserProfileExperimentKey userId:kUserId1];
+    XCTAssertEqualObjects(firstExperimentVariation.variationId, kUserProfileExperimentTreatmentVariationId);
+    OPTLYVariation *secondExperimentVariation = [client getVariationForExperiment:kUserProfileSecondExperimentKey userId:kUserId1];
+    XCTAssertEqualObjects(secondExperimentVariation.variationId, kUserProfileSecondExperimentVariation);
+}
+
 @end
