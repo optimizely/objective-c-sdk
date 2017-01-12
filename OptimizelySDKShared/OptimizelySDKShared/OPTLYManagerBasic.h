@@ -28,7 +28,7 @@
 + (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 @end
 
-@interface OPTLYManagerDefault : NSObject
+@interface OPTLYManagerBasic : NSObject
 
 /// The ID of the Optimizely project to manager
 @property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
@@ -68,7 +68,7 @@
 - (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
 
 /*
- * Gets the cached Optimizely client. 
+ * Gets the cached Optimizely client.
  */
 - (nullable OPTLYClient *)getOptimizely;
 

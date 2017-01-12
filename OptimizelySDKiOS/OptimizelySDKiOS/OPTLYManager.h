@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYManagerDefault.h>
+#import <OptimizelySDKShared/OPTLYManagerBasic.h>
 
-@interface OPTLYManager : OPTLYManagerDefault<OPTLYManager>
+@interface OPTLYManager : OPTLYManagerBasic<OPTLYManager>
 @end

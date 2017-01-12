@@ -21,14 +21,14 @@
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManager.h"
-#import "OPTLYManagerDefault.h"
+#import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 
-@interface OPTLYManagerDefault()
+@interface OPTLYManagerBasic()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
 @end
 
-@implementation OPTLYManagerDefault
+@implementation OPTLYManagerBasic
 
 - (NSString *)description
 {
