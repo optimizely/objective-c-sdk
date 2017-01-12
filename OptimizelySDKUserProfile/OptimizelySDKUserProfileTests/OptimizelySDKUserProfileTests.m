@@ -31,12 +31,12 @@ static NSString * const kUserId2 = @"6369992312";
 static NSString * const kExperimentId2 = @"testExperiment2";
 static NSString * const kVariationId2 = @"testVariation2";
 static NSString * const kUserId3 = @"6369992313";
-static NSString * const kExperimentId3a = @"testExperiment3";
-static NSString * const kVariationId3a = @"testVariation3";
-static NSString * const kExperimentId3b = @"testExperiment3";
-static NSString * const kVariationId3b = @"testVariation3";
-static NSString * const kExperimentId3c = @"testExperiment3";
-static NSString * const kVariationId3c = @"testVariation3";
+static NSString * const kExperimentId3a = @"testExperiment3a";
+static NSString * const kVariationId3a = @"testVariation3a";
+static NSString * const kExperimentId3b = @"testExperiment3b";
+static NSString * const kVariationId3b = @"testVariation3b";
+static NSString * const kExperimentId3c = @"testExperiment3c";
+static NSString * const kVariationId3c = @"testVariation3c";
 
 static NSString * const kOriginalDatafileName = @"InitialDatafile";
 static NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
@@ -124,14 +124,17 @@ static NSData *removedVariationDatafile;
     NSString *variationKey2 = [userDataForUserId2 objectForKey:kExperimentId2];
     XCTAssert([variationKey2 isEqualToString:kVariationId2], @"Invalid variation saved for userID 2.");
     
+    // test experiment a and variation a is saved for user 3
     NSDictionary *userDataForUserId3a = [userData objectForKey:kUserId3];
     NSString *variationKey3a = [userDataForUserId3a objectForKey:kExperimentId3a];
     XCTAssert([variationKey3a isEqualToString:kVariationId3a], @"Invalid variation saved for userID 3a.");
     
+    // test experiment b and variation b is saved for user 3
     NSDictionary *userDataForUserId3b = [userData objectForKey:kUserId3];
     NSString *variationKey3b = [userDataForUserId3b objectForKey:kExperimentId3b];
     XCTAssert([variationKey3b isEqualToString:kVariationId3b], @"Invalid variation saved for userID 3b.");
     
+    // test experiment c and variation c is saved for user 3
     NSDictionary *userDataForUserId3c = [userData objectForKey:kUserId3];
     NSString *variationKey3c = [userDataForUserId3c objectForKey:kExperimentId3c];
     XCTAssert([variationKey3c isEqualToString:kVariationId3c], @"Invalid variation saved for userID 3c.");
