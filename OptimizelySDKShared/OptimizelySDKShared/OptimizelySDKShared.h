@@ -24,6 +24,7 @@
 #import "OPTLYDataStore.h"
 #import "OPTLYDatafileManager.h"
 #import "OPTLYFileManager.h"
+#import "OPTLYManagerBase.h"
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 

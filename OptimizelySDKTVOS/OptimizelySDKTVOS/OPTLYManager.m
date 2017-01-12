@@ -111,11 +111,15 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         // --- client engine ---
         if (!builder.clientEngine) {
             self.clientEngine = kClientEngine;
+        } else {
+            self.clientEngine = builder.clientEngine;
         }
         
         // --- client version ---
         if (!builder.clientVersion) {
             self.clientVersion = OPTIMIZELY_SDK_TVOS_VERSION;
+        } else {
+            self.clientVersion = builder.clientVersion;
         }
     }
     return self;

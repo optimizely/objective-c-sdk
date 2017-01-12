@@ -15,9 +15,9 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYManagerBasic.h>
+#import <OptimizelySDKShared/OPTLYManagerBase.h>
 
-@interface OPTLYManager : OPTLYManagerBasic<OPTLYManager>
+@interface OPTLYManager : OPTLYManagerBase<OPTLYManager>
 /**
  * Init with builder block
  * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.

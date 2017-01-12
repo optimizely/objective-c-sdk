@@ -15,61 +15,13 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYManagerBuilder.h"
+#import "OPTLYManagerBase.h"
 
-@class OPTLYClient;
-
-@protocol OPTLYManager
+@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
 /**
  * Init with builder block
  * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
  * @return OptimizelyManager instance
  */
 + (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
-@end
-
-@interface OPTLYManagerBasic : NSObject
-
-/// The ID of the Optimizely project to manager
-@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
-/// The default datafile to initialize an Optimizely Client with
-@property (nonatomic, readwrite, strong, nullable) NSData *datafile;
-/// The datafile manager that will download the datafile for the manager
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYDatafileManager> datafileManager;
-/// The error handler to be used for the manager, client, and all subcomponents
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
-/// The event dispatcher to initialize an Optimizely Client with
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYEventDispatcher> eventDispatcher;
-/// The logger to be used for the manager, client, and all subcomponents
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
-/// User profile to be used by the client to store user-specific data.
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
-/// The client engine
-@property (nonatomic, readwrite, strong, nonnull) NSString *clientEngine;
-/// The client version
-@property (nonatomic, readwrite, strong, nonnull) NSString *clientVersion;
-
-/*
- * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance
- */
-- (nullable OPTLYClient *)initialize;
-
-/**
- * Synchronous call that would instantiate the client from the datafile given
- * If the datafile is bad, then the client will try to get the datafile from local cache (if it exists). If it fails to load from local cache it will return a dummy instance
- */
-- (nullable OPTLYClient *)initializeWithDatafile:(nonnull NSData *)datafile;
-
-
-/**
- * Asynchronously gets the client from a datafile downloaded from the CDN.
- * If the client could not be initialized, the error will be set in the callback.
- */
-- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
-
-/*
- * Gets the cached Optimizely client.
- */
-- (nullable OPTLYClient *)getOptimizely;
-
 @end

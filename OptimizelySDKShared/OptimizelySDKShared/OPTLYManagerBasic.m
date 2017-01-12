@@ -24,73 +24,92 @@
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 
-@interface OPTLYManagerBasic()
-@property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
-@end
-
 @implementation OPTLYManagerBasic
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
++ (instancetype)init:(OPTLYManagerBuilderBlock)block {
+    return [OPTLYManagerBasic initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
 }
 
-#pragma mark - Client Getters
-
-- (OPTLYClient *)initialize {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
-    }
-    return client;
++ (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    return [[self alloc] initWithBuilder:builder];
 }
 
-- (OPTLYClient *)initializeWithDatafile:(NSData *)datafile {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
-        return client;
-    }
-    else {
-        return [self initialize];
-    }
+- (instancetype)init {
+    return [self initWithBuilder:nil];
 }
 
-- (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
-    [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if ([(NSHTTPURLResponse *)response statusCode] == 304) {
-            data = [self.datafileManager getSavedDatafile];
-        }
-        if (!error) {
-            OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:data];
-            if (client.optimizely) {
-                self.optimizelyClient = client;
-            }
+- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder {
+    self = [super init];
+    if (self != nil) {
+        
+        
+        // --- logger ---
+        if (!builder.logger) {
+            self.logger = [OPTLYLoggerDefault new];
         } else {
-            // TODO - log error
+            self.logger = builder.logger;
         }
         
-        if (callback) {
-            callback(error, self.optimizelyClient);
+        // --- error handler ---
+        if (!builder.errorHandler) {
+            self.errorHandler = [OPTLYErrorHandlerNoOp new];
+        } else {
+            self.errorHandler = builder.errorHandler;
         }
-    }];
-}
-
-- (OPTLYClient *)getOptimizely {
-    return self.optimizelyClient;
-}
-
-- (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
-        builder.datafile = datafile;
-        builder.errorHandler = self.errorHandler;
-        builder.eventDispatcher = self.eventDispatcher;
-        builder.logger = self.logger;
-        builder.userProfile = self.userProfile;
-        builder.clientEngine = self.clientEngine;
-        builder.clientVersion = self.clientVersion;
-    }];
-    return client;
+        
+        // check if the builder is nil
+        if (!builder) {
+            [self.logger logMessage:OPTLYLoggerMessagesManagerBuilderNotValid
+                          withLevel:OptimizelyLogLevelError];
+            
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesBuilderInvalid
+                                             userInfo:@{NSLocalizedDescriptionKey :
+                                                            [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesManagerBuilderInvalid, nil)]}];
+            [self.errorHandler handleError:error];
+            
+            return nil;
+        }
+        
+        // --- datafile ----
+        self.datafile = builder.datafile;
+        
+        // --- project id ---
+        self.projectId = builder.projectId;
+        
+        // --- datafile manager ---
+        if (!builder.datafileManager) {
+            // set default datafile manager if no datafile manager is set
+            self.datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
+        } else {
+            self.datafileManager = builder.datafileManager;
+        }
+        
+        // --- event dispatcher ---
+        if (!builder.eventDispatcher) {
+            // set default event dispatcher if no event dispatcher is set
+            self.eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
+        } else {
+            self.eventDispatcher = builder.eventDispatcher;
+        }
+        
+        // --- user profile ---
+        if (builder.userProfile) {
+            self.userProfile = builder.userProfile;
+        }
+        
+        // --- client engine ---
+        if (builder.clientEngine) {
+            self.clientEngine = builder.clientEngine;
+        }
+        
+        // --- client version ---
+        if (builder.clientVersion) {
+            self.clientVersion = builder.clientVersion;
+        }
+        
+    }
+    return self;
 }
 
 @end

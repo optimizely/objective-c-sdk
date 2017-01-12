@@ -66,14 +66,14 @@
         
         // check the project id
         if (_projectId == nil) {
-            [self.logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
-                          withLevel:OptimizelyLogLevelError];
+            [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
+                      withLevel:OptimizelyLogLevelError];
             return nil;
         }
         
         if ([_projectId isEqualToString:@""]) {
-            [self.logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
-                          withLevel:OptimizelyLogLevelError];
+            [_logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
+                      withLevel:OptimizelyLogLevelError];
             return nil;
         }
         
