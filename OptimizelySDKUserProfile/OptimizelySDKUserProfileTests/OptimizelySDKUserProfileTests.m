@@ -37,10 +37,19 @@ static NSString * const kExperimentId3b = @"testExperiment3b";
 static NSString * const kVariationId3b = @"testVariation3b";
 static NSString * const kExperimentId3c = @"testExperiment3c";
 static NSString * const kVariationId3c = @"testVariation3c";
+static NSString * const kWhitelistingUserId = @"userId";
+static NSString * const kWhitelistingExperimentId = @"3";
+static NSString * const kWhitelistingExperimentKey = @"whiteListExperiment";
+static NSString * const kWhitelistingNormalVariationId = @"normalvariationId";
+static NSString * const kWhitelistingWhitelistedVariationId = @"variation4";
+static NSString * const kWhitelistingWhiteListedVariationKey = @"whiteListedVariation";
 
+// datafile names
 static NSString * const kOriginalDatafileName = @"InitialDatafile";
 static NSString * const kUpdatedDatafileName = @"UpdatedDatafile";
 static NSString * const kRemovedVariationDatafileName = @"RemovedVariationDatafile";
+static NSString * const kWhitelistingTestDatafileName = @"WhitelistingTestDatafile";
+
 static NSString * const kUserProfileExperimentKey = @"User_Profile_Experiment";
 static NSString * const kUserProfileExperimentId = @"7926463378";
 static NSString * const kUserProfileExperimentOriginalVariationId = @"7958211143";
@@ -48,9 +57,12 @@ static NSString * const kUserProfileExperimentTreatmentVariationId = @"795410090
 static NSString * const kUserProfileSecondExperimentKey = @"second_experiment";
 static NSString * const kUserProfileSecondExperimentId = @"3";
 static NSString * const kUserProfileSecondExperimentVariation = @"2";
+
+// datafiles
 static NSData *originalDatafile;
 static NSData *updatedDatafile;
 static NSData *removedVariationDatafile;
+static NSData *whitelistingDatafile;
 
 @interface OPTLYUserProfileDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
@@ -69,6 +81,7 @@ static NSData *removedVariationDatafile;
     originalDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kOriginalDatafileName];
     updatedDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kUpdatedDatafileName];
     removedVariationDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kRemovedVariationDatafileName];
+    whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
     
     // stub all requests
     [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
@@ -334,6 +347,35 @@ static NSData *removedVariationDatafile;
     XCTAssertEqualObjects(firstExperimentVariation.variationId, kUserProfileExperimentTreatmentVariationId);
     OPTLYVariation *secondExperimentVariation = [client variation:kUserProfileSecondExperimentKey userId:kUserId1];
     XCTAssertEqualObjects(secondExperimentVariation.variationId, kUserProfileSecondExperimentVariation);
+}
+
+/**
+ * Test whitelisting ignores use profile sticky bucketing
+ */
+- (void)testWhitelistingOverridesUserProfileAndStoresNothing {
+    // clear user profile
+    [self.userProfile removeAllUserExperimentRecords];
+    
+    // initialize optimizely client with user profile
+    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
+        builder.datafile = whitelistingDatafile;
+        builder.userProfile = self.userProfile;
+    }];
+    
+    // save a variation for the user into user profile
+    [self.userProfile saveUserId:kWhitelistingUserId experimentId:kWhitelistingExperimentId variationId:kWhitelistingNormalVariationId];
+    NSString *savedVariationId = [self.userProfile getVariationIdForUserId:kWhitelistingUserId experimentId:kWhitelistingExperimentId];
+    XCTAssertEqualObjects(savedVariationId, kWhitelistingNormalVariationId);
+    
+    // bucket the user
+    OPTLYVariation *variation = [client variation:kWhitelistingExperimentKey userId:kWhitelistingUserId];
+    // make sure the user sees the whitelisted variation not the saved variation
+    XCTAssertEqualObjects(variation.variationId, kWhitelistingWhitelistedVariationId);
+    XCTAssertEqualObjects(variation.variationKey, kWhitelistingWhiteListedVariationKey);
+    
+    // saved variation is still saved in use profile
+    savedVariationId = [self.userProfile getVariationIdForUserId:kWhitelistingUserId experimentId:kWhitelistingExperimentId];
+    XCTAssertEqualObjects(savedVariationId, kWhitelistingNormalVariationId);
 }
 
 @end
