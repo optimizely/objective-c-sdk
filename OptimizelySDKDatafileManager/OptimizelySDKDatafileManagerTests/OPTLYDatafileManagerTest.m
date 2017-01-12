@@ -237,7 +237,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self waitForExpectationsWithTimeout:2 handler:nil];
     
     // test datafile manager works in optly manager class
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = self.datafileManager;
     }];
@@ -249,7 +249,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *clientExpectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
     __block OPTLYClient *optimizelyClient;
-    [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+    [manager initializeWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
         // retain a reference to the client
         optimizelyClient = client;
         // check client in callback

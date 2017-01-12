@@ -136,6 +136,7 @@ extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId;
+extern NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString;
 
 // ---- Project Config Getters ----
 // warning

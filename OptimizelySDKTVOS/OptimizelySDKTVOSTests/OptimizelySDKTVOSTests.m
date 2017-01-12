@@ -59,7 +59,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testTVOSSDKInitializedWithOverrides {
-    OPTLYManager *manager = [OPTLYManager initWithBuilder:[OPTLYtvOSManagerBuilder builderWithBlock:^(OPTLYtvOSManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager initWithBuilder:[OPTLYTVOSManagerBuilder builderWithBlock:^(OPTLYTVOSManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
     }]];
@@ -73,7 +73,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 //    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
 //    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
     
-    OPTLYClient *client = [manager initializeClient];
+    OPTLYClient *client = [manager initialize];
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     

@@ -62,7 +62,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     NSString *clientVersion = @"clientVersion";
     
     // initialize Manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.datafileManager = datafileManager;
         builder.errorHandler = errorHandler;
@@ -76,7 +76,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertEqual(manager.datafileManager, datafileManager);
     
     // get the client
-    OPTLYClient *client = [manager initializeClient];
+    OPTLYClient *client = [manager initialize];
     XCTAssertEqual(client.logger, logger);
     
     // check optimizely core has been initialized correctly
@@ -95,7 +95,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
     // initialize manager without datafile
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
     
@@ -105,7 +105,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertNil(manager.datafile);
     
     // try to initialize client
-    OPTLYClient *client = [manager initializeClient];
+    OPTLYClient *client = [manager initialize];
     
     // make sure we get a dummy client back
     XCTAssertNotNil(client);
@@ -115,7 +115,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithDefaults {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
@@ -126,7 +126,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // initialize client
-    OPTLYClient *client = [manager initializeClient];
+    OPTLYClient *client = [manager initialize];
     
     // test client initialization
     XCTAssertNotNil(client);
@@ -139,7 +139,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientWithCustomDatafile {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
     }];
@@ -150,7 +150,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // initialize client
-    OPTLYClient *client = [manager initializeClientWithDatafile:self.alternateDatafile];
+    OPTLYClient *client = [manager initializeWithDatafile:self.alternateDatafile];
     
     // test client initialization
     XCTAssertNotNil(client);
@@ -163,7 +163,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
 
 - (void)testInitializeClientAsync {
     // initialize manager
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
         builder.datafileManager = [OPTLYDatafileManagerBasic new];
@@ -181,7 +181,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
     __block OPTLYClient *optimizelyClient;
-    [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+    [manager initializeWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
         // retain a reference to the client
         optimizelyClient = client;
         // check client in callback

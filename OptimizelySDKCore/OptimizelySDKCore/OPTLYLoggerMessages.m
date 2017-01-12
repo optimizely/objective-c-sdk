@@ -99,7 +99,7 @@ NSString *const OPTLYLoggerMessagesVariationIdInvalid = @"[EVENT BUILDER] Variat
 NSString *const OPTLYLoggerMessagesEventDispatcherTrackingEvent = @"[EVENT DISPATCHER] Tracking event %@ for user %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherActivatingUser = @"[EVENT DISPATCHER] Activating user %@ in experiment %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess = @"[EVENT DISPATCHER] Successfully tracked event %@ for user %@";
-NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess = @"[EVENT DISPATCHER] Successfully activated user %@ in experiment %@ success";
+NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess = @"[EVENT DISPATCHER] Successfully activated user %@ in experiment %@";
 // warning
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCHER] Invalid event handler dispatch interval set: %ld";
 
@@ -130,6 +130,7 @@ NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIA
 // error
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"[MANAGER] An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid.";
 NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID.";
+NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"The project ID for the Optimizely Manager instance cannot be an empty string";
 
 // ---- Project Config Getters ----
 // warning
