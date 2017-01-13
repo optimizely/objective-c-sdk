@@ -170,6 +170,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+    if ([self.config checkWhitelistingForUser:userId experiment:experiment]) {
+        return [self.config getWhitelistedVariationForUser:userId experiment:experiment];
+    }
+    
     NSString *experimentId = [self.config getExperimentIdForKey:experimentKey];
     
     if (self.userProfile != nil) {

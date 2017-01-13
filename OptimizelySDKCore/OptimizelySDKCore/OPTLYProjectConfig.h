@@ -129,4 +129,23 @@ NS_ASSUME_NONNULL_END
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
 
+/**
+ * Determine if a user is whitelisted in an experiment.
+ * @param userId The ID of the user to check for.
+ * @param experiment The experiment to check in.
+ * @return True if the user is whitelisted in the experiment.
+ *          False if the user is not whitelisted in the experiment.
+ */
+- (BOOL)checkWhitelistingForUser:(nonnull NSString *)userId
+                      experiment:(nonnull OPTLYExperiment *)experiment;
+
+/**
+ * Get the whitelisted variation for the user in the experiment.
+ * @param userId The ID of the user that is whitelisted.
+ * @param experiment The experiment to whitelist in.
+ * @return OPTLYVariation The variation that the user was whitelisted into.
+ */
+- (nullable OPTLYVariation *)getWhitelistedVariationForUser:(nonnull NSString *)userId
+                                                 experiment:(nonnull OPTLYExperiment *)experiment;
+
 @end
