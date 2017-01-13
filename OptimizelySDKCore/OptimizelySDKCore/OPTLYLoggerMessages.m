@@ -129,8 +129,12 @@ NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIA
 // ---- Manager ----
 // error
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"[MANAGER] An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid.";
+NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol = @"[MANAGER] Datafile manager does not conform to the OPTLYDatafileManager protocol.";
+NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol = @"[MANAGER] Error handler does not conform to the OPTLYErrorHandler protocol.";
+NSString *const OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEventDispatcherProtocol = @"[MANAGER] Event dispatcher does not conform to the OPTLYEventDispatcher protocol.";
+NSString *const OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol = @"[MANAGER] Logger does not conform to the OPTLYLogger protocol.";
 NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID.";
-NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"The project ID for the Optimizely Manager instance cannot be an empty string";
+NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"[MANAGER] The project ID for the Optimizely Manager instance cannot be an empty string";
 
 // ---- Project Config Getters ----
 // warning
