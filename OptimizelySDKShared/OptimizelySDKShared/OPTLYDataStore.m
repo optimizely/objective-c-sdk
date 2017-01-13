@@ -21,10 +21,8 @@
 #import "OPTLYFileManager.h"
 
 static NSString * const kOptimizelyDirectory = @"optimizely";
-// max number of events to store before overwriting older events
-static const NSInteger kMaxNumberOfEventsToStore = 1000;
-// number of events to delete at a time when event storage is full
-static const NSInteger kOverflowNumberOfEventsToDelete = 100;
+// the percentage of events that are removed if the events queue reaches the max capacity
+NSInteger const OPTLYDataStorePercentageOfEventsToRemoveUponOverflow = 10;
 
 // data type names
 static NSString * const kDatabase = @"database";
@@ -211,17 +209,24 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 // removes a batch of the oldest events from the events table if the table exceeds the max allowed size
-- (void)trimEvents:(OPTLYDataStoreEventType)eventType
+- (void)trimEvents:(OPTLYDataStoreEventType)eventType completion:(void(^)())completion
 {
     __weak typeof(self) weakSelf = self;
     dispatch_async(eventsStorageQueue(), ^{
         __typeof__(self) strongSelf = weakSelf;
 
         NSInteger numberOfEvents = [self numberOfEvents:eventType error:nil];
-        if (numberOfEvents > kMaxNumberOfEventsToStore) {
-            [strongSelf removeFirstNEvents:kOverflowNumberOfEventsToDelete eventType:eventType error:nil];
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents, kOverflowNumberOfEventsToDelete];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        if (numberOfEvents >= self.maxNumberOfEventsToSave) {
+            double percentageOfEventsToRemove = OPTLYDataStorePercentageOfEventsToRemoveUponOverflow/100.0;
+            NSInteger numberOfEventsToDelete = self.maxNumberOfEventsToSave * percentageOfEventsToRemove;
+            if (numberOfEventsToDelete) {
+                [strongSelf removeFirstNEvents:numberOfEventsToDelete eventType:eventType error:nil];
+                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents, numberOfEventsToDelete];
+                [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            }
+        }
+        if (completion) {
+            completion();
         }
     });
 }
@@ -229,6 +234,14 @@ dispatch_queue_t eventsStorageQueue()
 - (void)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable * _Nullable)error
+{
+    [self saveEvent:data eventType:eventType error:error completion:nil];
+}
+
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(OPTLYDataStoreEventType)eventType
+            error:(NSError * _Nullable * _Nullable)error
+       completion:(void(^)())completion
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];
@@ -238,7 +251,7 @@ dispatch_queue_t eventsStorageQueue()
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     
-    [self trimEvents:eventType];
+    [self trimEvents:eventType completion:completion];
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents

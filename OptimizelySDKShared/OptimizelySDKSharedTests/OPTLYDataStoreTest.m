@@ -28,6 +28,11 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
 
 @interface OPTLYDataStore(Test)
 @property (nonatomic, strong) NSDictionary *eventsCache;
+- (void)saveEvent:(nonnull NSDictionary *)data
+        eventType:(OPTLYDataStoreEventType)eventType
+            error:(NSError * _Nullable * _Nullable)error
+       completion:(void(^)())completion
+;
 @end
 
 @interface OPTLYDataStoreTest : XCTestCase
@@ -400,4 +405,30 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
 }
+
+- (void)testEventSaveDoesNotExceedMaxNumber {
+    NSInteger maxNumberEvents = 10;
+    self.dataStore.maxNumberOfEventsToSave = maxNumberEvents;
+    
+    NSInteger numberOfEventsSaved = 10;
+    for (NSInteger i = 0; i < numberOfEventsSaved; ++i) {
+        [self.dataStore saveEvent:self.testDataNSUserDefault
+                        eventType:OPTLYDataStoreEventTypeConversion
+                            error:nil];
+    }
+    
+    dispatch_group_t dispatchSavedEventsGroup = dispatch_group_create();
+    dispatch_group_enter(dispatchSavedEventsGroup);
+    [self.dataStore saveEvent:self.testDataNSUserDefault
+                    eventType:OPTLYDataStoreEventTypeConversion
+                        error:nil
+                   completion:^{
+                       dispatch_group_leave(dispatchSavedEventsGroup);
+                   }];
+    dispatch_group_wait(dispatchSavedEventsGroup, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)));
+    NSInteger numberOfSavedEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeConversion error:nil];
+    double percentageOfEventsToRemove = OPTLYDataStorePercentageOfEventsToRemoveUponOverflow/100.0;
+    XCTAssert(numberOfSavedEvents == (maxNumberEvents - maxNumberEvents*percentageOfEventsToRemove), @"Invalid number of events saved: %lu.", numberOfSavedEvents);
+ }
+
 @end

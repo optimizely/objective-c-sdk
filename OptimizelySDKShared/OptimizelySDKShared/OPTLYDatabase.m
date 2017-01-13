@@ -96,6 +96,18 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
             table:(NSString *)tableName
             error:(NSError **)error
 {
+    if (!data) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataStoreDatabaseNoDataToSave, tableName];
+            
+            *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                         code:OPTLYErrorTypesDatabase
+                                     userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+            OPTLYLogError(errorMessage);
+        }
+        return;
+    }
+    
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

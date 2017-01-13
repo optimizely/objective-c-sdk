@@ -16,6 +16,9 @@
 
 #import <Foundation/Foundation.h>
 
+// the percentage of events that are removed if the events queue reaches the max capacity
+extern NSInteger const OPTLYDataStorePercentageOfEventsToRemoveUponOverflow;
+
 @protocol OPTLYLogger;
 
 // if adding event type, update: removeAllUserData
@@ -45,6 +48,8 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  */
 @interface OPTLYDataStore : NSObject
 
+/// max number of events to store before overwriting older events
+@property (nonatomic, assign) NSInteger maxNumberOfEventsToSave;
 /// base directory where Optimizely-related data will persist
 @property (nonatomic, strong, readonly, nonnull) NSString *baseDirectory;
 /// optional logger for data store logging

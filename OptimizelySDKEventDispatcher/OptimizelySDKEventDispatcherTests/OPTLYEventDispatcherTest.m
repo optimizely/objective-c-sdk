@@ -342,6 +342,22 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
+- (void)testMaxEventDispatchLimit
+{
+ //   [self stubFailureResponse];
+ //   XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testMaxEventDispatchLimit failure."];
+    
+    NSInteger maxNumberEvents = 10;
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+        builder.maxNumberOfEventsToSave = maxNumberEvents;
+        builder.eventDispatcherDispatchInterval = 1;
+        builder.logger = [OPTLYLoggerDefault new];
+    }];
+    
+    // make sure that the max value is set properly
+    XCTAssert(eventDispatcher.maxNumberOfEventsToSave == maxNumberEvents, @"Invalid number of max events set: %lu", eventDispatcher.maxNumberOfEventsToSave);
+}
+
 #pragma mark - Helper Methods
 - (void)checkNetworkTimerIsEnabled:(OPTLYEventDispatcherDefault *)eventDispatcher timeInterval:(NSInteger)timeInterval
 {
