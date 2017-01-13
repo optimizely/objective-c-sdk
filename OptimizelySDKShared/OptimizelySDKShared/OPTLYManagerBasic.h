@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,16 +15,13 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+#import "OPTLYManagerBase.h"
 
-@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
-@class OPTLYiOSManagerBuilder;
-
-typedef void (^OPTLYiOSManagerBuilderBlock)(OPTLYiOSManagerBuilder * _Nullable builder);
-
-@interface OPTLYiOSManagerBuilder : OPTLYManagerBuilder
-
-/// Create the Optimizely iOS Manager Builder object.
-+ (nullable instancetype)builderWithBlock:(nonnull OPTLYiOSManagerBuilderBlock)block;
-
+@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
+/**
+ * Init with builder block
+ * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
+ * @return OptimizelyManager instance
+ */
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 @end

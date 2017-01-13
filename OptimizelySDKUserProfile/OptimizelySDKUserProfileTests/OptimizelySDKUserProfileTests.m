@@ -245,7 +245,7 @@ static NSData *whitelistingDatafile;
     XCTAssertNotEqualObjects(originalDatafile, updatedDatafile);
     
     // instantiate the manager
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
         builder.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
@@ -281,7 +281,7 @@ static NSData *whitelistingDatafile;
     XCTAssertNotEqualObjects(originalDatafile, removedVariationDatafile);
     
     // instantiate the manager
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
         builder.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
@@ -332,7 +332,7 @@ static NSData *whitelistingDatafile;
     [userProfile saveUserId:kUserId1 experimentId:kUserProfileSecondExperimentId variationId:kUserProfileSecondExperimentVariation];
     
     // instantiate the manager
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
         builder.userProfile = userProfile;
