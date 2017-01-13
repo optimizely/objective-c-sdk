@@ -42,7 +42,7 @@
  * Cleans and removes all bucketing mapping for specific userId.
  * @param userId The user ID to remove all bucketing value.
  **/
-- (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId;
+- (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId;
 
 /**
  * Cleans and removes all bucketing mapping.

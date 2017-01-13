@@ -29,6 +29,36 @@
                                    ],
                     "forcedVariations": {},
                     "id": "7926463378"
+                    },
+                    {
+                    "status": "Running",
+                    "key": "second_experiment",
+                    "layerId": "layerId",
+                    "trafficAllocation": [
+                                          {
+                                          "entityId": "1",
+                                          "endOfRange": 10000
+                                          },
+                                          {
+                                          "entityId": "2",
+                                          "endOfRange": 0
+                                          }
+                                          ],
+                    "audienceIds": [],
+                    "variations": [
+                                   {
+                                   "variables": [],
+                                   "id": "1",
+                                   "key": "var_a"
+                                   },
+                                   {
+                                   "variables": [],
+                                   "id": "2",
+                                   "key": "var_b"
+                                   }
+                                   ],
+                    "forcedVariations": {},
+                    "id": "3"
                     }
                     ],
     "version": "3",

@@ -170,19 +170,26 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+    if ([self.config checkWhitelistingForUser:userId experiment:experiment]) {
+        return [self.config getWhitelistedVariationForUser:userId experiment:experiment];
+    }
+    
+    NSString *experimentId = [self.config getExperimentIdForKey:experimentKey];
+    
     if (self.userProfile != nil) {
-        NSString *storedVariationKey = [self.userProfile getVariationForUser:userId experiment:experimentKey];
-        if (storedVariationKey != nil) {
-            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentKey, storedVariationKey]
+        NSString *storedVariationId = [self.userProfile getVariationIdForUserId:userId experimentId:experimentId];
+        if (storedVariationId != nil) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
                           withLevel:OptimizelyLogLevelDebug];
-            OPTLYVariation *storedVariation = [[self.config getExperimentForKey:experimentKey]
-                                               getVariationForVariationKey:storedVariationKey];
+            OPTLYVariation *storedVariation = [[self.config getExperimentForId:experimentId]
+                                                    getVariationForVariationId:storedVariationId];
             if (storedVariation != nil) {
                 return storedVariation;
             }
             else { // stored variation is no longer in datafile
-                [self.userProfile removeUser:userId experiment:experimentKey];
-                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationKey, experimentKey]
+                [self.userProfile removeUserId:userId experimentId:experimentId];
+                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationId, experimentId]
                               withLevel:OptimizelyLogLevelWarning];
             }
         }
@@ -197,11 +204,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     
     //Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentKey, bucketedVariation.variationKey, userId]
-                   withLevel:OptimizelyLogLevelDebug];
-    [self.userProfile saveUser:userId
-                    experiment:experimentKey
-                     variation:bucketedVariation.variationKey];
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
+                  withLevel:OptimizelyLogLevelDebug];
+    [self.userProfile saveUserId:userId
+                    experimentId:experimentId
+                     variationId:bucketedVariation.variationId];
     return bucketedVariation;
 }
 
