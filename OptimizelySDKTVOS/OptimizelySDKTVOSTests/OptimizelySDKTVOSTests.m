@@ -88,7 +88,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil(optimizely.eventDispatcher);
     XCTAssertNotNil(optimizely.logger);
     XCTAssertNotNil(optimizely.userProfile);
-    // test components from manager aer passed to core properly
+    // test components from manager are passed to core properly
     XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
     XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
     XCTAssertEqual(optimizely.logger, manager.logger);
