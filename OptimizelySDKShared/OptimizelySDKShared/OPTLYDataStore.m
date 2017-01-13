@@ -217,6 +217,7 @@ dispatch_queue_t eventsStorageQueue()
 
         NSInteger numberOfEvents = [self numberOfEvents:eventType error:nil];
         if (numberOfEvents >= self.maxNumberOfEventsToSave) {
+            // TODO : make sure that we don't set the percentage to a value greater than 100
             double percentageOfEventsToRemove = OPTLYDataStorePercentageOfEventsToRemoveUponOverflow/100.0;
             NSInteger numberOfEventsToDelete = self.maxNumberOfEventsToSave * percentageOfEventsToRemove;
             if (numberOfEventsToDelete) {

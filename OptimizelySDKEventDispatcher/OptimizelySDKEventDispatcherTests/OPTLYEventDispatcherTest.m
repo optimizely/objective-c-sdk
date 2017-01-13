@@ -343,10 +343,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 }
 
 - (void)testMaxEventDispatchLimit
-{
- //   [self stubFailureResponse];
- //   XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testMaxEventDispatchLimit failure."];
-    
+{    
     NSInteger maxNumberEvents = 10;
     OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
         builder.maxNumberOfEventsToSave = maxNumberEvents;

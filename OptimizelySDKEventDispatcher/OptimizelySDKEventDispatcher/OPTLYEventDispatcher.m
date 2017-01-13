@@ -59,7 +59,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
         _pendingDispatchEvents = [NSMutableSet new];
         _logger = builder.logger;
         _maxNumberOfEventsToSave = OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave;
-        if (builder.maxNumberOfEventsToSave) {
+        if (builder.maxNumberOfEventsToSave > 0) {
             _maxNumberOfEventsToSave = builder.maxNumberOfEventsToSave;
         }
         
