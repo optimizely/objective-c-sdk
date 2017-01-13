@@ -15,16 +15,14 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
 
-@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
-@class OPTLYTVOSManagerBuilder;
+@class OPTLYManagerBase;
 
-typedef void (^OPTLYTVOSManagerBuilderBlock)(OPTLYTVOSManagerBuilder * _Nullable builder);
-
-@interface OPTLYTVOSManagerBuilder : OPTLYManagerBuilder
-
-/// Create the Optimizely tvOS Manager Builder object.
-+ (nullable instancetype)builderWithBlock:(nonnull OPTLYTVOSManagerBuilderBlock)block;
-
+@interface OPTLYManager : OPTLYManagerBase<OPTLYManager>
+/**
+ * Init with builder block
+ * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
+ * @return OptimizelyManager instance
+ */
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 @end

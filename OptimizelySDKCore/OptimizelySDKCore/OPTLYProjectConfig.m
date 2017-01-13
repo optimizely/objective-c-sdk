@@ -417,4 +417,30 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return variation;
 }
 
+# pragma mark - Whitelisting
+// check if the user is in the whitelisted mapping
+- (BOOL)checkWhitelistingForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
+    if (experiment.forcedVariations[userId] != nil) {
+        return true;
+    }
+    return false;
+}
+
+// get the variation the user was whitelisted into
+- (OPTLYVariation *)getWhitelistedVariationForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
+    NSString *forcedVariationKey = experiment.forcedVariations[userId];
+    OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
+    if (forcedVariation != nil) {
+        // Log user forced into variation
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedVariationUser, userId, forcedVariation.variationId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    }
+    else {
+        // Log error: variation not in datafile not activating user
+        [OPTLYErrorHandler handleError:self.errorHandler
+                                  code:OPTLYErrorTypesDataUnknown
+                           description:NSLocalizedString(OPTLYErrorHandlerMessagesVariationUnknown, variationId)];
+    }
+    return forcedVariation;
+}
 @end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,38 +15,13 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYUserProfile.h>
-#import "OPTLYUserProfileBuilder.h"
+#import <OptimizelySDKShared/OPTLYManagerBase.h>
 
-@protocol OPTLYLogger;
-
-@interface OPTLYUserProfileDefault : NSObject<OPTLYUserProfile>
-
-/// Logger provided by the user
-@property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
-
+@interface OPTLYManager : OPTLYManagerBase<OPTLYManager>
 /**
- * Initializer for Optimizely User Profile object
- *
- * @param builderBlock The builder block with which to initialize the Optimizely User Profile object
- * @return An instance of OPTLYUserProfile
+ * Init with builder block
+ * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
+ * @return OptimizelyManager instance
  */
-+ (nullable instancetype)init:(nonnull OPTLYUserProfileBuilderBlock)builderBlock;
-
-/**
- * Default initializer for Optimizely User Profile object
- */
-- (nullable instancetype)init;
-
-/**
- * Cleans and removes all bucketing mapping for specific userId.
- * @param userId The user ID to remove all bucketing value.
- **/
-- (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId;
-
-/**
- * Cleans and removes all bucketing mapping.
- **/
-- (void)removeAllUserExperimentRecords;
-
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 @end

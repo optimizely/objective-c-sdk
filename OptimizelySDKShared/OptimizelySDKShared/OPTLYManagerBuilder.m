@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -35,21 +35,48 @@
     self = [super init];
     if (self != nil) {
         block(self);
-        if (!self.datafileManager) {
-            self.datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
+        
+        // check the logger
+        if (_logger) {
+            if (![OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[_logger class]]) {
+                return nil;
+            }
         }
-        else if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[self.datafileManager class]]) {
+        
+        // check the error handler
+        if (_errorHandler) {
+            if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[_errorHandler class]]) {
+                return nil;
+            }
+        }
+        
+        // check the datafile manager
+        if (_datafileManager) {
+            if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[_datafileManager class]]) {
+                return nil;
+            }
+        }
+        
+        // check event dispatcher
+        if (_eventDispatcher) {
+            if (![OPTLYEventDispatcherUtility conformsToOPTLYEventDispatcherProtocol:[_eventDispatcher class]]) {
+                return nil;
+            }
+        }
+        
+        // check the project id
+        if (_projectId == nil) {
+            [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
+                      withLevel:OptimizelyLogLevelError];
             return nil;
         }
-        if (!self.errorHandler) {
-            self.errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+        
+        if ([_projectId isEqualToString:@""]) {
+            [_logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
+                      withLevel:OptimizelyLogLevelError];
+            return nil;
         }
-        if (!self.eventDispatcher) {
-            self.eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
-        }
-        if (!self.logger) {
-            self.logger = [[OPTLYLoggerDefault alloc] init];
-        }
+        
     }
     return self;
 }

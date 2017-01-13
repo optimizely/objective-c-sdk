@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var attributes = ["buyerType" : "frequent"]
     var eventKey = "event1"
     var experimentKey = "checkoutButtonTextExp"
-    var downloadDatafile = false
+    var downloadDatafile = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

@@ -18,6 +18,8 @@
 		2D56A9A01DEE2DE10052AD54 /* InitialDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */; };
 		2D56A9A21DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */; };
 		2D56A9A31DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */; };
+		2D9407511E28476700AA1EBC /* WhitelistingTestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9407501E28476700AA1EBC /* WhitelistingTestDatafile.json */; };
+		2D9407521E28476700AA1EBC /* WhitelistingTestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9407501E28476700AA1EBC /* WhitelistingTestDatafile.json */; };
 		81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */; };
 		A3C8D9A6919F619B78EE7A6E /* Pods_OptimizelySDKUserProfileTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */; };
 		C59C96115DB572352F06B35C /* Pods_OptimizelySDKUserProfileiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */; };
@@ -109,6 +111,7 @@
 		2D56A9921DEE07560052AD54 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InitialDatafile.json; path = TestData/InitialDatafile.json; sourceTree = "<group>"; };
 		2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = UpdatedDatafile.json; path = TestData/UpdatedDatafile.json; sourceTree = "<group>"; };
+		2D9407501E28476700AA1EBC /* WhitelistingTestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WhitelistingTestDatafile.json; path = TestData/WhitelistingTestDatafile.json; sourceTree = "<group>"; };
 		2DA65807C8109484A1CFD535 /* Pods-OptimizelySDKUserProfileTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		30FCB99F9980AFF868A10EF5 /* Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOS/Pods-OptimizelySDKUserProfileTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		340CAAE9EFC13D4CEC55A37D /* Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileTVOSTests/Pods-OptimizelySDKUserProfileTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 				2D56A99E1DEE2DE10052AD54 /* InitialDatafile.json */,
 				2D56A9A11DEE2DFA0052AD54 /* UpdatedDatafile.json */,
 				2D3EC7971DEFB2CD0014D9A7 /* RemovedVariationDatafile.json */,
+				2D9407501E28476700AA1EBC /* WhitelistingTestDatafile.json */,
 			);
 			name = TestData;
 			sourceTree = "<group>";
@@ -510,6 +514,7 @@
 			files = (
 				2D3EC7981DEFB2CD0014D9A7 /* RemovedVariationDatafile.json in Resources */,
 				2D56A99F1DEE2DE10052AD54 /* InitialDatafile.json in Resources */,
+				2D9407511E28476700AA1EBC /* WhitelistingTestDatafile.json in Resources */,
 				2D56A9A21DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +532,7 @@
 			files = (
 				2D3EC7991DEFB2CD0014D9A7 /* RemovedVariationDatafile.json in Resources */,
 				2D56A9A01DEE2DE10052AD54 /* InitialDatafile.json in Resources */,
+				2D9407521E28476700AA1EBC /* WhitelistingTestDatafile.json in Resources */,
 				2D56A9A31DEE2DFA0052AD54 /* UpdatedDatafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

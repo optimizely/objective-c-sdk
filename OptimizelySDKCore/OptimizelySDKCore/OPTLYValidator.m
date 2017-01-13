@@ -40,11 +40,6 @@
         return false;
     }
     
-    // check if the user is in the whitelisted mapping
-    if (experiment.forcedVariations[userId] != nil) {
-        return true;
-    }
-    
     // check if the user is in the experiment
     BOOL isUserInExperiment = [OPTLYValidator isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
     if (!isUserInExperiment) {
