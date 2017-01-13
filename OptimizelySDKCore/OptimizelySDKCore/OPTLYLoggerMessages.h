@@ -54,6 +54,7 @@ extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveEventError;
 // warning
 extern NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning;
 extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents;
+extern NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents;
 
 // File Manager
 // debug

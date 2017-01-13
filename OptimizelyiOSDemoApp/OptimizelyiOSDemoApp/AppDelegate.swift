@@ -41,8 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // create the event dispatcher
-        let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder)in
+        let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
+            builder?.logger = OPTLYLoggerDefault.init(logLevel: .debug)
         }
         
         // create the datafile manager

@@ -50,6 +50,7 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveEventError = @"[DATA S
 // warning
 NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning = @"[DATA STORE] Warning: Removing all events from data store! These events will not be tracked by Optimizely.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNoEvents = @"[DATA STORE] Get event returned no event. eventType: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents = @"[DATA STORE] Event storage is full. Removing %lu events.";
 
 // File Manager
 // debug

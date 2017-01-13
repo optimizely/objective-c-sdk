@@ -29,6 +29,8 @@ const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
 const NSInteger OPTLYEventDispatcherMaxDispatchEventBatchSize = 20;
 // The max number of times flush events are attempted
 const NSInteger OPTLYEventDispatcherMaxFlushEventAttempts = 10;
+// default max number of events to store before overwriting older events
+const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
 
 @interface OPTLYEventDispatcherDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
@@ -56,6 +58,10 @@ const NSInteger OPTLYEventDispatcherMaxFlushEventAttempts = 10;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
         _pendingDispatchEvents = [NSMutableSet new];
         _logger = builder.logger;
+        _maxNumberOfEventsToSave = OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave;
+        if (builder.maxNumberOfEventsToSave > 0) {
+            _maxNumberOfEventsToSave = builder.maxNumberOfEventsToSave;
+        }
         
         if (builder.eventDispatcherDispatchInterval > 0) {
             _eventDispatcherDispatchInterval = builder.eventDispatcherDispatchInterval;
@@ -104,6 +110,7 @@ dispatch_queue_t dispatchEventQueue()
 - (OPTLYDataStore *)dataStore {
     if (!_dataStore) {
         _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+        _dataStore.maxNumberOfEventsToSave = _maxNumberOfEventsToSave;
     }
     return _dataStore;
 }
