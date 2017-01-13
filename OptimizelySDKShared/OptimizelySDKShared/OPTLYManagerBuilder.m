@@ -39,6 +39,8 @@
         // check the logger
         if (_logger) {
             if (![OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[_logger class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol
+                          withLevel:OptimizelyLogLevelError];
                 return nil;
             }
         }
@@ -46,6 +48,8 @@
         // check the error handler
         if (_errorHandler) {
             if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[_errorHandler class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol
+                          withLevel:OptimizelyLogLevelError];
                 return nil;
             }
         }
@@ -53,6 +57,8 @@
         // check the datafile manager
         if (_datafileManager) {
             if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[_datafileManager class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol
+                          withLevel:OptimizelyLogLevelError];
                 return nil;
             }
         }
@@ -60,6 +66,8 @@
         // check event dispatcher
         if (_eventDispatcher) {
             if (![OPTLYEventDispatcherUtility conformsToOPTLYEventDispatcherProtocol:[_eventDispatcher class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEventDispatcherProtocol
+                          withLevel:OptimizelyLogLevelError];
                 return nil;
             }
         }
