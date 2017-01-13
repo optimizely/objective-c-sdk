@@ -18,7 +18,7 @@
 
 @protocol OPTLYLogger;
 
-// if adding data store data type, update: removeSavedEvents
+// if adding event type, update: removeAllUserData
 typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
 {
     OPTLYDataStoreDataTypeDatabase,
@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
     OPTLYDataStoreDataTypeUserProfile,
 };
 
-// if adding event type, update: removeAllUserData
+// if adding data store data type, update: removeSavedEvents, totalNumberOfEvents
 typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 {
     OPTLYDataStoreEventTypeImpression,

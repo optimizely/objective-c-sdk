@@ -21,6 +21,10 @@
 #import "OPTLYFileManager.h"
 
 static NSString * const kOptimizelyDirectory = @"optimizely";
+// max number of events to store before overwriting older events
+static const NSInteger kMaxNumberOfEventsToStore = 1000;
+// number of events to delete at a time when event storage is full
+static const NSInteger kOverflowNumberOfEventsToDelete = 100;
 
 // data type names
 static NSString * const kDatabase = @"database";
@@ -196,6 +200,31 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 # pragma mark - Event Storage Methods
+dispatch_queue_t eventsStorageQueue()
+{
+    static dispatch_queue_t _eventsStorageQueue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _eventsStorageQueue = dispatch_queue_create("com.Optimizely.eventsStorage", DISPATCH_QUEUE_SERIAL);
+    });
+    return _eventsStorageQueue;
+}
+
+// removes a batch of the oldest events from the events table if the table exceeds the max allowed size
+- (void)trimEvents:(OPTLYDataStoreEventType)eventType
+{
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(eventsStorageQueue(), ^{
+        __typeof__(self) strongSelf = weakSelf;
+
+        NSInteger numberOfEvents = [self numberOfEvents:eventType error:nil];
+        if (numberOfEvents > kMaxNumberOfEventsToStore) {
+            [strongSelf removeFirstNEvents:kOverflowNumberOfEventsToDelete eventType:eventType error:nil];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents, kOverflowNumberOfEventsToDelete];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+    });
+}
 
 - (void)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
@@ -203,10 +232,13 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];
+    
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveError, data, eventTypeName, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    
+    [self trimEvents:eventType];
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
