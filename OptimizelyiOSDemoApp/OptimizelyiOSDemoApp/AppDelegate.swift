@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // create the event dispatcher
         let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder)in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
+            builder?.logger = OPTLYLoggerDefault.init(logLevel: .debug)
         }
         
         // create the datafile manager
