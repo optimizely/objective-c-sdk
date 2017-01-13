@@ -63,32 +63,39 @@ static NSDictionary *kCDNResponseHeaders = nil;
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
     }];
+    
+    // asset manager got intialized with the correct defaults
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafileManager);
     XCTAssertNotNil(manager.errorHandler);
     XCTAssertNotNil(manager.eventDispatcher);
     XCTAssertNotNil(manager.logger);
-//    XCTAssertNotNil(manager.userProfile);
-//    XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
-//    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
-//    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
+    XCTAssertNotNil(manager.userProfile);
+    XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
+    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
+    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
+    XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
+    XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
     
+    // test initializing the client works
     OPTLYClient *client = [manager initialize];
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
-    
+
+    // test initializing optimizely core works fine
     Optimizely *optimizely = client.optimizely;
     XCTAssertNotNil(optimizely.config);
     XCTAssertNotNil(optimizely.errorHandler);
     XCTAssertNotNil(optimizely.eventDispatcher);
     XCTAssertNotNil(optimizely.logger);
-//    XCTAssertNotNil(optimizely.userProfile);
+    XCTAssertNotNil(optimizely.userProfile);
+    // test components from manager are passed to core properly
     XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
     XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
     XCTAssertEqual(optimizely.logger, manager.logger);
     XCTAssertEqual(optimizely.userProfile, manager.userProfile);
     
-    // test client engine and version were swizzled
+    // test client engine and version were set correctly
     XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
     XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_iOS_VERSION);
 }
