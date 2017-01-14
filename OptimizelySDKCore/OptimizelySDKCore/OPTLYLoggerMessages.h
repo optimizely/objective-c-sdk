@@ -39,9 +39,9 @@ extern NSString *const OPTLYLoggerMessagesForcedBucketingFailed;
 // ---- Client ----
 // error
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
+extern NSString *const OPTLYLoggerMessagesClientDummyOptimizelyError;
 extern NSString *const OPTLYLoggerMessagesGetVariationFailure;
 extern NSString *const OPTLYLoggerMessagesTrackFailure;
-extern NSString *const OPTLYLoggerMessagesClientDummyOptimizelyError;
 
 // ---- Data Store ----
 // Event Data Store
