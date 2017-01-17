@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // default parameters for initializing Optimizely from saved datafile
     let datafileName = "tvOSDemoTestData"
-    var projectId = "8154121553"
+    var projectId = ""
     var attributes = ["buyerType" : "frequent"]
     var eventKey = "event1"
     var experimentKey = "exp1"
