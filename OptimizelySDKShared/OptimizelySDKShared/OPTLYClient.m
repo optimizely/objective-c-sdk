@@ -52,8 +52,7 @@
                       userId:(NSString *)userId
                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -76,8 +75,7 @@
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -113,8 +111,7 @@
    attributes:(NSDictionary *)attributes
    eventValue:(NSNumber *)eventValue {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return;
     }
@@ -129,8 +126,7 @@
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -142,8 +138,7 @@
                                userId:(nonnull NSString *)userId
                    activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -157,8 +152,7 @@
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -174,8 +168,7 @@
                    activateExperiment:(BOOL)activateExperiment
                                 error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return nil;
     }
@@ -189,8 +182,7 @@
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
                  userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return false;
     }
@@ -202,8 +194,7 @@
                  userId:(nonnull NSString *)userId
      activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return false;
     }
@@ -217,8 +208,7 @@
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return false;
     }
@@ -234,8 +224,7 @@
      activateExperiment:(BOOL)activateExperiment
                   error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return false;
     }
@@ -249,8 +238,7 @@
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
                       userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -262,8 +250,7 @@
                       userId:(nonnull NSString *)userId
           activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -277,8 +264,7 @@
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -294,8 +280,7 @@
           activateExperiment:(BOOL)activateExperiment
                        error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -309,8 +294,7 @@
 - (double)variableDouble:(nonnull NSString *)variableKey
                   userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -322,8 +306,7 @@
                   userId:(nonnull NSString *)userId
       activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -337,8 +320,7 @@
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
@@ -354,8 +336,7 @@
       activateExperiment:(BOOL)activateExperiment
                    error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@",
-                                 OPTLYLoggerMessagesClientDummyOptimizelyError]
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
         return 0;
     }
