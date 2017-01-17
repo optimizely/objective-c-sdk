@@ -56,7 +56,7 @@ static NSData *datafile;
     XCTAssertNotNil(optimizely.logger);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
-    XCTAssertEqualObjects(optimizely.config.clientEngine, @"objective-c-sdk-core");
+    XCTAssertEqualObjects(optimizely.config.clientEngine, @"objective-c-sdk");
     XCTAssertEqualObjects(optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 

@@ -104,7 +104,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"1",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": @"objective-c-sdk",
       @"eventFeatures": @[]
       };
     
@@ -130,7 +130,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"2",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": @"objective-c-sdk",
       @"eventFeatures": @[]
       };
     
@@ -156,7 +156,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"3",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": @"objective-c-sdk",
       @"eventFeatures": @[]
       };
     
@@ -182,7 +182,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"4",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": @"objective-c-sdk",
       @"eventFeatures": @[]
       };
     

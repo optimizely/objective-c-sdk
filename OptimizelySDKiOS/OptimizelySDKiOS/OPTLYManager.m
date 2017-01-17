@@ -22,10 +22,9 @@
 #import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
 #import "OPTLYManager.h"
 
-static NSString * const kClientEngine = @"objective-c-sdk-iOS";
+static NSString * const kClientEngine = @"ios-sdk";
 
 @implementation OPTLYManager
-
 
 + (instancetype)init:(OPTLYManagerBuilderBlock)block {
     return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
@@ -110,18 +109,10 @@ static NSString * const kClientEngine = @"objective-c-sdk-iOS";
         }
         
         // --- client engine ---
-        if (!builder.clientEngine) {
-            self.clientEngine = kClientEngine;
-        } else {
-            self.clientEngine = builder.clientEngine;
-        }
+        _clientEngine = kClientEngine;
         
         // --- client version ---
-        if (!builder.clientVersion) {
-            self.clientVersion = OPTIMIZELY_SDK_iOS_VERSION;
-        } else {
-            self.clientVersion = builder.clientVersion;
-        }
+        _clientVersion = OPTIMIZELY_SDK_iOS_VERSION;
     }
     return self;
 }

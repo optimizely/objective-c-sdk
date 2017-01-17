@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
 
-/// Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
+/// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
 /// Returns the client version number
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;

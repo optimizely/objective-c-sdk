@@ -24,7 +24,7 @@
 static NSString *const defaultDatafileFileName = @"datafile_6372300739";
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
-static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
+static NSString * const kClientEngine = @"tvos-sdk";
 static NSData *kDefaultDatafile;
 static NSDictionary *kCDNResponseHeaders = nil;
 

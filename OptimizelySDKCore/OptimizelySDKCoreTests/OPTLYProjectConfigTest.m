@@ -64,7 +64,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
-    XCTAssertEqualObjects(projectConfig.clientEngine, @"objective-c-sdk-core");
+    XCTAssertEqualObjects(projectConfig.clientEngine, @"objective-c-sdk");
     XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 
