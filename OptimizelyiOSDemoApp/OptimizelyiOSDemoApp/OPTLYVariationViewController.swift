@@ -24,10 +24,12 @@ class OPTLYVariationViewController: UIViewController {
             case "variation_a":
                 self.variationLetterLabel.text = "A"
                 self.variationLetterLabel.textColor = UIColor.black
+                self.variationSubheaderLabel.textColor = UIColor.black
                 self.variationBackgroundImage.image = UIImage(named: "background_variA")
             case "variation_b":
                 self.variationLetterLabel.text = "B"
                 self.variationLetterLabel.textColor = UIColor.white
+                self.variationSubheaderLabel.textColor = UIColor.white
             self.variationBackgroundImage.image = UIImage(named: "background_variB-marina")
             default:
                 break

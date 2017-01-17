@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Optimizely SDK test parameters
     let userId = "1234"
-    let revenue = NSNumber(value: 88)
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
     
@@ -46,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
                 {
-                    variationViewController.variationKey = "variation_b" // UPDATE ME WHEN DONE TESTING
+                    variationViewController.variationKey = "variation_a" // UPDATE ME WHEN DONE TESTING
                     if let window = self.window {
                         window.rootViewController = variationViewController
                         
