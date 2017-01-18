@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5E2A8C711E256FA600DE8276 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */; };
 		5E2A8C771E25745E00DE8276 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */; };
-		5E2A8C7F1E258F6500DE8276 /* OPTLYVariationBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A8C7E1E258F6500DE8276 /* OPTLYVariationBViewController.swift */; };
 		5E875F171E270E78005C1B1E /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */; };
 		7C6B9074803B4D4970B342BB /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB412018B98235E5A62E95F /* Pods_OptimizelyiOSDemoApp.framework */; };
 		EA2C23C11DE3F6300063ADA0 /* iOSDemoTestData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */; };
@@ -67,7 +66,6 @@
 		3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
-		5E2A8C7E1E258F6500DE8276 /* OPTLYVariationBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYVariationBViewController.swift; sourceTree = "<group>"; };
 		5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYVariationViewController.swift; sourceTree = "<group>"; };
 		EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = iOSDemoTestData.json; path = "Test Data/iOSDemoTestData.json"; sourceTree = "<group>"; };
 		EA5246BD1DC7186800AF6685 /* OptimizelyiOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyiOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +159,6 @@
 				EA5246C21DC7186800AF6685 /* ViewController.swift */,
 				EA5246C41DC7186800AF6685 /* Main.storyboard */,
 				5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */,
-				5E2A8C7E1E258F6500DE8276 /* OPTLYVariationBViewController.swift */,
 				EA5246C71DC7186800AF6685 /* Assets.xcassets */,
 				EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
@@ -420,7 +417,6 @@
 			files = (
 				EA5246C31DC7186800AF6685 /* ViewController.swift in Sources */,
 				5E875F171E270E78005C1B1E /* OPTLYVariationViewController.swift in Sources */,
-				5E2A8C7F1E258F6500DE8276 /* OPTLYVariationBViewController.swift in Sources */,
 				EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -45,16 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
                 {
-                    variationViewController.variationKey = "variation_a" // UPDATE ME WHEN DONE TESTING
+                    variationViewController.variationKey = (variation?.variationKey)!
+                    
                     if let window = self.window {
                         window.rootViewController = variationViewController
                         
                     }
                 }
                 
-                // TRACK EVENT SOMEWHERE -- where? If fails, show conversion page
+                // TRACK EVENT SOMEWHERE -- where?
             } else {
-                // load error page
+                // load error page if variation is nil
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let failureViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
                 {
@@ -66,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            optimizelyClient.track(self.eventKey, userId: self.userId)
+//            optimizelyClient.track(self.eventKey, userId: self.userId)
         }
     }
     
