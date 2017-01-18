@@ -114,6 +114,19 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
+    NSArray *layerStates = [self createLayerStates:config
+                                          bucketer:bucketer
+                                          eventKey:eventName
+                                            userId:userId
+                                        attributes:attributes];
+    
+    // if layer states is empty, then none of the experiments passed the audience evaluation
+    if ([layerStates count] == 0) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventNotPassAudienceEvaluation, eventName];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        return nil;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary new];
     NSDictionary *commonParams = [self createCommonParams:config
                                                    userId:userId
@@ -123,11 +136,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysEventName] = StringOrEmpty(eventName);
     params[OPTLYEventParameterKeysEventFeatures] = @[];
     params[OPTLYEventParameterKeysEventMetrics] = eventValue? @[[self createEventMetric:eventValue]] : @[];
-    params[OPTLYEventParameterKeysLayerStates] = [self createLayerStates:config
-                                                                bucketer:bucketer
-                                                                eventKey:eventName
-                                                                  userId:userId
-                                                              attributes:attributes];
+    params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
     NSError *error;
     OPTLYEventTicket *eventTicket = [[OPTLYEventTicket alloc] initWithDictionary:params error:&error];
@@ -228,7 +237,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     if ([eventExperimentIds count] == 0) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventNotAssociatedWithExperiment, eventKey];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        return [layerStates copy];
+        return nil;
     }
     
     for (NSString *eventExperimentId in eventExperimentIds)
@@ -247,7 +256,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
                                                                        userId:userId
                                                                    attributes:attributes
                                                                      bucketer:bucketer];
-        
+    
         if (bucketedVariation) {
             NSDictionary *eventDecisionParams = [self createDecisionWithExperimentId:experiment.experimentId
                                                                          variationId:bucketedVariation.variationId];
@@ -260,8 +269,10 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             if (layerStateParams) {
                 [layerStates addObject:layerStateParams];
             }
-        } 
+        }
     }
+    
+
     
     return [layerStates copy];
 }
