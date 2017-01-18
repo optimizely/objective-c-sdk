@@ -35,6 +35,7 @@ NSString *const OPTLYLoggerMessagesForcedBucketingFailed = @"[BUCKETER] Entity %
 // ---- Client ----
 // error
 NSString *const OPTLYLoggerMessagesActivationFailure = @"[CLIENT] Not activating user %@ for experiment %@."; // NOTE: also in Optimizely
+NSString *const OPTLYLoggerMessagesClientDummyOptimizelyError = @"[CLIENT] Optimizely is not initialized.";
 NSString *const OPTLYLoggerMessagesGetVariationFailure = @"[CLIENT] Could not get variation for user %@ for experiment %@."; // user ID, experiment key
 NSString *const OPTLYLoggerMessagesTrackFailure = @"[CLIENT] Not tracking event %@ for user %@."; // NOTE: also in Optimizely
 
@@ -98,8 +99,8 @@ NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation = @"[EVENT BUI
 
 // ---- Event Dispatcher ----
 // info
-NSString *const OPTLYLoggerMessagesEventDispatcherTrackingEvent = @"[EVENT DISPATCHER] Tracking event %@ for user %@";
-NSString *const OPTLYLoggerMessagesEventDispatcherActivatingUser = @"[EVENT DISPATCHER] Activating user %@ in experiment %@";
+NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent = @"[EVENT DISPATCHER] Attempting to send conversion event %@ for user %@";
+NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent = @"[EVENT DISPATCHER] Attempting to send impression event for user %@ in experiment %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess = @"[EVENT DISPATCHER] Successfully tracked event %@ for user %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess = @"[EVENT DISPATCHER] Successfully activated user %@ in experiment %@";
 // warning
@@ -118,7 +119,7 @@ NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed =  @"[EVENT DIS
 NSString *const OPTLYLoggerMessagesEventDispatcherPendingEvent = @"[EVENT DISPATCHER] Event already pending dispatch: %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved = @"[EVENT DISPATCHER] %@ saved: %@"; //event type, event
 NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent = @"[EVENT DISPATCHER] %@ removed: %@"; //event type, event
-NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DISPATCHER] Not tracking event %@ for experiment %@."; // event key, userId
+NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DISPATCHER] Not tracking event %@ for user %@."; // event key, userId
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";
 
 // ---- Live Variables ----
