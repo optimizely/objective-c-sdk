@@ -98,16 +98,6 @@
             self.userProfile = builder.userProfile;
         }
         
-        // --- client engine ---
-        if (builder.clientEngine) {
-            self.clientEngine = builder.clientEngine;
-        }
-        
-        // --- client version ---
-        if (builder.clientVersion) {
-            self.clientVersion = builder.clientVersion;
-        }
-        
     }
     return self;
 }

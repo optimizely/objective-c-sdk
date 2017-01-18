@@ -31,6 +31,11 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @end
 
 @interface OPTLYManagerBase : NSObject
+{
+@protected
+    NSString *_clientEngine;
+    NSString *_clientVersion;
+}
 
 /// The ID of the Optimizely project to manager
 @property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
@@ -47,9 +52,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 /// User profile to be used by the client to store user-specific data.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
 /// The client engine
-@property (nonatomic, readwrite, strong, nonnull) NSString *clientEngine;
+@property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
 /// The client version
-@property (nonatomic, readwrite, strong, nonnull) NSString *clientVersion;
+@property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
 
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance

@@ -59,8 +59,6 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     id<OPTLYLogger> logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     id<OPTLYUserProfile> userProfile = [[OPTLYUserProfileNoOp alloc] init];
-    NSString *clientEngine = @"clientEngine";
-    NSString *clientVersion = @"clientVersion";
     
     // initialize Manager
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
@@ -71,8 +69,6 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
         builder.logger = logger;
         builder.projectId = kProjectId;
         builder.userProfile = userProfile;
-        builder.clientEngine = clientEngine;
-        builder.clientVersion = clientVersion;
     }];
     XCTAssertEqual(manager.datafileManager, datafileManager);
     
@@ -90,8 +86,6 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertNotNil(optimizely.config);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
-    XCTAssertEqualObjects(optimizely.config.clientEngine, clientEngine);
-    XCTAssertEqualObjects(optimizely.config.clientVersion, clientVersion);
 }
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {

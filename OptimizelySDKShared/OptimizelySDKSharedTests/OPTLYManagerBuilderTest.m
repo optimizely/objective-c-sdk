@@ -148,26 +148,6 @@ static NSString *const kProjectId = @"6372300739";
 }
 
 /**
- * Test the manager builder can properly assign the manager's client engine and client version
- */
-- (void)testManagerBuilderCanAssignClientEngineAndClientVersion {
-    NSString *clientEngine = @"clientEngine";
-    NSString *clientVersion = @"clientVersion";
-    
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
-        builder.clientEngine = clientEngine;
-        builder.clientVersion = clientVersion;
-    }];
-    
-    XCTAssertNotNil(manager);
-    XCTAssertNotNil(manager.clientEngine);
-    XCTAssertNotNil(manager.clientVersion);
-    XCTAssertEqualObjects(manager.clientEngine, clientEngine);
-    XCTAssertEqualObjects(manager.clientVersion, clientVersion);
-}
-
-/**
  * Test the manager is not initialized when an empty string is passed in for the projectID
  */
 - (void)testManagerIsNotInitializedWhenProjectIdIsEmptyString {

@@ -22,7 +22,7 @@
 #import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
 #import "OPTLYManager.h"
 
-static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
+static NSString * const kClientEngine = @"tvos-sdk";
 
 @implementation OPTLYManager
 
@@ -109,18 +109,10 @@ static NSString * const kClientEngine = @"objective-c-sdk-tvOS";
         }
         
         // --- client engine ---
-        if (!builder.clientEngine) {
-            self.clientEngine = kClientEngine;
-        } else {
-            self.clientEngine = builder.clientEngine;
-        }
+        _clientEngine = kClientEngine;
         
         // --- client version ---
-        if (!builder.clientVersion) {
-            self.clientVersion = OPTIMIZELY_SDK_TVOS_VERSION;
-        } else {
-            self.clientVersion = builder.clientVersion;
-        }
+        _clientVersion = OPTIMIZELY_SDK_TVOS_VERSION;
     }
     return self;
 }

@@ -25,6 +25,7 @@ static NSString * const kDatabase = @"database";
 static NSString * const kDatafile = @"datafile";
 static NSString * const kUserProfile = @"user-profile";
 static NSString * const kEventDispatcher = @"event-dispatcher";
+static NSString * const kClientEngine = @"objective-c-sdk";
 
 @interface OPTLYDataStore(Test)
 @property (nonatomic, strong) NSDictionary *eventsCache;
@@ -104,7 +105,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"1",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": kClientEngine,
       @"eventFeatures": @[]
       };
     
@@ -130,7 +131,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"2",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": kClientEngine,
       @"eventFeatures": @[]
       };
     
@@ -156,7 +157,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"3",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": kClientEngine,
       @"eventFeatures": @[]
       };
     
@@ -182,7 +183,7 @@ static NSString * const kEventDispatcher = @"event-dispatcher";
                              }],
       @"visitorId": @"4",
       @"eventName": @"people",
-      @"clientEngine": @"objective-c-sdk-core",
+      @"clientEngine": kClientEngine,
       @"eventFeatures": @[]
       };
     

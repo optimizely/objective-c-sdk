@@ -23,6 +23,7 @@
 #import "OPTLYTestHelper.h"
 
 // static data from datafile
+static NSString * const kClientEngine = @"objective-c-sdk";
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 static NSData *datafile;
 
@@ -56,8 +57,8 @@ static NSData *datafile;
     XCTAssertNotNil(optimizely.logger);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
-    XCTAssertEqualObjects(optimizely.config.clientEngine, @"objective-c-sdk-core");
-    XCTAssertEqualObjects(optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
+    XCTAssertEqualObjects(optimizely.config.clientEngine, kClientEngine, @"Invalid client engine set: %@. Expected: %@.", optimizely.config.clientEngine, kClientEngine);
+    XCTAssertEqualObjects(optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version set: %@. Expected: %@.", optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 
 - (void)testBuilderCanAssignErrorHandler {
