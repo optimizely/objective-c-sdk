@@ -62,7 +62,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
                 toURL:(NSURL *)url
     completionHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error))completion {
     OPTLYNetworkService *networkService = [OPTLYNetworkService new];
-    [networkService dispatchEvent:params toURL:url completionHandler:completion];
+    [networkService dispatchEvent:params backoffRetry:NO toURL:url completionHandler:completion];
 }
 
 @end

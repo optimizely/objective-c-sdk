@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -13,9 +13,15 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import "OPTLYManagerBase.h"
 
-@interface OPTLYProjectConfig (OptimizelySDKiOS)
-
+@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
+/**
+ * Init with builder block
+ * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
+ * @return OptimizelyManager instance
+ */
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
 @end

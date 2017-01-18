@@ -60,11 +60,6 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
 
 - (OPTLYVariation *)bucketExperiment:(OPTLYExperiment *)experiment
                           withUserId:(NSString *)userId {
-    // Check for white listing
-    OPTLYVariation *whitelistedVariation = [self checkForWhiteListing:experiment withUserId:userId];
-    if (whitelistedVariation != nil) {
-        return whitelistedVariation;
-    }
     
     // check for mutex
     NSString *groupId = experiment.groupId;
@@ -96,28 +91,6 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
         // log message if the user is mutually excluded
         NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesUserMutuallyExcluded, userId];
         [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        return nil;
-    }
-}
-
-- (OPTLYVariation *)checkForWhiteListing:(OPTLYExperiment *)experiment withUserId:(NSString *)userId {
-    if (experiment.forcedVariations[userId] != nil) {
-        NSString *forcedVariationKey = experiment.forcedVariations[userId];
-        OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
-        if (forcedVariation != nil) {
-            // Log user forced into variation
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedVariationUser, userId, forcedVariation.variationId];
-            [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        }
-        else {
-            // Log error: variation not in datafile not activating user
-            [OPTLYErrorHandler handleError:self.config.errorHandler
-                                      code:OPTLYErrorTypesDataUnknown
-                               description:NSLocalizedString(OPTLYErrorHandlerMessagesVariationUnknown, variationId)];
-        }
-        return forcedVariation;
-    }
-    else {
         return nil;
     }
 }

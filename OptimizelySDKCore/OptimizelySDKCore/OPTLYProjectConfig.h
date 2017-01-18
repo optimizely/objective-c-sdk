@@ -61,10 +61,15 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
 
+/// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
+@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
+/// Returns the client version number
+@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
+
 /**
  * Initialize the Project Config from a builder block.
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYProjectConfigBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock;
 
 /**
  * Initialize the Project Config from a datafile.
@@ -124,14 +129,23 @@ NS_ASSUME_NONNULL_END
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
 
-/*
- * Returns the client type (e.g., objective-c-sdk-core, objective-c-sdk-iOS, objective-c-sdk-tvOS)
+/**
+ * Determine if a user is whitelisted in an experiment.
+ * @param userId The ID of the user to check for.
+ * @param experiment The experiment to check in.
+ * @return True if the user is whitelisted in the experiment.
+ *          False if the user is not whitelisted in the experiment.
  */
-- (nonnull NSString *)clientEngine;
+- (BOOL)checkWhitelistingForUser:(nonnull NSString *)userId
+                      experiment:(nonnull OPTLYExperiment *)experiment;
 
-/*
- * Returns the client version number
+/**
+ * Get the whitelisted variation for the user in the experiment.
+ * @param userId The ID of the user that is whitelisted.
+ * @param experiment The experiment to whitelist in.
+ * @return OPTLYVariation The variation that the user was whitelisted into.
  */
-- (nonnull NSString *)clientVersion;
+- (nullable OPTLYVariation *)getWhitelistedVariationForUser:(nonnull NSString *)userId
+                                                 experiment:(nonnull OPTLYExperiment *)experiment;
 
 @end

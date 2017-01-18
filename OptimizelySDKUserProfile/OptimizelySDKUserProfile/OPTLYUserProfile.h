@@ -28,21 +28,16 @@
 /**
  * Initializer for Optimizely User Profile object
  *
- * @param block The builder block with which to initialize the Optimizely User Profile object
+ * @param builderBlock The builder block with which to initialize the Optimizely User Profile object
  * @return An instance of OPTLYUserProfile
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYUserProfileBuilderBlock)block;
-
-/**
- * Default initializer for Optimizely User Profile object
- */
-- (nullable instancetype)init;
++ (nullable instancetype)init:(nonnull OPTLYUserProfileBuilderBlock)builderBlock;
 
 /**
  * Cleans and removes all bucketing mapping for specific userId.
  * @param userId The user ID to remove all bucketing value.
  **/
-- (void)removeUserExperimentRecordsForUser:(nonnull NSString *)userId;
+- (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId;
 
 /**
  * Cleans and removes all bucketing mapping.

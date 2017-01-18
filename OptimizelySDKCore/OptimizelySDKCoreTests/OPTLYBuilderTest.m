@@ -19,10 +19,13 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYLogger.h"
+#import "OPTLYProjectConfig.h"
 #import "OPTLYTestHelper.h"
 
 // static data from datafile
+static NSString * const kClientEngine = @"objective-c-sdk";
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
+static NSData *datafile;
 
 @interface OPTLYBuilderTest : XCTestCase
 
@@ -30,15 +33,19 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 
 @implementation OPTLYBuilderTest
 
++ (void)setUp {
+    datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+}
+
 - (void)testBuilderRequiresDatafile {
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         
     }];
     XCTAssertNil(optimizely);
 }
 
 - (void)testBuilderBuildsDefaults {
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     }];
     XCTAssertNotNil(optimizely);
@@ -48,17 +55,20 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
     XCTAssertNotNil(optimizely.eventBuilder);
     XCTAssertNotNil(optimizely.eventDispatcher);
     XCTAssertNotNil(optimizely.logger);
+    XCTAssertNotNil(optimizely.config.clientEngine);
+    XCTAssertNotNil(optimizely.config.clientVersion);
+    XCTAssertEqualObjects(optimizely.config.clientEngine, kClientEngine, @"Invalid client engine set: %@. Expected: %@.", optimizely.config.clientEngine, kClientEngine);
+    XCTAssertEqualObjects(optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version set: %@. Expected: %@.", optimizely.config.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 
 - (void)testBuilderCanAssignErrorHandler {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYErrorHandlerDefault *errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
     }];
     
-    Optimizely *customOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
         builder.errorHandler = errorHandler;
     }];
@@ -70,14 +80,13 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
     }];
     
-    Optimizely *customOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
         builder.eventDispatcher = eventDispatcher;
     }];
@@ -89,14 +98,13 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 }
 
 - (void)testBuilderCanAssignLogger {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     OPTLYLoggerDefault *logger = [[OPTLYLoggerDefault alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
     }];
     
-    Optimizely *customOptimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
         builder.logger = logger;
     }];
@@ -108,15 +116,34 @@ static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 }
 
 - (void)testInitializationWithoutBuilder {
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:nil];
+    Optimizely *optimizely = [Optimizely init:nil];
     XCTAssertNil(optimizely);
 }
 
 - (void)testBuilderReturnsNilWithBadDatafile {
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = [[NSData alloc] init];
     }];
     XCTAssertNil(optimizely);
+}
+
+/**
+ * Make sure the OPTLYBuilder can pass the client engine and version properly to the OPTLYProjectConfig initialization.
+ */
+- (void)testBuilderCanPassClientEngineAndVersionToProjectConfig {
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    
+    XCTAssertNotNil(optimizely);
+    XCTAssertNotNil(optimizely.config);
+    XCTAssertEqualObjects(optimizely.config.clientEngine, clientEngine);
+    XCTAssertEqualObjects(optimizely.config.clientVersion, clientVersion);
 }
 
 @end

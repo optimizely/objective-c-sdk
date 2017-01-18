@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -35,39 +35,58 @@
     self = [super init];
     if (self != nil) {
         block(self);
-        if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[self.datafileManager class]]) {
+        
+        // check the logger
+        if (_logger) {
+            if (![OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[_logger class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol
+                          withLevel:OptimizelyLogLevelError];
+                return nil;
+            }
+        }
+        
+        // check the error handler
+        if (_errorHandler) {
+            if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[_errorHandler class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol
+                          withLevel:OptimizelyLogLevelError];
+                return nil;
+            }
+        }
+        
+        // check the datafile manager
+        if (_datafileManager) {
+            if (![OPTLYDatafileManagerUtility conformsToOPTLYDatafileManagerProtocol:[_datafileManager class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol
+                          withLevel:OptimizelyLogLevelError];
+                return nil;
+            }
+        }
+        
+        // check event dispatcher
+        if (_eventDispatcher) {
+            if (![OPTLYEventDispatcherUtility conformsToOPTLYEventDispatcherProtocol:[_eventDispatcher class]]) {
+                [_logger logMessage:OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEventDispatcherProtocol
+                          withLevel:OptimizelyLogLevelError];
+                return nil;
+            }
+        }
+        
+        // check the project id
+        if (_projectId == nil) {
+            [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
+                      withLevel:OptimizelyLogLevelError];
             return nil;
         }
-    }    
+        
+        if ([_projectId isEqualToString:@""]) {
+            [_logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
+                      withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
+        
+    }
     return self;
-}
-
-- (id<OPTLYDatafileManager>)datafileManager {
-    if (!_datafileManager) {
-        _datafileManager = [[OPTLYDatafileManagerBasic alloc] init];
-    }
-    return _datafileManager;
-}
-
-- (id<OPTLYErrorHandler>)errorHandler {
-    if (!_errorHandler) {
-        _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-    }
-    return _errorHandler;
-}
-
-- (id<OPTLYEventDispatcher>)eventDispatcher {
-    if (!_eventDispatcher) {
-        _eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
-    }
-    return _eventDispatcher;
-}
-
-- (id<OPTLYLogger>)logger {
-    if (!_logger) {
-        _logger = [[OPTLYLoggerDefault alloc] init];
-    }
-    return _logger;
 }
 
 @end

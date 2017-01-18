@@ -28,11 +28,13 @@ static const NSInteger kMaxTrafficAllocationValue = 10000;
     if ((self.endOfRange > kMaxTrafficAllocationValue) ||
         (self.endOfRange < kMinTrafficAllocationValue))
     {
-        *error = [JSONModelError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                            code:OPTLYErrorTypesDatafileInvalid
-                                        userInfo:@{NSLocalizedDescriptionKey :
-                                                       [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesTrafficAllocationNotInRange, nil), self.endOfRange]}];
-                  
+        if (*error != nil) {
+            *error = [JSONModelError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                code:OPTLYErrorTypesDatafileInvalid
+                                            userInfo:@{NSLocalizedDescriptionKey :
+                                                           [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesTrafficAllocationNotInRange, nil), self.endOfRange]}];
+
+        }
         valid = NO;
     }
     

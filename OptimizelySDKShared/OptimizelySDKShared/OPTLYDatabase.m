@@ -26,7 +26,8 @@ static NSString * const kDatabaseFileName = @"optly-database.sqlite";
 // database queries
 static NSString * const kCreateTableQuery = @"CREATE TABLE IF NOT EXISTS %@ (id INTEGER PRIMARY KEY AUTOINCREMENT, json TEXT,timestamp INTEGER)";
 static NSString * const kInsertEntityQuery = @"INSERT INTO %@ (json,timestamp) VALUES(?,?)";
-static NSString * const kDeleteEntityQuery = @"DELETE FROM %@ where id IN %@";
+static NSString * const kDeleteEntityIDQuery = @"DELETE FROM %@ where id IN %@";
+static NSString * const kDeleteEntityQuery = @"DELETE FROM %@ where json='%@'";
 static NSString * const kRetrieveEntityQuery = @"SELECT * from %@";
 static NSString * const kRetrieveEntityQueryLimit = @" LIMIT %ld";
 static NSString * const kEntitiesCountQuery = @"SELECT count(*) FROM %@";
@@ -91,10 +92,22 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }];
 }
 
-- (void)saveData:(NSDictionary *)data
-           table:(NSString *)tableName
-           error:(NSError **)error
+- (void)saveEvent:(NSDictionary *)data
+            table:(NSString *)tableName
+            error:(NSError **)error
 {
+    if (!data) {
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataStoreDatabaseNoDataToSave, tableName];
+            
+            *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                         code:OPTLYErrorTypesDatabase
+                                     userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+            OPTLYLogError(errorMessage);
+        }
+        return;
+    }
+    
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -125,7 +138,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 {
     [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
         NSString *commaSeperatedIds = [NSString stringWithFormat:@"(%@)", [entityIds componentsJoinedByString:@","]];
-        NSString *query = [NSString stringWithFormat:kDeleteEntityQuery, tableName, commaSeperatedIds];
+        NSString *query = [NSString stringWithFormat:kDeleteEntityIDQuery, tableName, commaSeperatedIds];
         if (![db executeUpdate:query]) {
             if (error) {
                 *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -134,6 +147,24 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
                                                         NSLocalizedString([db lastErrorMessage], nil)}];
             }
             OPTLYLogError(@"Unable to remove rows of Optimizely table: %@ %@", tableName, [db lastErrorMessage]);
+        }
+    }];
+}
+
+- (void)deleteEntityWithJSON:(nonnull NSString *)json
+                       table:(nonnull NSString *)tableName
+                       error:(NSError * _Nullable * _Nullable)error
+{
+    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+        NSString *query = [NSString stringWithFormat:kDeleteEntityQuery, tableName, json];
+        if (![db executeUpdate:query]) {
+            if (error) {
+                *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesDatabase
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        NSLocalizedString([db lastErrorMessage], nil)}];
+            }
+            OPTLYLogError(@"Unable to remove row of Optimizely table: %@ %@", tableName, [db lastErrorMessage]);
         }
     }];
 }

@@ -100,20 +100,20 @@ static NSString * const kAttributeValue = @"firefox";
 
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
-    Optimizely *optimizely = [Optimizely initWithBuilderBlock:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = whitelistingDatafile;
     }];
     
     // user should not be bucketed if userId is not a match and they do not pass attributes
-    OPTLYVariation *variation = [optimizely getVariationForExperiment:kWhitelistedExperiment
-                                                               userId:kUserId
-                                                           attributes:self.attributes];
+    OPTLYVariation *variation = [optimizely variation:kWhitelistedExperiment
+                                               userId:kUserId
+                                           attributes:self.attributes];
     XCTAssertNil(variation);
     
     // user should be bucketed if userID is whitelisted
-    variation = [optimizely getVariationForExperiment:kWhitelistedExperiment
-                                               userId:kWhitelistedUserId
-                                           attributes:self.attributes];
+    variation = [optimizely variation:kWhitelistedExperiment
+                               userId:kWhitelistedUserId
+                           attributes:self.attributes];
     XCTAssertNotNil(variation);
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
 }

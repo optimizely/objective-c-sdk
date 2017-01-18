@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D3503A11DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */; };
-		2D3503AC1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */; };
 		2D3504161DFA78D600B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */; };
 		2D3504171DFA78D600B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */; };
 		2D3504181DFA78D600B0A822 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504111DFA78D600B0A822 /* datafile_6372300739.json */; };
@@ -23,6 +21,8 @@
 		EA2FA7351DC1FAA000B1D81B /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA7271DC1FA9F00B1D81B /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA524A731DC849AC00AF6685 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA524A5D1DC8498300AF6685 /* OptimizelySDKDatafileManager.framework */; };
 		EA524A751DC849AD00AF6685 /* OptimizelySDKUserProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA524A6C1DC8498800AF6685 /* OptimizelySDKUserProfile.framework */; };
+		EA92F8341E27FB7900A859C7 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA92F8321E27FB7900A859C7 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA92F8351E27FB7900A859C7 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92F8331E27FB7900A859C7 /* OPTLYManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,8 +143,6 @@
 /* Begin PBXFileReference section */
 		1273AF90BC689BE6B17EFDC5 /* Pods_OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DE410B256E509B248B59A2 /* Pods-OptimizelySDKTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOS/Pods-OptimizelySDKTVOS.beta.xcconfig"; sourceTree = "<group>"; };
-		2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OPTLYProjectConfig+tvOS.h"; sourceTree = "<group>"; };
-		2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OPTLYProjectConfig+tvOS.m"; sourceTree = "<group>"; };
 		2D35040D1DFA78D600B0A822 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
 		2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BucketerTestsDatafile.json; sourceTree = "<group>"; };
@@ -171,6 +169,8 @@
 		EA52495D1DC736DF00AF6685 /* OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKTVOS.modulemap; sourceTree = "<group>"; };
 		EA524A511DC8498200AF6685 /* OptimizelySDKDatafileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKDatafileManager.xcodeproj; path = ../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj; sourceTree = "<group>"; };
 		EA524A601DC8498800AF6685 /* OptimizelySDKUserProfile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfile.xcodeproj; path = ../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj; sourceTree = "<group>"; };
+		EA92F8321E27FB7900A859C7 /* OPTLYManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManager.h; sourceTree = "<group>"; };
+		EA92F8331E27FB7900A859C7 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,9 +260,9 @@
 			children = (
 				EA52495D1DC736DF00AF6685 /* OptimizelySDKTVOS.modulemap */,
 				EA2FA7271DC1FA9F00B1D81B /* OptimizelySDKTVOS.h */,
-				2D3503A01DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h */,
-				2D3503AB1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m */,
 				EA2FA7281DC1FA9F00B1D81B /* OptimizelySDKTVOS-Info.plist */,
+				EA92F8321E27FB7900A859C7 /* OPTLYManager.h */,
+				EA92F8331E27FB7900A859C7 /* OPTLYManager.m */,
 			);
 			path = OptimizelySDKTVOS;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA2FA7351DC1FAA000B1D81B /* OptimizelySDKTVOS.h in Headers */,
-				2D3503A11DFA533800B0A822 /* OPTLYProjectConfig+tvOS.h in Headers */,
+				EA92F8341E27FB7900A859C7 /* OPTLYManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +378,7 @@
 		EA2FA71B1DC1FA9F00B1D81B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA2FA7231DC1FA9F00B1D81B = {
@@ -616,7 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D3503AC1DFA535F00B0A822 /* OPTLYProjectConfig+tvOS.m in Sources */,
+				EA92F8351E27FB7900A859C7 /* OPTLYManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +673,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -703,7 +704,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OPTIMIZELY_SDK_TVOS_VERSION = "$(OPTIMIZELY_SDK_TVOS_VERSION_MAJOR).$(OPTIMIZELY_SDK_TVOS_VERSION_MINOR).$(OPTIMIZELY_SDK_TVOS_VERSION_PATCH)$(OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_TVOS_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX = "-debug";
 				SDKROOT = appletvos;
@@ -762,6 +763,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -788,7 +790,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_TVOS_VERSION = "$(OPTIMIZELY_SDK_TVOS_VERSION_MAJOR).$(OPTIMIZELY_SDK_TVOS_VERSION_MINOR).$(OPTIMIZELY_SDK_TVOS_VERSION_PATCH)$(OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_TVOS_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX = "-rc";
 				SDKROOT = appletvos;
@@ -848,6 +850,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -874,7 +877,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_TVOS_VERSION = "$(OPTIMIZELY_SDK_TVOS_VERSION_MAJOR).$(OPTIMIZELY_SDK_TVOS_VERSION_MINOR).$(OPTIMIZELY_SDK_TVOS_VERSION_PATCH)$(OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_TVOS_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX = "-beta";
 				SDKROOT = appletvos;
@@ -934,6 +937,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -960,7 +964,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_TVOS_VERSION = "$(OPTIMIZELY_SDK_TVOS_VERSION_MAJOR).$(OPTIMIZELY_SDK_TVOS_VERSION_MINOR).$(OPTIMIZELY_SDK_TVOS_VERSION_PATCH)$(OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_TVOS_VERSION_MAJOR = 0;
-				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 3;
+				OPTIMIZELY_SDK_TVOS_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_TVOS_VERSION_SUFFIX = "";
 				SDKROOT = appletvos;

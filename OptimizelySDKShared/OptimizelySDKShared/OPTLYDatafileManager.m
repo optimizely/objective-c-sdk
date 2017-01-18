@@ -51,6 +51,7 @@
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     OPTLYNetworkService *networkService = [OPTLYNetworkService new];
     [networkService downloadProjectConfig:projectId
+                             backoffRetry:NO
                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                             self.savedDatafile = data;
                             // call the completion handler

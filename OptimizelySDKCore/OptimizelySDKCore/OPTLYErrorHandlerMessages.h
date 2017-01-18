@@ -48,6 +48,13 @@ extern NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown;
 
 extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
 
+extern NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents;
+extern NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoDataToSave;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure;
+extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure;
+
+
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesDatafileInvalid = 0,
     OPTLYErrorTypesDataUnknown,
@@ -61,6 +68,7 @@ typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
     OPTLYErrorTypesEventDispatch,
     OPTLYErrorTypesEventTrack,
     OPTLYErrorTypesUserActivate,
+    OPTLYErrorTypesHTTPRequestManager,
 };
 
 @interface OPTLYErrorHandlerMessages : NSObject

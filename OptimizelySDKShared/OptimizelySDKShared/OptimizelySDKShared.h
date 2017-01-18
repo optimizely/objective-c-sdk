@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -24,7 +24,8 @@
 #import "OPTLYDataStore.h"
 #import "OPTLYDatafileManager.h"
 #import "OPTLYFileManager.h"
-#import "OPTLYManager.h"
+#import "OPTLYManagerBase.h"
+#import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 
 //! Project version number for OptimizelySDKShared.

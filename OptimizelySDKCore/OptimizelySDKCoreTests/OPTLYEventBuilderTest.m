@@ -121,10 +121,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     
 }
 
-- (void)testBuildEventTicketWithAudience
+- (void)testBuildEventTicketWithValidAudience
 {
-    // check without attributes
-    NSDictionary *attributes = @{};
+    // check without attributes that satisfy audience requirement
+    NSDictionary *attributes = @{@"browser_type":@"firefox"};
+
     OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
                                                                bucketer:self.bucketer
                                                                  userId:kUserId
@@ -133,8 +134,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                              attributes:attributes];
     NSDictionary *params = [eventTicket toDictionary];
     [self checkCommonParams:params withAttributes:attributes];
-    NSArray *userFeatures = params[OPTLYEventParameterKeysUserFeatures];
-    NSAssert([userFeatures count] == 0, @"User features params should not be generated with nil attributes.");
     
     // check with attributes
     attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
@@ -156,6 +155,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                    experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithInvalidAudience
+{
+    // check without attributes that satisfy audience requirement
+    NSDictionary *attributes = @{@"browser_type":@"chrome"};
+    
+    OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
+                                                               bucketer:self.bucketer
+                                                                 userId:kUserId
+                                                              eventName:kEventWithAudienceName
+                                                             eventValue:nil
+                                                             attributes:attributes];
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
+}
+
 - (void)testBuildEventTicketWithExperimentNotRunning
 {
     OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
@@ -164,13 +177,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                               eventName:kEventWithExperimentNotRunningName
                                                              eventValue:nil
                                                              attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:nil];
-    
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    NSUInteger numberOfLayers = [layerStates count];
-    NSAssert(numberOfLayers == 0, @"Layers should not be created.");
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
 - (void)testBuildEventTicketWithoutExperiment
@@ -181,13 +188,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                               eventName:kEventWithoutExperimentName
                                                              eventValue:nil
                                                              attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:nil];
-    
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    NSUInteger numberOfLayers = [layerStates count];
-    NSAssert(numberOfLayers == 0, @"Layers should not be created.");
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
 
@@ -236,6 +237,23 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // 6367444440 (testExperimentNotRunning) is excluded because the experiment is not running
     // 6450630664 should be exlucded becuase it is mutually excluded.
     NSAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
+}
+
+- (void)testBuildEventTicketWithAnonymizeIPFalse {
+    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
+    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
+    
+    OPTLYEventTicket *eventTicket = [eventBuilder buildEventTicket:config
+                                                          bucketer:bucketer
+                                                            userId:kUserId
+                                                         eventName:kEventWithoutAudienceName
+                                                        eventValue:nil
+                                                        attributes:nil];
+    
+    NSDictionary *params = [eventTicket toDictionary];
+    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 - (void)testBuildDecisionEventTicketWithAllArguments
@@ -297,23 +315,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                                      attributes:attributes];
     NSDictionary *params = [decisionEventTicket toDictionary];
     NSAssert(params == nil, @"parameters should not be created with unknown experiment.");
-}
-
-- (void)testBuildEventTicketWithAnonymizeIPFalse {
-    OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
-    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
-    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
-    
-    OPTLYEventTicket *eventTicket = [eventBuilder buildEventTicket:config
-                                                          bucketer:bucketer
-                                                            userId:kUserId
-                                                         eventName:kEventWithoutAudienceName
-                                                        eventValue:nil
-                                                        attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 - (void)testBuildDecisionTicketWithAnonymizeIPFalse {
@@ -453,19 +454,23 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         
         // check name
         NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
-        NSAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+        XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+        
+        // check id
+        NSString *featureID = params[OPTLYEventParameterKeysFeaturesId]; 
+        XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
         
         // check type
         NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
-        NSAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
+        XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
         
         // check value
         NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
-        NSAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
+        XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
         
         // check should index
         BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
-        NSAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
+        XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
     }
 }
 

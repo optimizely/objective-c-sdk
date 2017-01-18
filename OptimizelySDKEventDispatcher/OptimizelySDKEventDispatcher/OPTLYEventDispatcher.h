@@ -27,13 +27,17 @@
  * The events are dispatched immediately and are only saved if the dispatch fails.
  * The saved events will be dispatched again opportunistically in the following cases:
  *   - Another event dispatch is called
- *   - The app enters the background
- *   - If polling is enabled, then after an exponential backoff interval has elapsed.
+ *   - The app enters the background or foreground
  */
 
-// Default interval and timeout values (in ms) if not set by users
-extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_ms;
-extern NSInteger const OPTLYEventDispatcherDefaultDispatchTimeout_ms;
+// Default dispatch interval if not set by users
+extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
+// The max number of events that can be flushed at a time
+extern NSInteger const OPTLYEventDispatcherMaxDispatchEventBatchSize;
+// The max number of times flush events are attempted
+extern NSInteger const OPTLYEventDispatcherMaxFlushEventAttempts;
+// default max number of events to store before overwriting older events
+extern NSInteger const OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave;
 
 @protocol OPTLYEventDispatcher;
 
@@ -43,19 +47,21 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchInterval;
-/// The time for which the SDK will attempt to continue re-trying an event dispatch (in ms)
-@property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchTimeout;
+
+/// max number of events to store before overwriting older events (value must be greater than 1)
+@property (nonatomic, assign, readonly) NSInteger maxNumberOfEventsToSave;
 
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 
+
 /**
  * Initializer for Optimizely Event Dispatcher object
  *
- * @param block The builder block with which to initialize the Optimizely Event Dispatcher object
+ * @param builderBlock The builder block with which to initialize the Optimizely Event Dispatcher object
  * @return An instance of OPTLYEventDispatcher
  */
-+ (nullable instancetype)initWithBuilderBlock:(nonnull OPTLYEventDispatcherBuilderBlock)block;
++ (nullable instancetype)init:(nonnull OPTLYEventDispatcherBuilderBlock)builderBlock;
 
 /**
  * Dispatch an impression event.

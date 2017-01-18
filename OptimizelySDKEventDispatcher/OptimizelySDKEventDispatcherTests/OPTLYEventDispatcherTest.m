@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-
 #import <XCTest/XCTest.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYEventDispatcherBuilder.h"
 
 static NSInteger const kEventHandlerDispatchInterval = 3;
-static NSInteger const kEventHandlerDispatchTimeout = 10;
 static NSString * const kTestURLString = @"testURL";
 
 typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
@@ -29,30 +28,27 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @interface OPTLYEventDispatcherDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) NSInteger maxDispatchBackoffRetries;
-@property (nonatomic, assign) uint32_t flushEventBackoffRetries;
-@property (nonatomic, assign) uint32_t flushEventCall;
-- (void)flushSavedEvent:(NSDictionary *)event
-              eventType:(OPTLYDataStoreEventType)eventType
-             cachedData:(BOOL)cachedData
-               callback:(OPTLYEventDispatcherResponse)callback;
+@property (nonatomic, assign) NSInteger flushEventAttempts;
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType;
-- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType
-              cachedData:(BOOL)cachedData
-                callback:(OPTLYEventDispatcherResponse)callback;
 - (void)flushEvents:(void(^)())callback;
+- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback;
+- (void)dispatchEvent:(nonnull NSDictionary *)params
+         backoffRetry:(BOOL)backoffRetry
+            eventType:(OPTLYDataStoreEventType)eventType
+             callback:(nullable OPTLYEventDispatcherResponse)callback;
+- (void)dispatchNewEvent:(nonnull NSDictionary *)params
+            backoffRetry:(BOOL)backoffRetry
+               eventType:(OPTLYDataStoreEventType)eventType
+                callback:(nullable OPTLYEventDispatcherResponse)callback;
 - (BOOL)isTimerEnabled;
-- (void)saveEvent:(NSDictionary *)params
-        eventType:(OPTLYDataStoreEventType)eventType
-            error:(NSError **)error;
 - (void)setupNetworkTimer:(void(^)())completion;
-- (void)disableNetworkTimer:(void(^)())completion;
+- (void)disableNetworkTimer;
+- (NSInteger )numberOfEvents:(OPTLYDataStoreEventType)eventType;
 @end
 
 @interface OPTLYEventDispatcherTest : XCTestCase
 @property (nonatomic, strong ) NSURL *testURL;
 @property (nonatomic, strong) NSDictionary *parameters;
-@property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) OPTLYEventDispatcherDefault *eventDispatcher;
 @end
 
@@ -63,7 +59,6 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     self.testURL = [NSURL URLWithString:kTestURLString];
     self.parameters = @{@"testKey1" : @"testValue2", @"testKey2" : @"testValue2"};
     self.eventDispatcher = [OPTLYEventDispatcherDefault new];
-    self.eventDispatcher.flushEventBackoffRetries = 0;
 }
 
 - (void)tearDown {
@@ -77,39 +72,46 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 - (void)testEventDispatcherInitWithBuilderBlock
 {
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
         builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
         builder.logger = [OPTLYLoggerDefault new];
     }];
     
     XCTAssertNotNil(eventDispatcher);
     XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == kEventHandlerDispatchInterval, @"Invalid dispatch timeout set.");
-    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == kEventHandlerDispatchTimeout, @"Invalid dispatch timeout set.");
     XCTAssertNotNil(eventDispatcher.logger);
     XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
     
-    eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
+    eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
     }];
     
     XCTAssertNotNil(eventDispatcher);
-    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_ms, @"Invalid default dispatch interval set.");
-    XCTAssert(eventDispatcher.eventDispatcherDispatchTimeout == OPTLYEventDispatcherDefaultDispatchTimeout_ms, @"Invalid default dispatch timeout set.");
+    XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_s, @"Invalid default dispatch interval set.");
     XCTAssertNil(eventDispatcher.logger);
 }
 
+#pragma mark - dispatchImpressionEvent and dispatchConversionEvent Test Scenarios
+
 // Test that a successful dispatch:
-//  - data does not persist events in db or cache
-//  - the timer is also disabled
+//  - no events are persisted
+//  - flushEvents is called
 - (void)testDispatchImpressionEventSuccess {
     [self stubSuccessResponse];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent success."];
-    [self.eventDispatcher dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [self eventDispatchSuccessCheck:OPTLYDataStoreEventTypeImpression];
+    __weak typeof(self) weakSelf = self;
+    [eventDispatcherMock dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
+        XCTAssert(numberOfSavedEvents == 0, @"Impression events should not have been saved.");
+        [eventDispatcherMock verify];
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for dispatchImpressionEvent: %@", error);
         }
@@ -118,324 +120,242 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 - (void)testDispatchConversionEventSuccess {
     [self stubSuccessResponse];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent success."];
-    [self.eventDispatcher dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [self eventDispatchSuccessCheck:OPTLYDataStoreEventTypeConversion];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
-}
-
-- (void)eventDispatchSuccessCheck:(OPTLYDataStoreEventType)eventType {
-    NSInteger numberOfSavedEvents = [self.dataStore numberOfEvents:eventType cachedData:NO error:nil];
-    XCTAssert(numberOfSavedEvents == 0, @"Events should not have been saved.");
-    NSInteger numberOfCachedEvents = [self.dataStore numberOfEvents:eventType cachedData:YES error:nil];
-    XCTAssert(numberOfCachedEvents == 0, @"Events should not have been cached.");
-    
-    [self checkNetworkTimerIsDisabled:self.eventDispatcher];
-}
-
-// Test that a failed dispatch:
-//  - Saves event (in cache for tvOS and db for iOS)
-//  - Event saved matches expected value
-//  - Timer is started
-- (void)testDispatchImpressionEventFailure {
-    [self stubFailureResponse];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent failure."];
-    [self.eventDispatcher dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [self eventDispatchFailureCheck:OPTLYDataStoreEventTypeImpression];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchImpressionEvent: %@", error);
-        }
-    }];
-}
-
-- (void)testDispatchConversionEventFailure {
-    [self stubFailureResponse];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [self.eventDispatcher dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [self eventDispatchFailureCheck:OPTLYDataStoreEventTypeConversion];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
-}
-
-- (void)eventDispatchFailureCheck:(OPTLYDataStoreEventType)eventType {
-    // event should have been stored
-    NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:eventType cachedData:NO error:nil];
-    NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:eventType cachedData:YES error:nil];
-    
-    NSInteger numberOfSavedEvents, numberOfCachedEvents;
-#if TARGET_OS_IOS
-    numberOfSavedEvents = 1;
-    numberOfCachedEvents = 0;
-#elif TARGET_OS_TV
-    numberOfSavedEvents  = 0;
-    numberOfCachedEvents = 1;
-#endif
-    XCTAssert([savedEvents count] == numberOfSavedEvents, @"Invalid number of saved events.");
-    XCTAssert([cachedEvents count] == numberOfCachedEvents, @"Invalid number of cached events.");
-    
-    [self checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
-}
-
-// test dispatch attempt does not exceed the max retries
-// also check that the dispatch attempt is only made at power of 2 attempt count
-- (void)testMaxDispatchBackoffRetriesAndPowerOf2 {
-    [self stubFailureResponse];
-    
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault initWithBuilderBlock:^(OPTLYEventDispatcherBuilder *builder) {
-        builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
-        builder.eventDispatcherDispatchTimeout = kEventHandlerDispatchTimeout;
-        builder.logger = [OPTLYLoggerDefault new];
-    }];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [eventDispatcher setupNetworkTimer:nil];
-    
-    NSInteger numberOfRetries = 10;
-    for (NSInteger i = 0; i < numberOfRetries; ++i) {
-        [eventDispatcher saveEvent:self.parameters
-                         eventType:OPTLYDataStoreEventTypeImpression
-                             error:nil];
-    }
     __weak typeof(self) weakSelf = self;
-    for (NSInteger i = 1; i < numberOfRetries; ++i) {
-        [eventDispatcher flushEvents:^{
-            NSLog(@"************ i - %ld, backoff retry - %u, dispatch call - %u", i, eventDispatcher.flushEventBackoffRetries, eventDispatcher.flushEventCall);
-            // check that the dispatch attempt is only made at power of 2 attempt count
-            NSInteger backoffRetryExpected = log2(i)+1;
-            XCTAssert(eventDispatcher.flushEventBackoffRetries == backoffRetryExpected, @"Invalid value for the backoff retry count - %ld, %u, %ld", i, eventDispatcher.flushEventBackoffRetries, backoffRetryExpected);
-            
-            XCTAssert(eventDispatcher.flushEventBackoffRetries <= eventDispatcher.maxDispatchBackoffRetries + 1, @"dispatch retries exceeded max - %u", eventDispatcher.flushEventBackoffRetries);
-            
-            NSLog(@"flushEventCall - %u", eventDispatcher.flushEventCall);
-            if (eventDispatcher.flushEventCall == numberOfRetries - 1) {
-                [weakSelf checkNetworkTimerIsEnabled:eventDispatcher
-                                        timeInterval:kEventHandlerDispatchInterval];
-                [expectation fulfill];
-            }
-        }];
-    }
-
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+    [eventDispatcherMock dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
+        XCTAssert(numberOfSavedEvents == 0, @"Conversion events should not have been saved.");
+        [eventDispatcherMock verify];
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
         }
     }];
 }
 
-- (void)testFlushEventsSuccessSavedEvents {
+#pragma mark - flushEvents Test Scenarios
+
+// if events are saved and flushEvents succeeds,
+//  - then the timer should be enabled (the next flushEvents call would disable the timer)
+//  - all events should be flushed
+- (void)testFlushEventsWithSavedEventsSuccess {
+    [self stubSuccessResponse];
+
+    [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                    eventType:OPTLYDataStoreEventTypeImpression
+                                        error:nil];
+
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsSuccess failure."];
+    __weak typeof(self) weakSelf = self;
+    [self.eventDispatcher flushEvents:^{
+        NSArray *savedEvents = [weakSelf.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression
+                                                                          error:nil];
+        XCTAssert([savedEvents count] == 0, @"No events should be saved: %lu.", [savedEvents count]);
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testFlushEventsWithSavedEventsSuccess: %@", error);
+        }
+    }];
+}
+
+// if events are saved and flushEvents fail,
+//  - then the timer should be disabled
+//  - events should be stored
+- (void)testFlushEventsWithSavedEventsFailure {
+    
+    [self stubFailureResponse];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsFailure failure."];
+    [self.eventDispatcher setupNetworkTimer:nil];
+    
+    NSInteger numberOfEventsSaved = 1;
+    for (NSInteger i = 0; i < numberOfEventsSaved; ++i) {
+        [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                        eventType:OPTLYDataStoreEventTypeConversion
+                                            error:nil];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self.eventDispatcher flushEvents:^{
+        NSArray *savedEvents = [weakSelf.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                          error:nil];
+        XCTAssert([savedEvents count] == numberOfEventsSaved, @"Events should be saved : %lu.", [savedEvents count]);
+        XCTAssert(weakSelf.eventDispatcher.flushEventAttempts == 1, @"Flush event attempts is invalid.");
+        [weakSelf checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_s];
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testFlushEventsWithSavedEventsFailure: %@", error);
+        }
+    }];
+}
+
+// if there are no saved events and flushEvents succeeds,
+//  - then the timer should be disabled
+//  - no events should be saved
+- (void)testFlushEventsNoSavedEventsSuccess {
     
     [self stubSuccessResponse];
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsNoSavedEventsSuccess failure."];
     [self.eventDispatcher setupNetworkTimer:nil];
-    
-    for (NSInteger i = 0; i < 3; ++i) {
-        [self.eventDispatcher saveEvent:self.parameters
-                              eventType:OPTLYDataStoreEventTypeImpression
-                                  error:nil];
-    }
     
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
         NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                 cachedData:NO
                                                                       error:nil];
-        NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                  cachedData:YES
-                                                                       error:nil];
-        XCTAssert([savedEvents count] == 0, @"Saved events should have been removed.");
-        XCTAssert([cachedEvents count] == 0, @"Cached events should have been removed.");
+        XCTAssert([savedEvents count] == 0, @"No events should be saved.");
+        [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
         [expectation fulfill];
-        
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
+            NSLog(@"Timeout error for testFlushEventsNoSavedEventsSuccess: %@", error);
         }
     }];
 }
 
-- (void)testFlushEventsSuccessNoSavedEvents {
+// if there are no saved events and flushEvents fails,
+//  - then the timer should be disabled
+//  - no events should be saved
+- (void)testFlushEventsNoSavedEventsFailure {
     
-    [self stubSuccessResponse];
+    [self stubFailureResponse];
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsNoSavedEventsFailure failure."];
     [self.eventDispatcher setupNetworkTimer:nil];
     
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
+        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                      error:nil];
+        XCTAssert([savedEvents count] == 0, @"No events should be saved.");
         [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
+            NSLog(@"Timeout error for testFlushEventsNoSavedEventsFailure: %@", error);
         }
     }];
 }
 
-- (void)testFlushEventsFailureSavedEvents {
-    
-    [self stubSuccessResponse];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [self.eventDispatcher setupNetworkTimer:nil];
-    
-    __weak typeof(self) weakSelf = self;
-    [weakSelf.eventDispatcher flushEvents:^{
-        [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
-        [expectation fulfill];
-        
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
-}
-
-// if there are some saved events, then a successful flushSaveEvent should keep the timer enabled
-- (void)testFlushSavedEventSuccessWithSavedEvents
+#pragma mark - dispatchNewEvent Test Cases
+- (void)testDispatchNewEventSuccess
 {
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
     [self stubSuccessResponse];
-    [self.eventDispatcher setupNetworkTimer:nil];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventSuccess failure."];
+    [self.eventDispatcher dispatchNewEvent:self.parameters backoffRetry:NO eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                      error:nil];
+        XCTAssert([savedEvents count] == 0, @"No events should have been saved.");
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testDispatchNewEventSuccess: %@", error);
+        }
+    }];
+}
+
+- (void)testDispatchNewEventFailure
+{
+    [self stubFailureResponse];
     
-    for (NSInteger i = 0; i < 3; ++i) {
-        [self.eventDispatcher saveEvent:self.parameters
-                              eventType:OPTLYDataStoreEventTypeConversion
-                                  error:nil];
-    }
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
     
-    __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    __weak typeof(self) weakSelf = self;
-    [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion cachedData:usedCachedData callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                            cachedData:usedCachedData
-                                                                 error:nil];
-        XCTAssert([events count] == 2, @"Event should have been removed.");
-        [weakSelf checkNetworkTimerIsEnabled:weakSelf.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_ms];
-        
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventFailure failure."];
+    [eventDispatcherMock dispatchNewEvent:self.parameters backoffRetry:NO eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [eventDispatcherMock numberOfEvents:OPTLYDataStoreEventTypeConversion];
+        XCTAssert(numberOfSavedEvents == 1, @"An event should have been saved. Current saved events: %lu.", numberOfSavedEvents);
+        [eventDispatcherMock verify];
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
+            NSLog(@"Timeout error for testDispatchNewEventFailure: %@", error);
         }
     }];
 }
 
-- (void)testFlushSavedEventSuccess
-{
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
-    [self stubSuccessResponse];
-    [self.eventDispatcher setupNetworkTimer:nil];
-    [self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion error:nil];
-    __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion cachedData:usedCachedData callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                            cachedData:usedCachedData
-                                                                 error:nil];
-        XCTAssert([events count] == 0, @"Event should have been removed.");
-        [self eventDispatchSuccessCheck:OPTLYDataStoreEventTypeConversion];
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
-        }
-    }];
-}
-
-- (void)testFlushSavedEventFailure
-{
-    BOOL usedCachedData = NO;
-#if TARGET_OS_TV
-    usedCachedData = YES;
-#endif
+// make sure that if flush events is called more than the max allowed time
+// [OPTLYEventDispatcherMaxFlushEventAttempts], then flush event attempts will stop
+- (void)testFlushEventAttempts {
     
     [self stubFailureResponse];
-    [self.eventDispatcher setupNetworkTimer:nil];
-    [self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion error:nil];
-    __block XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent failure."];
-    [self.eventDispatcher flushSavedEvent:self.parameters eventType:OPTLYDataStoreEventTypeConversion cachedData:usedCachedData callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSArray *events = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                            cachedData:usedCachedData
-                                                                 error:nil];
-        XCTAssert([events count] == 1, @"Event should be saved.");
-        [self eventDispatchFailureCheck:OPTLYDataStoreEventTypeConversion];
-        [expectation fulfill];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventAttempts failure."];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+        builder.eventDispatcherDispatchInterval = 1;
+        builder.logger = [OPTLYLoggerDefault new];
     }];
     
-    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+
+    [eventDispatcher.dataStore saveEvent:self.parameters
+                               eventType:OPTLYDataStoreEventTypeConversion
+                                   error:nil];
+    
+    // recursively call flushEvents
+    __block NSInteger attempts = 0;
+    typedef void (^FlushEventsBlock)();
+    __block __weak FlushEventsBlock weakFlushEvents = nil;
+    __weak typeof(self) weakSelf = self;
+    __block void (^flushEvents)() = ^(){
+        FlushEventsBlock strongFlushEvents = weakFlushEvents;
+        attempts++;
+        [eventDispatcher flushEvents:^{
+            strongFlushEvents();
+        }];
+        if (attempts == OPTLYEventDispatcherMaxFlushEventAttempts + 1) {
+            [weakSelf checkNetworkTimerIsDisabled:weakSelf.eventDispatcher];
+            XCTAssert(eventDispatcher.flushEventAttempts == OPTLYEventDispatcherMaxFlushEventAttempts, @"Flush event attempts should have reached max value %lu.", eventDispatcher.flushEventAttempts);
+            [expectation fulfill];
+            return;
+        }
+    };
+    weakFlushEvents = flushEvents;
+    flushEvents();
+    
+    [self waitForExpectationsWithTimeout:self.eventDispatcher.flushEventAttempts+5 handler:^(NSError *error) {
         if (error) {
-            NSLog(@"Timeout error for dispatchConversionEvent: %@", error);
+            NSLog(@"Timeout error for testFlushEventAttempts: %@", error);
         }
     }];
 }
 
-- (void)testSaveEventSuccess
-{
-    // save success
-    NSError *error = nil;
-    [self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:NO error:nil];
-    NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:YES error:nil];
+- (void)testMaxEventDispatchLimit
+{    
+    NSInteger maxNumberEvents = 10;
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+        builder.maxNumberOfEventsToSave = maxNumberEvents;
+        builder.eventDispatcherDispatchInterval = 1;
+        builder.logger = [OPTLYLoggerDefault new];
+    }];
     
-    NSInteger numberOfSavedEvents, numberOfCachedEvents;
-#if TARGET_OS_IOS
-    numberOfSavedEvents = 1;
-    numberOfCachedEvents = 0;
-#elif TARGET_OS_TV
-    numberOfSavedEvents  = 0;
-    numberOfCachedEvents = 1;
-#endif
-    
-    XCTAssert([savedEvents count] == numberOfSavedEvents, @"Invalid number of saved events.");
-    XCTAssert([cachedEvents count] == numberOfCachedEvents, @"Invalid number of cached events.");
+    // make sure that the max value is set properly
+    XCTAssert(eventDispatcher.maxNumberOfEventsToSave == maxNumberEvents, @"Invalid number of max events set: %lu", eventDispatcher.maxNumberOfEventsToSave);
 }
 
-- (void)testSavedEventFailure
-{
-    // force a save fail to make sure that the event is cached
-    NSError *error = [NSError errorWithDomain:@"saveEventTest" code:0 userInfo:nil];
-    [self.eventDispatcher saveEvent:self.parameters eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    NSArray *cachedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression cachedData:YES error:nil];
-    XCTAssert([cachedEvents count] == 1, @"Invalid number of cached events.");
-}
-
-#pragma mark -- Helper Methods
-
+#pragma mark - Helper Methods
 - (void)checkNetworkTimerIsEnabled:(OPTLYEventDispatcherDefault *)eventDispatcher timeInterval:(NSInteger)timeInterval
 {
     // check that the timer is set correctly

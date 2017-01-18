@@ -73,7 +73,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
     [self stub400Response];
-    self.datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
 }
@@ -161,7 +161,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is enabled if the download interval is > 0
 - (void)testNetworkTimerIsEnabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = kDatafileDownloadInteval;
     }];
@@ -175,7 +175,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is disabled if the datafile download interval is <= 0
 - (void)testNetworkTimerIsDisabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = 0;
     }];
@@ -184,7 +184,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
-    datafileManager = [OPTLYDatafileManagerDefault initWithBuilderBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileFetchInterval = -5;
     }];
@@ -208,7 +208,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)test304Response
 {
     // stub response
-    id<OHHTTPStubsDescriptor> stub = [self stub304Response];
+    id<OHHTTPStubsDescriptor> stub200 = [self stub200Response];
     
     // make sure we get a 200 the first time around and save that datafile
     __weak XCTestExpectation *expect200 = [self expectationWithDescription:@"should get a 200 on first try"];
@@ -221,8 +221,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
                          }];
     // wait for datafile download to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
+    // remove stub
+    [OHHTTPStubs removeStub:stub200];
     
-    
+    id<OHHTTPStubsDescriptor> stub304 = [self stub304Response];
     __weak XCTestExpectation *expect304 = [self expectationWithDescription:@"downloadDatafile304Response"];
     XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     XCTAssertNotNil([self.datafileManager getLastModifiedDate:kProjectId]);
@@ -235,7 +237,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self waitForExpectationsWithTimeout:2 handler:nil];
     
     // test datafile manager works in optly manager class
-    OPTLYManager *manager = [OPTLYManager initWithBuilderBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = self.datafileManager;
     }];
@@ -247,7 +249,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *clientExpectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     // initialize client
     __block OPTLYClient *optimizelyClient;
-    [manager initializeClientWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+    [manager initializeWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
         // retain a reference to the client
         optimizelyClient = client;
         // check client in callback
@@ -264,7 +266,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     
     // remove stub
-    [OHHTTPStubs removeStub:stub];
+    [OHHTTPStubs removeStub:stub304];
 }
 
 # pragma mark - Helper Methods

@@ -19,17 +19,14 @@
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 
-NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initialized.";
-
-
 /**
  * This class wraps the Optimizely class from the Core SDK.
  * Optimizely Client Instance
  */
 @implementation OPTLYClient
 
-+ (nonnull instancetype)initWithBuilderBlock:(OPTLYClientBuilderBlock)block {
-    return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:block]];
++ (nonnull instancetype)init:(OPTLYClientBuilderBlock)builderBlock {
+    return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:builderBlock]];
 }
 
 - (instancetype)init {
@@ -46,346 +43,308 @@ NSString *const OPTLYClientDummyOptimizelyWarning = @"Optimizely is not initiali
 }
 
 #pragma mark activate methods
-- (OPTLYVariation *)activateExperiment:(nonnull NSString *)experimentKey
-                                userId:(nonnull NSString *)userId {
-    return [self activateExperiment:experimentKey userId:userId attributes:nil];
+- (OPTLYVariation *)activate:(nonnull NSString *)experimentKey
+                      userId:(nonnull NSString *)userId {
+    return [self activate:experimentKey userId:userId attributes:nil];
 }
 
-- (OPTLYVariation *)activateExperiment:(NSString *)experimentKey
-                                userId:(NSString *)userId
-                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesActivationFailure, userId, experimentKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
     else {
-        return [self.optimizely activateExperiment:experimentKey
-                                            userId:userId
-                                        attributes:attributes];
+        return [self.optimizely activate:experimentKey
+                                  userId:userId
+                              attributes:attributes];
     }
 }
 
 #pragma mark getVariation methods
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId {
-    return [self getVariationForExperiment:experimentKey
-                                    userId:userId
-                                attributes:nil];
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId {
+    return [self variation:experimentKey
+                    userId:userId
+                attributes:nil];
 }
 
-- (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
-                                       userId:(NSString *)userId
-                                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
-    if (self.optimizely == nil ) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationFailed, userId, experimentKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+- (OPTLYVariation *)variation:(NSString *)experimentKey
+                       userId:(NSString *)userId
+                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
     else {
-        return [self.optimizely getVariationForExperiment:experimentKey
-                                                   userId:userId
-                                               attributes:attributes];
+        return [self.optimizely variation:experimentKey
+                                   userId:userId
+                               attributes:attributes];
     }
 }
 
 #pragma mark trackEvent methods
-- (void)trackEvent:(NSString *)eventKey userId:(NSString *)userId
+- (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
-    [self trackEvent:eventKey userId:userId attributes:nil eventValue:nil];
+    [self track:eventKey userId:userId attributes:nil eventValue:nil];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        attributes:(NSDictionary<NSString *, NSString *> * )attributes
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary<NSString *, NSString *> * )attributes
 {
-    [self trackEvent:eventKey userId:userId attributes:attributes eventValue:nil];
+    [self track:eventKey userId:userId attributes:attributes eventValue:nil];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        eventValue:(NSNumber *)eventValue
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   eventValue:(NSNumber *)eventValue
 {
-    [self trackEvent:eventKey userId:userId attributes:nil eventValue:eventValue];
+    [self track:eventKey userId:userId attributes:nil eventValue:eventValue];
 }
 
-- (void)trackEvent:(NSString *)eventKey
-            userId:(NSString *)userId
-        attributes:(NSDictionary *)attributes
-        eventValue:(NSNumber *)eventValue {
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+   eventValue:(NSNumber *)eventValue {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesEventNotTracked, eventKey, userId]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return;
     }
-    [self.optimizely trackEvent:eventKey
-                         userId:userId
-                     attributes:attributes
-                     eventValue:eventValue];
+    [self.optimizely track:eventKey
+                    userId:userId
+                attributes:attributes
+                eventValue:eventValue];
 }
 
 #pragma mark - Live variable getters
 
-- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                                  userId:(nonnull NSString *)userId {
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
-    return [self.optimizely getVariableString:variableKey
-                                       userId:userId];
+    return [self.optimizely variableString:variableKey
+                                    userId:userId];
 }
 
-- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                                  userId:(nonnull NSString *)userId
-                      activateExperiment:(BOOL)activateExperiment {
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                   activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
-    return [self.optimizely getVariableString:variableKey
-                                       userId:userId
-                           activateExperiment:activateExperiment];
+    return [self.optimizely variableString:variableKey
+                                    userId:userId
+                        activateExperiment:activateExperiment];
 }
 
-- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                                  userId:(nonnull NSString *)userId
-                              attributes:(nullable NSDictionary *)attributes
-                      activateExperiment:(BOOL)activateExperiment {
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
-    return [self.optimizely getVariableString:variableKey
-                                       userId:userId
-                                   attributes:attributes
-                           activateExperiment:activateExperiment];
+    return [self.optimizely variableString:variableKey
+                                    userId:userId
+                                attributes:attributes
+                        activateExperiment:activateExperiment];
 }
 
-- (nullable NSString *)getVariableString:(nonnull NSString *)variableKey
-                                  userId:(nonnull NSString *)userId
-                              attributes:(nullable NSDictionary *)attributes
-                      activateExperiment:(BOOL)activateExperiment
-                                   error:(NSError * _Nullable * _Nullable)error {
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return nil;
     }
-    return [self.optimizely getVariableString:variableKey
-                                       userId:userId
-                                   attributes:attributes
-                           activateExperiment:activateExperiment
-                                        error:error];
+    return [self.optimizely variableString:variableKey
+                                    userId:userId
+                                attributes:attributes
+                        activateExperiment:activateExperiment
+                                     error:error];
 }
 
-- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
-                    userId:(nonnull NSString *)userId {
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return false;
     }
-    return [self.optimizely getVariableBoolean:variableKey
-                                        userId:userId];
+    return [self.optimizely variableBoolean:variableKey
+                                     userId:userId];
 }
-    
-- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
-                    userId:(nonnull NSString *)userId
-        activateExperiment:(BOOL)activateExperiment {
+
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+     activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return false;
     }
-    return [self.optimizely getVariableBoolean:variableKey
-                                        userId:userId
-                            activateExperiment:activateExperiment];
+    return [self.optimizely variableBoolean:variableKey
+                                     userId:userId
+                         activateExperiment:activateExperiment];
 }
 
-- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
-                    userId:(nonnull NSString *)userId
-                attributes:(nullable NSDictionary *)attributes
-        activateExperiment:(BOOL)activateExperiment {
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return false;
     }
-    return [self.optimizely getVariableBoolean:variableKey
-                                        userId:userId
-                                    attributes:attributes
-                            activateExperiment:activateExperiment];
+    return [self.optimizely variableBoolean:variableKey
+                                     userId:userId
+                                 attributes:attributes
+                         activateExperiment:activateExperiment];
 }
 
-- (BOOL)getVariableBoolean:(nonnull NSString *)variableKey
-                    userId:(nonnull NSString *)userId
-                attributes:(nullable NSDictionary *)attributes
-        activateExperiment:(BOOL)activateExperiment
-                     error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment
+                  error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return false;
     }
-    return [self.optimizely getVariableBoolean:variableKey
-                                        userId:userId
-                                    attributes:attributes
-                            activateExperiment:activateExperiment
-                                         error:error];
+    return [self.optimizely variableBoolean:variableKey
+                                     userId:userId
+                                 attributes:attributes
+                         activateExperiment:activateExperiment
+                                      error:error];
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                         userId:(nonnull NSString *)userId {
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableInteger:variableKey
-                                        userId:userId];
-}
-    
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                         userId:(nonnull NSString *)userId
-             activateExperiment:(BOOL)activateExperiment {
-    if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
-        return 0;
-    }
-    return [self.optimizely getVariableInteger:variableKey
-                                        userId:userId
-                            activateExperiment:activateExperiment];
+    return [self.optimizely variableInteger:variableKey
+                                     userId:userId];
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                         userId:(nonnull NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-             activateExperiment:(BOOL)activateExperiment {
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+          activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableInteger:variableKey
-                                        userId:userId
-                                    attributes:attributes
-                            activateExperiment:activateExperiment];
+    return [self.optimizely variableInteger:variableKey
+                                     userId:userId
+                         activateExperiment:activateExperiment];
 }
 
-- (NSInteger)getVariableInteger:(nonnull NSString *)variableKey
-                         userId:(nonnull NSString *)userId
-                     attributes:(nullable NSDictionary *)attributes
-             activateExperiment:(BOOL)activateExperiment
-                          error:(NSError * _Nullable * _Nullable)error {
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableInteger:variableKey
-                                        userId:userId
-                                    attributes:attributes
-                            activateExperiment:activateExperiment
-                                         error:error];
+    return [self.optimizely variableInteger:variableKey
+                                     userId:userId
+                                 attributes:attributes
+                         activateExperiment:activateExperiment];
 }
 
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId {
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment
+                       error:(NSError * _Nullable * _Nullable)error {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableDouble:variableKey
-                                       userId:userId];
-}
-    
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-         activateExperiment:(BOOL)activateExperiment {
-    if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
-        return 0;
-    }
-    return [self.optimizely getVariableDouble:variableKey
-                                       userId:userId
-                           activateExperiment:activateExperiment];
+    return [self.optimizely variableInteger:variableKey
+                                     userId:userId
+                                 attributes:attributes
+                         activateExperiment:activateExperiment
+                                      error:error];
 }
 
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-         activateExperiment:(BOOL)activateExperiment {
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableDouble:variableKey
-                                       userId:userId
-                                   attributes:attributes
-                           activateExperiment:activateExperiment];
+    return [self.optimizely variableDouble:variableKey
+                                    userId:userId];
 }
 
-- (double)getVariableDouble:(nonnull NSString *)variableKey
-                     userId:(nonnull NSString *)userId
-                 attributes:(nullable NSDictionary *)attributes
-         activateExperiment:(BOOL)activateExperiment
-                      error:(NSError * _Nullable * _Nullable)error {
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+      activateExperiment:(BOOL)activateExperiment {
     if (self.optimizely == nil) {
-        [self.logger logMessage:[NSString stringWithFormat:@"%@ %@",
-                                 OPTLYClientDummyOptimizelyWarning,
-                                 [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey]]
-                      withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
         return 0;
     }
-    return [self.optimizely getVariableDouble:variableKey
-                                       userId:userId
-                                   attributes:attributes
-                           activateExperiment:activateExperiment
-                                        error:error];
+    return [self.optimizely variableDouble:variableKey
+                                    userId:userId
+                        activateExperiment:activateExperiment];
+}
+
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return 0;
+    }
+    return [self.optimizely variableDouble:variableKey
+                                    userId:userId
+                                attributes:attributes
+                        activateExperiment:activateExperiment];
+}
+
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment
+                   error:(NSError * _Nullable * _Nullable)error {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return 0;
+    }
+    return [self.optimizely variableDouble:variableKey
+                                    userId:userId
+                                attributes:attributes
+                        activateExperiment:activateExperiment
+                                     error:error];
 }
 
 @end

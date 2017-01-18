@@ -29,6 +29,7 @@
 #import "OPTLYTestHelper.h"
 
 // static data from datafile
+static NSString * const kClientEngine = @"objective-c-sdk";
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
@@ -55,7 +56,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlock
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
@@ -64,11 +65,31 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
+    XCTAssertEqualObjects(projectConfig.clientEngine, kClientEngine, @"Invalid client engine: %@. Expected: %@.", projectConfig.clientEngine, kClientEngine);
+    XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version: %@. Expected: %@.", projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
+}
+
+/**
+ * Make sure we can pass in different values for client engine and client version to override the defaults.
+ */
+- (void)testClientEngineAndClientVersionAreConfigurable {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    NSString *clientEngine = @"clientEngine";
+    NSString *clientVersion = @"clientVersion";
+    
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.clientEngine = clientEngine;
+        builder.clientVersion = clientVersion;
+    }];
+    XCTAssertNotNil(projectConfig);
+    XCTAssertEqualObjects(projectConfig.clientEngine, clientEngine);
+    XCTAssertEqualObjects(projectConfig.clientVersion, clientVersion);
 }
 
 - (void)testInitWithBuilderBlockNoDatafile
 {
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = nil;
     }];
     
@@ -82,7 +103,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     id<OPTLYLogger> logger = [NSObject new];
     id<OPTLYErrorHandler> errorHandler = [NSObject new];
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig initWithBuilderBlock:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
         builder.logger = logger;
         builder.errorHandler = errorHandler;

@@ -1,5 +1,5 @@
 # Objective-C SDK
-[![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=devel)](https://travis-ci.org/optimizely/objective-c-sdk/)
+[![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=master)](https://travis-ci.org/optimizely/objective-c-sdk/)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/gradle-extra-configurations-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 This repository houses the Objective-C SDK for Optimizely's server-side testing product, which is currently in private beta.
