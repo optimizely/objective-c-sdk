@@ -99,6 +99,7 @@ extern NSString *const OPTLYLoggerMessagesExperimentKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;
+extern NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation;
 
 // ---- Event Dispatcher ----
 // info
