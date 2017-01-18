@@ -34,11 +34,6 @@
 + (nullable instancetype)init:(nonnull OPTLYUserProfileBuilderBlock)builderBlock;
 
 /**
- * Default initializer for Optimizely User Profile object
- */
-- (nullable instancetype)init;
-
-/**
  * Cleans and removes all bucketing mapping for specific userId.
  * @param userId The user ID to remove all bucketing value.
  **/
