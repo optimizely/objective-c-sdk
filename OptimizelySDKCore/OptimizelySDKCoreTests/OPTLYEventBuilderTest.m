@@ -121,10 +121,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     
 }
 
-- (void)testBuildEventTicketWithAudience
+- (void)testBuildEventTicketWithValidAudience
 {
-    // check without attributes
-    NSDictionary *attributes = @{};
+    // check without attributes that satisfy audience requirement
+    NSDictionary *attributes = @{@"browser_type":@"firefox"};
+
     OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
                                                                bucketer:self.bucketer
                                                                  userId:kUserId
@@ -133,8 +134,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                              attributes:attributes];
     NSDictionary *params = [eventTicket toDictionary];
     [self checkCommonParams:params withAttributes:attributes];
-    NSArray *userFeatures = params[OPTLYEventParameterKeysUserFeatures];
-    NSAssert([userFeatures count] == 0, @"User features params should not be generated with nil attributes.");
     
     // check with attributes
     attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
@@ -156,6 +155,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                    experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithInvalidAudience
+{
+    // check without attributes that satisfy audience requirement
+    NSDictionary *attributes = @{@"browser_type":@"chrome"};
+    
+    OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
+                                                               bucketer:self.bucketer
+                                                                 userId:kUserId
+                                                              eventName:kEventWithAudienceName
+                                                             eventValue:nil
+                                                             attributes:attributes];
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
+}
+
 - (void)testBuildEventTicketWithExperimentNotRunning
 {
     OPTLYEventTicket *eventTicket = [self.eventBuilder buildEventTicket:self.config
@@ -164,13 +177,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                               eventName:kEventWithExperimentNotRunningName
                                                              eventValue:nil
                                                              attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:nil];
-    
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    NSUInteger numberOfLayers = [layerStates count];
-    NSAssert(numberOfLayers == 0, @"Layers should not be created.");
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
 - (void)testBuildEventTicketWithoutExperiment
@@ -181,13 +188,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                               eventName:kEventWithoutExperimentName
                                                              eventValue:nil
                                                              attributes:nil];
-    
-    NSDictionary *params = [eventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:nil];
-    
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    NSUInteger numberOfLayers = [layerStates count];
-    NSAssert(numberOfLayers == 0, @"Layers should not be created.");
+    XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
 
