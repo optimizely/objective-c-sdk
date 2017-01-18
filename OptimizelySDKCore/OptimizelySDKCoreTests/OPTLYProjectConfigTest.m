@@ -29,6 +29,7 @@
 #import "OPTLYTestHelper.h"
 
 // static data from datafile
+static NSString * const kClientEngine = @"objective-c-sdk";
 static NSString * const kDataModelDatafileName = @"datafile_6372300739";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
@@ -64,7 +65,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
-    XCTAssertEqualObjects(projectConfig.clientEngine, @"objective-c-sdk");
+    XCTAssertEqualObjects(projectConfig.clientEngine, kClientEngine);
     XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
 

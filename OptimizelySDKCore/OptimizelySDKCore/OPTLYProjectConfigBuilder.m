@@ -16,7 +16,7 @@
 
 #import "OPTLYProjectConfigBuilder.h"
 
-NSString * const kClientEngine             = @"objective-c-sdk";
+NSString * const kClientEngine = @"objective-c-sdk";
 
 @implementation OPTLYProjectConfigBuilder
 
