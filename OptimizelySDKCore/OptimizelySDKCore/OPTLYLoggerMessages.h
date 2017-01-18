@@ -39,6 +39,7 @@ extern NSString *const OPTLYLoggerMessagesForcedBucketingFailed;
 // ---- Client ----
 // error
 extern NSString *const OPTLYLoggerMessagesActivationFailure;
+extern NSString *const OPTLYLoggerMessagesClientDummyOptimizelyError;
 extern NSString *const OPTLYLoggerMessagesGetVariationFailure;
 extern NSString *const OPTLYLoggerMessagesTrackFailure;
 
@@ -101,8 +102,8 @@ extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;
 
 // ---- Event Dispatcher ----
 // info
-extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingEvent;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherActivatingUser;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess;
 // warning

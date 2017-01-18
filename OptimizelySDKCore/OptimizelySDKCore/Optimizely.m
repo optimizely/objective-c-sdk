@@ -123,7 +123,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return variation;
     }
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivatingUser, userId, experimentKey];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     NSDictionary *impressionEventParams = [impressionEvent toDictionary];
@@ -259,7 +259,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     NSDictionary *conversionEventParams = [conversionEvent toDictionary];
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingEvent, eventKey, userId];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, eventKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     [self.eventDispatcher dispatchConversionEvent:conversionEventParams
