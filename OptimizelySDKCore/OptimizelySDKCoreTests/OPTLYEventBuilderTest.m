@@ -453,19 +453,23 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         
         // check name
         NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
-        NSAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+        XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+        
+        // check id
+        NSString *featureID = params[OPTLYEventParameterKeysFeaturesId]; 
+        XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
         
         // check type
         NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
-        NSAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
+        XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
         
         // check value
         NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
-        NSAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
+        XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
         
         // check should index
         BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
-        NSAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
+        XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
     }
 }
 
