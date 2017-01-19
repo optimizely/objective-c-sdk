@@ -63,7 +63,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
             _maxNumberOfEventsToSave = builder.maxNumberOfEventsToSave;
         }
         
-        if (builder.eventDispatcherDispatchInterval > 0) {
+        if (builder.eventDispatcherDispatchInterval >= 0) {
             _eventDispatcherDispatchInterval = builder.eventDispatcherDispatchInterval;
         } else {
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventDispatcherDispatchInterval];
