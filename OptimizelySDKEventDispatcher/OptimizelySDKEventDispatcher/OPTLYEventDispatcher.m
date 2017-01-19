@@ -67,7 +67,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
             _eventDispatcherDispatchInterval = builder.eventDispatcherDispatchInterval;
         } else {
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventDispatcherDispatchInterval];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
         [self setupApplicationNotificationHandlers];
