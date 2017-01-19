@@ -269,8 +269,8 @@ static NSData *whitelistingDatafile;
     XCTAssertEqualObjects(updatedVariation.variationId, kUserProfileExperimentTreatmentVariationId);
     
     OPTLYVariation *variationForUser1 = [updatedClient variation:kUserProfileExperimentKey userId:kUserId1];
-    XCTAssertNotEqualObjects(originalVariation.variationKey, variationForUser1.variationKey, @"variation keys should not be equal");
-    XCTAssertEqualObjects(originalVariation.variationId, variationForUser1.variationId, @"variation ids should be the same: %@ %@", originalVariation.variationId, variationForUser1.variationId);
+    XCTAssertNotEqualObjects(originalVariation.variationKey, variationForUser1.variationKey, @"Variation keys should not be equal");
+    XCTAssertEqualObjects(originalVariation.variationId, variationForUser1.variationId, @"Variation IDs should be the same: %@ %@", originalVariation.variationId, variationForUser1.variationId);
 }
 
 - (void)testStickyBucketingRevertsWhenVariationIsRemoved {
