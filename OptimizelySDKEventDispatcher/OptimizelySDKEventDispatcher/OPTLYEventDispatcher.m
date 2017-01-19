@@ -29,7 +29,7 @@ const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
 const NSInteger OPTLYEventDispatcherMaxDispatchEventBatchSize = 20;
 // The max number of times flush events are attempted
 const NSInteger OPTLYEventDispatcherMaxFlushEventAttempts = 10;
-// default max number of events to store before overwriting older events
+// Default max number of events to store before overwriting older events
 const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
 
 @interface OPTLYEventDispatcherDefault()
@@ -67,7 +67,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
             _eventDispatcherDispatchInterval = builder.eventDispatcherDispatchInterval;
         } else {
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherInvalidInterval, builder.eventDispatcherDispatchInterval];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         }
         
         [self setupApplicationNotificationHandlers];
