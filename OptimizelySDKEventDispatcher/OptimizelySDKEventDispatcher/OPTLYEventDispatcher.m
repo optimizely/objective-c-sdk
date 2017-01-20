@@ -24,7 +24,7 @@ NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optim
 NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
 // Default interval and timeout values (in s) if not set by users
-const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 1 * 1000;
+const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 0;
 // The max number of events that can be flushed at a time
 const NSInteger OPTLYEventDispatcherMaxDispatchEventBatchSize = 20;
 // The max number of times flush events are attempted
@@ -224,8 +224,9 @@ dispatch_queue_t dispatchEventQueue()
                              
                              NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
                              if (!error) {
-                                 [strongSelf.dataStore removeEvent:event eventType:eventType error:&error];
-                                 logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherRemovedEvent, eventName, event];
+                                 NSError *removeEventError = nil;
+                                 [strongSelf.dataStore removeEvent:event eventType:eventType error:&removeEventError];
+                                 logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherRemovedEvent, eventName, event, removeEventError];
                              } else {
                                  logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchFailed, eventName, error];
                              }
