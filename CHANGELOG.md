@@ -1,4 +1,4 @@
-# Optimizely Android X SDK Changelog
+# Optimizely Objective-C SDK Changelog
 ## 0.5.0
 January 18, 2017
 
@@ -12,6 +12,7 @@ January 18, 2017
 ### Bug Fixes
 *  User Profile: Persist experiment and variation IDs instead of keys. Allow multiple experiment and variation mappings to be stored for each user.
 *  Whitelisting: Whitelisted variations will not be persisted in User Profile. Whitelisting will not check User Profile for bucketing information.
+*  Track Event: Conversion events will no longer be sent if the experiments the event is part of do not pass audience evaluation.
 
 ## 0.3.0 
 December 22, 2016
