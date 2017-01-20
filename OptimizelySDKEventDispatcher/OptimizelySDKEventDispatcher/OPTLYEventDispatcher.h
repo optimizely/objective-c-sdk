@@ -36,7 +36,7 @@ extern NSInteger const OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
 extern NSInteger const OPTLYEventDispatcherMaxDispatchEventBatchSize;
 // The max number of times flush events are attempted
 extern NSInteger const OPTLYEventDispatcherMaxFlushEventAttempts;
-// default max number of events to store before overwriting older events
+// Default max number of events to store before overwriting older events
 extern NSInteger const OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave;
 
 @protocol OPTLYEventDispatcher;
@@ -48,7 +48,7 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue (in ms)
 @property (nonatomic, assign, readonly) NSInteger eventDispatcherDispatchInterval;
 
-/// max number of events to store before overwriting older events (value must be greater than 1)
+/// Max number of events to store before overwriting older events (value must be greater than 1)
 @property (nonatomic, assign, readonly) NSInteger maxNumberOfEventsToSave;
 
 /// Logger provided by the user

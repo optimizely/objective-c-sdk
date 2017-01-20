@@ -28,7 +28,7 @@ NSString *const OPTLYLoggerMessagesConversionSuccess = @"[OPTIMIZELY] Tracking e
 NSString *const OPTLYLoggerMessagesBucketAssigned = @"[BUCKETER] Assigned bucket %@ to user %@.";
 // info
 NSString *const OPTLYLoggerMessagesForcedVariationUser = @"[BUCKETER] User %@ is forced in variation %@.";
-NSString *const OPTLYLoggerMessagesUserMutuallyExcluded = @"[BUCKETER] User %ld is mutually excluded from the experiment."; // user id
+NSString *const OPTLYLoggerMessagesUserMutuallyExcluded = @"[BUCKETER] User %@ is not in experiment %@ of group %@."; // user id, experiment key, group ID // user id
 // error
 NSString *const OPTLYLoggerMessagesForcedBucketingFailed = @"[BUCKETER] Entity %@ is not in the datafile. Not activating user %@."; // changed text from from 'variation' to 'entity'
 
@@ -104,7 +104,7 @@ NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEven
 NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess = @"[EVENT DISPATCHER] Successfully tracked event %@ for user %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationSuccess = @"[EVENT DISPATCHER] Successfully activated user %@ in experiment %@";
 // warning
-NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCHER] Invalid event handler dispatch interval set: %ld";
+NSString *const OPTLYLoggerMessagesEventDispatcherInvalidInterval =  @"[EVENT DISPATCHER] Invalid dispatch interval set: %ld";
 
 // debug
 NSString *const OPTLYLoggerMessagesEventDispatcherProperties =  @"[EVENT DISPATCHER] Event dispatch interval: %ld [second(s)]";
@@ -147,7 +147,7 @@ NSString *const OPTLYLoggerMessagesEventIdUnknownForEventKey = @"[PROJECT CONFIG
 NSString *const OPTLYLoggerMessagesEventUnknownForEventKey = @"[PROJECT CONFIG] Event not found for event key: %@. Event key is not in the datafile."; // event key
 NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment ID not found for experiment key: %@. Experiment key is not in the datafile."; // experiment key
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId = @"[PROJECT CONFIG] Experiment not found for experiment ID: %@. Experiment ID is not in the datafile."; // experiment id
-NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment not found for experiment key: %@. Experiment key is not in the datafile."; // experiment key
+NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment key not found for experiment: %@. Experiment key is not in the datafile.";  // experiment key
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@. Group ID is not in the datafile."; // group id
 
 // ---- User Profile ----

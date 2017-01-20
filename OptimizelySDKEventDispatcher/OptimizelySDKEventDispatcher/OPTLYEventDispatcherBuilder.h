@@ -38,7 +38,7 @@ typedef void (^OPTLYEventDispatcherBuilderBlock)(OPTLYEventDispatcherBuilder * _
 
 /// The interval at which the SDK will attempt to dispatch any events remaining in our events queue
 @property (nonatomic, assign, readwrite) NSInteger eventDispatcherDispatchInterval;
-/// max number of events to store before overwriting older events (value must be greater than 1)
+/// Max number of events to store before overwriting older events (value must be greater than 1)
 @property (nonatomic, assign) NSInteger maxNumberOfEventsToSave;
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;

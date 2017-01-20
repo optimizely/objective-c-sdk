@@ -49,7 +49,7 @@
         || !experimentId
         || !variationId) {
         [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileUnableToSaveVariation, experimentId, variationId, userId]
-                      withLevel:OptimizelyLogLevelWarning];
+                      withLevel:OptimizelyLogLevelDebug];
         return;
     }
     NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
