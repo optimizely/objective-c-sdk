@@ -126,9 +126,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [[eventDispatcherMock expect] flushEvents];
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchConversionEvent success."];
-    __weak typeof(self) weakSelf = self;
     [eventDispatcherMock dispatchConversionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
+        NSInteger numberOfSavedEvents = [eventDispatcherMock numberOfEvents:OPTLYDataStoreEventTypeImpression];
         XCTAssert(numberOfSavedEvents == 0, @"Conversion events should not have been saved.");
         [eventDispatcherMock verify];
         [expectation fulfill];
@@ -170,29 +169,31 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
-// if events are saved and flushEvents fail,
-//  - then the timer should be disabled
-//  - events should be stored
+// if events are saved and flushEvents fail, then events should be stored
 - (void)testFlushEventsWithSavedEventsFailure {
     
     [self stubFailureResponse];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsFailure failure."];
-    [self.eventDispatcher setupNetworkTimer:nil];
     
     NSInteger numberOfEventsSaved = 1;
     for (NSInteger i = 0; i < numberOfEventsSaved; ++i) {
         [self.eventDispatcher.dataStore saveEvent:self.parameters
-                                        eventType:OPTLYDataStoreEventTypeConversion
-                                            error:nil];
+                                   eventType:OPTLYDataStoreEventTypeConversion
+                                       error:nil];
     }
     
+    [self.eventDispatcher.dataStore saveEvent:self.parameters
+                                    eventType:OPTLYDataStoreEventTypeImpression
+                                        error:nil];
+    
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventsWithSavedEventsFailure failure."];
     __weak typeof(self) weakSelf = self;
     [self.eventDispatcher flushEvents:^{
-        NSArray *savedEvents = [weakSelf.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                          error:nil];
-        XCTAssert([savedEvents count] == numberOfEventsSaved, @"Events should be saved : %lu.", [savedEvents count]);
+        
+        NSInteger savedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeConversion];
+        XCTAssert(savedEvents == numberOfEventsSaved, @"Events should be saved : %lu.", savedEvents);
         XCTAssert(weakSelf.eventDispatcher.flushEventAttempts == 1, @"Flush event attempts is invalid.");
-        [weakSelf checkNetworkTimerIsEnabled:self.eventDispatcher timeInterval:OPTLYEventDispatcherDefaultDispatchIntervalTime_s];
+        
         [expectation fulfill];
     }];
     
