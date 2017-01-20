@@ -163,11 +163,11 @@
 				EA5246C21DC7186800AF6685 /* ViewController.swift */,
 				EA5246C41DC7186800AF6685 /* Main.storyboard */,
 				5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */,
+				5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */,
 				5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */,
 				EA5246C71DC7186800AF6685 /* Assets.xcassets */,
 				EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
-				5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */,
 			);
 			path = OptimizelyiOSDemoApp;
 			sourceTree = "<group>";
