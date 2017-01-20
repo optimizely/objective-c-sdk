@@ -170,45 +170,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
 {
-    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
-    if ([self.config checkWhitelistingForUser:userId experiment:experiment]) {
-        return [self.config getWhitelistedVariationForUser:userId experiment:experiment];
-    }
-    
-    NSString *experimentId = [self.config getExperimentIdForKey:experimentKey];
-    
-    if (self.userProfile != nil) {
-        NSString *storedVariationId = [self.userProfile getVariationIdForUserId:userId experimentId:experimentId];
-        if (storedVariationId != nil) {
-            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
-                          withLevel:OptimizelyLogLevelDebug];
-            OPTLYVariation *storedVariation = [[self.config getExperimentForId:experimentId]
-                                                    getVariationForVariationId:storedVariationId];
-            if (storedVariation != nil) {
-                return storedVariation;
-            }
-            else { // stored variation is no longer in datafile
-                [self.userProfile removeUserId:userId experimentId:experimentId];
-                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationId, experimentId]
-                              withLevel:OptimizelyLogLevelWarning];
-            }
-        }
-    }
-    OPTLYVariation *bucketedVariation = nil;
-    bucketedVariation = [self.config getVariationForExperiment:experimentKey
-                                                        userId:userId
-                                                    attributes:attributes
-                                                      bucketer:self.bucketer];
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    //Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
-                  withLevel:OptimizelyLogLevelDebug];
-    [self.userProfile saveUserId:userId
-                    experimentId:experimentId
-                     variationId:bucketedVariation.variationId];
+    OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:experimentKey
+                                                                        userId:userId
+                                                                    attributes:attributes
+                                                                      bucketer:self.bucketer];
     return bucketedVariation;
 }
 

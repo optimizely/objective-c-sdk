@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kExpectedDatafileVersion;
 NS_ASSUME_NONNULL_END
 
-@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYVariation, OPTLYVariable;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfile, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
 
 /*
@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfile, Ignore> userProfile;
 
 /// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
@@ -128,24 +129,5 @@ NS_ASSUME_NONNULL_END
                                                 userId:(nonnull NSString *)userId
                                             attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
-
-/**
- * Determine if a user is whitelisted in an experiment.
- * @param userId The ID of the user to check for.
- * @param experiment The experiment to check in.
- * @return True if the user is whitelisted in the experiment.
- *          False if the user is not whitelisted in the experiment.
- */
-- (BOOL)checkWhitelistingForUser:(nonnull NSString *)userId
-                      experiment:(nonnull OPTLYExperiment *)experiment;
-
-/**
- * Get the whitelisted variation for the user in the experiment.
- * @param userId The ID of the user that is whitelisted.
- * @param experiment The experiment to whitelist in.
- * @return OPTLYVariation The variation that the user was whitelisted into.
- */
-- (nullable OPTLYVariation *)getWhitelistedVariationForUser:(nonnull NSString *)userId
-                                                 experiment:(nonnull OPTLYExperiment *)experiment;
 
 @end

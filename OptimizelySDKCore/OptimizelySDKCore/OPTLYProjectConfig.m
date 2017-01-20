@@ -124,6 +124,14 @@ NSString * const kExpectedDatafileVersion  = @"3";
         [builder.errorHandler handleException:datafileException];
     }
     
+    if (builder.userProfile) {
+        if (![OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
+            [builder.logger logMessage:OPTLYErrorHandlerMessagesUserProfileInvalid withLevel:OptimizelyLogLevelWarning];
+        } else {
+            _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
+        }
+    }
+    
     _clientEngine = builder.clientEngine;
     _clientVersion = builder.clientVersion;
     
@@ -396,28 +404,62 @@ NSString * const kExpectedDatafileVersion  = @"3";
 
 # pragma mark - Helper Methods
 
+// TODO: Remove bucketer from parameters -- this is not needed
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
                                        userId:(NSString *)userId
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
                                      bucketer:(id<OPTLYBucketer>)bucketer
 {
+    // check if experiment is whitelisted
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
-    OPTLYVariation *variation;
+    if ([self checkWhitelistingForUser:userId experiment:experiment]) {
+        return [self getWhitelistedVariationForUser:userId experiment:experiment];
+    }
+    
+    // check for sticky bucketing
+    NSString *experimentId = [self getExperimentIdForKey:experimentKey];
+    if (self.userProfile != nil) {
+        NSString *storedVariationId = [self.userProfile getVariationIdForUserId:userId experimentId:experimentId];
+        if (storedVariationId != nil) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
+                          withLevel:OptimizelyLogLevelDebug];
+            OPTLYVariation *storedVariation = [[self getExperimentForId:experimentId] getVariationForVariationId:storedVariationId];
+            if (storedVariation != nil) {
+                return storedVariation;
+            }
+            else { // stored variation is no longer in datafile
+                [self.userProfile removeUserId:userId experimentId:experimentId];
+                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationId, experimentId]
+                              withLevel:OptimizelyLogLevelWarning];
+            }
+        }
+    }
     
     // validate preconditions
+    OPTLYVariation *bucketedVariation = nil;
     if ([OPTLYValidator validatePreconditions:self
                                 experimentKey:experiment.experimentKey
                                        userId:userId
                                    attributes:attributes]) {
         
         // bucket user into a variation
-        variation = [bucketer bucketExperiment:experiment withUserId:userId];
+        bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];
     }
     
-    return variation;
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
+    // Attempt to save user profile
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
+                  withLevel:OptimizelyLogLevelDebug];
+    [self.userProfile saveUserId:userId
+                    experimentId:experimentId
+                     variationId:bucketedVariation.variationId];
+    
+    return bucketedVariation;
 }
 
-# pragma mark - Whitelisting
+# pragma mark - Helper Methods
 // check if the user is in the whitelisted mapping
 - (BOOL)checkWhitelistingForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
     if (experiment.forcedVariations[userId] != nil) {
