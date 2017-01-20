@@ -29,11 +29,6 @@
 
 @implementation OPTLYManagerBase
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
-}
-
 #pragma mark - Client Getters
 
 - (OPTLYClient *)initialize {
@@ -92,4 +87,14 @@
     return client;
 }
 
+- (NSData *)datafile {
+    if (!_datafile) {
+        _datafile = [self.datafileManager getSavedDatafile];
+    }
+    return _datafile;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
+}
 @end
