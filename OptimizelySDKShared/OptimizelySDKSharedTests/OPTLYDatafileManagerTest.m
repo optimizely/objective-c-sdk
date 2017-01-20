@@ -35,5 +35,4 @@ static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/pu
     
     XCTAssertEqualObjects(cdnURL, expectedURL, @"Expected CDN URL is https://cdn.optimizely.com/public/6372300739/datafile_v<CURRENT-VERSION>.json");
 }
-
 @end
