@@ -24,50 +24,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var optimizelyClient : OPTLYClient?
     
-    // Optimizely SDK test parameters
-    let userId = "1234"
+    // generate random user ID on each app load
+    let userId = String(Int(arc4random_uniform(300000)))
+    
+    // customizable settings
+    let datafileName = "iOSDemoTestData" // default parameter for initializing Optimizely from saved datafile
+    var projectId = "8136462271"
+    var experimentKey = "background_experiment"
+    var eventKey = "sample_conversion"
+    var downloadDatafile = true
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
-    
-    // default parameters for initializing Optimizely from saved datafile
-    let datafileName = "iOSDemoTestData"
-    var projectId = "8136462271"
-    var eventKey = "sample_conversion"
-    var experimentKey = "background_experiment"
-    var downloadDatafile = true
     
     func launchApp(optimizelyClient: OPTLYClient) {
         DispatchQueue.main.async {
             let variation = optimizelyClient.activate(self.experimentKey, userId: self.userId)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if (variation != nil) {
-                print("Bucketed variation:", variation!.variationKey)
-
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                // load variation page
                 if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
                 {
+                    variationViewController.eventKey = self.eventKey
+                    variationViewController.optimizelyClient = optimizelyClient
+                    variationViewController.userId = self.userId
                     variationViewController.variationKey = (variation?.variationKey)!
                     
                     if let window = self.window {
                         window.rootViewController = variationViewController
-                        
                     }
                 }
-                
-                // TRACK EVENT SOMEWHERE -- where?
             } else {
                 // load error page if variation is nil
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let failureViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
+                if let failureViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYFailureViewController") as? OPTLYFailureViewController
                 {
-                    failureViewController.variationKey = "variation_a" // UPDATE ME WHEN DONE TESTING
                     if let window = self.window {
                         window.rootViewController = failureViewController
                         
                     }
                 }
             }
-            
-//            optimizelyClient.track(self.eventKey, userId: self.userId)
         }
     }
     

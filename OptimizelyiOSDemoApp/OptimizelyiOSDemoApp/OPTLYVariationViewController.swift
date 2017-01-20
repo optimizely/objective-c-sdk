@@ -19,7 +19,10 @@ import OptimizelySDKiOS
 
 class OPTLYVariationViewController: UIViewController {
     
+    var eventKey :String = ""
+    var optimizelyClient :OPTLYClient? = nil
     var variationKey :String = ""
+    var userId :String = ""
 
     @IBOutlet weak var variationLetterLabel: UILabel!
     @IBOutlet weak var variationSubheaderLabel: UILabel!
@@ -27,8 +30,6 @@ class OPTLYVariationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.optimizelyClient?.track("", userId: "")
 
         // Do any additional setup after loading the view.
         switch self.variationKey {
@@ -56,15 +57,9 @@ class OPTLYVariationViewController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func attemptTrackAndShowSuccessOrFailure(_ sender: Any) {
+        self.optimizelyClient?.track(self.eventKey, userId: userId)
+        self.performSegue(withIdentifier: "OPTLYConversionSuccessSegue", sender: self)
     }
-    */
-
 }
