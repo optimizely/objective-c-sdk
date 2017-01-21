@@ -141,11 +141,12 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     // save the datafile
     [manager.datafileManager saveDatafile:self.defaultDatafile];
     
-    // make sure manager is initialized correctly
-    XCTAssertEqual(manager.datafile, self.defaultDatafile);
-    
     // initialize client
     OPTLYClient *client = [manager initialize];
+    
+    // make sure manager is initialized correctly
+    // the manager datafile is set only after initialize is called
+    XCTAssertEqual(manager.datafile, self.defaultDatafile);
     
     // test client initialization
     XCTAssertNotNil(client.optimizely);

@@ -32,22 +32,17 @@
 #pragma mark - Client Getters
 
 - (OPTLYClient *)initialize {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
+    // the datafile could have been set in the builder (this should take precedence over the saved datafile)
+    if (!self.datafile) {
+        self.datafile = [self.datafileManager getSavedDatafile];
     }
-    return client;
+    self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
+    return self.optimizelyClient;
 }
 
 - (OPTLYClient *)initializeWithDatafile:(NSData *)datafile {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
-        return client;
-    }
-    else {
-        return [self initialize];
-    }
+    self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:datafile];
+    return self.optimizelyClient;
 }
 
 - (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
@@ -55,14 +50,7 @@
         if ([(NSHTTPURLResponse *)response statusCode] == 304) {
             data = [self.datafileManager getSavedDatafile];
         }
-        if (!error) {
-            OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:data];
-            if (client.optimizely) {
-                self.optimizelyClient = client;
-            }
-        } else {
-            // TODO - log error
-        }
+        self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:data];
         
         if (callback) {
             callback(error, self.optimizelyClient);
@@ -73,6 +61,13 @@
 - (OPTLYClient *)getOptimizely {
     return self.optimizelyClient;
 }
+
+//- (NSData *)datafile {
+//    if (!_datafile) {
+//        _datafile = [self.datafileManager getSavedDatafile];
+//    }
+//    return _datafile;
+//}
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
     OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
@@ -85,13 +80,6 @@
         builder.clientVersion = self.clientVersion;
     }];
     return client;
-}
-
-- (NSData *)datafile {
-    if (!_datafile) {
-        _datafile = [self.datafileManager getSavedDatafile];
-    }
-    return _datafile;
 }
 
 - (NSString *)description {
