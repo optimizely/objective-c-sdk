@@ -62,13 +62,6 @@
     return self.optimizelyClient;
 }
 
-//- (NSData *)datafile {
-//    if (!_datafile) {
-//        _datafile = [self.datafileManager getSavedDatafile];
-//    }
-//    return _datafile;
-//}
-
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
     OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;

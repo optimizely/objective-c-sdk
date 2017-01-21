@@ -71,7 +71,7 @@ NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDate = @"[DATAFILE
 // info
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloaded = @"[DATAFILE MANAGER] Datafile for project %@ downloaded. Saving datafile and last modified date: %@.";
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloading = @"[DATAFILE MANAGER] Downloading datafile for project %@.";
-NSString *const OPTLYLoggerMessagesDatafileManagerDatafileSaved = @"[DATAFILE MANAGER] Datafile saved for %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileSaved = @"[DATAFILE MANAGER] Datafile saved for project %@.";
 
 // Datafile Manager Builder
 // warning
