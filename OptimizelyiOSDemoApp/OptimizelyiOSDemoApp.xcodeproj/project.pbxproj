@@ -120,7 +120,7 @@
 		EA5246C01DC7186800AF6685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA5246C21DC7186800AF6685 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EA5246C51DC7186800AF6685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EA5246C71DC7186800AF6685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA5246C71DC7186800AF6685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = OptimizelyiOSDemoApp/Assets.xcassets; sourceTree = "<group>"; };
 		EA5246CA1DC7186800AF6685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelyiOSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		EA5246D11DC7186800AF6685 /* OptimizelyiOSDemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelyiOSDemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,15 +181,21 @@
 			name = "Test Data";
 			sourceTree = "<group>";
 		};
+		EA4F2B651E3695FD00C09876 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA5246C71DC7186800AF6685 /* Assets.xcassets */,
+				5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */,
+				5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		EA5246B41DC7186800AF6685 = {
 			isa = PBXGroup;
 			children = (
-				EA4F2B5C1E3694DE00C09876 /* OptimizelySDKCore.framework */,
-				EA4F2B591E3694DE00C09876 /* OptimizelySDKShared.framework */,
-				EA4F2B561E3694DE00C09876 /* OptimizelySDKUserProfile.framework */,
-				5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */,
-				5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */,
 				EA5246BF1DC7186800AF6685 /* OptimizelyiOSDemoApp */,
+				EA4F2B651E3695FD00C09876 /* Resources */,
 				EA5246D41DC7186800AF6685 /* OptimizelyiOSDemoAppTests */,
 				EA5246DF1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests */,
 				EA5246BE1DC7186800AF6685 /* Products */,
@@ -217,7 +223,6 @@
 				5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */,
 				5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */,
 				5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */,
-				EA5246C71DC7186800AF6685 /* Assets.xcassets */,
 				EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
 			);
@@ -246,9 +251,12 @@
 		EA5248C31DC72E8300AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
+				EA4F2B5C1E3694DE00C09876 /* OptimizelySDKCore.framework */,
+				EA4F2B591E3694DE00C09876 /* OptimizelySDKShared.framework */,
+				EA4F2B561E3694DE00C09876 /* OptimizelySDKUserProfile.framework */,
 				EA4F2B5F1E36958400C09876 /* OptimizelySDKDatafileManager.framework */,
 				EA4F2B601E36958400C09876 /* OptimizelySDKEventDispatcher.framework */,
-				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
 				1FB412018B98235E5A62E95F /* Pods_OptimizelyiOSDemoApp.framework */,
 			);
 			name = Frameworks;
