@@ -29,39 +29,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // customizable settings
     let datafileName = "iOSDemoTestData" // default parameter for initializing Optimizely from saved datafile
-    var projectId = "8136462271"
+    var projectId = "8182362857" // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
-    var downloadDatafile = true
+    let attributes = ["sample_attribute_key":"sample_attribute_value"]
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
     
-    func launchApp(optimizelyClient: OPTLYClient) {
+    func setRootViewController(optimizelyClient: OPTLYClient!, bucketedVariation:OPTLYVariation?) {
         DispatchQueue.main.async {
-            let variation = optimizelyClient.activate(self.experimentKey, userId: self.userId)
+        
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if (variation != nil) {
+            var rootViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYFailureViewController")
+            
+            if (bucketedVariation != nil) {
                 // load variation page
                 if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
                 {
                     variationViewController.eventKey = self.eventKey
                     variationViewController.optimizelyClient = optimizelyClient
                     variationViewController.userId = self.userId
-                    variationViewController.variationKey = (variation?.variationKey)!
-                    
-                    if let window = self.window {
-                        window.rootViewController = variationViewController
-                    }
+                    variationViewController.variationKey = (bucketedVariation!.variationKey)!
+                    rootViewController = variationViewController
                 }
-            } else {
-                // load error page if variation is nil
-                if let failureViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYFailureViewController") as? OPTLYFailureViewController
-                {
-                    if let window = self.window {
-                        window.rootViewController = failureViewController
-                        
-                    }
-                }
+            }
+            
+            if let window = self.window {
+                window.rootViewController = rootViewController
             }
         }
     }
@@ -80,36 +74,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder!.projectId = self.projectId
         }
         
+        // create the manager
         let optimizelyManager = OPTLYManager.init {(builder) in
             builder!.projectId = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         }
         
-        // use different parameters if initializing Optimizely from downloaded datafile
-        if self.downloadDatafile == true {
-            // initialize Optimizely Client from a datafile download
-            optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
-                self?.launchApp(optimizelyClient: optimizelyClient!)
-                })
-        } else {
-            // get the datafile
-            let bundle = Bundle.init(for: self.classForCoder)
-            let filePath = bundle.path(forResource: datafileName, ofType: "json")
-            var jsonDatafile: Data? = nil
-            do {
-                let fileContents = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
-                jsonDatafile = fileContents.data(using: String.Encoding.utf8)!
-            }
-            catch {
-                print("invalid JSON Data")
-            }
-            
-            // initialize Optimizely Client from a saved datafile
-            let optimizelyClient = optimizelyManager?.initialize(withDatafile:jsonDatafile!)
-
-            self.launchApp(optimizelyClient: optimizelyClient!)
-        }
+        // ---- Asynchronous Initialization ----
+        // initialize Optimizely Client from a datafile download
+        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
+            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        })
+        
+        // ---- Synchronous Initialization with Datafile ----
+        // load the datafile from bundle
+//        let bundle = Bundle.init(for: self.classForCoder)
+//        let filePath = bundle.path(forResource: datafileName, ofType: "json")
+//        var jsonDatafile: Data? = nil
+//        do {
+//            let fileContents = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+//            jsonDatafile = fileContents.data(using: String.Encoding.utf8)!
+//        }
+//        catch {
+//            print("invalid JSON Data")
+//        }
+//        
+//        let optimizelyClient = optimizelyManager?.initialize(withDatafile:jsonDatafile!)
+//        let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+//        self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+    
+        // ---- Synchronous Initialization with Saved Datafile ----
+//        let optimizelyClient = optimizelyManager?.initialize()
+//        let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+//        self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        
         
         return true;
     }
