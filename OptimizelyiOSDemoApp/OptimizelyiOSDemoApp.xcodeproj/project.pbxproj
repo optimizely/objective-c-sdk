@@ -28,7 +28,6 @@
 		EA4F2B631E36959700C09876 /* OptimizelySDKDatafileManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA4F2B5F1E36958400C09876 /* OptimizelySDKDatafileManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA4F2B641E36959700C09876 /* OptimizelySDKEventDispatcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA4F2B601E36958400C09876 /* OptimizelySDKEventDispatcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C01DC7186800AF6685 /* AppDelegate.swift */; };
-		EA5246C31DC7186800AF6685 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C21DC7186800AF6685 /* ViewController.swift */; };
 		EA5246C61DC7186800AF6685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C41DC7186800AF6685 /* Main.storyboard */; };
 		EA5246C81DC7186800AF6685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C71DC7186800AF6685 /* Assets.xcassets */; };
 		EA5246CB1DC7186800AF6685 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */; };
@@ -118,7 +117,6 @@
 		EA4F2B601E36958400C09876 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKEventDispatcher.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-eqfvykifydpmoiabgpaxjcqqcmob/Build/Products/Debug-iphoneos/OptimizelySDKEventDispatcher.framework"; sourceTree = "<group>"; };
 		EA5246BD1DC7186800AF6685 /* OptimizelyiOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyiOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5246C01DC7186800AF6685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA5246C21DC7186800AF6685 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EA5246C51DC7186800AF6685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA5246C71DC7186800AF6685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = OptimizelyiOSDemoApp/Assets.xcassets; sourceTree = "<group>"; };
 		EA5246CA1DC7186800AF6685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -218,11 +216,10 @@
 			isa = PBXGroup;
 			children = (
 				EA5246C01DC7186800AF6685 /* AppDelegate.swift */,
-				EA5246C21DC7186800AF6685 /* ViewController.swift */,
-				EA5246C41DC7186800AF6685 /* Main.storyboard */,
 				5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */,
 				5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */,
 				5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */,
+				EA5246C41DC7186800AF6685 /* Main.storyboard */,
 				EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
 			);
@@ -488,7 +485,6 @@
 			files = (
 				5E4151E91E3176200094A952 /* OPTLYSplashScreenViewController.swift in Sources */,
 				5E4151E61E316D140094A952 /* OPTLYFailureViewController.swift in Sources */,
-				EA5246C31DC7186800AF6685 /* ViewController.swift in Sources */,
 				5E875F171E270E78005C1B1E /* OPTLYVariationViewController.swift in Sources */,
 				EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */,
 			);
