@@ -2,7 +2,7 @@
 ## 1.0.0
 January 23, 2017
 
-### GA Release
+*  GA Release
 
 ## 0.5.0
 January 18, 2017
