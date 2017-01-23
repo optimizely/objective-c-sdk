@@ -40,6 +40,8 @@ typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Null
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler> errorHandler;
 /// optional logger
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
+/// optional user profile
+@property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
 /// the non optional datafile contents
 @property (nonatomic, strong, nonnull) NSData *datafile;
 /// The client version
