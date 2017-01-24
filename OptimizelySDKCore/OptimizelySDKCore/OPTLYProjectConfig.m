@@ -124,6 +124,14 @@ NSString * const kExpectedDatafileVersion  = @"3";
         [builder.errorHandler handleException:datafileException];
     }
     
+    if (builder.userProfile) {
+        if (![OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
+            [builder.logger logMessage:OPTLYErrorHandlerMessagesUserProfileInvalid withLevel:OptimizelyLogLevelWarning];
+        } else {
+            _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
+        }
+    }
+    
     _clientEngine = builder.clientEngine;
     _clientVersion = builder.clientVersion;
     
@@ -144,7 +152,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYAudience *audience = self.audienceIdToAudienceMap[audienceId];
     if (!audience) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceUnknownForAudienceId, audienceId];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return audience;
 }
@@ -153,7 +161,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYAttribute *attribute = self.attributeKeyToAttributeMap[attributeKey];
     if (!attribute) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeUnknownForAttributeKey, attributeKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return attribute;
 }
@@ -162,7 +170,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     NSString *eventId = self.eventKeyToEventIdMap[eventKey];
     if (!eventId) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventIdUnknownForEventKey, eventKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return eventId;
 }
@@ -171,7 +179,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYEvent *event = self.eventKeyToEventMap[eventKey];
     if (!event) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventUnknownForEventKey, eventKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return event;
 }
@@ -180,7 +188,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYExperiment *experiment = self.experimentIdToExperimentMap[experimentId];
     if (!experiment) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentUnknownForExperimentId, experimentId];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return experiment;
 }
@@ -189,7 +197,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYExperiment *experiment = self.experimentKeyToExperimentMap[experimentKey];
     if (!experiment) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentUnknownForExperimentKey, experimentKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return experiment;
 }
@@ -199,7 +207,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     NSString *experimentId = self.experimentKeyToExperimentIdMap[experimentKey];
     if (!experimentId) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey, experimentKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return experimentId;
 }
@@ -208,7 +216,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYGroup *group = self.groupIdToGroupMap[groupId];
     if (!group) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesGroupUnknownForGroupId, groupId];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return group;
 }
@@ -217,7 +225,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
     if (!variable) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return variable;
 }
@@ -396,28 +404,62 @@ NSString * const kExpectedDatafileVersion  = @"3";
 
 # pragma mark - Helper Methods
 
+// TODO: Remove bucketer from parameters -- this is not needed
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
                                        userId:(NSString *)userId
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
                                      bucketer:(id<OPTLYBucketer>)bucketer
 {
+    // check if experiment is whitelisted
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
-    OPTLYVariation *variation;
+    if ([self checkWhitelistingForUser:userId experiment:experiment]) {
+        return [self getWhitelistedVariationForUser:userId experiment:experiment];
+    }
+    
+    // check for sticky bucketing
+    NSString *experimentId = [self getExperimentIdForKey:experimentKey];
+    if (self.userProfile != nil) {
+        NSString *storedVariationId = [self.userProfile getVariationIdForUserId:userId experimentId:experimentId];
+        if (storedVariationId != nil) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
+                          withLevel:OptimizelyLogLevelDebug];
+            OPTLYVariation *storedVariation = [[self getExperimentForId:experimentId] getVariationForVariationId:storedVariationId];
+            if (storedVariation != nil) {
+                return storedVariation;
+            }
+            else { // stored variation is no longer in datafile
+                [self.userProfile removeUserId:userId experimentId:experimentId];
+                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationId, experimentId]
+                              withLevel:OptimizelyLogLevelWarning];
+            }
+        }
+    }
     
     // validate preconditions
+    OPTLYVariation *bucketedVariation = nil;
     if ([OPTLYValidator validatePreconditions:self
                                 experimentKey:experiment.experimentKey
                                        userId:userId
                                    attributes:attributes]) {
         
         // bucket user into a variation
-        variation = [bucketer bucketExperiment:experiment withUserId:userId];
+        bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];
     }
     
-    return variation;
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
+    // Attempt to save user profile
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
+                  withLevel:OptimizelyLogLevelDebug];
+    [self.userProfile saveUserId:userId
+                    experimentId:experimentId
+                     variationId:bucketedVariation.variationId];
+    
+    return bucketedVariation;
 }
 
-# pragma mark - Whitelisting
+# pragma mark - Helper Methods
 // check if the user is in the whitelisted mapping
 - (BOOL)checkWhitelistingForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
     if (experiment.forcedVariations[userId] != nil) {
@@ -432,7 +474,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
     if (forcedVariation != nil) {
         // Log user forced into variation
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedVariationUser, userId, forcedVariation.variationId];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedVariationUser, userId, forcedVariation.variationKey];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }
     else {

@@ -19,6 +19,7 @@
 
 #import "OPTLYAttribute.h"
 #import "OPTLYAudience.h"
+#import "OPTLYBucketer.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYExperiment.h"
@@ -39,14 +40,26 @@ static NSString * const kAccountId = @"6365361536";
 static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
 
 @interface OPTLYProjectConfigTest : XCTestCase
+@property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
+@property (nonatomic, strong) OPTLYBucketer *bucketer;
 @end
 
 @implementation OPTLYProjectConfigTest
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
+    self.projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+        builder.datafile = datafile;
+        builder.logger = [OPTLYLoggerDefault new];
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+        builder.userProfile = [OPTLYUserProfileNoOp new];
+    }];
+    
+    self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.projectConfig];
 }
+
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -60,15 +73,16 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+        builder.userProfile = [OPTLYUserProfileNoOp new];
     }];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
+    XCTAssertNotNil(projectConfig.userProfile, @"User profile should not be nil.");
     XCTAssertEqualObjects(projectConfig.clientEngine, kClientEngine, @"Invalid client engine: %@. Expected: %@.", projectConfig.clientEngine, kClientEngine);
     XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version: %@. Expected: %@.", projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
-
 /**
  * Make sure we can pass in different values for client engine and client version to override the defaults.
  */
@@ -109,6 +123,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.errorHandler = errorHandler;
     }];
     
+    XCTAssertNil(projectConfig.userProfile, @"Invalid user profile should not have been set.");
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
 }
 
@@ -126,6 +141,51 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertFalse(projectConfig.anonymizeIP, @"IP anonymization should be set to false.");
 }
 
+// "user_b": "b"
+- (void)testGetVariationWhitelisted
+{
+    OPTLYVariation *variation = [self.projectConfig getVariationForExperiment:@"mutex_exp2"
+                                                                       userId:@"user_b"
+                                                                   attributes:@{@"abc":@"123"}
+                                                                     bucketer:self.bucketer];
+    
+    XCTAssert([variation.variationKey isEqualToString:@"b"], @"Invalid variation for getVariation with whitelisted user: %@", variation.variationKey);
+}
+
+- (void)testGetVariationAudience
+{
+    // invalid audience
+    OPTLYVariation *variationInvalidAudience = [self.projectConfig getVariationForExperiment:@"testExperimentWithFirefoxAudience"
+                                                                                      userId:@"user_b"
+                                                                                  attributes:@{@"browser_type":@"chrome"}
+                                                                                    bucketer:self.bucketer];
+    
+    XCTAssertNil(variationInvalidAudience, @"Variation should be nil for experiment that does not pass audience evaluation: %@", variationInvalidAudience);
+    
+    // valid audience
+    OPTLYVariation *variationValidAudience = [self.projectConfig getVariationForExperiment:@"testExperimentWithFirefoxAudience"
+                                                                                    userId:@"user_b"
+                                                                                attributes:@{@"browser_type":@"firefox"}
+                                                                                  bucketer:self.bucketer];
+    XCTAssert([variationValidAudience.variationKey isEqualToString:@"variation"], @"Invalid variation for getVariation with whitelisted user: %@", variationValidAudience.variationKey);
+}
+
+- (void)testGetVariationExperiment
+{
+    // experiment does not exist
+    OPTLYVariation *variationExpNotExist = [self.projectConfig getVariationForExperiment:@"invalidExperiment"
+                                                                                  userId:@"user_b"
+                                                                              attributes:@{@"abc":@"123"}
+                                                                                bucketer:self.bucketer];
+    XCTAssertNil(variationExpNotExist, @"Variation should be nil for experiment that does not exist: %@", variationExpNotExist.variationKey);
+    
+    // experiment is paused
+    OPTLYVariation *variationExpNotRunning = [self.projectConfig getVariationForExperiment:@"testExperimentNotRunning"
+                                                                                    userId:@"user_b"
+                                                                                attributes:nil
+                                                                                  bucketer:self.bucketer];
+    XCTAssertNil(variationExpNotRunning, @"Variation should be nil for experiment that is paused: %@", variationExpNotRunning.variationKey);
+}
 #pragma mark - Helper Methods
 
 // Check all properties in an ProjectConfig object

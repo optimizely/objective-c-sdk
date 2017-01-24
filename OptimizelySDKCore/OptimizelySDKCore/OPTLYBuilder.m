@@ -51,6 +51,7 @@
     _config = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = self.logger;
+        builder.userProfile = self.userProfile;
         builder.errorHandler = self.errorHandler;
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;

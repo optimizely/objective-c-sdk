@@ -24,19 +24,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var optimizelyClient : OPTLYClient?
     
-    // Optimizely SDK test parameters
-    let userId = "1234"
-    let revenue = NSNumber(value: 88)
+    // generate random user ID on each app load
+    let userId = String(Int(arc4random_uniform(300000)))
+    
+    // customizable settings
+    let datafileName = "iOSDemoTestData" // default parameter for initializing Optimizely from saved datafile
+    var projectId = "8182362857" // project name: X Mobile - Sample App
+    var experimentKey = "background_experiment"
+    var eventKey = "sample_conversion"
+    let attributes = ["sample_attribute_key":"sample_attribute_value"]
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
     
-    // default parameters for initializing Optimizely from saved datafile
-    let datafileName = "iOSDemoTestData"
-    var projectId = "8038273325"
-    var attributes = ["buyerType" : "frequent"]
-    var eventKey = "event1"
-    var experimentKey = "checkoutButtonTextExp"
-    var downloadDatafile = true
+    func setRootViewController(optimizelyClient: OPTLYClient!, bucketedVariation:OPTLYVariation?) {
+        DispatchQueue.main.async {
+        
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var rootViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYFailureViewController")
+            
+            if (bucketedVariation != nil) {
+                // load variation page
+                if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
+                {
+                    variationViewController.eventKey = self.eventKey
+                    variationViewController.optimizelyClient = optimizelyClient
+                    variationViewController.userId = self.userId
+                    variationViewController.variationKey = (bucketedVariation!.variationKey)!
+                    rootViewController = variationViewController
+                }
+            }
+            
+            if let window = self.window {
+                window.rootViewController = rootViewController
+            }
+        }
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -52,46 +74,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder!.projectId = self.projectId
         }
         
+        // create the manager
         let optimizelyManager = OPTLYManager.init {(builder) in
             builder!.projectId = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         }
         
-        // use different parameters if initializing Optimizely from downloaded datafile
-        if self.downloadDatafile == true {
-            
-            // initialize Optimizely Client from a datafile download
-            optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
-                self?.optimizelyClient = optimizelyClient;
-                let variation = self?.optimizelyClient?.activate(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
-                if (variation != nil) {
-                    print("bucketed variation:", variation!.variationKey)
-                }
-                self?.optimizelyClient?.track(self!.eventKey, userId: self!.userId, attributes: self!.attributes, eventValue: self!.revenue)
-                })
-        } else {
-            
-            // get the datafile
-            let bundle = Bundle.init(for: self.classForCoder)
-            let filePath = bundle.path(forResource: datafileName, ofType: "json")
-            var jsonDatafile: Data? = nil
-            do {
-                let fileContents = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
-                jsonDatafile = fileContents.data(using: String.Encoding.utf8)!
-            }
-            catch {
-                print("invalid JSON Data")
-            }
-            
-            // initialize Optimizely Client from a saved datafile
-            let optimizelyClient = optimizelyManager?.initialize(withDatafile:jsonDatafile!)
-            let variation = optimizelyClient?.activate(experimentKey, userId: userId, attributes: attributes)
-            if (variation != nil) {
-                print("bucketed variation:", variation!.variationKey)
-            }
-            optimizelyClient?.track(eventKey, userId: userId, attributes: attributes, eventValue:  revenue)
-        }
+        // ---- Asynchronous Initialization ----
+        // initialize Optimizely Client from a datafile download
+        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
+            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        })
+        
+        // ---- Synchronous Initialization with Datafile ----
+        // load the datafile from bundle
+//        let bundle = Bundle.init(for: self.classForCoder)
+//        let filePath = bundle.path(forResource: datafileName, ofType: "json")
+//        var jsonDatafile: Data? = nil
+//        do {
+//            let fileContents = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+//            jsonDatafile = fileContents.data(using: String.Encoding.utf8)!
+//        }
+//        catch {
+//            print("invalid JSON Data")
+//        }
+//        
+//        let optimizelyClient = optimizelyManager?.initialize(withDatafile:jsonDatafile!)
+//        let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+//        self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+    
+        // ---- Synchronous Initialization with Saved Datafile ----
+//        let optimizelyClient = optimizelyManager?.initialize()
+//        let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+//        self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         
         
         return true;

@@ -89,7 +89,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     }
     else {
         // log message if the user is mutually excluded
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesUserMutuallyExcluded, userId];
+        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesUserMutuallyExcluded, userId, experiment.experimentKey, groupId];
         [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return nil;
     }
