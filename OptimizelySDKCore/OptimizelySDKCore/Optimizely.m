@@ -602,4 +602,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     [self.errorHandler handleError:error];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
 }
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfile];
+}
 @end

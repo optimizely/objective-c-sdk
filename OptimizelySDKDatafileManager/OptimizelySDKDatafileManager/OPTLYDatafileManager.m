@@ -124,6 +124,9 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                        error:&error];
     if (error != nil) {
         [self.errorHandler handleError:error];
+    } else {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileSaved, self.projectId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }
 }
 

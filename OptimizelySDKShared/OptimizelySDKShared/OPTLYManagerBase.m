@@ -29,30 +29,20 @@
 
 @implementation OPTLYManagerBase
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
-}
-
 #pragma mark - Client Getters
 
 - (OPTLYClient *)initialize {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
+    // the datafile could have been set in the builder (this should take precedence over the saved datafile)
+    if (!self.datafile) {
+        self.datafile = [self.datafileManager getSavedDatafile];
     }
-    return client;
+    self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
+    return self.optimizelyClient;
 }
 
 - (OPTLYClient *)initializeWithDatafile:(NSData *)datafile {
-    OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:datafile];
-    if (client.optimizely != nil) {
-        self.optimizelyClient = client;
-        return client;
-    }
-    else {
-        return [self initialize];
-    }
+    self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:datafile];
+    return self.optimizelyClient;
 }
 
 - (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
@@ -60,14 +50,7 @@
         if ([(NSHTTPURLResponse *)response statusCode] == 304) {
             data = [self.datafileManager getSavedDatafile];
         }
-        if (!error) {
-            OPTLYClient *client = [self initializeClientWithManagerSettingsAndDatafile:data];
-            if (client.optimizely) {
-                self.optimizelyClient = client;
-            }
-        } else {
-            // TODO - log error
-        }
+        self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:data];
         
         if (callback) {
             callback(error, self.optimizelyClient);
@@ -92,4 +75,7 @@
     return client;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
+}
 @end

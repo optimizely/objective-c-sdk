@@ -25,8 +25,10 @@
     
     // runtime check
     BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
+    BOOL implementsSaveDatafileMethod = [instanceClass instancesRespondToSelector:@selector(saveDatafile:)];
+    BOOL implementsGetDatafileMethod = [instanceClass instancesRespondToSelector:@selector(getSavedDatafile)];
     
-    return validProtocolDeclaration && implementsDownloadDatafileMethod;
+    return validProtocolDeclaration && implementsDownloadDatafileMethod && implementsSaveDatafileMethod && implementsGetDatafileMethod;
 }
 
 + (NSURL *)projectConfigURLPath:(NSString *)projectId {
@@ -43,10 +45,6 @@
 
 @implementation OPTLYDatafileManagerBasic
 
-- (NSData *)getSavedDatafile {
-    return self.savedDatafile;
-}
-
 - (void)downloadDatafile:(nonnull NSString *)projectId
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     OPTLYNetworkService *networkService = [OPTLYNetworkService new];
@@ -60,19 +58,32 @@
                             }
                         }];
 }
+
+- (NSData *)getSavedDatafile {
+    return self.savedDatafile;
+}
+
+- (void)saveDatafile:(NSData *)datafile {
+    self.savedDatafile = datafile;
+}
+
 @end
 
 @implementation OPTLYDatafileManagerNoOp
-
-- (NSData *)getSavedDatafile {
-    return nil;
-}
 
 - (void)downloadDatafile:(nonnull NSString *)projectId
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     if (completion) {
         completion(nil, nil, nil);
     }
+}
+
+- (NSData *)getSavedDatafile {
+    return nil;
+}
+
+- (void)saveDatafile:(NSData *)datafile {
+    return;
 }
 
 @end
