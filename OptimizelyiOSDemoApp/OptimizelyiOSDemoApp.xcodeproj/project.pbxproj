@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E305DEFEFA9484F27547823 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C22D87F5663694420B45391 /* Pods_OptimizelyTVOSDemoApp.framework */; };
 		5E2A8C711E256FA600DE8276 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */; };
 		5E2A8C771E25745E00DE8276 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */; };
 		5E4151E61E316D140094A952 /* OPTLYFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */; };
 		5E4151E91E3176200094A952 /* OPTLYSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */; };
 		5E875F171E270E78005C1B1E /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */; };
 		EA2C23C11DE3F6300063ADA0 /* iOSDemoTestData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */; };
-		EA4F2B4F1E36946A00C09876 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
-		EA4F2B501E36946A00C09876 /* OptimizelySDKiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA4F2B4F1E36946A00C09876 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
+		EA4F2B501E36946A00C09876 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C01DC7186800AF6685 /* AppDelegate.swift */; };
 		EA5246C61DC7186800AF6685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C41DC7186800AF6685 /* Main.storyboard */; };
 		EA5246C81DC7186800AF6685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C71DC7186800AF6685 /* Assets.xcassets */; };
@@ -23,6 +24,10 @@
 		EA5246E11DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246E01DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.swift */; };
 		EA70FF181E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58865369376C64F803BBD27 /* Pods_OptimizelyiOSDemoApp.framework */; };
 		EA70FF191E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E58865369376C64F803BBD27 /* Pods_OptimizelyiOSDemoApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA70FF7E1E54DBAB00590BEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C01DC7186800AF6685 /* AppDelegate.swift */; };
+		EA70FF7F1E54DBAB00590BEF /* OPTLYFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */; };
+		EA70FF801E54DBAB00590BEF /* OPTLYSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */; };
+		EA70FF811E54DBAB00590BEF /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +82,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EA4F2B501E36946A00C09876 /* OptimizelySDKiOS.framework in Embed Frameworks */,
+				EA4F2B501E36946A00C09876 /* ReferenceProxy in Embed Frameworks */,
 				EA70FF191E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -93,6 +98,8 @@
 		5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYFailureViewController.swift; sourceTree = "<group>"; };
 		5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYSplashScreenViewController.swift; sourceTree = "<group>"; };
 		5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYVariationViewController.swift; sourceTree = "<group>"; };
+		7C22D87F5663694420B45391 /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyTVOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 		E58865369376C64F803BBD27 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = iOSDemoTestData.json; path = "Test Data/iOSDemoTestData.json"; sourceTree = "<group>"; };
 		EA4F2B691E36C6D800C09876 /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKCore.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-eqfvykifydpmoiabgpaxjcqqcmob/Build/Products/Debug-iphonesimulator/OptimizelySDKCore.framework"; sourceTree = "<group>"; };
@@ -113,6 +120,16 @@
 		EA5246E01DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelyiOSDemoAppUITests.swift; sourceTree = "<group>"; };
 		EA5246E21DC7186800AF6685 /* OptimizelyiOSDemoAppUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelyiOSDemoAppUITests-Info.plist"; sourceTree = "<group>"; };
 		EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKiOS.xcodeproj; path = ../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj; sourceTree = "<group>"; };
+		EA70FF691E54DB9400590BEF /* OptimizelyTVOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyTVOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA70FF6C1E54DB9400590BEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA70FF6E1E54DB9400590BEF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EA70FF6F1E54DB9400590BEF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EA70FF711E54DB9400590BEF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EA70FF721E54DB9400590BEF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EA70FF751E54DB9400590BEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA70FF771E54DB9400590BEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA70FF791E54DB9400590BEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB253CD2AFE817883A1832B5 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4F2B4F1E36946A00C09876 /* OptimizelySDKiOS.framework in Frameworks */,
+				EA4F2B4F1E36946A00C09876 /* ReferenceProxy in Frameworks */,
 				EA70FF181E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +156,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA70FF661E54DB9400590BEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E305DEFEFA9484F27547823 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -147,6 +172,8 @@
 			children = (
 				3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */,
 				0AD2B4CCAE039F03823867E5 /* Pods-OptimizelyiOSDemoApp.release.xcconfig */,
+				FB253CD2AFE817883A1832B5 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */,
+				920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -176,6 +203,7 @@
 				EA4F2B651E3695FD00C09876 /* Resources */,
 				EA5246D41DC7186800AF6685 /* OptimizelyiOSDemoAppTests */,
 				EA5246DF1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests */,
+				EA70FF6A1E54DB9400590BEF /* OptimizelyTVOSDemoApp */,
 				EA5246BE1DC7186800AF6685 /* Products */,
 				EA5248C31DC72E8300AF6685 /* Frameworks */,
 				5D9DAC78D3124F03BF2A7CC8 /* Pods */,
@@ -188,6 +216,7 @@
 				EA5246BD1DC7186800AF6685 /* OptimizelyiOSDemoApp.app */,
 				EA5246D11DC7186800AF6685 /* OptimizelyiOSDemoAppTests.xctest */,
 				EA5246DC1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.xctest */,
+				EA70FF691E54DB9400590BEF /* OptimizelyTVOSDemoApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +264,7 @@
 				EA4F2B6B1E36C6D800C09876 /* OptimizelySDKEventDispatcher.framework */,
 				EA4F2B6C1E36C6D800C09876 /* OptimizelySDKUserProfile.framework */,
 				E58865369376C64F803BBD27 /* Pods_OptimizelyiOSDemoApp.framework */,
+				7C22D87F5663694420B45391 /* Pods_OptimizelyTVOSDemoApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,6 +276,29 @@
 				EA5249331DC72F3500AF6685 /* OptimizelySDKiOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EA70FF6A1E54DB9400590BEF /* OptimizelyTVOSDemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				EA70FF6E1E54DB9400590BEF /* AppDelegate.h */,
+				EA70FF6F1E54DB9400590BEF /* AppDelegate.m */,
+				EA70FF711E54DB9400590BEF /* ViewController.h */,
+				EA70FF721E54DB9400590BEF /* ViewController.m */,
+				EA70FF741E54DB9400590BEF /* Main.storyboard */,
+				EA70FF771E54DB9400590BEF /* Assets.xcassets */,
+				EA70FF791E54DB9400590BEF /* Info.plist */,
+				EA70FF6B1E54DB9400590BEF /* Supporting Files */,
+			);
+			path = OptimizelyTVOSDemoApp;
+			sourceTree = "<group>";
+		};
+		EA70FF6B1E54DB9400590BEF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA70FF6C1E54DB9400590BEF /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +363,26 @@
 			productReference = EA5246DC1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		EA70FF681E54DB9400590BEF /* OptimizelyTVOSDemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA70FF7D1E54DB9400590BEF /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoApp" */;
+			buildPhases = (
+				C9A46C91BB494B59C9908AF0 /* [CP] Check Pods Manifest.lock */,
+				EA70FF651E54DB9400590BEF /* Sources */,
+				EA70FF661E54DB9400590BEF /* Frameworks */,
+				EA70FF671E54DB9400590BEF /* Resources */,
+				FFB429D3BC9EA4B6D758DB63 /* [CP] Embed Pods Frameworks */,
+				ABD43AE7914D686AE69D7889 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OptimizelyTVOSDemoApp;
+			productName = OptimizelyTVOSDemoApp;
+			productReference = EA70FF691E54DB9400590BEF /* OptimizelyTVOSDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -335,6 +408,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = EA5246BC1DC7186800AF6685;
 					};
+					EA70FF681E54DB9400590BEF = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = EA5246B81DC7186800AF6685 /* Build configuration list for PBXProject "OptimizelyiOSDemoApp" */;
@@ -359,6 +436,7 @@
 				EA5246BC1DC7186800AF6685 /* OptimizelyiOSDemoApp */,
 				EA5246D01DC7186800AF6685 /* OptimizelyiOSDemoAppTests */,
 				EA5246DB1DC7186800AF6685 /* OptimizelyiOSDemoAppUITests */,
+				EA70FF681E54DB9400590BEF /* OptimizelyTVOSDemoApp */,
 			);
 		};
 /* End PBXProject section */
@@ -408,6 +486,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA70FF671E54DB9400590BEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -441,6 +526,21 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ABD43AE7914D686AE69D7889 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AEC4B732B79D14257B02BEF8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,6 +554,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9A46C91BB494B59C9908AF0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FFB429D3BC9EA4B6D758DB63 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -483,6 +613,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5246E11DC7186800AF6685 /* OptimizelyiOSDemoAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA70FF651E54DB9400590BEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA70FF7E1E54DBAB00590BEF /* AppDelegate.swift in Sources */,
+				EA70FF7F1E54DBAB00590BEF /* OPTLYFailureViewController.swift in Sources */,
+				EA70FF801E54DBAB00590BEF /* OPTLYSplashScreenViewController.swift in Sources */,
+				EA70FF811E54DBAB00590BEF /* OPTLYVariationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +667,14 @@
 				EA5246CA1DC7186800AF6685 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EA70FF741E54DB9400590BEF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA70FF751E54DB9400590BEF /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -717,6 +866,44 @@
 			};
 			name = Release;
 		};
+		EA70FF7A1E54DB9400590BEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB253CD2AFE817883A1832B5 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OptimizelyTVOSDemoApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		EA70FF7B1E54DB9400590BEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = OptimizelyTVOSDemoApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyTVOSDemoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -755,6 +942,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EA70FF7D1E54DB9400590BEF /* Build configuration list for PBXNativeTarget "OptimizelyTVOSDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA70FF7A1E54DB9400590BEF /* Debug */,
+				EA70FF7B1E54DB9400590BEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
