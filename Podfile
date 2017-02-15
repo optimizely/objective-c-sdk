@@ -180,7 +180,7 @@ end
 
 # OptimizelyTVOSDemoApp targets
 target 'OptimizelyTVOSDemoApp' do
-  project 'OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp.xcodeproj/'
+  project 'OptimizelyiOSDemoApp/OptimizelyiOSDemoApp.xcodeproj/'
   platform :tvos, '9.0'
   common_tvos_pods
 end
