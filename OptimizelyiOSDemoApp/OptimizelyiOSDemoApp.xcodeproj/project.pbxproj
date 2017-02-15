@@ -14,8 +14,8 @@
 		5E4151E91E3176200094A952 /* OPTLYSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */; };
 		5E875F171E270E78005C1B1E /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */; };
 		EA2C23C11DE3F6300063ADA0 /* iOSDemoTestData.json in Resources */ = {isa = PBXBuildFile; fileRef = EA2C23C01DE3F6300063ADA0 /* iOSDemoTestData.json */; };
-		EA4F2B4F1E36946A00C09876 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
-		EA4F2B501E36946A00C09876 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA4F2B4F1E36946A00C09876 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
+		EA4F2B501E36946A00C09876 /* OptimizelySDKiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA5246C11DC7186800AF6685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5246C01DC7186800AF6685 /* AppDelegate.swift */; };
 		EA5246C61DC7186800AF6685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C41DC7186800AF6685 /* Main.storyboard */; };
 		EA5246C81DC7186800AF6685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C71DC7186800AF6685 /* Assets.xcassets */; };
@@ -28,6 +28,12 @@
 		EA70FF7F1E54DBAB00590BEF /* OPTLYFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E51E316D140094A952 /* OPTLYFailureViewController.swift */; };
 		EA70FF801E54DBAB00590BEF /* OPTLYSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4151E81E3176200094A952 /* OPTLYSplashScreenViewController.swift */; };
 		EA70FF811E54DBAB00590BEF /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E875F161E270E78005C1B1E /* OPTLYVariationViewController.swift */; };
+		EA70FF8D1E54E98C00590BEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C71DC7186800AF6685 /* Assets.xcassets */; };
+		EA70FF8E1E54E98C00590BEF /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C761E25745E00DE8276 /* ProximaNova-Regular.otf */; };
+		EA70FF8F1E54E98C00590BEF /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A8C6F1E256FA600DE8276 /* Roboto-Medium.ttf */; };
+		EA70FF911E54E99300590BEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C41DC7186800AF6685 /* Main.storyboard */; };
+		EA70FF931E54E9A300590BEF /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FF921E54E9A300590BEF /* OptimizelySDKTVOS.framework */; };
+		EA70FF941E54E9B200590BEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA5246C91DC7186800AF6685 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +88,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EA4F2B501E36946A00C09876 /* ReferenceProxy in Embed Frameworks */,
+				EA4F2B501E36946A00C09876 /* OptimizelySDKiOS.framework in Embed Frameworks */,
 				EA70FF191E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -129,6 +135,7 @@
 		EA70FF751E54DB9400590BEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA70FF771E54DB9400590BEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA70FF791E54DB9400590BEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA70FF921E54E9A300590BEF /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKTVOS.framework; path = "../OptimizelySDKTVOS/build/Debug-appletvos/OptimizelySDKTVOS.framework"; sourceTree = "<group>"; };
 		FB253CD2AFE817883A1832B5 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4F2B4F1E36946A00C09876 /* ReferenceProxy in Frameworks */,
+				EA4F2B4F1E36946A00C09876 /* OptimizelySDKiOS.framework in Frameworks */,
 				EA70FF181E53D21A00590BEF /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA70FF931E54E9A300590BEF /* OptimizelySDKTVOS.framework in Frameworks */,
 				1E305DEFEFA9484F27547823 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +265,7 @@
 		EA5248C31DC72E8300AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA70FF921E54E9A300590BEF /* OptimizelySDKTVOS.framework */,
 				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
 				EA4F2B751E36C6F800C09876 /* Pods_OptimizelyiOSDemoApp.framework */,
 				EA4F2B691E36C6D800C09876 /* OptimizelySDKCore.framework */,
@@ -490,6 +499,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA70FF941E54E9B200590BEF /* LaunchScreen.storyboard in Resources */,
+				EA70FF911E54E99300590BEF /* Main.storyboard in Resources */,
+				EA70FF8D1E54E98C00590BEF /* Assets.xcassets in Resources */,
+				EA70FF8E1E54E98C00590BEF /* ProximaNova-Regular.otf in Resources */,
+				EA70FF8F1E54E98C00590BEF /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +964,7 @@
 				EA70FF7B1E54DB9400590BEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

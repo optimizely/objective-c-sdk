@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 import UIKit
-import OptimizelySDKiOS
+#if os(tvOS)
+    import OptimizelySDKTVOS
+#elseif os(iOS)
+    import OptimizelySDKiOS
+#endif
 
 class OPTLYVariationViewController: UIViewController {
     

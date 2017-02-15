@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 import UIKit
+#if os(tvOS)
+import OptimizelySDKTVOS
+#elseif os(iOS)
 import OptimizelySDKiOS
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
