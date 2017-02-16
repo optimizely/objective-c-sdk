@@ -15,10 +15,10 @@
  ***************************************************************************/
 
 import UIKit
-#if os(tvOS)
-import OptimizelySDKTVOS
-#elseif os(iOS)
-import OptimizelySDKiOS
+#if os(iOS)
+    import OptimizelySDKiOS
+#elseif os(tvOS)
+    import OptimizelySDKTVOS
 #endif
 
 @UIApplicationMain
@@ -43,7 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setRootViewController(optimizelyClient: OPTLYClient!, bucketedVariation:OPTLYVariation?) {
         DispatchQueue.main.async {
         
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var storyboard : UIStoryboard 
+            
+            #if os(tvOS)
+                storyboard = UIStoryboard(name: "tvOSMain", bundle: nil)
+            #elseif os(iOS)
+                storyboard = UIStoryboard(name: "iOSMain", bundle: nil)
+            #endif
+            
             var rootViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYFailureViewController")
             
             if (bucketedVariation != nil) {

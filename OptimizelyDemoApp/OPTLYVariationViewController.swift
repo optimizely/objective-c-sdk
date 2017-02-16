@@ -15,10 +15,10 @@
  ***************************************************************************/
 
 import UIKit
-#if os(tvOS)
-    import OptimizelySDKTVOS
-#elseif os(iOS)
+#if os(iOS)
     import OptimizelySDKiOS
+#elseif os(tvOS)
+    import OptimizelySDKTVOS
 #endif
 
 class OPTLYVariationViewController: UIViewController {
@@ -60,7 +60,6 @@ class OPTLYVariationViewController: UIViewController {
     @IBAction func unwindToVariationAction(unwindSegue: UIStoryboardSegue) {
         
     }
-    
     
     @IBAction func attemptTrackAndShowSuccessOrFailure(_ sender: Any) {
         self.optimizelyClient?.track(self.eventKey, userId: userId)
