@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // **** Synchronous Initialization with Datafile ****
         // **************************************************
         
-        // load the datafile from app bundle
+        // load the datafile from the app bundle
 //        let bundle = Bundle.init(for: self.classForCoder)
 //        let filePath = bundle.path(forResource: datafileName, ofType: "json")
 //        var jsonDatafile: Data? = nil

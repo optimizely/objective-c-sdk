@@ -71,29 +71,13 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="58"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB7-O5-Zqk">
-                                <rect key="frame" x="760" y="729" width="400" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.12941176469999999" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="Xaz-w5-QrQ"/>
-                                    <constraint firstAttribute="height" constant="50" id="Y6O-cj-3zP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="BACK"/>
-                                <connections>
-                                    <segue destination="UvH-YM-JGs" kind="unwind" unwindAction="unwindToSplashScreenSegueWithUnwindSegue:" id="toP-UU-vbg"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QKm-lz-bUE" firstAttribute="centerY" secondItem="iKU-z4-P8h" secondAttribute="centerY" id="3yL-zk-rie"/>
-                            <constraint firstItem="iKU-z4-P8h" firstAttribute="centerX" secondItem="KB7-O5-Zqk" secondAttribute="centerX" id="5xd-0y-gXJ"/>
                             <constraint firstItem="QKm-lz-bUE" firstAttribute="centerX" secondItem="iKU-z4-P8h" secondAttribute="centerX" id="6E0-WS-QAB"/>
                             <constraint firstItem="QKm-lz-bUE" firstAttribute="bottom" secondItem="41k-LG-Ek5" secondAttribute="top" id="6Js-fh-bXY"/>
                             <constraint firstAttribute="trailing" secondItem="QKm-lz-bUE" secondAttribute="trailing" id="VrG-ay-BI5"/>
-                            <constraint firstItem="41k-LG-Ek5" firstAttribute="top" secondItem="KB7-O5-Zqk" secondAttribute="bottom" constant="301" id="X5f-TA-RbI"/>
                             <constraint firstItem="iKU-z4-P8h" firstAttribute="top" secondItem="AdG-n6-YDN" secondAttribute="bottom" constant="489" id="d32-ke-krr"/>
                             <constraint firstItem="QKm-lz-bUE" firstAttribute="leading" secondItem="Iok-Jh-ZED" secondAttribute="leading" id="nfJ-mj-HjR"/>
                             <constraint firstItem="QKm-lz-bUE" firstAttribute="top" secondItem="AdG-n6-YDN" secondAttribute="bottom" id="uXm-gD-ipq"/>
@@ -101,7 +85,6 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D28-hE-PB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="UvH-YM-JGs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1461" y="1409"/>
         </scene>

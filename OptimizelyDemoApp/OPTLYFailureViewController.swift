@@ -17,7 +17,7 @@
 import UIKit
 
 class OPTLYFailureViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
