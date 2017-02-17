@@ -35,14 +35,18 @@
     self = [super init];
     if (self)
     {
-        _databaseDirectory = [baseDir stringByAppendingPathComponent:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
-        _database = [[OPTLYDatabase alloc] initWithBaseDir:_databaseDirectory];
-        
-        // create the events table
-        NSError *error = nil;
-        [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression] error:&error];
-        [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeConversion] error:&error];
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _databaseDirectory = [baseDir stringByAppendingPathComponent:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeDatabase]];
+            _database = [[OPTLYDatabase alloc] initWithBaseDir:_databaseDirectory];
+            
+            // create the events table
+            NSError *error = nil;
+            [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression] error:&error];
+            [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeConversion] error:&error];
+        });
     }
+    
     return self;
 }
 

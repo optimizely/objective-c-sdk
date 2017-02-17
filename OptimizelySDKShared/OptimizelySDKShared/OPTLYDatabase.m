@@ -63,8 +63,6 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         
         // set the database queue
         _databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
-        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
-        
     }
     return self;
 }
@@ -74,6 +72,15 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     NSAssert(true, @"Use initWithBaseDir.");
     self = [super init];
     return self;
+}
+
+- (FMDatabaseQueue *)fmDatabaseQueue {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _fmDatabaseQueue =  [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
+    });
+    return _fmDatabaseQueue;
 }
 
 - (void)createTable:(NSString *)tableName
