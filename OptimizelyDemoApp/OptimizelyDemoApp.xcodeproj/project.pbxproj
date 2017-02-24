@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AAAE45EFBB4C7742E4D93B7 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */; };
+		EA28AB311E5FBA900060BF44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */; };
 		EA299EDC1E55311700931399 /* tvOSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA299EDA1E55311700931399 /* tvOSMain.storyboard */; };
 		EA299EDF1E55312200931399 /* iOSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA299EDD1E55312200931399 /* iOSMain.storyboard */; };
 		EA299EE61E55313B00931399 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA299EE21E55313B00931399 /* AppDelegate.swift */; };
@@ -129,6 +131,9 @@
 		0AD2B4CCAE039F03823867E5 /* Pods-OptimizelyiOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 		3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
+		B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1E4AA51E5FD1C100BDDABD /* OptimizelyDemoApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OptimizelyDemoApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA299ED81E5530B800931399 /* OptimizelyTVOSDemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OptimizelyTVOSDemoApp-Info.plist"; path = "OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		EA299EDB1E55311700931399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OptimizelyTVOSDemoApp/Base.lproj/tvOSMain.storyboard; sourceTree = "<group>"; };
 		EA299EDE1E55312200931399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iOSMain.storyboard; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 			files = (
 				EA299EFF1E55330F00931399 /* OptimizelySDKiOS.framework in Frameworks */,
 				EA299F081E55335300931399 /* Pods_OptimizelySDKiOS.framework in Frameworks */,
+				7AAAE45EFBB4C7742E4D93B7 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +216,7 @@
 		EA5246B41DC7186800AF6685 = {
 			isa = PBXGroup;
 			children = (
+				EA1E4AA51E5FD1C100BDDABD /* OptimizelyDemoApp-Bridging-Header.h */,
 				EA299EE21E55313B00931399 /* AppDelegate.swift */,
 				EA299EE31E55313B00931399 /* OPTLYFailureViewController.swift */,
 				EA299EE41E55313B00931399 /* OPTLYSplashScreenViewController.swift */,
@@ -235,6 +242,7 @@
 		EA5246BF1DC7186800AF6685 /* OptimizelyiOSDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
 				EA299EDD1E55312200931399 /* iOSMain.storyboard */,
 			);
@@ -248,6 +256,7 @@
 				EA299F0E1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework */,
 				EA70FFB71E550EAC00590BEF /* OptimizelySDKTVOS.xcodeproj */,
 				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
+				B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -417,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA70FFF01E552E9E00590BEF /* ProximaNova-Regular.otf in Resources */,
+				EA28AB311E5FBA900060BF44 /* GoogleService-Info.plist in Resources */,
 				EA70FFF11E552E9E00590BEF /* Roboto-Medium.ttf in Resources */,
 				EA299EDF1E55312200931399 /* iOSMain.storyboard in Resources */,
 				EA4A62BB1E566F3500F1C3CE /* demoTestDatafile.json in Resources */,
@@ -742,14 +752,27 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Amplitude-iOS\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FMDB\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSONModel-iOS\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/Google/Frameworks\"",
+					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.2.0\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/OptimizelyiOSDemoApp/OptimizelyiOSDemoApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyiOSDemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelyDemoApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -764,8 +787,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyiOSDemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelyDemoApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
