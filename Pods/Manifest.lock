@@ -21,6 +21,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - JSONModel (1.3.0)
   - Localytics (4.2.0)
+  - Mixpanel-swift (2.1.3)
   - OCMock (3.3.1)
   - OHHTTPStubs (5.2.2):
     - OHHTTPStubs/Default (= 5.2.2)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Google/Analytics
   - JSONModel (= 1.3.0)
   - Localytics
+  - Mixpanel-swift
   - OCMock (= 3.3.1)
   - OHHTTPStubs (= 5.2.2)
 
@@ -56,9 +58,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   JSONModel: 81c06ecf99190a25fa6aafceea5faffa7880868a
   Localytics: 59cf99592a35c18e62d5994f2365ad3ccecc4982
+  Mixpanel-swift: a50fe20def8fc2ea0f2c912772ad835bd8524dae
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
   OHHTTPStubs: 34d9d0994e64fcf8552dbfade5ce82ada913ee31
 
-PODFILE CHECKSUM: 9b357761bc3f5bcbb7680f21249f028a31dffe1f
+PODFILE CHECKSUM: 84aa4e1c619b96263050bc22752bfa2307c4d83e
 
 COCOAPODS: 1.2.0

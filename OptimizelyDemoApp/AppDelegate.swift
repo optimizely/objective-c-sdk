@@ -19,6 +19,7 @@ import UIKit
     import OptimizelySDKiOS
     import Amplitude_iOS
     import Localytics
+    import Mixpanel
 #elseif os(tvOS)
     import OptimizelySDKTVOS
 #endif
@@ -66,8 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 identify.set(propertyKey, value:variation.variationKey as NSObject!)
                 
                 // Track impression event (optional)
-                let amplitudeEventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " " + variation.variationKey
-                Amplitude.instance().logEvent(amplitudeEventIdentifier)
+                let eventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " " + variation.variationKey
+                Amplitude.instance().logEvent(eventIdentifier)
                 
                 // ---- Google Analytics ----
                 let tracker : GAITracker? = GAI.sharedInstance().defaultTracker
@@ -78,6 +79,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Build and send a non-interaction Event
                 let builder = GAIDictionaryBuilder.createEvent(withCategory:"Optimizely", action: action, label: label, value: nil).build()
                 tracker?.send(builder as [NSObject : AnyObject]!)
+                
+                // ---- Mixpanel ----
+                Mixpanel.initialize(token:"MIXPANEL_TOKEN")
+                let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
+                mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
+                mixpanel.people.set(property: propertyKey, to: variation.variationKey)
+                mixpanel.track(event:eventIdentifier)
             }
         }
     }

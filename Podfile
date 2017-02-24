@@ -22,6 +22,7 @@ def analytics_pods
     pod 'Amplitude-iOS'
     pod 'Google/Analytics'
     pod 'Localytics'
+    pod 'Mixpanel-swift'
 end
 
 use_frameworks!
