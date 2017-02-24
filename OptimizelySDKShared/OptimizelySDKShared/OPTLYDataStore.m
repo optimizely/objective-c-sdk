@@ -41,41 +41,50 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 @implementation OPTLYDataStore
 
-- (nullable instancetype)initWithLogger:(nullable id<OPTLYLogger>)logger
++ (instancetype)dataStore
 {
-    self = [self init];
-    if (self) {
-        if (logger) {
-            _logger = logger;
-        }
-    }
-    return self;
+    static OPTLYDataStore *dataStore;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dataStore = [[OPTLYDataStore alloc] init];
+    });
+    return dataStore;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
         NSString *filePath = @"";
-        NSError *initError = nil;
 #if TARGET_OS_IOS
         NSArray *libraryDirPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
         filePath = libraryDirPaths[0];
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
-        _eventDataStore = [[OPTLYEventDataStoreiOS alloc] initWithBaseDir:_baseDirectory error:&initError];
 #elif TARGET_OS_TV
         // tvOS only allows writing to a temporary file directory
         // a future enhancement would be save to iCloud
         filePath = NSTemporaryDirectory();
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
-        _eventDataStore = [[OPTLYEventDataStoreTVOS alloc] initWithBaseDir:_baseDirectory error:&initError];
 #endif
-        
-        if (initError) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError, initError];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        }
     }
     return self;
+}
+
+- (id<OPTLYEventDataStore>)eventDataStore {
+     NSError *initError = nil;
+    if (!_eventDataStore) {
+#if TARGET_OS_IOS
+        _eventDataStore = [[OPTLYEventDataStoreiOS alloc] initWithBaseDir:_baseDirectory error:&initError];
+#elif TARGET_OS_TV
+        _eventDataStore = [[OPTLYEventDataStoreTVOS alloc] initWithBaseDir:_baseDirectory error:&initError];
+#endif
+    }
+    
+    if (initError) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError, initError];
+        [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
+    
+    return _eventDataStore;
 }
 
 - (OPTLYFileManager *)fileManager {
@@ -404,4 +413,5 @@ dispatch_queue_t eventsStorageQueue()
     }
     return eventTypeString;
 }
+
 @end

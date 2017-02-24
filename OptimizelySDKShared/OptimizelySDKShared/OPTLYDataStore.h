@@ -55,10 +55,12 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 /// Optional logger for data store logging
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 
+
 /**
- * Initialize the data store with optional logger handler.
+ * Instantiates the data store
  */
-- (nullable instancetype)initWithLogger:(nullable id<OPTLYLogger>)logger;
++ (nullable instancetype)dataStore;
+
 /**
  * Wipes all Optimizely data
  *

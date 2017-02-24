@@ -36,7 +36,8 @@
     self = [super init];
     if (self != nil) {
         _logger = builder.logger;
-        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+        _dataStore = [OPTLYDataStore dataStore];
+        _dataStore.logger = builder.logger;
     }
     return self;
 }
