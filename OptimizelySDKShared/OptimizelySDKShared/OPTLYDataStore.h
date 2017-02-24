@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 
 
 /**
- * Instantiates the data store
+ * Instantiates the data store as a singleton object
  */
 + (nullable instancetype)dataStore;
 

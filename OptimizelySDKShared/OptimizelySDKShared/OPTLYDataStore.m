@@ -70,7 +70,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 - (id<OPTLYEventDataStore>)eventDataStore {
-     NSError *initError = nil;
+    NSError *initError = nil;
     if (!_eventDataStore) {
 #if TARGET_OS_IOS
         _eventDataStore = [[OPTLYEventDataStoreiOS alloc] initWithBaseDir:_baseDirectory error:&initError];
