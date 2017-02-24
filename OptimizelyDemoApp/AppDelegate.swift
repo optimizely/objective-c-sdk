@@ -61,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let variation = userInfo?["variation"] as! OPTLYVariation? {
                 
                 // ---- Amplitude ----
-                //Amplitude.initializeApiKey("12345")
                 let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
                 let identify : AMPIdentify = AMPIdentify()
                 identify.set(propertyKey, value:variation.variationKey as NSObject!)

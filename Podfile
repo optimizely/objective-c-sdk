@@ -183,9 +183,7 @@ target 'OptimizelyiOSDemoApp' do
   platform :ios, '8.0'
   use_frameworks!
   common_ios_pods
-  pod 'Amplitude-iOS'
-  pod 'Google/Analytics'
-  pod 'Localytics'
+  analytics_pods
 end
 
 # OptimizelyTVOSDemoApp targets
