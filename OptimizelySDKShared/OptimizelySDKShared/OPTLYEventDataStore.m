@@ -43,6 +43,7 @@
         [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression] error:&error];
         [self createTable:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeConversion] error:&error];
     }
+    
     return self;
 }
 

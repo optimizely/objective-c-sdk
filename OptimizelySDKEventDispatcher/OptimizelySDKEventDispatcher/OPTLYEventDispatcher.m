@@ -109,7 +109,8 @@ dispatch_queue_t dispatchEventQueue()
 
 - (OPTLYDataStore *)dataStore {
     if (!_dataStore) {
-        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+        _dataStore = [OPTLYDataStore dataStore];
+        _dataStore.logger = _logger;
         _dataStore.maxNumberOfEventsToSave = _maxNumberOfEventsToSave;
     }
     return _dataStore;
