@@ -1,5 +1,9 @@
 workspace 'OptimizelySDK.xcworkspace'
 
+def common_pods
+    pod 'JSONModel', '1.3.0'
+end
+
 def common_tvos_pods
    common_pods
 end
@@ -9,15 +13,18 @@ def common_ios_pods
     pod 'FMDB', '2.6.2'
 end
 
-def common_pods
-  pod 'JSONModel', '1.3.0'
-end
-
 def common_test_pods
   pod 'OHHTTPStubs', '5.2.2'
   pod 'OCMock', '3.3.1'
 end
- 
+
+def analytics_pods
+    pod 'Amplitude-iOS'
+    pod 'Google/Analytics'
+    pod 'Localytics'
+    pod 'Mixpanel-swift'
+end
+
 use_frameworks!
 
 # OptimizelySDKCore targets
@@ -175,12 +182,13 @@ end
 target 'OptimizelyiOSDemoApp' do
   project 'OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj/'
   platform :ios, '8.0'
+  use_frameworks!
   common_ios_pods
+  analytics_pods
 end
 
 # OptimizelyTVOSDemoApp targets
 target 'OptimizelyTVOSDemoApp' do
   project 'OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj/'
   platform :tvos, '9.0'
-  common_tvos_pods
 end

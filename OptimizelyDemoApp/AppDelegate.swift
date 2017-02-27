@@ -17,6 +17,9 @@
 import UIKit
 #if os(iOS)
     import OptimizelySDKiOS
+    import Amplitude_iOS
+    import Localytics
+    import Mixpanel
 #elseif os(tvOS)
     import OptimizelySDKTVOS
 #endif
@@ -43,6 +46,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // ********************************************************
+        // ***************** Integration Samples ******************
+        // ********************************************************
+        
+        // most of the third-party integrations only support iOS, so the sample code is only targeted for iOS builds
+#if os(iOS)
+    
+    // ---- Initialize integration SDKs ----
+    // ** Google Analytics is initialized via the GoogleService-info.plist file
+    Amplitude.instance().initializeApiKey("YOUR_API_KEY_HERE")
+    Mixpanel.initialize(token:"MIXPANEL_TOKEN")
+    Localytics.autoIntegrate("YOUR-LOCALYTICS-APP-KEY", launchOptions: launchOptions)
+    
+    let defaultNotificationCenter = NotificationCenter.default
+    defaultNotificationCenter.addObserver(forName: NSNotification.Name("OptimizelyExperimentActivated"), object: nil, queue: nil) { (note) in
+        
+        print("Received an activation notification: \n", note)
+        
+        let userInfo : Dictionary<String, AnyObject>? = note.userInfo as! Dictionary<String, AnyObject>?
+        if let experiment = userInfo?["experiment"] as! OPTLYExperiment? {
+            if let variation = userInfo?["variation"] as! OPTLYVariation? {
+                
+                // ---- Amplitude ----
+                let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
+                let identify : AMPIdentify = AMPIdentify()
+                identify.set(propertyKey, value:variation.variationKey as NSObject!)
+                
+                // Track impression event (optional)
+                let eventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " - " + variation.variationKey
+                Amplitude.instance().logEvent(eventIdentifier)
+                
+                // ---- Google Analytics ----
+                let tracker : GAITracker? = GAI.sharedInstance().defaultTracker
+                
+                let action : String = "Experiment - " + experiment.experimentKey
+                let label : String = "Variation - " + variation.variationKey
+                
+                // Build and send a non-interaction Event
+                let builder = GAIDictionaryBuilder.createEvent(withCategory: "Optimizely", action: action, label: label, value: nil).build()
+                tracker?.send(builder as [NSObject : AnyObject]!)
+                
+                // ---- Mixpanel ----
+                let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
+                mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
+                mixpanel.people.set(property: propertyKey, to: variation.variationKey)
+                mixpanel.track(event:eventIdentifier)
+            }
+        }
+    }
+    
+    defaultNotificationCenter.addObserver(forName: NSNotification.Name("OptimizelyEventTracked"), object: nil, queue: nil) { (note) in
+        
+        print("Received a tracking notification: \n", note)
+        
+        let userInfo : Dictionary<String, AnyObject>? = note.userInfo as! Dictionary<String, AnyObject>?
+        
+        // ---- Localytics ----
+        let attributes : NSMutableDictionary = [:]
+        
+        if let userAttributes = userInfo?["attributes"] as! Dictionary<String, AnyObject>? {
+            attributes.addEntries(from: userAttributes)
+        }
+        
+        if let userExperimentVariationMapping = userInfo?["ExperimentVariationMapping"] as! Dictionary<String, AnyObject>? {
+            for (key,value) in userExperimentVariationMapping {
+                let variation : OPTLYVariation = value as! OPTLYVariation
+                attributes.setValue(key, forKey:variation.variationKey)
+            }
+        }
+        
+        // Tag custom event with attributes
+        let event : String = userInfo!["eventKey"] as! String
+        let localyticsEventIdentifier : String = "[Optimizely] " + event
+        Localytics.tagEvent(localyticsEventIdentifier)
+    }
+#endif
+        // **************************************************
+        // *********** Optimizely Initialization ************
+        // **************************************************
+        
         // ---- Create the Event Dispatcher ----
         let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
@@ -62,21 +145,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder!.eventDispatcher = eventDispatcher
         }
         
-        // **************************************************
-        // ********** Asynchronous Initialization ***********
-        // **************************************************
+        // After creating the client, there are three different ways to intialize the manager:
         
+        // ---- 1. Asynchronous Initialization -----
         // initialize Optimizely Client from a datafile download
         optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
             let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         })
     
-        
-        // **************************************************
-        // **** Synchronous Initialization with Datafile ****
-        // **************************************************
-        
+        // ---- 2. Synchronous Initialization with Datafile ----
         // load the datafile from the app bundle
 //        let bundle = Bundle.init(for: self.classForCoder)
 //        let filePath = bundle.path(forResource: datafileName, ofType: "json")
@@ -93,11 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
 //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
     
-        
-        // ********************************************************
-        // **** Synchronous Initialization with Saved Datafile ****
-        // ********************************************************
-        
+        // --- 3. Synchronous Initialization with Saved Datafile ----
 //        let optimizelyClient = optimizelyManager?.initialize()
 //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
 //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
