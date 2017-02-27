@@ -194,13 +194,6 @@
             </objects>
             <point key="canvasLocation" x="1461.5999999999999" y="-562.66866566716647"/>
         </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="ml5-QP-yyw">
-            <objects>
-                <viewControllerPlaceholder id="kRt-bg-uW6" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="niV-OQ-qHY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="background_confirmation" width="375" height="667"/>
