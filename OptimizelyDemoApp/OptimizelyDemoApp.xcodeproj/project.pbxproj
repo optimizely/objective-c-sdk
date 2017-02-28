@@ -261,11 +261,6 @@
 		EA5246B41DC7186800AF6685 = {
 			isa = PBXGroup;
 			children = (
-				EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */,
-				EA1E4B511E65060300BDDABD /* OptimizelySDKUserProfile.framework */,
-				EA1E4B4E1E65060300BDDABD /* OptimizelySDKCore.framework */,
-				EA1E4B4B1E65060300BDDABD /* OptimizelySDKShared.framework */,
-				EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */,
 				EA1E4AA51E5FD1C100BDDABD /* OptimizelyDemoApp-Bridging-Header.h */,
 				EA299EE21E55313B00931399 /* AppDelegate.swift */,
 				EA299EE31E55313B00931399 /* OPTLYFailureViewController.swift */,
@@ -307,6 +302,11 @@
 				EA70FFB71E550EAC00590BEF /* OptimizelySDKTVOS.xcodeproj */,
 				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
 				B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */,
+				EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */,
+				EA1E4B511E65060300BDDABD /* OptimizelySDKUserProfile.framework */,
+				EA1E4B4E1E65060300BDDABD /* OptimizelySDKCore.framework */,
+				EA1E4B4B1E65060300BDDABD /* OptimizelySDKShared.framework */,
+				EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
