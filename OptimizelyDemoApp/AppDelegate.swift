@@ -109,8 +109,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     attributes.addEntries(from: userAttributes)
                 }
                 
-                if let userExperimentVariationMapping = userInfo?["ExperimentVariationMapping"] as! Dictionary<String, AnyObject>? {
-                    for (key,value) in userExperimentVariationMapping {
+                if let userExperimentVariationMapping = userInfo?["ExperimentVariationMapping"] as? Dictionary<String, AnyObject>? {
+                    for (key,value) in userExperimentVariationMapping! {
                         let variation : OPTLYVariation = value as! OPTLYVariation
                         attributes.setValue(key, forKey:variation.variationKey)
                     }
@@ -213,6 +213,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        let defaultNotificationCenter = NotificationCenter.default
+        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name("OptimizelyExperimentActivated"), object: nil)
+        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name("OptimizelyEventTracked"), object: nil)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
