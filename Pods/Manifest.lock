@@ -1,8 +1,27 @@
 PODS:
+  - Amplitude-iOS (3.14.0)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.5.1):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.9)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - Google/Analytics (3.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (3.0.3):
+    - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.17.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - JSONModel (1.3.0)
+  - Localytics (4.2.0)
+  - Mixpanel-swift (2.1.3)
   - OCMock (3.3.1)
   - OHHTTPStubs (5.2.2):
     - OHHTTPStubs/Default (= 5.2.2)
@@ -19,17 +38,30 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (5.2.2)
 
 DEPENDENCIES:
+  - Amplitude-iOS
   - FMDB (= 2.6.2)
+  - Google/Analytics
   - JSONModel (= 1.3.0)
+  - Localytics
+  - Mixpanel-swift
   - OCMock (= 3.3.1)
   - OHHTTPStubs (= 5.2.2)
 
 SPEC CHECKSUMS:
+  Amplitude-iOS: d50378ef97434cd910e6c9f21a45d0d8ee660c44
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   JSONModel: 81c06ecf99190a25fa6aafceea5faffa7880868a
+  Localytics: 59cf99592a35c18e62d5994f2365ad3ccecc4982
+  Mixpanel-swift: a50fe20def8fc2ea0f2c912772ad835bd8524dae
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
   OHHTTPStubs: 34d9d0994e64fcf8552dbfade5ce82ada913ee31
 
-PODFILE CHECKSUM: c0e70e0dbbfae0f6ed597869fb4155ea338e3e44
+PODFILE CHECKSUM: 84aa4e1c619b96263050bc22752bfa2307c4d83e
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
