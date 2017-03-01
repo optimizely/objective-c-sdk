@@ -70,28 +70,26 @@ static NSString * const kAttributeValue = @"firefox";
 // experiment is running, user is in experiment
 - (void)testValidatePreconditions
 {
-    BOOL isValid = [OPTLYValidator validatePreconditions:self.config
+    BOOL isValid = [OPTLYValidator doesUserPassTargeting:self.config
                                            experimentKey:kExperimentWithAudienceKey
                                                   userId:kUserId
                                               attributes:self.attributes];
     NSAssert(isValid == true, @"Experiment running with user in experiment should pass validation.");
 }
 
-// experiment is not running, user is in experiment
+// experiment is not running, validator should return false
 - (void)testValidatePreconditionsExperimentNotRunning
 {
-    BOOL isValid = [OPTLYValidator validatePreconditions:self.config
-                                           experimentKey:kExperimentNotRunningKey
-                                                  userId:kUserId
-                                              attributes:self.attributes];
-    NSAssert(isValid == false, @"Experiment not running with user in experiment should fail validation.");
+    BOOL isActive = [OPTLYValidator isExperimentActive:self.config
+                                         experimentKey:kExperimentNotRunningKey];
+    NSAssert(isActive == false, @"Experiment not running with user in experiment should fail validation.");
 }
 
 // experiment is running, user is in experiment, bad attributes
 - (void)testValidatePreconditionsBadAttributes
 {
     NSDictionary *badAttributes = @{@"badAttributeKey":@"12345"};
-    BOOL isValid = [OPTLYValidator validatePreconditions:self.config
+    BOOL isValid = [OPTLYValidator doesUserPassTargeting:self.config
                                            experimentKey:kExperimentWithAudienceKey
                                                   userId:kUserId
                                               attributes:badAttributes];
