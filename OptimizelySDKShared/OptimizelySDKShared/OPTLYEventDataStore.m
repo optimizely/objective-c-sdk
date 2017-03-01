@@ -132,7 +132,7 @@
 #import <OptimizelySDKCore/OPTLYQueue.h>
 
 @interface OPTLYEventDataStoreTVOS()
-@property (nonatomic, strong) NSCache *eventsCache;
+@property (nonatomic, strong) NSMutableDictionary *eventsCache;
 @end
 
 @implementation OPTLYEventDataStoreTVOS
@@ -143,26 +143,45 @@
     self = [super init];
     if (self)
     {
-        _eventsCache = [NSCache new];
+        _eventsCache = [NSMutableDictionary new];
         [_eventsCache setObject:[OPTLYQueue new] forKey:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeImpression]];
         [_eventsCache setObject:[OPTLYQueue new] forKey:[OPTLYDataStore stringForDataEventEnum:OPTLYDataStoreEventTypeConversion]];
     }
     return self;
 }
 
+// queue to make eventsCache threadsafe
+dispatch_queue_t eventsStorageCacheQueue()
+{
+    static dispatch_queue_t _eventsStorageCacheQueue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _eventsStorageCacheQueue = dispatch_queue_create("com.Optimizely.eventsStorageCache", DISPATCH_QUEUE_SERIAL);
+    });
+    return _eventsStorageCacheQueue;
+}
+
 - (void)saveEvent:(nonnull NSDictionary *)data
         eventType:(nonnull NSString *)eventTypeName
             error:(NSError * _Nullable * _Nullable)error
 {
-    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-    [queue enqueue:data];
+    dispatch_async(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+        [queue enqueue:data];
+    });
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(nonnull NSString *)eventTypeName
                                 error:(NSError * _Nullable * _Nullable)error
 {
-    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
+    __block OPTLYQueue *queue = nil;
+    dispatch_sync(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+    });
+    
     NSArray *firstNEvents = [queue firstNItems:numberOfEvents];
     return firstNEvents;
 }
@@ -171,22 +190,33 @@
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable * _Nullable)error
 {
-    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-    [queue dequeueNItems:numberOfEvents];
+    dispatch_async(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+        [queue dequeueNItems:numberOfEvents];
+    });
 }
 
 - (void)removeEvent:(nonnull NSDictionary *)event
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
-    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
-    [queue removeItem:event];
+    dispatch_async(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+        [queue removeItem:event];
+    });
 }
 
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName
                       error:(NSError * _Nullable * _Nullable)error
 {
-    OPTLYQueue *queue = [self.eventsCache objectForKey:eventTypeName];
+    __block OPTLYQueue *queue = nil;
+    dispatch_sync(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+    });
+    
     return [queue size];
 }
 
