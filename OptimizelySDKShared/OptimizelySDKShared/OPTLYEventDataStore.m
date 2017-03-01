@@ -115,16 +115,6 @@
     return numberOfEvents;
 }
 
-- (void)removeDataStore:(NSError * _Nullable * _Nullable)error
-{
-    [self.database deleteDatabase:error];
-    self.database = nil;
-}
-
-- (void)dealloc
-{
-    [self removeDataStore:nil];
-}
 @end
 #endif
 
@@ -220,14 +210,5 @@ dispatch_queue_t eventsStorageCacheQueue()
     return [queue size];
 }
 
-- (void)removeDataStore:(NSError * _Nullable * _Nullable)error
-{
-    self.eventsCache = nil;
-}
-    
-- (void)dealloc
-{
-    [self removeDataStore:nil];
-}
 @end
 #endif
