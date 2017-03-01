@@ -410,6 +410,11 @@ NSString * const kExpectedDatafileVersion  = @"3";
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
                                      bucketer:(id<OPTLYBucketer>)bucketer
 {
+    if (![OPTLYValidator isExperimentActive:self
+                              experimentKey:experimentKey]) {
+        return false;
+    }
+    
     // check if experiment is whitelisted
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
     if ([self checkWhitelistingForUser:userId experiment:experiment]) {
@@ -437,10 +442,10 @@ NSString * const kExpectedDatafileVersion  = @"3";
     
     // validate preconditions
     OPTLYVariation *bucketedVariation = nil;
-    if ([OPTLYValidator validatePreconditions:self
-                                experimentKey:experiment.experimentKey
-                                       userId:userId
-                                   attributes:attributes]) {
+    if ([OPTLYValidator userPassesTargeting:self
+                              experimentKey:experiment.experimentKey
+                                     userId:userId
+                                 attributes:attributes]) {
         
         // bucket user into a variation
         bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];
