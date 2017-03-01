@@ -442,10 +442,10 @@ NSString * const kExpectedDatafileVersion  = @"3";
     
     // validate preconditions
     OPTLYVariation *bucketedVariation = nil;
-    if ([OPTLYValidator doesUserPassTargeting:self
-                                experimentKey:experiment.experimentKey
-                                       userId:userId
-                                   attributes:attributes]) {
+    if ([OPTLYValidator userPassesTargeting:self
+                              experimentKey:experiment.experimentKey
+                                     userId:userId
+                                 attributes:attributes]) {
         
         // bucket user into a variation
         bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];

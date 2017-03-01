@@ -20,10 +20,10 @@
 
 @interface OPTLYValidator : NSObject
 
-+ (BOOL)doesUserPassTargeting:(OPTLYProjectConfig *)config
-                experimentKey:(NSString *)experimentKey
-                       userId:(NSString *)userId
-                   attributes:(NSDictionary *)attributes;
++ (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
+              experimentKey:(NSString *)experimentKey
+                     userId:(NSString *)userId
+                 attributes:(NSDictionary *)attributes;
 
 + (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
              experimentKey:(NSString *)experimentKey;

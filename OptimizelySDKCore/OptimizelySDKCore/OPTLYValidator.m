@@ -25,10 +25,10 @@
 @implementation OPTLYValidator
 
 
-+ (BOOL)doesUserPassTargeting:(OPTLYProjectConfig *)config
-                experimentKey:(NSString *)experimentKey
-                       userId:(NSString *)userId
-                   attributes:(NSDictionary *)attributes
++ (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
+              experimentKey:(NSString *)experimentKey
+                     userId:(NSString *)userId
+                 attributes:(NSDictionary *)attributes
 {
     // check if the user is in the experiment
     BOOL isUserInExperiment = [OPTLYValidator isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
