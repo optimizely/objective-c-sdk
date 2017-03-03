@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKiOS"
-  s.version                 = "1.0.0"
+  s.version                 = "1.0.1-alpha1"
   s.summary                 = "Optimizely server-side testing framework for iOS."
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '=1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKEventDispatcher', '1.0.0'
-  s.dependency 'OptimizelySDKUserProfile', '1.0.0'
-  s.dependency 'OptimizelySDKDatafileManager', '1.0.0'
+  s.dependency 'OptimizelySDKEventDispatcher', '1.0.1-alpha1'
+  s.dependency 'OptimizelySDKUserProfile', '1.0.1-alpha1'
+  s.dependency 'OptimizelySDKDatafileManager', '1.0.1-alpha1'
 end
