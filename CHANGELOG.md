@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
 ## 1.0.1
-March 2, 2017
+March 6, 2017
 
 ### New Features
 • Created a tvOS demo app.
