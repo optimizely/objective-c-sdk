@@ -17,7 +17,7 @@
 
 
 # Change to the project root folder
-(cd /Users/aluong/src/objective-c-sdk-release;
+(cd ..;
 printf "Current working directory: $PWD\n\n";
 
 # ---- Before running this script!!! ----
