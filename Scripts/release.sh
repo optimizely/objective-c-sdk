@@ -20,17 +20,16 @@
 (cd ..;
 printf "Current working directory: $PWD\n\n";
 
-# ---- Before running this script!!! ----
-#1. Update the CHANGELOG
-read  -n 1 -p "1. Have you updated the CHANGELOG [y/n] $cr? " changelog_update;
+#1. Prompt a reminder to update the CHANGELOG
+read  -n 1 -p "1. Have you updated the CHANGELOG? (Please check the contents and formatting.) [y/n] $cr " changelog_update;
 if [ "$changelog_update" != "y" ]; then
     printf "\nUpdate the CHANGELOG before proceeding!!\n"
     exit 1
 fi;
 
-#2. Update Build Setting version number. Make sure this is done in the Build Settings at the Project level (not at the Target level) so that all Targets will inherit the version number.
+#2. Prompt a reminder to update Build Setting version number. Make sure this is done in the Build Settings at the Project level (not at the Target level) so that all Targets will inherit the version number.
 printf "\n\n";
-read  -n 1 -p "2. Have you updated the version number for all frameworks in the Xcode Build Settings? Make sure this is done in the Build Settings at the Project level (not at the Target level) so that all Targets will inherit the version number. [y/n] $cr? " build_setting_update;
+read  -n 1 -p "2. Have you updated the version number for all frameworks in the Xcode Build Settings? Make sure this is done at the Project level (not at the Target level) so that all Targets will inherit the version number. [y/n] $cr? " build_setting_update;
 if [ "$build_setting_update" != "y" ]; then
     printf "\nUpdate the version numbers for all frameworks in the Xcode Build Settings before proceeding!!\n"
     exit 1
