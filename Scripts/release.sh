@@ -7,11 +7,11 @@
 # 2. Reminder prompt to update the Build Settings with the proper version number for each module that requires a version bump.
 # 3. Gets the version numbers from the XCode build settings.
 # 4. Update podspec files with the correct version number.
-# 5. Commit and push the version bump changes to devel.
-# 6. Prompt to merge devel onto master via GitHub UI.
-# 7. git tag all the modules.
-# 8. git push all tags.
-# 9. Verify podspec files.
+# 5. Verify podspec files.
+# 6. Commit and push the version bump changes to devel.
+# 7. Prompt to merge devel onto master via GitHub UI.
+# 8. git tag all the modules.
+# 9. git push all tags.
 # 10. Confirm if pod trunk session is open.
 # 11. pod trunk push all the podspecs.
 
@@ -37,8 +37,6 @@ fi;
 
 ## ---- Extract version numbers from XCode build settings ----
 printf "\n\n3. Getting new versions from XCode Build Settings...\n\n";
-
-schemes=(OptimizelySDKiOS OptimizelySDKTVOS OptimizelySDKCoreiOS OptimizelySDKSharediOS OptimizelySDKEventDispatcheriOS OptimizelySDKDatafileManageriOS OptimizelySDKUserProfileiOS);
 
 # OPTIMIZELY_SDK_CORE_VERSION
 OPTIMIZELY_SDK_CORE_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCoreiOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_CORE_VERSION = \(.*\)/\1/p' | sed 's/ //g');
@@ -175,9 +173,31 @@ if [ "$podspec_valid" != "y" ]; then
     exit 1
 fi;
 
+# ---- Verify podspecs ----
+printf "\n\n"
+read  -n 1 -p "5. Verify all podspecs? Skip if this has already been done. [y/n] $cr? " verify_podspec;
+if [ "$verify_podspec" == "y" ]; then
+printf "\nVerifying podspecs...\n";
+pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfile OptimizelySDKiOS OptimizelySDKTVOS);
+number_pods=${#pods[@]};
+
+for (( i = 0; i < ${number_pods}; i++ ));
+do
+echo "Verifying the ${pods[i]} pod"
+pod spec lint ${pods[i]}.podspec
+done;
+fi;
+
+printf "\n"
+read  -n 1 -p "Are all podspecs valid? (If none of the pods have been pushed to the Cocoapod trunk, you can ignore the dependency errors: None of your spec sources contain a spec satisfying the dependency.) [y/n] $cr? " podspec_valid;
+if [ "$podspec_valid" != "y" ]; then
+printf "\nCorrect the podspec(s) before proceeding. Delete tag and retag the fixed podspec.\n"
+exit 1
+fi;
+
 # ---- commit podspec changes ----
 printf "\n"
-read  -n 1 -p "5. Commit and push version bump changes to devel? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
+read  -n 1 -p "6. Commit and push version bump changes to devel? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
 if [ "$podspec_valid" == "y" ]; then
     printf "\nCommitting and pushing devel with version bump changes...\n";
     git add -u
@@ -187,7 +207,7 @@ fi;
 
 
 # ---- merge devel to master ----
-printf "\n6. Merge devel onto master:\n\ta. Create a pull request in github to merge devel onto master: https://github.com/optimizely/objective-c-sdk.\n\tb. Wait for Travis build to pass: https://travis-ci.org/optimizely/objective-c-sdk/pull_requests.\n\tc. Get an LGTM from someone on the team.\n\td. Merge the changes (don't squash!)\n";
+printf "\n7. Merge devel onto master:\n\ta. Create a pull request in github to merge devel onto master: https://github.com/optimizely/objective-c-sdk.\n\tb. Wait for Travis build to pass: https://travis-ci.org/optimizely/objective-c-sdk/pull_requests.\n\tc. Get an LGTM from someone on the team.\n\td. Merge the changes (don't squash!)\n";
 read  -n 1 -p "Has master been merged with devel? [y/n] $cr? " podspec_valid;
 if [ "$podspec_valid" != "y" ]; then
 printf "\nPlease merge devel onto master before proceeding!!\n"
@@ -195,7 +215,7 @@ exit 1
 fi;
 
 # ---- git tag all modules----
-printf "\n\n7. Tagging all modules...\n";
+printf "\n\n8. Tagging all modules...\n";
 printf "Tagging core-$OPTIMIZELY_SDK_CORE_VERSION\n";
 git tag -a core-$OPTIMIZELY_SDK_CORE_VERSION -m "Release $OPTIMIZELY_SDK_CORE_VERSION";
 printf "Tagging shared-$OPTIMIZELY_SDK_SHARED_VERSION\n";
@@ -219,7 +239,7 @@ if [ "$tagging_valid" != "y" ]; then
 fi;
 
 ## ---- git push tags ----
-printf "\n\n8. Pushing all git tags...\n"
+printf "\n\n9. Pushing all git tags...\n"
 git push origin core-$OPTIMIZELY_SDK_CORE_VERSION --verbose;
 printf "\n";
 git push origin shared-$OPTIMIZELY_SDK_SHARED_VERSION --verbose;
@@ -233,28 +253,6 @@ printf "\n";
 git push origin iOS-$OPTIMIZELY_SDK_iOS_VERSION --verbose;
 printf "\n";
 git push origin tvOS-$OPTIMIZELY_SDK_TVOS_VERSION --verbose;
-
-# ---- Verify podspecs ----
-printf "\n"
-read  -n 1 -p "9. Verify all podspecs? Skip if this has already been done. [y/n] $cr? " verify_podspec;
-if [ "$verify_podspec" == "y" ]; then
-    printf "\nVerifying podspecs...\n";
-    pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfile OptimizelySDKiOS OptimizelySDKTVOS);
-    number_pods=${#pods[@]};
-
-for (( i = 0; i < ${number_pods}; i++ ));
-do
-    echo "Verifying the ${pods[i]} pod"
-    pod spec lint ${pods[i]}.podspec
-done;
-fi;
-
-printf "\n"
-read  -n 1 -p "Are all podspecs valid? (If none of the pods have been pushed to the Cocoapod trunk, you can ignore the dependency errors: None of your spec sources contain a spec satisfying the dependency.) [y/n] $cr? " podspec_valid;
-if [ "$podspec_valid" != "y" ]; then
-    printf "\nCorrect the podspec(s) before proceeding. Delete tag and retag the fixed podspec.\n"
-    exit 1
-fi;
 
 # ---- Make sure you have a Cocoapod session running ----
 printf "\n\n10. Verify Cocoapod trunk session...\n";
