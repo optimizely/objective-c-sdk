@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -109,7 +109,8 @@ dispatch_queue_t dispatchEventQueue()
 
 - (OPTLYDataStore *)dataStore {
     if (!_dataStore) {
-        _dataStore = [[OPTLYDataStore alloc] initWithLogger:_logger];
+        _dataStore = [OPTLYDataStore dataStore];
+        _dataStore.logger = _logger;
         _dataStore.maxNumberOfEventsToSave = _maxNumberOfEventsToSave;
     }
     return _dataStore;

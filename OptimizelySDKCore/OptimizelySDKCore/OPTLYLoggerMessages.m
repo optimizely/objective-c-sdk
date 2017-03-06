@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -46,7 +46,7 @@ NSString *const OPTLYLoggerMessagesDataStoreDatabaseEventDataStoreError = @"[DAT
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseSaveError = @"[DATA STORE] Error saving events to database. Data: %@, eventType: %@, error: %@.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetError = @"[DATA STORE] Error getting events. Number of events requested: %ld, eventType: %@, error: %@.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseGetNumberEvents = @"[DATA STORE] Error getting number of events. eventType: %@, error: %@.";
-NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"[DATA STORE] Error removing events. Number of events to remove: %@, eventType: %ld, error: %@.";
+NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveError = @"[DATA STORE] Error removing events. Number of events to remove: %ld, eventType: %@, error: %@.";
 NSString *const OPTLYLoggerMessagesDataStoreDatabaseRemoveEventError = @"[DATA STORE] Remove event error: %@, eventType: %@, event: %@.";
 // warning
 NSString *const OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning = @"[DATA STORE] Warning: Removing all events from data store! These events will not be tracked by Optimizely.";
@@ -71,6 +71,7 @@ NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDate = @"[DATAFILE
 // info
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloaded = @"[DATAFILE MANAGER] Datafile for project %@ downloaded. Saving datafile and last modified date: %@.";
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileDownloading = @"[DATAFILE MANAGER] Downloading datafile for project %@.";
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileSaved = @"[DATAFILE MANAGER] Datafile saved for project %@.";
 
 // Datafile Manager Builder
 // warning

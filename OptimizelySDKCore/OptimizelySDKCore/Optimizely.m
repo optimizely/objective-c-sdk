@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -601,5 +601,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                      userInfo:errorDictionary];
     [self.errorHandler handleError:error];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfile];
 }
 @end

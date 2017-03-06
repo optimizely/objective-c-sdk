@@ -2,10 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OptimizelyiOSDemoApp/OptimizelyiOSDemoApp.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OptimizelyTVOSDemoApp/OptimizelyTVOSDemoApp.xcodeproj">
+      location = "group:OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">

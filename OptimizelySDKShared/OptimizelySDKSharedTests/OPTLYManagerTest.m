@@ -132,6 +132,28 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     [self checkConfigIsUsingDefaultDatafile:client.optimizely.config];
 }
 
+- (void)testInitializeClientUsesSavedDatafile {
+    // initialize manager
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+    }];
+    
+    // save the datafile
+    [manager.datafileManager saveDatafile:self.defaultDatafile];
+    
+    // initialize client
+    OPTLYClient *client = [manager initialize];
+    
+    // make sure manager is initialized correctly
+    // the manager datafile is set only after initialize is called
+    XCTAssertEqual(manager.datafile, self.defaultDatafile);
+    
+    // test client initialization
+    XCTAssertNotNil(client.optimizely);
+    XCTAssertNotNil(client.logger);
+    XCTAssertEqual(client, manager.getOptimizely);
+}
+
 - (void)testInitializeClientWithCustomDatafile {
     // initialize manager
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {

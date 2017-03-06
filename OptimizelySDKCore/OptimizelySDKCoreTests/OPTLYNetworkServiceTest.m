@@ -102,7 +102,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     NSURL *cdnURL = [OPTLYNetworkService projectConfigURLPath:kProjectId];
     
-    XCTAssertEqualObjects(cdnURL, expectedURL, @"Expected CDN URL is https://cdn.optimizely.com/public/6372300739/datafile_v<CURRENT-VERSION>.json");
+    XCTAssertEqualObjects(cdnURL, expectedURL, @"Unexpected CDN URL: %@", cdnURL);
     
 }
 

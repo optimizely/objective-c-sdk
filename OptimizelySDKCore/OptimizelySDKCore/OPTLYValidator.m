@@ -25,10 +25,24 @@
 @implementation OPTLYValidator
 
 
-+ (BOOL)validatePreconditions:(OPTLYProjectConfig *)config
-                experimentKey:(NSString *)experimentKey
-                       userId:(NSString *)userId
-                   attributes:(NSDictionary *)attributes
++ (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
+              experimentKey:(NSString *)experimentKey
+                     userId:(NSString *)userId
+                 attributes:(NSDictionary *)attributes
+{
+    // check if the user is in the experiment
+    BOOL isUserInExperiment = [OPTLYValidator isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
+    if (!isUserInExperiment) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFailAudienceTargeting, userId, experimentKey];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        return false;
+    }
+    
+    return true;
+}
+
++ (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
+             experimentKey:(NSString *)experimentKey
 {
     // check if experiments are running
     OPTLYExperiment *experiment = [config getExperimentForKey:experimentKey];
@@ -39,15 +53,6 @@
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return false;
     }
-    
-    // check if the user is in the experiment
-    BOOL isUserInExperiment = [OPTLYValidator isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
-    if (!isUserInExperiment) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFailAudienceTargeting, userId, experimentKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        return false;
-    }
-    
     return true;
 }
 

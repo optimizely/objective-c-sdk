@@ -33,7 +33,6 @@ static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/pu
     
     NSURL *cdnURL = [OPTLYDatafileManagerUtility projectConfigURLPath:kProjectId];
     
-    XCTAssertEqualObjects(cdnURL, expectedURL, @"Expected CDN URL is https://cdn.optimizely.com/public/6372300739/datafile_v<CURRENT-VERSION>.json");
+    XCTAssertEqualObjects(cdnURL, expectedURL, @"Unexpected CDN URL: %@", cdnURL);
 }
-
 @end

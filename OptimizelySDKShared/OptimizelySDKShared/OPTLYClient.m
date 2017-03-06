@@ -347,4 +347,8 @@
                                      error:error];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Optimizely: %@ \nlogger:%@\n", self.optimizely, self.logger];
+}
+
 @end

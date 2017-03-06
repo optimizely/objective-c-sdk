@@ -1,0 +1,6 @@
+framework module Amplitude_iOS {
+  umbrella header "Amplitude-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

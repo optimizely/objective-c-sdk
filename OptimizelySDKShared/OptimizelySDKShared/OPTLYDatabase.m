@@ -63,8 +63,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         
         // set the database queue
         _databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
-        _fmDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
-        
+        _fmDatabaseQueue =  [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
     }
     return self;
 }
