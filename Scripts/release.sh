@@ -6,7 +6,7 @@
 # 1. Reminder prompt to update the CHANGELOG.
 # 2. Reminder prompt to update the Build Settings with the proper version number for each module that requires a version bump.
 # 3. Gets the version numbers from the XCode build settings.
-# 4. Update podspec files with the correct version number
+# 4. Update podspec files with the correct version number.
 # 5. Commit and push the version bump changes to devel.
 # 6. Prompt to merge devel onto master via GitHub UI.
 # 7. git tag all the modules.
