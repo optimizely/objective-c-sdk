@@ -65,6 +65,6 @@ Futher installation instructions for Carthage: https://github.com/Carthage/Carth
 #### Clone Source
 Clone repo and manually add source to project to build. 
 
-###Contributing
+### Contributing
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
