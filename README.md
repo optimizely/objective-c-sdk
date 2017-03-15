@@ -9,11 +9,11 @@ This repository houses the Objective-C SDK for Optimizely X Mobile.
 ### Using the SDK
 
 See the Optimizely X Mobile [developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec) to learn how to set
-up your first custom project and start using the SDK.
+up your first project and start using the SDK.
 
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
-* [JSONModel](https://github.com/jsonmodel/jsonmode)
+* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 * [FMDB](https://github.com/ccgus/fmdb)
 
 ### Installing the SDK
