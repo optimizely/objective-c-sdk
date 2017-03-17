@@ -123,7 +123,7 @@ static NSString * const kClientEngine = @"ios-sdk";
         
         // --- client version ---
 #ifdef UNIVERSAL
-        _clientVersion = OPTIMIZELY_SDK_IOS_UNIVERSAL_VERSION;
+//_clientVersion = OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION;
 #else
         _clientVersion = OPTIMIZELY_SDK_iOS_VERSION;
 #endif
