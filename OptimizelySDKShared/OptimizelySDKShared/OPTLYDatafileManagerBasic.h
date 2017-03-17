@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
+#ifdef UNIVERSAL
+    #import "OPTLYHTTPRequestManager.h"
+#else
+    #import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
+#endif
 
 @protocol OPTLYErrorHandler, OPTLYLogger;
 @protocol OPTLYDatafileManager <NSObject>

@@ -16,7 +16,11 @@
 
 #import <UIKit/UIKit.h>
 #import <FMDB/FMDB.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
+#ifdef UNIVERSAL
+    #import "OptimizelySDKCore.h"
+#else
+    #import <OptimizelySDKCore/OptimizelySDKCore.h>
+#endif
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
 

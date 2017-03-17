@@ -16,8 +16,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
-#import <OptimizelySDKCore/OptimizelySDKCore.h>
+#ifdef UNIVERSAL
+    #import "OptimizelySDKShared.h"
+    #import "OptimizelySDKCore.h"
+#else
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+    #import <OptimizelySDKCore/OptimizelySDKCore.h>
+#endif
 #import "OPTLYEventDispatcherBuilder.h"
 
 /*

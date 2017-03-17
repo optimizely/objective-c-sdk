@@ -14,7 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OPTLYNetworkService.h>
+#ifdef UNIVERSAL
+    #import "OPTLYNetworkService.h"
+#else
+    #import <OptimizelySDKCore/OPTLYNetworkService.h>
+#endif
 #import "OPTLYEventDispatcher.h"
 
 // TODO - Flush events when network connection has become available.

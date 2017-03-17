@@ -13,7 +13,11 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#ifdef UNIVERSAL
+    #import "OPTLYErrorHandler.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#endif
 #import "OPTLYDataStore.h"
 #import "OPTLYEventDataStore.h"
 

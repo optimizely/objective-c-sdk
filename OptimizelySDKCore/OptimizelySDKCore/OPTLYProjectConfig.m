@@ -26,7 +26,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
-#import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBasic.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariable.h"
 

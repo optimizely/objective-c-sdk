@@ -15,8 +15,13 @@
  ***************************************************************************/
 
 #import "OPTLYUserProfile.h"
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#ifdef UNIVERSAL
+    #import "OPTLYLogger.h"
+    #import "OptimizelySDKShared.h"
+#else
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+#endif
 
 @interface OPTLYUserProfileDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;

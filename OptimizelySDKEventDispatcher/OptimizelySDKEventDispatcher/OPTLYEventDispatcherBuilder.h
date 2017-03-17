@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#ifdef UNIVERSAL
+    #import "OptimizelySDKShared.h"
+#else
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+#endif
 
 /**
  * This class contains details related to how the Optimizely Event Dispatcher instance is built.

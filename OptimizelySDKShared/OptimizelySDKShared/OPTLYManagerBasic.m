@@ -13,14 +13,21 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYEventDispatcher.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
-#import <OptimizelySDKCore/OPTLYNetworkService.h>
+#ifdef UNIVERSAL
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYEventDispatcher.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYLoggerMessages.h"
+    #import "OPTLYNetworkService.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+    #import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+    #import <OptimizelySDKCore/OPTLYNetworkService.h>
+#endif
 #import "OPTLYClient.h"
-#import "OPTLYDatafileManager.h"
+#import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 

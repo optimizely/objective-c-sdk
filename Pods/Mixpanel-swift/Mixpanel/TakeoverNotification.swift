@@ -9,6 +9,13 @@
 import Foundation
 
 class TakeoverNotification: InAppNotification {
+    enum PayloadKey {
+        static let buttons = "buttons"
+        static let closeColor = "close_color"
+        static let title = "title"
+        static let titleColor = "title_color"
+        static let imageFade = "image_fade"
+    }
 
     let buttons: [InAppButton]
     let closeButtonColor: UInt
@@ -23,7 +30,7 @@ class TakeoverNotification: InAppNotification {
             return nil
         }
 
-        guard let unparsedButtons = object["buttons"] as? [[String: Any]] else {
+        guard let unparsedButtons = object[PayloadKey.buttons] as? [[String: Any]] else {
             Logger.error(message: "invalid notification buttons list")
             return nil
         }
@@ -37,16 +44,16 @@ class TakeoverNotification: InAppNotification {
             parsedButtons.append(button)
         }
 
-        guard let closeButtonColor = object["close_color"] as? UInt else {
+        guard let closeButtonColor = object[PayloadKey.closeColor] as? UInt else {
             Logger.error(message: "invalid notification close button color")
             return nil
         }
 
-        if let title = object["title"] as? String {
+        if let title = object[PayloadKey.title] as? String {
             self.title = title
         }
 
-        guard let titleColor = object["title_color"] as? UInt else {
+        guard let titleColor = object[PayloadKey.titleColor] as? UInt else {
             Logger.error(message: "invalid notification title color")
             return nil
         }
@@ -57,13 +64,24 @@ class TakeoverNotification: InAppNotification {
 
         super.init(JSONObject: JSONObject)
 
-        guard let shouldFadeImage = extras["image_fade"] as? Bool else {
+        guard let shouldFadeImage = extras[PayloadKey.imageFade] as? Bool else {
             Logger.error(message: "invalid notification fade image boolean")
             return nil
         }
         self.shouldFadeImage    = shouldFadeImage
         imageURL = URL(string: imageURL.absoluteString.appendSuffixBeforeExtension(suffix: "@2x"))!
 
+    }
+    
+    override func payload() -> [String : AnyObject] {
+        var payload = super.payload()
+        
+        payload[PayloadKey.buttons] = buttons.map({ $0.payload() }) as AnyObject
+        payload[PayloadKey.closeColor] = closeButtonColor as AnyObject
+        payload[PayloadKey.title] = title as AnyObject
+        payload[PayloadKey.titleColor] = titleColor as AnyObject
+        payload[PayloadKey.imageFade] = shouldFadeImage as AnyObject
+        return payload
     }
 }
 

@@ -11,6 +11,9 @@
       location = "group:OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:OptimizelySDK/OptimizelySDK.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
    </FileRef>
    <FileRef

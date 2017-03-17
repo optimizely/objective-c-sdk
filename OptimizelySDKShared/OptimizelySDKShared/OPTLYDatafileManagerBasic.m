@@ -14,8 +14,12 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYDatafileManager.h"
-#import <OptimizelySDKCore/OPTLYNetworkService.h>
+#import "OPTLYDatafileManagerBasic.h"
+#ifdef UNIVERSAL
+    #import "OPTLYNetworkService.h"
+#else
+    #import <OptimizelySDKCore/OPTLYNetworkService.h>
+#endif
 
 @implementation OPTLYDatafileManagerUtility
 

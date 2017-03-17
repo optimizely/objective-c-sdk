@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OPTLYErrorHandler.h"
-#import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBasic.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYNetworkService.h"
 

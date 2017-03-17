@@ -14,7 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBasic.h"
 
 @implementation OPTLYUserProfileUtility
 

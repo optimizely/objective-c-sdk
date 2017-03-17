@@ -15,9 +15,13 @@
  ***************************************************************************/
 
 #import "OPTLYClientBuilder.h"
+#ifdef UNIVERSAL
+#import "Optimizely.h"
+#import "OPTLYLogger.h"
+#else
 #import <OptimizelySDKCore/Optimizely.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
-
+#endif
 @implementation OPTLYClientBuilder: NSObject
 
 + (instancetype)builderWithBlock:(OPTLYClientBuilderBlock)block {

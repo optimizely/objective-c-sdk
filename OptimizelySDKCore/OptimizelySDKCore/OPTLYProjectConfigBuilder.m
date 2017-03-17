@@ -36,7 +36,9 @@ NSString * const kClientEngine = @"objective-c-sdk";
             _clientEngine = kClientEngine;
         }
         if (!_clientVersion) {
+#ifndef UNIVERSAL
             _clientVersion = OPTIMIZELY_SDK_CORE_VERSION;
+#endif
         }
         if (!_datafile) {
             return nil;
