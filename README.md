@@ -14,7 +14,7 @@ up an Optimizely X project and use the SDK.
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
 * Foundation.framework
-* [JSONModel] (https://github.com/jsonmodel/jsonmodel)
+* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 
 ### Installing the SDK
 
