@@ -9,7 +9,7 @@ This repository houses the Optimizely mobile and OTT experimentation SDK.
 ### Using the SDK
 
 See the Optimizely server-side testing [developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec) to learn how to set
-up your first custom project and use the SDK. **Please note that you must be a member of the private server-side testing beta to create custom projects and use this SDK.**
+up an Optimizely X project and use the SDK. 
 
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
