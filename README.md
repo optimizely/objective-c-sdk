@@ -2,19 +2,19 @@
 [![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=master)](https://travis-ci.org/optimizely/objective-c-sdk/)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/gradle-extra-configurations-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-This repository houses the Objective-C SDK for Optimizely's server-side testing product, which is currently in private beta.
+This repository houses the Optimizely mobile and OTT experimentation SDK.
 
 ## Getting Started
 
 ### Using the SDK
 
 See the Optimizely server-side testing [developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec) to learn how to set
-up your first custom project and use the SDK. **Please note that you must be a member of the private server-side testing beta to create custom projects and use this SDK.**
+up an Optimizely X project and use the SDK. 
 
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
 * Foundation.framework
-* [JSONModel] (https://github.com/jsonmodel/jsonmodel)
+* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 
 ### Installing the SDK
 
@@ -52,6 +52,6 @@ Futher installation instructions for Carthage: https://github.com/Carthage/Carth
 #### Clone Source
 Clone repo and manually add source to project to build. 
 
-###Contributing
+### Contributing
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
