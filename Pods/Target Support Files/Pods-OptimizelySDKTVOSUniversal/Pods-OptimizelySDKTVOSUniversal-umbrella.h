@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_OptimizelySDKVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_OptimizelySDKVersionString[];
+FOUNDATION_EXPORT double Pods_OptimizelySDKTVOSUniversalVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_OptimizelySDKTVOSUniversalVersionString[];
 

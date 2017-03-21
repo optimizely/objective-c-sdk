@@ -54,12 +54,14 @@ end
 
 target 'OptimizelySDKCoreiOSTests' do
   project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
 target 'OptimizelySDKCoreTVOSTests' do
   project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
+  platform :tvos, '9.0'  
   common_tvos_pods
   common_test_pods
 end
@@ -73,6 +75,7 @@ end
 
 target 'OptimizelySDKiOSTests' do
   project 'OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
@@ -86,6 +89,7 @@ end
 
 target 'OptimizelySDKTVOSTests' do
   project 'OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj/'
+  platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods
 end
@@ -105,12 +109,14 @@ end
 
 target 'OptimizelySDKSharediOSTests' do
   project 'OptimizelySDKShared/OptimizelySDKShared.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
 target 'OptimizelySDKSharedTVOSTests' do
   project 'OptimizelySDKShared/OptimizelySDKShared.xcodeproj/'
+  platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods
 end
@@ -130,12 +136,14 @@ end
 
 target 'OptimizelySDKDatafileManageriOSTests' do
   project 'OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
 target 'OptimizelySDKDatafileManagerTVOSTests' do
   project 'OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj/'
+  platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods
 end
@@ -155,12 +163,14 @@ end
 
 target 'OptimizelySDKEventDispatcheriOSTests' do
   project 'OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
 target 'OptimizelySDKEventDispatcherTVOSTests' do
   project 'OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj/'
+  platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods
 end
@@ -180,12 +190,14 @@ end
 
 target 'OptimizelySDKUserProfileiOSTests' do
   project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+  platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
 target 'OptimizelySDKUserProfileTVOSTests' do
   project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+  platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods
 end
@@ -203,4 +215,5 @@ end
 target 'OptimizelyTVOSDemoApp' do
   project 'OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj/'
   platform :tvos, '9.0'
+  common_tvos_pods
 end
