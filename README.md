@@ -2,19 +2,20 @@
 [![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=master)](https://travis-ci.org/optimizely/objective-c-sdk/)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/gradle-extra-configurations-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-This repository houses the Objective-C SDK for Optimizely X Mobile.
+This repository houses the Optimizely Mobile and OTT experimentation SDKs.
+
 
 ## Getting Started
 
 ### Using the SDK
 
-See the Optimizely X Mobile [developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec) to learn how to set
-up your first project and start using the SDK.
+See the [Mobile developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec&platform=mobile) or [OTT developer documentation](https://developers.optimizely.com/x/solutions/sdks/reference/index.html?language=objectivec&platform=ott) to learn how to set
+up an Optimizely X project and start using the SDK.
 
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
-* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 * [FMDB](https://github.com/ccgus/fmdb)
+* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 
 ### Installing the SDK
  
