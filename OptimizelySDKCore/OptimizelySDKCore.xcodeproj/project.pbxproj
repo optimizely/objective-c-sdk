@@ -36,7 +36,7 @@
 		EA2C24361DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */; };
 		EA2FA8071DC5DBA000B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		EA2FA8271DC5DBB100B1D81B /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
-		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; };
+		EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA9701DC6F3CF00B1D81B /* murmur3.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA2FAA4C1DC6F53E00B1D81B /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA491DC6F53E00B1D81B /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA491DC6F53E00B1D81B /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,13 +228,10 @@
 		EAC5F3441E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F3411E7B7DDE00C087B8 /* OPTLYEventDispatcherBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F3451E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3421E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m */; };
 		EAC5F3461E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3421E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m */; };
-		EAC5F3471E7B7E0D00C087B8 /* OPTLYEventDispatcherBasic.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F3421E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m */; };
-		EAC5F3481E7B7E3000C087B8 /* OPTLYEventDispatcherBasic.h in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3411E7B7DDE00C087B8 /* OPTLYEventDispatcherBasic.h */; };
 		EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F3511E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F3541E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F3511E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F3551E7B7EEF00C087B8 /* OPTLYUserProfileBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3521E7B7EEF00C087B8 /* OPTLYUserProfileBasic.m */; };
 		EAC5F3561E7B7EEF00C087B8 /* OPTLYUserProfileBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3521E7B7EEF00C087B8 /* OPTLYUserProfileBasic.m */; };
-		EAC5F3571E7B7F3B00C087B8 /* OPTLYUserProfileBasic.h in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F3511E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -726,9 +723,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
 				EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileBasic.h in Headers */,
 				EAC5F3431E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
+				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
 				EA2FAA4C1DC6F53E00B1D81B /* Optimizely.h in Headers */,
 				EA2FAB281DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAB201DC6F58800B1D81B /* OPTLYBuilder.h in Headers */,
@@ -768,7 +765,6 @@
 				EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
 				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
-				EAC5F3471E7B7E0D00C087B8 /* OPTLYEventDispatcherBasic.m in Headers */,
 				EA2FAB791DC6F5F400B1D81B /* OPTLYMacros.h in Headers */,
 				EA2FA9771DC6F3CF00B1D81B /* murmur3.h in Headers */,
 			);
@@ -1160,8 +1156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAC5F3571E7B7F3B00C087B8 /* OPTLYUserProfileBasic.h in Sources */,
-				EAC5F3481E7B7E3000C087B8 /* OPTLYEventDispatcherBasic.h in Sources */,
 				EA2FAC2B1DC6FFCF00B1D81B /* murmur3.c in Sources */,
 				EA2FAC071DC6FFC600B1D81B /* Optimizely.m in Sources */,
 				EA2FAC081DC6FFC600B1D81B /* OPTLYBucketer.m in Sources */,
@@ -1202,8 +1196,8 @@
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
-				EA2FAC2A1DC6FFC600B1D81B /* OPTLYValidator.m in Sources */,
 				EAC5F3451E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
+				EA2FAC2A1DC6FFC600B1D81B /* OPTLYValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

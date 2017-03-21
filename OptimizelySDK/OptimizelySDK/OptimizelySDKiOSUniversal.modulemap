@@ -1,0 +1,6 @@
+framework module OptimizelySDK {
+  umbrella header "OptimizelySDK.h"
+
+  export *
+  module * { export * }
+}

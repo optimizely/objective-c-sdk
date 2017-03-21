@@ -15,7 +15,9 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#ifndef UNIVERSAL
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+#endif
 #import "OPTLYEventDispatcher.h"
 
 //! Project version number for OptimizelySDKEventDispatcher.

@@ -14,17 +14,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+
+#ifdef UNIVERSAL
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYEventDispatcher.h"
+    #import "OPTLYLogger.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+    #import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+#endif
+
 #import "OPTLYManagerBuilder.h"
 #import "OPTLYDatafilemanagerBasic.h"
-#ifdef UNIVERSAL
-#import "OPTLYErrorHandler.h"
-#import "OPTLYEventDispatcher.h"
-#import "OPTLYLogger.h"
-#else
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#endif
 
 @implementation OPTLYManagerBuilder
 

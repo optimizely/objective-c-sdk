@@ -10,6 +10,7 @@
 #import "OptimizelySDKCore.h"
 #import "OptimizelySDKDatafileManager.h"
 #import "OptimizelySDKEventDispatcher.h"
+#import "OptimizelySDKiOS.h"
 #import "OptimizelySDKShared.h"
 #import "OptimizelySDKUserProfile.h"
 

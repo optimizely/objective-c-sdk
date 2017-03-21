@@ -15,11 +15,8 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-#import "OPTLYLogger.h"
-#else
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#endif
+
+@protocol OPTLYLogger;
 
 @interface OPTLYUserProfileBuilder : NSObject
 

@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#ifndef UNIVERSAL
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+#endif
 #import "OPTLYDatafileManager.h"
 #import "OPTLYDatafileManagerBuilder.h"
 

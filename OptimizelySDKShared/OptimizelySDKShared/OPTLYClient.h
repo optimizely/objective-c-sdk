@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-#import "Optimizely.h"
+    #import "Optimizely.h"
 #else
-#import <OptimizelySDKCore/Optimizely.h>
+    #import <OptimizelySDKCore/Optimizely.h>
 #endif
 #import "OPTLYClientBuilder.h"
 

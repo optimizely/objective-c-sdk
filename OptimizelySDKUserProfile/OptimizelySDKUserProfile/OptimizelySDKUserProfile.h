@@ -15,7 +15,9 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#ifndef UNIVERSAL
+    #import <OptimizelySDKShared/OptimizelySDKShared.h>
+#endif
 #import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileBuilder.h"
 

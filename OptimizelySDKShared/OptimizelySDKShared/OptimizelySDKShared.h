@@ -14,16 +14,14 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#ifdef UNIVERSAL
-    #import "OptimizelySDKCore.h"
-#else
+#ifndef UNIVERSAL
     #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #endif
 #import "OPTLYClient.h"
 #import "OPTLYClientBuilder.h"
 #if TARGET_OS_IOS
-#import "OPTLYDatabase.h"
-#import "OPTLYDatabaseEntity.h"
+    #import "OPTLYDatabase.h"
+    #import "OPTLYDatabaseEntity.h"
 #endif
 #import "OPTLYDataStore.h"
 #import "OPTLYDatafileManagerBasic.h"
