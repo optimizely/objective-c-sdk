@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=master)](https://travis-ci.org/optimizely/objective-c-sdk/)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/gradle-extra-configurations-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-This repository houses the Optimizely mobile and OTT experimentation SDKs.
+This repository houses the Optimizely Mobile and OTT experimentation SDKs.
 
 
 ## Getting Started
