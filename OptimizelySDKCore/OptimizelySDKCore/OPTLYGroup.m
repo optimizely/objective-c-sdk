@@ -14,8 +14,10 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYGroup.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYExperiment.h"
+#import "OPTLYGroup.h"
+#import "OPTLYTrafficAllocation.h"
 
 @implementation OPTLYGroup
 

@@ -15,11 +15,6 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYUserProfileBasic.h"
-#else
-    #import <OptimizelySDKCore/OPTLYUserProfileBasic.h>
-#endif
 #import "OPTLYUserProfileBuilder.h"
 
 @protocol OPTLYLogger;

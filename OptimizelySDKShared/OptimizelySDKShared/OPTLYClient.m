@@ -16,9 +16,9 @@
 
 #import "OPTLYClient.h"
 #ifdef UNIVERSAL
-    #import "OPTLYVariation.h"
-    #import "OPTLYLogger.h"
-    #import "OPTLYLoggerMessages.h"
+    #import <OPTLYVariation.h>
+    #import <OPTLYLogger.h>
+    #import <OPTLYLoggerMessages.h>
 #else
     #import <OptimizelySDKCore/OPTLYVariation.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>

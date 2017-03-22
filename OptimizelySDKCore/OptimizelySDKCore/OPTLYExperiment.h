@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
-#import "OPTLYVariation.h"
 
-@protocol OPTLYTrafficAllocation;
+@class OPTLYVariation;
+@protocol OPTLYTrafficAllocation, OPTLYVariation;
 
 /**
  * This class is a representation of an Optimizely Experiment.

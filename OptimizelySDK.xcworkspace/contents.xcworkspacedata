@@ -5,13 +5,13 @@
       location = "group:OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:OptimizelySDK/OptimizelySDK.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OptimizelySDK/OptimizelySDK.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OptimizelySDKCore/OptimizelySDKCore.xcodeproj">

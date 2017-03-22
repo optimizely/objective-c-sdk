@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYManagerBase;
+@protocol OPTLYManager;
 
 @interface OPTLYManager : OPTLYManagerBase<OPTLYManager>
 /**

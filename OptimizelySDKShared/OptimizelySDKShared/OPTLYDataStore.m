@@ -15,8 +15,8 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "OPTLYLogger.h"
-    #import "OPTLYQueue.h"
+    #import <OPTLYLogger.h>
+    #import <OPTLYQueue.h>
 #else
     #import <OptimizelySDKCore/OPTLYLogger.h>
     #import <OptimizelySDKCore/OPTLYQueue.h>

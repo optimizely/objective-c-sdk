@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
-
-#import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
-#import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
-#import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
+#ifndef UNIVERSAL
+    #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
+    #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
+    #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
+#endif
 #import "OPTLYManager.h"
 
 //! Project version number for OptimizelySDKTVOS.

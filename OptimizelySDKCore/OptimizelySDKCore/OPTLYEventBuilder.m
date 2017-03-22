@@ -33,6 +33,7 @@
 #import "OPTLYMacros.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
+#import "OPTLYVariation.h"
 
 // --- Event URLs ----
 NSString * const OPTLYEventBuilderDecisionTicketEventURL   = @"https://p13nlog.dz.optimizely.com/log/decision";

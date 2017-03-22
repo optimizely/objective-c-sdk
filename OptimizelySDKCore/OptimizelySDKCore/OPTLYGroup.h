@@ -16,9 +16,8 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModelLib.h>
-#import "OPTLYExperiment.h"
-#import "OPTLYTrafficAllocation.h"
 
+@protocol OPTLYExperiment, OPTLYTrafficAllocation;
 /**
  * This class is a representation of an Optimizely Group.
  */

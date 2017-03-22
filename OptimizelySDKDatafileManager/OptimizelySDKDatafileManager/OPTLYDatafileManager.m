@@ -16,11 +16,11 @@
 
 #import <UIKit/UIKit.h>
 #ifdef UNIVERSAL
-    #import "OPTLYErrorHandler.h"
-    #import "OPTLYLog.h"
-    #import "OPTLYLogger.h"
-    #import "OPTLYNetworkService.h"
-    #import "OPTLYDataStore.h"
+    #import <OPTLYErrorHandler.h>
+    #import <OPTLYLog.h>
+    #import <OPTLYLogger.h>
+    #import <OPTLYNetworkService.h>
+    #import <OPTLYDataStore.h>
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
     #import <OptimizelySDKCore/OPTLYLog.h>

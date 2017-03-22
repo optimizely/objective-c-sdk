@@ -17,8 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #ifdef UNIVERSAL
-    #import "OptimizelySDKShared.h"
-    #import "OptimizelySDKCore.h"
+    #import <OptimizelySDKShared.h>
+    #import <OptimizelySDKCore.h>
 #else
     #import <OptimizelySDKShared/OptimizelySDKShared.h>
     #import <OptimizelySDKCore/OptimizelySDKCore.h>

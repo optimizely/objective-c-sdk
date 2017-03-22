@@ -14,14 +14,15 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYClientBuilder.h"
 #ifdef UNIVERSAL
-    #import "Optimizely.h"
-    #import "OPTLYLogger.h"
+    #import <Optimizely.h>
+    #import <OPTLYLogger.h>
 #else
     #import <OptimizelySDKCore/Optimizely.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
 #endif
+#import "OPTLYClientBuilder.h"
+
 @implementation OPTLYClientBuilder: NSObject
 
 + (instancetype)builderWithBlock:(OPTLYClientBuilderBlock)block {

@@ -18,9 +18,7 @@
 #import <JSONModel/JSONModelLib.h>
 #import "OPTLYCondition.h"
 
-
-@protocol OPTLYAudience
-@end
+@protocol OPTLYAudience;
 
 @interface OPTLYAudience : JSONModel <OPTLYCondition>
 

@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <OptimizelySDKShared/OPTLYManagerBase.h>
+#ifdef UNIVERSAL
+    #import <OPTLYManagerBase.h>
+#else
+    #import <OptimizelySDKShared/OPTLYManagerBase.h>
+#endif
 
 @interface OPTLYManager : OPTLYManagerBase<OPTLYManager>
 /**

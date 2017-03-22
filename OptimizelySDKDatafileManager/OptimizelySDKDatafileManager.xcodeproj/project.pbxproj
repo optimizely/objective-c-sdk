@@ -38,8 +38,8 @@
 		EA52480D1DC72AB000AF6685 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248041DC72AAF00AF6685 /* OptimizelySDKDatafileManager.framework */; };
 		EA52482D1DC72ABD00AF6685 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248241DC72ABD00AF6685 /* OptimizelySDKDatafileManager.framework */; };
 		EA52499B1DC7D8ED00AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA5249DF1DC7E3C300AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248921DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
-		EA5249E01DC7E3CF00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248961DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249DF1DC7E3C300AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248921DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249E01DC7E3CF00AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248961DC72C5300AF6685 /* OptimizelySDKShared.framework */; };
 		EA524A3D1DC846CE00AF6685 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68BE1DC1E75900C578CA /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8FD10D1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8FD10E1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA5249DF1DC7E3C300AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249DF1DC7E3C300AF6685 /* ReferenceProxy in Frameworks */,
 				8160880F9C1EE3663169C1F5 /* Pods_OptimizelySDKDatafileManageriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA5249E01DC7E3CF00AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249E01DC7E3CF00AF6685 /* ReferenceProxy in Frameworks */,
 				2BB51BA262BB8150B95167CC /* Pods_OptimizelySDKDatafileManagerTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,7 +612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9A4AED36FC835BE1EFAB1955 /* [CP] Check Pods Manifest.lock */ = {
@@ -627,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A94B4D148157F2FC411994F0 /* [CP] Check Pods Manifest.lock */ = {
@@ -642,7 +642,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BB42F74DD1F94B66458EC143 /* [CP] Copy Pods Resources */ = {
@@ -687,7 +687,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

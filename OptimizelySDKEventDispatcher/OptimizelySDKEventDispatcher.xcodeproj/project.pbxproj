@@ -21,12 +21,12 @@
 		EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
 		EA5249661DC7BA0800AF6685 /* OPTLYEventDispatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */; };
-		EA5249721DC7BD9D00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A51DC72D0800AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249721DC7BD9D00AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A51DC72D0800AF6685 /* OptimizelySDKShared.framework */; };
 		EA52499F1DC7D91800AF6685 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249B01DC7DCD900AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249A71DC7DCD900AF6685 /* OptimizelySDKEventDispatcher.framework */; };
 		EA5249C21DC7DD4A00AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
 		EA5249C31DC7DD5500AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA5249CE1DC7DFE000AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A91DC72D0800AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249CE1DC7DFE000AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248A91DC72D0800AF6685 /* OptimizelySDKShared.framework */; };
 		EA5249EC1DC7E76400AF6685 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68EB1DC1E79900C578CA /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA87A00B1DDE7356002E9EF7 /* OPTLYEventDispatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */; };
 /* End PBXBuildFile section */
@@ -133,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA5249721DC7BD9D00AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249721DC7BD9D00AF6685 /* ReferenceProxy in Frameworks */,
 				88620F49A57781AD90653E9C /* Pods_OptimizelySDKEventDispatcheriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA5249CE1DC7DFE000AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249CE1DC7DFE000AF6685 /* ReferenceProxy in Frameworks */,
 				1DDB5BD13F0115D11F98D7C0 /* Pods_OptimizelySDKEventDispatcherTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +515,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3E10139E872AB386AF033A14 /* [CP] Embed Pods Frameworks */ = {
@@ -545,7 +545,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		470143F7BCF0AEC1CA56F66C /* [CP] Copy Pods Resources */ = {
@@ -575,7 +575,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8BBF7DCAF95D9ECE5228BBB2 /* [CP] Check Pods Manifest.lock */ = {
@@ -590,7 +590,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C2F5F904EE3138A3BFDA3172 /* [CP] Copy Pods Resources */ = {

@@ -29,8 +29,8 @@
 		EA1E4B5F1E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */; };
 		EA1E4B601E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA1E4B651E65072600BDDABD /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EA1E4B661E65074E00BDDABD /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
-		EA1E4B671E65075C00BDDABD /* OptimizelySDKiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA1E4B661E65074E00BDDABD /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
+		EA1E4B671E65075C00BDDABD /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA28AB311E5FBA900060BF44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */; };
 		EA299EDC1E55311700931399 /* tvOSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA299EDA1E55311700931399 /* tvOSMain.storyboard */; };
 		EA299EDF1E55312200931399 /* iOSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA299EDD1E55312200931399 /* iOSMain.storyboard */; };
@@ -45,8 +45,8 @@
 		EA299EEF1E55316300931399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA299EEE1E55316300931399 /* Assets.xcassets */; };
 		EA299EF01E55316300931399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA299EEE1E55316300931399 /* Assets.xcassets */; };
 		EA299F081E55335300931399 /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA299F071E55335300931399 /* Pods_OptimizelySDKiOS.framework */; };
-		EA299F0A1E55336700931399 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; };
-		EA299F0B1E55336700931399 /* OptimizelySDKTVOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA299F0A1E55336700931399 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; };
+		EA299F0B1E55336700931399 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA299F0F1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA299F0E1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework */; };
 		EA299F101E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA299F0E1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA4A62BB1E566F3500F1C3CE /* demoTestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA4A62BA1E566F3500F1C3CE /* demoTestDatafile.json */; };
@@ -127,7 +127,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EA1E4B671E65075C00BDDABD /* OptimizelySDKiOS.framework in Embed Frameworks */,
+				EA1E4B671E65075C00BDDABD /* ReferenceProxy in Embed Frameworks */,
 				EA1E4B651E65072600BDDABD /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */,
 				EA1E4B5A1E65065500BDDABD /* OptimizelySDKShared.framework in Embed Frameworks */,
 				EA1E4B601E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Embed Frameworks */,
@@ -146,7 +146,7 @@
 			files = (
 				EA1E4B4D1E65060300BDDABD /* OptimizelySDKShared.framework in Embed Frameworks */,
 				EA1E4B561E65060300BDDABD /* OptimizelySDKDatafileManager.framework in Embed Frameworks */,
-				EA299F0B1E55336700931399 /* OptimizelySDKTVOS.framework in Embed Frameworks */,
+				EA299F0B1E55336700931399 /* ReferenceProxy in Embed Frameworks */,
 				EA1E4B501E65060300BDDABD /* OptimizelySDKCore.framework in Embed Frameworks */,
 				EA299F101E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework in Embed Frameworks */,
 				EA1E4B531E65060300BDDABD /* OptimizelySDKUserProfile.framework in Embed Frameworks */,
@@ -199,7 +199,7 @@
 			files = (
 				EA1E4B4C1E65060300BDDABD /* OptimizelySDKShared.framework in Frameworks */,
 				EA1E4B551E65060300BDDABD /* OptimizelySDKDatafileManager.framework in Frameworks */,
-				EA299F0A1E55336700931399 /* OptimizelySDKTVOS.framework in Frameworks */,
+				EA299F0A1E55336700931399 /* ReferenceProxy in Frameworks */,
 				EA1E4B4F1E65060300BDDABD /* OptimizelySDKCore.framework in Frameworks */,
 				EA299F0F1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */,
 				EA1E4B521E65060300BDDABD /* OptimizelySDKUserProfile.framework in Frameworks */,
@@ -211,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA1E4B661E65074E00BDDABD /* OptimizelySDKiOS.framework in Frameworks */,
+				EA1E4B661E65074E00BDDABD /* ReferenceProxy in Frameworks */,
 				EA1E4B591E65065500BDDABD /* OptimizelySDKShared.framework in Frameworks */,
 				EA1E4B5B1E65065500BDDABD /* OptimizelySDKCore.framework in Frameworks */,
 				EA299F081E55335300931399 /* Pods_OptimizelySDKiOS.framework in Frameworks */,
@@ -503,7 +503,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EA7000131E552EBD00590BEF /* [CP] Embed Pods Frameworks */ = {
@@ -548,7 +548,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EA70FFF61E552E9E00590BEF /* [CP] Embed Pods Frameworks */ = {

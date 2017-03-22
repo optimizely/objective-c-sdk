@@ -15,9 +15,11 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "OPTLYLogger.h"
-    #import "OptimizelySDKShared.h"
+    #import <OPTLYUserProfileBasic.h>
+    #import <OPTLYLogger.h>
+    #import <OptimizelySDKShared.h>
 #else
+    #import <OptimizelySDKCore/OPTLYUserProfileBasic.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
     #import <OptimizelySDKShared/OptimizelySDKShared.h>
 #endif

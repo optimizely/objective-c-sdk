@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYHTTPRequestManager.h"
+    #import <OPTLYHTTPRequestManager.h>
 #else
     #import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
 #endif
