@@ -6,6 +6,31 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EAC5F8B41E82EE6800C087B8 /* OptimizelySDKiOS-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EAC5F8B51E82EE6800C087B8 /* Build configuration list for PBXAggregateTarget "OptimizelySDKiOS-Universal" */;
+			buildPhases = (
+				EAC5F8C01E82EE7B00C087B8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "OptimizelySDKiOS-Universal";
+			productName = "OptimizelySDKiOS-Universal";
+		};
+		EAC5F8BA1E82EE7400C087B8 /* OptimizelySDKTVOS-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EAC5F8BB1E82EE7400C087B8 /* Build configuration list for PBXAggregateTarget "OptimizelySDKTVOS-Universal" */;
+			buildPhases = (
+				EAC5F8C11E82EE8E00C087B8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "OptimizelySDKTVOS-Universal";
+			productName = "OptimizelySDKTVOS-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1C96112F1A25AD87F4A80AAD /* Pods_OptimizelySDKTVOSUniversal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E54BA67D5162A8705A9644 /* Pods_OptimizelySDKTVOSUniversal.framework */; };
 		7F8BC453DDB5A2DE05C39488 /* Pods_OptimizelySDKiOSUniversal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8355656FDEACFB438A45F326 /* Pods_OptimizelySDKiOSUniversal.framework */; };
@@ -895,6 +920,16 @@
 					EAC5F7951E81B12100C087B8 = {
 						DevelopmentTeam = BDMC9C2X5M;
 					};
+					EAC5F8B41E82EE6800C087B8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
+					};
+					EAC5F8BA1E82EE7400C087B8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDK" */;
@@ -911,6 +946,8 @@
 			targets = (
 				EAC5F6E91E808F5500C087B8 /* OptimizelySDKiOSUniversal */,
 				EAC5F7951E81B12100C087B8 /* OptimizelySDKTVOSUniversal */,
+				EAC5F8B41E82EE6800C087B8 /* OptimizelySDKiOS-Universal */,
+				EAC5F8BA1E82EE7400C087B8 /* OptimizelySDKTVOS-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -992,6 +1029,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversal/Pods-OptimizelySDKTVOSUniversal-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EAC5F8C01E82EE7B00C087B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		EAC5F8C11E82EE8E00C087B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1685,6 +1748,70 @@
 			};
 			name = Release;
 		};
+		EAC5F8B61E82EE6800C087B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAC5F8B71E82EE6800C087B8 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		EAC5F8B81E82EE6800C087B8 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EAC5F8B91E82EE6800C087B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EAC5F8BC1E82EE7400C087B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAC5F8BD1E82EE7400C087B8 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		EAC5F8BE1E82EE7400C087B8 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EAC5F8BF1E82EE7400C087B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1720,6 +1847,26 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EAC5F8B51E82EE6800C087B8 /* Build configuration list for PBXAggregateTarget "OptimizelySDKiOS-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAC5F8B61E82EE6800C087B8 /* Debug */,
+				EAC5F8B71E82EE6800C087B8 /* Beta */,
+				EAC5F8B81E82EE6800C087B8 /* RC */,
+				EAC5F8B91E82EE6800C087B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EAC5F8BB1E82EE7400C087B8 /* Build configuration list for PBXAggregateTarget "OptimizelySDKTVOS-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAC5F8BC1E82EE7400C087B8 /* Debug */,
+				EAC5F8BD1E82EE7400C087B8 /* Beta */,
+				EAC5F8BE1E82EE7400C087B8 /* RC */,
+				EAC5F8BF1E82EE7400C087B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
