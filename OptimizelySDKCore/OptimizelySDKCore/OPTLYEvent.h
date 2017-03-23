@@ -21,7 +21,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 @protocol OPTLYEvent
 @end

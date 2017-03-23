@@ -15,7 +15,11 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 #import "OPTLYProjectConfigBuilder.h"
 
 NS_ASSUME_NONNULL_BEGIN

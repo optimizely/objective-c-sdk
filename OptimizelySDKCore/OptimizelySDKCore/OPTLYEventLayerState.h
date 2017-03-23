@@ -17,7 +17,11 @@
 // Model object storing the state of a layer
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 @class OPTLYEventDecisionTicket, OPTLYEventDecision;
 

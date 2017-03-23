@@ -14,7 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <JSONModel/JSONModel.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 #import "OPTLYCondition.h"
 
 @protocol OPTLYBaseCondition

@@ -14,7 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 // Model object representing a Decision Ticket sent when layer decision is made.
 

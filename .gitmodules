@@ -1,0 +1,6 @@
+[submodule "OptimizelySDK/OptimizelySDK/Frameworks/fmdb"]
+	path = OptimizelySDK/OptimizelySDK/Frameworks/fmdb
+	url = git@github.com:ccgus/fmdb.git
+[submodule "OptimizelySDK/OptimizelySDK/Frameworks/jsonmodel"]
+	path = OptimizelySDK/OptimizelySDK/Frameworks/jsonmodel
+	url = git@github.com:jsonmodel/jsonmodel.git

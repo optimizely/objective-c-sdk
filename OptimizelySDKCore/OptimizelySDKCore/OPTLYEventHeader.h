@@ -17,7 +17,11 @@
 // Object containing event information scraped from http request instead of sent by the client
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 @protocol OPTLYEventHeader
 @end

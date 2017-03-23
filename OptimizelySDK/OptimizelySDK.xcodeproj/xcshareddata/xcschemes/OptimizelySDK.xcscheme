@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-               BuildableName = "OptimizelySDKiOSUniversal.framework"
-               BlueprintName = "OptimizelySDKiOSUniversal"
-               ReferencedContainer = "container:OptimizelySDK.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EAC5F7951E81B12100C087B8"
                BuildableName = "OptimizelySDKTVOSUniversal.framework"
                BlueprintName = "OptimizelySDKTVOSUniversal"
@@ -42,23 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAC5F8BA1E82EE7400C087B8"
-               BuildableName = "OptimizelySDKTVOS-Universal"
-               BlueprintName = "OptimizelySDKTVOS-Universal"
-               ReferencedContainer = "container:OptimizelySDK.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
-               BuildableName = "OptimizelySDKiOS-Universal"
-               BlueprintName = "OptimizelySDKiOS-Universal"
+               BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
+               BuildableName = "OptimizelySDKiOSUniversal.framework"
+               BlueprintName = "OptimizelySDKiOSUniversal"
                ReferencedContainer = "container:OptimizelySDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -74,9 +46,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-            BuildableName = "OptimizelySDKiOSUniversal.framework"
-            BlueprintName = "OptimizelySDKiOSUniversal"
+            BlueprintIdentifier = "EAC5F7951E81B12100C087B8"
+            BuildableName = "OptimizelySDKTVOSUniversal.framework"
+            BlueprintName = "OptimizelySDKTVOSUniversal"
             ReferencedContainer = "container:OptimizelySDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +68,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-            BuildableName = "OptimizelySDKiOSUniversal.framework"
-            BlueprintName = "OptimizelySDKiOSUniversal"
+            BlueprintIdentifier = "EAC5F7951E81B12100C087B8"
+            BuildableName = "OptimizelySDKTVOSUniversal.framework"
+            BlueprintName = "OptimizelySDKTVOSUniversal"
             ReferencedContainer = "container:OptimizelySDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -114,9 +86,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-            BuildableName = "OptimizelySDKiOSUniversal.framework"
-            BlueprintName = "OptimizelySDKiOSUniversal"
+            BlueprintIdentifier = "EAC5F7951E81B12100C087B8"
+            BuildableName = "OptimizelySDKTVOSUniversal.framework"
+            BlueprintName = "OptimizelySDKTVOSUniversal"
             ReferencedContainer = "container:OptimizelySDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

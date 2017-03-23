@@ -17,7 +17,11 @@
 // Model object representing a metric that can be applied to an event
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYEventMetricNameRevenue;

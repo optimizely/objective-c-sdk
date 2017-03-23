@@ -17,7 +17,11 @@
 // Model object to represent a feature (i.e. tag) that can be applied to a user, page, or event
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYEventFeatureFeatureTypeCustomAttribute;

@@ -17,7 +17,11 @@
 // Model object containing the visitor-specific input to the client decision engine.
 
 #import <Foundation/Foundation.h>
-#import <JSONModel/JSONModelLib.h>
+#ifdef UNIVERSAL
+    #import <JSONModelLib.h>
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
 @protocol OPTLYEventAudience;
 

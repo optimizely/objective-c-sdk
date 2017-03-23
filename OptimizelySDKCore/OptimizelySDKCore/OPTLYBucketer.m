@@ -19,10 +19,10 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYGroup.h"
 #import "OPTLYLogger.h"
-#import <murmur3.h>
 #import "OPTLYProjectConfig.h"
 #import "OPTLYTrafficAllocation.h"
 #import "OPTLYVariation.h"
+#import <murmur3.h>
 
 NSString *const OPTLYBucketerMutexPolicy = @"random";
 NSString *const OPTLYBucketerOverlappingPolicy = @"overlapping";
