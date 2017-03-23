@@ -73,6 +73,18 @@
 		EA52C9721E8451EE00D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9731E84521E00D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F88B1E81E2AA00C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9741E8456F000D4FCA0 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; };
+		EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; };
+		EA52C99D1E846F4800D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
+		EA52C99E1E846F4800D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
+		EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; };
+		EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; };
+		EA52C9A11E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
+		EA52C9A21E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
+		EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; };
+		EA52C9A41E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; };
+		EA52C9A51E846F4800D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
+		EA52C9A61E846F4800D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
 		EAC5F6EC1E808F5500C087B8 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
 		EAC5F6ED1E808F5500C087B8 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */; };
 		EAC5F6EE1E808F5500C087B8 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1941E7B61F200C087B8 /* OPTLYClient.m */; };
@@ -348,6 +360,12 @@
 		EA52C97D1E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA52C9871E84679900D4FCA0 /* tvos_testTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvos_testTests.m; sourceTree = "<group>"; };
 		EA52C9891E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA52C9951E846F4700D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
+		EA52C9961E846F4700D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
+		EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
+		EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
+		EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		EAC5F1311E7B604C00C087B8 /* Optimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Optimizely.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/Optimizely.m; sourceTree = "<group>"; };
 		EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAttribute.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAttribute.m; sourceTree = "<group>"; };
 		EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAudience.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAudience.m; sourceTree = "<group>"; };
@@ -537,6 +555,12 @@
 				EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */,
 				EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */,
 				EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */,
+				EA52C9951E846F4700D4FCA0 /* JSONAPI.h */,
+				EA52C9961E846F4700D4FCA0 /* JSONAPI.m */,
+				EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */,
+				EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */,
+				EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */,
+				EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */,
 			);
 			name = JSONModel;
 			sourceTree = "<group>";
@@ -809,6 +833,7 @@
 				EAC5F72D1E808F5500C087B8 /* OPTLYAttribute.h in Headers */,
 				EAC5F72E1E808F5500C087B8 /* OPTLYAudience.h in Headers */,
 				EAC5F72F1E808F5500C087B8 /* OPTLYBaseCondition.h in Headers */,
+				EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */,
 				EAC5F7311E808F5500C087B8 /* OPTLYBuilder.h in Headers */,
 				EAC5F7321E808F5500C087B8 /* OPTLYCondition.h in Headers */,
 				EAC5F7331E808F5500C087B8 /* OPTLYDatafileKeys.h in Headers */,
@@ -816,6 +841,7 @@
 				EAC5F7361E808F5500C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
 				EAC5F7371E808F5500C087B8 /* OPTLYEvent.h in Headers */,
 				EAC5F7381E808F5500C087B8 /* OPTLYEventAudience.h in Headers */,
+				EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EAC5F7391E808F5500C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F73A1E808F5500C087B8 /* OPTLYEventDecision.h in Headers */,
 				EAC5F73B1E808F5500C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
@@ -825,6 +851,7 @@
 				EAC5F7401E808F5500C087B8 /* OPTLYEventMetric.h in Headers */,
 				EAC5F7411E808F5500C087B8 /* OPTLYEventParameterKeys.h in Headers */,
 				EAC5F7421E808F5500C087B8 /* OPTLYEventRelatedEvent.h in Headers */,
+				EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
 				EAC5F7431E808F5500C087B8 /* OPTLYEventTicket.h in Headers */,
 				EAC5F7441E808F5500C087B8 /* OPTLYEventView.h in Headers */,
 				EAC5F7451E808F5500C087B8 /* OPTLYExperiment.h in Headers */,
@@ -903,6 +930,7 @@
 				EAC5F7E31E81B12100C087B8 /* OPTLYEventAudience.h in Headers */,
 				EAC5F7E41E81B12100C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F7E51E81B12100C087B8 /* OPTLYEventDecision.h in Headers */,
+				EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
 				EAC5F7E61E81B12100C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
 				EAC5F7E81E81B12100C087B8 /* OPTLYEventFeature.h in Headers */,
 				EAC5F7E91E81B12100C087B8 /* OPTLYEventHeader.h in Headers */,
@@ -952,12 +980,14 @@
 				EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOS.h in Headers */,
 				EAC5F8641E81CCDB00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EAC5F8661E81CD7100C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
+				EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EAC5F8691E81D0DE00C087B8 /* OPTLYLogger.h in Headers */,
 				EAC5F87A1E81D30300C087B8 /* OPTLYVariation.h in Headers */,
 				EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */,
 				EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */,
 				EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
 				EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */,
+				EA52C9A41E846F4800D4FCA0 /* JSONModel+networking.h in Headers */,
 				EA4D95F81E83AE8600E40C14 /* JSONModelLib.h in Headers */,
 				EA4D95FE1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
 				EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */,
@@ -1140,11 +1170,13 @@
 				EAC5F7061E808F5500C087B8 /* OPTLYDatafileKeys.m in Sources */,
 				EAC5F7071E808F5500C087B8 /* OPTLYDecisionEventTicket.m in Sources */,
 				EAC5F7081E808F5500C087B8 /* OPTLYErrorHandler.m in Sources */,
+				EA52C9A11E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EAC5F7091E808F5500C087B8 /* OPTLYErrorHandlerMessages.m in Sources */,
 				EAC5F70A1E808F5500C087B8 /* OPTLYEvent.m in Sources */,
 				EAC5F70B1E808F5500C087B8 /* OPTLYEventAudience.m in Sources */,
 				EAC5F70C1E808F5500C087B8 /* OPTLYEventBuilder.m in Sources */,
 				EAC5F70D1E808F5500C087B8 /* OPTLYEventDecision.m in Sources */,
+				EA52C99D1E846F4800D4FCA0 /* JSONAPI.m in Sources */,
 				EAC5F70E1E808F5500C087B8 /* OPTLYEventDecisionTicket.m in Sources */,
 				EAC5F70F1E808F5500C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
 				EAC5F7101E808F5500C087B8 /* OPTLYEventFeature.m in Sources */,
@@ -1171,6 +1203,7 @@
 				EAC5F7221E808F5500C087B8 /* OPTLYTrafficAllocation.m in Sources */,
 				EAC5F7231E808F5500C087B8 /* OPTLYUserProfileBasic.m in Sources */,
 				EAC5F7241E808F5500C087B8 /* OPTLYValidator.m in Sources */,
+				EA52C9A51E846F4800D4FCA0 /* JSONModel+networking.m in Sources */,
 				EAC5F7251E808F5500C087B8 /* OPTLYVariable.m in Sources */,
 				EAC5F7261E808F5500C087B8 /* OPTLYVariation.m in Sources */,
 				EAC5F7271E808F5500C087B8 /* OPTLYVariationVariable.m in Sources */,
@@ -1199,6 +1232,7 @@
 				EAC5F7A41E81B12100C087B8 /* OPTLYManagerBasic.m in Sources */,
 				EAC5F7A51E81B12100C087B8 /* OPTLYManagerBuilder.m in Sources */,
 				EAC5F7A61E81B12100C087B8 /* OPTLYUserProfile.m in Sources */,
+				EA52C9A61E846F4800D4FCA0 /* JSONModel+networking.m in Sources */,
 				EA4D95F11E83AE7E00E40C14 /* JSONModelClassProperty.m in Sources */,
 				EA4D95F51E83AE7E00E40C14 /* JSONModelError.m in Sources */,
 				EAC5F7A71E81B12100C087B8 /* OPTLYUserProfileBuilder.m in Sources */,
@@ -1214,6 +1248,7 @@
 				EAC5F7B21E81B12100C087B8 /* OPTLYDatafileKeys.m in Sources */,
 				EAC5F7B31E81B12100C087B8 /* OPTLYDecisionEventTicket.m in Sources */,
 				EAC5F7B51E81B12100C087B8 /* OPTLYErrorHandlerMessages.m in Sources */,
+				EA52C99E1E846F4800D4FCA0 /* JSONAPI.m in Sources */,
 				EAC5F7B61E81B12100C087B8 /* OPTLYEvent.m in Sources */,
 				EAC5F7B71E81B12100C087B8 /* OPTLYEventAudience.m in Sources */,
 				EA4D96001E83AF7700E40C14 /* JSONKeyMapper.m in Sources */,
@@ -1222,6 +1257,7 @@
 				EAC5F7BA1E81B12100C087B8 /* OPTLYEventDecisionTicket.m in Sources */,
 				EAC5F7BB1E81B12100C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
 				EAC5F7BC1E81B12100C087B8 /* OPTLYEventFeature.m in Sources */,
+				EA52C9A21E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EAC5F7BD1E81B12100C087B8 /* OPTLYEventHeader.m in Sources */,
 				EAC5F7BE1E81B12100C087B8 /* OPTLYEventLayerState.m in Sources */,
 				EAC5F7BF1E81B12100C087B8 /* OPTLYEventMetric.m in Sources */,
