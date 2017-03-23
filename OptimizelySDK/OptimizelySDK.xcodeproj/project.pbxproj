@@ -67,12 +67,12 @@
 		EA4D96041E83AF7800E40C14 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */; };
 		EA4D96061E83B0A800E40C14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */; };
 		EA4D96071E843F4500E40C14 /* OPTLYEventDataStore.h in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; };
-		EA4D96081E843F6700E40C14 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; };
 		EA52C96F1E84516600D4FCA0 /* OPTLYErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9701E84518800D4FCA0 /* OPTLYErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9711E8451D400D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9721E8451EE00D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9731E84521E00D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F88B1E81E2AA00C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52C9741E8456F000D4FCA0 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F6EC1E808F5500C087B8 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
 		EAC5F6ED1E808F5500C087B8 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */; };
 		EAC5F6EE1E808F5500C087B8 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1941E7B61F200C087B8 /* OPTLYClient.m */; };
@@ -344,6 +344,10 @@
 		EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
 		EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EA52C97C1E84679900D4FCA0 /* tvos-test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tvos-test.h"; sourceTree = "<group>"; };
+		EA52C97D1E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA52C9871E84679900D4FCA0 /* tvos_testTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvos_testTests.m; sourceTree = "<group>"; };
+		EA52C9891E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC5F1311E7B604C00C087B8 /* Optimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Optimizely.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/Optimizely.m; sourceTree = "<group>"; };
 		EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAttribute.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAttribute.m; sourceTree = "<group>"; };
 		EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAudience.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAudience.m; sourceTree = "<group>"; };
@@ -537,10 +541,30 @@
 			name = JSONModel;
 			sourceTree = "<group>";
 		};
+		EA52C97B1E84679900D4FCA0 /* tvos-test */ = {
+			isa = PBXGroup;
+			children = (
+				EA52C97C1E84679900D4FCA0 /* tvos-test.h */,
+				EA52C97D1E84679900D4FCA0 /* Info.plist */,
+			);
+			path = "tvos-test";
+			sourceTree = "<group>";
+		};
+		EA52C9861E84679900D4FCA0 /* tvos-testTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA52C9871E84679900D4FCA0 /* tvos_testTests.m */,
+				EA52C9891E84679900D4FCA0 /* Info.plist */,
+			);
+			path = "tvos-testTests";
+			sourceTree = "<group>";
+		};
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDK */,
+				EA52C97B1E84679900D4FCA0 /* tvos-test */,
+				EA52C9861E84679900D4FCA0 /* tvos-testTests */,
 				EAC5F0F61E7B5D6500C087B8 /* Products */,
 				EAC5F2981E7B658700C087B8 /* Frameworks */,
 			);
@@ -794,15 +818,11 @@
 				EAC5F7381E808F5500C087B8 /* OPTLYEventAudience.h in Headers */,
 				EAC5F7391E808F5500C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F73A1E808F5500C087B8 /* OPTLYEventDecision.h in Headers */,
-				EA4D95DF1E83AE5A00E40C14 /* FMDatabaseQueue.h in Headers */,
-				EA4D95DB1E83AE5A00E40C14 /* FMDatabaseAdditions.h in Headers */,
 				EAC5F73B1E808F5500C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
 				EAC5F73D1E808F5500C087B8 /* OPTLYEventFeature.h in Headers */,
 				EAC5F73E1E808F5500C087B8 /* OPTLYEventHeader.h in Headers */,
 				EAC5F73F1E808F5500C087B8 /* OPTLYEventLayerState.h in Headers */,
 				EAC5F7401E808F5500C087B8 /* OPTLYEventMetric.h in Headers */,
-				EA4D95E11E83AE5A00E40C14 /* FMDB.h in Headers */,
-				EA4D95EE1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */,
 				EAC5F7411E808F5500C087B8 /* OPTLYEventParameterKeys.h in Headers */,
 				EAC5F7421E808F5500C087B8 /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F7431E808F5500C087B8 /* OPTLYEventTicket.h in Headers */,
@@ -818,20 +838,14 @@
 				EAC5F74F1E808F5500C087B8 /* OPTLYTrafficAllocation.h in Headers */,
 				EAC5F7511E808F5500C087B8 /* OPTLYValidator.h in Headers */,
 				EAC5F7521E808F5500C087B8 /* OPTLYVariable.h in Headers */,
-				EA4D95EA1E83AE7E00E40C14 /* JSONModel.h in Headers */,
 				EAC5F7531E808F5500C087B8 /* OPTLYVariation.h in Headers */,
-				EA4D95E21E83AE5A00E40C14 /* FMResultSet.h in Headers */,
 				EAC5F7541E808F5500C087B8 /* OPTLYVariationVariable.h in Headers */,
 				EAC5F7551E808F5500C087B8 /* OPTLYDatafileManager.h in Headers */,
-				EA4D95D91E83AE5A00E40C14 /* FMDatabase.h in Headers */,
 				EAC5F7561E808F5500C087B8 /* OPTLYDatafileManagerBuilder.h in Headers */,
 				EAC5F7571E808F5500C087B8 /* OPTLYEventDispatcher.h in Headers */,
-				EA4D95F21E83AE7E00E40C14 /* JSONModelError.h in Headers */,
 				EAC5F7581E808F5500C087B8 /* OPTLYEventDispatcherBuilder.h in Headers */,
 				EAC5F7591E808F5500C087B8 /* OptimizelySDKShared.h in Headers */,
-				EA4D96011E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
 				EAC5F75A1E808F5500C087B8 /* OPTLYClient.h in Headers */,
-				EA4D95FD1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
 				EAC5F75B1E808F5500C087B8 /* OPTLYClientBuilder.h in Headers */,
 				EAC5F75C1E808F5500C087B8 /* OPTLYDatabase.h in Headers */,
 				EAC5F75D1E808F5500C087B8 /* OPTLYDatabaseEntity.h in Headers */,
@@ -839,14 +853,13 @@
 				EAC5F75F1E808F5500C087B8 /* OPTLYDataStore.h in Headers */,
 				EAC5F7601E808F5500C087B8 /* OPTLYFileManager.h in Headers */,
 				EAC5F7611E808F5500C087B8 /* OPTLYManagerBase.h in Headers */,
-				EA4D95DD1E83AE5A00E40C14 /* FMDatabasePool.h in Headers */,
 				EAC5F7621E808F5500C087B8 /* OPTLYManagerBasic.h in Headers */,
 				EAC5F7631E808F5500C087B8 /* OPTLYManagerBuilder.h in Headers */,
 				EA52C96F1E84516600D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52C9711E8451D400D4FCA0 /* OPTLYNetworkService.h in Headers */,
+				EA52C9741E8456F000D4FCA0 /* OPTLYEventDataStore.m in Headers */,
 				EAC5F7641E808F5500C087B8 /* OptimizelySDKUserProfile.h in Headers */,
 				EAC5F7651E808F5500C087B8 /* OPTLYUserProfile.h in Headers */,
-				EA4D95F71E83AE8600E40C14 /* JSONModelLib.h in Headers */,
 				EAC5F7661E808F5500C087B8 /* OPTLYUserProfileBuilder.h in Headers */,
 				EAC5F7671E808F5500C087B8 /* OptimizelySDKiOS.h in Headers */,
 				EAC5F7681E808F5500C087B8 /* OptimizelySDKCore.h in Headers */,
@@ -860,6 +873,18 @@
 				EAC5F76C1E808F5500C087B8 /* OPTLYMacros.h in Headers */,
 				EAC5F76B1E808F5500C087B8 /* murmur3.h in Headers */,
 				EAC5F76D1E808F5500C087B8 /* OPTLYEventDataStore.h in Headers */,
+				EA4D95DF1E83AE5A00E40C14 /* FMDatabaseQueue.h in Headers */,
+				EA4D95DB1E83AE5A00E40C14 /* FMDatabaseAdditions.h in Headers */,
+				EA4D95E11E83AE5A00E40C14 /* FMDB.h in Headers */,
+				EA4D95EE1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */,
+				EA4D95EA1E83AE7E00E40C14 /* JSONModel.h in Headers */,
+				EA4D95E21E83AE5A00E40C14 /* FMResultSet.h in Headers */,
+				EA4D95D91E83AE5A00E40C14 /* FMDatabase.h in Headers */,
+				EA4D95F21E83AE7E00E40C14 /* JSONModelError.h in Headers */,
+				EA4D96011E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
+				EA4D95FD1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
+				EA4D95DD1E83AE5A00E40C14 /* FMDatabasePool.h in Headers */,
+				EA4D95F71E83AE8600E40C14 /* JSONModelLib.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +894,6 @@
 			files = (
 				EAC5F7D91E81B12100C087B8 /* OPTLYAttribute.h in Headers */,
 				EAC5F7DA1E81B12100C087B8 /* OPTLYAudience.h in Headers */,
-				EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
 				EAC5F7DB1E81B12100C087B8 /* OPTLYBaseCondition.h in Headers */,
 				EAC5F7DC1E81B12100C087B8 /* OPTLYBuilder.h in Headers */,
 				EAC5F7DD1E81B12100C087B8 /* OPTLYCondition.h in Headers */,
@@ -877,7 +901,6 @@
 				EAC5F7DF1E81B12100C087B8 /* OPTLYDecisionEventTicket.h in Headers */,
 				EAC5F7E21E81B12100C087B8 /* OPTLYEvent.h in Headers */,
 				EAC5F7E31E81B12100C087B8 /* OPTLYEventAudience.h in Headers */,
-				EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */,
 				EAC5F7E41E81B12100C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F7E51E81B12100C087B8 /* OPTLYEventDecision.h in Headers */,
 				EAC5F7E61E81B12100C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
@@ -889,7 +912,6 @@
 				EAC5F7ED1E81B12100C087B8 /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F7EE1E81B12100C087B8 /* OPTLYEventTicket.h in Headers */,
 				EAC5F7EF1E81B12100C087B8 /* OPTLYEventView.h in Headers */,
-				EA4D95F81E83AE8600E40C14 /* JSONModelLib.h in Headers */,
 				EAC5F7F01E81B12100C087B8 /* OPTLYExperiment.h in Headers */,
 				EAC5F7F11E81B12100C087B8 /* OPTLYGroup.h in Headers */,
 				EAC5F7F21E81B12100C087B8 /* OPTLYHTTPRequestManager.h in Headers */,
@@ -897,7 +919,6 @@
 				EAC5F7F51E81B12100C087B8 /* OPTLYLoggerMessages.h in Headers */,
 				EAC5F7F71E81B12100C087B8 /* OPTLYProjectConfig.h in Headers */,
 				EAC5F7F81E81B12100C087B8 /* OPTLYProjectConfigBuilder.h in Headers */,
-				EA4D95FE1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
 				EAC5F7F91E81B12100C087B8 /* OPTLYQueue.h in Headers */,
 				EAC5F7FA1E81B12100C087B8 /* OPTLYTrafficAllocation.h in Headers */,
 				EAC5F7FB1E81B12100C087B8 /* OPTLYValidator.h in Headers */,
@@ -906,7 +927,6 @@
 				EAC5F7FF1E81B12100C087B8 /* OPTLYDatafileManager.h in Headers */,
 				EAC5F8001E81B12100C087B8 /* OPTLYDatafileManagerBuilder.h in Headers */,
 				EAC5F8011E81B12100C087B8 /* OPTLYEventDispatcher.h in Headers */,
-				EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */,
 				EAC5F8021E81B12100C087B8 /* OPTLYEventDispatcherBuilder.h in Headers */,
 				EAC5F8031E81B12100C087B8 /* OptimizelySDKShared.h in Headers */,
 				EAC5F8041E81B12100C087B8 /* OPTLYClient.h in Headers */,
@@ -921,7 +941,6 @@
 				EAC5F80F1E81B12100C087B8 /* OPTLYUserProfile.h in Headers */,
 				EAC5F8101E81B12100C087B8 /* OPTLYUserProfileBuilder.h in Headers */,
 				EAC5F8121E81B12100C087B8 /* OptimizelySDKCore.h in Headers */,
-				EA4D95EF1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */,
 				EAC5F8131E81B12100C087B8 /* OptimizelySDKDatafileManager.h in Headers */,
 				EAC5F8141E81B12100C087B8 /* OptimizelySDKEventDispatcher.h in Headers */,
 				EAC5F8161E81B12100C087B8 /* OPTLYUserProfileBasic.h in Headers */,
@@ -933,11 +952,16 @@
 				EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOS.h in Headers */,
 				EAC5F8641E81CCDB00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EAC5F8661E81CD7100C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
-				EA4D96081E843F6700E40C14 /* OPTLYEventDataStore.m in Headers */,
 				EAC5F8691E81D0DE00C087B8 /* OPTLYLogger.h in Headers */,
 				EAC5F87A1E81D30300C087B8 /* OPTLYVariation.h in Headers */,
 				EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */,
 				EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */,
+				EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
+				EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */,
+				EA4D95F81E83AE8600E40C14 /* JSONModelLib.h in Headers */,
+				EA4D95FE1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
+				EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */,
+				EA4D95EF1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */,
 				EA4D95F31E83AE7E00E40C14 /* JSONModelError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,7 +1218,6 @@
 				EAC5F7B71E81B12100C087B8 /* OPTLYEventAudience.m in Sources */,
 				EA4D96001E83AF7700E40C14 /* JSONKeyMapper.m in Sources */,
 				EAC5F7B81E81B12100C087B8 /* OPTLYEventBuilder.m in Sources */,
-				EAC5F7A11E81B12100C087B8 /* OPTLYEventDataStore.m in Sources */,
 				EAC5F7B91E81B12100C087B8 /* OPTLYEventDecision.m in Sources */,
 				EAC5F7BA1E81B12100C087B8 /* OPTLYEventDecisionTicket.m in Sources */,
 				EAC5F7BB1E81B12100C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
@@ -1219,6 +1242,7 @@
 				EAC5F7CF1E81B12100C087B8 /* OPTLYUserProfileBasic.m in Sources */,
 				EAC5F7D01E81B12100C087B8 /* OPTLYValidator.m in Sources */,
 				EAC5F7D11E81B12100C087B8 /* OPTLYVariable.m in Sources */,
+				EAC5F7A11E81B12100C087B8 /* OPTLYEventDataStore.m in Sources */,
 				EAC5F7D21E81B12100C087B8 /* OPTLYVariation.m in Sources */,
 				EAC5F7D31E81B12100C087B8 /* OPTLYVariationVariable.m in Sources */,
 			);
@@ -1287,8 +1311,11 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
-				SDKROOT = iphoneos;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1352,8 +1379,11 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
-				SDKROOT = iphoneos;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1421,8 +1451,11 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
-				SDKROOT = iphoneos;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1489,8 +1522,11 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
-				SDKROOT = iphoneos;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1507,10 +1543,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -1524,8 +1557,9 @@
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
 				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOSUniversal-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1535,7 +1569,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1550,10 +1586,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -1567,8 +1600,9 @@
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
 				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOSUniversal-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1578,7 +1612,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Beta;
@@ -1593,10 +1629,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -1610,8 +1643,9 @@
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
 				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOSUniversal-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1621,7 +1655,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = RC;
@@ -1636,10 +1672,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -1653,8 +1686,9 @@
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
 				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOSUniversal-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1663,7 +1697,9 @@
 				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKiOSUniversal.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -1678,10 +1714,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIVERSAL=1",
 					"$(inherited)",
@@ -1690,7 +1723,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1702,10 +1735,13 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOSUniversal.modulemap;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1721,10 +1757,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIVERSAL=1",
 					"$(inherited)",
@@ -1733,7 +1766,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1745,10 +1778,13 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOSUniversal.modulemap;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1764,10 +1800,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIVERSAL=1",
 					"$(inherited)",
@@ -1776,7 +1809,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1788,10 +1821,13 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOSUniversal.modulemap;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1807,10 +1843,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIVERSAL=1",
 					"$(inherited)",
@@ -1819,7 +1852,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/**",
+					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1835,6 +1868,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};

@@ -1455,7 +1455,7 @@
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1480,7 +1480,7 @@
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = RC;
 		};
@@ -1505,7 +1505,7 @@
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Beta;
 		};
@@ -1530,7 +1530,7 @@
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
