@@ -152,6 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
             let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+            optimizelyClient?.track((self?.eventKey)!, userId: (self?.userId)!, attributes: nil, eventTags: ["name":"alda"])
         })
         
         // ---- 2. Synchronous Initialization with Datafile ----

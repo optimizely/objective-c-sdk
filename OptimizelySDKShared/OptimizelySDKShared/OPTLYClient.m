@@ -89,26 +89,50 @@
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:nil];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary<NSString *, NSString *> * )attributes
 {
-    [self track:eventKey userId:userId attributes:attributes eventValue:nil];
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    eventValue:(NSNumber *)eventValue
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:eventValue];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary *)attributes
+   eventValue:(NSNumber *)eventValue
+{
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:attributes eventTags:eventTags eventValue:nil];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
    eventValue:(NSNumber *)eventValue {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
@@ -118,6 +142,7 @@
     [self.optimizely track:eventKey
                     userId:userId
                 attributes:attributes
+                 eventTags:eventTags
                 eventValue:eventValue];
 }
 

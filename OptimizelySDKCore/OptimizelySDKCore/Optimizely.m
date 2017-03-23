@@ -23,6 +23,7 @@
 #import "OPTLYEventDecision.h"
 #import "OPTLYEventDispatcher.h"
 #import "OPTLYEventLayerState.h"
+#import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventTicket.h"
@@ -180,21 +181,28 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:nil];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary<NSString *, NSString *> * )attributes
 {
-    [self track:eventKey userId:userId attributes:attributes eventValue:nil];
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    eventValue:(NSNumber *)eventValue
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:eventValue];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
@@ -202,7 +210,23 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
    attributes:(NSDictionary *)attributes
    eventValue:(NSNumber *)eventValue
 {
-    
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:attributes eventTags:eventTags eventValue:nil];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
+   eventValue:(NSNumber *)eventValue
+{
     OPTLYEvent *event = [self.config getEventForKey:eventKey];
     
     if (!event) {
@@ -210,11 +234,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
+    if (eventValue) {
+         eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
+    }
+    
     OPTLYEventTicket *conversionEvent = [self.eventBuilder buildEventTicket:self.config
                                                                    bucketer:self.bucketer
                                                                      userId:userId
                                                                   eventName:eventKey
-                                                                 eventValue:eventValue
+                                                                  eventTags:eventTags
                                                                  attributes:attributes];
     
     if (!conversionEvent) {

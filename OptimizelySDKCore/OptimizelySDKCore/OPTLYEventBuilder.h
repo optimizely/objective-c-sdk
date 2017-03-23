@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
  * @param config The project config object.
  * @param userId The ID of the user.
  * @param eventName The event name.
- * @param eventValue The event value (e.g., revenue amount).
+ * @param eventTags A map of event tag names to event tag values (string, number, or boolean)
  * @param attributes A map of attribute names to current user attribute values.
  * @return A map of parameters for a conversion event. This value can be nil.
  *
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_END
                                        bucketer:(nonnull id<OPTLYBucketer>)bucketer
                                          userId:(nonnull NSString *)userId
                                       eventName:(nonnull NSString *)eventName
-                                     eventValue:(nullable NSNumber *)eventValue
+                                      eventTags:(nullable NSDictionary *)eventTags
                                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
