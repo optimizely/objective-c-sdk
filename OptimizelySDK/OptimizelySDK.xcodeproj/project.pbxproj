@@ -195,7 +195,7 @@
 		EAC5F7641E808F5500C087B8 /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28A1E7B64A800C087B8 /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7651E808F5500C087B8 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28B1E7B64A800C087B8 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7661E808F5500C087B8 /* OPTLYUserProfileBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28C1E7B64A800C087B8 /* OPTLYUserProfileBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAC5F7671E808F5500C087B8 /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F7671E808F5500C087B8 /* OptimizelySDKiOSUniversal.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOSUniversal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7681E808F5500C087B8 /* OptimizelySDKCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2921E7B651700C087B8 /* OptimizelySDKCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7691E808F5500C087B8 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F76A1E808F5500C087B8 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -314,7 +314,7 @@
 		EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; };
-		EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F82E1E81BC3700C087B8 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F8301E81BC5E00C087B8 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */; };
 		EAC5F85F1E81C99400C087B8 /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1501E7B604C00C087B8 /* OPTLYNetworkService.m */; };
@@ -483,7 +483,7 @@
 		EAC5F28A1E7B64A800C087B8 /* OptimizelySDKUserProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKUserProfile.h; path = ../../OptimizelySDKUserProfile/OptimizelySDKUserProfile/OptimizelySDKUserProfile.h; sourceTree = "<group>"; };
 		EAC5F28B1E7B64A800C087B8 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfile.h; path = ../../OptimizelySDKUserProfile/OptimizelySDKUserProfile/OPTLYUserProfile.h; sourceTree = "<group>"; };
 		EAC5F28C1E7B64A800C087B8 /* OPTLYUserProfileBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileBuilder.h; path = ../../OptimizelySDKUserProfile/OptimizelySDKUserProfile/OPTLYUserProfileBuilder.h; sourceTree = "<group>"; };
-		EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKiOS.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework/OptimizelySDKiOS/OptimizelySDKiOS/OptimizelySDKiOS.h"; sourceTree = "<absolute>"; };
+		EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOSUniversal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKiOSUniversal.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework/OptimizelySDKiOS/OptimizelySDKiOS/OptimizelySDKiOSUniversal.h"; sourceTree = "<absolute>"; };
 		EAC5F2921E7B651700C087B8 /* OptimizelySDKCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKCore.h; path = ../../OptimizelySDKCore/OptimizelySDKCore/OptimizelySDKCore.h; sourceTree = "<group>"; };
 		EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKDatafileManager.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework/OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h"; sourceTree = "<absolute>"; };
 		EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKEventDispatcher.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework/OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h"; sourceTree = "<absolute>"; };
@@ -497,7 +497,7 @@
 		EAC5F8251E81B1F100C087B8 /* OptimizelySDKiOSUniversal.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKiOSUniversal.modulemap; path = OptimizelySDK/OptimizelySDKiOSUniversal.modulemap; sourceTree = "<group>"; };
 		EAC5F8271E81B1FB00C087B8 /* OptimizelySDKTVOSUniversal-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OptimizelySDKTVOSUniversal-Info.plist"; sourceTree = "<group>"; };
 		EAC5F8281E81B1FB00C087B8 /* OptimizelySDKTVOSUniversal.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKTVOSUniversal.modulemap; sourceTree = "<group>"; };
-		EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKTVOS.h; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OptimizelySDKTVOS.h; sourceTree = "<group>"; };
+		EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKTVOSUniversal.h; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OptimizelySDKTVOSUniversal.h; sourceTree = "<group>"; };
 		EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYManager.h; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.h; sourceTree = "<group>"; };
 		EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYManager.m; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.m; sourceTree = "<group>"; };
 		EAC5F85D1E81C84500C087B8 /* OPTLYEventDispatcherBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYEventDispatcherBasic.h; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYEventDispatcherBasic.h; sourceTree = "<group>"; };
@@ -782,7 +782,7 @@
 			children = (
 				EAC5F8241E81B1F100C087B8 /* OptimizelySDKiOSUniversal-Info.plist */,
 				EAC5F8251E81B1F100C087B8 /* OptimizelySDKiOSUniversal.modulemap */,
-				EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOS.h */,
+				EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOSUniversal.h */,
 				EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */,
 				EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */,
 			);
@@ -815,7 +815,7 @@
 			children = (
 				EAC5F8271E81B1FB00C087B8 /* OptimizelySDKTVOSUniversal-Info.plist */,
 				EAC5F8281E81B1FB00C087B8 /* OptimizelySDKTVOSUniversal.modulemap */,
-				EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOS.h */,
+				EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h */,
 				EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */,
 				EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */,
 			);
@@ -888,7 +888,7 @@
 				EAC5F7641E808F5500C087B8 /* OptimizelySDKUserProfile.h in Headers */,
 				EAC5F7651E808F5500C087B8 /* OPTLYUserProfile.h in Headers */,
 				EAC5F7661E808F5500C087B8 /* OPTLYUserProfileBuilder.h in Headers */,
-				EAC5F7671E808F5500C087B8 /* OptimizelySDKiOS.h in Headers */,
+				EAC5F7671E808F5500C087B8 /* OptimizelySDKiOSUniversal.h in Headers */,
 				EAC5F7681E808F5500C087B8 /* OptimizelySDKCore.h in Headers */,
 				EAC5F7691E808F5500C087B8 /* OptimizelySDKDatafileManager.h in Headers */,
 				EAC5F76A1E808F5500C087B8 /* OptimizelySDKEventDispatcher.h in Headers */,
@@ -977,7 +977,7 @@
 				EA52C9701E84518800D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52C9731E84521E00D4FCA0 /* Optimizely.h in Headers */,
 				EAC5F82E1E81BC3700C087B8 /* OPTLYManager.h in Headers */,
-				EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOS.h in Headers */,
+				EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h in Headers */,
 				EAC5F8641E81CCDB00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EAC5F8661E81CD7100C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
@@ -1112,7 +1112,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKiOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk iphonesimulator -configuration ${CONFIGURATION} -arch x86_64 -arch i386 ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk iphoneos -configuration ${CONFIGURATION} -arch arm64 -arch armv7 -arch armv7s ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
 		};
 		EAC5F8C11E82EE8E00C087B8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1125,7 +1125,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKTVOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk appletvsimulator -configuration ${CONFIGURATION} -arch x86_64 -arch i386 ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk appletv -configuration ${CONFIGURATION} -arch arm64 -arch armv7 -arch armv7s ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-appletv/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-appletv/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-appletvsimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1609,6 +1609,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -1652,6 +1653,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Beta;
 		};
@@ -1695,6 +1697,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = RC;
 		};
@@ -1737,6 +1740,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};
@@ -1780,6 +1784,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
 		};
@@ -1823,6 +1828,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Beta;
 		};
@@ -1866,6 +1872,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = RC;
 		};
@@ -1908,6 +1915,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};
@@ -1929,6 +1937,8 @@
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1950,6 +1960,8 @@
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
 			name = Beta;
 		};
@@ -1971,6 +1983,8 @@
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
 			name = RC;
 		};
@@ -1992,6 +2006,8 @@
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -2001,7 +2017,10 @@
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -2011,7 +2030,10 @@
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Beta;
 		};
@@ -2021,7 +2043,10 @@
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = RC;
 		};
@@ -2031,7 +2056,10 @@
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};

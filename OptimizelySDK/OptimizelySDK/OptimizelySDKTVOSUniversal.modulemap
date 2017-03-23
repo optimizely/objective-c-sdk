@@ -1,5 +1,5 @@
 framework module OptimizelySDKTVOSUniversal {
-  umbrella header "OptimizelySDKTVOS.h"
+  umbrella header "OptimizelySDKTVOSUniversal.h"
 
   export *
   module * { export * }
