@@ -10,9 +10,9 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "85838408-5085-4AF0-98EC-7AC81BAD0218",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "04101981B66E318109934C9516F88D824BB96459" : "objective-c-sdk-universal-framework-2\/OptimizelySDK\/OptimizelySDK\/Frameworks\/fmdb\/",
-    "9218B72D22EBA24E192141398455F38F96336AC1" : "objective-c-sdk-universal-framework-2\/",
-    "2454A7C0A4BC2A09472718EB55354F320600B245" : "objective-c-sdk-universal-framework-2\/OptimizelySDK\/OptimizelySDK\/Frameworks\/jsonmodel\/"
+    "04101981B66E318109934C9516F88D824BB96459" : "objective-c-sdk-universal-framework\/OptimizelySDK\/OptimizelySDKUniversal\/Frameworks\/fmdb\/",
+    "9218B72D22EBA24E192141398455F38F96336AC1" : "objective-c-sdk-universal-framework\/",
+    "2454A7C0A4BC2A09472718EB55354F320600B245" : "objective-c-sdk-universal-framework\/OptimizelySDK\/OptimizelySDKUniversal\/Frameworks\/jsonmodel\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "OptimizelySDK",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
