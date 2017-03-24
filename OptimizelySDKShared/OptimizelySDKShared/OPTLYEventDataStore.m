@@ -123,7 +123,12 @@
 #endif
 
 #if TARGET_OS_TV
-#import <OptimizelySDKCore/OPTLYQueue.h>
+
+#ifdef UNIVERSAL
+    #import "OPTLYQueue.h"
+#else
+    #import <OptimizelySDKCore/OPTLYQueue.h>
+#endif
 
 @interface OPTLYEventDataStoreTVOS()
 @property (nonatomic, strong) NSMutableDictionary *eventsCache;
