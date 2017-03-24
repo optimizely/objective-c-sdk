@@ -188,7 +188,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
-- (void)testBuildEventTicketWithMixedEventTags
+- (void)testBuildEventTicketWithEventTags
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
