@@ -17,7 +17,7 @@
                BlueprintIdentifier = "EAC5F8BA1E82EE7400C087B8"
                BuildableName = "OptimizelySDKTVOS-Universal"
                BlueprintName = "OptimizelySDKTVOS-Universal"
-               ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+               ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,7 +48,7 @@
             BlueprintIdentifier = "EAC5F8BA1E82EE7400C087B8"
             BuildableName = "OptimizelySDKTVOS-Universal"
             BlueprintName = "OptimizelySDKTVOS-Universal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,7 +66,7 @@
             BlueprintIdentifier = "EAC5F8BA1E82EE7400C087B8"
             BuildableName = "OptimizelySDKTVOS-Universal"
             BlueprintName = "OptimizelySDKTVOS-Universal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

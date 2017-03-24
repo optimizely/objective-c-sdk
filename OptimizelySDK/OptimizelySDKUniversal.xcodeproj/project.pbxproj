@@ -36,9 +36,7 @@
 		EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1351E7B604C00C087B8 /* OPTLYBucketer.m */; };
 		EA52C9E81E851CC100D4FCA0 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
 		EA52C9E91E851CC100D4FCA0 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */; };
-		EA52C9EA1E851CC100D4FCA0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D31E83AE5A00E40C14 /* FMDatabasePool.m */; };
 		EA52C9EB1E851CC100D4FCA0 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1941E7B61F200C087B8 /* OPTLYClient.m */; };
-		EA52C9EC1E851CC100D4FCA0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D11E83AE5A00E40C14 /* FMDatabaseAdditions.m */; };
 		EA52C9ED1E851CC100D4FCA0 /* OPTLYClientBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1951E7B61F200C087B8 /* OPTLYClientBuilder.m */; };
 		EA52C9EE1E851CC100D4FCA0 /* OPTLYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1961E7B61F200C087B8 /* OPTLYDatabase.m */; };
 		EA52C9EF1E851CC100D4FCA0 /* OPTLYDatabaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1971E7B61F200C087B8 /* OPTLYDatabaseEntity.m */; };
@@ -51,15 +49,11 @@
 		EA52C9F61E851CC100D4FCA0 /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19E1E7B61F200C087B8 /* OPTLYManagerBuilder.m */; };
 		EA52C9F71E851CC100D4FCA0 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18F1E7B61AE00C087B8 /* OPTLYUserProfile.m */; };
 		EA52C9F81E851CC100D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1901E7B61AE00C087B8 /* OPTLYUserProfileBuilder.m */; };
-		EA52C9F91E851CC100D4FCA0 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D81E83AE5A00E40C14 /* FMResultSet.m */; };
 		EA52C9FA1E851CC100D4FCA0 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18A1E7B616A00C087B8 /* OPTLYEventDispatcher.m */; };
 		EA52C9FB1E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18B1E7B616A00C087B8 /* OPTLYEventDispatcherBuilder.m */; };
 		EA52C9FC1E851CC100D4FCA0 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1831E7B60CC00C087B8 /* OPTLYDatafileManager.m */; };
 		EA52C9FD1E851CC100D4FCA0 /* OPTLYDatafileManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1841E7B60CC00C087B8 /* OPTLYDatafileManagerBuilder.m */; };
-		EA52C9FE1E851CC100D4FCA0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95CF1E83AE5A00E40C14 /* FMDatabase.m */; };
 		EA52C9FF1E851CC100D4FCA0 /* Optimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1311E7B604C00C087B8 /* Optimizely.m */; };
-		EA52CA001E851CC100D4FCA0 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D51E83AE5A00E40C14 /* FMDatabaseQueue.m */; };
-		EA52CA011E851CC100D4FCA0 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */; };
 		EA52CA021E851CC100D4FCA0 /* OPTLYAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */; };
 		EA52CA031E851CC100D4FCA0 /* OPTLYAudience.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */; };
 		EA52CA041E851CC100D4FCA0 /* OPTLYBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1341E7B604C00C087B8 /* OPTLYBaseCondition.m */; };
@@ -68,13 +62,11 @@
 		EA52CA071E851CC100D4FCA0 /* OPTLYDatafileKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1381E7B604C00C087B8 /* OPTLYDatafileKeys.m */; };
 		EA52CA081E851CC100D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1391E7B604C00C087B8 /* OPTLYDecisionEventTicket.m */; };
 		EA52CA091E851CC100D4FCA0 /* OPTLYErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13A1E7B604C00C087B8 /* OPTLYErrorHandler.m */; };
-		EA52CA0A1E851CC100D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
 		EA52CA0B1E851CC100D4FCA0 /* OPTLYErrorHandlerMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13B1E7B604C00C087B8 /* OPTLYErrorHandlerMessages.m */; };
 		EA52CA0C1E851CC100D4FCA0 /* OPTLYEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13C1E7B604C00C087B8 /* OPTLYEvent.m */; };
 		EA52CA0D1E851CC100D4FCA0 /* OPTLYEventAudience.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13D1E7B604C00C087B8 /* OPTLYEventAudience.m */; };
 		EA52CA0E1E851CC100D4FCA0 /* OPTLYEventBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13E1E7B604C00C087B8 /* OPTLYEventBuilder.m */; };
 		EA52CA0F1E851CC100D4FCA0 /* OPTLYEventDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13F1E7B604C00C087B8 /* OPTLYEventDecision.m */; };
-		EA52CA101E851CC100D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
 		EA52CA111E851CC100D4FCA0 /* OPTLYEventDecisionTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1401E7B604C00C087B8 /* OPTLYEventDecisionTicket.m */; };
 		EA52CA121E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1411E7B604C00C087B8 /* OPTLYEventDispatcherBasic.m */; };
 		EA52CA131E851CC100D4FCA0 /* OPTLYEventFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1421E7B604C00C087B8 /* OPTLYEventFeature.m */; };
@@ -86,8 +78,6 @@
 		EA52CA191E851CC100D4FCA0 /* OPTLYEventTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1481E7B604C00C087B8 /* OPTLYEventTicket.m */; };
 		EA52CA1A1E851CC100D4FCA0 /* OPTLYEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1491E7B604C00C087B8 /* OPTLYEventView.m */; };
 		EA52CA1B1E851CC100D4FCA0 /* OPTLYExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14A1E7B604C00C087B8 /* OPTLYExperiment.m */; };
-		EA52CA1C1E851CC100D4FCA0 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E51E83AE7E00E40C14 /* JSONModel.m */; };
-		EA52CA1D1E851CC100D4FCA0 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */; };
 		EA52CA1E1E851CC100D4FCA0 /* OPTLYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14B1E7B604C00C087B8 /* OPTLYGroup.m */; };
 		EA52CA1F1E851CC100D4FCA0 /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14C1E7B604C00C087B8 /* OPTLYHTTPRequestManager.m */; };
 		EA52CA201E851CC100D4FCA0 /* OPTLYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14D1E7B604C00C087B8 /* OPTLYLog.m */; };
@@ -95,13 +85,10 @@
 		EA52CA221E851CC100D4FCA0 /* OPTLYNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1501E7B604C00C087B8 /* OPTLYNetworkService.m */; };
 		EA52CA231E851CC100D4FCA0 /* OPTLYProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1511E7B604C00C087B8 /* OPTLYProjectConfig.m */; };
 		EA52CA241E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
-		EA52CA251E851CC100D4FCA0 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */; };
-		EA52CA261E851CC100D4FCA0 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */; };
 		EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */; };
 		EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */; };
 		EA52CA291E851CC100D4FCA0 /* OPTLYUserProfileBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileBasic.m */; };
 		EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */; };
-		EA52CA2B1E851CC100D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
 		EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */; };
 		EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1581E7B604C00C087B8 /* OPTLYVariation.m */; };
 		EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1591E7B604C00C087B8 /* OPTLYVariationVariable.m */; };
@@ -170,22 +157,7 @@
 		EA52CA6F1E851CC100D4FCA0 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA701E851CC100D4FCA0 /* OPTLYBucketer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21A1E7B639B00C087B8 /* OPTLYBucketer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA711E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F85D1E81C84500C087B8 /* OPTLYEventDispatcherBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA721E851CC100D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA731E851CC100D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA741E851CC100D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA761E851CC100D4FCA0 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D41E83AE5A00E40C14 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA771E851CC100D4FCA0 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D01E83AE5A00E40C14 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA781E851CC100D4FCA0 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D61E83AE5A00E40C14 /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA791E851CC100D4FCA0 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7A1E851CC100D4FCA0 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7B1E851CC100D4FCA0 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D71E83AE5A00E40C14 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7C1E851CC100D4FCA0 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95CE1E83AE5A00E40C14 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7D1E851CC100D4FCA0 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7E1E851CC100D4FCA0 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA7F1E851CC100D4FCA0 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA801E851CC100D4FCA0 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D21E83AE5A00E40C14 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA811E851CC100D4FCA0 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA821E851CC100D4FCA0 /* OPTLYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2331E7B639B00C087B8 /* OPTLYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -201,15 +173,11 @@
 		EA52CA981E851CEE00D4FCA0 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1941E7B61F200C087B8 /* OPTLYClient.m */; };
 		EA52CA991E851CEE00D4FCA0 /* OPTLYDatafileManagerBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1981E7B61F200C087B8 /* OPTLYDatafileManagerBasic.m */; };
 		EA52CA9A1E851CEE00D4FCA0 /* OPTLYDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1991E7B61F200C087B8 /* OPTLYDataStore.m */; };
-		EA52CA9B1E851CEE00D4FCA0 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */; };
 		EA52CA9C1E851CEE00D4FCA0 /* OPTLYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19B1E7B61F200C087B8 /* OPTLYFileManager.m */; };
 		EA52CA9D1E851CEE00D4FCA0 /* OPTLYManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19C1E7B61F200C087B8 /* OPTLYManagerBase.m */; };
 		EA52CA9E1E851CEE00D4FCA0 /* OPTLYManagerBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19D1E7B61F200C087B8 /* OPTLYManagerBasic.m */; };
 		EA52CA9F1E851CEE00D4FCA0 /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19E1E7B61F200C087B8 /* OPTLYManagerBuilder.m */; };
 		EA52CAA01E851CEE00D4FCA0 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18F1E7B61AE00C087B8 /* OPTLYUserProfile.m */; };
-		EA52CAA11E851CEE00D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
-		EA52CAA21E851CEE00D4FCA0 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */; };
-		EA52CAA31E851CEE00D4FCA0 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */; };
 		EA52CAA41E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1901E7B61AE00C087B8 /* OPTLYUserProfileBuilder.m */; };
 		EA52CAA51E851CEE00D4FCA0 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18A1E7B616A00C087B8 /* OPTLYEventDispatcher.m */; };
 		EA52CAA61E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18B1E7B616A00C087B8 /* OPTLYEventDispatcherBuilder.m */; };
@@ -223,16 +191,13 @@
 		EA52CAAE1E851CEE00D4FCA0 /* OPTLYDatafileKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1381E7B604C00C087B8 /* OPTLYDatafileKeys.m */; };
 		EA52CAAF1E851CEE00D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1391E7B604C00C087B8 /* OPTLYDecisionEventTicket.m */; };
 		EA52CAB01E851CEE00D4FCA0 /* OPTLYErrorHandlerMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13B1E7B604C00C087B8 /* OPTLYErrorHandlerMessages.m */; };
-		EA52CAB11E851CEE00D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
 		EA52CAB21E851CEE00D4FCA0 /* OPTLYEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13C1E7B604C00C087B8 /* OPTLYEvent.m */; };
 		EA52CAB31E851CEE00D4FCA0 /* OPTLYEventAudience.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13D1E7B604C00C087B8 /* OPTLYEventAudience.m */; };
-		EA52CAB41E851CEE00D4FCA0 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */; };
 		EA52CAB51E851CEE00D4FCA0 /* OPTLYEventBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13E1E7B604C00C087B8 /* OPTLYEventBuilder.m */; };
 		EA52CAB61E851CEE00D4FCA0 /* OPTLYEventDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F13F1E7B604C00C087B8 /* OPTLYEventDecision.m */; };
 		EA52CAB71E851CEE00D4FCA0 /* OPTLYEventDecisionTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1401E7B604C00C087B8 /* OPTLYEventDecisionTicket.m */; };
 		EA52CAB81E851CEE00D4FCA0 /* OPTLYEventDispatcherBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1411E7B604C00C087B8 /* OPTLYEventDispatcherBasic.m */; };
 		EA52CAB91E851CEE00D4FCA0 /* OPTLYEventFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1421E7B604C00C087B8 /* OPTLYEventFeature.m */; };
-		EA52CABA1E851CEE00D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
 		EA52CABB1E851CEE00D4FCA0 /* OPTLYEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1431E7B604C00C087B8 /* OPTLYEventHeader.m */; };
 		EA52CABC1E851CEE00D4FCA0 /* OPTLYEventLayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1441E7B604C00C087B8 /* OPTLYEventLayerState.m */; };
 		EA52CABD1E851CEE00D4FCA0 /* OPTLYEventMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1451E7B604C00C087B8 /* OPTLYEventMetric.m */; };
@@ -244,7 +209,6 @@
 		EA52CAC31E851CEE00D4FCA0 /* OPTLYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14B1E7B604C00C087B8 /* OPTLYGroup.m */; };
 		EA52CAC41E851CEE00D4FCA0 /* OPTLYHTTPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14C1E7B604C00C087B8 /* OPTLYHTTPRequestManager.m */; };
 		EA52CAC51E851CEE00D4FCA0 /* OPTLYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14D1E7B604C00C087B8 /* OPTLYLog.m */; };
-		EA52CAC61E851CEE00D4FCA0 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E51E83AE7E00E40C14 /* JSONModel.m */; };
 		EA52CAC71E851CEE00D4FCA0 /* OPTLYLoggerMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14F1E7B604C00C087B8 /* OPTLYLoggerMessages.m */; };
 		EA52CAC81E851CEE00D4FCA0 /* OPTLYProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1511E7B604C00C087B8 /* OPTLYProjectConfig.m */; };
 		EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
@@ -318,53 +282,92 @@
 		EA52CB0F1E851CEE00D4FCA0 /* OPTLYErrorHandlerMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2201E7B639B00C087B8 /* OPTLYErrorHandlerMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB101E851CEE00D4FCA0 /* OPTLYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2331E7B639B00C087B8 /* OPTLYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB111E851CEE00D4FCA0 /* OPTLYVariation.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23E1E7B639B00C087B8 /* OPTLYVariation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB121E851CEE00D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB131E851CEE00D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB141E851CEE00D4FCA0 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB151E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB161E851CEE00D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB171E851CEE00D4FCA0 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB181E851CEE00D4FCA0 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB191E851CEE00D4FCA0 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB1A1E851CEE00D4FCA0 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB1B1E851CEE00D4FCA0 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52CB431E85955500D4FCA0 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB3D1E85955500D4FCA0 /* JSONModel.h */; };
+		EA52CB441E85955500D4FCA0 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB3D1E85955500D4FCA0 /* JSONModel.h */; };
+		EA52CB451E85955500D4FCA0 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB3E1E85955500D4FCA0 /* JSONModel.m */; };
+		EA52CB461E85955500D4FCA0 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB3E1E85955500D4FCA0 /* JSONModel.m */; };
+		EA52CB471E85955500D4FCA0 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB3F1E85955500D4FCA0 /* JSONModelClassProperty.h */; };
+		EA52CB481E85955500D4FCA0 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB3F1E85955500D4FCA0 /* JSONModelClassProperty.h */; };
+		EA52CB491E85955500D4FCA0 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB401E85955500D4FCA0 /* JSONModelClassProperty.m */; };
+		EA52CB4A1E85955500D4FCA0 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB401E85955500D4FCA0 /* JSONModelClassProperty.m */; };
+		EA52CB4B1E85955500D4FCA0 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB411E85955500D4FCA0 /* JSONModelError.h */; };
+		EA52CB4C1E85955500D4FCA0 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB411E85955500D4FCA0 /* JSONModelError.h */; };
+		EA52CB4D1E85955500D4FCA0 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB421E85955500D4FCA0 /* JSONModelError.m */; };
+		EA52CB4E1E85955500D4FCA0 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB421E85955500D4FCA0 /* JSONModelError.m */; };
+		EA52CB501E85955C00D4FCA0 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB4F1E85955C00D4FCA0 /* JSONModelLib.h */; };
+		EA52CB511E85955C00D4FCA0 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB4F1E85955C00D4FCA0 /* JSONModelLib.h */; };
+		EA52CB581E85956600D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB521E85956600D4FCA0 /* JSONAPI.h */; };
+		EA52CB591E85956600D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB521E85956600D4FCA0 /* JSONAPI.h */; };
+		EA52CB5A1E85956600D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB531E85956600D4FCA0 /* JSONAPI.m */; };
+		EA52CB5B1E85956600D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB531E85956600D4FCA0 /* JSONAPI.m */; };
+		EA52CB5C1E85956600D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB541E85956600D4FCA0 /* JSONHTTPClient.h */; };
+		EA52CB5D1E85956600D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB541E85956600D4FCA0 /* JSONHTTPClient.h */; };
+		EA52CB5E1E85956600D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB551E85956600D4FCA0 /* JSONHTTPClient.m */; };
+		EA52CB5F1E85956600D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB551E85956600D4FCA0 /* JSONHTTPClient.m */; };
+		EA52CB601E85956600D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB561E85956600D4FCA0 /* JSONModel+networking.h */; };
+		EA52CB611E85956600D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB561E85956600D4FCA0 /* JSONModel+networking.h */; };
+		EA52CB621E85956600D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB571E85956600D4FCA0 /* JSONModel+networking.m */; };
+		EA52CB631E85956600D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB571E85956600D4FCA0 /* JSONModel+networking.m */; };
+		EA52CB681E85957000D4FCA0 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB641E85957000D4FCA0 /* JSONKeyMapper.h */; };
+		EA52CB691E85957000D4FCA0 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB641E85957000D4FCA0 /* JSONKeyMapper.h */; };
+		EA52CB6A1E85957000D4FCA0 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB651E85957000D4FCA0 /* JSONKeyMapper.m */; };
+		EA52CB6B1E85957000D4FCA0 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB651E85957000D4FCA0 /* JSONKeyMapper.m */; };
+		EA52CB6C1E85957000D4FCA0 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB661E85957000D4FCA0 /* JSONValueTransformer.h */; };
+		EA52CB6D1E85957000D4FCA0 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB661E85957000D4FCA0 /* JSONValueTransformer.h */; };
+		EA52CB6E1E85957000D4FCA0 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB671E85957000D4FCA0 /* JSONValueTransformer.m */; };
+		EA52CB6F1E85957000D4FCA0 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB671E85957000D4FCA0 /* JSONValueTransformer.m */; };
+		EA52CB7B1E85959100D4FCA0 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB701E85959100D4FCA0 /* FMDatabase.h */; };
+		EA52CB7D1E85959100D4FCA0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB711E85959100D4FCA0 /* FMDatabase.m */; };
+		EA52CB7F1E85959100D4FCA0 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB721E85959100D4FCA0 /* FMDatabaseAdditions.h */; };
+		EA52CB811E85959100D4FCA0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB731E85959100D4FCA0 /* FMDatabaseAdditions.m */; };
+		EA52CB831E85959100D4FCA0 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB741E85959100D4FCA0 /* FMDatabasePool.h */; };
+		EA52CB851E85959100D4FCA0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB751E85959100D4FCA0 /* FMDatabasePool.m */; };
+		EA52CB871E85959100D4FCA0 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB761E85959100D4FCA0 /* FMDatabaseQueue.h */; };
+		EA52CB891E85959100D4FCA0 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB771E85959100D4FCA0 /* FMDatabaseQueue.m */; };
+		EA52CB8B1E85959100D4FCA0 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB781E85959100D4FCA0 /* FMDB.h */; };
+		EA52CB8D1E85959100D4FCA0 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CB791E85959100D4FCA0 /* FMResultSet.h */; };
+		EA52CB8F1E85959100D4FCA0 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EA4D95CE1E83AE5A00E40C14 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
-		EA4D95CF1E83AE5A00E40C14 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
-		EA4D95D01E83AE5A00E40C14 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		EA4D95D11E83AE5A00E40C14 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		EA4D95D21E83AE5A00E40C14 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
-		EA4D95D31E83AE5A00E40C14 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
-		EA4D95D41E83AE5A00E40C14 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		EA4D95D51E83AE5A00E40C14 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
-		EA4D95D61E83AE5A00E40C14 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMDB.h; sourceTree = "<group>"; };
-		EA4D95D71E83AE5A00E40C14 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
-		EA4D95D81E83AE5A00E40C14 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = OptimizelySDK/Frameworks/fmdb/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
-		EA4D95E41E83AE7E00E40C14 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
-		EA4D95E51E83AE7E00E40C14 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
-		EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
-		EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
-		EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
-		EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
-		EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
-		EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
-		EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
-		EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		EA52C9951E846F4700D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
-		EA52C9961E846F4700D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
-		EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
-		EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
-		EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA52CA8C1E851CC200D4FCA0 /* OptimizelySDKiOSUniversal copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OptimizelySDKiOSUniversal copy-Info.plist"; path = "/Users/aluong/src/objective-c-sdk-universal-framework-2/OptimizelySDK/OptimizelySDKiOSUniversal copy-Info.plist"; sourceTree = "<absolute>"; };
 		EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52CB371E85223F00D4FCA0 /* OptimizelySDKiOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OptimizelySDKiOS-Info.plist"; path = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist"; sourceTree = "<group>"; };
+		EA52CB391E85224E00D4FCA0 /* OptimizelySDKiOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKiOS.modulemap; path = OptimizelySDKUniversal/OptimizelySDKiOS.modulemap; sourceTree = "<group>"; };
+		EA52CB3A1E85226600D4FCA0 /* OptimizelySDKTVOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OptimizelySDKTVOS-Info.plist"; path = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		EA52CB3B1E85226600D4FCA0 /* OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKTVOS.modulemap; path = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap; sourceTree = SOURCE_ROOT; };
+		EA52CB3D1E85955500D4FCA0 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
+		EA52CB3E1E85955500D4FCA0 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
+		EA52CB3F1E85955500D4FCA0 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
+		EA52CB401E85955500D4FCA0 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
+		EA52CB411E85955500D4FCA0 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
+		EA52CB421E85955500D4FCA0 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
+		EA52CB4F1E85955C00D4FCA0 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
+		EA52CB521E85956600D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
+		EA52CB531E85956600D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
+		EA52CB541E85956600D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		EA52CB551E85956600D4FCA0 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
+		EA52CB561E85956600D4FCA0 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
+		EA52CB571E85956600D4FCA0 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
+		EA52CB641E85957000D4FCA0 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
+		EA52CB651E85957000D4FCA0 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
+		EA52CB661E85957000D4FCA0 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
+		EA52CB671E85957000D4FCA0 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
+		EA52CB701E85959100D4FCA0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		EA52CB711E85959100D4FCA0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		EA52CB721E85959100D4FCA0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		EA52CB731E85959100D4FCA0 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		EA52CB741E85959100D4FCA0 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		EA52CB751E85959100D4FCA0 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		EA52CB761E85959100D4FCA0 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		EA52CB771E85959100D4FCA0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		EA52CB781E85959100D4FCA0 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDB.h; sourceTree = "<group>"; };
+		EA52CB791E85959100D4FCA0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		EAC5F1311E7B604C00C087B8 /* Optimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Optimizely.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/Optimizely.m; sourceTree = "<group>"; };
 		EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAttribute.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAttribute.m; sourceTree = "<group>"; };
 		EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAudience.m; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYAudience.m; sourceTree = "<group>"; };
@@ -490,10 +493,6 @@
 		EAC5F29C1E7B661E00C087B8 /* murmur3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = murmur3.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework/OptimizelySDKCore/Frameworks/murmur/murmur3.h"; sourceTree = "<absolute>"; };
 		EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYManager.h; path = "/Users/aluong/src/objective-c-sdk-universal-framework-2/OptimizelySDKiOS/OptimizelySDKiOS/OPTLYManager.h"; sourceTree = "<absolute>"; };
 		EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileBasic.h; path = ../../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileBasic.h; sourceTree = "<group>"; };
-		EAC5F8241E81B1F100C087B8 /* OptimizelySDKiOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OptimizelySDKiOS-Info.plist"; path = "OptimizelySDK/OptimizelySDKiOS-Info.plist"; sourceTree = "<group>"; };
-		EAC5F8251E81B1F100C087B8 /* OptimizelySDKiOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKiOS.modulemap; path = OptimizelySDK/OptimizelySDKiOS.modulemap; sourceTree = "<group>"; };
-		EAC5F8271E81B1FB00C087B8 /* OptimizelySDKTVOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OptimizelySDKTVOS-Info.plist"; sourceTree = "<group>"; };
-		EAC5F8281E81B1FB00C087B8 /* OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKTVOS.modulemap; sourceTree = "<group>"; };
 		EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKTVOS.h; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OptimizelySDKTVOS.h; sourceTree = "<group>"; };
 		EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYManager.h; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.h; sourceTree = "<group>"; };
 		EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYManager.m; path = ../../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.m; sourceTree = "<group>"; };
@@ -523,17 +522,17 @@
 		EA4D95CC1E83AE0A00E40C14 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
-				EA4D95CE1E83AE5A00E40C14 /* FMDatabase.h */,
-				EA4D95CF1E83AE5A00E40C14 /* FMDatabase.m */,
-				EA4D95D01E83AE5A00E40C14 /* FMDatabaseAdditions.h */,
-				EA4D95D11E83AE5A00E40C14 /* FMDatabaseAdditions.m */,
-				EA4D95D21E83AE5A00E40C14 /* FMDatabasePool.h */,
-				EA4D95D31E83AE5A00E40C14 /* FMDatabasePool.m */,
-				EA4D95D41E83AE5A00E40C14 /* FMDatabaseQueue.h */,
-				EA4D95D51E83AE5A00E40C14 /* FMDatabaseQueue.m */,
-				EA4D95D61E83AE5A00E40C14 /* FMDB.h */,
-				EA4D95D71E83AE5A00E40C14 /* FMResultSet.h */,
-				EA4D95D81E83AE5A00E40C14 /* FMResultSet.m */,
+				EA52CB701E85959100D4FCA0 /* FMDatabase.h */,
+				EA52CB711E85959100D4FCA0 /* FMDatabase.m */,
+				EA52CB721E85959100D4FCA0 /* FMDatabaseAdditions.h */,
+				EA52CB731E85959100D4FCA0 /* FMDatabaseAdditions.m */,
+				EA52CB741E85959100D4FCA0 /* FMDatabasePool.h */,
+				EA52CB751E85959100D4FCA0 /* FMDatabasePool.m */,
+				EA52CB761E85959100D4FCA0 /* FMDatabaseQueue.h */,
+				EA52CB771E85959100D4FCA0 /* FMDatabaseQueue.m */,
+				EA52CB781E85959100D4FCA0 /* FMDB.h */,
+				EA52CB791E85959100D4FCA0 /* FMResultSet.h */,
+				EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */,
 			);
 			name = fmdb;
 			sourceTree = "<group>";
@@ -541,23 +540,23 @@
 		EA4D95CD1E83AE2100E40C14 /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
-				EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */,
-				EA4D95E41E83AE7E00E40C14 /* JSONModel.h */,
-				EA4D95E51E83AE7E00E40C14 /* JSONModel.m */,
-				EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */,
-				EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */,
-				EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */,
-				EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */,
-				EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */,
-				EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */,
-				EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */,
-				EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */,
-				EA52C9951E846F4700D4FCA0 /* JSONAPI.h */,
-				EA52C9961E846F4700D4FCA0 /* JSONAPI.m */,
-				EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */,
-				EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */,
-				EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */,
-				EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */,
+				EA52CB4F1E85955C00D4FCA0 /* JSONModelLib.h */,
+				EA52CB3D1E85955500D4FCA0 /* JSONModel.h */,
+				EA52CB3E1E85955500D4FCA0 /* JSONModel.m */,
+				EA52CB3F1E85955500D4FCA0 /* JSONModelClassProperty.h */,
+				EA52CB401E85955500D4FCA0 /* JSONModelClassProperty.m */,
+				EA52CB411E85955500D4FCA0 /* JSONModelError.h */,
+				EA52CB421E85955500D4FCA0 /* JSONModelError.m */,
+				EA52CB521E85956600D4FCA0 /* JSONAPI.h */,
+				EA52CB531E85956600D4FCA0 /* JSONAPI.m */,
+				EA52CB541E85956600D4FCA0 /* JSONHTTPClient.h */,
+				EA52CB551E85956600D4FCA0 /* JSONHTTPClient.m */,
+				EA52CB561E85956600D4FCA0 /* JSONModel+networking.h */,
+				EA52CB571E85956600D4FCA0 /* JSONModel+networking.m */,
+				EA52CB641E85957000D4FCA0 /* JSONKeyMapper.h */,
+				EA52CB651E85957000D4FCA0 /* JSONKeyMapper.m */,
+				EA52CB661E85957000D4FCA0 /* JSONValueTransformer.h */,
+				EA52CB671E85957000D4FCA0 /* JSONValueTransformer.m */,
 			);
 			name = JSONModel;
 			sourceTree = "<group>";
@@ -565,10 +564,9 @@
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
-				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDK */,
+				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */,
 				EAC5F0F61E7B5D6500C087B8 /* Products */,
 				EAC5F2981E7B658700C087B8 /* Frameworks */,
-				EA52CA8C1E851CC200D4FCA0 /* OptimizelySDKiOSUniversal copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -581,7 +579,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EAC5F0F71E7B5D6500C087B8 /* OptimizelySDK */ = {
+		EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */ = {
 			isa = PBXGroup;
 			children = (
 				EAC5F1AC1E7B623F00C087B8 /* iOS */,
@@ -592,6 +590,7 @@
 				EAC5F1931E7B61C800C087B8 /* Shared */,
 				EAC5F18E1E7B617A00C087B8 /* UserProfile */,
 			);
+			name = OptimizelySDKUniversal;
 			path = OptimizelySDK;
 			sourceTree = "<group>";
 		};
@@ -758,8 +757,8 @@
 		EAC5F1AC1E7B623F00C087B8 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				EAC5F8241E81B1F100C087B8 /* OptimizelySDKiOS-Info.plist */,
-				EAC5F8251E81B1F100C087B8 /* OptimizelySDKiOS.modulemap */,
+				EA52CB371E85223F00D4FCA0 /* OptimizelySDKiOS-Info.plist */,
+				EA52CB391E85224E00D4FCA0 /* OptimizelySDKiOS.modulemap */,
 				EAC5F2901E7B64F000C087B8 /* OptimizelySDKiOS.h */,
 				EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */,
 				EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */,
@@ -791,8 +790,8 @@
 		EAC5F82C1E81BC1500C087B8 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				EAC5F8271E81B1FB00C087B8 /* OptimizelySDKTVOS-Info.plist */,
-				EAC5F8281E81B1FB00C087B8 /* OptimizelySDKTVOS.modulemap */,
+				EA52CB3A1E85226600D4FCA0 /* OptimizelySDKTVOS-Info.plist */,
+				EA52CB3B1E85226600D4FCA0 /* OptimizelySDKTVOS.modulemap */,
 				EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOS.h */,
 				EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */,
 				EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */,
@@ -812,14 +811,18 @@
 				EA52CA341E851CC100D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CA351E851CC100D4FCA0 /* OPTLYBaseCondition.h in Headers */,
 				EA52CA361E851CC100D4FCA0 /* OPTLYBuilder.h in Headers */,
+				EA52CB871E85959100D4FCA0 /* FMDatabaseQueue.h in Headers */,
 				EA52CA371E851CC100D4FCA0 /* OPTLYCondition.h in Headers */,
 				EA52CA381E851CC100D4FCA0 /* OPTLYDatafileKeys.h in Headers */,
 				EA52CA391E851CC100D4FCA0 /* OPTLYDecisionEventTicket.h in Headers */,
 				EA52CA3A1E851CC100D4FCA0 /* OPTLYErrorHandlerMessages.h in Headers */,
+				EA52CB7F1E85959100D4FCA0 /* FMDatabaseAdditions.h in Headers */,
+				EA52CB501E85955C00D4FCA0 /* JSONModelLib.h in Headers */,
 				EA52CA3B1E851CC100D4FCA0 /* OPTLYEvent.h in Headers */,
 				EA52CA3C1E851CC100D4FCA0 /* OPTLYEventAudience.h in Headers */,
 				EA52CA3D1E851CC100D4FCA0 /* OPTLYEventBuilder.h in Headers */,
 				EA52CA3E1E851CC100D4FCA0 /* OPTLYEventDecision.h in Headers */,
+				EA52CB7B1E85959100D4FCA0 /* FMDatabase.h in Headers */,
 				EA52CA3F1E851CC100D4FCA0 /* OPTLYEventDecisionTicket.h in Headers */,
 				EA52CA401E851CC100D4FCA0 /* OPTLYEventFeature.h in Headers */,
 				EA52CA411E851CC100D4FCA0 /* OPTLYEventHeader.h in Headers */,
@@ -830,14 +833,18 @@
 				EA52CA461E851CC100D4FCA0 /* OPTLYEventTicket.h in Headers */,
 				EA52CA471E851CC100D4FCA0 /* OPTLYEventView.h in Headers */,
 				EA52CA481E851CC100D4FCA0 /* OPTLYExperiment.h in Headers */,
+				EA52CB831E85959100D4FCA0 /* FMDatabasePool.h in Headers */,
 				EA52CA491E851CC100D4FCA0 /* OPTLYGroup.h in Headers */,
+				EA52CB431E85955500D4FCA0 /* JSONModel.h in Headers */,
 				EA52CA4A1E851CC100D4FCA0 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA52CA4B1E851CC100D4FCA0 /* OPTLYLog.h in Headers */,
 				EA52CA4C1E851CC100D4FCA0 /* OPTLYLoggerMessages.h in Headers */,
 				EA52CA4D1E851CC100D4FCA0 /* OPTLYProjectConfig.h in Headers */,
+				EA52CB6C1E85957000D4FCA0 /* JSONValueTransformer.h in Headers */,
 				EA52CA4E1E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA52CA4F1E851CC100D4FCA0 /* OPTLYQueue.h in Headers */,
 				EA52CA501E851CC100D4FCA0 /* OPTLYTrafficAllocation.h in Headers */,
+				EA52CB8D1E85959100D4FCA0 /* FMResultSet.h in Headers */,
 				EA52CA511E851CC100D4FCA0 /* OPTLYValidator.h in Headers */,
 				EA52CA521E851CC100D4FCA0 /* OPTLYVariable.h in Headers */,
 				EA52CA531E851CC100D4FCA0 /* OPTLYVariation.h in Headers */,
@@ -850,15 +857,18 @@
 				EA52CA5A1E851CC100D4FCA0 /* OPTLYClient.h in Headers */,
 				EA52CA5B1E851CC100D4FCA0 /* OPTLYClientBuilder.h in Headers */,
 				EA52CA5C1E851CC100D4FCA0 /* OPTLYDatabase.h in Headers */,
+				EA52CB5C1E85956600D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EA52CA5D1E851CC100D4FCA0 /* OPTLYDatabaseEntity.h in Headers */,
 				EA52CA5E1E851CC100D4FCA0 /* OPTLYDatafileManagerBasic.h in Headers */,
 				EA52CA5F1E851CC100D4FCA0 /* OPTLYDataStore.h in Headers */,
 				EA52CA601E851CC100D4FCA0 /* OPTLYFileManager.h in Headers */,
 				EA52CA611E851CC100D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CA621E851CC100D4FCA0 /* OPTLYManagerBasic.h in Headers */,
+				EA52CB581E85956600D4FCA0 /* JSONAPI.h in Headers */,
 				EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
 				EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */,
+				EA52CB8B1E85959100D4FCA0 /* FMDB.h in Headers */,
 				EA52CA661E851CC100D4FCA0 /* OPTLYEventDataStore.m in Headers */,
 				EA52CA671E851CC100D4FCA0 /* OptimizelySDKUserProfile.h in Headers */,
 				EA52CA681E851CC100D4FCA0 /* OPTLYUserProfile.h in Headers */,
@@ -867,26 +877,15 @@
 				EA52CA6B1E851CC100D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52CA6D1E851CC100D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */,
+				EA52CB681E85957000D4FCA0 /* JSONKeyMapper.h in Headers */,
 				EA52CA6E1E851CC100D4FCA0 /* OPTLYManager.h in Headers */,
 				EA52CA6F1E851CC100D4FCA0 /* OPTLYUserProfileBasic.h in Headers */,
+				EA52CB4B1E85955500D4FCA0 /* JSONModelError.h in Headers */,
 				EA52CA701E851CC100D4FCA0 /* OPTLYBucketer.h in Headers */,
 				EA52CA711E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */,
-				EA52CA721E851CC100D4FCA0 /* JSONModel+networking.h in Headers */,
-				EA52CA731E851CC100D4FCA0 /* JSONHTTPClient.h in Headers */,
-				EA52CA741E851CC100D4FCA0 /* JSONAPI.h in Headers */,
+				EA52CB471E85955500D4FCA0 /* JSONModelClassProperty.h in Headers */,
+				EA52CB601E85956600D4FCA0 /* JSONModel+networking.h in Headers */,
 				EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */,
-				EA52CA761E851CC100D4FCA0 /* FMDatabaseQueue.h in Headers */,
-				EA52CA771E851CC100D4FCA0 /* FMDatabaseAdditions.h in Headers */,
-				EA52CA781E851CC100D4FCA0 /* FMDB.h in Headers */,
-				EA52CA791E851CC100D4FCA0 /* JSONModelClassProperty.h in Headers */,
-				EA52CA7A1E851CC100D4FCA0 /* JSONModel.h in Headers */,
-				EA52CA7B1E851CC100D4FCA0 /* FMResultSet.h in Headers */,
-				EA52CA7C1E851CC100D4FCA0 /* FMDatabase.h in Headers */,
-				EA52CA7D1E851CC100D4FCA0 /* JSONModelError.h in Headers */,
-				EA52CA7E1E851CC100D4FCA0 /* JSONValueTransformer.h in Headers */,
-				EA52CA7F1E851CC100D4FCA0 /* JSONKeyMapper.h in Headers */,
-				EA52CA801E851CC100D4FCA0 /* FMDatabasePool.h in Headers */,
-				EA52CA811E851CC100D4FCA0 /* JSONModelLib.h in Headers */,
 				EA52CA821E851CC100D4FCA0 /* OPTLYLogger.h in Headers */,
 				EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */,
@@ -897,6 +896,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA52CB481E85955500D4FCA0 /* JSONModelClassProperty.h in Headers */,
 				EA52CAD41E851CEE00D4FCA0 /* OPTLYAttribute.h in Headers */,
 				EA52CAD51E851CEE00D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CAD61E851CEE00D4FCA0 /* OPTLYBaseCondition.h in Headers */,
@@ -911,16 +911,19 @@
 				EA52CADF1E851CEE00D4FCA0 /* OPTLYEventDecisionTicket.h in Headers */,
 				EA52CAE01E851CEE00D4FCA0 /* OPTLYEventFeature.h in Headers */,
 				EA52CAE11E851CEE00D4FCA0 /* OPTLYEventHeader.h in Headers */,
+				EA52CB5D1E85956600D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EA52CAE21E851CEE00D4FCA0 /* OPTLYEventLayerState.h in Headers */,
 				EA52CAE31E851CEE00D4FCA0 /* OPTLYEventMetric.h in Headers */,
 				EA52CAE41E851CEE00D4FCA0 /* OPTLYEventParameterKeys.h in Headers */,
 				EA52CAE51E851CEE00D4FCA0 /* OPTLYEventRelatedEvent.h in Headers */,
 				EA52CAE61E851CEE00D4FCA0 /* OPTLYEventTicket.h in Headers */,
 				EA52CAE71E851CEE00D4FCA0 /* OPTLYEventView.h in Headers */,
+				EA52CB4C1E85955500D4FCA0 /* JSONModelError.h in Headers */,
 				EA52CAE81E851CEE00D4FCA0 /* OPTLYExperiment.h in Headers */,
 				EA52CAE91E851CEE00D4FCA0 /* OPTLYGroup.h in Headers */,
 				EA52CAEA1E851CEE00D4FCA0 /* OPTLYHTTPRequestManager.h in Headers */,
 				EA52CAEB1E851CEE00D4FCA0 /* OPTLYLog.h in Headers */,
+				EA52CB441E85955500D4FCA0 /* JSONModel.h in Headers */,
 				EA52CAEC1E851CEE00D4FCA0 /* OPTLYLoggerMessages.h in Headers */,
 				EA52CAED1E851CEE00D4FCA0 /* OPTLYProjectConfig.h in Headers */,
 				EA52CAEE1E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */,
@@ -930,9 +933,11 @@
 				EA52CAF21E851CEE00D4FCA0 /* OPTLYVariable.h in Headers */,
 				EA52CAF31E851CEE00D4FCA0 /* OPTLYVariationVariable.h in Headers */,
 				EA52CAF41E851CEE00D4FCA0 /* OPTLYDatafileManager.h in Headers */,
+				EA52CB591E85956600D4FCA0 /* JSONAPI.h in Headers */,
 				EA52CAF51E851CEE00D4FCA0 /* OPTLYDatafileManagerBuilder.h in Headers */,
 				EA52CAF61E851CEE00D4FCA0 /* OPTLYEventDispatcher.h in Headers */,
 				EA52CAF71E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.h in Headers */,
+				EA52CB6D1E85957000D4FCA0 /* JSONValueTransformer.h in Headers */,
 				EA52CAF81E851CEE00D4FCA0 /* OptimizelySDKShared.h in Headers */,
 				EA52CAF91E851CEE00D4FCA0 /* OPTLYClient.h in Headers */,
 				EA52CAFA1E851CEE00D4FCA0 /* OPTLYClientBuilder.h in Headers */,
@@ -941,6 +946,7 @@
 				EA52CAFD1E851CEE00D4FCA0 /* OPTLYFileManager.h in Headers */,
 				EA52CAFE1E851CEE00D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CAFF1E851CEE00D4FCA0 /* OPTLYManagerBasic.h in Headers */,
+				EA52CB691E85957000D4FCA0 /* JSONKeyMapper.h in Headers */,
 				EA52CB001E851CEE00D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
 				EA52CB011E851CEE00D4FCA0 /* OptimizelySDKUserProfile.h in Headers */,
 				EA52CB021E851CEE00D4FCA0 /* OPTLYUserProfile.h in Headers */,
@@ -948,6 +954,7 @@
 				EA52CB041E851CEE00D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CB051E851CEE00D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52CB061E851CEE00D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */,
+				EA52CB511E85955C00D4FCA0 /* JSONModelLib.h in Headers */,
 				EA52CB071E851CEE00D4FCA0 /* OPTLYUserProfileBasic.h in Headers */,
 				EA52CB081E851CEE00D4FCA0 /* OPTLYBucketer.h in Headers */,
 				EA52CB091E851CEE00D4FCA0 /* OPTLYNetworkService.h in Headers */,
@@ -959,16 +966,8 @@
 				EA52CB0F1E851CEE00D4FCA0 /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA52CB101E851CEE00D4FCA0 /* OPTLYLogger.h in Headers */,
 				EA52CB111E851CEE00D4FCA0 /* OPTLYVariation.h in Headers */,
-				EA52CB121E851CEE00D4FCA0 /* JSONAPI.h in Headers */,
-				EA52CB131E851CEE00D4FCA0 /* JSONHTTPClient.h in Headers */,
-				EA52CB141E851CEE00D4FCA0 /* JSONValueTransformer.h in Headers */,
 				EA52CB151E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Headers */,
-				EA52CB161E851CEE00D4FCA0 /* JSONModel+networking.h in Headers */,
-				EA52CB171E851CEE00D4FCA0 /* JSONModelLib.h in Headers */,
-				EA52CB181E851CEE00D4FCA0 /* JSONKeyMapper.h in Headers */,
-				EA52CB191E851CEE00D4FCA0 /* JSONModel.h in Headers */,
-				EA52CB1A1E851CEE00D4FCA0 /* JSONModelClassProperty.h in Headers */,
-				EA52CB1B1E851CEE00D4FCA0 /* JSONModelError.h in Headers */,
+				EA52CB611E85956600D4FCA0 /* JSONModel+networking.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
 			);
@@ -1040,7 +1039,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDK" */;
+			buildConfigurationList = EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDKUniversal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1116,48 +1115,51 @@
 				EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */,
 				EA52C9E81E851CC100D4FCA0 /* murmur3.c in Sources */,
 				EA52C9E91E851CC100D4FCA0 /* OPTLYManager.m in Sources */,
-				EA52C9EA1E851CC100D4FCA0 /* FMDatabasePool.m in Sources */,
 				EA52C9EB1E851CC100D4FCA0 /* OPTLYClient.m in Sources */,
-				EA52C9EC1E851CC100D4FCA0 /* FMDatabaseAdditions.m in Sources */,
+				EA52CB8F1E85959100D4FCA0 /* FMResultSet.m in Sources */,
 				EA52C9ED1E851CC100D4FCA0 /* OPTLYClientBuilder.m in Sources */,
 				EA52C9EE1E851CC100D4FCA0 /* OPTLYDatabase.m in Sources */,
 				EA52C9EF1E851CC100D4FCA0 /* OPTLYDatabaseEntity.m in Sources */,
 				EA52C9F01E851CC100D4FCA0 /* OPTLYDatafileManagerBasic.m in Sources */,
+				EA52CB6E1E85957000D4FCA0 /* JSONValueTransformer.m in Sources */,
 				EA52C9F11E851CC100D4FCA0 /* OPTLYDataStore.m in Sources */,
 				EA52C9F21E851CC100D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52C9F31E851CC100D4FCA0 /* OPTLYFileManager.m in Sources */,
+				EA52CB7D1E85959100D4FCA0 /* FMDatabase.m in Sources */,
 				EA52C9F41E851CC100D4FCA0 /* OPTLYManagerBase.m in Sources */,
 				EA52C9F51E851CC100D4FCA0 /* OPTLYManagerBasic.m in Sources */,
 				EA52C9F61E851CC100D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
 				EA52C9F71E851CC100D4FCA0 /* OPTLYUserProfile.m in Sources */,
 				EA52C9F81E851CC100D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */,
-				EA52C9F91E851CC100D4FCA0 /* FMResultSet.m in Sources */,
+				EA52CB851E85959100D4FCA0 /* FMDatabasePool.m in Sources */,
+				EA52CB4D1E85955500D4FCA0 /* JSONModelError.m in Sources */,
 				EA52C9FA1E851CC100D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
 				EA52C9FB1E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA52C9FC1E851CC100D4FCA0 /* OPTLYDatafileManager.m in Sources */,
 				EA52C9FD1E851CC100D4FCA0 /* OPTLYDatafileManagerBuilder.m in Sources */,
-				EA52C9FE1E851CC100D4FCA0 /* FMDatabase.m in Sources */,
 				EA52C9FF1E851CC100D4FCA0 /* Optimizely.m in Sources */,
-				EA52CA001E851CC100D4FCA0 /* FMDatabaseQueue.m in Sources */,
-				EA52CA011E851CC100D4FCA0 /* JSONKeyMapper.m in Sources */,
+				EA52CB811E85959100D4FCA0 /* FMDatabaseAdditions.m in Sources */,
 				EA52CA021E851CC100D4FCA0 /* OPTLYAttribute.m in Sources */,
 				EA52CA031E851CC100D4FCA0 /* OPTLYAudience.m in Sources */,
 				EA52CA041E851CC100D4FCA0 /* OPTLYBaseCondition.m in Sources */,
+				EA52CB621E85956600D4FCA0 /* JSONModel+networking.m in Sources */,
 				EA52CA051E851CC100D4FCA0 /* OPTLYBuilder.m in Sources */,
+				EA52CB6A1E85957000D4FCA0 /* JSONKeyMapper.m in Sources */,
+				EA52CB491E85955500D4FCA0 /* JSONModelClassProperty.m in Sources */,
 				EA52CA061E851CC100D4FCA0 /* OPTLYCondition.m in Sources */,
 				EA52CA071E851CC100D4FCA0 /* OPTLYDatafileKeys.m in Sources */,
 				EA52CA081E851CC100D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */,
 				EA52CA091E851CC100D4FCA0 /* OPTLYErrorHandler.m in Sources */,
-				EA52CA0A1E851CC100D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EA52CA0B1E851CC100D4FCA0 /* OPTLYErrorHandlerMessages.m in Sources */,
 				EA52CA0C1E851CC100D4FCA0 /* OPTLYEvent.m in Sources */,
 				EA52CA0D1E851CC100D4FCA0 /* OPTLYEventAudience.m in Sources */,
+				EA52CB5A1E85956600D4FCA0 /* JSONAPI.m in Sources */,
 				EA52CA0E1E851CC100D4FCA0 /* OPTLYEventBuilder.m in Sources */,
 				EA52CA0F1E851CC100D4FCA0 /* OPTLYEventDecision.m in Sources */,
-				EA52CA101E851CC100D4FCA0 /* JSONAPI.m in Sources */,
 				EA52CA111E851CC100D4FCA0 /* OPTLYEventDecisionTicket.m in Sources */,
 				EA52CA121E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.m in Sources */,
 				EA52CA131E851CC100D4FCA0 /* OPTLYEventFeature.m in Sources */,
+				EA52CB891E85959100D4FCA0 /* FMDatabaseQueue.m in Sources */,
 				EA52CA141E851CC100D4FCA0 /* OPTLYEventHeader.m in Sources */,
 				EA52CA151E851CC100D4FCA0 /* OPTLYEventLayerState.m in Sources */,
 				EA52CA161E851CC100D4FCA0 /* OPTLYEventMetric.m in Sources */,
@@ -1166,8 +1168,6 @@
 				EA52CA191E851CC100D4FCA0 /* OPTLYEventTicket.m in Sources */,
 				EA52CA1A1E851CC100D4FCA0 /* OPTLYEventView.m in Sources */,
 				EA52CA1B1E851CC100D4FCA0 /* OPTLYExperiment.m in Sources */,
-				EA52CA1C1E851CC100D4FCA0 /* JSONModel.m in Sources */,
-				EA52CA1D1E851CC100D4FCA0 /* JSONValueTransformer.m in Sources */,
 				EA52CA1E1E851CC100D4FCA0 /* OPTLYGroup.m in Sources */,
 				EA52CA1F1E851CC100D4FCA0 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA52CA201E851CC100D4FCA0 /* OPTLYLog.m in Sources */,
@@ -1175,14 +1175,13 @@
 				EA52CA221E851CC100D4FCA0 /* OPTLYNetworkService.m in Sources */,
 				EA52CA231E851CC100D4FCA0 /* OPTLYProjectConfig.m in Sources */,
 				EA52CA241E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
-				EA52CA251E851CC100D4FCA0 /* JSONModelClassProperty.m in Sources */,
-				EA52CA261E851CC100D4FCA0 /* JSONModelError.m in Sources */,
 				EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EA52CA291E851CC100D4FCA0 /* OPTLYUserProfileBasic.m in Sources */,
 				EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */,
-				EA52CA2B1E851CC100D4FCA0 /* JSONModel+networking.m in Sources */,
+				EA52CB5E1E85956600D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
+				EA52CB451E85955500D4FCA0 /* JSONModel.m in Sources */,
 				EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */,
 			);
@@ -1200,42 +1199,40 @@
 				EA52CA941E851CEE00D4FCA0 /* OPTLYNetworkService.m in Sources */,
 				EA52CA951E851CEE00D4FCA0 /* OPTLYManager.m in Sources */,
 				EA52CA961E851CEE00D4FCA0 /* OPTLYBucketer.m in Sources */,
+				EA52CB4E1E85955500D4FCA0 /* JSONModelError.m in Sources */,
 				EA52CA971E851CEE00D4FCA0 /* murmur3.c in Sources */,
 				EA52CA981E851CEE00D4FCA0 /* OPTLYClient.m in Sources */,
 				EA52CA991E851CEE00D4FCA0 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA52CA9A1E851CEE00D4FCA0 /* OPTLYDataStore.m in Sources */,
-				EA52CA9B1E851CEE00D4FCA0 /* JSONValueTransformer.m in Sources */,
 				EA52CA9C1E851CEE00D4FCA0 /* OPTLYFileManager.m in Sources */,
 				EA52CA9D1E851CEE00D4FCA0 /* OPTLYManagerBase.m in Sources */,
 				EA52CA9E1E851CEE00D4FCA0 /* OPTLYManagerBasic.m in Sources */,
 				EA52CA9F1E851CEE00D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
 				EA52CAA01E851CEE00D4FCA0 /* OPTLYUserProfile.m in Sources */,
-				EA52CAA11E851CEE00D4FCA0 /* JSONModel+networking.m in Sources */,
-				EA52CAA21E851CEE00D4FCA0 /* JSONModelClassProperty.m in Sources */,
-				EA52CAA31E851CEE00D4FCA0 /* JSONModelError.m in Sources */,
 				EA52CAA41E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */,
 				EA52CAA51E851CEE00D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
 				EA52CAA61E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA52CAA71E851CEE00D4FCA0 /* OPTLYDatafileManager.m in Sources */,
 				EA52CAA81E851CEE00D4FCA0 /* OPTLYDatafileManagerBuilder.m in Sources */,
 				EA52CAA91E851CEE00D4FCA0 /* OPTLYAttribute.m in Sources */,
+				EA52CB6B1E85957000D4FCA0 /* JSONKeyMapper.m in Sources */,
 				EA52CAAA1E851CEE00D4FCA0 /* OPTLYAudience.m in Sources */,
 				EA52CAAB1E851CEE00D4FCA0 /* OPTLYBaseCondition.m in Sources */,
 				EA52CAAC1E851CEE00D4FCA0 /* OPTLYBuilder.m in Sources */,
 				EA52CAAD1E851CEE00D4FCA0 /* OPTLYCondition.m in Sources */,
 				EA52CAAE1E851CEE00D4FCA0 /* OPTLYDatafileKeys.m in Sources */,
 				EA52CAAF1E851CEE00D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */,
+				EA52CB461E85955500D4FCA0 /* JSONModel.m in Sources */,
 				EA52CAB01E851CEE00D4FCA0 /* OPTLYErrorHandlerMessages.m in Sources */,
-				EA52CAB11E851CEE00D4FCA0 /* JSONAPI.m in Sources */,
+				EA52CB5F1E85956600D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EA52CAB21E851CEE00D4FCA0 /* OPTLYEvent.m in Sources */,
 				EA52CAB31E851CEE00D4FCA0 /* OPTLYEventAudience.m in Sources */,
-				EA52CAB41E851CEE00D4FCA0 /* JSONKeyMapper.m in Sources */,
 				EA52CAB51E851CEE00D4FCA0 /* OPTLYEventBuilder.m in Sources */,
+				EA52CB5B1E85956600D4FCA0 /* JSONAPI.m in Sources */,
 				EA52CAB61E851CEE00D4FCA0 /* OPTLYEventDecision.m in Sources */,
 				EA52CAB71E851CEE00D4FCA0 /* OPTLYEventDecisionTicket.m in Sources */,
 				EA52CAB81E851CEE00D4FCA0 /* OPTLYEventDispatcherBasic.m in Sources */,
 				EA52CAB91E851CEE00D4FCA0 /* OPTLYEventFeature.m in Sources */,
-				EA52CABA1E851CEE00D4FCA0 /* JSONHTTPClient.m in Sources */,
 				EA52CABB1E851CEE00D4FCA0 /* OPTLYEventHeader.m in Sources */,
 				EA52CABC1E851CEE00D4FCA0 /* OPTLYEventLayerState.m in Sources */,
 				EA52CABD1E851CEE00D4FCA0 /* OPTLYEventMetric.m in Sources */,
@@ -1247,15 +1244,17 @@
 				EA52CAC31E851CEE00D4FCA0 /* OPTLYGroup.m in Sources */,
 				EA52CAC41E851CEE00D4FCA0 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA52CAC51E851CEE00D4FCA0 /* OPTLYLog.m in Sources */,
-				EA52CAC61E851CEE00D4FCA0 /* JSONModel.m in Sources */,
 				EA52CAC71E851CEE00D4FCA0 /* OPTLYLoggerMessages.m in Sources */,
 				EA52CAC81E851CEE00D4FCA0 /* OPTLYProjectConfig.m in Sources */,
 				EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
+				EA52CB4A1E85955500D4FCA0 /* JSONModelClassProperty.m in Sources */,
 				EA52CACC1E851CEE00D4FCA0 /* OPTLYUserProfileBasic.m in Sources */,
+				EA52CB6F1E85957000D4FCA0 /* JSONValueTransformer.m in Sources */,
 				EA52CACD1E851CEE00D4FCA0 /* OPTLYValidator.m in Sources */,
 				EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */,
+				EA52CB631E85956600D4FCA0 /* JSONModel+networking.m in Sources */,
 				EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CAD11E851CEE00D4FCA0 /* OPTLYVariationVariable.m in Sources */,
@@ -1284,20 +1283,20 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKiOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKiOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1328,20 +1327,20 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKiOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKiOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1372,20 +1371,20 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKiOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKiOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1416,20 +1415,20 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/fmdb/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKiOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKiOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKiOS.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1459,7 +1458,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1467,12 +1466,12 @@
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKTVOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1503,7 +1502,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1511,12 +1510,12 @@
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKTVOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1547,7 +1546,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1555,12 +1554,12 @@
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKTVOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOS.modulemap;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1591,7 +1590,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks/jsonmodel/**",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -1599,11 +1598,11 @@
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
 				);
-				INFOPLIST_FILE = "OptimizelySDK/OptimizelySDKTVOS-Info.plist";
+				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = OptimizelySDK/OptimizelySDKTVOS.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversal;
+				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1677,7 +1676,7 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1746,7 +1745,7 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1819,7 +1818,7 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1891,7 +1890,7 @@
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION_PATCH = 1;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletv appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1905,21 +1904,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
@@ -1929,21 +1927,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
@@ -1953,21 +1950,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
@@ -1977,21 +1973,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/fmdb",
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
 					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
-					"$(inherited)",
-					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
 			};
@@ -2001,6 +1996,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2015,6 +2018,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2029,6 +2040,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2043,6 +2062,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/OptimizelySDKUniversal/Frameworks/jsonmodel",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -2077,7 +2104,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDK" */ = {
+		EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDKUniversal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAC5F1071E7B5D6500C087B8 /* Debug */,

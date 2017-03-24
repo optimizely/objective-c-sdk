@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
-               BuildableName = "OptimizelySDKiOS-Universal"
-               BlueprintName = "OptimizelySDKiOS-Universal"
-               ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+               BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
+               BuildableName = "OptimizelySDKiOS.framework"
+               BlueprintName = "OptimizelySDKiOS"
+               ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
-            BuildableName = "OptimizelySDKiOS-Universal"
-            BlueprintName = "OptimizelySDKiOS-Universal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
+            BuildableName = "OptimizelySDKiOS.framework"
+            BlueprintName = "OptimizelySDKiOS"
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
-            BuildableName = "OptimizelySDKiOS-Universal"
-            BlueprintName = "OptimizelySDKiOS-Universal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
+            BuildableName = "OptimizelySDKiOS.framework"
+            BlueprintName = "OptimizelySDKiOS"
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

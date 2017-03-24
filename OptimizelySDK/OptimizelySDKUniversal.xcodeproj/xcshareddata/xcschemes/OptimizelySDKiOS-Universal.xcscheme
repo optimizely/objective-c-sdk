@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-               BuildableName = "OptimizelySDKiOSUniversal.framework"
-               BlueprintName = "OptimizelySDKiOSUniversal"
-               ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+               BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
+               BuildableName = "OptimizelySDKiOS-Universal"
+               BlueprintName = "OptimizelySDKiOS-Universal"
+               ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-            BuildableName = "OptimizelySDKiOSUniversal.framework"
-            BlueprintName = "OptimizelySDKiOSUniversal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
+            BuildableName = "OptimizelySDKiOS-Universal"
+            BlueprintName = "OptimizelySDKiOS-Universal"
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAC5F6E91E808F5500C087B8"
-            BuildableName = "OptimizelySDKiOSUniversal.framework"
-            BlueprintName = "OptimizelySDKiOSUniversal"
-            ReferencedContainer = "container:OptimizelySDK.xcodeproj">
+            BlueprintIdentifier = "EAC5F8B41E82EE6800C087B8"
+            BuildableName = "OptimizelySDKiOS-Universal"
+            BlueprintName = "OptimizelySDKiOS-Universal"
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

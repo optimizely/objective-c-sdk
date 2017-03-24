@@ -5,7 +5,7 @@
       location = "group:OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OptimizelySDK/OptimizelySDK.xcodeproj">
+      location = "group:/Users/aluong/src/objective-c-sdk-universal-framework-2/OptimizelySDK/OptimizelySDKUniversal.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
