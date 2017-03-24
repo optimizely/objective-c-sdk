@@ -1,6 +1,0 @@
-framework module OptimizelySDKiOSUniversal {
-  umbrella header "OptimizelySDKiOSUniversal.h"
-
-  export *
-  module * { export * }
-}

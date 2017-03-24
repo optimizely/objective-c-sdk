@@ -26,18 +26,6 @@ def analytics_pods
 end
 
 use_frameworks!
-# OptimizelySDK targets
-#target 'OptimizelySDKiOSUniversal' do
-#  project 'OptimizelySDK/OptimizelySDK.xcodeproj/'
-#  platform :ios, '8.0'
-#  common_ios_pods
-#end
-
-#target 'OptimizelySDKTVOSUniversal' do
-#  project 'OptimizelySDK/OptimizelySDK.xcodeproj/'
-#  platform :tvos, '9.0'
-#  common_tvos_pods
-#end
   
 # OptimizelySDKCore targets
 target 'OptimizelySDKCoreiOS' do
