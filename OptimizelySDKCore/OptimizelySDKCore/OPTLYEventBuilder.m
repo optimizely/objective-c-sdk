@@ -88,12 +88,12 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     return decision;
 }
 
-- (OPTLYEventTicket *)buildEventTicket:(OPTLYProjectConfig *)config
-                              bucketer:(id<OPTLYBucketer>)bucketer
-                                userId:(NSString *)userId
-                             eventName:(NSString *)eventName
-                             eventTags:(NSDictionary *)eventTags
-                            attributes:(NSDictionary<NSString *, NSString *> *)attributes
+- (NSDictionary *)buildEventTicket:(OPTLYProjectConfig *)config
+                          bucketer:(id<OPTLYBucketer>)bucketer
+                            userId:(NSString *)userId
+                         eventName:(NSString *)eventName
+                         eventTags:(NSDictionary *)eventTags
+                        attributes:(NSDictionary<NSString *, NSString *> *)attributes
 {
     if (!config) {
         return nil;
@@ -138,9 +138,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:eventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
-    NSError *error;
-    OPTLYEventTicket *eventTicket = [[OPTLYEventTicket alloc] initWithDictionary:params error:&error];
-    return eventTicket;
+    return params;
 }
 
 - (NSDictionary *)createDecisionWithExperimentId:(NSString *)experimentId
@@ -197,13 +195,14 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return features;
     }
 
+    // TODO: check validity of eventTag value class type (should be NSString or NSNumber)
     for (NSString *key in eventTagKeys) {
         id eventTagValue = eventTags[key];
         
         NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
                                               OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
                                               OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
-                                              OPTLYEventParameterKeysFeaturesShouldIndex : @0 };
+                                              OPTLYEventParameterKeysFeaturesShouldIndex : @1 };
         
         [features addObject:eventFeatureParams];
     }

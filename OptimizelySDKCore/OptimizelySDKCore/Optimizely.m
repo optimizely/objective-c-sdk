@@ -235,22 +235,20 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     if (eventValue) {
-         eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
+        eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
     }
     
-    OPTLYEventTicket *conversionEvent = [self.eventBuilder buildEventTicket:self.config
-                                                                   bucketer:self.bucketer
-                                                                     userId:userId
-                                                                  eventName:eventKey
-                                                                  eventTags:eventTags
-                                                                 attributes:attributes];
+    NSDictionary *conversionEventParams = [self.eventBuilder buildEventTicket:self.config
+                                                                     bucketer:self.bucketer
+                                                                       userId:userId
+                                                                    eventName:eventKey
+                                                                    eventTags:eventTags
+                                                                   attributes:attributes];
     
-    if (!conversionEvent) {
+    if (!conversionEventParams) {
         [self handleErrorLogsForTrackEvent:eventKey userId:userId];
         return;
     }
-    
-    NSDictionary *conversionEventParams = [conversionEvent toDictionary];
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, eventKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
@@ -276,9 +274,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if (eventValue != nil) {
         userInfo[OptimizelyNotificationsUserDictionaryEventValueKey] = eventValue;
     }
-    if (conversionEvent.layerStates.count > 0) {
-        NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:conversionEvent.layerStates.count];
-        for (OPTLYEventLayerState *layerState in conversionEvent.layerStates) {
+    NSArray *layerStates = conversionEventParams[OPTLYEventParameterKeysLayerStates];
+    if ([layerStates count] > 0) {
+        NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:[layerStates count]];
+        for (OPTLYEventLayerState *layerState in layerStates) {
             OPTLYEventDecision *eventDecision = layerState.decision;
             OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
             OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];

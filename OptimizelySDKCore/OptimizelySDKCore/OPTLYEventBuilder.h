@@ -59,12 +59,12 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for a conversion event. This value can be nil.
  *
  */
-- (nullable OPTLYEventTicket *)buildEventTicket:(nonnull OPTLYProjectConfig *)config
-                                       bucketer:(nonnull id<OPTLYBucketer>)bucketer
-                                         userId:(nonnull NSString *)userId
-                                      eventName:(nonnull NSString *)eventName
-                                      eventTags:(nullable NSDictionary *)eventTags
-                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildEventTicket:(nonnull OPTLYProjectConfig *)config
+                                   bucketer:(nonnull id<OPTLYBucketer>)bucketer
+                                     userId:(nonnull NSString *)userId
+                                  eventName:(nonnull NSString *)eventName
+                                  eventTags:(nullable NSDictionary *)eventTags
+                                 attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>
