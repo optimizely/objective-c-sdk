@@ -15,8 +15,12 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#ifdef UNIVERSAL
+    #import "OPTLYManagerBase.h"
+#else
+    #import <OptimizelySDKShared/OPTLYManagerBase.h>
+#endif
 
-@class OPTLYManagerBase;
 @protocol OPTLYManager;
 
 @interface OPTLYManager : OPTLYManagerBase<OPTLYManager>

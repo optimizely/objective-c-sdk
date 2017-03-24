@@ -32,37 +32,37 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		EA4D95D91E83AE5A00E40C14 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95CE1E83AE5A00E40C14 /* FMDatabase.h */; };
+		EA4D95D91E83AE5A00E40C14 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95CE1E83AE5A00E40C14 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95DA1E83AE5A00E40C14 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95CF1E83AE5A00E40C14 /* FMDatabase.m */; };
-		EA4D95DB1E83AE5A00E40C14 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D01E83AE5A00E40C14 /* FMDatabaseAdditions.h */; };
+		EA4D95DB1E83AE5A00E40C14 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D01E83AE5A00E40C14 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95DC1E83AE5A00E40C14 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D11E83AE5A00E40C14 /* FMDatabaseAdditions.m */; };
-		EA4D95DD1E83AE5A00E40C14 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D21E83AE5A00E40C14 /* FMDatabasePool.h */; };
+		EA4D95DD1E83AE5A00E40C14 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D21E83AE5A00E40C14 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95DE1E83AE5A00E40C14 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D31E83AE5A00E40C14 /* FMDatabasePool.m */; };
-		EA4D95DF1E83AE5A00E40C14 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D41E83AE5A00E40C14 /* FMDatabaseQueue.h */; };
+		EA4D95DF1E83AE5A00E40C14 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D41E83AE5A00E40C14 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95E01E83AE5A00E40C14 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D51E83AE5A00E40C14 /* FMDatabaseQueue.m */; };
-		EA4D95E11E83AE5A00E40C14 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D61E83AE5A00E40C14 /* FMDB.h */; };
-		EA4D95E21E83AE5A00E40C14 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D71E83AE5A00E40C14 /* FMResultSet.h */; };
+		EA4D95E11E83AE5A00E40C14 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D61E83AE5A00E40C14 /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95E21E83AE5A00E40C14 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95D71E83AE5A00E40C14 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95E31E83AE5A00E40C14 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95D81E83AE5A00E40C14 /* FMResultSet.m */; };
-		EA4D95EA1E83AE7E00E40C14 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; };
-		EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; };
+		EA4D95EA1E83AE7E00E40C14 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E41E83AE7E00E40C14 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95EC1E83AE7E00E40C14 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E51E83AE7E00E40C14 /* JSONModel.m */; };
 		EA4D95ED1E83AE7E00E40C14 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E51E83AE7E00E40C14 /* JSONModel.m */; };
-		EA4D95EE1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; };
-		EA4D95EF1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; };
+		EA4D95EE1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95EF1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E61E83AE7E00E40C14 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95F01E83AE7E00E40C14 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */; };
 		EA4D95F11E83AE7E00E40C14 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E71E83AE7E00E40C14 /* JSONModelClassProperty.m */; };
-		EA4D95F21E83AE7E00E40C14 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; };
-		EA4D95F31E83AE7E00E40C14 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; };
+		EA4D95F21E83AE7E00E40C14 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95F31E83AE7E00E40C14 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95E81E83AE7E00E40C14 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95F41E83AE7E00E40C14 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */; };
 		EA4D95F51E83AE7E00E40C14 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95E91E83AE7E00E40C14 /* JSONModelError.m */; };
-		EA4D95F71E83AE8600E40C14 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; };
-		EA4D95F81E83AE8600E40C14 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; };
-		EA4D95FD1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; };
-		EA4D95FE1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; };
+		EA4D95F71E83AE8600E40C14 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95F81E83AE8600E40C14 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F61E83AE8600E40C14 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95FD1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D95FE1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95F91E83AF7700E40C14 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D95FF1E83AF7700E40C14 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */; };
 		EA4D96001E83AF7700E40C14 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FA1E83AF7700E40C14 /* JSONKeyMapper.m */; };
-		EA4D96011E83AF7700E40C14 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; };
-		EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; };
+		EA4D96011E83AF7700E40C14 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA4D96031E83AF7700E40C14 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */; };
 		EA4D96041E83AF7800E40C14 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */; };
 		EA4D96061E83B0A800E40C14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */; };
@@ -73,16 +73,16 @@
 		EA52C9721E8451EE00D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9731E84521E00D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F88B1E81E2AA00C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9741E8456F000D4FCA0 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; };
-		EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; };
+		EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9951E846F4700D4FCA0 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C99D1E846F4800D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
 		EA52C99E1E846F4800D4FCA0 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9961E846F4700D4FCA0 /* JSONAPI.m */; };
-		EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; };
-		EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; };
+		EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9A11E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
 		EA52C9A21E846F4800D4FCA0 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C9981E846F4700D4FCA0 /* JSONHTTPClient.m */; };
-		EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; };
-		EA52C9A41E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; };
+		EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA52C9A41E846F4800D4FCA0 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52C9991E846F4700D4FCA0 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52C9A51E846F4800D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
 		EA52C9A61E846F4800D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C99A1E846F4700D4FCA0 /* JSONModel+networking.m */; };
 		EAC5F6EC1E808F5500C087B8 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
@@ -199,9 +199,9 @@
 		EAC5F7681E808F5500C087B8 /* OptimizelySDKCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2921E7B651700C087B8 /* OptimizelySDKCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7691E808F5500C087B8 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F76A1E808F5500C087B8 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAC5F76B1E808F5500C087B8 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EAC5F76C1E808F5500C087B8 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EAC5F76D1E808F5500C087B8 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; };
+		EAC5F76B1E808F5500C087B8 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F76C1E808F5500C087B8 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F76D1E808F5500C087B8 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F7781E809F0F00C087B8 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F77A1E80A0AF00C087B8 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F77B1E80A72C00C087B8 /* OPTLYBucketer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1351E7B604C00C087B8 /* OPTLYBucketer.m */; };
@@ -311,9 +311,9 @@
 		EAC5F8141E81B12100C087B8 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F8161E81B12100C087B8 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F8171E81B12100C087B8 /* OPTLYBucketer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21A1E7B639B00C087B8 /* OPTLYBucketer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; };
+		EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F82A1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F82E1E81BC3700C087B8 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F82D1E81BC3700C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC5F8301E81BC5E00C087B8 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */; };
@@ -356,10 +356,6 @@
 		EA4D95FB1E83AF7700E40C14 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
 		EA4D95FC1E83AF7700E40C14 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		EA52C97C1E84679900D4FCA0 /* tvos-test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tvos-test.h"; sourceTree = "<group>"; };
-		EA52C97D1E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA52C9871E84679900D4FCA0 /* tvos_testTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvos_testTests.m; sourceTree = "<group>"; };
-		EA52C9891E84679900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA52C9951E846F4700D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
 		EA52C9961E846F4700D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
 		EA52C9971E846F4700D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = OptimizelySDK/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
@@ -565,30 +561,10 @@
 			name = JSONModel;
 			sourceTree = "<group>";
 		};
-		EA52C97B1E84679900D4FCA0 /* tvos-test */ = {
-			isa = PBXGroup;
-			children = (
-				EA52C97C1E84679900D4FCA0 /* tvos-test.h */,
-				EA52C97D1E84679900D4FCA0 /* Info.plist */,
-			);
-			path = "tvos-test";
-			sourceTree = "<group>";
-		};
-		EA52C9861E84679900D4FCA0 /* tvos-testTests */ = {
-			isa = PBXGroup;
-			children = (
-				EA52C9871E84679900D4FCA0 /* tvos_testTests.m */,
-				EA52C9891E84679900D4FCA0 /* Info.plist */,
-			);
-			path = "tvos-testTests";
-			sourceTree = "<group>";
-		};
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDK */,
-				EA52C97B1E84679900D4FCA0 /* tvos-test */,
-				EA52C9861E84679900D4FCA0 /* tvos-testTests */,
 				EAC5F0F61E7B5D6500C087B8 /* Products */,
 				EAC5F2981E7B658700C087B8 /* Frameworks */,
 			);
@@ -833,7 +809,6 @@
 				EAC5F72D1E808F5500C087B8 /* OPTLYAttribute.h in Headers */,
 				EAC5F72E1E808F5500C087B8 /* OPTLYAudience.h in Headers */,
 				EAC5F72F1E808F5500C087B8 /* OPTLYBaseCondition.h in Headers */,
-				EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */,
 				EAC5F7311E808F5500C087B8 /* OPTLYBuilder.h in Headers */,
 				EAC5F7321E808F5500C087B8 /* OPTLYCondition.h in Headers */,
 				EAC5F7331E808F5500C087B8 /* OPTLYDatafileKeys.h in Headers */,
@@ -841,7 +816,6 @@
 				EAC5F7361E808F5500C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
 				EAC5F7371E808F5500C087B8 /* OPTLYEvent.h in Headers */,
 				EAC5F7381E808F5500C087B8 /* OPTLYEventAudience.h in Headers */,
-				EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EAC5F7391E808F5500C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F73A1E808F5500C087B8 /* OPTLYEventDecision.h in Headers */,
 				EAC5F73B1E808F5500C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
@@ -851,7 +825,6 @@
 				EAC5F7401E808F5500C087B8 /* OPTLYEventMetric.h in Headers */,
 				EAC5F7411E808F5500C087B8 /* OPTLYEventParameterKeys.h in Headers */,
 				EAC5F7421E808F5500C087B8 /* OPTLYEventRelatedEvent.h in Headers */,
-				EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
 				EAC5F7431E808F5500C087B8 /* OPTLYEventTicket.h in Headers */,
 				EAC5F7441E808F5500C087B8 /* OPTLYEventView.h in Headers */,
 				EAC5F7451E808F5500C087B8 /* OPTLYExperiment.h in Headers */,
@@ -896,9 +869,9 @@
 				EAC5F77A1E80A0AF00C087B8 /* OPTLYUserProfileBasic.h in Headers */,
 				EAC5F77C1E80A74300C087B8 /* OPTLYBucketer.h in Headers */,
 				EAC5F8651E81CD2D00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
-				EAC5F86B1E81D10D00C087B8 /* OPTLYLogger.h in Headers */,
-				EAC5F76C1E808F5500C087B8 /* OPTLYMacros.h in Headers */,
-				EAC5F76B1E808F5500C087B8 /* murmur3.h in Headers */,
+				EA52C9A31E846F4800D4FCA0 /* JSONModel+networking.h in Headers */,
+				EA52C99F1E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
+				EA52C99B1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
 				EAC5F76D1E808F5500C087B8 /* OPTLYEventDataStore.h in Headers */,
 				EA4D95DF1E83AE5A00E40C14 /* FMDatabaseQueue.h in Headers */,
 				EA4D95DB1E83AE5A00E40C14 /* FMDatabaseAdditions.h in Headers */,
@@ -912,6 +885,9 @@
 				EA4D95FD1E83AF7700E40C14 /* JSONKeyMapper.h in Headers */,
 				EA4D95DD1E83AE5A00E40C14 /* FMDatabasePool.h in Headers */,
 				EA4D95F71E83AE8600E40C14 /* JSONModelLib.h in Headers */,
+				EAC5F86B1E81D10D00C087B8 /* OPTLYLogger.h in Headers */,
+				EAC5F76C1E808F5500C087B8 /* OPTLYMacros.h in Headers */,
+				EAC5F76B1E808F5500C087B8 /* murmur3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,7 +906,6 @@
 				EAC5F7E31E81B12100C087B8 /* OPTLYEventAudience.h in Headers */,
 				EAC5F7E41E81B12100C087B8 /* OPTLYEventBuilder.h in Headers */,
 				EAC5F7E51E81B12100C087B8 /* OPTLYEventDecision.h in Headers */,
-				EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
 				EAC5F7E61E81B12100C087B8 /* OPTLYEventDecisionTicket.h in Headers */,
 				EAC5F7E81E81B12100C087B8 /* OPTLYEventFeature.h in Headers */,
 				EAC5F7E91E81B12100C087B8 /* OPTLYEventHeader.h in Headers */,
@@ -980,11 +955,10 @@
 				EAC5F82B1E81BBE300C087B8 /* OptimizelySDKTVOSUniversal.h in Headers */,
 				EAC5F8641E81CCDB00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EAC5F8661E81CD7100C087B8 /* OPTLYErrorHandlerMessages.h in Headers */,
-				EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EAC5F8691E81D0DE00C087B8 /* OPTLYLogger.h in Headers */,
 				EAC5F87A1E81D30300C087B8 /* OPTLYVariation.h in Headers */,
-				EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */,
-				EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */,
+				EA52C99C1E846F4800D4FCA0 /* JSONAPI.h in Headers */,
+				EA52C9A01E846F4800D4FCA0 /* JSONHTTPClient.h in Headers */,
 				EA4D96021E83AF7700E40C14 /* JSONValueTransformer.h in Headers */,
 				EAC5F81A1E81B12100C087B8 /* OPTLYEventDataStore.h in Headers */,
 				EA52C9A41E846F4800D4FCA0 /* JSONModel+networking.h in Headers */,
@@ -993,6 +967,8 @@
 				EA4D95EB1E83AE7E00E40C14 /* JSONModel.h in Headers */,
 				EA4D95EF1E83AE7E00E40C14 /* JSONModelClassProperty.h in Headers */,
 				EA4D95F31E83AE7E00E40C14 /* JSONModelError.h in Headers */,
+				EAC5F8181E81B12100C087B8 /* OPTLYMacros.h in Headers */,
+				EAC5F8191E81B12100C087B8 /* murmur3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,7 +1088,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKiOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk iphonesimulator -configuration ${CONFIGURATION} -arch x86_64 -arch i386 ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk iphoneos -configuration ${CONFIGURATION} -arch arm64 -arch armv7 -arch armv7s ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
+			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKiOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nrm -rf \"${UNIVERSAL_OUTPUT}\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} only_active_arch=no defines_module=yes -sdk \"iphonesimulator\" BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} only_active_arch=no defines_module=yes -sdk \"iphoneos\" BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
 		};
 		EAC5F8C11E82EE8E00C087B8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1125,7 +1101,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKTVOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk appletvsimulator -configuration ${CONFIGURATION} -arch x86_64 -arch i386 ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -sdk appletvos -configuration ${CONFIGURATION} -arch arm64 -arch armv7 -arch armv7s ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-appletvos/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-appletvos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-appletvsimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
+			shellScript = "FRAMEWORK_NAME=\"OptimizelySDKTVOSUniversal\"\nUNIVERSAL_OUTPUT=\"${BUILD_DIR}/${CONFIGURATION}-universal\"\nrm -rf \"${UNIVERSAL_OUTPUT}\"\nmkdir -p \"${UNIVERSAL_OUTPUT}\"\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} only_active_arch=no defines_module=yes -sdk \"appletvsimulator\" BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration ${CONFIGURATION} only_active_arch=no defines_module=yes -sdk \"appletvos\" BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Copy the device framework from the build directory to the universal output directory\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-appletvos/${FRAMEWORK_NAME}.framework\" \"${UNIVERSAL_OUTPUT}/\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-appletvos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-appletvsimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" -create -output \"${UNIVERSAL_OUTPUT}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\nopen ${UNIVERSAL_OUTPUT}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1609,7 +1585,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Debug;
 		};
@@ -1653,7 +1629,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Beta;
 		};
@@ -1697,7 +1673,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = RC;
 		};
@@ -1740,7 +1716,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Release;
 		};
@@ -1936,6 +1912,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
@@ -1959,6 +1936,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
@@ -1982,6 +1960,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
@@ -2005,6 +1984,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/OptimizelySDK/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
@@ -2015,12 +1995,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
 		};
@@ -2028,12 +2009,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Beta;
 		};
@@ -2041,12 +2023,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = RC;
 		};
@@ -2059,7 +2042,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};

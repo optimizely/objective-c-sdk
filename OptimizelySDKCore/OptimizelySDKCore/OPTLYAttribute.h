@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import <JSONModelLib.h>
+    #import "JSONModelLib.h"
 #else
     #import <JSONModel/JSONModelLib.h>
 #endif
