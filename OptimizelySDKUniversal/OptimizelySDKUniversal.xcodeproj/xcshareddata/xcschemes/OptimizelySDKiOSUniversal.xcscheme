@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
-               BuildableName = "OptimizelySDKiOS.framework"
-               BlueprintName = "OptimizelySDKiOS"
+               BuildableName = "OptimizelySDKiOSUniversal.framework"
+               BlueprintName = "OptimizelySDKiOSUniversal"
                ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
-            BuildableName = "OptimizelySDKiOS.framework"
-            BlueprintName = "OptimizelySDKiOS"
+            BuildableName = "OptimizelySDKiOSUniversal.framework"
+            BlueprintName = "OptimizelySDKiOSUniversal"
             ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA52C9E41E851CC100D4FCA0"
-            BuildableName = "OptimizelySDKiOS.framework"
-            BlueprintName = "OptimizelySDKiOS"
+            BuildableName = "OptimizelySDKiOSUniversal.framework"
+            BlueprintName = "OptimizelySDKiOSUniversal"
             ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
