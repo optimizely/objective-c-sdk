@@ -26,6 +26,7 @@
 #import "OPTLYEventFeature.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYEventMetric.h"
+#import "OPTLYVariation.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";

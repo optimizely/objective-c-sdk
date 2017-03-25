@@ -15,8 +15,8 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYDatafileManager.h"
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import "OPTLYDatafileManagerBasic.h"
 
 static NSString *const kProjectId = @"6372300739";
 static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/public/%@/datafile_v%@.json";

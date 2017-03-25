@@ -15,11 +15,10 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYTestHelper.h"
-
-#import "OPTLYClient.h"
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import "OPTLYClient.h"
+#import "OPTLYTestHelper.h"
 
 // static datafile name
 static NSString *const kDatamodelDatafileName = @"datafile_6372300739";

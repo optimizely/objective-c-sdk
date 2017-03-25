@@ -16,7 +16,6 @@
 
 #import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
-
 #import "OPTLYAttribute.h"
 #import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
@@ -26,8 +25,9 @@
 #import "OPTLYGroup.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBasic.h"
 #import "OPTLYTestHelper.h"
+#import "OPTLYVariation.h"
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
