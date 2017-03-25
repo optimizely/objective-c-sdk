@@ -330,7 +330,28 @@
 		EA52CD9B1E85E5D500D4FCA0 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CD6B1E85E37500D4FCA0 /* JSONModel+networking.m */; };
 		EA52CD9C1E85E5D500D4FCA0 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CD791E85E37E00D4FCA0 /* JSONKeyMapper.m */; };
 		EA52CD9D1E85E5D500D4FCA0 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CD7B1E85E37E00D4FCA0 /* JSONValueTransformer.m */; };
+		EA52CDEB1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CDEA1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m */; };
+		EA52CDED1E8649B800D4FCA0 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */; };
+		EA52CDFC1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52CDFB1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m */; };
+		EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA52CDEE1E8649B800D4FCA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAC5F0EC1E7B5D6500C087B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA52CA8D1E851CEE00D4FCA0;
+			remoteInfo = OptimizelySDKTVOSUniversal;
+		};
+		EA52CDFF1E8649DB00D4FCA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAC5F0EC1E7B5D6500C087B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA52C9E41E851CC100D4FCA0;
+			remoteInfo = OptimizelySDKiOSUniversal;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -370,10 +391,12 @@
 		EA52CD791E85E37E00D4FCA0 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
 		EA52CD7A1E85E37E00D4FCA0 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
 		EA52CD7B1E85E37E00D4FCA0 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
-		EA52CDC81E863FE300D4FCA0 /* OptimizelySDKiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKiOSTests.m; sourceTree = "<group>"; };
-		EA52CDCA1E863FE300D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA52CDD91E86400900D4FCA0 /* OptimizelySDKTVOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKTVOSTests.m; sourceTree = "<group>"; };
-		EA52CDDB1E86400900D4FCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA52CDE81E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKTVOSUniversalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52CDEA1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKTVOSUniversalTests.m; sourceTree = "<group>"; };
+		EA52CDEC1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKTVOSUniversalTests-Info.plist"; sourceTree = "<group>"; };
+		EA52CDF91E8649DA00D4FCA0 /* OptimizelySDKiOSUniversalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKiOSUniversalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA52CDFB1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKiOSUniversalTests.m; sourceTree = "<group>"; };
+		EA52CDFD1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKiOSUniversalTests-Info.plist"; sourceTree = "<group>"; };
 		EAC5F1311E7B604C00C087B8 /* Optimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Optimizely.m; path = "../../../../Users/aluong/src/objective-c-sdk-universal-framework-3/OptimizelySDKCore/OptimizelySDKCore/Optimizely.m"; sourceTree = DEVELOPER_DIR; };
 		EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAttribute.m; path = "../../../../Users/aluong/src/objective-c-sdk-universal-framework-3/OptimizelySDKCore/OptimizelySDKCore/OPTLYAttribute.m"; sourceTree = DEVELOPER_DIR; };
 		EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAudience.m; path = "../../../../Users/aluong/src/objective-c-sdk-universal-framework-3/OptimizelySDKCore/OptimizelySDKCore/OPTLYAudience.m"; sourceTree = DEVELOPER_DIR; };
@@ -520,6 +543,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA52CDE51E8649B800D4FCA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52CDED1E8649B800D4FCA0 /* OptimizelySDKTVOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52CDF61E8649DA00D4FCA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -565,30 +604,30 @@
 			name = JSONModel;
 			sourceTree = "<group>";
 		};
-		EA52CDC71E863FE300D4FCA0 /* OptimizelySDKiOSTests */ = {
+		EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA52CDC81E863FE300D4FCA0 /* OptimizelySDKiOSTests.m */,
-				EA52CDCA1E863FE300D4FCA0 /* Info.plist */,
+				EA52CDEA1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m */,
+				EA52CDEC1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests-Info.plist */,
 			);
-			path = OptimizelySDKiOSTests;
+			path = OptimizelySDKTVOSUniversalTests;
 			sourceTree = "<group>";
 		};
-		EA52CDD81E86400900D4FCA0 /* OptimizelySDKTVOSTests */ = {
+		EA52CDFA1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA52CDD91E86400900D4FCA0 /* OptimizelySDKTVOSTests.m */,
-				EA52CDDB1E86400900D4FCA0 /* Info.plist */,
+				EA52CDFB1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m */,
+				EA52CDFD1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests-Info.plist */,
 			);
-			path = OptimizelySDKTVOSTests;
+			path = OptimizelySDKiOSUniversalTests;
 			sourceTree = "<group>";
 		};
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */,
-				EA52CDC71E863FE300D4FCA0 /* OptimizelySDKiOSTests */,
-				EA52CDD81E86400900D4FCA0 /* OptimizelySDKTVOSTests */,
+				EA52CDFA1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests */,
+				EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */,
 				EAC5F0F61E7B5D6500C087B8 /* Products */,
 				EAC5F2981E7B658700C087B8 /* Frameworks */,
 			);
@@ -599,6 +638,8 @@
 			children = (
 				EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */,
 				EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */,
+				EA52CDE81E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.xctest */,
+				EA52CDF91E8649DA00D4FCA0 /* OptimizelySDKiOSUniversalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1036,6 +1077,42 @@
 			productReference = EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		EA52CDE71E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA52CDF01E8649B800D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKTVOSUniversalTests" */;
+			buildPhases = (
+				EA52CDE41E8649B800D4FCA0 /* Sources */,
+				EA52CDE51E8649B800D4FCA0 /* Frameworks */,
+				EA52CDE61E8649B800D4FCA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52CDEF1E8649B800D4FCA0 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKTVOSUniversalTests;
+			productName = OptimizelySDKTVOSUniversalTests;
+			productReference = EA52CDE81E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA52CDF81E8649DA00D4FCA0 /* OptimizelySDKiOSUniversalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA52CE011E8649DB00D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKiOSUniversalTests" */;
+			buildPhases = (
+				EA52CDF51E8649DA00D4FCA0 /* Sources */,
+				EA52CDF61E8649DA00D4FCA0 /* Frameworks */,
+				EA52CDF71E8649DA00D4FCA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA52CE001E8649DB00D4FCA0 /* PBXTargetDependency */,
+			);
+			name = OptimizelySDKiOSUniversalTests;
+			productName = OptimizelySDKiOSUniversalTests;
+			productReference = EA52CDF91E8649DA00D4FCA0 /* OptimizelySDKiOSUniversalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1050,6 +1127,16 @@
 					};
 					EA52CA8D1E851CEE00D4FCA0 = {
 						DevelopmentTeam = BDMC9C2X5M;
+					};
+					EA52CDE71E8649B800D4FCA0 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
+					};
+					EA52CDF81E8649DA00D4FCA0 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
 					};
 					EAC5F8B41E82EE6800C087B8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1079,6 +1166,8 @@
 				EAC5F8BA1E82EE7400C087B8 /* OptimizelySDKTVOS-Universal */,
 				EA52C9E41E851CC100D4FCA0 /* OptimizelySDKiOSUniversal */,
 				EA52CA8D1E851CEE00D4FCA0 /* OptimizelySDKTVOSUniversal */,
+				EA52CDE71E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */,
+				EA52CDF81E8649DA00D4FCA0 /* OptimizelySDKiOSUniversalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1092,6 +1181,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EA52CB1E1E851CEE00D4FCA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52CDE61E8649B800D4FCA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52CDF71E8649DA00D4FCA0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1285,7 +1388,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA52CDE41E8649B800D4FCA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52CDEB1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA52CDF51E8649DA00D4FCA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA52CDFC1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA52CDEF1E8649B800D4FCA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA52CA8D1E851CEE00D4FCA0 /* OptimizelySDKTVOSUniversal */;
+			targetProxy = EA52CDEE1E8649B800D4FCA0 /* PBXContainerItemProxy */;
+		};
+		EA52CE001E8649DB00D4FCA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA52C9E41E851CC100D4FCA0 /* OptimizelySDKiOSUniversal */;
+			targetProxy = EA52CDFF1E8649DB00D4FCA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EA52CA871E851CC100D4FCA0 /* Debug */ = {
@@ -1643,6 +1775,110 @@
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = Release;
+		};
+		EA52CDF11E8649B800D4FCA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		EA52CDF21E8649B800D4FCA0 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Beta;
+		};
+		EA52CDF31E8649B800D4FCA0 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = RC;
+		};
+		EA52CDF41E8649B800D4FCA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
+		EA52CE021E8649DB00D4FCA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA52CE031E8649DB00D4FCA0 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		EA52CE041E8649DB00D4FCA0 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		EA52CE051E8649DB00D4FCA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -2135,6 +2371,26 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EA52CDF01E8649B800D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKTVOSUniversalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA52CDF11E8649B800D4FCA0 /* Debug */,
+				EA52CDF21E8649B800D4FCA0 /* Beta */,
+				EA52CDF31E8649B800D4FCA0 /* RC */,
+				EA52CDF41E8649B800D4FCA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EA52CE011E8649DB00D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKiOSUniversalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA52CE021E8649DB00D4FCA0 /* Debug */,
+				EA52CE031E8649DB00D4FCA0 /* Beta */,
+				EA52CE041E8649DB00D4FCA0 /* RC */,
+				EA52CE051E8649DB00D4FCA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		EAC5F0EF1E7B5D6500C087B8 /* Build configuration list for PBXProject "OptimizelySDKUniversal" */ = {
 			isa = XCConfigurationList;
