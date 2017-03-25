@@ -15,12 +15,12 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import <OPTLYDatafileManager.h>
-    #import <OPTLYErrorHandler.h>
-    #import <OPTLYEventDispatcher.h>
-    #import <OPTLYLogger.h>
-    #import <OPTLYManagerBuilder.h>
-    #import <OPTLYUserProfile.h>
+    #import "OPTLYDatafileManager.h"
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYEventDispatcher.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYManagerBuilder.h"
+    #import "OPTLYUserProfile.h"
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>

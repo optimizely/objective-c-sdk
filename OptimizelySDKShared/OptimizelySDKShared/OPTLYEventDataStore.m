@@ -14,7 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 #ifdef UNIVERSAL
-    #import <OPTLYErrorHandler.h>
+    #import "OPTLYErrorHandler.h"
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #endif

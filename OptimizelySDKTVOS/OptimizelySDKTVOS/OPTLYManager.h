@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import <OPTLYManagerBase.h>
+    #import "OPTLYManagerBase.h"
 #else
     #import <OptimizelySDKShared/OPTLYManagerBase.h>
 #endif

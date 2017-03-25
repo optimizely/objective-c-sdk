@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import <OptimizelySDKShared.h>
+    #import "OptimizelySDKShared.h"
 #else
     #import <OptimizelySDKShared/OptimizelySDKShared.h>
 #endif

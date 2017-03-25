@@ -14,7 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 #ifdef UNIVERSAL
-    #import <OPTLYNetworkService.h>
+    #import "OPTLYNetworkService.h"
 #else
     #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #endif

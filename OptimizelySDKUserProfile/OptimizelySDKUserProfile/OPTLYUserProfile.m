@@ -15,9 +15,9 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import <OPTLYUserProfileBasic.h>
-    #import <OPTLYLogger.h>
-    #import <OPTLYDataStore.h>
+    #import "OPTLYUserProfileBasic.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYDataStore.h"
 #else
     #import <OptimizelySDKCore/OPTLYUserProfileBasic.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>

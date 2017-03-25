@@ -16,8 +16,8 @@
 
 #import <UIKit/UIKit.h>
 #ifdef UNIVERSAL
-    #import <FMDB.h>
-    #import <OptimizelySDKCore.h>
+    #import "FMDB.h"
+    #import "OptimizelySDKCore.h"
 #else
     #import <FMDB/FMDB.h>
     #import <OptimizelySDKCore/OptimizelySDKCore.h>
