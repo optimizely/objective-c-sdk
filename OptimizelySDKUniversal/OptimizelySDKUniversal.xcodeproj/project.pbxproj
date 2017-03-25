@@ -1441,12 +1441,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1460,7 +1460,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Debug;
@@ -1486,12 +1486,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1505,7 +1505,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Beta;
@@ -1531,12 +1531,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1550,7 +1550,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = RC;
@@ -1576,12 +1576,12 @@
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
-					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
+					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1594,7 +1594,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Release;
@@ -1618,13 +1618,13 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
+					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1639,7 +1639,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
@@ -1663,13 +1663,13 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
+					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1684,7 +1684,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Beta;
@@ -1708,13 +1708,13 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
+					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1729,7 +1729,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = RC;
@@ -1753,13 +1753,13 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
-					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
-					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
-					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS/**",
-					"$(SRCROOT)/../OptimizelySDKCore/Frameworks/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/**",
+					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
+					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
+					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
+					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager",
+					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher",
+					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared",
 				);
 				INFOPLIST_FILE = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1773,7 +1773,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
