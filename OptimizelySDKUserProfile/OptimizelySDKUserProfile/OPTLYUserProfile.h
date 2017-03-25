@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYUserProfileBuilder.h"
 
-@protocol OPTLYLogger;
+@protocol OPTLYLogger, OPTLYUserProfile;
 
 @interface OPTLYUserProfileDefault : NSObject<OPTLYUserProfile>
 

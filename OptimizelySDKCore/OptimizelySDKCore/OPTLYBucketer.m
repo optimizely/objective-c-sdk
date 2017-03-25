@@ -14,6 +14,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import "murmur3.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYExperiment.h"
@@ -22,7 +23,6 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYTrafficAllocation.h"
 #import "OPTLYVariation.h"
-#import <murmur3.h>
 
 NSString *const OPTLYBucketerMutexPolicy = @"random";
 NSString *const OPTLYBucketerOverlappingPolicy = @"overlapping";
