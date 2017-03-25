@@ -22,7 +22,8 @@
 #endif
 #import "OPTLYCondition.h"
 
-@protocol OPTLYAudience;
+@protocol OPTLYAudience
+@end
 
 @interface OPTLYAudience : JSONModel <OPTLYCondition>
 
