@@ -138,16 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder!.projectId = self.projectId
         }
         
-        // ---- Create the User Profile ----
-        let userProfile = OPTLYUserProfileNoOp.init()
-        
-        
         // ---- Create the Manager ----
         let optimizelyManager = OPTLYManager.init {(builder) in
             builder!.projectId = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
-            builder!.userProfile = userProfile
         }
         
         // After creating the client, there are three different ways to intialize the manager:
