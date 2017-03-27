@@ -61,6 +61,7 @@ typedef NSString *(^JSONModelKeyMapBlock)(NSString *keyName);
 
 /** Combined converter method
  * @param value the source name
+ * @param importing YES invokes JSONToModelKeyBlock, NO - modelToJSONKeyBlock
  * @return JSONKeyMapper instance
  */
 - (NSString *)convertValue:(NSString *)value;

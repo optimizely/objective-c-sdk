@@ -971,6 +971,7 @@
 		15979B379EC799A6C73CEE914D7C7E6A /* MD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MD5.swift; path = Mixpanel/MD5.swift; sourceTree = "<group>"; };
 		16B03D2AF330BE79B25A25AC437555AD /* Swizzle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Swizzle.swift; path = Mixpanel/Swizzle.swift; sourceTree = "<group>"; };
 		16CC47DC2708BDCB8DB2302902890C6E /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKSharediOS.framework; path = "Pods-OptimizelySDKSharediOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		16CE783CAA5A6CC0C58D02DC12CAE5EE /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "Localytics-iOS-4.3.0/Localytics.framework"; sourceTree = "<group>"; };
 		174E1EAA23DC839FF6B4DB9D90C9EF4D /* Pods-OptimizelySDKEventDispatcherTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKEventDispatcherTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		178DA3984446390B57FBDBABCD7E1C31 /* Pods-OptimizelySDKSharediOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKSharediOSTests-dummy.m"; sourceTree = "<group>"; };
 		187C8D1C253CD753DDDA37D9FA5A1F28 /* Pods-OptimizelySDKiOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKiOS.rc.xcconfig"; sourceTree = "<group>"; };
@@ -1251,7 +1252,6 @@
 		798BBDCF0D6397D841DAA9169709BF3B /* OCMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMockObject.m; path = Source/OCMock/OCMockObject.m; sourceTree = "<group>"; };
 		79EF3C8183B5997F11945A2A5F5BF76A /* OHHTTPStubs-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OHHTTPStubs-tvOS-umbrella.h"; path = "../OHHTTPStubs-tvOS/OHHTTPStubs-tvOS-umbrella.h"; sourceTree = "<group>"; };
 		7A4CAFC0428EA200A80650A281196BC5 /* AMPConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPConstants.h; path = Amplitude/AMPConstants.h; sourceTree = "<group>"; };
-		7A55381401259B8E7C5CB416F8EF6A33 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "Localytics-iOS-4.2.0/Localytics.framework"; sourceTree = "<group>"; };
 		7ACF6F29C550467BEF876B8BD357A4D6 /* Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = Mixpanel/Logger.swift; sourceTree = "<group>"; };
 		7B2399E3996F7ED8AC215DD77C484E9A /* OCMLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMLocation.m; path = Source/OCMock/OCMLocation.m; sourceTree = "<group>"; };
 		7B29402F18F613E06344EACE4B743A62 /* CGSizeToNSDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CGSizeToNSDictionary.swift; path = Mixpanel/CGSizeToNSDictionary.swift; sourceTree = "<group>"; };
@@ -2071,7 +2071,7 @@
 		1E042B9247BDFCFC8E981D11CD9D9A2C /* Localytics */ = {
 			isa = PBXGroup;
 			children = (
-				C981253F6EE99C1DBFD12B888F505E8E /* Frameworks */,
+				A2FA7C72186E7FC7788CB09D5801707B /* Frameworks */,
 			);
 			name = Localytics;
 			path = Localytics;
@@ -2739,6 +2739,14 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		A2FA7C72186E7FC7788CB09D5801707B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16CE783CAA5A6CC0C58D02DC12CAE5EE /* Localytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A45C9785BB504058803980DC6D893F3F /* Pods-OptimizelySDKDatafileManageriOSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -3021,14 +3029,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Mixpanel-swift";
-			sourceTree = "<group>";
-		};
-		C981253F6EE99C1DBFD12B888F505E8E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7A55381401259B8E7C5CB416F8EF6A33 /* Localytics.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CF29DC95E4F90F6B898B645FB9E321F7 /* Pods-OptimizelySDKDatafileManageriOS */ = {
