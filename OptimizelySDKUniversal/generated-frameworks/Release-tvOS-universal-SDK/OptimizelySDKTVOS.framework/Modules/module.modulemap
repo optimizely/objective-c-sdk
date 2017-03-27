@@ -1,0 +1,6 @@
+framework module OptimizelySDKTVOS {
+  umbrella header "OptimizelySDKTVOS.h"
+
+  export *
+  module * { export * }
+}
