@@ -135,7 +135,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysEventEntityId] = StringOrEmpty([config getEventIdForKey:eventName]);
     params[OPTLYEventParameterKeysEventName] = StringOrEmpty(eventName);
     params[OPTLYEventParameterKeysEventFeatures] = [self createEventFeatures:config eventTags:eventTags];
-    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:eventTags];
+    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:eventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
     return params;
@@ -151,7 +151,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     return decisionParams;
 }
 
-- (NSArray *)createEventMetric:(NSDictionary *)eventTags
+- (NSArray *)createEventMetric:(OPTLYProjectConfig *)config
+                     eventTags:(NSDictionary *)eventTags
 {
     NSMutableArray *metrics = [NSMutableArray new];
     

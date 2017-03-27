@@ -69,10 +69,6 @@ static NSString * const kEventWithoutExperimentId = @"6386521015";
 static NSString * const kEventWithMultipleExperimentsName = @"testEventWithMultipleExperiments";
 static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
-// event tags
-static NSString * const kEventTagIntegerKey = '1234'
-static NSString * const kEventTagStringKey =
-
 @interface OPTLYEventBuilderDefault(Tests)
 - (NSString *)sdkVersion;
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
@@ -192,6 +188,27 @@ static NSString * const kEventTagStringKey =
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
+- (void)testBuildEventTicketWithRevenue
+{
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
 - (void)testBuildEventTicketWithEventTags
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
@@ -200,14 +217,21 @@ static NSString * const kEventTagStringKey =
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                     eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
+                                                                  @"IntegerTag" : [NSNumber numberWithInteger:15],
+                                                                  @"BooleanTag" : @YES,
+                                                                  @"FloatTag" : [NSNumber numberWithFloat:1.23],
+                                                                  @"InvalidArrayTag" : [NSArray new]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
+                              @"IntegerTag" : [NSNumber numberWithInteger:15],
+                              @"FloatTag" : [NSNumber numberWithFloat:1.23],
+                              @"BooleanTag" : @YES}
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -587,7 +611,7 @@ static NSString * const kEventTagStringKey =
         
         NSNumber *eventFeatureValue = eventFeature[OPTLYEventParameterKeysFeaturesValue];
         XCTAssertNotNil(eventFeatureValue, @"Event feature value is missing from event feature.");
-        XCTAssertEqual(eventFeatureValue, eventTags[eventFeatureName], @"Invalid event feature value.");
+        XCTAssert([eventFeatureValue isEqual: eventTags[eventFeatureName]], @"Invalid event feature value.");
         
         XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @1, @"Invalid should index value for event feature.");
         
