@@ -280,10 +280,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:[layerStates count]];
-    for (OPTLYEventLayerState *layerState in layerStates) {
-        OPTLYEventDecision *eventDecision = layerState.decision;
-        OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
-        OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];
+    for (NSDictionary *layerState in layerStates) {
+        NSDictionary *eventDecision = layerState[OPTLYEventParameterKeysLayerStateDecision];
+        OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision[OPTLYEventParameterKeysDecisionExperimentId]];
+        OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision[OPTLYEventParameterKeysDecisionVariationId]];
         if (experiment != nil && variation != nil) {
             experimentVariationMapping[experiment] = variation;
         }
