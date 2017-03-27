@@ -69,6 +69,10 @@ static NSString * const kEventWithoutExperimentId = @"6386521015";
 static NSString * const kEventWithMultipleExperimentsName = @"testEventWithMultipleExperiments";
 static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
+// event tags
+static NSString * const kEventTagIntegerKey = '1234'
+static NSString * const kEventTagStringKey =
+
 @interface OPTLYEventBuilderDefault(Tests)
 - (NSString *)sdkVersion;
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
@@ -109,7 +113,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                          attributes:nil];
     [self checkCommonParams:params
              withAttributes:nil];
-    [self checkeventTicket:params
+    [self checkEventTicket:params
                           config:self.config
                          eventId:kEventWithoutAudienceId
                        eventName:kEventWithoutAudienceName
@@ -142,7 +146,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                             eventTags:nil
                                            attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    [self checkeventTicket:params
+    [self checkEventTicket:params
                           config:self.config
                          eventId:kEventWithAudienceId
                        eventName:kEventWithAudienceName
@@ -199,7 +203,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                      eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    [self checkeventTicket:params
+    [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
@@ -221,7 +225,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    [self checkeventTicket:params
+    [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
@@ -243,7 +247,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                           eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
                                                          attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    [self checkeventTicket:params
+    [self checkEventTicket:params
                           config:self.config
                          eventId:kEventWithAudienceId
                        eventName:kEventWithAudienceName
@@ -390,7 +394,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     [self checkDecision:decision experimentId:experimentId bucketedVariationId:bucketedVariation.variationId];
 }
 
-- (void)checkeventTicket:(NSDictionary *)params
+- (void)checkEventTicket:(NSDictionary *)params
                         config:(OPTLYProjectConfig *)config
                        eventId:(NSString *)eventId
                      eventName:(NSString *)eventName

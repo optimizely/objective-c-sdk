@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
  * @param config The project config object.
  * @param userId The ID of the user.
  * @param eventName The event name.
- * @param eventTags A map of event tag names to event tag values (string, number, or boolean)
+ * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean).
  * @param attributes A map of attribute names to current user attribute values.
  * @return A map of parameters for a conversion event. This value can be nil.
  *

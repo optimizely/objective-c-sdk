@@ -234,6 +234,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
+    // eventValue and eventTags are mutually exclusive
     if (eventValue) {
         eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
     }
@@ -245,7 +246,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                     eventTags:eventTags
                                                                    attributes:attributes];
     
-    if (!conversionEventParams) {
+    if ([conversionEventParams count] == 0) {
         [self handleErrorLogsForTrackEvent:eventKey userId:userId];
         return;
     }
@@ -275,19 +276,20 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         userInfo[OptimizelyNotificationsUserDictionaryEventValueKey] = eventValue;
     }
     NSArray *layerStates = conversionEventParams[OPTLYEventParameterKeysLayerStates];
-    if ([layerStates count] > 0) {
-        NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:[layerStates count]];
-        for (OPTLYEventLayerState *layerState in layerStates) {
-            OPTLYEventDecision *eventDecision = layerState.decision;
-            OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
-            OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];
-            if (experiment != nil && variation != nil) {
-                experimentVariationMapping[experiment] = variation;
-            }
+    if ([layerStates count] == 0) {
+        return;
+    }
+    NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:[layerStates count]];
+    for (OPTLYEventLayerState *layerState in layerStates) {
+        OPTLYEventDecision *eventDecision = layerState.decision;
+        OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
+        OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];
+        if (experiment != nil && variation != nil) {
+            experimentVariationMapping[experiment] = variation;
         }
-        if (experimentVariationMapping.count > 0) {
-            userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
-        }
+    }
+    if ([experimentVariationMapping count] > 0) {
+        userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification
                                                         object:self

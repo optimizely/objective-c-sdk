@@ -156,6 +156,13 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     NSMutableArray *metrics = [NSMutableArray new];
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
+        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 1 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 1 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 1 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 1 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 1) {
+            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+        }
         NSDictionary *metricParam = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameRevenue,
                                        OPTLYEventParameterKeysMetricValue : eventTags[OPTLYEventMetricNameRevenue] };
         [metrics addObject:metricParam];
@@ -199,12 +206,17 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     for (NSString *key in eventTagKeys) {
         id eventTagValue = eventTags[key];
         
-        NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
-                                              OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
-                                              OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
-                                              OPTLYEventParameterKeysFeaturesShouldIndex : @1 };
-        
-        [features addObject:eventFeatureParams];
+        if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
+            NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
+                                                  OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
+                                                  OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
+                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @1 };
+            
+            [features addObject:eventFeatureParams];
+        } else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        }
     }
     
     return [[NSArray alloc] initWithArray:features];
