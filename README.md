@@ -62,8 +62,58 @@ github "ccgus/fmdb"
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
 
-#### Clone Source
-Clone repo and manually add source to project to build. 
+#### Manual Installation
+
+The universal framework can be used in an application without the need for a third-party dependency manager. The universal framework packages up all Optimizely X Mobile modules, which include:<pre>
+	```OptimizelySDKCore```
+	```OptimizelySDKShared```
+	```OptimizelySDKDatafileManager```
+	```OptimizelySDKEventDispatcher```
+	```OptimzielySDKUserProfile```</pre>
+
+The framework also embeds its third-party dependencies:<pre>
+	```FMDB```
+	```JSONModel```</pre>
+
+The universal framework for iOS includes builds for the following architectures:<pre>
+	```i386i```
+	```X86_64```
+	```ARMV7```
+	```ARMV7s```
+	```ARM64```</pre>
+
+The universal framework for tvOS includes build for the following architectures:<pre>
+	```X86_64```
+	```ARM64```</pre>
+
+Bitcode is enabled for both the iOS and tvOS universal frameworks. 
+
+Please follow the following steps to install the universal framework:
+
+1. Download the [iOS](https://github.com/optimizely/objective-c-sdk/tree/master/OptimizelySDKUniversal/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework) or [tvOS](https://github.com/optimizely/objective-c-sdk/tree/master/OptimizelySDKUniversal/generated-frameworks/Release-tvOS-universal-SDK/OptimizelySDKTVOS.framework) framework.
+
+2. Drag the framework to your project in Xcode, this should prompt you to select a target. Go to **Build Phases** and make sure that the framework is under the **Link Binary with Libraries** section.
+ 
+3. Go to **Build Phases** and in the **Embed Frameworks** section add the framework.
+
+4. The Apple store will reject your app if you have the universal framework installed as it includes simulator binaries. Therefore, a script to strip the extra binaries needs to be run before you upload the app. To do this, go to **Build Settings** and add a **Run Script** section. Copy and paste the following script:
+	 ```
+	FRAMEWORK="<FRAMEWORK_NAME>"
+	FRAMEWORK_EXECUTABLE_PATH="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK.framework/$FRAMEWORK"
+	EXTRACTED_ARCHS=()
+	for ARCH in $ARCHS
+	do
+		lipo -extract "$ARCH" "$FRAMEWORK_EXECUTABLE_PATH" -o "$FRAMEWORK_EXECUTABLE_PATH-$ARCH"
+		EXTRACTED_ARCHS+=("$FRAMEWORK_EXECUTABLE_PATH-$ARCH")
+	done
+	lipo -o "$FRAMEWORK_EXECUTABLE_PATH-merged" -create "${EXTRACTED_ARCHS[@]}"
+	rm "${EXTRACTED_ARCHS[@]}"
+	rm "$FRAMEWORK_EXECUTABLE_PATH"
+	mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
+	```
+Make sure you replace the ```<FRAMEWORK_NAME>``` with the proper framework name!
+
+If you choose to build the universal framework yourself, you can do so by running the ```OptimizelySDKiOS-Universal``` or ```OptimizelySDKTVOS-Universal``` schemes. The frameworks are output in the **OptimizelySDKUniversal/generated-frameworks** folder.
 
 ### Contributing
 Please see [CONTRIBUTING](CONTRIBUTING.md).
