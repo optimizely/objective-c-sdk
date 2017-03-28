@@ -114,6 +114,19 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
+    // Filter out 'revenue' eventTags with invalid values
+    NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
+    if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
+        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) != 0 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) != 0 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) != 0 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) != 0 &&
+            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) != 0) {
+            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+        }
+    }
+    
     NSArray *layerStates = [self createLayerStates:config
                                           bucketer:bucketer
                                           eventKey:eventName
@@ -134,8 +147,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     [params addEntriesFromDictionary:commonParams];
     params[OPTLYEventParameterKeysEventEntityId] = StringOrEmpty([config getEventIdForKey:eventName]);
     params[OPTLYEventParameterKeysEventName] = StringOrEmpty(eventName);
-    params[OPTLYEventParameterKeysEventFeatures] = [self createEventFeatures:config eventTags:eventTags];
-    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:eventTags];
+    params[OPTLYEventParameterKeysEventFeatures] = [self createEventFeatures:config eventTags:mutableEventTags];
+    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:mutableEventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
     return params;
@@ -157,13 +170,6 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     NSMutableArray *metrics = [NSMutableArray new];
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
-        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 1 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 1 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 1 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 1 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 1) {
-            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
-        }
         NSDictionary *metricParam = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameRevenue,
                                        OPTLYEventParameterKeysMetricValue : eventTags[OPTLYEventMetricNameRevenue] };
         [metrics addObject:metricParam];
@@ -203,7 +209,6 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return features;
     }
 
-    // TODO: check validity of eventTag value class type (should be NSString or NSNumber)
     for (NSString *key in eventTagKeys) {
         id eventTagValue = eventTags[key];
         
