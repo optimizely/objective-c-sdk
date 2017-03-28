@@ -6,14 +6,15 @@
 # 1. Reminder prompt to update the CHANGELOG.
 # 2. Reminder prompt to update the Build Settings with the proper version number for each module that requires a version bump.
 # 3. Gets the version numbers from the XCode build settings.
-# 4. Update podspec files with the correct version number.
-# 5. Verify podspec files.
-# 6. Commit and push the version bump changes to devel.
-# 7. Prompt to merge devel onto master via GitHub UI.
-# 8. git tag all the modules.
-# 9. git push all tags.
-# 10. Confirm if pod trunk session is open.
-# 11. pod trunk push all the podspecs.
+# 4. Build the universal frameworks.
+# 5. Update podspec files with the correct version number.
+# 6. Verify podspec files.
+# 7. Commit and push the version bump changes to devel.
+# 8. Prompt to merge devel onto master via GitHub UI.
+# 9. git tag all the modules.
+# 10. git push all tags.
+# 11. Confirm if pod trunk session is open.
+# 12. pod trunk push all the podspecs.
 
 
 # Change to the project root folder
@@ -83,7 +84,8 @@ if [ "$versions_valid" != "y" ]; then
 fi;
 
 # ---- Build the universal frameworks ----
-
+xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKiOS-Universal -configuration Release
+xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKTVOS-Universal -configuration Release
 
 # ---- Update podspec files ----
 printf "\n\n4. Updating podspec files with the new version numbers...\n\n"
