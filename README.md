@@ -76,7 +76,7 @@ The framework also embeds its third-party dependencies:<pre>
 	```JSONModel```</pre>
 
 The universal framework for iOS includes builds for the following architectures:<pre>
-	```i386i```
+	```i386```
 	```X86_64```
 	```ARMV7```
 	```ARMV7s```
@@ -88,7 +88,7 @@ The universal framework for tvOS includes build for the following architectures:
 
 Bitcode is enabled for both the iOS and tvOS universal frameworks. 
 
-Please follow the following steps to install the universal framework:
+In order to install the universal framework, follow the steps below:
 
 1. Download the [iOS](https://github.com/optimizely/objective-c-sdk/tree/master/OptimizelySDKUniversal/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework) or [tvOS](https://github.com/optimizely/objective-c-sdk/tree/master/OptimizelySDKUniversal/generated-frameworks/Release-tvOS-universal-SDK/OptimizelySDKTVOS.framework) framework.
 
