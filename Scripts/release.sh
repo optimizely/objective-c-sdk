@@ -66,6 +66,14 @@ echo "OPTIMIZELY_SDK_iOS_VERSION = $OPTIMIZELY_SDK_iOS_VERSION";
 OPTIMIZELY_SDK_TVOS_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_VERSION = \(.*\)/\1/p' | sed 's/ //g');
 echo "OPTIMIZELY_SDK_TVOS_VERSION = $OPTIMIZELY_SDK_TVOS_VERSION";
 
+# OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION";
+
+# OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION";
+
 # make sure that all the version numbers are as expected!
 printf "\n"
 read  -n 1 -p "Do all the version numbers look correct? [y/n] $cr? " versions_valid;
@@ -73,6 +81,9 @@ if [ "$versions_valid" != "y" ]; then
     printf "\nCorrect the version numbers in the Xcode Build Settings before proceeding!!\n"
     exit 1
 fi;
+
+# ---- Build the universal frameworks ----
+
 
 # ---- Update podspec files ----
 printf "\n\n4. Updating podspec files with the new version numbers...\n\n"
