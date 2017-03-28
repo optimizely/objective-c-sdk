@@ -77,13 +77,13 @@ The framework also embeds its third-party dependencies:<pre>
 
 The universal framework for iOS includes builds for the following architectures:<pre>
 	```i386```
-	```X86_64```
-	```ARMV7```
-	```ARMV7s```
+	```x86_64```
+	```ARMv7```
+	```ARMv7s```
 	```ARM64```</pre>
 
 The universal framework for tvOS includes build for the following architectures:<pre>
-	```X86_64```
+	```x86_64```
 	```ARM64```</pre>
 
 Bitcode is enabled for both the iOS and tvOS universal frameworks. 
