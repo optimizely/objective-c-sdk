@@ -90,9 +90,9 @@ Bitcode is enabled for both the iOS and tvOS universal frameworks.
 
 In order to install the universal framework, follow the steps below:
 
-1. Download the [iOS](./OptimizelySDKUniversal/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework) or [tvOS](./OptimizelySDKUniversal/generated-frameworks/Release-tvOS-universal-SDK/OptimizelySDKTVOS.framework) framework.
+1. Download the [iOS](./OptimizelySDKUniversal/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework.zip) or [tvOS](./OptimizelySDKUniversal/generated-frameworks/Release-tvOS-universal-SDK/OptimizelySDKTVOS.framework.zip) framework.
 
-2. Drag the framework to your project in Xcode, this should prompt you to select a target. Go to **Build Phases** and make sure that the framework is under the **Link Binary with Libraries** section.
+2. Unzip the framework, then drag the framework to your project in Xcode; Xcode should prompt you to select a target. Go to **Build Phases** and make sure that the framework is under the **Link Binary with Libraries** section.
  
 3. Go to **Build Phases** and in the **Embed Frameworks** section add the framework.
 
