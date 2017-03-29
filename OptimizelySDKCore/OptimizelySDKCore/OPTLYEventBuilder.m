@@ -114,14 +114,14 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
-    // Filter out 'revenue' eventTags with invalid values
+    // Allow only 'revenue' eventTags with integer values (max long) 
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
-        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) != 0 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) != 0 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) != 0 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) != 0 &&
-            strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) != 0) {
+        if (!(strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 0)) {
             [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
             [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
         }
