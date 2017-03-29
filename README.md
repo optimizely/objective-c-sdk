@@ -94,9 +94,9 @@ In order to install the universal framework, follow the steps below:
 
 2. Unzip the framework, then drag the framework to your project in Xcode; Xcode should prompt you to select a target. Go to **Build Phases** and make sure that the framework is under the **Link Binary with Libraries** section.
  
-3. Go to the **General** tab and add the framework to the **Embedded Binaries** section.
+3. Go to the **General** tab and add the framework to the **Embedded Binaries** section. If the **Embedded Binaries** section is not visible, add the frameowrk in the **Copy Files** section (you can add this section in **Build Settings**).
 
-4. The Apple store will reject your app if you have the universal framework installed as it includes simulator binaries. Therefore, a script to strip the extra binaries needs to be run before you upload the app. To do this, go to **Build Settings** and add a **Run Script** section. Copy and paste the following script:
+4. The Apple store will reject your app if you have the universal framework installed as it includes simulator binaries. Therefore, a script to strip the extra binaries needs to be run before you upload the app. To do this, go to **Build Phases** and add a **Run Script** section by clicking on the ```+``` symbol. Copy and paste the following script:
 	 ```
 	FRAMEWORK="FRAMEWORK_NAME"
 	FRAMEWORK_EXECUTABLE_PATH="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK.framework/$FRAMEWORK"
