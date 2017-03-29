@@ -94,11 +94,11 @@ In order to install the universal framework, follow the steps below:
 
 2. Unzip the framework, then drag the framework to your project in Xcode; Xcode should prompt you to select a target. Go to **Build Phases** and make sure that the framework is under the **Link Binary with Libraries** section.
  
-3. Go to **Build Phases** and in the **Embed Frameworks** section add the framework.
+3. Go to the **General** tab and add the framework to the **Embedded Binaries** section.
 
 4. The Apple store will reject your app if you have the universal framework installed as it includes simulator binaries. Therefore, a script to strip the extra binaries needs to be run before you upload the app. To do this, go to **Build Settings** and add a **Run Script** section. Copy and paste the following script:
 	 ```
-	FRAMEWORK="<FRAMEWORK_NAME>"
+	FRAMEWORK="FRAMEWORK_NAME"
 	FRAMEWORK_EXECUTABLE_PATH="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK.framework/$FRAMEWORK"
 	EXTRACTED_ARCHS=()
 	for ARCH in $ARCHS
@@ -111,7 +111,7 @@ In order to install the universal framework, follow the steps below:
 	rm "$FRAMEWORK_EXECUTABLE_PATH"
 	mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 	```
-Make sure you replace the ```<FRAMEWORK_NAME>``` with the proper framework name!
+Make sure you replace the ```FRAMEWORK_NAME``` with the proper framework name!
 
 If you choose to build the universal framework yourself, you can do so by running the ```OptimizelySDKiOS-Universal``` or ```OptimizelySDKTVOS-Universal``` schemes. The frameworks are output in the **OptimizelySDKUniversal/generated-frameworks** folder.
 
