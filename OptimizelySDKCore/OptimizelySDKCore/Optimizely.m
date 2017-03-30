@@ -113,13 +113,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     // send impression event
-    OPTLYDecisionEventTicket *impressionEvent = [self.eventBuilder buildDecisionEventTicket:self.config
+    NSDictionary *impressionEventParams = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                      userId:userId
                                                                               experimentKey:experimentKey
                                                                                 variationId:variation.variationId
                                                                                  attributes:attributes];
     
-    if (!impressionEvent) {
+    if ([impressionEventParams count] == 0) {
         [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
         return variation;
     }
@@ -127,7 +127,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
-    NSDictionary *impressionEventParams = [impressionEvent toDictionary];
     [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                              if (error) {

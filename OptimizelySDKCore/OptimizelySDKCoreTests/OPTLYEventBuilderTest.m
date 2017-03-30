@@ -373,14 +373,13 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                       bucketer:self.bucketer];
     
     
-    OPTLYDecisionEventTicket *decisionEventTicket = [self.eventBuilder buildDecisionEventTicket:self.config
+    NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                          userId:kUserId
                                                                                   experimentKey:kExperimentWithAudienceKey
                                                                                     variationId:bucketedVariation.variationId
                                                                                      attributes:attributes];
-    NSDictionary *params = [decisionEventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkDecisionTicketParams:params
+    [self checkCommonParams:decisionEventTicketParams withAttributes:attributes];
+    [self checkDecisionTicketParams:decisionEventTicketParams
                              config:self.config
                            bucketer:self.bucketer
                          attributes:attributes
@@ -393,14 +392,13 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
-    OPTLYDecisionEventTicket *decisionEventTicket = [self.eventBuilder buildDecisionEventTicket:self.config
+    NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                          userId:kUserId
                                                                                   experimentKey:kExperimentWithoutAudienceKey
                                                                                     variationId:kVariationWithoutAudienceId
                                                                                      attributes:attributes];
-    NSDictionary *params = [decisionEventTicket toDictionary];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkDecisionTicketParams:params
+    [self checkCommonParams:decisionEventTicketParams withAttributes:attributes];
+    [self checkDecisionTicketParams:decisionEventTicketParams
                              config:self.config
                            bucketer:self.bucketer
                          attributes:attributes
@@ -415,26 +413,24 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
-    OPTLYDecisionEventTicket *decisionEventTicket = [self.eventBuilder buildDecisionEventTicket:self.config
+    NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                          userId:kUserId
                                                                                   experimentKey:invalidExperimentKey
                                                                                     variationId:invalidVariationId
                                                                                      attributes:attributes];
-    NSDictionary *params = [decisionEventTicket toDictionary];
-    NSAssert(params == nil, @"parameters should not be created with unknown experiment.");
+    NSAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
 }
 
 - (void)testBuildDecisionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
     OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
     
-    OPTLYDecisionEventTicket *decisionEventTicket = [eventBuilder buildDecisionEventTicket:config
+    NSDictionary *decisionEventTicketParams = [eventBuilder buildDecisionEventTicket:config
                                                                                     userId:kUserId
                                                                              experimentKey:kExperimentWithoutAudienceKey
                                                                                variationId:kVariationWithoutAudienceId
                                                                                 attributes:nil];
-    NSDictionary *params = [decisionEventTicket toDictionary];
-    NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
+    NSNumber *anonymizeIP = decisionEventTicketParams[OPTLYEventParameterKeysAnonymizeIP];
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 

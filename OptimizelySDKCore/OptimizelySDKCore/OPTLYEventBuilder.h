@@ -42,11 +42,11 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for an impression event. This value can be nil.
  *
  */
-- (nullable OPTLYDecisionEventTicket *)buildDecisionEventTicket:(nonnull OPTLYProjectConfig *)config
-                                                         userId:(nonnull NSString *)userId
-                                                  experimentKey:(nonnull NSString *)experimentKey
-                                                    variationId:(nonnull NSString *)variationId
-                                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildDecisionEventTicket:(nonnull OPTLYProjectConfig *)config
+                                             userId:(nonnull NSString *)userId
+                                      experimentKey:(nonnull NSString *)experimentKey
+                                        variationId:(nonnull NSString *)variationId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
 /**
  * Create the parameters for a conversion event.

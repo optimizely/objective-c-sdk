@@ -40,11 +40,11 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 
 @implementation OPTLYEventBuilderDefault : NSObject 
 
-- (OPTLYDecisionEventTicket *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
-                                                userId:(NSString *)userId
-                                         experimentKey:(NSString *)experimentKey
-                                           variationId:(NSString *)variationId
-                                            attributes:(NSDictionary<NSString *, NSString *> *)attributes
+- (NSDictionary *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
+                                    userId:(NSString *)userId
+                             experimentKey:(NSString *)experimentKey
+                               variationId:(NSString *)variationId
+                                attributes:(NSDictionary<NSString *, NSString *> *)attributes
 {
     if (!config) {
         return nil;
@@ -81,11 +81,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     
     params[OPTLYEventParameterKeysLayerId] = StringOrEmpty(experiment.layerId);
     params[OPTLYEventParameterKeysDecision] = [self createDecisionWithExperimentId:experiment.experimentId variationId:variationId];
-
-    NSError *error;
-    OPTLYDecisionEventTicket *decision = [[OPTLYDecisionEventTicket alloc] initWithDictionary:params error:&error];
     
-    return decision;
+    return [params copy];
 }
 
 - (NSDictionary *)buildEventTicket:(OPTLYProjectConfig *)config
