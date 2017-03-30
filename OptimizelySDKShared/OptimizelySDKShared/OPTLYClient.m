@@ -15,9 +15,16 @@
  ***************************************************************************/
 
 #import "OPTLYClient.h"
-#import <OptimizelySDKCore/OPTLYVariation.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+#ifdef UNIVERSAL
+    #import "OPTLYVariation.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYLoggerMessages.h"
+#else
+    #import <OptimizelySDKCore/OPTLYVariation.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+#endif
+
 
 /**
  * This class wraps the Optimizely class from the Core SDK.

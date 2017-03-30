@@ -13,13 +13,22 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+#ifdef UNIVERSAL
+    #import "OPTLYDatafileManager.h"
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYEventDispatcher.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYManagerBuilder.h"
+    #import "OPTLYUserProfile.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
+    #import <OptimizelySDKEventDispatcher/OPTLYEventDispatcher.h>
+    #import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+    #import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
+#endif
 
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKEventDispatcher/OPTLYEventDispatcher.h>
-#import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
-#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
-#import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
 #import "OPTLYManager.h"
 
 static NSString * const kClientEngine = @"tvos-sdk";
@@ -110,9 +119,13 @@ static NSString * const kClientEngine = @"tvos-sdk";
         
         // --- client engine ---
         _clientEngine = kClientEngine;
-        
+
+#ifdef UNIVERSAL
         // --- client version ---
+        _clientVersion = OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION;
+#else
         _clientVersion = OPTIMIZELY_SDK_TVOS_VERSION;
+#endif
     }
     return self;
 }

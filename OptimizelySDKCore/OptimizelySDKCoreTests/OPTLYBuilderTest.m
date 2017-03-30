@@ -17,7 +17,7 @@
 #import <XCTest/XCTest.h>
 #import "Optimizely.h"
 #import "OPTLYErrorHandler.h"
-#import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBasic.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYTestHelper.h"

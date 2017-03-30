@@ -6,14 +6,15 @@
 # 1. Reminder prompt to update the CHANGELOG.
 # 2. Reminder prompt to update the Build Settings with the proper version number for each module that requires a version bump.
 # 3. Gets the version numbers from the XCode build settings.
-# 4. Update podspec files with the correct version number.
-# 5. Verify podspec files.
-# 6. Commit and push the version bump changes to devel.
-# 7. Prompt to merge devel onto master via GitHub UI.
-# 8. git tag all the modules.
-# 9. git push all tags.
-# 10. Confirm if pod trunk session is open.
-# 11. pod trunk push all the podspecs.
+# 4. Build the universal frameworks.
+# 5. Update podspec files with the correct version number.
+# 6. Verify podspec files.
+# 7. Commit and push the version bump changes to devel.
+# 8. Prompt to merge devel onto master via GitHub UI.
+# 9. git tag all the modules.
+# 10. git push all tags.
+# 11. Confirm if pod trunk session is open.
+# 12. pod trunk push all the podspecs.
 
 
 # Change to the project root folder
@@ -66,6 +67,14 @@ echo "OPTIMIZELY_SDK_iOS_VERSION = $OPTIMIZELY_SDK_iOS_VERSION";
 OPTIMIZELY_SDK_TVOS_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_VERSION = \(.*\)/\1/p' | sed 's/ //g');
 echo "OPTIMIZELY_SDK_TVOS_VERSION = $OPTIMIZELY_SDK_TVOS_VERSION";
 
+# OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION";
+
+# OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION";
+
 # make sure that all the version numbers are as expected!
 printf "\n"
 read  -n 1 -p "Do all the version numbers look correct? [y/n] $cr? " versions_valid;
@@ -73,6 +82,10 @@ if [ "$versions_valid" != "y" ]; then
     printf "\nCorrect the version numbers in the Xcode Build Settings before proceeding!!\n"
     exit 1
 fi;
+
+# ---- Build the universal frameworks ----
+xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKiOS-Universal -configuration Release
+xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKTVOS-Universal -configuration Release
 
 # ---- Update podspec files ----
 printf "\n\n4. Updating podspec files with the new version numbers...\n\n"

@@ -14,8 +14,13 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYQueue.h>
+#ifdef UNIVERSAL
+    #import "OPTLYLogger.h"
+    #import "OPTLYQueue.h"
+#else
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYQueue.h>
+#endif
 #import "OPTLYDataStore.h"
 #import "OPTLYEventDataStore.h"
 #import "OPTLYFileManager.h"

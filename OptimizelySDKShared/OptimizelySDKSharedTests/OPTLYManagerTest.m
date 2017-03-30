@@ -16,12 +16,11 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
-
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
 #import "OPTLYClient.h"
-#import "OPTLYDatafileManager.h"
+#import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 #import "OPTLYTestHelper.h"

@@ -17,7 +17,6 @@
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "OPTLYTestHelper.h"
-
 #import "OptimizelySDKTVOS.h"
 
 // static datafile name

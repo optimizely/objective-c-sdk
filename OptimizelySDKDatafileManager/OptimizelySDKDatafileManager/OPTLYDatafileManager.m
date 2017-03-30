@@ -15,11 +15,19 @@
  ***************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYLog.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKCore/OPTLYNetworkService.h>
-#import <OptimizelySDKShared/OPTLYDataStore.h>
+#ifdef UNIVERSAL
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYLog.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYNetworkService.h"
+    #import "OPTLYDataStore.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+    #import <OptimizelySDKCore/OPTLYLog.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYNetworkService.h>
+    #import <OptimizelySDKShared/OPTLYDataStore.h>
+#endif
 #import "OPTLYDatafileManager.h"
 
 // default datafile download interval is 2 minutes

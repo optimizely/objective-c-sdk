@@ -18,17 +18,17 @@
 #import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYDatafileKeys.h"
-#import "OPTLYGroup.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYExperiment.h"
+#import "OPTLYGroup.h"
 #import "OPTLYLog.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
-#import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBasic.h"
 #import "OPTLYVariable.h"
-#import "OPTLYVariable.h"
+#import "OPTLYVariation.h"
 
 NSString * const kExpectedDatafileVersion  = @"3";
 
