@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId;
 
-/**
+/** @deprecated. Use `track:userId:eventValue`.
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
@@ -112,7 +112,17 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   eventValue:(nonnull NSNumber *)eventValue;
+   eventValue:(nonnull NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
+
+/**
+ * Track an event
+ * @param eventKey The event name
+ * @param userId The user ID associated with the event to track
+ * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean)
+ */
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+    eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
 
 /**
  * Track an event
@@ -122,19 +132,31 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nonnull NSDictionary<NSString *, NSString *> * )attributes;
+   attributes:(nonnull NSDictionary<NSString *, NSString *> *)attributes;
 
-/**
+/** @deprecated. Use `track:userId:attributes:eventValue`.
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
- * @param attributes A map of attribute names to current user attribute values.
+ * @param attributes A map of attribute names to current user attribute values
  * @param eventValue The event value (e.g., revenue amount)
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-   eventValue:(nullable NSNumber * )eventValue;
+   eventValue:(nullable NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
+
+/**
+ * Track an event
+ * @param eventKey The event name
+ * @param userId The user ID associated with the event to track
+ * @param attributes A map of attribute names to current user attribute values
+ * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean)
+ */
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
+    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 #pragma mark - Live Variable Getters
 
@@ -433,5 +455,20 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @return Optimizely instance.
  */
 + (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
+
+// TODO: remove when eventValue is deprecated
+/**
+ * Track an event
+ * @param eventKey The event name
+ * @param userId The user ID associated with the event to track
+ * @param attributes A map of attribute names to current user attribute values.
+ * @param eventTags A map of event tag names to event tag values (string, number, or boolean)
+ * @param eventValue The event value (e.g., revenue amount)
+ */
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
+    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags
+   eventValue:(nullable NSNumber *)eventValue;
 
 @end
