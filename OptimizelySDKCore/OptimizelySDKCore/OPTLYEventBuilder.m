@@ -148,7 +148,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:mutableEventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
-    return params;
+    return [params copy];
 }
 
 - (NSDictionary *)createDecisionWithExperimentId:(NSString *)experimentId
