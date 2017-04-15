@@ -27,7 +27,7 @@
         // generate all base conditions
         NSMutableArray<OPTLYCondition> *conditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
         for (int i = 1; i < jsonArray.count; i++) {
-            NSDictionary *info = jsonArray[1];
+            NSDictionary *info = jsonArray[i];
             NSError *err = nil;
             OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:info
                                                                                      error:&err];
