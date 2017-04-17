@@ -83,7 +83,7 @@ The universal framework for iOS includes builds for the following architectures:
 	```ARMv7s```
 	```ARM64```</pre>
 
-The universal framework for tvOS includes build for the following architectures:<pre>
+The universal framework for tvOS includes builds for the following architectures:<pre>
 	```x86_64```
 	```ARM64```</pre>
 
