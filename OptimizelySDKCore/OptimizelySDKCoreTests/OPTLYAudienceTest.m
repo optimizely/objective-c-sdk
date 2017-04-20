@@ -19,6 +19,7 @@
 static NSString * const kAudienceId = @"6366023138";
 static NSString * const kAudienceName = @"Android users";
 static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"android\"}]]]";
+static NSString * const kAudienceConditionsWithNot = @"[\"and\", [\"or\", [\"not\", [\"or\", {\"name\": \"example\", \"type\": \"custom_attribute\", \"value\": \"test\"}]]]]";
 
 @interface OPTLYAudienceTest : XCTestCase
 
@@ -35,6 +36,18 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertTrue([audience evaluateConditionsWithAttributes:@{@"browser_type" : @"android"}]);
     XCTAssertFalse([audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"android"}]);
     XCTAssertFalse([audience evaluateConditionsWithAttributes:@{@"browser_type" : @"wrong_value"}]);
+}
+
+- (void)testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly {
+    OPTLYAudience *audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
+                                                                          @"name" : kAudienceName,
+                                                                          @"conditions" : kAudienceConditionsWithNot}
+                                                                  error:nil];
+    
+    XCTAssertNotNil(audience);
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:@{@"example" : @"nottest"}]);
+    XCTAssertFalse([audience evaluateConditionsWithAttributes:@{@"example" : @"test"}]);
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"test"}]);
 }
 
 @end

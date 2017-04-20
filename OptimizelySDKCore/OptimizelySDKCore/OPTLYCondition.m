@@ -64,7 +64,7 @@
     }
     else if ([conditionClass isEqualToString:OPTLYDatafileKeysNotCondition]) {
         OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
-        notCondition.subCondition = conditions;
+        notCondition.subCondition = conditions[0];
         return notCondition;
     }
     else {
