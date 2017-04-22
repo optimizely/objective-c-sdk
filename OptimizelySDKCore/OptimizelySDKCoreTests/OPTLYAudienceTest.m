@@ -20,6 +20,7 @@ static NSString * const kAudienceId = @"6366023138";
 static NSString * const kAudienceName = @"Android users";
 static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"android\"}]]]";
 static NSString * const kAudienceConditionsWithNot = @"[\"and\", [\"or\", [\"not\", [\"or\", {\"name\": \"example\", \"type\": \"custom_attribute\", \"value\": \"test\"}]]]]";
+static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value1\"}, {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value2\"}, {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value3\"}]], [\"or\", [\"or\", {\"name\": \"attribute_and\", \"type\": \"custom_attribute\", \"value\": \"attribute_and_value1\"}]], [\"or\", [\"not\", [\"or\", {\"name\": \"attribute_not\", \"type\": \"custom_attribute\", \"value\": \"attribute_not_value\"}]]]]";
 
 @interface OPTLYAudienceTest : XCTestCase
 
@@ -48,6 +49,41 @@ static NSString * const kAudienceConditionsWithNot = @"[\"and\", [\"or\", [\"not
     XCTAssertTrue([audience evaluateConditionsWithAttributes:@{@"example" : @"nottest"}]);
     XCTAssertFalse([audience evaluateConditionsWithAttributes:@{@"example" : @"test"}]);
     XCTAssertTrue([audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"test"}]);
+}
+
+- (void)testComplexAudience {
+    OPTLYAudience * audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
+                                                                           @"name" : kAudienceName,
+                                                                           @"conditions" : kComplexAudience}
+                                                                    error:nil];
+    
+    XCTAssertNotNil(audience);
+    
+    NSDictionary *attributesPassOrValue1 = @{@"attribute_or" : @"attribute_or_value1",
+                                             @"attribute_and" : @"attribute_and_value1",
+                                             @"attribute_not" : @"attribute_value"};
+    NSDictionary *attributesPassOrValue2 = @{@"attribute_or" : @"attribute_or_value2",
+                                             @"attribute_and" : @"attribute_and_value1",
+                                             @"attribute_not" : @"attribute_value"};
+    NSDictionary *attributesPassOrValue3 = @{@"attribute_or" : @"attribute_or_value3",
+                                             @"attribute_and" : @"attribute_and_value1",
+                                             @"attribute_not" : @"attribute_value"};
+    
+    NSDictionary *attributesFailBadAttributeNot = @{@"attribute_or" : @"attribute_or_value1",
+                                                    @"attribute_and" : @"attribute_and_value1",
+                                                    @"attribute_not" : @"attribute_not_value"};
+    NSDictionary *attributesFailBadAttributeOr = @{@"attribute_and" : @"attribute_and_value1",
+                                                   @"attribute_not" : @"attribute_value"};
+    NSDictionary *attributesFailBadAttributeAnd = @{@"attribute_or" : @"attribute_or_value1",
+                                                    @"attribute_not" : @"attribute_value"};
+    
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:attributesPassOrValue1]);
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:attributesPassOrValue2]);
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:attributesPassOrValue3]);
+    
+    XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeNot]);
+    XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeOr]);
+    XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeAnd]);
 }
 
 @end
