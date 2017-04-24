@@ -3,7 +3,7 @@
 April 24, 2017
 
 ### New Features
-* Objective-C universal framework that allows user to install the SDK without a third-party dependency manager.
+* Added the Objective-C universal framework, which allows users to install the SDK without a third-party dependency manager.
 * Added the event tags parameter in the track API, which allows user to pass in more than one event tags at a time. The new events parameter is a map of event tag names to event tag values, which can be an NSNumber that contains a float, double, integer, or boolean, or an NSString:
 ```
 - (void)track:(nonnull NSString *)eventKey
