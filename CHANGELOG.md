@@ -10,7 +10,7 @@ April 24, 2017
        userId:(nonnull NSString *)userId
     eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
 ```
-The track API with just one event value is still available, but will be deprecated after two releases.
+The track API with just one event value is still available, but will be deprecated after two releases:
 ``` 
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
@@ -22,7 +22,7 @@ The track API with just one event value is still available, but will be deprecat
 ### Bug Fixes
 * Fixed multiple base conditions audience parsing (merged the external pull request from @docsimon: https://github.com/optimizely/objective-c-sdk/pull/124).
 * Fixed how NOT conditions are parsed in the audience evaluation. 
-* Negative timestamp for 32-bit architecture devices. 
+* Fixed event negative timestamps for 32-bit architecture devices. 
 
 ## 1.0.1
 March 6, 2017
