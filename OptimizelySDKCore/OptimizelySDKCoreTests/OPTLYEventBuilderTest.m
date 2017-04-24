@@ -80,6 +80,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 @property (nonatomic, strong) OPTLYProjectConfig *config;
 @property (nonatomic, strong) OPTLYEventBuilderDefault *eventBuilder;
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
+@property (nonatomic, strong) NSDate *begTimestamp;
 
 @end
 
@@ -91,6 +92,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     self.eventBuilder = [OPTLYEventBuilderDefault new];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.begTimestamp = [NSDate date];
 }
 
 - (void)tearDown {
@@ -497,9 +499,13 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)checkCommonParams:(NSDictionary *)params
            withAttributes:(NSDictionary *)attributes
 {
-    // check timestamp exists
+    NSDate *currentTimestamp = [NSDate date];
+    
+    // check timestamp is within the correct range
     NSNumber *timestamp = params[OPTLYEventParameterKeysTimestamp];
-    NSAssert(timestamp > 0, @"No timestamp.");
+    double time = [timestamp doubleValue]/1000;
+    NSDate *eventTimestamp = [NSDate dateWithTimeIntervalSince1970:time];
+    NSAssert([self date:eventTimestamp isBetweenDate:self.begTimestamp andDate:currentTimestamp], @"Invalid timestamp: %@.", eventTimestamp);
     
     // check revision
     NSString *revision = params[OPTLYEventParameterKeysRevision];
@@ -672,6 +678,17 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
     return [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+}
+
+- (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+    
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+    
+    return YES;
 }
 
 @end
