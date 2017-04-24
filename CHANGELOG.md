@@ -10,7 +10,7 @@ April 24, 2017
        userId:(nonnull NSString *)userId
     eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
 ```
-The track API with just one event value will be deprecated. 
+The track API with just one event value is still available, but will be deprecated after two releases.
 ``` 
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
