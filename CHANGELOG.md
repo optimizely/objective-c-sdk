@@ -1,4 +1,28 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.0
+April 24, 2017
+
+### New Features
+* Objective-C universal framework that allows user to install the SDK without a third-party dependency manager.
+* Added the event tags parameter in the track API, which allows user to pass in more than one event tags at a time. The new events parameter is a map of event tag names to event tag values, which can be an NSNumber that contains a float, double, integer, or boolean, or an NSString:
+```
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+    eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
+```
+The track API with just one event value will be deprecated. 
+``` 
+- (void)track:(nonnull NSString *)eventKey
+       userId:(nonnull NSString *)userId
+   eventValue:(nonnull NSNumber *)eventValue __attribute 
+```
+
+* Updated the README with instructions for Carthage and Universal framework installations. 
+
+### Bug Fixes
+* Fixed multiple base conditions audience parsing (merged the external pull request from @docsimon: https://github.com/optimizely/objective-c-sdk/pull/124).
+* Fixed how NOT conditions are parsed in the audience evaluation. 
+
 ## 1.0.1
 March 6, 2017
 
