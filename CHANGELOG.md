@@ -22,6 +22,7 @@ The track API with just one event value is still available, but will be deprecat
 ### Bug Fixes
 * Fixed multiple base conditions audience parsing (merged the external pull request from @docsimon: https://github.com/optimizely/objective-c-sdk/pull/124).
 * Fixed how NOT conditions are parsed in the audience evaluation. 
+* Negative timestamp for 32-bit architecture devices. 
 
 ## 1.0.1
 March 6, 2017
