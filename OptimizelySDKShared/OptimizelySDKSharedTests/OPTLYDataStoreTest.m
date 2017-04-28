@@ -87,7 +87,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
-                             @"shouldIndex": @true,
+                             @"shouldIndex": @YES,
                              @"name": @"nameOfPerson",
                              @"type": @"custom"
                              }],
@@ -95,7 +95,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
       @"clientVersion": @"0.2.0-debug",
       @"eventEntityId": @"7723870635",
       @"revision": @"7",
-      @"isGlobalHoldback": @false,
+      @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
       @"layerStates": @[],
       @"projectId": @"7738070017",
@@ -113,7 +113,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
-                             @"shouldIndex": @true,
+                             @"shouldIndex": @YES,
                              @"name": @"nameOfPerson",
                              @"type": @"custom"
                              }],
@@ -121,7 +121,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
       @"clientVersion": @"0.2.0-debug",
       @"eventEntityId": @"7723870635",
       @"revision": @"7",
-      @"isGlobalHoldback": @false,
+      @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
       @"layerStates": @[],
       @"projectId": @"7738070017",
@@ -139,7 +139,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
-                             @"shouldIndex": @true,
+                             @"shouldIndex": @YES,
                              @"name": @"nameOfPerson",
                              @"type": @"custom"
                              }],
@@ -147,7 +147,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
       @"clientVersion": @"0.2.0-debug",
       @"eventEntityId": @"7723870635",
       @"revision": @"7",
-      @"isGlobalHoldback": @false,
+      @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
       @"layerStates": @[],
       @"projectId": @"7738070017",
@@ -165,7 +165,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     @{
       @"userFeatures": @[@{
                              @"value": @"alda",
-                             @"shouldIndex": @true,
+                             @"shouldIndex": @YES,
                              @"name": @"nameOfPerson",
                              @"type": @"custom"
                              }],
@@ -173,7 +173,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
       @"clientVersion": @"0.2.0-debug",
       @"eventEntityId": @"7723870635",
       @"revision": @"7",
-      @"isGlobalHoldback": @false,
+      @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
       @"layerStates": @[],
       @"projectId": @"7738070017",

@@ -112,7 +112,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
-    // Allow only 'revenue' eventTags with integer values (max long) 
+    // Allow only 'revenue' eventTags with integer values (max long)
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
         if (!(strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 0 ||
@@ -157,7 +157,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 {
     NSDictionary *decisionParams = @{ OPTLYEventParameterKeysDecisionExperimentId       : experimentId,
                                       OPTLYEventParameterKeysDecisionVariationId        : variationId,
-                                      OPTLYEventParameterKeysDecisionIsLayerHoldback    : @0 };
+                                      OPTLYEventParameterKeysDecisionIsLayerHoldback    : @NO};
     
     return decisionParams;
 }
@@ -190,8 +190,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysClientVersion] = StringOrEmpty([config clientVersion]);
     params[OPTLYEventParameterKeysUserFeatures] = [self createUserFeatures:config attributes:attributes];
     // This may be removed (https://optimizely.atlassian.net/browse/NB-1493)
-    params[OPTLYEventParameterKeysIsGlobalHoldback] = @false;
-    params[OPTLYEventParameterKeysAnonymizeIP] = [NSNumber numberWithBool:config.anonymizeIP];
+    params[OPTLYEventParameterKeysIsGlobalHoldback] = @NO;
+    params[OPTLYEventParameterKeysAnonymizeIP] = config.anonymizeIP ? @YES : @NO;
     
     return [params copy];
     
@@ -214,7 +214,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
                                                   OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
                                                   OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
-                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @1 };
+                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @YES };
             
             [features addObject:eventFeatureParams];
         } else {
@@ -254,7 +254,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
                                          OPTLYEventParameterKeysFeaturesName         : attributeKey,
                                          OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
                                          OPTLYEventParameterKeysFeaturesValue        : attributeValue,
-                                         OPTLYEventParameterKeysFeaturesShouldIndex  : @1 };
+                                         OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
         
         if (featureParams) {
             [features addObject:featureParams];
@@ -304,7 +304,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             NSDictionary *layerStateParams = @{ OPTLYEventParameterKeysLayerStateLayerId            : experiment.layerId,
                                                 OPTLYEventParameterKeysLayerStateDecision           : eventDecisionParams,
                                                 OPTLYEventParameterKeysLayerStateRevision           : config.revision,
-                                                OPTLYEventParameterKeysLayerStateActionTriggered    : @0 };
+                                                OPTLYEventParameterKeysLayerStateActionTriggered    : @NO};
          
             if (layerStateParams) {
                 [layerStates addObject:layerStateParams];

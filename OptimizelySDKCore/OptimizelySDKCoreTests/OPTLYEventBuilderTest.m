@@ -658,7 +658,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         XCTAssertNotNil(eventFeatureValue, @"Event feature value is missing from event feature.");
         XCTAssert([eventFeatureValue isEqual: eventTags[eventFeatureName]], @"Invalid event feature value.");
         
-        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @1, @"Invalid should index value for event feature.");
+        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @YES, @"Invalid should index value for event feature.");
         
         XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesType], OPTLYEventFeatureFeatureTypeCustomAttribute, @"Invalid feature type for event feature.");
     }
