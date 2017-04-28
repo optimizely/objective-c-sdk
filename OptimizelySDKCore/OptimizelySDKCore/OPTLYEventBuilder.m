@@ -220,7 +220,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
                                                   OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
                                                   OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
-                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @YES };
+                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @NO };
             
             [features addObject:eventFeatureParams];
         } else {
