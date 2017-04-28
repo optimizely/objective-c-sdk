@@ -112,16 +112,22 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
-    // Allow only 'revenue' eventTags with integer values (max long)
+    // Log warning if 'revenue' is a double or float (the value will be cast to an integer)
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
-        if (!(strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 0 ||
-              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 0 ||
-              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 0 ||
-              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 0 ||
-              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 0)) {
+        
+        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(float)) == 0) {
+            NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
+            long long revenueValueIntCast = revenueValue.floatValue;
+            mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueIntCast];
             [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
-            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+        }
+        
+        if (strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(double)) == 0) {
+            NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
+            long long revenueValueIntCast = revenueValue.doubleValue;
+            mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueIntCast];
+            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
         }
     }
     
