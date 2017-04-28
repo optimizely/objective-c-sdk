@@ -215,19 +215,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithInvalidDoubleRevenue
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
+    double doubleRevenueValue = 888.88;
+    long long doubleRevenueValueCast = doubleRevenueValue;
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:888.88]}
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:nil
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithLongLong:doubleRevenueValueCast]}
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -236,7 +237,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithInvalidBooleanRevenue
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
+    BOOL boolValue = @YES;
+    long long boolValueCast = boolValue;
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -248,7 +250,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:nil
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithLongLong:boolValueCast] }
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -658,7 +660,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         XCTAssertNotNil(eventFeatureValue, @"Event feature value is missing from event feature.");
         XCTAssert([eventFeatureValue isEqual: eventTags[eventFeatureName]], @"Invalid event feature value.");
         
-        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @YES, @"Invalid should index value for event feature.");
+        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @NO, @"Invalid should index value for event feature.");
         
         XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesType], OPTLYEventFeatureFeatureTypeCustomAttribute, @"Invalid feature type for event feature.");
     }
