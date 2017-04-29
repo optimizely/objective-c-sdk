@@ -41,6 +41,11 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 
 @implementation OPTLYEventBuilderDefault : NSObject 
 
+// NOTE: A dictionary is used to build the decision event ticket object instead of
+// OPTLYDecisionEventTicket object to simplify the logic. The OPTLYEventFeature value can be a
+// string, double, float, int, or boolean.
+// The JSONModel cannot support a generic primitive/object type, so each event tag
+// value would have to be manually checked and converted to the appropriate OPTLYEventFeature type.
 - (NSDictionary *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
                                     userId:(NSString *)userId
                              experimentKey:(NSString *)experimentKey
@@ -215,6 +220,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     for (NSString *key in eventTagKeys) {
         id eventTagValue = eventTags[key];
         
+        // only string, long, int, double, float, and booleans are supported
         if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
             NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
                                                   OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
@@ -326,7 +332,9 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 - (NSNumber *)time
 {
     NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970] * 1000;
-    NSNumber *timestamp = [NSNumber numberWithDouble:currentTimeInterval];
+    // need to cast this since the event class expects a long long (results will reject this value otherwise)
+    long long currentTimeIntervalCast = currentTimeInterval;
+    NSNumber *timestamp = [NSNumber numberWithLongLong:currentTimeIntervalCast];
 
     return timestamp;
 }

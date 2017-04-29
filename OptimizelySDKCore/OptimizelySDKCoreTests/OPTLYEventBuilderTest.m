@@ -92,7 +92,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     self.eventBuilder = [OPTLYEventBuilderDefault new];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    self.begTimestamp = [NSDate date];
+    
+    // need to do this cast because this is what happens when we get the event time stamp
+    NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
+    long long currentTimeIntervalCast = currentTimeInterval;
+    self.begTimestamp = [NSDate dateWithTimeIntervalSince1970:currentTimeIntervalCast];
 }
 
 - (void)tearDown {

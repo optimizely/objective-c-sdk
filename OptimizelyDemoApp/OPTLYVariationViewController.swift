@@ -62,7 +62,8 @@ class OPTLYVariationViewController: UIViewController {
     }
     
     @IBAction func attemptTrackAndShowSuccessOrFailure(_ sender: Any) {
-        self.optimizelyClient?.track(self.eventKey, userId: userId)
+        //self.optimizelyClient?.track(self.eventKey, userId: userId)
+        self.optimizelyClient?.track(self.eventKey, userId: userId, eventValue: 123)
         self.performSegue(withIdentifier: "OPTLYConversionSuccessSegue", sender: self)
     }
 }
