@@ -28,7 +28,7 @@
 @interface OPTLYDecisionEventTicket : JSONModel
 
 //The time the decision was made.
-@property (nonatomic, assign) long timestamp;
+@property (nonatomic, assign) long long timestamp;
 // Revision of client DATA, corresponding to a stored snapshot
 @property (nonatomic, strong, nullable) NSString<Optional> *revision;
 // Unique ID shared by all events in the current activation cycle

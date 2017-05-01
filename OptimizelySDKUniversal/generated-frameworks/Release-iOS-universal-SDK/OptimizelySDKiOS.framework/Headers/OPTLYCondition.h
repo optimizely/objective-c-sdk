@@ -45,6 +45,6 @@
 
 @interface OPTLYNotCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) id<OPTLYCondition> subCondition;
+@property (nonatomic, strong) NSObject<OPTLYCondition> *subCondition;
 
 @end

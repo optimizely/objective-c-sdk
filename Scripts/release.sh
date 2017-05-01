@@ -84,11 +84,12 @@ if [ "$versions_valid" != "y" ]; then
 fi;
 
 # ---- Build the universal frameworks ----
-xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKiOS-Universal -configuration Release
-xcodebuild -project OptimizelySDKUniversal.xcodeproj -target OptimizelySDKTVOS-Universal -configuration Release
+printf "\n\n4. Building the universal frameworks...\n\n"
+xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release
+xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS-Universal -configuration Release
 
 # ---- Update podspec files ----
-printf "\n\n4. Updating podspec files with the new version numbers...\n\n"
+printf "\n\n5. Updating podspec files with the new version numbers...\n\n"
 # Update the OPTIMIZELY_SDK_CORE_VERSION:
 # OptimizelySDKCore.podspec
 printf "Updating OptimizelySDKCore to $OPTIMIZELY_SDK_CORE_VERSION in...\n"
@@ -188,7 +189,7 @@ fi;
 
 # ---- Verify podspecs ----
 printf "\n\n"
-read  -n 1 -p "5. Verify all podspecs? Skip if this has already been done. [y/n] $cr? " verify_podspec;
+read  -n 1 -p "6. Verify all podspecs? Skip if this has already been done. [y/n] $cr? " verify_podspec;
 if [ "$verify_podspec" == "y" ]; then
 printf "\nVerifying podspecs...\n";
 pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfile OptimizelySDKiOS OptimizelySDKTVOS);
@@ -210,7 +211,7 @@ fi;
 
 # ---- commit podspec changes ----
 printf "\n"
-read  -n 1 -p "6. Commit and push version bump changes to devel? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
+read  -n 1 -p "7. Commit and push version bump changes to devel? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
 if [ "$podspec_valid" == "y" ]; then
     printf "\nCommitting and pushing devel with version bump changes...\n";
     git add -u
@@ -220,7 +221,7 @@ fi;
 
 
 # ---- merge devel to master ----
-printf "\n7. Merge devel onto master:\n\ta. Create a pull request in github to merge devel onto master: https://github.com/optimizely/objective-c-sdk.\n\tb. Wait for Travis build to pass: https://travis-ci.org/optimizely/objective-c-sdk/pull_requests.\n\tc. Get an LGTM from someone on the team.\n\td. Merge the changes (don't squash!)\n";
+printf "\n8. Merge devel onto master:\n\ta. Create a pull request in github to merge devel onto master: https://github.com/optimizely/objective-c-sdk.\n\tb. Wait for Travis build to pass: https://travis-ci.org/optimizely/objective-c-sdk/pull_requests.\n\tc. Get an LGTM from someone on the team.\n\td. Merge the changes (don't squash!)\n";
 read  -n 1 -p "Has master been merged with devel? [y/n] $cr? " podspec_valid;
 if [ "$podspec_valid" != "y" ]; then
 printf "\nPlease merge devel onto master before proceeding!!\n"
@@ -228,7 +229,7 @@ exit 1
 fi;
 
 # ---- git tag all modules----
-printf "\n\n8. Tagging all modules...\n";
+printf "\n\n9. Tagging all modules...\n";
 printf "Tagging core-$OPTIMIZELY_SDK_CORE_VERSION\n";
 git tag -a core-$OPTIMIZELY_SDK_CORE_VERSION -m "Release $OPTIMIZELY_SDK_CORE_VERSION";
 printf "Tagging shared-$OPTIMIZELY_SDK_SHARED_VERSION\n";
@@ -252,7 +253,7 @@ if [ "$tagging_valid" != "y" ]; then
 fi;
 
 ## ---- git push tags ----
-printf "\n\n9. Pushing all git tags...\n"
+printf "\n\n10. Pushing all git tags...\n"
 git push origin core-$OPTIMIZELY_SDK_CORE_VERSION --verbose;
 printf "\n";
 git push origin shared-$OPTIMIZELY_SDK_SHARED_VERSION --verbose;
@@ -268,7 +269,7 @@ printf "\n";
 git push origin tvOS-$OPTIMIZELY_SDK_TVOS_VERSION --verbose;
 
 # ---- Make sure you have a Cocoapod session running ----
-printf "\n\n10. Verify Cocoapod trunk session...\n";
+printf "\n\n11. Verify Cocoapod trunk session...\n";
 pod trunk me;
 
 read  -n 1 -p "Do you have a valid Cocoapod session running? [y/n] $cr? " cocoapod_session;
@@ -279,7 +280,7 @@ fi;
 
 # ---- push podspecs to cocoapods ----
 # the podspecs need to be pushed in the correct order because of dependencies!
-printf "\n\n11. Pushing podspecs to Cocoapods...\n";
+printf "\n\n12. Pushing podspecs to Cocoapods...\n";
 for (( i = 0; i < ${number_pods}; i++ ));
 do
     echo "Pushing the ${pods[i]} pod to Cocoapods"
