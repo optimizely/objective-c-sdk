@@ -92,7 +92,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     self.eventBuilder = [OPTLYEventBuilderDefault new];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    self.begTimestamp = [NSDate date];
+    
+    // need to do this cast because this is what happens when we get the event time stamp
+    NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
+    long long currentTimeIntervalCast = currentTimeInterval;
+    self.begTimestamp = [NSDate dateWithTimeIntervalSince1970:currentTimeIntervalCast];
 }
 
 - (void)tearDown {
@@ -105,21 +109,21 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithNoAudience
 {
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithoutAudienceName
-                                                          eventTags:nil
-                                                         attributes:nil];
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithoutAudienceName
+                                                     eventTags:nil
+                                                    attributes:nil];
     [self checkCommonParams:params
              withAttributes:nil];
     [self checkEventTicket:params
-                          config:self.config
-                         eventId:kEventWithoutAudienceId
-                       eventName:kEventWithoutAudienceName
-                       eventTags:nil
-                      attributes:nil
-                          userId:kUserId
-                   experimentIds:@[kExperimentWithoutAudienceId]];
+                    config:self.config
+                   eventId:kEventWithoutAudienceId
+                 eventName:kEventWithoutAudienceName
+                 eventTags:nil
+                attributes:nil
+                    userId:kUserId
+             experimentIds:@[kExperimentWithoutAudienceId]];
     
 }
 
@@ -129,30 +133,30 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSDictionary *attributes = @{@"browser_type":@"firefox"};
     
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:nil
-                                                         attributes:attributes];
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:nil
+                                                    attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     
     // check with attributes
     attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
     params = [self.eventBuilder buildEventTicket:self.config
-                                             bucketer:self.bucketer
-                                               userId:kUserId
-                                            eventName:kEventWithAudienceName
-                                            eventTags:nil
-                                           attributes:attributes];
+                                        bucketer:self.bucketer
+                                          userId:kUserId
+                                       eventName:kEventWithAudienceName
+                                       eventTags:nil
+                                      attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
-                          config:self.config
-                         eventId:kEventWithAudienceId
-                       eventName:kEventWithAudienceName
-                       eventTags:nil
-                      attributes:attributes
-                          userId:kUserId
-                   experimentIds:@[kExperimentWithAudienceId]];
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:nil
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 - (void)testBuildEventTicketWithInvalidAudience
@@ -194,7 +198,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithRevenue
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-
+    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -215,19 +219,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithInvalidDoubleRevenue
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
+    double doubleRevenueValue = 888.88;
+    long long doubleRevenueValueCast = doubleRevenueValue;
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:888.88]}
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:nil
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithLongLong:doubleRevenueValueCast]}
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -235,20 +240,19 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 - (void)testBuildEventTicketWithInvalidBooleanRevenue
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
+    NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : @YES}
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : @YES }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:nil
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithBool:YES] }
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -310,20 +314,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
-                                                         attributes:attributes];
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                                                    attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
-                          config:self.config
-                         eventId:kEventWithAudienceId
-                       eventName:kEventWithAudienceName
-                       eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
-                      attributes:attributes
-                          userId:kUserId
-                   experimentIds:@[kExperimentWithAudienceId]];
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 - (void)testBuildEventTicketWithEventMultipleExperiments
@@ -331,11 +335,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueChrome};
     
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithMultipleExperimentsName
-                                                          eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
-                                                         attributes:attributes];
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithMultipleExperimentsName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
+                                                    attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     
     NSArray *experimentIds = @[@"6364835526", @"6450630664", @"6367863211", @"6376870125", @"6383811281", @"6358043286", @"6370392407", @"6367444440", @"6370821515", @"6447021179"];
@@ -356,11 +360,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
     
     NSDictionary *params = [eventBuilder buildEventTicket:config
-                                                      bucketer:bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithoutAudienceName
-                                                     eventTags:nil
-                                                    attributes:nil];
+                                                 bucketer:bucketer
+                                                   userId:kUserId
+                                                eventName:kEventWithoutAudienceName
+                                                eventTags:nil
+                                               attributes:nil];
     
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
@@ -377,10 +381,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     
     
     NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
-                                                                                         userId:kUserId
-                                                                                  experimentKey:kExperimentWithAudienceKey
-                                                                                    variationId:bucketedVariation.variationId
-                                                                                     attributes:attributes];
+                                                                                   userId:kUserId
+                                                                            experimentKey:kExperimentWithAudienceKey
+                                                                              variationId:bucketedVariation.variationId
+                                                                               attributes:attributes];
     [self checkCommonParams:decisionEventTicketParams withAttributes:attributes];
     [self checkDecisionTicketParams:decisionEventTicketParams
                              config:self.config
@@ -396,10 +400,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
     NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
-                                                                                         userId:kUserId
-                                                                                  experimentKey:kExperimentWithoutAudienceKey
-                                                                                    variationId:kVariationWithoutAudienceId
-                                                                                     attributes:attributes];
+                                                                                   userId:kUserId
+                                                                            experimentKey:kExperimentWithoutAudienceKey
+                                                                              variationId:kVariationWithoutAudienceId
+                                                                               attributes:attributes];
     [self checkCommonParams:decisionEventTicketParams withAttributes:attributes];
     [self checkDecisionTicketParams:decisionEventTicketParams
                              config:self.config
@@ -417,10 +421,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
     NSDictionary *decisionEventTicketParams = [self.eventBuilder buildDecisionEventTicket:self.config
-                                                                                         userId:kUserId
-                                                                                  experimentKey:invalidExperimentKey
-                                                                                    variationId:invalidVariationId
-                                                                                     attributes:attributes];
+                                                                                   userId:kUserId
+                                                                            experimentKey:invalidExperimentKey
+                                                                              variationId:invalidVariationId
+                                                                               attributes:attributes];
     NSAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
 }
 
@@ -429,10 +433,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
     
     NSDictionary *decisionEventTicketParams = [eventBuilder buildDecisionEventTicket:config
-                                                                                    userId:kUserId
-                                                                             experimentKey:kExperimentWithoutAudienceKey
-                                                                               variationId:kVariationWithoutAudienceId
-                                                                                attributes:nil];
+                                                                              userId:kUserId
+                                                                       experimentKey:kExperimentWithoutAudienceKey
+                                                                         variationId:kVariationWithoutAudienceId
+                                                                          attributes:nil];
     NSNumber *anonymizeIP = decisionEventTicketParams[OPTLYEventParameterKeysAnonymizeIP];
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
@@ -460,18 +464,18 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 }
 
 - (void)checkEventTicket:(NSDictionary *)params
-                        config:(OPTLYProjectConfig *)config
-                       eventId:(NSString *)eventId
-                     eventName:(NSString *)eventName
-                     eventTags:(NSDictionary *)eventTags
-                    attributes:(NSDictionary *)attributes
-                        userId:(NSString *)userId
-                 experimentIds:(NSArray *)experimentIds
+                  config:(OPTLYProjectConfig *)config
+                 eventId:(NSString *)eventId
+               eventName:(NSString *)eventName
+               eventTags:(NSDictionary *)eventTags
+              attributes:(NSDictionary *)attributes
+                  userId:(NSString *)userId
+           experimentIds:(NSArray *)experimentIds
 
 {
     NSAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
     
-    NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name.");
+    NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
     
     NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
     if ([eventTags count] > 0)
@@ -637,8 +641,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)checkEventMetric:(NSDictionary *)params
                eventTags:(NSDictionary *)eventTags
 {
-    NSAssert([params[OPTLYEventParameterKeysMetricName] isEqualToString:OPTLYEventMetricNameRevenue], @"Invalid event name.");
-    NSAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToValue:eventTags[OPTLYEventMetricNameRevenue]], @"Invalid event name.");
+    NSAssert([params[OPTLYEventParameterKeysMetricName] isEqualToString:OPTLYEventMetricNameRevenue], @"Invalid event metric name: %@.", params[OPTLYEventParameterKeysMetricName]);
+    NSAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToNumber:eventTags[OPTLYEventMetricNameRevenue]], @"Invalid event metric value: %@.", params[OPTLYEventParameterKeysMetricValue]);
 }
 
 - (void)checkEventFeatures:(NSArray *)eventFeatures
@@ -658,7 +662,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         XCTAssertNotNil(eventFeatureValue, @"Event feature value is missing from event feature.");
         XCTAssert([eventFeatureValue isEqual: eventTags[eventFeatureName]], @"Invalid event feature value.");
         
-        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @1, @"Invalid should index value for event feature.");
+        XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesShouldIndex], @NO, @"Invalid should index value for event feature.");
         
         XCTAssertEqual(eventFeature[OPTLYEventParameterKeysFeaturesType], OPTLYEventFeatureFeatureTypeCustomAttribute, @"Invalid feature type for event feature.");
     }

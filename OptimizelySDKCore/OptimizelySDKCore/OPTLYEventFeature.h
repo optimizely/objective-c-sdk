@@ -38,8 +38,8 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) NSString<Optional> *name;
 // The type the feature, which along with name uniquely identifies the feature.
 @property (nonatomic, strong, nullable) NSString<Optional> *type;
-// The value of the feature
-@property (nonatomic, strong, nonnull) NSString *value;
+// The value of the feature (supports: string, long, int, double, float, boolean)
+@property (nonatomic, strong, nonnull) id value;
 // If true, this feature will be indexed in the counting service. Otherwise it will just be logged
 @property (nonatomic, assign) BOOL shouldIndex;
 
