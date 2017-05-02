@@ -15,7 +15,7 @@
 # 10. git push all tags.
 # 11. Confirm if pod trunk session is open.
 # 12. pod trunk push all the podspecs.
-
+# 13. Create the release branch.
 
 # Change to the project root folder
 (cd ..;
@@ -285,4 +285,9 @@ for (( i = 0; i < ${number_pods}; i++ ));
 do
     echo "Pushing the ${pods[i]} pod to Cocoapods"
     pod trunk push ${pods[i]}.podspec
+
+# ---- create the release branch ----
+printf "\n\n13. Creating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
+git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
+git push 
 done)
