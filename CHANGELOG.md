@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
 ## 1.1.0
-May 1, 2017
+May 2, 2017
 
 ### New Features
 * Added the Objective-C universal framework, which allows users to install the SDK without a third-party dependency manager.
