@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # This script guides you through all the steps needed to do a new release.
+# The script assumes you are on the master branch and are in the Script folder.
 # The script does the following:
 
 # 1. Reminder prompt to update the CHANGELOG.
