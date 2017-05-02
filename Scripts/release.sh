@@ -15,7 +15,7 @@
 # 9. git push all tags.
 # 10. Confirm if pod trunk session is open.
 # 11. pod trunk push all the podspecs.
-# 12. Create the release branch.
+# 12. If patch release, than cherry pick changes from master onto the release branch; otherwise, create the release branch.
 
 # Change to the project root folder
 (cd ..;
@@ -277,8 +277,19 @@ do
     echo "Pushing the ${pods[i]} pod to Cocoapods"
     pod trunk push ${pods[i]}.podspec
 
-# ---- create the release branch ----
-printf "\n\n12. Creating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
+
+# ---- Prompt to determine what kind of release ----
+# patch releases require cherry-picking changes onto the release branch
+read  -n 1 -p "12. Is this a patch release? [y/n] $cr " patch_release;
+if [ "$patch_release" == "y" ]; then
+printf "\n\nMoving to the release branch $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x.\n";
 git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
-git push 
+printf "\n\nCherry-pick last commit from master.\n";
+git cherry-pick master
+exit 1
+fi;
+# if not a patch release, than a release branch needs to be created
+printf "\n\nCreating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
+git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
+git push
 done)
