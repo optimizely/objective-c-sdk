@@ -3,7 +3,7 @@ We welcome contributions and feedback! All contributors must sign our [Contribut
 
 ##Development process
 
-1. Create a branch off of `devel`: `git checkout -b YOUR_NAME/branch_name`.
+1. Create a branch off of `master`: `git checkout -b YOUR_NAME/branch_name`.
 2. Commit your changes. Make sure to add tests!
 3. Run Objective-C linter (TBD).
 4. `git push` your changes to GitHub.

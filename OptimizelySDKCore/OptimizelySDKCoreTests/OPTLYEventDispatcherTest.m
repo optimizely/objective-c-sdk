@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBasic.h"
 
 @interface OPTLYEventDispatcherTest : XCTestCase
 

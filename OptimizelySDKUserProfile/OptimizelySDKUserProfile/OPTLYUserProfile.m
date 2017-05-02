@@ -14,9 +14,16 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#ifdef UNIVERSAL
+    #import "OPTLYUserProfileBasic.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYDataStore.h"
+#else
+    #import <OptimizelySDKCore/OPTLYUserProfileBasic.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKShared/OPTLYDataStore.h>
+#endif
 #import "OPTLYUserProfile.h"
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKShared/OptimizelySDKShared.h>
 
 @interface OPTLYUserProfileDefault()
 @property (nonatomic, strong) OPTLYDataStore *dataStore;

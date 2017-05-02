@@ -14,12 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYLogger.h>
-#import <OptimizelySDKEventDispatcher/OPTLYEventDispatcher.h>
-#import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
-#import <OptimizelySDKShared/OPTLYManagerBuilder.h>
-#import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
+#ifdef UNIVERSAL
+    #import "OPTLYDatafileManager.h"
+    #import "OPTLYErrorHandler.h"
+    #import "OPTLYEventDispatcher.h"
+    #import "OPTLYLogger.h"
+    #import "OPTLYManagerBuilder.h"
+    #import "OPTLYUserProfile.h"
+#else
+    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
+    #import <OptimizelySDKEventDispatcher/OPTLYEventDispatcher.h>
+    #import <OptimizelySDKShared/OPTLYManagerBuilder.h>
+    #import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
+#endif
+
 #import "OPTLYManager.h"
 
 static NSString * const kClientEngine = @"ios-sdk";
@@ -112,7 +122,11 @@ static NSString * const kClientEngine = @"ios-sdk";
         _clientEngine = kClientEngine;
         
         // --- client version ---
+#ifdef UNIVERSAL
+        _clientVersion = OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION;
+#else
         _clientVersion = OPTIMIZELY_SDK_iOS_VERSION;
+#endif
     }
     return self;
 }

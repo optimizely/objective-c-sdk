@@ -16,9 +16,9 @@
 
 #import <XCTest/XCTest.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
-#import <OptimizelySDKCore/OPTLYEventDispatcher.h>
+#import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
-#import "OPTLYDatafileManager.h"
+#import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 

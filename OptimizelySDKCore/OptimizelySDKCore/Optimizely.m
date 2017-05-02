@@ -21,15 +21,16 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventDecision.h"
-#import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBasic.h"
 #import "OPTLYEventLayerState.h"
+#import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventTicket.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYUserProfile.h"
+#import "OPTLYUserProfileBasic.h"
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
@@ -112,13 +113,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     // send impression event
-    OPTLYDecisionEventTicket *impressionEvent = [self.eventBuilder buildDecisionEventTicket:self.config
+    NSDictionary *impressionEventParams = [self.eventBuilder buildDecisionEventTicket:self.config
                                                                                      userId:userId
                                                                               experimentKey:experimentKey
                                                                                 variationId:variation.variationId
                                                                                  attributes:attributes];
     
-    if (!impressionEvent) {
+    if ([impressionEventParams count] == 0) {
         [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
         return variation;
     }
@@ -126,7 +127,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
-    NSDictionary *impressionEventParams = [impressionEvent toDictionary];
     [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                              if (error) {
@@ -180,29 +180,52 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:nil];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary<NSString *, NSString *> * )attributes
 {
-    [self track:eventKey userId:userId attributes:attributes eventValue:nil];
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    eventValue:(NSNumber *)eventValue
 {
-    [self track:eventKey userId:userId attributes:nil eventValue:eventValue];
+    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+attributes:(NSDictionary *)attributes
+   eventValue:(NSNumber *)eventValue
+{
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
+{
+    [self track:eventKey userId:userId attributes:attributes eventTags:eventTags eventValue:nil];
+}
+
+- (void)track:(NSString *)eventKey
+       userId:(NSString *)userId
+   attributes:(NSDictionary *)attributes
+    eventTags:(NSDictionary *)eventTags
    eventValue:(NSNumber *)eventValue
 {
-    
     OPTLYEvent *event = [self.config getEventForKey:eventKey];
     
     if (!event) {
@@ -210,19 +233,22 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
-    OPTLYEventTicket *conversionEvent = [self.eventBuilder buildEventTicket:self.config
-                                                                   bucketer:self.bucketer
-                                                                     userId:userId
-                                                                  eventName:eventKey
-                                                                 eventValue:eventValue
-                                                                 attributes:attributes];
+    // eventValue and eventTags are mutually exclusive
+    if (eventValue) {
+        eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
+    }
     
-    if (!conversionEvent) {
+    NSDictionary *conversionEventParams = [self.eventBuilder buildEventTicket:self.config
+                                                                     bucketer:self.bucketer
+                                                                       userId:userId
+                                                                    eventName:eventKey
+                                                                    eventTags:eventTags
+                                                                   attributes:attributes];
+    
+    if ([conversionEventParams count] == 0) {
         [self handleErrorLogsForTrackEvent:eventKey userId:userId];
         return;
     }
-    
-    NSDictionary *conversionEventParams = [conversionEvent toDictionary];
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, eventKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
@@ -248,19 +274,21 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if (eventValue != nil) {
         userInfo[OptimizelyNotificationsUserDictionaryEventValueKey] = eventValue;
     }
-    if (conversionEvent.layerStates.count > 0) {
-        NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:conversionEvent.layerStates.count];
-        for (OPTLYEventLayerState *layerState in conversionEvent.layerStates) {
-            OPTLYEventDecision *eventDecision = layerState.decision;
-            OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision.experimentId];
-            OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision.variationId];
-            if (experiment != nil && variation != nil) {
-                experimentVariationMapping[experiment] = variation;
-            }
+    NSArray *layerStates = conversionEventParams[OPTLYEventParameterKeysLayerStates];
+    if ([layerStates count] == 0) {
+        return;
+    }
+    NSMutableDictionary *experimentVariationMapping = [[NSMutableDictionary alloc] initWithCapacity:[layerStates count]];
+    for (NSDictionary *layerState in layerStates) {
+        NSDictionary *eventDecision = layerState[OPTLYEventParameterKeysLayerStateDecision];
+        OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision[OPTLYEventParameterKeysDecisionExperimentId]];
+        OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision[OPTLYEventParameterKeysDecisionVariationId]];
+        if (experiment != nil && variation != nil) {
+            experimentVariationMapping[experiment] = variation;
         }
-        if (experimentVariationMapping.count > 0) {
-            userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
-        }
+    }
+    if ([experimentVariationMapping count] > 0) {
+        userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification
                                                         object:self

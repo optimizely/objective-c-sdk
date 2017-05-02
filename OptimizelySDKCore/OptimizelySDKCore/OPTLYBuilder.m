@@ -18,7 +18,7 @@
 #import "OPTLYBuilder.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEventBuilder.h"
-#import "OPTLYEventDispatcher.h"
+#import "OPTLYEventDispatcherBasic.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 

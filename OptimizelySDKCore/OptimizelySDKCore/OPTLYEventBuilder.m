@@ -33,6 +33,7 @@
 #import "OPTLYMacros.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
+#import "OPTLYVariation.h"
 
 // --- Event URLs ----
 NSString * const OPTLYEventBuilderDecisionTicketEventURL   = @"https://p13nlog.dz.optimizely.com/log/decision";
@@ -40,11 +41,16 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 
 @implementation OPTLYEventBuilderDefault : NSObject 
 
-- (OPTLYDecisionEventTicket *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
-                                                userId:(NSString *)userId
-                                         experimentKey:(NSString *)experimentKey
-                                           variationId:(NSString *)variationId
-                                            attributes:(NSDictionary<NSString *, NSString *> *)attributes
+// NOTE: A dictionary is used to build the decision event ticket object instead of
+// OPTLYDecisionEventTicket object to simplify the logic. The OPTLYEventFeature value can be a
+// string, double, float, int, or boolean.
+// The JSONModel cannot support a generic primitive/object type, so each event tag
+// value would have to be manually checked and converted to the appropriate OPTLYEventFeature type.
+- (NSDictionary *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
+                                    userId:(NSString *)userId
+                             experimentKey:(NSString *)experimentKey
+                               variationId:(NSString *)variationId
+                                attributes:(NSDictionary<NSString *, NSString *> *)attributes
 {
     if (!config) {
         return nil;
@@ -81,19 +87,16 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     
     params[OPTLYEventParameterKeysLayerId] = StringOrEmpty(experiment.layerId);
     params[OPTLYEventParameterKeysDecision] = [self createDecisionWithExperimentId:experiment.experimentId variationId:variationId];
-
-    NSError *error;
-    OPTLYDecisionEventTicket *decision = [[OPTLYDecisionEventTicket alloc] initWithDictionary:params error:&error];
     
-    return decision;
+    return [params copy];
 }
 
-- (OPTLYEventTicket *)buildEventTicket:(OPTLYProjectConfig *)config
-                              bucketer:(id<OPTLYBucketer>)bucketer
-                                userId:(NSString *)userId
-                             eventName:(NSString *)eventName
-                            eventValue:(NSNumber *)eventValue
-                            attributes:(NSDictionary<NSString *, NSString *> *)attributes
+- (NSDictionary *)buildEventTicket:(OPTLYProjectConfig *)config
+                          bucketer:(id<OPTLYBucketer>)bucketer
+                            userId:(NSString *)userId
+                         eventName:(NSString *)eventName
+                         eventTags:(NSDictionary *)eventTags
+                        attributes:(NSDictionary<NSString *, NSString *> *)attributes
 {
     if (!config) {
         return nil;
@@ -112,6 +115,24 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     if ([eventName length] == 0) {
         [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
+    }
+    
+    // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
+    NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
+    if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
+        if (!(strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long long)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned long)) == 0 ||
+              strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned long long)) == 0)) {
+            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+            NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
+            long long revenueValueCast = revenueValue.longLongValue;
+            mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueCast];
+        }
     }
     
     NSArray *layerStates = [self createLayerStates:config
@@ -134,13 +155,11 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     [params addEntriesFromDictionary:commonParams];
     params[OPTLYEventParameterKeysEventEntityId] = StringOrEmpty([config getEventIdForKey:eventName]);
     params[OPTLYEventParameterKeysEventName] = StringOrEmpty(eventName);
-    params[OPTLYEventParameterKeysEventFeatures] = @[];
-    params[OPTLYEventParameterKeysEventMetrics] = eventValue? @[[self createEventMetric:eventValue]] : @[];
+    params[OPTLYEventParameterKeysEventFeatures] = [self createEventFeatures:config eventTags:mutableEventTags];
+    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:mutableEventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
-    NSError *error;
-    OPTLYEventTicket *eventTicket = [[OPTLYEventTicket alloc] initWithDictionary:params error:&error];
-    return eventTicket;
+    return [params copy];
 }
 
 - (NSDictionary *)createDecisionWithExperimentId:(NSString *)experimentId
@@ -148,22 +167,23 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 {
     NSDictionary *decisionParams = @{ OPTLYEventParameterKeysDecisionExperimentId       : experimentId,
                                       OPTLYEventParameterKeysDecisionVariationId        : variationId,
-                                      OPTLYEventParameterKeysDecisionIsLayerHoldback    : @0 };
+                                      OPTLYEventParameterKeysDecisionIsLayerHoldback    : @NO};
     
     return decisionParams;
 }
 
-- (NSDictionary *)createEventMetric:(NSNumber *)eventValue
+- (NSArray *)createEventMetric:(OPTLYProjectConfig *)config
+                     eventTags:(NSDictionary *)eventTags
 {
-    NSDictionary *metricParams = [NSDictionary new];
+    NSMutableArray *metrics = [NSMutableArray new];
     
-    if (!eventValue) {
-        return metricParams;
+    if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
+        NSDictionary *metricParam = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameRevenue,
+                                       OPTLYEventParameterKeysMetricValue : eventTags[OPTLYEventMetricNameRevenue] };
+        [metrics addObject:metricParam];
     }
     
-    metricParams = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameRevenue,
-                      OPTLYEventParameterKeysMetricValue : eventValue };
-    return metricParams;
+    return [metrics copy];
 }
 
 - (NSDictionary *)createCommonParams:(OPTLYProjectConfig *)config
@@ -180,12 +200,43 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysClientVersion] = StringOrEmpty([config clientVersion]);
     params[OPTLYEventParameterKeysUserFeatures] = [self createUserFeatures:config attributes:attributes];
     // This may be removed (https://optimizely.atlassian.net/browse/NB-1493)
-    params[OPTLYEventParameterKeysIsGlobalHoldback] = @false;
-    params[OPTLYEventParameterKeysAnonymizeIP] = [NSNumber numberWithBool:config.anonymizeIP];
+    params[OPTLYEventParameterKeysIsGlobalHoldback] = @NO;
+    params[OPTLYEventParameterKeysAnonymizeIP] = config.anonymizeIP ? @YES : @NO;
     
     return [params copy];
     
 }
+
+- (NSArray *)createEventFeatures:(OPTLYProjectConfig *)config
+                       eventTags:(NSDictionary *)eventTags
+{
+    NSMutableArray *features = [NSMutableArray new];
+    NSArray *eventTagKeys = [eventTags allKeys];
+
+    if ([eventTags count] == 0) {
+        return features;
+    }
+
+    for (NSString *key in eventTagKeys) {
+        id eventTagValue = eventTags[key];
+        
+        // only string, long, int, double, float, and booleans are supported
+        if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
+            NSDictionary *eventFeatureParams = @{ OPTLYEventParameterKeysFeaturesName        : key,
+                                                  OPTLYEventParameterKeysFeaturesType        : OPTLYEventFeatureFeatureTypeCustomAttribute,
+                                                  OPTLYEventParameterKeysFeaturesValue       : eventTagValue,
+                                                  OPTLYEventParameterKeysFeaturesShouldIndex : @NO };
+            
+            [features addObject:eventFeatureParams];
+        } else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        }
+    }
+    
+    return [[NSArray alloc] initWithArray:features];
+}
+
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
                      attributes:(NSDictionary *)attributes
@@ -214,7 +265,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
                                          OPTLYEventParameterKeysFeaturesName         : attributeKey,
                                          OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
                                          OPTLYEventParameterKeysFeaturesValue        : attributeValue,
-                                         OPTLYEventParameterKeysFeaturesShouldIndex  : @1 };
+                                         OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
         
         if (featureParams) {
             [features addObject:featureParams];
@@ -264,7 +315,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             NSDictionary *layerStateParams = @{ OPTLYEventParameterKeysLayerStateLayerId            : experiment.layerId,
                                                 OPTLYEventParameterKeysLayerStateDecision           : eventDecisionParams,
                                                 OPTLYEventParameterKeysLayerStateRevision           : config.revision,
-                                                OPTLYEventParameterKeysLayerStateActionTriggered    : @0 };
+                                                OPTLYEventParameterKeysLayerStateActionTriggered    : @NO};
          
             if (layerStateParams) {
                 [layerStates addObject:layerStateParams];
@@ -281,7 +332,9 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 - (NSNumber *)time
 {
     NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970] * 1000;
-    NSNumber *timestamp = [NSNumber numberWithDouble:currentTimeInterval];
+    // need to cast this since the event class expects a long long (results will reject this value otherwise)
+    long long currentTimeIntervalCast = currentTimeInterval;
+    NSNumber *timestamp = [NSNumber numberWithLongLong:currentTimeIntervalCast];
 
     return timestamp;
 }

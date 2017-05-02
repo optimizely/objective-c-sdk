@@ -14,6 +14,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#ifdef UNIVERSAL
+    #import "OPTLYLogger.h"
+#else
+    #import <OptimizelySDKCore/OPTLYLogger.h>
+#endif
 #import "OPTLYUserProfileBuilder.h"
 
 @implementation OPTLYUserProfileBuilder
