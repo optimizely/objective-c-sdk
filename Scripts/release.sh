@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # This script guides you through all the steps needed to do a new release.
+# The script assumes you are on the master branch and are in the Script folder.
 # The script does the following:
 
 # 1. Reminder prompt to update the CHANGELOG.
@@ -9,17 +10,16 @@
 # 4. Build the universal frameworks.
 # 5. Update podspec files with the correct version number.
 # 6. Verify podspec files.
-# 7. Commit and push the version bump changes to devel.
-# 8. Prompt to merge devel onto master via GitHub UI.
-# 9. git tag all the modules.
-# 10. git push all tags.
-# 11. Confirm if pod trunk session is open.
-# 12. pod trunk push all the podspecs.
-
+# 7. Commit and push the version bump changes (e.g., the universal frameworks, podspec updates, and build setting updates) to master.
+# 8. git tag all the modules.
+# 9. git push all tags.
+# 10. Confirm if pod trunk session is open.
+# 11. pod trunk push all the podspecs.
+# 12. If patch release, than cherry pick changes from master onto the release branch; otherwise, create the release branch.
 
 # Change to the project root folder
 (cd ..;
-printf "Current working directory: $PWD\n\n";
+printf "Current working directory: $PWD.\n\n";
 
 #1. Prompt a reminder to update the CHANGELOG
 read  -n 1 -p "1. Have you updated the CHANGELOG? (Please check the contents and formatting.) [y/n] $cr " changelog_update;
@@ -211,25 +211,16 @@ fi;
 
 # ---- commit podspec changes ----
 printf "\n"
-read  -n 1 -p "7. Commit and push version bump changes to devel? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
+read  -n 1 -p "7. Commit and push version bump changes to master? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
 if [ "$podspec_valid" == "y" ]; then
-    printf "\nCommitting and pushing devel with version bump changes...\n";
+    printf "\nCommitting and pushing master with version bump changes...\n";
     git add -u
     git commit -m "Bumped version for new release."
     git push origin devel
 fi;
 
-
-# ---- merge devel to master ----
-printf "\n8. Merge devel onto master:\n\ta. Create a pull request in github to merge devel onto master: https://github.com/optimizely/objective-c-sdk.\n\tb. Wait for Travis build to pass: https://travis-ci.org/optimizely/objective-c-sdk/pull_requests.\n\tc. Get an LGTM from someone on the team.\n\td. Merge the changes (don't squash!)\n";
-read  -n 1 -p "Has master been merged with devel? [y/n] $cr? " podspec_valid;
-if [ "$podspec_valid" != "y" ]; then
-printf "\nPlease merge devel onto master before proceeding!!\n"
-exit 1
-fi;
-
 # ---- git tag all modules----
-printf "\n\n9. Tagging all modules...\n";
+printf "\n\n8. Tagging all modules...\n";
 printf "Tagging core-$OPTIMIZELY_SDK_CORE_VERSION\n";
 git tag -a core-$OPTIMIZELY_SDK_CORE_VERSION -m "Release $OPTIMIZELY_SDK_CORE_VERSION";
 printf "Tagging shared-$OPTIMIZELY_SDK_SHARED_VERSION\n";
@@ -253,7 +244,7 @@ if [ "$tagging_valid" != "y" ]; then
 fi;
 
 ## ---- git push tags ----
-printf "\n\n10. Pushing all git tags...\n"
+printf "\n\n9. Pushing all git tags...\n"
 git push origin core-$OPTIMIZELY_SDK_CORE_VERSION --verbose;
 printf "\n";
 git push origin shared-$OPTIMIZELY_SDK_SHARED_VERSION --verbose;
@@ -269,7 +260,7 @@ printf "\n";
 git push origin tvOS-$OPTIMIZELY_SDK_TVOS_VERSION --verbose;
 
 # ---- Make sure you have a Cocoapod session running ----
-printf "\n\n11. Verify Cocoapod trunk session...\n";
+printf "\n\n10. Verify Cocoapod trunk session...\n";
 pod trunk me;
 
 read  -n 1 -p "Do you have a valid Cocoapod session running? [y/n] $cr? " cocoapod_session;
@@ -280,9 +271,25 @@ fi;
 
 # ---- push podspecs to cocoapods ----
 # the podspecs need to be pushed in the correct order because of dependencies!
-printf "\n\n12. Pushing podspecs to Cocoapods...\n";
+printf "\n\n11. Pushing podspecs to Cocoapods...\n";
 for (( i = 0; i < ${number_pods}; i++ ));
 do
     echo "Pushing the ${pods[i]} pod to Cocoapods"
     pod trunk push ${pods[i]}.podspec
+
+
+# ---- Prompt to determine what kind of release ----
+# patch releases require cherry-picking changes onto the release branch
+read  -n 1 -p "12. Is this a patch release? [y/n] $cr " patch_release;
+if [ "$patch_release" == "y" ]; then
+printf "\n\nMoving to the release branch $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x.\n";
+git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
+printf "\n\nCherry-pick last commit from master.\n";
+git cherry-pick master
+exit 1
+fi;
+# if not a patch release, than a release branch needs to be created
+printf "\n\nCreating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
+git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
+git push
 done)

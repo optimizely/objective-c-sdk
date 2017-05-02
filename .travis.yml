@@ -2,7 +2,6 @@ language: objective-c
 osx_image: xcode8.2
 branches:
   only:
-    - devel
     - master
 env:
   matrix:
@@ -12,7 +11,6 @@ env:
     - SCHEME=OptimizelySDKTVOS TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 script:
   - pod spec lint --quick
-  - if [[ "$TRAVIS_BRANCH" == "devel" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME"; fi
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME"; fi
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
