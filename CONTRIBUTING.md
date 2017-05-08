@@ -18,6 +18,10 @@ We welcome contributions and feedback! All contributors must sign our [Contribut
   * Tests are located in `/OptimizelySDKCoreTests` with one file per class.
 * Please don't change the SDK Version. We'll take care of bumping the version when we next release.
 
+## Style
+
+TBD
+
 ## License
 
 All contributions are under the CLA mentioned above. For this project, Optimizely uses the Apache 2.0 license, and so asks that by contributing your code, you agree to license your contribution under the terms of the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0). Your contributions should also include the following header:
