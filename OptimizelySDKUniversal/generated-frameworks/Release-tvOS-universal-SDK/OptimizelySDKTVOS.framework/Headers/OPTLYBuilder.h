@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig;
-@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 /**
  * This class contains the information on how your Optimizely instance will be built.
@@ -45,7 +45,7 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 /// The logger is by default set to one that is created by Optimizely. This default logger can be overridden by any object that conforms to the OPTLYLogger protocol.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile stores user-specific data, like bucketing.
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfile;
 /// The datafile manager that will download the datafile for the manager
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYDatafileManager> datafileManager;
 /// The client version

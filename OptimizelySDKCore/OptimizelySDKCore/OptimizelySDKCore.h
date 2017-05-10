@@ -50,7 +50,7 @@
 #import "OPTLYProjectConfigBuilder.h"
 #import "OPTLYQueue.h"
 #import "OPTLYTrafficAllocation.h"
-#import "OPTLYUserProfileBasic.h"
+#import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"

@@ -104,6 +104,34 @@
 			remoteGlobalIDString = EA5247221DC7193B00AF6685;
 			remoteInfo = OptimizelySDKSharedTVOS;
 		};
+		EA6112951EC288E5001967ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5248441DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceiOS;
+		};
+		EA6112971EC288E5001967ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52484C1DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceiOSTests;
+		};
+		EA6112991EC288E5001967ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5248641DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceTVOS;
+		};
+		EA61129B1EC288E5001967ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52486C1DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceTVOSTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +176,7 @@
 		EA52488A1DC72C5300AF6685 /* OptimizelySDKShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKShared.xcodeproj; path = ../OptimizelySDKShared/OptimizelySDKShared.xcodeproj; sourceTree = "<group>"; };
 		EA5249491DC72FF200AF6685 /* OPTLYDatafileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManager.h; sourceTree = "<group>"; };
 		EA52494A1DC72FF200AF6685 /* OPTLYDatafileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManager.m; sourceTree = "<group>"; };
+		EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfileService.xcodeproj; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj; sourceTree = "<group>"; };
 		EA8FD10B1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileManagerBuilder.h; sourceTree = "<group>"; };
 		EA8FD10C1DED2B9D00D950AD /* OPTLYDatafileManagerBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerBuilder.m; sourceTree = "<group>"; };
 		F11A4F80C7960C4907845910 /* Pods_OptimizelySDKDatafileManageriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKDatafileManageriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +261,7 @@
 		EA3C68B11DC1E75800C578CA = {
 			isa = PBXGroup;
 			children = (
+				EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */,
 				EA3C68BD1DC1E75900C578CA /* OptimizelySDKDatafileManager */,
 				EA3C68C91DC1E75900C578CA /* OptimizelySDKDatafileManagerTests */,
 				EA3C68BC1DC1E75900C578CA /* Products */,
@@ -298,6 +328,17 @@
 				EA5248941DC72C5300AF6685 /* OptimizelySDKSharediOSTests.xctest */,
 				EA5248961DC72C5300AF6685 /* OptimizelySDKShared.framework */,
 				EA5248981DC72C5300AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA61128D1EC288E5001967ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA6112961EC288E5001967ED /* OptimizelySDKUserProfileService.framework */,
+				EA6112981EC288E5001967ED /* OptimizelySDKUserProfileServiceiOSTests.xctest */,
+				EA61129A1EC288E5001967ED /* OptimizelySDKUserProfileService.framework */,
+				EA61129C1EC288E5001967ED /* OptimizelySDKUserProfileServiceTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +495,10 @@
 					ProductGroup = EA52488B1DC72C5300AF6685 /* Products */;
 					ProjectRef = EA52488A1DC72C5300AF6685 /* OptimizelySDKShared.xcodeproj */;
 				},
+				{
+					ProductGroup = EA61128D1EC288E5001967ED /* Products */;
+					ProjectRef = EA61128C1EC288E5001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -492,6 +537,34 @@
 			fileType = wrapper.cfbundle;
 			path = OptimizelySDKSharedTVOSTests.xctest;
 			remoteRef = EA5248971DC72C5300AF6685 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA6112961EC288E5001967ED /* OptimizelySDKUserProfileService.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKUserProfileService.framework;
+			remoteRef = EA6112951EC288E5001967ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA6112981EC288E5001967ED /* OptimizelySDKUserProfileServiceiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKUserProfileServiceiOSTests.xctest;
+			remoteRef = EA6112971EC288E5001967ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA61129A1EC288E5001967ED /* OptimizelySDKUserProfileService.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKUserProfileService.framework;
+			remoteRef = EA6112991EC288E5001967ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA61129C1EC288E5001967ED /* OptimizelySDKUserProfileServiceTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKUserProfileServiceTVOSTests.xctest;
+			remoteRef = EA61129B1EC288E5001967ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

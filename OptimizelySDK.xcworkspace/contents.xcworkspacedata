@@ -26,7 +26,7 @@
       location = "group:OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
+      location = "group:OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

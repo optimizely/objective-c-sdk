@@ -20,14 +20,14 @@
     #import "OPTLYEventDispatcher.h"
     #import "OPTLYLogger.h"
     #import "OPTLYManagerBuilder.h"
-    #import "OPTLYUserProfile.h"
+    #import "OPTLYUserProfileService.h"
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
     #import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
     #import <OptimizelySDKEventDispatcher/OPTLYEventDispatcher.h>
     #import <OptimizelySDKShared/OPTLYManagerBuilder.h>
-    #import <OptimizelySDKUserProfile/OPTLYUserProfile.h>
+    #import <OptimizelySDKUserProfileService/OPTLYUserProfileService.h>
 #endif
 
 #import "OPTLYManager.h"
@@ -111,7 +111,7 @@ static NSString * const kClientEngine = @"ios-sdk";
         // --- user profile ---
         if (!builder.userProfile) {
             // set default user profile if no user profile is set
-            self.userProfile = [OPTLYUserProfileDefault init:^(OPTLYUserProfileBuilder * _Nullable builder) {
+            self.userProfile = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
                 builder.logger = self.logger;
             }];
         } else {

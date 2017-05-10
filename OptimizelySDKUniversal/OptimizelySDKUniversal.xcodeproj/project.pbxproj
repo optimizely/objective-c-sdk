@@ -47,8 +47,6 @@
 		EA52C9F41E851CC100D4FCA0 /* OPTLYManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19C1E7B61F200C087B8 /* OPTLYManagerBase.m */; };
 		EA52C9F51E851CC100D4FCA0 /* OPTLYManagerBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19D1E7B61F200C087B8 /* OPTLYManagerBasic.m */; };
 		EA52C9F61E851CC100D4FCA0 /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19E1E7B61F200C087B8 /* OPTLYManagerBuilder.m */; };
-		EA52C9F71E851CC100D4FCA0 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18F1E7B61AE00C087B8 /* OPTLYUserProfile.m */; };
-		EA52C9F81E851CC100D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1901E7B61AE00C087B8 /* OPTLYUserProfileBuilder.m */; };
 		EA52C9FA1E851CC100D4FCA0 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18A1E7B616A00C087B8 /* OPTLYEventDispatcher.m */; };
 		EA52C9FB1E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18B1E7B616A00C087B8 /* OPTLYEventDispatcherBuilder.m */; };
 		EA52C9FC1E851CC100D4FCA0 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1831E7B60CC00C087B8 /* OPTLYDatafileManager.m */; };
@@ -87,7 +85,6 @@
 		EA52CA241E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
 		EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */; };
 		EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */; };
-		EA52CA291E851CC100D4FCA0 /* OPTLYUserProfileBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileBasic.m */; };
 		EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */; };
 		EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */; };
 		EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1581E7B604C00C087B8 /* OPTLYVariation.m */; };
@@ -146,14 +143,10 @@
 		EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA661E851CC100D4FCA0 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA671E851CC100D4FCA0 /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28A1E7B64A800C087B8 /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA681E851CC100D4FCA0 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28B1E7B64A800C087B8 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA691E851CC100D4FCA0 /* OPTLYUserProfileBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28C1E7B64A800C087B8 /* OPTLYUserProfileBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6B1E851CC100D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2921E7B651700C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6D1E851CC100D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6E1E851CC100D4FCA0 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA6F1E851CC100D4FCA0 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA701E851CC100D4FCA0 /* OPTLYBucketer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21A1E7B639B00C087B8 /* OPTLYBucketer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA711E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F85D1E81C84500C087B8 /* OPTLYEventDispatcherBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,8 +169,6 @@
 		EA52CA9D1E851CEE00D4FCA0 /* OPTLYManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19C1E7B61F200C087B8 /* OPTLYManagerBase.m */; };
 		EA52CA9E1E851CEE00D4FCA0 /* OPTLYManagerBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19D1E7B61F200C087B8 /* OPTLYManagerBasic.m */; };
 		EA52CA9F1E851CEE00D4FCA0 /* OPTLYManagerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19E1E7B61F200C087B8 /* OPTLYManagerBuilder.m */; };
-		EA52CAA01E851CEE00D4FCA0 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18F1E7B61AE00C087B8 /* OPTLYUserProfile.m */; };
-		EA52CAA41E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1901E7B61AE00C087B8 /* OPTLYUserProfileBuilder.m */; };
 		EA52CAA51E851CEE00D4FCA0 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18A1E7B616A00C087B8 /* OPTLYEventDispatcher.m */; };
 		EA52CAA61E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F18B1E7B616A00C087B8 /* OPTLYEventDispatcherBuilder.m */; };
 		EA52CAA71E851CEE00D4FCA0 /* OPTLYDatafileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1831E7B60CC00C087B8 /* OPTLYDatafileManager.m */; };
@@ -213,7 +204,6 @@
 		EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
 		EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */; };
 		EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */; };
-		EA52CACC1E851CEE00D4FCA0 /* OPTLYUserProfileBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileBasic.m */; };
 		EA52CACD1E851CEE00D4FCA0 /* OPTLYValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */; };
 		EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */; };
 		EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; };
@@ -264,13 +254,9 @@
 		EA52CAFE1E851CEE00D4FCA0 /* OPTLYManagerBase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F27B1E7B647500C087B8 /* OPTLYManagerBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAFF1E851CEE00D4FCA0 /* OPTLYManagerBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F27C1E7B647500C087B8 /* OPTLYManagerBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB001E851CEE00D4FCA0 /* OPTLYManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F27D1E7B647500C087B8 /* OPTLYManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB011E851CEE00D4FCA0 /* OptimizelySDKUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28A1E7B64A800C087B8 /* OptimizelySDKUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB021E851CEE00D4FCA0 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28B1E7B64A800C087B8 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB031E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F28C1E7B64A800C087B8 /* OPTLYUserProfileBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB041E851CEE00D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2921E7B651700C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB051E851CEE00D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB061E851CEE00D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CB071E851CEE00D4FCA0 /* OPTLYUserProfileBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7791E80A04300C087B8 /* OPTLYUserProfileBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB081E851CEE00D4FCA0 /* OPTLYBucketer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21A1E7B639B00C087B8 /* OPTLYBucketer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB091E851CEE00D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CB0A1E851CEE00D4FCA0 /* OPTLYErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -334,6 +320,20 @@
 		EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */; };
 		EA52CEF41E86690500D4FCA0 /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CEF31E86690500D4FCA0 /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CEF61E86698A00D4FCA0 /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CEF51E86698A00D4FCA0 /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA6112571EC285AC001967ED /* OPTLYUserProfileServiceBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112561EC285AC001967ED /* OPTLYUserProfileServiceBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA6112591EC285B2001967ED /* OPTLYUserProfileServiceBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6112581EC285B2001967ED /* OPTLYUserProfileServiceBasic.m */; };
+		EA61125B1EC285C4001967ED /* OPTLYUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61125A1EC285C4001967ED /* OPTLYUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA61125D1EC285CA001967ED /* OPTLYUserProfileServiceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61125C1EC285CA001967ED /* OPTLYUserProfileServiceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA61125F1EC285D4001967ED /* OPTLYUserProfileService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61125E1EC285D4001967ED /* OPTLYUserProfileService.m */; };
+		EA6112611EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6112601EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m */; };
+		EA6112641EC28637001967ED /* OPTLYUserProfileService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6112621EC28637001967ED /* OPTLYUserProfileService.m */; };
+		EA6112651EC28637001967ED /* OPTLYUserProfileServiceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6112631EC28637001967ED /* OPTLYUserProfileServiceBuilder.m */; };
+		EA6112671EC28648001967ED /* OPTLYUserProfileServiceBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6112661EC28648001967ED /* OPTLYUserProfileServiceBasic.m */; };
+		EA6112691EC28677001967ED /* OPTLYUserProfileServiceBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112681EC28677001967ED /* OPTLYUserProfileServiceBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA61126B1EC28689001967ED /* OPTLYUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61126A1EC28689001967ED /* OPTLYUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA61126D1EC28690001967ED /* OPTLYUserProfileServiceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61126C1EC28690001967ED /* OPTLYUserProfileServiceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA61126F1EC286D7001967ED /* OptimizelySDKUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61126E1EC286D7001967ED /* OptimizelySDKUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA6112711EC28739001967ED /* OptimizelySDKUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112701EC28739001967ED /* OptimizelySDKUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,6 +397,20 @@
 		EA52CDFD1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKiOSUniversalTests-Info.plist"; sourceTree = "<group>"; };
 		EA52CEF31E86690500D4FCA0 /* OptimizelySDKiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKiOS.h; path = OptimizelySDKUniversal/OptimizelySDKiOS.h; sourceTree = SOURCE_ROOT; };
 		EA52CEF51E86698A00D4FCA0 /* OptimizelySDKTVOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKTVOS.h; path = OptimizelySDKUniversal/OptimizelySDKTVOS.h; sourceTree = SOURCE_ROOT; };
+		EA6112561EC285AC001967ED /* OPTLYUserProfileServiceBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileServiceBasic.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileServiceBasic.h; sourceTree = "<group>"; };
+		EA6112581EC285B2001967ED /* OPTLYUserProfileServiceBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBasic.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileServiceBasic.m; sourceTree = "<group>"; };
+		EA61125A1EC285C4001967ED /* OPTLYUserProfileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileService.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileService.h; sourceTree = "<group>"; };
+		EA61125C1EC285CA001967ED /* OPTLYUserProfileServiceBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileServiceBuilder.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileServiceBuilder.h; sourceTree = "<group>"; };
+		EA61125E1EC285D4001967ED /* OPTLYUserProfileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileService.m; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileService.m; sourceTree = "<group>"; };
+		EA6112601EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBuilder.m; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileServiceBuilder.m; sourceTree = "<group>"; };
+		EA6112621EC28637001967ED /* OPTLYUserProfileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileService.m; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileService.m; sourceTree = "<group>"; };
+		EA6112631EC28637001967ED /* OPTLYUserProfileServiceBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBuilder.m; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileServiceBuilder.m; sourceTree = "<group>"; };
+		EA6112661EC28648001967ED /* OPTLYUserProfileServiceBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBasic.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileServiceBasic.m; sourceTree = "<group>"; };
+		EA6112681EC28677001967ED /* OPTLYUserProfileServiceBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileServiceBasic.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileServiceBasic.h; sourceTree = "<group>"; };
+		EA61126A1EC28689001967ED /* OPTLYUserProfileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileService.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileService.h; sourceTree = "<group>"; };
+		EA61126C1EC28690001967ED /* OPTLYUserProfileServiceBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileServiceBuilder.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OPTLYUserProfileServiceBuilder.h; sourceTree = "<group>"; };
+		EA61126E1EC286D7001967ED /* OptimizelySDKUserProfileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKUserProfileService.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.h; sourceTree = "<group>"; };
+		EA6112701EC28739001967ED /* OptimizelySDKUserProfileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelySDKUserProfileService.h; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.h; sourceTree = "<group>"; };
 		EAC5F1311E7B604C00C087B8 /* Optimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Optimizely.m; path = ../OptimizelySDKCore/OptimizelySDKCore/Optimizely.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAttribute.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYAttribute.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYAudience.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYAudience.m; sourceTree = SOURCE_ROOT; };
@@ -625,6 +639,20 @@
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
+				EA6112701EC28739001967ED /* OptimizelySDKUserProfileService.h */,
+				EA61126E1EC286D7001967ED /* OptimizelySDKUserProfileService.h */,
+				EA61126C1EC28690001967ED /* OPTLYUserProfileServiceBuilder.h */,
+				EA61126A1EC28689001967ED /* OPTLYUserProfileService.h */,
+				EA6112681EC28677001967ED /* OPTLYUserProfileServiceBasic.h */,
+				EA6112661EC28648001967ED /* OPTLYUserProfileServiceBasic.m */,
+				EA6112621EC28637001967ED /* OPTLYUserProfileService.m */,
+				EA6112631EC28637001967ED /* OPTLYUserProfileServiceBuilder.m */,
+				EA6112601EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m */,
+				EA61125E1EC285D4001967ED /* OPTLYUserProfileService.m */,
+				EA61125C1EC285CA001967ED /* OPTLYUserProfileServiceBuilder.h */,
+				EA61125A1EC285C4001967ED /* OPTLYUserProfileService.h */,
+				EA6112581EC285B2001967ED /* OPTLYUserProfileServiceBasic.m */,
+				EA6112561EC285AC001967ED /* OPTLYUserProfileServiceBasic.h */,
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */,
 				EA52CDFA1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests */,
 				EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */,
@@ -872,6 +900,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA61126F1EC286D7001967ED /* OptimizelySDKUserProfileService.h in Headers */,
+				EA61125D1EC285CA001967ED /* OPTLYUserProfileServiceBuilder.h in Headers */,
+				EA61125B1EC285C4001967ED /* OPTLYUserProfileService.h in Headers */,
+				EA6112571EC285AC001967ED /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EA52CA321E851CC100D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CA331E851CC100D4FCA0 /* OPTLYAttribute.h in Headers */,
 				EA52CA341E851CC100D4FCA0 /* OPTLYAudience.h in Headers */,
@@ -926,14 +958,10 @@
 				EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */,
 				EA52CA661E851CC100D4FCA0 /* OPTLYEventDataStore.m in Headers */,
 				EA52CEF41E86690500D4FCA0 /* OptimizelySDKiOS.h in Headers */,
-				EA52CA671E851CC100D4FCA0 /* OptimizelySDKUserProfile.h in Headers */,
-				EA52CA681E851CC100D4FCA0 /* OPTLYUserProfile.h in Headers */,
-				EA52CA691E851CC100D4FCA0 /* OPTLYUserProfileBuilder.h in Headers */,
 				EA52CA6B1E851CC100D4FCA0 /* Optimizely.h in Headers */,
 				EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52CA6D1E851CC100D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */,
 				EA52CA6E1E851CC100D4FCA0 /* OPTLYManager.h in Headers */,
-				EA52CA6F1E851CC100D4FCA0 /* OPTLYUserProfileBasic.h in Headers */,
 				EA52CA701E851CC100D4FCA0 /* OPTLYBucketer.h in Headers */,
 				EA52CA711E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */,
@@ -1007,13 +1035,9 @@
 				EA52CAFE1E851CEE00D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CAFF1E851CEE00D4FCA0 /* OPTLYManagerBasic.h in Headers */,
 				EA52CB001E851CEE00D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
-				EA52CB011E851CEE00D4FCA0 /* OptimizelySDKUserProfile.h in Headers */,
-				EA52CB021E851CEE00D4FCA0 /* OPTLYUserProfile.h in Headers */,
-				EA52CB031E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.h in Headers */,
 				EA52CB041E851CEE00D4FCA0 /* Optimizely.h in Headers */,
 				EA52CB051E851CEE00D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52CB061E851CEE00D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */,
-				EA52CB071E851CEE00D4FCA0 /* OPTLYUserProfileBasic.h in Headers */,
 				EA52CB081E851CEE00D4FCA0 /* OPTLYBucketer.h in Headers */,
 				EA52CB091E851CEE00D4FCA0 /* OPTLYNetworkService.h in Headers */,
 				EA52CB0A1E851CEE00D4FCA0 /* OPTLYErrorHandler.h in Headers */,
@@ -1034,6 +1058,10 @@
 				EA52CD911E85E5CA00D4FCA0 /* JSONAPI.h in Headers */,
 				EA52CD951E85E5CA00D4FCA0 /* JSONValueTransformer.h in Headers */,
 				EA52CD941E85E5CA00D4FCA0 /* JSONKeyMapper.h in Headers */,
+				EA6112691EC28677001967ED /* OPTLYUserProfileServiceBasic.h in Headers */,
+				EA61126B1EC28689001967ED /* OPTLYUserProfileService.h in Headers */,
+				EA61126D1EC28690001967ED /* OPTLYUserProfileServiceBuilder.h in Headers */,
+				EA6112711EC28739001967ED /* OptimizelySDKUserProfileService.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
 			);
@@ -1258,8 +1286,6 @@
 				EA52C9F41E851CC100D4FCA0 /* OPTLYManagerBase.m in Sources */,
 				EA52C9F51E851CC100D4FCA0 /* OPTLYManagerBasic.m in Sources */,
 				EA52C9F61E851CC100D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
-				EA52C9F71E851CC100D4FCA0 /* OPTLYUserProfile.m in Sources */,
-				EA52C9F81E851CC100D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */,
 				EA52CB851E85959100D4FCA0 /* FMDatabasePool.m in Sources */,
 				EA52CD761E85E37500D4FCA0 /* JSONModel+networking.m in Sources */,
 				EA52C9FA1E851CC100D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
@@ -1307,11 +1333,13 @@
 				EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EA52CD7E1E85E37E00D4FCA0 /* JSONKeyMapper.m in Sources */,
-				EA52CA291E851CC100D4FCA0 /* OPTLYUserProfileBasic.m in Sources */,
 				EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
 				EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */,
+				EA6112591EC285B2001967ED /* OPTLYUserProfileServiceBasic.m in Sources */,
+				EA61125F1EC285D4001967ED /* OPTLYUserProfileService.m in Sources */,
+				EA6112611EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1338,8 +1366,6 @@
 				EA52CA9D1E851CEE00D4FCA0 /* OPTLYManagerBase.m in Sources */,
 				EA52CA9E1E851CEE00D4FCA0 /* OPTLYManagerBasic.m in Sources */,
 				EA52CA9F1E851CEE00D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
-				EA52CAA01E851CEE00D4FCA0 /* OPTLYUserProfile.m in Sources */,
-				EA52CAA41E851CEE00D4FCA0 /* OPTLYUserProfileBuilder.m in Sources */,
 				EA52CAA51E851CEE00D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
 				EA52CAA61E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA52CAA71E851CEE00D4FCA0 /* OPTLYDatafileManager.m in Sources */,
@@ -1378,7 +1404,6 @@
 				EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
-				EA52CACC1E851CEE00D4FCA0 /* OPTLYUserProfileBasic.m in Sources */,
 				EA52CD991E85E5D500D4FCA0 /* JSONAPI.m in Sources */,
 				EA52CACD1E851CEE00D4FCA0 /* OPTLYValidator.m in Sources */,
 				EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */,
@@ -1386,6 +1411,9 @@
 				EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CD971E85E5D500D4FCA0 /* JSONModelClassProperty.m in Sources */,
 				EA52CAD11E851CEE00D4FCA0 /* OPTLYVariationVariable.m in Sources */,
+				EA6112641EC28637001967ED /* OPTLYUserProfileService.m in Sources */,
+				EA6112651EC28637001967ED /* OPTLYUserProfileServiceBuilder.m in Sources */,
+				EA6112671EC28648001967ED /* OPTLYUserProfileServiceBasic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1928,7 +1956,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1998,7 +2026,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -2070,7 +2098,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -2142,7 +2170,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -2182,7 +2210,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2205,7 +2233,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2228,7 +2256,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2251,7 +2279,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2271,7 +2299,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2293,7 +2321,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2315,7 +2343,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2337,7 +2365,7 @@
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
 					"$(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager/**",
-					"$(SRCROOT)/../OptimizelySDKUserProfile/OptimizelySDKUserProfile/**",
+					"$(SRCROOT)/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
   s.dependency 'OptimizelySDKEventDispatcher', '1.1.0'
-  s.dependency 'OptimizelySDKUserProfile', '1.1.0'
+  s.dependency 'OptimizelySDKUserProfileService', '1.1.0'
   s.dependency 'OptimizelySDKDatafileManager', '1.1.0'
 end
