@@ -1,6 +1,0 @@
-framework module Pods_OptimizelySDKUserProfileiOS {
-  umbrella header "Pods-OptimizelySDKUserProfileiOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

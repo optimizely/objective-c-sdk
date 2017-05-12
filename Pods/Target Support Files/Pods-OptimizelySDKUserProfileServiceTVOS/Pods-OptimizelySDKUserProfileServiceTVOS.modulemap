@@ -1,0 +1,6 @@
+framework module Pods_OptimizelySDKUserProfileServiceTVOS {
+  umbrella header "Pods-OptimizelySDKUserProfileServiceTVOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

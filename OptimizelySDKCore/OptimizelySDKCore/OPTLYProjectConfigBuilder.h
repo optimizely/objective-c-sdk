@@ -21,7 +21,7 @@
  */
 
 @class OPTLYProjectConfigBuilder;
-@protocol OPTLYErrorHandler, OPTLYLogger, OPTLYUserProfile;
+@protocol OPTLYErrorHandler, OPTLYLogger, OPTLYUserProfileService;
 
 /// This is a block that takes the builder values.
 typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Nullable builder);
@@ -41,7 +41,7 @@ typedef void (^OPTLYProjectConfigBuilderBlock)(OPTLYProjectConfigBuilder * _Null
 /// optional logger
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 /// optional user profile
-@property (nonatomic, strong, nullable) id<OPTLYUserProfile> userProfile;
+@property (nonatomic, strong, nullable) id<OPTLYUserProfileService> userProfile;
 /// the non optional datafile contents
 @property (nonatomic, strong, nonnull) NSData *datafile;
 /// The client version

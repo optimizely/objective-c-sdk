@@ -26,7 +26,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYValidator.h"
-#import "OPTLYUserProfileBasic.h"
+#import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
 
@@ -125,10 +125,10 @@ NSString * const kExpectedDatafileVersion  = @"3";
     }
     
     if (builder.userProfile) {
-        if (![OPTLYUserProfileUtility conformsToOPTLYUserProfileProtocol:[builder.userProfile class]]) {
+        if (![OPTLYUserProfileServiceUtility conformsToOPTLYUserProfileServiceProtocol:[builder.userProfile class]]) {
             [builder.logger logMessage:OPTLYErrorHandlerMessagesUserProfileInvalid withLevel:OptimizelyLogLevelWarning];
         } else {
-            _userProfile = (id<OPTLYUserProfile, Ignore>)builder.userProfile;
+            _userProfile = (id<OPTLYUserProfileService, Ignore>)builder.userProfile;
         }
     }
     
