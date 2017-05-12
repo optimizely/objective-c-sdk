@@ -16,7 +16,7 @@
 #ifndef UNIVERSAL
     #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
     #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
-    #import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
+    #import <OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.h>
 #endif
 #import "OPTLYManager.h"
 

@@ -20,6 +20,6 @@
 #import "OptimizelySDKDatafileManager.h"
 #import "OptimizelySDKEventDispatcher.h"
 #import "OptimizelySDKShared.h"
-#import "OptimizelySDKUserProfile.h"
+#import "OptimizelySDKUserProfileService.h"
 #import "OPTLYManager.h"
 

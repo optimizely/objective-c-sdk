@@ -55,9 +55,9 @@ echo "OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION = $OPTIMIZELY_SDK_DATAFILE_MANAGER
 OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKEventDispatcheriOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = \(.*\)/\1/p' | sed 's/ //g');
 echo "OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = $OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION";
 
-# OPTIMIZELY_SDK_USER_PROFILE_VERSION
-OPTIMIZELY_SDK_USER_PROFILE_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKUserProfileiOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_USER_PROFILE_VERSION = \(.*\)/\1/p' | sed 's/ //g');
-echo "OPTIMIZELY_SDK_USER_PROFILE_VERSION = $OPTIMIZELY_SDK_USER_PROFILE_VERSION";
+# OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION
+OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKUserProfileServiceiOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION = $OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION";
 
 # OPTIMIZELY_SDK_iOS_VERSION
 OPTIMIZELY_SDK_iOS_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_iOS_VERSION = \(.*\)/\1/p' | sed 's/ //g');
@@ -115,10 +115,10 @@ mv OptimizelySDKEventDispatcher.podspec.bak OptimizelySDKEventDispatcher.podspec
 printf "OptimizelySDKDatafileManager.podspec\n"
 sed -e "s/s\.dependency \'OptimizelySDKShared\', \'.*\'/s\.dependency \'OptimizelySDKShared\', \'$OPTIMIZELY_SDK_SHARED_VERSION\'/g" OptimizelySDKDatafileManager.podspec > OptimizelySDKDatafileManager.podspec.bak;
 mv OptimizelySDKDatafileManager.podspec.bak OptimizelySDKDatafileManager.podspec;
-# OptimizelySDKUserProfile.podspec
-printf "OptimizelySDKUserProfile.podspec\n\n"
-sed -e "s/s\.dependency \'OptimizelySDKShared\', \'.*\'/s\.dependency \'OptimizelySDKShared\', \'$OPTIMIZELY_SDK_SHARED_VERSION\'/g" OptimizelySDKUserProfile.podspec > OptimizelySDKUserProfile.podspec.bak;
-mv OptimizelySDKUserProfile.podspec.bak OptimizelySDKUserProfile.podspec;
+# OptimizelySDKUserProfileService.podspec
+printf "OptimizelySDKUserProfileService.podspec\n\n"
+sed -e "s/s\.dependency \'OptimizelySDKShared\', \'.*\'/s\.dependency \'OptimizelySDKShared\', \'$OPTIMIZELY_SDK_SHARED_VERSION\'/g" OptimizelySDKUserProfileService.podspec > OptimizelySDKUserProfileService.podspec.bak;
+mv OptimizelySDKUserProfileService.podspec.bak OptimizelySDKUserProfileService.podspec;
 
 # Update the OPTIMIZELY_SDK_iOS_VERSION:
 # OptimizelySDKiOS.podspec
@@ -164,19 +164,19 @@ printf "OptimizelySDKTVOS.podspec\n\n"
 sed -e "s/s\.dependency \'OptimizelySDKDatafileManager\', \'.*\'/s\.dependency \'OptimizelySDKDatafileManager\', \'$OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION\'/g" OptimizelySDKTVOS.podspec > OptimizelySDKTVOS.podspec.bak;
 mv OptimizelySDKTVOS.podspec.bak OptimizelySDKTVOS.podspec;
 
-# Update the OPTIMIZELY_SDK_USER_PROFILE_VERSION:
-# OptimizelySDKUserProfile.podspec
-printf "Updating OptimizelySDKUserProfile to $OPTIMIZELY_SDK_USER_PROFILE_VERSION in...\n"
-printf "OptimizelySDKUserProfile.podspec\n"
-sed -e "s/s\.version[ ]*=[ ]*\".*\"/s.version                 = \"$OPTIMIZELY_SDK_USER_PROFILE_VERSION\"/g" OptimizelySDKUserProfile.podspec > OptimizelySDKUserProfile.podspec.bak;
-mv OptimizelySDKUserProfile.podspec.bak OptimizelySDKUserProfile.podspec;
+# Update the OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION:
+# OptimizelySDKUserProfileService.podspec
+printf "Updating OptimizelySDKUserProfileService to $OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION in...\n"
+printf "OptimizelySDKUserProfileService.podspec\n"
+sed -e "s/s\.version[ ]*=[ ]*\".*\"/s.version                 = \"$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION\"/g" OptimizelySDKUserProfileService.podspec > OptimizelySDKUserProfileService.podspec.bak;
+mv OptimizelySDKUserProfileService.podspec.bak OptimizelySDKUserProfileService.podspec;
 # OptimizelySDKiOS.podspec
 printf "OptimizelySDKTVOS.podspec\n"
-sed -e "s/s\.dependency \'OptimizelySDKUserProfile\', \'.*\'/s\.dependency \'OptimizelySDKUserProfile\', \'$OPTIMIZELY_SDK_USER_PROFILE_VERSION\'/g" OptimizelySDKiOS.podspec > OptimizelySDKiOS.podspec.bak;
+sed -e "s/s\.dependency \'OptimizelySDKUserProfileService\', \'.*\'/s\.dependency \'OptimizelySDKUserProfileService\', \'$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION\'/g" OptimizelySDKiOS.podspec > OptimizelySDKiOS.podspec.bak;
 mv OptimizelySDKiOS.podspec.bak OptimizelySDKiOS.podspec;
 # OptimizelySDKTVOS.podspec
 printf "OptimizelySDKTVOS.podspec\n\n"
-sed -e "s/s\.dependency \'OptimizelySDKUserProfile\', \'.*\'/s\.dependency \'OptimizelySDKUserProfile\', \'$OPTIMIZELY_SDK_USER_PROFILE_VERSION\'/g" OptimizelySDKTVOS.podspec > OptimizelySDKTVOS.podspec.bak;
+sed -e "s/s\.dependency \'OptimizelySDKUserProfileService\', \'.*\'/s\.dependency \'OptimizelySDKUserProfileService\', \'$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION\'/g" OptimizelySDKTVOS.podspec > OptimizelySDKTVOS.podspec.bak;
 mv OptimizelySDKTVOS.podspec.bak OptimizelySDKTVOS.podspec;
 
 # make sure that all the podspec files are as expected!
@@ -192,7 +192,7 @@ printf "\n\n"
 read  -n 1 -p "6. Verify all podspecs? Skip if this has already been done. [y/n] $cr? " verify_podspec;
 if [ "$verify_podspec" == "y" ]; then
 printf "\nVerifying podspecs...\n";
-pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfile OptimizelySDKiOS OptimizelySDKTVOS);
+pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfileService OptimizelySDKiOS OptimizelySDKTVOS);
 number_pods=${#pods[@]};
 
 for (( i = 0; i < ${number_pods}; i++ ));
@@ -229,8 +229,8 @@ printf "Tagging datafileManager-$OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION\n";
 git tag -a datafileManager-$OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION -m "Release $OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION";
 printf "Tagging eventDispatcher-$OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION\n";
 git tag -a eventDispatcher-$OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION -m "Release $OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION";
-printf "Tagging userProfile-$OPTIMIZELY_SDK_USER_PROFILE_VERSION\n";
-git tag -a userProfile-$OPTIMIZELY_SDK_USER_PROFILE_VERSION -m "Release $OPTIMIZELY_SDK_USER_PROFILE_VERSION";
+printf "Tagging UserProfileService-$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION\n";
+git tag -a UserProfileService-$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION -m "Release $OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION";
 printf "Tagging iOS-$OPTIMIZELY_SDK_iOS_VERSION\n";
 git tag -a iOS-$OPTIMIZELY_SDK_iOS_VERSION -m "Release $OPTIMIZELY_SDK_iOS_VERSION";
 printf "Tagging tvOS-$OPTIMIZELY_SDK_TVOS_VERSION\n";
@@ -253,7 +253,7 @@ git push origin datafileManager-$OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION --verbo
 printf "\n";
 git push origin eventDispatcher-$OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION --verbose;
 printf "\n";
-git push origin userProfile-$OPTIMIZELY_SDK_USER_PROFILE_VERSION --verbose;
+git push origin UserProfileService-$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION --verbose;
 printf "\n";
 git push origin iOS-$OPTIMIZELY_SDK_iOS_VERSION --verbose;
 printf "\n";

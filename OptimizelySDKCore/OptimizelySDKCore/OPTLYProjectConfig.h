@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kExpectedDatafileVersion;
 NS_ASSUME_NONNULL_END
 
-@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfile, OPTLYVariation, OPTLYVariable;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfileService, OPTLYVariation, OPTLYVariable;
 @protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
 
 /*
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfile, Ignore> userProfile;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, Ignore> userProfile;
 
 /// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;

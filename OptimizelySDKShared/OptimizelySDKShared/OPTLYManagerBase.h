@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYClient, OPTLYManagerBuilder;
-@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfile;
+@protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder);
 
@@ -50,7 +50,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 /// The logger to be used for the manager, client, and all subcomponents
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the client to store user-specific data.
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfile> userProfile;
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfile;
 /// The client engine
 @property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
 /// The client version

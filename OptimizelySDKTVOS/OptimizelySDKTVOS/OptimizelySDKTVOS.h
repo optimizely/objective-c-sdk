@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import <OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.h>
-#import <OptimizelySDKUserProfile/OptimizelySDKUserProfile.h>
+#import <OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.h>
 #import <OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.h>
 #import "OPTLYManager.h"
 

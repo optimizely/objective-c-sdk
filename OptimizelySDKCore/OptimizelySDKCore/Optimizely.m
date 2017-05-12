@@ -30,7 +30,7 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYUserProfileBasic.h"
+#import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"

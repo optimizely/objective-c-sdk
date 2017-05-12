@@ -25,7 +25,7 @@
 #import "OPTLYGroup.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYUserProfileBasic.h"
+#import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYTestHelper.h"
 #import "OPTLYVariation.h"
 
@@ -54,7 +54,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-        builder.userProfile = [OPTLYUserProfileNoOp new];
+        builder.userProfile = [OPTLYUserProfileServiceNoOp new];
     }];
     
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.projectConfig];
@@ -73,7 +73,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-        builder.userProfile = [OPTLYUserProfileNoOp new];
+        builder.userProfile = [OPTLYUserProfileServiceNoOp new];
     }];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
@@ -113,7 +113,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlockInvalidModulesFails {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     
-    id<OPTLYUserProfile> userProfile = [NSObject new];
+    id<OPTLYUserProfileService> userProfile = [NSObject new];
     id<OPTLYLogger> logger = [NSObject new];
     id<OPTLYErrorHandler> errorHandler = [NSObject new];
     

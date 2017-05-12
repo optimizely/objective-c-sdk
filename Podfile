@@ -163,28 +163,28 @@ target 'OptimizelySDKEventDispatcherTVOSTests' do
   common_test_pods
 end
 
-# OptimizelySDKUserProfile targets
-target 'OptimizelySDKUserProfileiOS' do
-  project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+# OptimizelySDKUserProfileService targets
+target 'OptimizelySDKUserProfileServiceiOS' do
+  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
   platform :ios, '8.0'
   common_ios_pods
 end
  
-target 'OptimizelySDKUserProfileTVOS' do
-  project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+target 'OptimizelySDKUserProfileServiceTVOS' do
+  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
   platform :tvos, '9.0'
   common_tvos_pods
 end
 
-target 'OptimizelySDKUserProfileiOSTests' do
-  project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+target 'OptimizelySDKUserProfileServiceiOSTests' do
+  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
   platform :ios, '8.0'
   common_ios_pods
   common_test_pods
 end
 
-target 'OptimizelySDKUserProfileTVOSTests' do
-  project 'OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj/'
+target 'OptimizelySDKUserProfileServiceTVOSTests' do
+  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
   platform :tvos, '9.0'
   common_tvos_pods
   common_test_pods

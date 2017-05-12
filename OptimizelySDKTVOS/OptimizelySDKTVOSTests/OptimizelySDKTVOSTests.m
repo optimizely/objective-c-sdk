@@ -71,7 +71,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil(manager.userProfile);
     XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
     XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
-    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileDefault class]);
+    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileServiceDefault class]);
     XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
     XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
     
