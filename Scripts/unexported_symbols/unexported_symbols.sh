@@ -11,7 +11,7 @@
 # universal *.framework target's "Build Settings" specify
 # "Unexported Symbols File" == "unexported_symbols.txt" .  E.G.
 #
-# cd ~/objective-c-sdk-oasis-1303-nike/Scripts/unexported_symbols
+# cd ~/objective-c-sdk/Scripts/unexported_symbols
 # sh ./unexported_symbols.sh
 ################################################################
 set -e
