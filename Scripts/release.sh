@@ -4,6 +4,9 @@
 # The script assumes you are on the master branch and are in the Script folder.
 # The script does the following:
 
+# 0. If revised or additional third-party dependencies are added (aside from
+# JSONModel, MurmurHash3, or FMDB), run the unexported_symbols.sh script to create
+# a new unexported_symbols.txt, which hides all third-party dependency symbols.
 # 1. Reminder prompt to update the CHANGELOG.
 # 2. Reminder prompt to update the Build Settings with the proper version number for each module that requires a version bump.
 # 3. Gets the version numbers from the XCode build settings.

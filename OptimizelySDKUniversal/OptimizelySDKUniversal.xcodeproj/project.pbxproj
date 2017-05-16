@@ -355,6 +355,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EF8AFB71EC63DBF008D4F5F /* unexported_symbols.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unexported_symbols.txt; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -626,6 +627,7 @@
 		EAC5F0EB1E7B5D6500C087B8 = {
 			isa = PBXGroup;
 			children = (
+				3EF8AFB71EC63DBF008D4F5F /* unexported_symbols.txt */,
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */,
 				EA52CDFA1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests */,
 				EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */,
@@ -1464,6 +1466,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1510,6 +1513,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1556,6 +1560,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1601,6 +1606,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1647,6 +1653,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1693,6 +1700,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1739,6 +1747,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1784,6 +1793,7 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
