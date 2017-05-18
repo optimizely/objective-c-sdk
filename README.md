@@ -113,12 +113,12 @@ In order to install the universal framework, follow the steps below:
 	rm "$FRAMEWORK_EXECUTABLE_PATH"
 	mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 	```
-If you choose to build the universal framework yourself, you can do so by running the ```OptimizelySDKiOS-Universal``` or ```OptimizelySDKTVOS-Universal``` schemes. Before building these schemes, you will have to update the third-party dependencies by running the following commands in the root directory:
+If you choose to build the universal framework yourself, you can do so by running the ```OptimizelySDKiOS-Universal``` or ```OptimizelySDKTVOS-Universal``` schemes. Our third-party dependencies, which are pulled in as Git submodules, would need to be updated. To do so run the following commands:
 ```
 git submodule init
 git submodule update
 ```
-The frameworks are output in the **OptimizelySDKUniversal/generated-frameworks** folder.
+After building these schemes, the frameworks are output in the **OptimizelySDKUniversal/generated-frameworks** folder.
 
 ### Contributing
 Please see [CONTRIBUTING](CONTRIBUTING.md).
