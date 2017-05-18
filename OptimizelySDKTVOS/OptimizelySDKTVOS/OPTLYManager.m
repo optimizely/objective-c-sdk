@@ -108,13 +108,13 @@ static NSString * const kClientEngine = @"tvos-sdk";
         }
         
         // --- user profile ---
-        if (!builder.userProfile) {
+        if (!builder.userProfileService) {
             // set default user profile if no user profile is set
-            self.userProfile = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
+            self.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
                 builder.logger = self.logger;
             }];
         } else {
-            self.userProfile = builder.userProfile;
+            self.userProfileService = builder.userProfileService;
         }
         
         // --- client engine ---

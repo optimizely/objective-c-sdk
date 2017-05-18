@@ -16,6 +16,8 @@
 
 #import <JSONModel/JSONModel.h>
 
+@class OPTLYExperiment, OPTLYVariation;
+
 @interface OPTLYDecisionService : JSONModel
 
 /**

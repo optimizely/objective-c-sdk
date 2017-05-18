@@ -42,7 +42,7 @@
             builder.errorHandler = _errorHandler;
             builder.eventDispatcher = _eventDispatcher;
             builder.logger = _logger;
-            builder.userProfile = _userProfile;
+            builder.userProfileService = _userProfileService;
             builder.clientEngine = _clientEngine;
             builder.clientVersion = _clientVersion;
         }];

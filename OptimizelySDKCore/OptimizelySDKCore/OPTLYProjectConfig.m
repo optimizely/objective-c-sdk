@@ -124,11 +124,11 @@ NSString * const kExpectedDatafileVersion  = @"3";
         [builder.errorHandler handleException:datafileException];
     }
     
-    if (builder.userProfile) {
-        if (![OPTLYUserProfileServiceUtility conformsToOPTLYUserProfileServiceProtocol:[builder.userProfile class]]) {
+    if (builder.userProfileService) {
+        if (![OPTLYUserProfileServiceUtility conformsToOPTLYUserProfileServiceProtocol:[builder.userProfileService class]]) {
             [builder.logger logMessage:OPTLYErrorHandlerMessagesUserProfileInvalid withLevel:OptimizelyLogLevelWarning];
         } else {
-            _userProfile = (id<OPTLYUserProfileService, Ignore>)builder.userProfile;
+            _userProfileService = (id<OPTLYUserProfileService, Ignore>)builder.userProfileService;
         }
     }
     

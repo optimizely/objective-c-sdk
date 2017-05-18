@@ -65,7 +65,7 @@
     }
     
     // ---- check if a valid variation is stored in the user profile ----
-    if (self.config.userProfile) {
+    if (self.config.userProfileService) {
         NSString *storedVariationId = [self getVariationIdFromUserProfile:userId
                                                                experiment:experiment];
         if ([storedVariationId length] > 0) {
@@ -112,7 +112,7 @@
         return;
     }
     
-    NSDictionary *userProfileDict = [self.config.userProfile lookup:userId];
+    NSDictionary *userProfileDict = [self.config.userProfileService lookup:userId];
     
     // convert the user profile map to a user profile object to add new values
     NSError *userProfileModelInitError;
@@ -127,9 +127,9 @@
     userProfile.user_id = userId;
     OPTLYExperimentBucketMapEntity *bucketMapEntity = [OPTLYExperimentBucketMapEntity new];
     bucketMapEntity.variation_id = variation.variationId;
-    userProfile.experiment_bucket_map = @{ experiment.experimentKey : [bucketMapEntity toDictionary] };
+    userProfile.experiment_bucket_map = @{ experiment.experimentId : [bucketMapEntity toDictionary] };
     
-    [self.config.userProfile save:[userProfile toDictionary]];
+    [self.config.userProfileService save:[userProfile toDictionary]];
 }
 
 # pragma mark - Helper Methods
@@ -170,7 +170,7 @@
 - (NSString *)getVariationIdFromUserProfile:(NSString *)userId
                                  experiment:(OPTLYExperiment *)experiment
 {
-    NSDictionary *userProfileDict = [self.config.userProfile lookup:userId];
+    NSDictionary *userProfileDict = [self.config.userProfileService lookup:userId];
     
     if ([userProfileDict count] == 0) {
         return nil;
@@ -187,7 +187,7 @@
     }
     
     NSDictionary *experimentBucketMap = userProfile.experiment_bucket_map;
-    OPTLYExperimentBucketMapEntity *bucketMapEntity = [[OPTLYExperimentBucketMapEntity alloc] initWithDictionary:[experimentBucketMap objectForKey:experiment.experimentKey] error:nil];
+    OPTLYExperimentBucketMapEntity *bucketMapEntity = [[OPTLYExperimentBucketMapEntity alloc] initWithDictionary:[experimentBucketMap objectForKey:experiment.experimentId] error:nil];
     NSString *variationId = bucketMapEntity.variation_id;
     
     NSString *logMessage = @"";

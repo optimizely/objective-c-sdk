@@ -65,7 +65,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
             _eventDispatcher = builder.eventDispatcher;
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
-            _userProfile = builder.userProfile;
+            _userProfileService = builder.userProfileService;
         }
         return self;
     }
@@ -631,6 +631,6 @@ attributes:(NSDictionary *)attributes
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfile];
+    return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfileService];
 }
 @end
