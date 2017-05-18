@@ -21,13 +21,40 @@
 		EA2FA7351DC1FAA000B1D81B /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FA7271DC1FA9F00B1D81B /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA524A731DC849AC00AF6685 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA524A5D1DC8498300AF6685 /* OptimizelySDKDatafileManager.framework */; };
 		EA6112B41EC28931001967ED /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9861DD147DA0034A4FE /* OptimizelySDKEventDispatcher.framework */; };
-		EA6112B51EC28939001967ED /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6112AF1EC288F1001967ED /* OptimizelySDKUserProfileService.framework */; };
 		EA92F8341E27FB7900A859C7 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA92F8321E27FB7900A859C7 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA92F8351E27FB7900A859C7 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92F8331E27FB7900A859C7 /* OPTLYManager.m */; };
 		EAC5F85C1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAC5F85B1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E00276B1ECBC0100072DDAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5248441DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceiOS;
+		};
+		3E00276D1ECBC0100072DDAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52484C1DC72B5500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceiOSTests;
+		};
+		3E00276F1ECBC0100072DDAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA5248641DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceTVOS;
+		};
+		3E0027711ECBC0100072DDAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA52486C1DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceTVOSTests;
+		};
 		EA29D9811DD147DA0034A4FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA29D9771DD147DA0034A4FE /* OptimizelySDKEventDispatcher.xcodeproj */;
@@ -105,41 +132,6 @@
 			remoteGlobalIDString = EA5248231DC72ABD00AF6685;
 			remoteInfo = OptimizelySDKDatafileManagerTVOS;
 		};
-		EA6112AA1EC288F1001967ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EA5248441DC72B5500AF6685;
-			remoteInfo = OptimizelySDKUserProfileServiceiOS;
-		};
-		EA6112AC1EC288F1001967ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EA52484C1DC72B5500AF6685;
-			remoteInfo = OptimizelySDKUserProfileServiceiOSTests;
-		};
-		EA6112AE1EC288F1001967ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EA5248641DC72B6500AF6685;
-			remoteInfo = OptimizelySDKUserProfileServiceTVOS;
-		};
-		EA6112B01EC288F1001967ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EA52486C1DC72B6500AF6685;
-			remoteInfo = OptimizelySDKUserProfileServiceTVOSTests;
-		};
-		EA6112B21EC28903001967ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EA5248631DC72B6500AF6685;
-			remoteInfo = OptimizelySDKUserProfileServiceTVOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +145,7 @@
 		2D3504131DFA78D600B0A822 /* test_data_25_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_25_experiments.json; sourceTree = "<group>"; };
 		2D3504141DFA78D600B0A822 /* test_data_50_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_50_experiments.json; sourceTree = "<group>"; };
 		2D3504151DFA78D600B0A822 /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = validator_whitelisting_test_datafile.json; sourceTree = "<group>"; };
+		3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfileService.xcodeproj; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj; sourceTree = "<group>"; };
 		44272C99FC51668DCAEC9448 /* Pods-OptimizelySDKTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5560C95BC4006BAFF4D74368 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		5EF20230314AA0388B49AF4F /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,7 +162,6 @@
 		EA2FA7321DC1FAA000B1D81B /* OptimizelySDKTVOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKTVOSTests.m; sourceTree = "<group>"; };
 		EA52495D1DC736DF00AF6685 /* OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKTVOS.modulemap; sourceTree = "<group>"; };
 		EA524A511DC8498200AF6685 /* OptimizelySDKDatafileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKDatafileManager.xcodeproj; path = ../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj; sourceTree = "<group>"; };
-		EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfileService.xcodeproj; path = "/Users/aluong/src/objective-c-sdk-user-profile/OptimizelySDKDatafileManager/../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj"; sourceTree = "<absolute>"; };
 		EA92F8321E27FB7900A859C7 /* OPTLYManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManager.h; sourceTree = "<group>"; };
 		EA92F8331E27FB7900A859C7 /* OPTLYManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManager.m; sourceTree = "<group>"; };
 		EAC5F85B1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OptimizelySDKTVOSTests-Info.plist"; sourceTree = "<group>"; };
@@ -180,7 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA6112B51EC28939001967ED /* OptimizelySDKUserProfileService.framework in Frameworks */,
 				EA6112B41EC28931001967ED /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 				EA524A731DC849AC00AF6685 /* OptimizelySDKDatafileManager.framework in Frameworks */,
 				4CEEE7ED460944EA63741AFA /* Pods_OptimizelySDKTVOS.framework in Frameworks */,
@@ -210,6 +201,17 @@
 				2D3504151DFA78D600B0A822 /* validator_whitelisting_test_datafile.json */,
 			);
 			path = TestData;
+			sourceTree = "<group>";
+		};
+		3E00275F1ECBC0100072DDAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E00276C1ECBC0100072DDAD /* OptimizelySDKUserProfileService.framework */,
+				3E00276E1ECBC0100072DDAD /* OptimizelySDKUserProfileServiceiOSTests.xctest */,
+				3E0027701ECBC0100072DDAD /* OptimizelySDKUserProfileService.framework */,
+				3E0027721ECBC0100072DDAD /* OptimizelySDKUserProfileServiceTVOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C92FC085FF5AF3EC7544DC34 /* Pods */ = {
@@ -285,7 +287,7 @@
 		EA5246551DC7171E00AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */,
+				3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */,
 				EA29D9771DD147DA0034A4FE /* OptimizelySDKEventDispatcher.xcodeproj */,
 				EA524A511DC8498200AF6685 /* OptimizelySDKDatafileManager.xcodeproj */,
 				1273AF90BC689BE6B17EFDC5 /* Pods_OptimizelySDKTVOS.framework */,
@@ -301,17 +303,6 @@
 				EA524A5B1DC8498300AF6685 /* OptimizelySDKDatafileManageriOSTests.xctest */,
 				EA524A5D1DC8498300AF6685 /* OptimizelySDKDatafileManager.framework */,
 				EA524A5F1DC8498300AF6685 /* OptimizelySDKDatafileManagerTVOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EA61129E1EC288F1001967ED /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EA6112AB1EC288F1001967ED /* OptimizelySDKUserProfileService.framework */,
-				EA6112AD1EC288F1001967ED /* OptimizelySDKUserProfileServiceiOSTests.xctest */,
-				EA6112AF1EC288F1001967ED /* OptimizelySDKUserProfileService.framework */,
-				EA6112B11EC288F1001967ED /* OptimizelySDKUserProfileServiceTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,7 +336,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EA6112B31EC28903001967ED /* PBXTargetDependency */,
 				EA29D98D1DD148040034A4FE /* PBXTargetDependency */,
 				EA524A721DC8499100AF6685 /* PBXTargetDependency */,
 			);
@@ -414,8 +404,8 @@
 					ProjectRef = EA29D9771DD147DA0034A4FE /* OptimizelySDKEventDispatcher.xcodeproj */;
 				},
 				{
-					ProductGroup = EA61129E1EC288F1001967ED /* Products */;
-					ProjectRef = EA61129D1EC288F1001967ED /* OptimizelySDKUserProfileService.xcodeproj */;
+					ProductGroup = 3E00275F1ECBC0100072DDAD /* Products */;
+					ProjectRef = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -427,6 +417,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		3E00276C1ECBC0100072DDAD /* OptimizelySDKUserProfileService.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKUserProfileService.framework;
+			remoteRef = 3E00276B1ECBC0100072DDAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E00276E1ECBC0100072DDAD /* OptimizelySDKUserProfileServiceiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKUserProfileServiceiOSTests.xctest;
+			remoteRef = 3E00276D1ECBC0100072DDAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E0027701ECBC0100072DDAD /* OptimizelySDKUserProfileService.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OptimizelySDKUserProfileService.framework;
+			remoteRef = 3E00276F1ECBC0100072DDAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E0027721ECBC0100072DDAD /* OptimizelySDKUserProfileServiceTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OptimizelySDKUserProfileServiceTVOSTests.xctest;
+			remoteRef = 3E0027711ECBC0100072DDAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		EA29D9821DD147DA0034A4FE /* OptimizelySDKEventDispatcher.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -481,34 +499,6 @@
 			fileType = wrapper.cfbundle;
 			path = OptimizelySDKDatafileManagerTVOSTests.xctest;
 			remoteRef = EA524A5E1DC8498300AF6685 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EA6112AB1EC288F1001967ED /* OptimizelySDKUserProfileService.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OptimizelySDKUserProfileService.framework;
-			remoteRef = EA6112AA1EC288F1001967ED /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EA6112AD1EC288F1001967ED /* OptimizelySDKUserProfileServiceiOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OptimizelySDKUserProfileServiceiOSTests.xctest;
-			remoteRef = EA6112AC1EC288F1001967ED /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EA6112AF1EC288F1001967ED /* OptimizelySDKUserProfileService.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OptimizelySDKUserProfileService.framework;
-			remoteRef = EA6112AE1EC288F1001967ED /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EA6112B11EC288F1001967ED /* OptimizelySDKUserProfileServiceTVOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OptimizelySDKUserProfileServiceTVOSTests.xctest;
-			remoteRef = EA6112B01EC288F1001967ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -650,11 +640,6 @@
 			isa = PBXTargetDependency;
 			name = OptimizelySDKDatafileManagerTVOS;
 			targetProxy = EA524A711DC8499100AF6685 /* PBXContainerItemProxy */;
-		};
-		EA6112B31EC28903001967ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OptimizelySDKUserProfileServiceTVOS;
-			targetProxy = EA6112B21EC28903001967ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
