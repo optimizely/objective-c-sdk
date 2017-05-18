@@ -23,31 +23,22 @@
     BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfileService)];
     
     // runtime checks
-    BOOL implementsHandleSaveVariationMethod = [instanceClass instancesRespondToSelector:@selector(saveUserId:experimentId:variationId:)];
-    BOOL implementsHandleGetVariationMethod = [instanceClass instancesRespondToSelector:@selector(getVariationIdForUserId:experimentId:)];
-    BOOL implementsHandleRemoveVariationMethod = [instanceClass instancesRespondToSelector:@selector(removeUserId:experimentId:)];
+    BOOL implementsHandleLookupMethod = [instanceClass instancesRespondToSelector:@selector(lookup:)];
+    BOOL implementsHandleSaveMethod = [instanceClass instancesRespondToSelector:@selector(save:)];
     
-    return isValidProtocolDeclaration && implementsHandleSaveVariationMethod && implementsHandleGetVariationMethod && implementsHandleRemoveVariationMethod;
+    return implementsHandleLookupMethod && implementsHandleSaveMethod && isValidProtocolDeclaration;
 }
 
 @end
 
 @implementation OPTLYUserProfileServiceNoOp
 
-- (void)saveUserId:(nonnull NSString *)userId
-      experimentId:(nonnull NSString *)experimentId
-       variationId:(nonnull NSString *)variationId {
-    return;
-}
-
-- (nullable NSString *)getVariationIdForUserId:(nonnull NSString *)userId
-                                  experimentId:(nonnull NSString *)experimentId {
+- (nullable NSDictionary *)lookup:(nonnull NSString *)userId {
     return nil;
 }
 
-- (void)removeUserId:(nonnull NSString *)userId
-        experimentId:(nonnull NSString *)experimentId {
-    return;
+- (void)save:(nonnull NSDictionary *)userProfile {
 }
+
 
 @end

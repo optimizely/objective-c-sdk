@@ -31,7 +31,6 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
-#import "OPTLYValidator.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
 #import "OPTLYVariationVariable.h"

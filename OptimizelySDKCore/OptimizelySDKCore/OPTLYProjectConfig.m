@@ -18,6 +18,7 @@
 #import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYExperiment.h"
@@ -25,7 +26,6 @@
 #import "OPTLYLog.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYValidator.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
@@ -410,84 +410,28 @@ NSString * const kExpectedDatafileVersion  = @"3";
                                    attributes:(NSDictionary<NSString *,NSString *> *)attributes
                                      bucketer:(id<OPTLYBucketer>)bucketer
 {
-    if (![OPTLYValidator isExperimentActive:self
-                              experimentKey:experimentKey]) {
-        return false;
-    }
-    
-    // check if experiment is whitelisted
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
-    if ([self checkWhitelistingForUser:userId experiment:experiment]) {
-        return [self getWhitelistedVariationForUser:userId experiment:experiment];
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self
+                                                                                       bucketer:bucketer];
+    OPTLYVariation *bucketedVariation = [decisionService getVariation:userId
+                                                           experiment:experiment
+                                                           attributes:attributes];
+    
+    NSString *logMessage = nil;
+    
+    if (bucketedVariation) {
+        [decisionService saveVariation:bucketedVariation
+                            experiment:experiment
+                                userId:userId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
+    } else {
+        logMessage = [NSString stringWithFormat:@"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experimetn %@", userId, experimentKey];
     }
     
-    // check for sticky bucketing
-    NSString *experimentId = [self getExperimentIdForKey:experimentKey];
-    if (self.userProfile != nil) {
-        NSString *storedVariationId = [self.userProfile getVariationIdForUserId:userId experimentId:experimentId];
-        if (storedVariationId != nil) {
-            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
-                          withLevel:OptimizelyLogLevelDebug];
-            OPTLYVariation *storedVariation = [[self getExperimentForId:experimentId] getVariationForVariationId:storedVariationId];
-            if (storedVariation != nil) {
-                return storedVariation;
-            }
-            else { // stored variation is no longer in datafile
-                [self.userProfile removeUserId:userId experimentId:experimentId];
-                [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile, storedVariationId, experimentId]
-                              withLevel:OptimizelyLogLevelWarning];
-            }
-        }
-    }
-    
-    // validate preconditions
-    OPTLYVariation *bucketedVariation = nil;
-    if ([OPTLYValidator userPassesTargeting:self
-                              experimentKey:experiment.experimentKey
-                                     userId:userId
-                                 attributes:attributes]) {
-        
-        // bucket user into a variation
-        bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];
-    }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    // Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
-                  withLevel:OptimizelyLogLevelDebug];
-    [self.userProfile saveUserId:userId
-                    experimentId:experimentId
-                     variationId:bucketedVariation.variationId];
     
     return bucketedVariation;
 }
 
-# pragma mark - Helper Methods
-// check if the user is in the whitelisted mapping
-- (BOOL)checkWhitelistingForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
-    if (experiment.forcedVariations[userId] != nil) {
-        return true;
-    }
-    return false;
-}
 
-// get the variation the user was whitelisted into
-- (OPTLYVariation *)getWhitelistedVariationForUser:(NSString *)userId experiment:(OPTLYExperiment *)experiment {
-    NSString *forcedVariationKey = experiment.forcedVariations[userId];
-    OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
-    if (forcedVariation != nil) {
-        // Log user forced into variation
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedVariationUser, userId, forcedVariation.variationKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    }
-    else {
-        // Log error: variation not in datafile not activating user
-        [OPTLYErrorHandler handleError:self.errorHandler
-                                  code:OPTLYErrorTypesDataUnknown
-                           description:NSLocalizedString(OPTLYErrorHandlerMessagesVariationUnknown, variationId)];
-    }
-    return forcedVariation;
-}
 @end

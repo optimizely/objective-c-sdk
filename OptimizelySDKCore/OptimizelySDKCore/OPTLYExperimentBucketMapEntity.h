@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,17 +14,31 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+/*
+ * The value mapped to the experiment key
+ * in the experimentBucketMap of the User Profile entity:
+ * {
+ *	"userId" : "alda",
+ *	"experimentBucketMap" : {
+ *		"experimentKey1" : {
+ *			"variationId" : "variationID1"
+ *		},
+ *		"experimentKey2" : {
+ *			"variationId" : "variationID2"
+ *		}
+ *	}
+ * }
+ */
 #import <Foundation/Foundation.h>
+#ifdef UNIVERSAL
+    #import "JSONModelLib.h"
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
 
-@class OPTLYProjectConfig;
+@interface OPTLYExperimentBucketMapEntity : JSONModel
 
-@interface OPTLYValidator : NSObject
+/// variation id
+@property (nonatomic, strong) NSString *variationId;
 
-+ (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
-              experimentKey:(NSString *)experimentKey
-                     userId:(NSString *)userId
-                 attributes:(NSDictionary *)attributes;
-
-+ (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
-             experimentKey:(NSString *)experimentKey;
 @end

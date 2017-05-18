@@ -166,7 +166,7 @@ extern NSString *const OPTLYLoggerMessagesUserProfileAttemptToSaveVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileNoVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
-extern NSString *const OPTLYLoggerMessagesUserProfileSavedVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileServiceSaved;
 extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
 // warning
 extern NSString *const OPTLYLoggerMessagesUserProfileUnableToSaveVariation;

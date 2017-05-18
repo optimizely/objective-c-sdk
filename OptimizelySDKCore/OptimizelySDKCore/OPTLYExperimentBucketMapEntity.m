@@ -14,37 +14,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-/*
- * The User Profile entity:
- * {
- *	"userId" : "alda",
- *	"experimentBucketMap" : {
- *		"experimentKey1" : {
- *			"variationID" : "variationID1"
- *		},
- *		"experimentKey2" : {
- *			"variationID" : "variationID2"
- *		}
- *	}
- * }
- */
-
-#import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "JSONModelLib.h"
-#else
-    #import <JSONModel/JSONModelLib.h>
-#endif
 #import "OPTLYExperimentBucketMapEntity.h"
 
-@protocol OPTLYUserProfile
-@end
-
-@interface OPTLYUserProfile : JSONModel
-
-/// ID identifying the user
-@property (nonatomic, strong) NSString *userId;
-/// The experiment bucket map
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperimentBucketMapEntity *> *experimentBucketMap;
+@implementation OPTLYExperimentBucketMapEntity
 
 @end
