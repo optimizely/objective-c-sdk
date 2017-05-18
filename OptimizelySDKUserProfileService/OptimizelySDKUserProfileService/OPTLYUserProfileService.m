@@ -55,20 +55,21 @@
 
 - (NSDictionary *)lookup:(NSString *)userId
 {
-    NSDictionary *userProfileDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userProfileDict = [userProfilesDict objectForKey:userId];
+    
+    if (!userProfileDict) {
+        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile for %@ does not exist.", userId]
+                      withLevel:OptimizelyLogLevelDebug ];
+        return nil;
+    }
     
     // convert map to a User Profile object to check data type
     NSError *userProfileError;
     OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
     if (userProfileError) {
         [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid format for user profile lookup: %@.", userProfileError]
-                                        withLevel:OptimizelyLogLevelWarning];
-    }
-    
-    if (!userProfileDict) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile for %@ does not exist.", userId]
-                      withLevel:OptimizelyLogLevelDebug ];
-        return nil;
+                      withLevel:OptimizelyLogLevelWarning];
     }
     
     return userProfileDict;
@@ -84,8 +85,22 @@
                       withLevel:OptimizelyLogLevelWarning];
     }
 
-    [self.dataStore saveUserData:userProfileDict type:OPTLYDataStoreDataTypeUserProfile];
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfile.user_id]
+    // a map of userIds to user profiles is created to store multiple user profiles
+    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
+    if (!userProfilesDict) {
+        userProfilesDict = [NSMutableDictionary new];
+    }
+    NSString *userId = userProfile.user_id;
+    if ([userId length] > 0) {
+        userProfilesDict[userId] = userProfileDict;
+    } else {
+        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid userId. Unable to save the user profile."]
+                      withLevel:OptimizelyLogLevelWarning];
+        return;
+    }
+    
+    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfile];
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfilesDict, userProfile.user_id]
                   withLevel:OptimizelyLogLevelDebug];
 }
 
