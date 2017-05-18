@@ -55,38 +55,37 @@
 
 - (NSDictionary *)lookup:(NSString *)userId
 {
-    NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *userProfileDict = [userProfileData objectForKey:userId];
+    NSDictionary *userProfileDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    
+    // convert map to a User Profile object to check data type
+    NSError *userProfileError;
+    OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
+    if (userProfileError) {
+        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid format for user profile lookup: %@.", userProfileError]
+                                        withLevel:OptimizelyLogLevelWarning];
+    }
+    
     if (!userProfileDict) {
         [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile for %@ does not exist.", userId]
                       withLevel:OptimizelyLogLevelDebug ];
         return nil;
     }
     
-    NSError *userProfileError;
-    OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
-    if (userProfileError) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile parse error: %@.", userProfileError]
-                      withLevel:OptimizelyLogLevelDebug];
-    }
-    userProfileDict = [userProfile toDictionary];
-    
     return userProfileDict;
 }
     
 - (void)save:(nonnull NSDictionary *)userProfileDict
 {
-    // convert map to a User Profile object to enforce data type
+    // convert map to a User Profile object to check data type
     NSError *error = nil;
     OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&error];
     if (error) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile parse error for save: %@.", error]
-                      withLevel:OptimizelyLogLevelDebug];
-        return;
+        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid format for user profile save: %@.", error]
+                      withLevel:OptimizelyLogLevelWarning];
     }
-    userProfileDict = [userProfile toDictionary];
+
     [self.dataStore saveUserData:userProfileDict type:OPTLYDataStoreDataTypeUserProfile];
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfile.userId]
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfile.user_id]
                   withLevel:OptimizelyLogLevelDebug];
 }
 

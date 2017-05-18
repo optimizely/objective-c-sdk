@@ -1,18 +1,18 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
- *                                                                          *
- * Licensed under the Apache License, Version 2.0 (the "License");          *
- * you may not use this file except in compliance with the License.         *
- * You may obtain a copy of the License at                                  *
- *                                                                          *
- *    http://www.apache.org/licenses/LICENSE-2.0                            *
- *                                                                          *
- * Unless required by applicable law or agreed to in writing, software      *
- * distributed under the License is distributed on an "AS IS" BASIS,        *
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
- * See the License for the specific language governing permissions and      *
- * limitations under the License.                                           *
- ***************************************************************************/
+* Copyright 2017, Optimizely, Inc. and contributors                        *
+*                                                                          *
+* Licensed under the Apache License, Version 2.0 (the "License");          *
+* you may not use this file except in compliance with the License.         *
+* You may obtain a copy of the License at                                  *
+*                                                                          *
+*    http://www.apache.org/licenses/LICENSE-2.0                            *
+*                                                                          *
+* Unless required by applicable law or agreed to in writing, software      *
+* distributed under the License is distributed on an "AS IS" BASIS,        *
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
+* See the License for the specific language governing permissions and      *
+* limitations under the License.                                           *
+***************************************************************************/
 
 #import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
@@ -54,7 +54,7 @@
     
     // ---- check if the experiment is running ----
     if (![self isExperimentActive:self.config
-                              experimentKey:experimentKey]) {
+                    experimentKey:experimentKey]) {
         return nil;
     }
     
@@ -63,14 +63,14 @@
         return [self getWhitelistedVariationForUser:userId
                                          experiment:experiment];
     }
-
+    
     // ---- check if a valid variation is stored in the user profile ----
     if (self.config.userProfile) {
         NSString *storedVariationId = [self getVariationIdFromUserProfile:userId
                                                                experiment:experiment];
         if ([storedVariationId length] > 0) {
             [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
-                          withLevel:OptimizelyLogLevelDebug];
+                                 withLevel:OptimizelyLogLevelDebug];
             // make sure that the variation still exists in the datafile
             OPTLYVariation *storedVariation = [[self.config getExperimentForId:experimentId] getVariationForVariationId:storedVariationId];
             if (storedVariation) {
@@ -84,12 +84,12 @@
         [self.config.logger logMessage:@"[DECISION SERVICE] User profile service does not exist."
                              withLevel:OptimizelyLogLevelDebug];
     }
-
+    
     // ---- check if the user passes audience targeting before bucketing ----
     if ([self userPassesTargeting:self.config
-                              experimentKey:experiment.experimentKey
-                                     userId:userId
-                                 attributes:attributes]) {
+                    experimentKey:experiment.experimentKey
+                           userId:userId
+                       attributes:attributes]) {
         
         // bucket user into a variation
         bucketedVariation = [self.bucketer bucketExperiment:experiment
@@ -98,7 +98,7 @@
     
     return bucketedVariation;
 }
-    
+
 - (void)saveVariation:(nonnull OPTLYVariation *)variation
            experiment:(nonnull OPTLYExperiment *)experiment
                userId:(nonnull NSString *)userId
@@ -124,10 +124,10 @@
         return;
     }
     
-    userProfile.userId = userId;
+    userProfile.user_id = userId;
     OPTLYExperimentBucketMapEntity *bucketMapEntity = [OPTLYExperimentBucketMapEntity new];
-    bucketMapEntity.variationId = variation.variationId;
-    userProfile.experimentBucketMap = @{ experiment.experimentKey : bucketMapEntity };
+    bucketMapEntity.variation_id = variation.variationId;
+    userProfile.experiment_bucket_map = @{ experiment.experimentKey : [bucketMapEntity toDictionary] };
     
     [self.config.userProfile save:[userProfile toDictionary]];
 }
@@ -148,7 +148,7 @@
 
 // get the variation the user was whitelisted into
 - (OPTLYVariation *)getWhitelistedVariationForUser:(NSString *)userId
-                                        experiment:(OPTLYExperiment *)experiment
+                                    experiment:(OPTLYExperiment *)experiment
 {
     NSString *forcedVariationKey = [experiment.forcedVariations objectForKey:userId];
     OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
@@ -166,7 +166,7 @@
     }
     return forcedVariation;
 }
-    
+
 - (NSString *)getVariationIdFromUserProfile:(NSString *)userId
                                  experiment:(OPTLYExperiment *)experiment
 {
@@ -176,7 +176,7 @@
         return nil;
     }
     
-    // convert the user profile map to a user profile object to more easily get values
+    // convert the user profile map to a user profile object to get values more easily
     NSError *userProfileModelInitError;
     OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict
                                                                            error:&userProfileModelInitError];
@@ -186,10 +186,9 @@
         return nil;
     }
     
-    NSDictionary *experimentBucketMap = userProfile.experimentBucketMap;
-    OPTLYExperimentBucketMapEntity *bucketMapEntity = [experimentBucketMap objectForKey:experiment.experimentKey];
-    
-    NSString *variationId = bucketMapEntity.variationId;
+    NSDictionary *experimentBucketMap = userProfile.experiment_bucket_map;
+    OPTLYExperimentBucketMapEntity *bucketMapEntity = [[OPTLYExperimentBucketMapEntity alloc] initWithDictionary:[experimentBucketMap objectForKey:experiment.experimentKey] error:nil];
+    NSString *variationId = bucketMapEntity.variation_id;
     
     NSString *logMessage = @"";
     if ([variationId length] > 0) {
@@ -232,7 +231,7 @@
     }
     return true;
 }
-    
+
 - (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
              experimentKey:(NSString *)experimentKey
                 attributes:(NSDictionary *)attributes

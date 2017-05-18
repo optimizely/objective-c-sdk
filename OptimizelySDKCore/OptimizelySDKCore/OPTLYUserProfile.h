@@ -17,13 +17,13 @@
 /*
  * The User Profile entity:
  * {
- *	"userId" : "alda",
- *	"experimentBucketMap" : {
+ *	"user_id" : "alda",
+ *	"experiment_bucket_map" : {
  *		"experimentKey1" : {
- *			"variationID" : "variationID1"
+ *			"variation_id" : "variationID1"
  *		},
  *		"experimentKey2" : {
- *			"variationID" : "variationID2"
+ *			"variation_id" : "variationID2"
  *		}
  *	}
  * }
@@ -43,8 +43,8 @@
 @interface OPTLYUserProfile : JSONModel
 
 /// ID identifying the user
-@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *user_id;
 /// The experiment bucket map
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperimentBucketMapEntity *> *experimentBucketMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperimentBucketMapEntity *> *experiment_bucket_map;
 
 @end

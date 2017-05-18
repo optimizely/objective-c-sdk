@@ -18,13 +18,13 @@
  * The value mapped to the experiment key
  * in the experimentBucketMap of the User Profile entity:
  * {
- *	"userId" : "alda",
- *	"experimentBucketMap" : {
+ *	"user_id" : "alda",
+ *	"experiment_bucket_map" : {
  *		"experimentKey1" : {
- *			"variationId" : "variationID1"
+ *			"variation_id" : "variationID1"
  *		},
  *		"experimentKey2" : {
- *			"variationId" : "variationID2"
+ *			"variation_id" : "variationID2"
  *		}
  *	}
  * }
@@ -39,6 +39,6 @@
 @interface OPTLYExperimentBucketMapEntity : JSONModel
 
 /// variation id
-@property (nonatomic, strong) NSString *variationId;
+@property (nonatomic, strong) NSString *variation_id;
 
 @end
