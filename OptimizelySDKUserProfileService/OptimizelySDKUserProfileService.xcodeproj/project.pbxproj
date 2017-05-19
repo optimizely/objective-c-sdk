@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1DEC22FDFDEB6B60D86EB9BD /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA08770AE03C2335E081F5F /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework */; };
-		2B2097A5E4C881CEECF8B701 /* Pods_OptimizelySDKUserProfileTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */; };
-		326704296B1A7B58419874EA /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A9BE81F3B891105C287512 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework */; };
-		81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6965C8C68A2A66DF2C8A1436 /* Pods_OptimizelySDKUserProfileiOSTests.framework */; };
 		B55E76DB60EB09EC825D5E3C /* Pods_OptimizelySDKUserProfileServiceiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EF5E897FDE38E95E70AED4 /* Pods_OptimizelySDKUserProfileServiceiOS.framework */; };
 		C5B5B2602383D65A8A3675A0 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3C3E0405F4BA3A7B37E09D /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */; };
 		EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfileService.framework */; };
@@ -43,6 +40,7 @@
 		EA6112471EC27FF3001967ED /* OptimizelySDKUserProfileServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122B1EC27FC4001967ED /* OptimizelySDKUserProfileServiceTests.m */; };
 		EA6112481EC27FF3001967ED /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61122C1EC27FC4001967ED /* OPTLYTestHelper.h */; };
 		EA6112491EC27FF3001967ED /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122D1EC27FC4001967ED /* OPTLYTestHelper.m */; };
+		EA9358B51ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9358B41ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +161,8 @@
 		EA6112371EC27FDD001967ED /* RemovedVariationDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RemovedVariationDatafile.json; path = OptimizelySDKUserProfileServiceTests/TestData/RemovedVariationDatafile.json; sourceTree = SOURCE_ROOT; };
 		EA6112381EC27FDD001967ED /* UpdatedDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = UpdatedDatafile.json; path = OptimizelySDKUserProfileServiceTests/TestData/UpdatedDatafile.json; sourceTree = SOURCE_ROOT; };
 		EA6112391EC27FDD001967ED /* WhitelistingTestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WhitelistingTestDatafile.json; path = OptimizelySDKUserProfileServiceTests/TestData/WhitelistingTestDatafile.json; sourceTree = SOURCE_ROOT; };
+		EA9358B21ECF503E00E3F201 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKUserProfileServiceiOSTests.framework; path = "/Users/aluong/src/objective-c-sdk-user-profile-service/Pods/../build/Debug-iphoneos/Pods_OptimizelySDKUserProfileServiceiOSTests.framework"; sourceTree = "<absolute>"; };
+		EA9358B41ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKUserProfileServiceTVOS.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-eccycpbhcwfffugyhjitgawkiplw/Build/Products/Debug-appletvsimulator/Pods_OptimizelySDKUserProfileServiceTVOS.framework"; sourceTree = "<group>"; };
 		EA98DB4CE8BB8952823E03DF /* Pods-OptimizelySDKUserProfileServiceiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKUserProfileServiceiOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKUserProfileServiceiOS/Pods-OptimizelySDKUserProfileServiceiOS.release.xcconfig"; sourceTree = "<group>"; };
 		FF0B8B7EC81A746C9F2E43CA /* Pods_OptimizelySDKUserProfileiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -182,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				81D768325223BB4D6838F9B6 /* Pods_OptimizelySDKUserProfileiOSTests.framework in Frameworks */,
 				C5B5B2602383D65A8A3675A0 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,8 +190,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9358B51ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */,
 				EA5249E11DC7E3F900AF6685 /* OptimizelySDKShared.framework in Frameworks */,
-				326704296B1A7B58419874EA /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				2B2097A5E4C881CEECF8B701 /* Pods_OptimizelySDKUserProfileTVOSTests.framework in Frameworks */,
 				1DEC22FDFDEB6B60D86EB9BD /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +310,8 @@
 		EA5248881DC72BF800AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA9358B41ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework */,
+				EA9358B21ECF503E00E3F201 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */,
 				EA5248B01DC72D5900AF6685 /* OptimizelySDKShared.xcodeproj */,
 				E2D9EE9A272ADE42BA91DEA4 /* Pods_OptimizelySDKUserProfileTVOS.framework */,
 				0B450AF98AC0AE97B588B419 /* Pods_OptimizelySDKUserProfileTVOSTests.framework */,

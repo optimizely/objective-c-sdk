@@ -17,11 +17,12 @@
 #import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
 #import "Optimizely.h"
+#import "OPTLYBucketer.h"
+#import "OPTLYDatafileKeys.h"
 #import "OPTLYDecisionService.h"
 #import "OPTLYEventBuilder.h"
-#import "OPTLYBucketer.h"
 #import "OPTLYExperiment.h"
-#import "Optimizely.h"
+#import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
@@ -36,27 +37,38 @@ static NSString * const kWhitelistingTestDatafileName = @"validator_whitelisting
 static NSString * const kWhitelistedUserId = @"whitelisted_user";
 static NSString * const kWhitelistedExperiment = @"whitelist_testing_experiment";
 static NSString * const kWhitelistedVariation = @"a";
+// whitelisting test constants from "test_data_10_experiments.json"
+static NSString * const kWhitelistedUserId_test_data_10_experiments = @"forced_variation_user";
+static NSString * const kWhitelistedExperiment_test_data_10_experiments = @"testExperiment6";
+static NSString * const kWhitelistedVariation_test_data_10_experiments = @"variation";
 
 // events with experiment and audiences
 static NSString * const kExperimentWithAudienceKey = @"testExperimentWithFirefoxAudience";
 static NSString * const kExperimentWithAudienceId = @"6383811281";
+static NSString * const kExperimentWithAudienceVariationId = @"6333082303";
+static NSString * const kExperimentWithAudienceVariationKey = @"control";
 
 // experiment not running parameters
 static NSString * const kExperimentNotRunningKey = @"testExperimentNotRunning";
 static NSString * const kExperimentNotRunningId = @"6367444440";
 
+
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeValue = @"firefox";
 
-// variation
-static NSString * const kExperimentWithAudienceKeyVariationId = @"6333082303";
-static NSString * const kExperimentWithAudienceKeyVariationKey = @"control";
+// experiment with no audience
+static NSString * const kExperimentNoAudienceKey = @"testExperiment4";
+static NSString * const kExperimentNoAudienceId = @"6358043286";
+static NSString * const kExperimentNoAudienceVariationId = @"6373141147";
+static NSString * const kExperimentNoAudienceVariationKey = @"control";
+
 
 @interface OPTLYDecisionServiceTest : XCTestCase
 @property (nonatomic, strong) Optimizely *optimizely;
 @property (nonatomic, strong) OPTLYProjectConfig *config;
 @property (nonatomic, strong) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong) NSDictionary *attributes;
+@property (nonatomic, strong) OPTLYUserProfile *userProfileWithFirefoxAudience;
 @end
 
 @interface OPTLYDecisionService()
@@ -74,19 +86,20 @@ static NSString * const kExperimentWithAudienceKeyVariationKey = @"control";
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
-    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
-    
+
     id<OPTLYUserProfileService> profileService = [OPTLYUserProfileServiceNoOp new];
-    
+
     self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
         builder.userProfileService = profileService;
     }];
-    
+    self.config = self.optimizely.config;
     OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketer];
-    
     self.attributes = @{ kAttributeKey : kAttributeValue };
+    
+    self.userProfileWithFirefoxAudience = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
+                      OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{ kExperimentWithAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentWithAudienceVariationId } } };
 }
     
 - (void)tearDown {
@@ -144,34 +157,104 @@ static NSString * const kExperimentWithAudienceKeyVariationKey = @"control";
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
 }
 
-- (void)testGetVariation
+// if the experiment is not running should return nil for getVariation
+- (void)testGetVariationExperimentNotRunning
 {
-    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceKeyVariationId, @"key" : kExperimentWithAudienceKeyVariationKey };
+    OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
+    XCTAssertNil(variation, @"Get variation on an experiment not running should return nil: %@", variation);
+}
+    
+// whitelisted user should return the whitelisted variation for getVariation
+- (void)testGetVariationWithWhitelistedVariation
+{
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
+}
+    
+// invalid audience should return nil for getVariation
+- (void)testGetVariationWithInvalidAudience
+{
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
+                                                        experiment:experimentWithAudience
+                                                        attributes:nil];
+    XCTAssertNil(variation, @"Get variation with an invalid audience should return nil: %@", variation);
+}
+    
+// if the experiment is running and the user is not whitelisted,
+// lookup should be called to get the stored variation
+- (void)testGetVariationNoAudience
+{
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    
+    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
     OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-    [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
+
+    [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
     
-    OPTLYVariation *storedVariation = [self.decisionService getVariation:kUserId experiment:experiment attributes:self.attributes];
+    OPTLYVariation *storedVariation = [decisionServiceMock getVariation:kUserId experiment:experiment attributes:self.attributes];
     
-    XCTAssert([variation isEqual:storedVariation], @"Invalid variation from getVariation. %@ should be %@.", storedVariation.variationKey, variation.variationKey);
+    OCMVerify([userProfileServiceMock lookup:[OCMArg isNotNil]]);
+    
+    XCTAssertNotNil(storedVariation, @"Stored variation should not be nil.");
+    
+    [decisionServiceMock stopMocking];
+    [userProfileServiceMock stopMocking];
 }
 
+// for decision service saves, the user profile service save should be called with the expected user profile
 - (void)testSaveVariation
 {
-    OPTLYProjectConfig *configMock = OCMPartialMock(self.config);
-    //id userProfileMock = OCMPartialMock(configMock.userProfile);
-    id bucketerMock = OCMPartialMock([[OPTLYBucketer alloc] initWithConfig:configMock]);
-    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:configMock bucketer:bucketerMock];
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
     
-    NSDictionary *variationDict = @{ @"id"  : kExperimentWithAudienceKeyVariationKey,
-                                     @"key" : kExperimentWithAudienceKeyVariationId };
+    NSDictionary *variationDict = @{ OPTLYDatafileKeysVariationId  : kExperimentWithAudienceVariationId,
+                                     OPTLYDatafileKeysVariationKey : kExperimentWithAudienceVariationKey };
     OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
+    
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
     [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
-
-    // check that the user profile save is called with the correct values
-//    id userProfileMock = configMock.userProfileService;
-//    [[userProfileMock expect] save];
-//    [userProfileMock verify];
+    
+    OCMVerify([userProfileServiceMock save:self.userProfileWithFirefoxAudience]);
+    
+    [decisionServiceMock stopMocking];
+    [userProfileServiceMock stopMocking];
+}
+    
+// check the format of the user profile object when saving multiple experiment-to-variation bucket value for a single user
+- (void)testSaveMultipleVariations
+{
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    
+    [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
+    
+    OPTLYUserProfile *userProfileMultipleExperimentValues = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
+                                                               OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{
+                                                                       kExperimentWithAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentWithAudienceVariationId },
+                                                                       kExperimentNoAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentNoAudienceVariationId } } };
+    
+    NSDictionary *variationWithAudienceDict = @{ OPTLYDatafileKeysVariationId  : kExperimentWithAudienceVariationId,
+                                                 OPTLYDatafileKeysVariationKey : kExperimentWithAudienceVariationKey };
+    OPTLYVariation *variationWithAudience = [[OPTLYVariation alloc] initWithDictionary:variationWithAudienceDict error:nil];
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    [self.decisionService saveVariation:variationWithAudience experiment:experimentWithAudience userId:kUserId];
+    
+    NSDictionary *variationNoAudienceDict = @{ OPTLYDatafileKeysVariationId  : kExperimentNoAudienceVariationId,
+                                               OPTLYDatafileKeysVariationKey : kExperimentNoAudienceVariationKey };
+    OPTLYVariation *variationNoAudience = [[OPTLYVariation alloc] initWithDictionary:variationNoAudienceDict error:nil];
+    OPTLYExperiment *experimentNoAudience = [self.config getExperimentForKey:kExperimentNoAudienceKey];
+    [self.decisionService saveVariation:variationNoAudience experiment:experimentNoAudience userId:kUserId];
+    
+    OCMVerify([userProfileServiceMock save:userProfileMultipleExperimentValues]);
+    
+    [decisionServiceMock stopMocking];
+    [userProfileServiceMock stopMocking];
 }
 @end

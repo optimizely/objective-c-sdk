@@ -118,10 +118,16 @@
     // convert the user profile map to a user profile object to add new values
     NSError *userProfileModelInitError;
     OPTLYUserProfile *userProfile = nil;
+    
     if (!userProfileDict) {
         userProfile = [OPTLYUserProfile new];
         userProfile.user_id = userId;
-
+        
+        OPTLYExperimentBucketMapEntity *bucketMapEntity = [OPTLYExperimentBucketMapEntity new];
+        bucketMapEntity.variation_id = variation.variationId;
+        
+        // update the experiment bucket map with the new values
+        userProfile.experiment_bucket_map = @{ experiment.experimentId : [bucketMapEntity toDictionary] };
     } else {
         userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileModelInitError];
 
@@ -130,20 +136,29 @@
                                  withLevel:OptimizelyLogLevelWarning];
         }
         
-        NSMutableDictionary *bucketMap = [userProfile.experiment_bucket_map mutableCopy];
-        NSDictionary *bucketMapEntity = [bucketMap objectForKey:experiment.experimentId];
+        OPTLYExperimentBucketMapEntity *newBucketMapEntity = [OPTLYExperimentBucketMapEntity new];
+        newBucketMapEntity.variation_id = variation.variationId;
         
-        // log that we are going to replace existing bucket map entity
-        if (bucketMapEntity) {
-            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity, userId, [bucketMapEntity objectForKey:OPTLYDatafileKeysUserProfileServiceVariationId], variation.variationId, experiment.experimentId]
+        NSMutableDictionary *experimentBucketMap = [userProfile.experiment_bucket_map mutableCopy];
+        NSDictionary *existingBucketMapEntity = [experimentBucketMap objectForKey:experiment.experimentId];
+        
+        // log that we are going to replace existing bucket map entity with a new value
+        if (existingBucketMapEntity) {
+            
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity, userId, existingBucketMapEntity, newBucketMapEntity]
                                  withLevel:OptimizelyLogLevelDebug];
+            
+            experimentBucketMap[experiment.experimentId] = newBucketMapEntity;
+        } else {
+            NSDictionary *newExperimentBucketMapEntry = @{ experiment.experimentId : [newBucketMapEntity toDictionary] };
+            [experimentBucketMap addEntriesFromDictionary:newExperimentBucketMapEntry];
         }
+
+        // update the experiment bucket map with the new values
+        userProfile.experiment_bucket_map =  [experimentBucketMap copy];
     }
     
-    OPTLYExperimentBucketMapEntity *bucketMapEntity = [OPTLYExperimentBucketMapEntity new];
-    bucketMapEntity.variation_id = variation.variationId;
-    userProfile.experiment_bucket_map = @{ experiment.experimentId : [bucketMapEntity toDictionary] };
-
+    // save the new user profile service
     [self.config.userProfileService save:[userProfile toDictionary]];
 }
 

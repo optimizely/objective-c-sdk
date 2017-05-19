@@ -71,10 +71,6 @@ static NSData *whitelistingDatafile;
 @end
 
 @interface OptimizelySDKUserProfileTests : XCTestCase
-//@property (nonatomic, strong) Optimizely *optimizely;
-//@property (nonatomic, strong) OPTLYProjectConfig *config;
-//@property (nonatomic, strong) OPTLYDecisionService *decisionService;
-//@property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) OPTLYUserProfileServiceDefault *userProfileService;
 @property (nonatomic, strong) NSDictionary *userProfile1;
 @property (nonatomic, strong) NSDictionary *userProfile2;
@@ -113,16 +109,6 @@ static NSData *whitelistingDatafile;
     self.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder *builder) {
         builder.logger = [OPTLYLoggerDefault new];
     }];
-//
-//    self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
-//    
-//    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
-//        builder.datafile = datafile;
-//        builder.userProfileService = profileService;
-//    }];
-//    
-//    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    //self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketer];
     
     self.userProfile1 = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId1,
                            OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{ kExperimentId1 : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kVariationId1 } } };
@@ -294,34 +280,6 @@ static NSData *whitelistingDatafile;
 }
 
 /**
- * Test multiple experiment and variation mappings can be saved per project
- */
-- (void)testUserProfileCanStoreMultipleExperimentVariationMappings {
-    OPTLYUserProfileServiceDefault *userProfileService = [[OPTLYUserProfileServiceDefault alloc] init];
-    [userProfileService removeAllUserExperimentRecords];
-    // store experiment variation for variations with 0 traffic allocation
-    [userProfileService save:self.userProfile1];
-    [userProfileService save:self.userProfile2];
-    
-    // instantiate the manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
-        builder.projectId = @"projectId";
-        __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfileService = userProfileService;
-    }];
-    XCTAssertNotNil(manager);
-    
-    // initialize client
-    OPTLYClient *client = [manager initializeWithDatafile:originalDatafile];
-    XCTAssertNotNil(client);
-    
-    OPTLYVariation *firstExperimentVariation = [client variation:kUserProfileExperimentKey userId:kUserId1];
-    XCTAssertEqualObjects(firstExperimentVariation.variationId, kUserProfileExperimentTreatmentVariationId);
-    OPTLYVariation *secondExperimentVariation = [client variation:kUserProfileSecondExperimentKey userId:kUserId2];
-    XCTAssertEqualObjects(secondExperimentVariation.variationId, kUserProfileSecondExperimentVariation);
-}
-
-/**
  * Test whitelisting ignores use profile sticky bucketing
  */
 - (void)testWhitelistingOverridesUserProfileAndStoresNothing {
@@ -347,54 +305,5 @@ static NSData *whitelistingDatafile;
     XCTAssertEqualObjects(variation.variationId, kWhitelistingWhitelistedVariationId);
     XCTAssertEqualObjects(variation.variationKey, kWhitelistingWhiteListedVariationKey);
 }
-    
-//- (void)testGetVariation
-//{
-//    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceKeyVariationId, @"key" : kExperimentWithAudienceKeyVariationKey };
-//    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
-//    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-//    [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
-//    
-//    OPTLYVariation *storedVariation = [self.decisionService getVariation:kUserId experiment:experiment attributes:self.attributes];
-//    
-//    XCTAssert([variation isEqual:storedVariation], @"Invalid variation from getVariation. %@ should be %@.", storedVariation.variationKey, variation.variationKey);
-//}
-//    
-//- (void)testSaveVariation
-//{
-//    OPTLYProjectConfig *configMock = OCMPartialMock(self.config);
-//    //id userProfileMock = OCMPartialMock(configMock.userProfile);
-//    id bucketerMock = OCMPartialMock([[OPTLYBucketer alloc] initWithConfig:configMock]);
-//    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:configMock bucketer:bucketerMock];
-//    
-//    NSDictionary *variationDict = @{ @"id"  : kExperimentWithAudienceKeyVariationKey,
-//                                     @"key" : kExperimentWithAudienceKeyVariationId };
-//    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
-//    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-//    [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
-//    
-//    // check that the user profile save is called with the correct values
-//    //    id userProfileMock = configMock.userProfileService;
-//    //    [[userProfileMock expect] save];
-//    //    [userProfileMock verify];
-//}
-//    
-//    - (void)testGetVariationForId
-//    {
-//        NSDictionary *userProfile1 = [self.userProfile getVariationIdForUserId:kUserId1 experimentId:kExperimentId1];
-//        XCTAssertNil(variationKey1, @"Variation for userId 1 should have been removed.");
-//        
-//        NSString *variationKey2 = [self.userProfile getVariationIdForUserId:kUserId2 experimentId:kExperimentId2];
-//        XCTAssertNotNil(variationKey2, @"Variation for userId 2 should not be removed.");
-//        
-//        NSString *variationKey3a = [self.userProfile getVariationIdForUserId:kUserId3 experimentId:kExperimentId3a];
-//        XCTAssertNotNil(variationKey3a, @"Variation for userId 3a should not be removed.");
-//        
-//        NSString *variationKey3b = [self.userProfile getVariationIdForUserId:kUserId3 experimentId:kExperimentId3b];
-//        XCTAssertNotNil(variationKey3b, @"Variation for userId 3b should not be removed.");
-//        
-//        NSString *variationKey3c = [self.userProfile getVariationIdForUserId:kUserId3 experimentId:kExperimentId3c];
-//        XCTAssertNotNil(variationKey3c, @"Variation for userId 3c should not be removed.");
-//    }
 
 @end

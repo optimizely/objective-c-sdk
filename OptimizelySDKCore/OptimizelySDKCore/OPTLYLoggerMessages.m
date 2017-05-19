@@ -180,7 +180,7 @@ NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid = @"[DEC
 NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist = @"[DECISION SERVICE] User profile service does not exist.";
 NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to save user bucket information for: %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.";
-NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity = @"[DECISION SERVICE] Replacing user %@ variation %@ with new variation %@ in experiment %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity = @"[DECISION SERVICE] Replacing user %@ experiment bucket map entity %@ with %@.";
 
 
 // ---- HTTP Request Manager ----
