@@ -23,7 +23,7 @@
 /**
  * Initializer for the Decision Service.
  *
- * @param config The project configuration
+ * @param config The project configuration.
  * @param bucketer The bucketer.
  * @return An instance of the decision service.
  */
@@ -31,13 +31,13 @@
                                       bucketer:(nonnull id<OPTLYBucketer>)bucketer;
 
 /**
- * Gets a variation based on the following rules:
+ * Gets a variation based on the following rules (evaluated in sequential order):
  *
  * 1. Experiments not running will return a nil variation.
  * 2. If the user is whitelisted for a particular variation, 
  *    then that variation will be returned.
- * 3. If a valid variation is found in the user profile service, 
- *    then that variation will be returned.
+ * 3. If a valid variation for a given experiments is found in the user
+ *    profile service, then that variation will be returned.
  * 4. If the user falls through #1-3, than the user will be bucketed
  *    if the user fulfills these criteria:
  *      a. Does the user pass audience targeting?
@@ -51,15 +51,5 @@
 - (nullable OPTLYVariation *)getVariation:(nonnull NSString *)userId
                                experiment:(nonnull OPTLYExperiment *)experiment
                                attributes:(nullable NSDictionary *)attributes;
-
-/**
- * Saves an experiment bucket information for a user.
- *
- * @param userId The ID of the user.
- * @param experiment The experiment in which to bucket the user.
- * @param variation The variation assigned to the specified user for an experiment.
- */
-- (void)saveVariation:(nonnull OPTLYVariation *)variation
-           experiment:(nonnull OPTLYExperiment *)experiment
-               userId:(nonnull NSString *)userId;
+    
 @end

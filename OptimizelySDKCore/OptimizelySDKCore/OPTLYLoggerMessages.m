@@ -153,6 +153,7 @@ NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey = @"[PROJ
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId = @"[PROJECT CONFIG] Experiment not found for experiment ID: %@. Experiment ID is not in the datafile."; // experiment id
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment key not found for experiment: %@. Experiment key is not in the datafile.";  // experiment key
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@. Group ID is not in the datafile."; // group id
+NSString *const OPTLYLoggerMessagesGetVariationNilVariation = @"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experiment %@";
 
 // ---- User Profile ----
 // debug
@@ -176,7 +177,7 @@ NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidFormat = @"[USER PROFIL
 // info
 NSString *const OPTLYLoggerMessagesDecisionServiceExperimentNotRunning = @"[DECISION SERVICE] Experiment %@ is not running.";
 NSString *const OPTLYLoggerMessagesDecisionServiceFailAudienceTargeting = @"[DECISION SERVICE] User %@ does not meet conditions to be in experiment %@.";
-NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid = @"[DECISION SERVICE] Saved variation %@ is invalid.";
+NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid = @"[DECISION SERVICE] Saved variation %@ is invalid. The variation has been paused or archived.";
 NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist = @"[DECISION SERVICE] User profile service does not exist.";
 NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to save user bucket information for: %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.";

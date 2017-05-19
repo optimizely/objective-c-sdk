@@ -49,9 +49,10 @@
                       experiment:(OPTLYExperiment *)experiment
                       attributes:(NSDictionary *)attributes
 {
+    NSDictionary *userProfileDict = nil;
     OPTLYVariation *bucketedVariation = nil;
     NSString *experimentKey = experiment.experimentKey;
-    NSString *experimentId = [self.config getExperimentIdForKey:experimentKey];
+    NSString *experimentId = experiment.experimentId;
     
     // ---- check if the experiment is running ----
     if (![self isExperimentActive:self.config
@@ -67,7 +68,9 @@
     
     // ---- check if a valid variation is stored in the user profile ----
     if (self.config.userProfileService) {
-        NSString *storedVariationId = [self getVariationIdFromUserProfile:userId
+        userProfileDict = [self.config.userProfileService lookup:userId];
+        NSString *storedVariationId = [self getVariationIdFromUserProfile:userProfileDict
+                                                                   userId:userId
                                                                experiment:experiment];
         if ([storedVariationId length] > 0) {
             [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileBucketerUserDataRetrieved, userId, experimentId, storedVariationId]
@@ -95,14 +98,19 @@
         // bucket user into a variation
         bucketedVariation = [self.bucketer bucketExperiment:experiment
                                                  withUserId:userId];
+        
+        if (bucketedVariation) {
+            [self saveUserProfile:userProfileDict variation:bucketedVariation experiment:experiment userId:userId];
+        }
     }
     
     return bucketedVariation;
 }
 
-- (void)saveVariation:(nonnull OPTLYVariation *)variation
-           experiment:(nonnull OPTLYExperiment *)experiment
-               userId:(nonnull NSString *)userId
+- (void)saveUserProfile:(NSDictionary *)userProfileDict
+              variation:(nonnull OPTLYVariation *)variation
+             experiment:(nonnull OPTLYExperiment *)experiment
+                 userId:(nonnull NSString *)userId
 {
     if (!userId || !experiment || !variation) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileUnableToSaveVariation,
@@ -112,8 +120,6 @@
                              withLevel:OptimizelyLogLevelDebug];
         return;
     }
-    
-    NSDictionary *userProfileDict = [self.config.userProfileService lookup:userId];
     
     // convert the user profile map to a user profile object to add new values
     NSError *userProfileModelInitError;
@@ -178,7 +184,7 @@
 
 // get the variation the user was whitelisted into
 - (OPTLYVariation *)getWhitelistedVariationForUser:(NSString *)userId
-                                    experiment:(OPTLYExperiment *)experiment
+                                        experiment:(OPTLYExperiment *)experiment
 {
     NSString *forcedVariationKey = [experiment.forcedVariations objectForKey:userId];
     OPTLYVariation *forcedVariation = [experiment getVariationForVariationKey:forcedVariationKey];
@@ -197,11 +203,10 @@
     return forcedVariation;
 }
 
-- (NSString *)getVariationIdFromUserProfile:(NSString *)userId
+- (NSString *)getVariationIdFromUserProfile:(NSDictionary *)userProfileDict
+                                     userId:(NSString *)userId
                                  experiment:(OPTLYExperiment *)experiment
 {
-    NSDictionary *userProfileDict = [self.config.userProfileService lookup:userId];
-    
     if ([userProfileDict count] == 0) {
         return nil;
     }

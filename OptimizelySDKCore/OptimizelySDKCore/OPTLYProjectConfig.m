@@ -420,12 +420,9 @@ NSString * const kExpectedDatafileVersion  = @"3";
     NSString *logMessage = nil;
     
     if (bucketedVariation) {
-        [decisionService saveVariation:bucketedVariation
-                            experiment:experiment
-                                userId:userId];
         logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
     } else {
-        logMessage = [NSString stringWithFormat:@"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experimetn %@", userId, experimentKey];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationNilVariation, userId, experimentKey];
     }
     
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];

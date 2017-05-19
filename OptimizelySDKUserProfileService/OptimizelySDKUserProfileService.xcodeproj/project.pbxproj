@@ -32,11 +32,9 @@
 		EA61123F1EC27FDD001967ED /* UpdatedDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA6112381EC27FDD001967ED /* UpdatedDatafile.json */; };
 		EA6112401EC27FDD001967ED /* WhitelistingTestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA6112391EC27FDD001967ED /* WhitelistingTestDatafile.json */; };
 		EA6112411EC27FDD001967ED /* WhitelistingTestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA6112391EC27FDD001967ED /* WhitelistingTestDatafile.json */; };
-		EA6112421EC27FF2001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA61122A1EC27FC4001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist */; };
 		EA6112431EC27FF2001967ED /* OptimizelySDKUserProfileServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122B1EC27FC4001967ED /* OptimizelySDKUserProfileServiceTests.m */; };
 		EA6112441EC27FF2001967ED /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61122C1EC27FC4001967ED /* OPTLYTestHelper.h */; };
 		EA6112451EC27FF2001967ED /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122D1EC27FC4001967ED /* OPTLYTestHelper.m */; };
-		EA6112461EC27FF3001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA61122A1EC27FC4001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist */; };
 		EA6112471EC27FF3001967ED /* OptimizelySDKUserProfileServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122B1EC27FC4001967ED /* OptimizelySDKUserProfileServiceTests.m */; };
 		EA6112481EC27FF3001967ED /* OPTLYTestHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61122C1EC27FC4001967ED /* OPTLYTestHelper.h */; };
 		EA6112491EC27FF3001967ED /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61122D1EC27FC4001967ED /* OPTLYTestHelper.m */; };
@@ -470,7 +468,7 @@
 		EA2FA77C1DC5B38900B1D81B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA5248431DC72B5500AF6685 = {
@@ -561,7 +559,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA61123C1EC27FDD001967ED /* RemovedVariationDatafile.json in Resources */,
-				EA6112421EC27FF2001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist in Resources */,
 				EA6112401EC27FDD001967ED /* WhitelistingTestDatafile.json in Resources */,
 				EA61123A1EC27FDD001967ED /* InitialDatafile.json in Resources */,
 				EA61123E1EC27FDD001967ED /* UpdatedDatafile.json in Resources */,
@@ -580,7 +577,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA61123D1EC27FDD001967ED /* RemovedVariationDatafile.json in Resources */,
-				EA6112461EC27FF3001967ED /* OptimizelySDKUserProfileServiceTests-Info.plist in Resources */,
 				EA6112411EC27FDD001967ED /* WhitelistingTestDatafile.json in Resources */,
 				EA61123B1EC27FDD001967ED /* InitialDatafile.json in Resources */,
 				EA61123F1EC27FDD001967ED /* UpdatedDatafile.json in Resources */,
