@@ -15,7 +15,15 @@
  ***************************************************************************/
 
 #import "OPTLYUserProfile.h"
+#import "OPTLYDatafileKeys.h"
 
 @implementation OPTLYUserProfile
 
+- (NSString *)getVariationIdForExperimentId:(NSString *)experimentId
+{
+    NSDictionary *bucketMap = self.experiment_bucket_map;
+    NSDictionary *variationMap = bucketMap[experimentId];
+    NSString *variationId = variationMap[OPTLYDatafileKeysUserProfileServiceVariationId];
+    return variationId;
+}
 @end

@@ -177,13 +177,13 @@ extern NSString *const OPTLYLoggerMessagesUserProfileLookupInvalidFormat;
 extern NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidFormat;
 
 // ---- Decision Service ----
-// info
 extern NSString *const OPTLYLoggerMessagesDecisionServiceExperimentNotRunning;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFailAudienceTargeting;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

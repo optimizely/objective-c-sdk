@@ -19,11 +19,11 @@
  * {
  *	"user_id" : "alda",
  *	"experiment_bucket_map" : {
- *		"experimentKey1" : {
- *			"variation_id" : "variationID1"
+ *		"experiment_id_1" : {
+ *			"variation_id" : "variation_id_1"
  *		},
- *		"experimentKey2" : {
- *			"variation_id" : "variationID2"
+ *		"experiment_id_2" : {
+ *			"variation_id" : "variation_id_2"
  *		}
  *	}
  * }
@@ -47,4 +47,5 @@
 /// The experiment bucket map
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperimentBucketMapEntity *> *experiment_bucket_map;
 
+- (NSString *)getVariationIdForExperimentId:(NSString *)experimentId;
 @end
