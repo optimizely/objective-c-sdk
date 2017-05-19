@@ -76,12 +76,12 @@
             if (storedVariation) {
                 return storedVariation;
             } else {
-                [self.config.logger logMessage:[NSString stringWithFormat:@"[DECISION SERVICE] Saved variation %@ is invalid.", storedVariation.variationKey]
+                [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid, storedVariation.variationKey]
                                      withLevel:OptimizelyLogLevelDebug];
             }
         }
     } else {
-        [self.config.logger logMessage:@"[DECISION SERVICE] User profile service does not exist."
+        [self.config.logger logMessage:OPTLYLoggerMessagesDecisionServiceUserProfileNotExist
                              withLevel:OptimizelyLogLevelDebug];
     }
     
@@ -120,7 +120,8 @@
                                                                                              error:&userProfileModelInitError] : [OPTLYUserProfile new];
     
     if (userProfileModelInitError) {
-        [self.config.logger logMessage:[NSString stringWithFormat:@"[DECISION SERVICE] User profile parse error: %@. Unable to save user bucket information for: %@.", userProfileModelInitError, userId] withLevel:OptimizelyLogLevelDebug];
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSavedVariationParseError, userProfileModelInitError, userId]
+                             withLevel:OptimizelyLogLevelDebug];
         return;
     }
     
@@ -182,7 +183,7 @@
                                                                            error:&userProfileModelInitError];
     
     if (userProfileModelInitError) {
-        [self.config.logger logMessage:[NSString stringWithFormat:@"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.", userProfileModelInitError, userId] withLevel:OptimizelyLogLevelDebug];
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceGetVariationParseError, userProfileModelInitError, userId] withLevel:OptimizelyLogLevelDebug];
         return nil;
     }
     
@@ -209,7 +210,7 @@
     // check if the user is in the experiment
     BOOL isUserInExperiment = [self isUserInExperiment:config experimentKey:experimentKey attributes:attributes];
     if (!isUserInExperiment) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFailAudienceTargeting, userId, experimentKey];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFailAudienceTargeting, userId, experimentKey];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return false;
     }
@@ -225,7 +226,7 @@
     BOOL isExperimentRunning = [experiment isExperimentRunning];
     if (!isExperimentRunning)
     {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentNotRunning, experimentKey];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceExperimentNotRunning, experimentKey];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return false;
     }

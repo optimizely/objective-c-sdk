@@ -168,14 +168,22 @@ extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound;
 extern NSString *const OPTLYLoggerMessagesUserProfileServiceSaved;
 extern NSString *const OPTLYLoggerMessagesUserProfileVariation;
+extern NSString *const OPTLYLoggerMessagesUserProfileNotExist;
 // warning
 extern NSString *const OPTLYLoggerMessagesUserProfileUnableToSaveVariation;
 extern NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile;
+extern NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidUserId;
+extern NSString *const OPTLYLoggerMessagesUserProfileLookupInvalidFormat;
+extern NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidFormat;
 
-// ---- Validator ----
+// ---- Decision Service ----
 // info
-extern NSString *const OPTLYLoggerMessagesExperimentNotRunning;
-extern NSString *const OPTLYLoggerMessagesFailAudienceTargeting;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceExperimentNotRunning;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFailAudienceTargeting;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

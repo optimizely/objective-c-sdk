@@ -59,7 +59,7 @@
     NSDictionary *userProfileDict = [userProfilesDict objectForKey:userId];
     
     if (!userProfileDict) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] User profile for %@ does not exist.", userId]
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileNotExist, userId]
                       withLevel:OptimizelyLogLevelDebug ];
         return nil;
     }
@@ -68,7 +68,7 @@
     NSError *userProfileError;
     OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
     if (userProfileError) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid format for user profile lookup: %@.", userProfileError]
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileLookupInvalidFormat, userProfileError]
                       withLevel:OptimizelyLogLevelWarning];
     }
     
@@ -81,7 +81,7 @@
     NSError *error = nil;
     OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&error];
     if (error) {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid format for user profile save: %@.", error]
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSaveInvalidFormat, error]
                       withLevel:OptimizelyLogLevelWarning];
     }
 
@@ -94,7 +94,7 @@
     if ([userId length] > 0) {
         userProfilesDict[userId] = userProfileDict;
     } else {
-        [self.logger logMessage:[NSString stringWithFormat:@"[USER PROFILE SERVICE] Invalid userId. Unable to save the user profile."]
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSaveInvalidUserId]
                       withLevel:OptimizelyLogLevelWarning];
         return;
     }
