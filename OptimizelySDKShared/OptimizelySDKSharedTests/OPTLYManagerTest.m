@@ -57,7 +57,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     id<OPTLYErrorHandler> errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
     id<OPTLYEventDispatcher> eventDispatcher = [[OPTLYEventDispatcherBasic alloc] init];
     id<OPTLYLogger> logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
-    id<OPTLYUserProfileService> userProfile = [[OPTLYUserProfileServiceNoOp alloc] init];
+    id<OPTLYUserProfileService> userProfileService = [[OPTLYUserProfileServiceNoOp alloc] init];
     
     // initialize Manager
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
@@ -67,7 +67,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
         builder.eventDispatcher = eventDispatcher;
         builder.logger = logger;
         builder.projectId = kProjectId;
-        builder.userProfile = userProfile;
+        builder.userProfileService = userProfileService;
     }];
     XCTAssertEqual(manager.datafileManager, datafileManager);
     

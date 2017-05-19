@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,16 +14,18 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
 #import "Optimizely.h"
-#import "OPTLYProjectConfig.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYExperiment.h"
+#import "Optimizely.h"
+#import "OPTLYUserProfileServiceBasic.h"
+#import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 #import "OPTLYTestHelper.h"
-#import "OPTLYValidator.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kUserId = @"6369992312";
@@ -46,42 +48,68 @@ static NSString * const kExperimentNotRunningId = @"6367444440";
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeValue = @"firefox";
 
-@interface OPTLYValidatorTest : XCTestCase
+// variation
+static NSString * const kExperimentWithAudienceKeyVariationId = @"6333082303";
+static NSString * const kExperimentWithAudienceKeyVariationKey = @"control";
+
+@interface OPTLYDecisionServiceTest : XCTestCase
+@property (nonatomic, strong) Optimizely *optimizely;
 @property (nonatomic, strong) OPTLYProjectConfig *config;
+@property (nonatomic, strong) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong) NSDictionary *attributes;
 @end
 
+@interface OPTLYDecisionService()
+- (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
+              experimentKey:(NSString *)experimentKey
+                     userId:(NSString *)userId
+                 attributes:(NSDictionary *)attributes;
+- (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
+             experimentKey:(NSString *)experimentKey;
+@end
 
-@implementation OPTLYValidatorTest
 
+@implementation OPTLYDecisionServiceTest
+    
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
-    self.attributes = @{kAttributeKey : kAttributeValue};
+    
+    id<OPTLYUserProfileService> profileService = [OPTLYUserProfileServiceNoOp new];
+    
+    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+        builder.datafile = datafile;
+        builder.userProfileService = profileService;
+    }];
+    
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketer];
+    
+    self.attributes = @{ kAttributeKey : kAttributeValue };
 }
-
+    
 - (void)tearDown {
     [super tearDown];
     self.config = nil;
     self.attributes = nil;
 }
-
-// experiment is running, user is in experiment
+    
+    // experiment is running, user is in experiment
 - (void)testValidatePreconditions
 {
-    BOOL isValid = [OPTLYValidator userPassesTargeting:self.config
-                                         experimentKey:kExperimentWithAudienceKey
-                                                userId:kUserId
-                                            attributes:self.attributes];
+    BOOL isValid = [self.decisionService userPassesTargeting:self.config
+                                               experimentKey:kExperimentWithAudienceKey
+                                                      userId:kUserId
+                                                  attributes:self.attributes];
     NSAssert(isValid == true, @"Experiment running with user in experiment should pass validation.");
 }
 
 // experiment is not running, validator should return false
 - (void)testValidatePreconditionsExperimentNotRunning
 {
-    BOOL isActive = [OPTLYValidator isExperimentActive:self.config
-                                         experimentKey:kExperimentNotRunningKey];
+    BOOL isActive = [self.decisionService isExperimentActive:self.config
+                                               experimentKey:kExperimentNotRunningKey];
     NSAssert(isActive == false, @"Experiment not running with user in experiment should fail validation.");
 }
 
@@ -89,13 +117,13 @@ static NSString * const kAttributeValue = @"firefox";
 - (void)testValidatePreconditionsBadAttributes
 {
     NSDictionary *badAttributes = @{@"badAttributeKey":@"12345"};
-    BOOL isValid = [OPTLYValidator userPassesTargeting:self.config
-                                         experimentKey:kExperimentWithAudienceKey
-                                                userId:kUserId
-                                            attributes:badAttributes];
+    BOOL isValid = [self.decisionService userPassesTargeting:self.config
+                                               experimentKey:kExperimentWithAudienceKey
+                                                      userId:kUserId
+                                                  attributes:badAttributes];
     NSAssert(isValid == false, @"Experiment running with user in experiment, but with bad attributes should fail validation.");
 }
-
+    
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
     Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
@@ -116,4 +144,34 @@ static NSString * const kAttributeValue = @"firefox";
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
 }
 
+- (void)testGetVariation
+{
+    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceKeyVariationId, @"key" : kExperimentWithAudienceKeyVariationKey };
+    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
+    
+    OPTLYVariation *storedVariation = [self.decisionService getVariation:kUserId experiment:experiment attributes:self.attributes];
+    
+    XCTAssert([variation isEqual:storedVariation], @"Invalid variation from getVariation. %@ should be %@.", storedVariation.variationKey, variation.variationKey);
+}
+
+- (void)testSaveVariation
+{
+    OPTLYProjectConfig *configMock = OCMPartialMock(self.config);
+    //id userProfileMock = OCMPartialMock(configMock.userProfile);
+    id bucketerMock = OCMPartialMock([[OPTLYBucketer alloc] initWithConfig:configMock]);
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:configMock bucketer:bucketerMock];
+    
+    NSDictionary *variationDict = @{ @"id"  : kExperimentWithAudienceKeyVariationKey,
+                                     @"key" : kExperimentWithAudienceKeyVariationId };
+    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    [self.decisionService saveVariation:variation experiment:experiment userId:kUserId];
+
+    // check that the user profile save is called with the correct values
+//    id userProfileMock = configMock.userProfileService;
+//    [[userProfileMock expect] save];
+//    [userProfileMock verify];
+}
 @end
