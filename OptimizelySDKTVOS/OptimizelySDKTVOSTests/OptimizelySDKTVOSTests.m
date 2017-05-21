@@ -68,10 +68,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil(manager.errorHandler);
     XCTAssertNotNil(manager.eventDispatcher);
     XCTAssertNotNil(manager.logger);
-    XCTAssertNotNil(manager.userProfile);
+    XCTAssertNotNil(manager.userProfileService);
     XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
     XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
-    XCTAssertEqual([manager.userProfile class], [OPTLYUserProfileServiceDefault class]);
+    XCTAssertEqual([manager.userProfileService class], [OPTLYUserProfileServiceDefault class]);
     XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
     XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
     
@@ -86,12 +86,12 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil(optimizely.errorHandler);
     XCTAssertNotNil(optimizely.eventDispatcher);
     XCTAssertNotNil(optimizely.logger);
-    XCTAssertNotNil(optimizely.userProfile);
+    XCTAssertNotNil(optimizely.userProfileService);
     // test components from manager are passed to core properly
     XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
     XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
     XCTAssertEqual(optimizely.logger, manager.logger);
-    XCTAssertEqual(optimizely.userProfile, manager.userProfile);
+    XCTAssertEqual(optimizely.userProfileService, manager.userProfileService);
     
     // test client engine and version were set correctly
     XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);

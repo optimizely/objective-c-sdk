@@ -81,7 +81,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertEqual(optimizely.errorHandler, errorHandler);
     XCTAssertEqual(optimizely.eventDispatcher, eventDispatcher);
     XCTAssertEqual(optimizely.logger, logger);
-    XCTAssertEqual(optimizely.userProfile, userProfile);
+    XCTAssertEqual(optimizely.userProfileService, userProfileService);
     XCTAssertNotNil(optimizely.config);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
