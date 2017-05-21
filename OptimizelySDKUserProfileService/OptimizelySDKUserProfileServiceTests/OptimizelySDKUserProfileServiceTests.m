@@ -257,7 +257,7 @@ static NSData *whitelistingDatafile;
     XCTAssertNotNil(originalClient);
     OPTLYVariation *originalVariation = [originalClient variation:kUserProfileExperimentKey userId:kUserId1];
     XCTAssertNotNil(originalVariation);
-    XCTAssertEqualObjects(originalVariation.variationId, kUserProfileExperimentOriginalVariationId);
+    XCTAssertEqualObjects(originalVariation.variationId, kUserProfileExperimentOriginalVariationId, @"Unexpected original variation id: %@", originalVariation.variationId);
     XCTAssertNotNil([originalClient.optimizely.userProfileService lookup:kUserId1], @"User profile should be stored");
     
     // update client with a new datafile

@@ -154,7 +154,7 @@
             [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity, userId, existingBucketMapEntity, newBucketMapEntity]
                                  withLevel:OptimizelyLogLevelDebug];
             
-            experimentBucketMap[experiment.experimentId] = newBucketMapEntity;
+            experimentBucketMap[experiment.experimentId] = [newBucketMapEntity toDictionary];
         } else {
             NSDictionary *newExperimentBucketMapEntry = @{ experiment.experimentId : [newBucketMapEntity toDictionary] };
             [experimentBucketMap addEntriesFromDictionary:newExperimentBucketMapEntry];
