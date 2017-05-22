@@ -55,7 +55,7 @@
 
 - (NSDictionary *)lookup:(NSString *)userId
 {
-    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSDictionary *userProfileDict = [userProfilesDict objectForKey:userId];
     
     if (!userProfileDict) {
@@ -86,7 +86,7 @@
     }
 
     // a map of userIds to user profiles is created to store multiple user profiles
-    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
+    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
     if (!userProfilesDict) {
         userProfilesDict = [NSMutableDictionary new];
     }
@@ -99,13 +99,13 @@
         return;
     }
     
-    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfileService];
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfilesDict, userProfile.user_id]
                   withLevel:OptimizelyLogLevelDebug];
 }
 
 - (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId {
-    [self.dataStore removeObjectInUserData:userId type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore removeObjectInUserData:userId type:OPTLYDataStoreDataTypeUserProfileService];
 }
 
 - (void)removeAllUserExperimentRecords {
@@ -114,7 +114,7 @@
 
 # pragma mark - Helper methods
 - (NSDictionary *)userData:(NSString *)userId {
-    NSDictionary *userData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSDictionary *userDataForUserId = [userData objectForKey:userId];
     return userDataForUserId;
 }

@@ -142,7 +142,7 @@ static NSData *whitelistingDatafile;
 
 - (void)testSave
 {
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSArray *users = [userData allKeys];
     XCTAssert([users count] == 3, @"Invalid number of user profile data saved.");
     
@@ -181,7 +181,7 @@ static NSData *whitelistingDatafile;
     NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNotNil(userProfile3, @"User profile for userId 3a should not be removed.");
     
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssert([userData count] == 2, @"Invalid user profile count.");
 }
 
@@ -198,7 +198,7 @@ static NSData *whitelistingDatafile;
     NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNil(userProfile3, @"User profile for userId 3 should have been removed.");
     
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssert([userData count] == 0,  @"User data should have been removed.");
 }
 
@@ -276,7 +276,7 @@ static NSData *whitelistingDatafile;
     [userProfileService removeAllUserExperimentRecords];
     XCTAssertNotNil(userProfileService);
     [userProfileService save:nil];
-    XCTAssertEqual(0, [[userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] count]);
+    XCTAssertEqual(0, [[userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] count]);
 }
 
 /**

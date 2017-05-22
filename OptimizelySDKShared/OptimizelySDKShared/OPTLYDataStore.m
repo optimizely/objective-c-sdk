@@ -139,7 +139,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 - (void)removeAllUserData
 {
-    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfile; ++i) {
+    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfileService; ++i) {
         [self removeUserDataForType:i];
     }
 }
@@ -393,7 +393,7 @@ dispatch_queue_t eventsStorageQueue()
         case OPTLYDataStoreDataTypeEventDispatcher:
             dataTypeString = kEventDispatcher;
             break;
-        case OPTLYDataStoreDataTypeUserProfile:
+        case OPTLYDataStoreDataTypeUserProfileService:
             dataTypeString = kUserProfile;
             break;
         default:

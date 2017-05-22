@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
     OPTLYDataStoreDataTypeDatabase,
     OPTLYDataStoreDataTypeDatafile,
     OPTLYDataStoreDataTypeEventDispatcher,
+    OPTLYDataStoreDataTypeUserProfileService,
     OPTLYDataStoreDataTypeUserProfile,
 };
 

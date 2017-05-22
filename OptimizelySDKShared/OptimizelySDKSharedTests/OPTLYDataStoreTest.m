@@ -65,7 +65,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     
     [self.dataStore saveEvent:self.testDataNSUserDefault eventType:OPTLYDataStoreEventTypeImpression error:&error];
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:&error];
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
     
     [self.dataStore removeAll:&error];
     
@@ -78,7 +78,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     XCTAssertFalse(fileExists, @"RemoveAll failed to remove file.");
     
     // check NSUserDefault storage
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile], @"RemoveAll failed to remove NSUserDefault data.");
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService], @"RemoveAll failed to remove NSUserDefault data.");
 }
 
 - (void)testEventsStorage {
@@ -341,7 +341,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatabase error:nil];
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
     [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeEventDispatcher error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeUserProfile error:nil];
+    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeUserProfileService error:nil];
     
     bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
     XCTAssertTrue(fileExists, @"Saved database file should exist.");
@@ -349,7 +349,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     XCTAssertTrue(fileExists, @"Saved datafile should exist.");
     fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeEventDispatcher];
     XCTAssertTrue(fileExists, @"Saved event dispatcher file should exist.");
-    fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeUserProfile];
+    fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssertTrue(fileExists, @"Saved user profile file should exist.");
     
     [self.dataStore removeAllFiles:nil];
@@ -363,45 +363,45 @@ static NSString * const kClientEngine = @"objective-c-sdk";
 // NSUserDefault
 - (void)testSaveUserData
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *retrievedData = [defaults objectForKey:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfile]];
+    NSDictionary *retrievedData = [defaults objectForKey:[OPTLYDataStore stringForDataTypeEnum:OPTLYDataStoreDataTypeUserProfileService]];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data save.");
 }
 
 -(void)testGetUserDataForType
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data retrieved.");
 }
 
 - (void)testRemoveUserDataForType
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
+    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
+    [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssertNil(retrievedData, @"Data removal failed.");
 }
 
 - (void)testRemovedObjectInUserData
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
-    [self.dataStore removeObjectInUserData:@"testKey2" type:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
+    [self.dataStore removeObjectInUserData:@"testKey2" type:OPTLYDataStoreDataTypeUserProfileService];
+    NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSDictionary *data = @{@"testKey1":@"testValue1"};
     XCTAssert([data isEqualToDictionary:retrievedData], @"Invalid object removed from data.");
 }
 
 - (void)testRemoveAllUserData
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatabase];
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatafile];
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeEventDispatcher];
     [self.dataStore removeAllUserData];
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile], @"User profile data should not exist.");
+    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService], @"User profile data should not exist.");
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatabase], @"Database data should not exixt.");
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
     XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
