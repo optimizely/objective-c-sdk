@@ -32,7 +32,6 @@
 #import "OPTLYLogger.h"
 #import "OPTLYMacros.h"
 #import "OPTLYProjectConfig.h"
-#import "OPTLYValidator.h"
 #import "OPTLYVariation.h"
 
 // --- Event URLs ----

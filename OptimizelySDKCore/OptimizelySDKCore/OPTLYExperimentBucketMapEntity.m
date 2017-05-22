@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,31 +14,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYUserProfileServiceBasic.h"
+#import "OPTLYExperimentBucketMapEntity.h"
 
-@implementation OPTLYUserProfileServiceUtility
-
-+ (BOOL)conformsToOPTLYUserProfileServiceProtocol:(nonnull Class)instanceClass {
-    // compile-time check
-    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfileService)];
-    
-    // runtime checks
-    BOOL implementsHandleLookupMethod = [instanceClass instancesRespondToSelector:@selector(lookup:)];
-    BOOL implementsHandleSaveMethod = [instanceClass instancesRespondToSelector:@selector(save:)];
-    
-    return implementsHandleLookupMethod && implementsHandleSaveMethod && isValidProtocolDeclaration;
-}
-
-@end
-
-@implementation OPTLYUserProfileServiceNoOp
-
-- (nullable NSDictionary *)lookup:(nonnull NSString *)userId {
-    return nil;
-}
-
-- (void)save:(nonnull NSDictionary *)userProfile {
-}
-
+@implementation OPTLYExperimentBucketMapEntity
 
 @end

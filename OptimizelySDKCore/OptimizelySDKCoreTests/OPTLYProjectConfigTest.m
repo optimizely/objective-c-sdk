@@ -54,7 +54,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-        builder.userProfile = [OPTLYUserProfileServiceNoOp new];
+        builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
     }];
     
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.projectConfig];
@@ -73,13 +73,13 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-        builder.userProfile = [OPTLYUserProfileServiceNoOp new];
+        builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
     }];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
-    XCTAssertNotNil(projectConfig.userProfile, @"User profile should not be nil.");
+    XCTAssertNotNil(projectConfig.userProfileService, @"User profile should not be nil.");
     XCTAssertEqualObjects(projectConfig.clientEngine, kClientEngine, @"Invalid client engine: %@. Expected: %@.", projectConfig.clientEngine, kClientEngine);
     XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version: %@. Expected: %@.", projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
 }
@@ -113,7 +113,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlockInvalidModulesFails {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     
-    id<OPTLYUserProfileService> userProfile = [NSObject new];
+    id<OPTLYUserProfileService> userProfileService = [NSObject new];
     id<OPTLYLogger> logger = [NSObject new];
     id<OPTLYErrorHandler> errorHandler = [NSObject new];
     
@@ -123,7 +123,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
         builder.errorHandler = errorHandler;
     }];
     
-    XCTAssertNil(projectConfig.userProfile, @"Invalid user profile should not have been set.");
+    XCTAssertNil(projectConfig.userProfileService, @"Invalid user profile should not have been set.");
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
 }
 

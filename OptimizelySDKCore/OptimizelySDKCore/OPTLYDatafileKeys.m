@@ -74,6 +74,10 @@ NSString * const OPTLYDatafileKeysVariableValue = @"defaultValue";
 // Variation Live Variable
 NSString * const OPTLYDatafileKeysVariationVariableId = @"id";
 NSString * const OPTLYDatafileKeysVariationVariableValue = @"value";
+// User Profile Service (not in datafile yet)
+NSString * const OPTLYDatafileKeysUserProfileServiceUserId = @"user_id";
+NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap = @"experiment_bucket_map";
+NSString * const OPTLYDatafileKeysUserProfileServiceVariationId = @"variation_id";
 
 @implementation OPTLYDatafileKeys
 @end

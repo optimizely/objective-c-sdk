@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,31 +14,38 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYUserProfileServiceBasic.h"
+/*
+ * The User Profile entity:
+ * {
+ *	"user_id" : "alda",
+ *	"experiment_bucket_map" : {
+ *		"experiment_id_1" : {
+ *			"variation_id" : "variation_id_1"
+ *		},
+ *		"experiment_id_2" : {
+ *			"variation_id" : "variation_id_2"
+ *		}
+ *	}
+ * }
+ */
 
-@implementation OPTLYUserProfileServiceUtility
+#import <Foundation/Foundation.h>
+#ifdef UNIVERSAL
+    #import "JSONModelLib.h"
+#else
+    #import <JSONModel/JSONModelLib.h>
+#endif
+#import "OPTLYExperimentBucketMapEntity.h"
 
-+ (BOOL)conformsToOPTLYUserProfileServiceProtocol:(nonnull Class)instanceClass {
-    // compile-time check
-    BOOL isValidProtocolDeclaration = [instanceClass conformsToProtocol:@protocol(OPTLYUserProfileService)];
-    
-    // runtime checks
-    BOOL implementsHandleLookupMethod = [instanceClass instancesRespondToSelector:@selector(lookup:)];
-    BOOL implementsHandleSaveMethod = [instanceClass instancesRespondToSelector:@selector(save:)];
-    
-    return implementsHandleLookupMethod && implementsHandleSaveMethod && isValidProtocolDeclaration;
-}
-
+@protocol OPTLYUserProfile
 @end
 
-@implementation OPTLYUserProfileServiceNoOp
+@interface OPTLYUserProfile : JSONModel
 
-- (nullable NSDictionary *)lookup:(nonnull NSString *)userId {
-    return nil;
-}
+/// ID identifying the user
+@property (nonatomic, strong) NSString *user_id;
+/// The experiment bucket map
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperimentBucketMapEntity *> *experiment_bucket_map;
 
-- (void)save:(nonnull NSDictionary *)userProfile {
-}
-
-
+- (NSString *)getVariationIdForExperimentId:(NSString *)experimentId;
 @end

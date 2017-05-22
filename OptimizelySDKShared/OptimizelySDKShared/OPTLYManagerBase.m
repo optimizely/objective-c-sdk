@@ -75,7 +75,7 @@
         builder.errorHandler = self.errorHandler;
         builder.eventDispatcher = self.eventDispatcher;
         builder.logger = self.logger;
-        builder.userProfile = self.userProfile;
+        builder.userProfileService = self.userProfileService;
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
     }];
@@ -83,6 +83,6 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfile];
+    return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfileService];
 }
 @end

@@ -101,8 +101,8 @@
         }
         
         // --- user profile ---
-        if (builder.userProfile) {
-            self.userProfile = builder.userProfile;
+        if (builder.userProfileService) {
+            self.userProfileService = builder.userProfileService;
         }
         
     }

@@ -18,9 +18,13 @@
     #import "OPTLYUserProfileServiceBasic.h"
     #import "OPTLYLogger.h"
     #import "OPTLYDataStore.h"
+    #import "OPTLYExperimentBucketMapEntity.h"
+    #import "OPTLYUserProfile.h"
 #else
+    #import <OptimizelySDKCore/OPTLYExperimentBucketMapEntity.h>
     #import <OptimizelySDKCore/OPTLYUserProfileServiceBasic.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYUserProfile.h>
     #import <OptimizelySDKShared/OPTLYDataStore.h>
 #endif
 #import "OPTLYUserProfileService.h"
@@ -49,66 +53,55 @@
     return self;
 }
 
+- (NSDictionary *)lookup:(NSString *)userId
+{
+    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userProfileDict = [userProfilesDict objectForKey:userId];
+    
+    if (!userProfileDict) {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileNotExist, userId]
+                      withLevel:OptimizelyLogLevelDebug ];
+        return nil;
+    }
+    
+    // convert map to a User Profile object to check data type
+    NSError *userProfileError;
+    OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
+    if (userProfileError) {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileLookupInvalidFormat, userProfileError]
+                      withLevel:OptimizelyLogLevelWarning];
+    }
+    
+    return userProfileDict;
+}
+    
+- (void)save:(nonnull NSDictionary *)userProfileDict
+{
+    // convert map to a User Profile object to check data type
+    NSError *error = nil;
+    OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&error];
+    if (error) {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSaveInvalidFormat, error]
+                      withLevel:OptimizelyLogLevelWarning];
+    }
 
-- (void)saveUserId:(nonnull NSString *)userId
-      experimentId:(nonnull NSString *)experimentId
-       variationId:(nonnull NSString *)variationId {
-    if (!userId
-        || !experimentId
-        || !variationId) {
-        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileUnableToSaveVariation, experimentId, variationId, userId]
-                      withLevel:OptimizelyLogLevelDebug];
+    // a map of userIds to user profiles is created to store multiple user profiles
+    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
+    if (!userProfilesDict) {
+        userProfilesDict = [NSMutableDictionary new];
+    }
+    NSString *userId = userProfile.user_id;
+    if ([userId length] > 0) {
+        userProfilesDict[userId] = userProfileDict;
+    } else {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSaveInvalidUserId]
+                      withLevel:OptimizelyLogLevelWarning];
         return;
     }
-    NSDictionary *userProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
-    NSDictionary *experimentVariationMapping = userProfileDataMutable[userId];
-    if (!experimentVariationMapping) {
-        userProfileDataMutable[userId] = @{ experimentId : variationId };
-    }
-    else {
-        NSMutableDictionary *mutableExperimentVariationMapping = [experimentVariationMapping mutableCopy];
-        mutableExperimentVariationMapping[experimentId] = variationId;
-        userProfileDataMutable[userId] = mutableExperimentVariationMapping;
-    }
-    [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSavedVariation, experimentId, variationId, userId]
+    
+    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfile];
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfilesDict, userProfile.user_id]
                   withLevel:OptimizelyLogLevelDebug];
-}
-
-- (nullable NSString *)getVariationIdForUserId:(nonnull NSString *)userId
-                                  experimentId:(nonnull NSString *)experimentId {
-    NSDictionary *userData = [self userData:userId];
-    NSString *variationId = [userData objectForKey:experimentId];
-    
-    NSString *logMessage = @"";
-    if ([variationId length] > 0) {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileVariation, variationId, userId, experimentId];
-    } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileNoVariation, userId, experimentId];
-    }
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    return variationId;
-}
-
-- (void)removeUserId:(nonnull NSString *)userId
-        experimentId:(nonnull NSString *)experimentId {
-    
-    NSMutableDictionary *userProfileDataMutable = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
-    NSMutableDictionary *userDataMutable = [userProfileDataMutable[userId] mutableCopy];
-    
-    NSString *logMessage = @"";
-    if ([userDataMutable count] > 0) {
-        [userDataMutable removeObjectForKey:experimentId];
-        userProfileDataMutable[userId] = ([userDataMutable count] > 0) ? [userDataMutable copy] : nil;
-        [self.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
-        NSString *variationId = [userDataMutable objectForKey:experimentId];
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileRemoveVariation, variationId, userId, experimentId];
-    } else {
-        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesUserProfileRemoveVariationNotFound, userId, experimentId];
-    }
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
 }
 
 - (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId {

@@ -153,6 +153,7 @@ NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey = @"[PROJ
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId = @"[PROJECT CONFIG] Experiment not found for experiment ID: %@. Experiment ID is not in the datafile."; // experiment id
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment key not found for experiment: %@. Experiment key is not in the datafile.";  // experiment key
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@. Group ID is not in the datafile."; // group id
+NSString *const OPTLYLoggerMessagesGetVariationNilVariation = @"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experiment %@";
 
 // ---- User Profile ----
 // debug
@@ -161,16 +162,27 @@ NSString *const OPTLYLoggerMessagesUserProfileAttemptToSaveVariation = @"[USER P
 NSString *const OPTLYLoggerMessagesUserProfileNoVariation = @"[USER PROFILE] Variation for user %@, experiment ID %@ not found."; // user ID, experiment ID
 NSString *const OPTLYLoggerMessagesUserProfileRemoveVariation = @"[USER PROFILE] Removed variation ID %@ for user %@, experiment ID %@."; // variation ID, user ID, experiment ID
 NSString *const OPTLYLoggerMessagesUserProfileRemoveVariationNotFound = @"[USER PROFILE] Not removing variation for user %@, experiment ID %@. Variation not found."; // user ID, experiment ID
-NSString *const OPTLYLoggerMessagesUserProfileSavedVariation = @"[USER PROFILE] Saved experiment ID %@ with variation ID %@ for user %@.";
+NSString *const OPTLYLoggerMessagesUserProfileServiceSaved = @"[USER PROFILE] Saved user profile service %@ for user %@.";
 NSString *const OPTLYLoggerMessagesUserProfileVariation = @"[USER PROFILE] Variation ID %@ for user %@, experiment ID %@ found."; // variation ID, user ID, experiment ID
+NSString *const OPTLYLoggerMessagesUserProfileNotExist = @"[USER PROFILE SERVICE] User profile for %@ does not exist.";
+
 // warning
 NSString *const OPTLYLoggerMessagesUserProfileUnableToSaveVariation = @"[USER PROFILE] Unable to save experiment ID %@ with variation ID %@ for user %@."; // experiment ID, variation ID, user ID
 NSString *const OPTLYLoggerMessagesUserProfileVariationNoLongerInDatafile = @"[USER PROFILE] Variation ID: %@ for experiment ID: %@ no longer found in datafile."; // variation ID, experiment ID
+NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidUserId = @"[USER PROFILE SERVICE] Invalid userId. Unable to save the user profile.";
+NSString *const OPTLYLoggerMessagesUserProfileLookupInvalidFormat = @"[USER PROFILE SERVICE] Invalid format for user profile lookup: %@.";
+NSString *const OPTLYLoggerMessagesUserProfileSaveInvalidFormat = @"[USER PROFILE SERVICE] Invalid format for user profile save: %@.";
 
-// ---- Validator ----
+// ---- Decision Service ----
 // info
-NSString *const OPTLYLoggerMessagesExperimentNotRunning = @"[VALIDATOR] Experiment %@ is not running.";
-NSString *const OPTLYLoggerMessagesFailAudienceTargeting = @"[VALIDATOR] User %@ does not meet conditions to be in experiment %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceExperimentNotRunning = @"[DECISION SERVICE] Experiment %@ is not running.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFailAudienceTargeting = @"[DECISION SERVICE] User %@ does not meet conditions to be in experiment %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationInvalid = @"[DECISION SERVICE] Saved variation %@ is invalid. The variation has been paused or archived.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist = @"[DECISION SERVICE] User profile service does not exist.";
+NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to save user bucket information for: %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity = @"[DECISION SERVICE] Replacing user %@ experiment bucket map entity %@ with %@.";
+
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)
