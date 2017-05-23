@@ -21,14 +21,14 @@ extern NSInteger const OPTLYDataStorePercentageOfEventsToRemoveUponOverflow;
 
 @protocol OPTLYLogger;
 
-// If adding event type, update: removeAllUserData
+// If adding event type, update: removeAllUserData and stringForDataTypeEnum
 typedef NS_ENUM(NSUInteger, OPTLYDataStoreDataType)
 {
     OPTLYDataStoreDataTypeDatabase,
     OPTLYDataStoreDataTypeDatafile,
     OPTLYDataStoreDataTypeEventDispatcher,
-    OPTLYDataStoreDataTypeUserProfileService,
     OPTLYDataStoreDataTypeUserProfile,
+    OPTLYDataStoreDataTypeUserProfileService,
 };
 
 // If adding data store data type, update: removeSavedEvents, totalNumberOfEvents

@@ -33,6 +33,7 @@ NSInteger const OPTLYDataStorePercentageOfEventsToRemoveUponOverflow = 10;
 static NSString * const kDatabase = @"database";
 static NSString * const kDatafile = @"datafile";
 static NSString * const kUserProfile = @"user-profile";
+static NSString * const kUserProfileService = @"user-profile-service";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
 // table names
@@ -394,6 +395,9 @@ dispatch_queue_t eventsStorageQueue()
             dataTypeString = kEventDispatcher;
             break;
         case OPTLYDataStoreDataTypeUserProfileService:
+            dataTypeString = kUserProfileService;
+            break;
+        case OPTLYDataStoreDataTypeUserProfile:
             dataTypeString = kUserProfile;
             break;
         default:
