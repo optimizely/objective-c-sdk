@@ -1124,10 +1124,10 @@
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA52C9E41E851CC100D4FCA0 = {
-						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
 					};
 					EA52CA8D1E851CEE00D4FCA0 = {
-						DevelopmentTeam = BDMC9C2X5M;
+						ProvisioningStyle = Automatic;
 					};
 					EA52CDE71E8649B800D4FCA0 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1426,8 +1426,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1458,9 +1459,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKiOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1471,8 +1474,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1503,9 +1507,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKiOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1516,8 +1522,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1548,9 +1555,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKiOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1561,8 +1570,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1592,9 +1602,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKiOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/fmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
@@ -1605,8 +1617,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1635,11 +1648,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1650,8 +1665,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1680,11 +1696,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1695,8 +1713,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1725,11 +1744,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -1740,8 +1761,9 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = BDMC9C2X5M;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1769,11 +1791,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/jsonmodel/JSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
