@@ -1,4 +1,13 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.1
+May 23, 2017
+
+### New Features
+* Added unexported_symbols.sh to create unexported_symbols.txt which hides all third-party dependency symbols in the Universal frameworks.
+
+### Breaking Changes
+* Supply your own FMDB or JSONModel if you previously counted on Universal frameworks exposing these third-party dependencies.
+
 ## 1.1.0
 May 2, 2017
 
