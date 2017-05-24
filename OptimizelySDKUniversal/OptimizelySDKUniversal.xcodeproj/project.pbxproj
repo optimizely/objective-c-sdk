@@ -1827,7 +1827,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1840,7 +1840,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1853,7 +1853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1866,7 +1866,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1883,7 +1883,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1894,7 +1894,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1905,7 +1905,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1916,7 +1916,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
