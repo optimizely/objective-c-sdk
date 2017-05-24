@@ -338,19 +338,12 @@ static NSString * const kClientEngine = @"objective-c-sdk";
 
 - (void)testRemoveAllFiles
 {
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatabase error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeDatafile error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeEventDispatcher error:nil];
-    [self.dataStore saveFile:kTestFileName data:self.testFileData type:OPTLYDataStoreDataTypeUserProfileService error:nil];
-    
-    bool fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatabase];
-    XCTAssertTrue(fileExists, @"Saved database file should exist.");
-    fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeDatafile];
-    XCTAssertTrue(fileExists, @"Saved datafile should exist.");
-    fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeEventDispatcher];
-    XCTAssertTrue(fileExists, @"Saved event dispatcher file should exist.");
-    fileExists = [self.dataStore fileExists:kTestFileName type:OPTLYDataStoreDataTypeUserProfileService];
-    XCTAssertTrue(fileExists, @"Saved user profile file should exist.");
+    for (int i = 0; i < OPTLYDataStoreDataTypeCOUNT; ++i) {
+        [self.dataStore saveFile:kTestFileName data:self.testFileData type:i error:nil];
+        bool fileExists = [self.dataStore fileExists:kTestFileName type:i];
+        NSString *dataType = [OPTLYDataStore stringForDataTypeEnum:i];
+        XCTAssertTrue(fileExists, @"%@ file should exist.", dataType);
+    }
     
     [self.dataStore removeAllFiles:nil];
     
@@ -396,15 +389,16 @@ static NSString * const kClientEngine = @"objective-c-sdk";
 
 - (void)testRemoveAllUserData
 {
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatabase];
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeDatafile];
-    [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeEventDispatcher];
+    for (int i = 0; i < OPTLYDataStoreDataTypeCOUNT; ++i) {
+        [self.dataStore saveUserData:self.testDataNSUserDefault type:i];
+    }
+
     [self.dataStore removeAllUserData];
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService], @"User profile data should not exist.");
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatabase], @"Database data should not exixt.");
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeDatafile], @"Datafile data should not exist.");
-    XCTAssertNil([self.dataStore getUserDataForType:OPTLYDataStoreDataTypeEventDispatcher], @"Event dispatcher data should not exist.");
+    
+    for (int i = 0; i < OPTLYDataStoreDataTypeCOUNT; ++i) {
+        NSString *dataType = [OPTLYDataStore stringForDataTypeEnum:i];
+        XCTAssertNil([self.dataStore getUserDataForType:i], @"%@ file should not exist.", dataType);
+    }
 }
 
 - (void)testEventSaveDoesNotExceedMaxNumber {

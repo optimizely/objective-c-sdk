@@ -140,7 +140,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 - (void)removeAllUserData
 {
-    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfileService; ++i) {
+    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeCOUNT; ++i) {
         [self removeUserDataForType:i];
     }
 }
