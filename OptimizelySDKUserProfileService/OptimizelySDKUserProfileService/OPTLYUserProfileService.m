@@ -70,7 +70,7 @@
             OPTLYUserProfile *userProfile = [OPTLYUserProfile new];
             userProfile.user_id = userId;
             
-            // create the experiment bucket map for all the user's experiment
+            // create the experiment bucket map for all the user's experiments
             NSDictionary *legacyUserProfileExperimentToVariationMap = legacyUserProfileData[userId];
             NSArray *experimentIds = [legacyUserProfileExperimentToVariationMap allKeys];
             NSMutableDictionary *experimentBucketMap = [NSMutableDictionary new];
