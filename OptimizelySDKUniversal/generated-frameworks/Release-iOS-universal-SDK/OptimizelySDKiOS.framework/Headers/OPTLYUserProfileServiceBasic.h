@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -19,37 +19,20 @@
 @protocol OPTLYUserProfileService <NSObject>
 
 /**
- * Saves a user ID's project-to-experiment-to-variation mapping.
+ * Returns a user entity corresponding to the user ID.
  *
- * @param userId The user id that was used to generate the bucket value.
- * @param experimentId An active experiment for which the user should be bucketed into.
- * @param variationId The bucketed variation key.
- *
+ * @param userId The user id to get the user entity of.
+ * @returns A dictionary of the user profile details.
  **/
-- (void)saveUserId:(nonnull NSString *)userId
-      experimentId:(nonnull NSString *)experimentId
-       variationId:(nonnull NSString *)variationId;
+- (nullable NSDictionary *)lookup:(nonnull NSString *)userId;
 
 /**
- * Gets the saved variation for a given user ID, project ID, and experiment key.
+ * Saves the user profile.
  *
- * @param userId The user ID that was used to generate the bucket value.
- * @param experimentId An active experiment which the user was bucketed into.
- * @returns The variation ID that the user was bucketed into for the given project id and experiment key.
- *
+ * @param userProfile The user profile.
  **/
-- (nullable NSString *)getVariationIdForUserId:(nonnull NSString *)userId
-                                  experimentId:(nonnull NSString *)experimentId;
+- (void)save:(nonnull NSDictionary *)userProfile;
 
-/**
- * Removes a user ID's project-to-experiment-to-variation mapping.
- *
- * @param userId The user ID that was used to generate the bucket value.
- * @param experimentId An active experiment for which the user should be bucketed into.
- *
- **/
-- (void)removeUserId:(nonnull NSString *)userId
-        experimentId:(nonnull NSString *)experimentId;
 
 @end
 

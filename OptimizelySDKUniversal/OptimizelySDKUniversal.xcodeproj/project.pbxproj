@@ -32,6 +32,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
+		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
+		EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
+		EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; };
+		EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; };
+		EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; };
+		EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; };
+		EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
+		EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
+		EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
 		EA52C9E61E851CC100D4FCA0 /* OPTLYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14E1E7B604C00C087B8 /* OPTLYLogger.m */; };
 		EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1351E7B604C00C087B8 /* OPTLYBucketer.m */; };
 		EA52C9E81E851CC100D4FCA0 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
@@ -84,7 +96,6 @@
 		EA52CA241E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
 		EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */; };
 		EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */; };
-		EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */; };
 		EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */; };
 		EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1581E7B604C00C087B8 /* OPTLYVariation.m */; };
 		EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1591E7B604C00C087B8 /* OPTLYVariationVariable.m */; };
@@ -120,7 +131,6 @@
 		EA52CA4E1E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2381E7B639B00C087B8 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA4F1E851CC100D4FCA0 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2391E7B639B00C087B8 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA501E851CC100D4FCA0 /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23A1E7B639B00C087B8 /* OPTLYTrafficAllocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA511E851CC100D4FCA0 /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23C1E7B639B00C087B8 /* OPTLYValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA521E851CC100D4FCA0 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23D1E7B639B00C087B8 /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA531E851CC100D4FCA0 /* OPTLYVariation.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23E1E7B639B00C087B8 /* OPTLYVariation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA541E851CC100D4FCA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23F1E7B639B00C087B8 /* OPTLYVariationVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -202,7 +212,6 @@
 		EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1521E7B604C00C087B8 /* OPTLYProjectConfigBuilder.m */; };
 		EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */; };
 		EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */; };
-		EA52CACD1E851CEE00D4FCA0 /* OPTLYValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */; };
 		EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */; };
 		EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; };
 		EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1581E7B604C00C087B8 /* OPTLYVariation.m */; };
@@ -236,7 +245,6 @@
 		EA52CAEE1E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2381E7B639B00C087B8 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAEF1E851CEE00D4FCA0 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2391E7B639B00C087B8 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAF01E851CEE00D4FCA0 /* OPTLYTrafficAllocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23A1E7B639B00C087B8 /* OPTLYTrafficAllocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CAF11E851CEE00D4FCA0 /* OPTLYValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23C1E7B639B00C087B8 /* OPTLYValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAF21E851CEE00D4FCA0 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23D1E7B639B00C087B8 /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAF31E851CEE00D4FCA0 /* OPTLYVariationVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F23F1E7B639B00C087B8 /* OPTLYVariationVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CAF41E851CEE00D4FCA0 /* OPTLYDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F26A1E7B63FF00C087B8 /* OPTLYDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -356,6 +364,12 @@
 
 /* Begin PBXFileReference section */
 		3EF8AFB71EC63DBF008D4F5F /* unexported_symbols.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unexported_symbols.txt; sourceTree = "<group>"; };
+		EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDecisionService.h; sourceTree = "<group>"; };
+		EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDecisionService.m; sourceTree = "<group>"; };
+		EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYExperimentBucketMapEntity.h; sourceTree = "<group>"; };
+		EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYExperimentBucketMapEntity.m; sourceTree = "<group>"; };
+		EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYUserProfile.h; sourceTree = "<group>"; };
+		EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYUserProfile.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,7 +455,6 @@
 		EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYQueue.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYQueue.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYTrafficAllocation.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYTrafficAllocation.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileServiceBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBasic.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYUserProfileServiceBasic.m; sourceTree = SOURCE_ROOT; };
-		EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYValidator.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYValidator.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYVariable.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariable.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1581E7B604C00C087B8 /* OPTLYVariation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYVariation.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariation.m; sourceTree = SOURCE_ROOT; };
 		EAC5F1591E7B604C00C087B8 /* OPTLYVariationVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYVariationVariable.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariationVariable.m; sourceTree = SOURCE_ROOT; };
@@ -496,7 +509,6 @@
 		EAC5F2381E7B639B00C087B8 /* OPTLYProjectConfigBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYProjectConfigBuilder.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYProjectConfigBuilder.h; sourceTree = SOURCE_ROOT; };
 		EAC5F2391E7B639B00C087B8 /* OPTLYQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYQueue.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYQueue.h; sourceTree = SOURCE_ROOT; };
 		EAC5F23A1E7B639B00C087B8 /* OPTLYTrafficAllocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYTrafficAllocation.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYTrafficAllocation.h; sourceTree = SOURCE_ROOT; };
-		EAC5F23C1E7B639B00C087B8 /* OPTLYValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYValidator.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYValidator.h; sourceTree = SOURCE_ROOT; };
 		EAC5F23D1E7B639B00C087B8 /* OPTLYVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYVariable.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariable.h; sourceTree = SOURCE_ROOT; };
 		EAC5F23E1E7B639B00C087B8 /* OPTLYVariation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYVariation.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariation.h; sourceTree = SOURCE_ROOT; };
 		EAC5F23F1E7B639B00C087B8 /* OPTLYVariationVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYVariationVariable.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYVariationVariable.h; sourceTree = SOURCE_ROOT; };
@@ -665,9 +677,9 @@
 		EAC5F1871E7B60D700C087B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */,
 				EAC5F2921E7B651700C087B8 /* Optimizely.h */,
 				EAC5F1311E7B604C00C087B8 /* Optimizely.m */,
+				EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */,
 				EAC5F2171E7B639A00C087B8 /* OPTLYAttribute.h */,
 				EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */,
 				EAC5F2181E7B639A00C087B8 /* OPTLYAudience.h */,
@@ -684,6 +696,8 @@
 				EAC5F1381E7B604C00C087B8 /* OPTLYDatafileKeys.m */,
 				EAC5F21E1E7B639B00C087B8 /* OPTLYDecisionEventTicket.h */,
 				EAC5F1391E7B604C00C087B8 /* OPTLYDecisionEventTicket.m */,
+				EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */,
+				EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */,
 				EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */,
 				EAC5F13A1E7B604C00C087B8 /* OPTLYErrorHandler.m */,
 				EAC5F2201E7B639B00C087B8 /* OPTLYErrorHandlerMessages.h */,
@@ -718,6 +732,8 @@
 				EAC5F1491E7B604C00C087B8 /* OPTLYEventView.m */,
 				EAC5F22F1E7B639B00C087B8 /* OPTLYExperiment.h */,
 				EAC5F14A1E7B604C00C087B8 /* OPTLYExperiment.m */,
+				EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */,
+				EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */,
 				EAC5F2301E7B639B00C087B8 /* OPTLYGroup.h */,
 				EAC5F14B1E7B604C00C087B8 /* OPTLYGroup.m */,
 				EAC5F2311E7B639B00C087B8 /* OPTLYHTTPRequestManager.h */,
@@ -739,10 +755,10 @@
 				EAC5F1531E7B604C00C087B8 /* OPTLYQueue.m */,
 				EAC5F23A1E7B639B00C087B8 /* OPTLYTrafficAllocation.h */,
 				EAC5F1541E7B604C00C087B8 /* OPTLYTrafficAllocation.m */,
+				EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */,
+				EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */,
 				EAC5F7791E80A04300C087B8 /* OPTLYUserProfileServiceBasic.h */,
 				EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileServiceBasic.m */,
-				EAC5F23C1E7B639B00C087B8 /* OPTLYValidator.h */,
-				EAC5F1561E7B604C00C087B8 /* OPTLYValidator.m */,
 				EAC5F23D1E7B639B00C087B8 /* OPTLYVariable.h */,
 				EAC5F1571E7B604C00C087B8 /* OPTLYVariable.m */,
 				EAC5F23E1E7B639B00C087B8 /* OPTLYVariation.h */,
@@ -907,7 +923,6 @@
 				EA52CA4E1E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA52CA4F1E851CC100D4FCA0 /* OPTLYQueue.h in Headers */,
 				EA52CA501E851CC100D4FCA0 /* OPTLYTrafficAllocation.h in Headers */,
-				EA52CA511E851CC100D4FCA0 /* OPTLYValidator.h in Headers */,
 				EA52CA521E851CC100D4FCA0 /* OPTLYVariable.h in Headers */,
 				EA52CA531E851CC100D4FCA0 /* OPTLYVariation.h in Headers */,
 				EA52CA541E851CC100D4FCA0 /* OPTLYVariationVariable.h in Headers */,
@@ -957,8 +972,11 @@
 				EAE8C41B1EC4E4FA00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EAE8C4291EC4E5F900A76A2D /* OptimizelySDKTVOS.h in Headers */,
 				EAE8C42B1EC4E62800A76A2D /* OPTLYManager.h in Headers */,
+				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
 				EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */,
+				EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
+				EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,7 +1013,6 @@
 				EA52CAEE1E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA52CAEF1E851CEE00D4FCA0 /* OPTLYQueue.h in Headers */,
 				EA52CAF01E851CEE00D4FCA0 /* OPTLYTrafficAllocation.h in Headers */,
-				EA52CAF11E851CEE00D4FCA0 /* OPTLYValidator.h in Headers */,
 				EA52CAF21E851CEE00D4FCA0 /* OPTLYVariable.h in Headers */,
 				EA52CAF31E851CEE00D4FCA0 /* OPTLYVariationVariable.h in Headers */,
 				EA52CAF41E851CEE00D4FCA0 /* OPTLYDatafileManager.h in Headers */,
@@ -1038,8 +1055,11 @@
 				EAE8C41D1EC4E51D00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAE8C41E1EC4E51D00A76A2D /* OptimizelySDKUserProfileService.h in Headers */,
 				EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
+				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
+				EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
+				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1243,6 +1263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */,
+				EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
+				EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C42A1EC4E61E00A76A2D /* OPTLYManager.m in Sources */,
 				EAE8C4161EC4E4E500A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EAE8C4171EC4E4E500A76A2D /* OPTLYUserProfileService.m in Sources */,
@@ -1311,7 +1334,6 @@
 				EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EA52CD7E1E85E37E00D4FCA0 /* JSONKeyMapper.m in Sources */,
-				EA52CA2A1E851CC100D4FCA0 /* OPTLYValidator.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
 				EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */,
@@ -1323,6 +1345,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */,
+				EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
+				EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA52CA8F1E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Sources */,
 				EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */,
@@ -1383,7 +1408,6 @@
 				EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EA52CD991E85E5D500D4FCA0 /* JSONAPI.m in Sources */,
-				EA52CACD1E851CEE00D4FCA0 /* OPTLYValidator.m in Sources */,
 				EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */,
 				EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */,
