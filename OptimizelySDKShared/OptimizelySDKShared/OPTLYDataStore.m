@@ -33,6 +33,7 @@ NSInteger const OPTLYDataStorePercentageOfEventsToRemoveUponOverflow = 10;
 static NSString * const kDatabase = @"database";
 static NSString * const kDatafile = @"datafile";
 static NSString * const kUserProfile = @"user-profile";
+static NSString * const kUserProfileService = @"user-profile-service";
 static NSString * const kEventDispatcher = @"event-dispatcher";
 
 // table names
@@ -139,7 +140,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 - (void)removeAllUserData
 {
-    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeUserProfile; ++i) {
+    for (NSInteger i = 0; i <= OPTLYDataStoreDataTypeCOUNT; ++i) {
         [self removeUserDataForType:i];
     }
 }
@@ -392,6 +393,9 @@ dispatch_queue_t eventsStorageQueue()
             break;
         case OPTLYDataStoreDataTypeEventDispatcher:
             dataTypeString = kEventDispatcher;
+            break;
+        case OPTLYDataStoreDataTypeUserProfileService:
+            dataTypeString = kUserProfileService;
             break;
         case OPTLYDataStoreDataTypeUserProfile:
             dataTypeString = kUserProfile;

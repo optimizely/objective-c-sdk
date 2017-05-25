@@ -49,13 +49,53 @@
         _logger = builder.logger;
         _dataStore = [OPTLYDataStore dataStore];
         _dataStore.logger = builder.logger;
+        [self migrateLegacyUserProfileIfNeeded];
     }
     return self;
 }
 
+// checks to see if the legacy user profile exists
+// if so, the legacy user profile data is migrated to
+// the new data format before it is removed
+- (void)migrateLegacyUserProfileIfNeeded
+{
+    NSDictionary *legacyUserProfileData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    if ([legacyUserProfileData count] > 0)
+    {
+        NSMutableDictionary *newUserProfileDict = [NSMutableDictionary new];
+        NSArray *userIds = [legacyUserProfileData allKeys];
+        
+        for (NSString *userId in userIds)
+        {
+            OPTLYUserProfile *userProfile = [OPTLYUserProfile new];
+            userProfile.user_id = userId;
+            
+            // create the experiment bucket map for all the user's experiments
+            NSDictionary *legacyUserProfileExperimentToVariationMap = legacyUserProfileData[userId];
+            NSArray *experimentIds = [legacyUserProfileExperimentToVariationMap allKeys];
+            NSMutableDictionary *experimentBucketMap = [NSMutableDictionary new];
+            for (NSString *experimentId in experimentIds) {
+                OPTLYExperimentBucketMapEntity *bucketMapEntity = [OPTLYExperimentBucketMapEntity new];
+                bucketMapEntity.variation_id = legacyUserProfileExperimentToVariationMap[experimentId];
+                NSDictionary *experimentBucketMapEntity = @{ experimentId : [bucketMapEntity toDictionary] };
+                [experimentBucketMap addEntriesFromDictionary:experimentBucketMapEntity];
+            }
+    
+            userProfile.experiment_bucket_map = [experimentBucketMap copy];
+            [newUserProfileDict addEntriesFromDictionary: [userProfile toDictionary]];
+            if ([newUserProfileDict count] > 0) {
+                [self save:[newUserProfileDict copy]];
+            }
+        }
+        
+        // remove all legacy user profile data
+        [self.dataStore removeUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    }
+}
+
 - (NSDictionary *)lookup:(NSString *)userId
 {
-    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userProfilesDict = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSDictionary *userProfileDict = [userProfilesDict objectForKey:userId];
     
     if (!userProfileDict) {
@@ -86,7 +126,7 @@
     }
 
     // a map of userIds to user profiles is created to store multiple user profiles
-    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] mutableCopy];
+    NSMutableDictionary *userProfilesDict = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
     if (!userProfilesDict) {
         userProfilesDict = [NSMutableDictionary new];
     }
@@ -94,29 +134,25 @@
     if ([userId length] > 0) {
         userProfilesDict[userId] = userProfileDict;
     } else {
-        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileSaveInvalidUserId]
+        [self.logger logMessage:OPTLYLoggerMessagesUserProfileSaveInvalidUserId
                       withLevel:OptimizelyLogLevelWarning];
         return;
     }
     
-    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore saveUserData:userProfilesDict type:OPTLYDataStoreDataTypeUserProfileService];
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileServiceSaved, userProfilesDict, userProfile.user_id]
                   withLevel:OptimizelyLogLevelDebug];
 }
 
+#pragma mark - Helper Methods
+    
 - (void)removeUserExperimentRecordsForUserId:(nonnull NSString *)userId {
-    [self.dataStore removeObjectInUserData:userId type:OPTLYDataStoreDataTypeUserProfile];
+    [self.dataStore removeObjectInUserData:userId type:OPTLYDataStoreDataTypeUserProfileService];
 }
 
 - (void)removeAllUserExperimentRecords {
     [self.dataStore removeAllUserData];
 }
-
-# pragma mark - Helper methods
-- (NSDictionary *)userData:(NSString *)userId {
-    NSDictionary *userData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    NSDictionary *userDataForUserId = [userData objectForKey:userId];
-    return userDataForUserId;
-}
+    
 @end
 

@@ -66,6 +66,10 @@ static NSData *updatedDatafile;
 static NSData *removedVariationDatafile;
 static NSData *whitelistingDatafile;
 
+@interface OPTLYUserProfileServiceDefault()
+- (void)migrateLegacyUserProfileIfNeeded;
+@end
+
 @interface OPTLYUserProfileServiceDefault(test)
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @end
@@ -142,7 +146,7 @@ static NSData *whitelistingDatafile;
 
 - (void)testSave
 {
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     NSArray *users = [userData allKeys];
     XCTAssert([users count] == 3, @"Invalid number of user profile data saved.");
     
@@ -181,7 +185,7 @@ static NSData *whitelistingDatafile;
     NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNotNil(userProfile3, @"User profile for userId 3a should not be removed.");
     
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssert([userData count] == 2, @"Invalid user profile count.");
 }
 
@@ -198,7 +202,7 @@ static NSData *whitelistingDatafile;
     NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNil(userProfile3, @"User profile for userId 3 should have been removed.");
     
-    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
     XCTAssert([userData count] == 0,  @"User data should have been removed.");
 }
 
@@ -276,7 +280,7 @@ static NSData *whitelistingDatafile;
     [userProfileService removeAllUserExperimentRecords];
     XCTAssertNotNil(userProfileService);
     [userProfileService save:nil];
-    XCTAssertEqual(0, [[userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile] count]);
+    XCTAssertEqual(0, [[userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] count]);
 }
 
 /**
@@ -304,6 +308,56 @@ static NSData *whitelistingDatafile;
     // make sure the user sees the whitelisted variation not the saved variation
     XCTAssertEqualObjects(variation.variationId, kWhitelistingWhitelistedVariationId);
     XCTAssertEqualObjects(variation.variationKey, kWhitelistingWhiteListedVariationKey);
+}
+    
+- (void)testLegacyUserProfileMigration
+{
+    [self saveUserId:kUserId1 experimentId:kExperimentId1 variationId:kVariationId1];
+    [self saveUserId:kUserId2 experimentId:kExperimentId2 variationId:kVariationId2];
+    [self saveUserId:kUserId3 experimentId:kExperimentId3a variationId:kVariationId3a];
+    [self saveUserId:kUserId3 experimentId:kExperimentId3b variationId:kVariationId3b];
+    [self saveUserId:kUserId3 experimentId:kExperimentId3c variationId:kVariationId3c];
+    
+    NSDictionary *legacyUserProfileData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    XCTAssert([legacyUserProfileData count] == 3, @"Invalid number of legacy user profile entities saved: %@.", [legacyUserProfileData count]);
+    [self.userProfileService migrateLegacyUserProfileIfNeeded];
+    
+    NSDictionary *newUserProfileDict1 = [self.userProfileService lookup:kUserId1];
+    NSDictionary *newUserProfileDict2 = [self.userProfileService lookup:kUserId2];
+    NSDictionary *newUserProfileDict3 = [self.userProfileService lookup:kUserId3];
+    
+    XCTAssert([newUserProfileDict1 isEqualToDictionary:self.userProfile1], @"Migrated user profile 1 is not valid: %@", newUserProfileDict1);
+    XCTAssert([newUserProfileDict2 isEqualToDictionary:self.userProfile2], @"Migrated user profile 2 is not valid: %@", newUserProfileDict2);
+    XCTAssert([newUserProfileDict3 isEqualToDictionary:self.userProfile3], @"Migrated user profile 3 is not valid: %@", newUserProfileDict3);
+    
+    legacyUserProfileData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    XCTAssert([legacyUserProfileData count] == 0, @"Legacy user profile should have been removed.");
+    
+}
+
+#pragma mark - Helper Methods
+
+// Legacy user profile save
+- (void)saveUserId:(nonnull NSString *)userId
+      experimentId:(nonnull NSString *)experimentId
+       variationId:(nonnull NSString *)variationId {
+    if (!userId
+        || !experimentId
+        || !variationId) {
+        return;
+    }
+    NSDictionary *userProfileData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
+    NSMutableDictionary *userProfileDataMutable = userProfileData ? [userProfileData mutableCopy] : [NSMutableDictionary new];
+    NSDictionary *experimentVariationMapping = userProfileDataMutable[userId];
+    if (!experimentVariationMapping) {
+        userProfileDataMutable[userId] = @{ experimentId : variationId };
+    }
+    else {
+        NSMutableDictionary *mutableExperimentVariationMapping = [experimentVariationMapping mutableCopy];
+        mutableExperimentVariationMapping[experimentId] = variationId;
+        userProfileDataMutable[userId] = mutableExperimentVariationMapping;
+    }
+    [self.userProfileService.dataStore saveUserData:userProfileDataMutable type:OPTLYDataStoreDataTypeUserProfile];
 }
 
 @end
