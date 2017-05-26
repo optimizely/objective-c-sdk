@@ -30,11 +30,37 @@
 #import "OPTLYManagerBase.h"
 #import "OPTLYManagerBuilder.h"
 
+@import UIKit;
+
 @interface OPTLYManagerBase()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
+/// Version number of the Optimizely iOS SDK
+@property (nonatomic, readwrite, strong, nonnull) NSString *clientVersion;
+/// iOS Device Model
+@property (nonatomic, readwrite, strong, nonnull) NSString *deviceModel;
+/// iOS OS Version
+@property (nonatomic, readwrite, strong, nonnull) NSString *osVersion;
+/// iOS App Version
+@property (nonatomic, readwrite, strong, nonnull) NSString *appVersion;
 @end
 
 @implementation OPTLYManagerBase
+
+#pragma mark - Constructors
+
+- (instancetype)init {
+    self = [super init];
+    if (self != nil) {
+        // _clientVersion is initialized by OPTLYManager subclass .
+        _deviceModel = [[UIDevice currentDevice] model];
+        _osVersion = [[UIDevice currentDevice] systemVersion];
+        {
+            NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
+            _appVersion = dict[@"CFBundleShortVersionString"];
+        }
+    };
+    return self;
+}
 
 #pragma mark - Client Getters
 

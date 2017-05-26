@@ -53,8 +53,14 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfileService;
 /// The client engine
 @property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
-/// The client version
+/// Version number of the Optimizely iOS SDK
 @property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
+/// iOS Device Model
+@property (nonatomic, readonly, strong, nonnull) NSString *deviceModel;
+/// iOS OS Version
+@property (nonatomic, readonly, strong, nonnull) NSString *osVersion;
+/// iOS App Version
+@property (nonatomic, readonly, strong, nonnull) NSString *appVersion;
 
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance

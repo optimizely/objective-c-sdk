@@ -36,6 +36,8 @@ static NSString * const kClientEngine = @"ios-sdk";
 
 @implementation OPTLYManager
 
+#pragma mark - Constructors
+
 + (instancetype)init:(OPTLYManagerBuilderBlock)block {
     return [OPTLYManager initWithBuilder:[OPTLYManagerBuilder builderWithBlock:block]];
 }
