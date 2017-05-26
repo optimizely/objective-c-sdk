@@ -95,6 +95,13 @@
     return self.optimizelyClient;
 }
 
+- (nonnull NSDictionary *)newDefaultAttributes {
+    return @{@"optimizely_ios_device_model":_deviceModel,
+             @"optimizely_ios_sdk_version":_clientVersion,
+             @"optimizely_ios_os_version":_osVersion,
+             @"optimizely_ios_app_version":_appVersion};
+}
+
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
     OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;

@@ -32,6 +32,8 @@
 @property (nonatomic, strong, readonly, nullable) Optimizely *optimizely;
 /// The Optimizely Core's logger, or if no logger a default logger
 @property (nonatomic, strong, readonly, nonnull) id<OPTLYLogger> logger;
+/// Optimizely X Mobile Default Attributes
+@property (atomic, strong, readwrite, nullable) NSDictionary *defaultAttributes;
 
 + (nonnull instancetype)init:(nonnull OPTLYClientBuilderBlock)builderBlock;
 
