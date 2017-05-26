@@ -1,0 +1,6 @@
+framework module Pods_OptimizelySDKTVOSUniversalTests {
+  umbrella header "Pods-OptimizelySDKTVOSUniversalTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

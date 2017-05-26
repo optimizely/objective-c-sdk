@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1DEC22FDFDEB6B60D86EB9BD /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA08770AE03C2335E081F5F /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework */; };
+		3888553EE3E911187D952C24 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A9BE81F3B891105C287512 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework */; };
 		B55E76DB60EB09EC825D5E3C /* Pods_OptimizelySDKUserProfileServiceiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EF5E897FDE38E95E70AED4 /* Pods_OptimizelySDKUserProfileServiceiOS.framework */; };
 		C5B5B2602383D65A8A3675A0 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3C3E0405F4BA3A7B37E09D /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */; };
 		EA52484D1DC72B5500AF6685 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248441DC72B5500AF6685 /* OptimizelySDKUserProfileService.framework */; };
 		EA52486D1DC72B6500AF6685 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248641DC72B6500AF6685 /* OptimizelySDKUserProfileService.framework */; };
-		EA5249961DC7D86A00AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248B81DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
-		EA5249E11DC7E3F900AF6685 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248BC1DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249961DC7D86A00AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248B81DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
+		EA5249E11DC7E3F900AF6685 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5248BC1DC72D5900AF6685 /* OptimizelySDKShared.framework */; };
 		EA6112201EC27FAC001967ED /* OptimizelySDKUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112181EC27FAC001967ED /* OptimizelySDKUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA6112211EC27FAC001967ED /* OptimizelySDKUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112181EC27FAC001967ED /* OptimizelySDKUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA6112221EC27FAC001967ED /* OPTLYUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61121A1EC27FAC001967ED /* OPTLYUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -170,7 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA5249961DC7D86A00AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249961DC7D86A00AF6685 /* ReferenceProxy in Frameworks */,
 				B55E76DB60EB09EC825D5E3C /* Pods_OptimizelySDKUserProfileServiceiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +190,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA9358B51ECF507500E3F201 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */,
-				EA5249E11DC7E3F900AF6685 /* OptimizelySDKShared.framework in Frameworks */,
+				EA5249E11DC7E3F900AF6685 /* ReferenceProxy in Frameworks */,
+				3888553EE3E911187D952C24 /* Pods_OptimizelySDKUserProfileServiceTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

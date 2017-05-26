@@ -32,18 +32,24 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		23A56297343F40BC15C7349A /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD46CF7059F6E1569ACF952 /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
+		808E403D2C47EDEF7B3C206F /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F1ED0209C58C36ACA18A6F /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
 		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
-		EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; };
-		EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; };
-		EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; };
-		EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; };
+		EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; };
+		EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; };
+		EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
+		EA3144FA1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */; };
+		EA3144FB1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */; };
+		EA31450C1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */; };
+		EA31450D1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */; };
 		EA52C9E61E851CC100D4FCA0 /* OPTLYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14E1E7B604C00C087B8 /* OPTLYLogger.m */; };
 		EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1351E7B604C00C087B8 /* OPTLYBucketer.m */; };
 		EA52C9E81E851CC100D4FCA0 /* murmur3.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2991E7B65EA00C087B8 /* murmur3.c */; };
@@ -151,7 +157,6 @@
 		EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F27D1E7B647500C087B8 /* OPTLYManagerBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F21F1E7B639B00C087B8 /* OPTLYErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2361E7B639B00C087B8 /* OPTLYNetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA52CA661E851CC100D4FCA0 /* OPTLYEventDataStore.m in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F19A1E7B61F200C087B8 /* OPTLYEventDataStore.m */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6B1E851CC100D4FCA0 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2921E7B651700C087B8 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2941E7B653A00C087B8 /* OptimizelySDKDatafileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA6D1E851CC100D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2961E7B655F00C087B8 /* OptimizelySDKEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -161,7 +166,6 @@
 		EA52CA821E851CC100D4FCA0 /* OPTLYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2331E7B639B00C087B8 /* OPTLYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F2351E7B639B00C087B8 /* OPTLYMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F29C1E7B661E00C087B8 /* murmur3.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA52CA8F1E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F2791E7B647500C087B8 /* OPTLYEventDataStore.h */; };
 		EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1311E7B604C00C087B8 /* Optimizely.m */; };
 		EA52CA911E851CEE00D4FCA0 /* OPTLYClientBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1951E7B61F200C087B8 /* OPTLYClientBuilder.m */; };
 		EA52CA921E851CEE00D4FCA0 /* OPTLYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14E1E7B604C00C087B8 /* OPTLYLogger.m */; };
@@ -363,13 +367,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23CEAECCE3FF7A4D2FBE17FA /* Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig"; sourceTree = "<group>"; };
+		35F5BAC1A9A52290AED1688C /* Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3ADF7261EAD24B3E49FB6031 /* Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3BF812707C2B1BF4FC2F69E6 /* Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
 		3EF8AFB71EC63DBF008D4F5F /* unexported_symbols.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unexported_symbols.txt; sourceTree = "<group>"; };
+		3F6E90F761F4B4023BCD8886 /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
+		4255C48815E69CE80CA972F1 /* Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
+		8DD46CF7059F6E1569ACF952 /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKiOSUniversalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55812A42A88FA30C03D74F0 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDecisionService.h; sourceTree = "<group>"; };
 		EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDecisionService.m; sourceTree = "<group>"; };
 		EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYExperimentBucketMapEntity.h; sourceTree = "<group>"; };
 		EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYExperimentBucketMapEntity.m; sourceTree = "<group>"; };
 		EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYUserProfile.h; sourceTree = "<group>"; };
 		EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYUserProfile.m; sourceTree = "<group>"; };
+		EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = datafile_6372300739.json; path = TestData/datafile_6372300739.json; sourceTree = SOURCE_ROOT; };
+		EA31450A1ED7AE5500A8E555 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYTestHelper.h; path = ../OptimizelySDKCore/OptimizelySDKCoreTests/OPTLYTestHelper.h; sourceTree = "<group>"; };
+		EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYTestHelper.m; path = ../OptimizelySDKCore/OptimizelySDKCoreTests/OPTLYTestHelper.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EA52CA8B1E851CC100D4FCA0 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52CB241E851CEE00D4FCA0 /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,6 +554,8 @@
 		EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYManager.m; path = ../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.m; sourceTree = SOURCE_ROOT; };
 		EAC5F85D1E81C84500C087B8 /* OPTLYEventDispatcherBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYEventDispatcherBasic.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYEventDispatcherBasic.h; sourceTree = SOURCE_ROOT; };
 		EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; name = OptimizelySDKCore.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OptimizelySDKCore.h; sourceTree = SOURCE_ROOT; };
+		F1F1ED0209C58C36ACA18A6F /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSUniversalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3B458188C49ABCF5CC56E4 /* Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -562,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52CDED1E8649B800D4FCA0 /* OptimizelySDKTVOS.framework in Frameworks */,
+				808E403D2C47EDEF7B3C206F /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,12 +588,47 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */,
+				23A56297343F40BC15C7349A /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C93380EAD6442AFFB76292D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				35F5BAC1A9A52290AED1688C /* Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig */,
+				23CEAECCE3FF7A4D2FBE17FA /* Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig */,
+				4255C48815E69CE80CA972F1 /* Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig */,
+				3BF812707C2B1BF4FC2F69E6 /* Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig */,
+				3ADF7261EAD24B3E49FB6031 /* Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig */,
+				FF3B458188C49ABCF5CC56E4 /* Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig */,
+				3F6E90F761F4B4023BCD8886 /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */,
+				E55812A42A88FA30C03D74F0 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA3144F51ED7A8FE00A8E555 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */,
+			);
+			name = TestData;
+			path = OptimizelySDKTVOSUniversalTests;
+			sourceTree = "<group>";
+		};
+		EA3145091ED7AE2B00A8E555 /* Common Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA31450A1ED7AE5500A8E555 /* OPTLYTestHelper.h */,
+				EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */,
+				EA3144F51ED7A8FE00A8E555 /* TestData */,
+			);
+			name = "Common Tests";
+			sourceTree = "<group>";
+		};
 		EA4D95CC1E83AE0A00E40C14 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,8 +696,10 @@
 				EAC5F0F71E7B5D6500C087B8 /* OptimizelySDKUniversal */,
 				EA52CDFA1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests */,
 				EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */,
+				EA3145091ED7AE2B00A8E555 /* Common Tests */,
 				EAC5F0F61E7B5D6500C087B8 /* Products */,
 				EAC5F2981E7B658700C087B8 /* Frameworks */,
+				0C93380EAD6442AFFB76292D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -859,6 +914,8 @@
 				EA52CD3D1E85E10300D4FCA0 /* JSONModel */,
 				EA4D95CC1E83AE0A00E40C14 /* fmdb */,
 				EAC5F29B1E7B65EF00C087B8 /* murmur */,
+				F1F1ED0209C58C36ACA18A6F /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
+				8DD46CF7059F6E1569ACF952 /* Pods_OptimizelySDKiOSUniversalTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -943,7 +1000,6 @@
 				EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
 				EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */,
-				EA52CA661E851CC100D4FCA0 /* OPTLYEventDataStore.m in Headers */,
 				EA52CEF41E86690500D4FCA0 /* OptimizelySDKiOS.h in Headers */,
 				EA52CA6B1E851CC100D4FCA0 /* Optimizely.h in Headers */,
 				EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
@@ -971,12 +1027,12 @@
 				EAE8C41A1EC4E4FA00A76A2D /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41B1EC4E4FA00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EAE8C4291EC4E5F900A76A2D /* OptimizelySDKTVOS.h in Headers */,
+				EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAE8C42B1EC4E62800A76A2D /* OPTLYManager.h in Headers */,
-				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
+				EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */,
-				EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
-				EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */,
+				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,12 +1110,12 @@
 				EA61126B1EC28689001967ED /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41D1EC4E51D00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAE8C41E1EC4E51D00A76A2D /* OptimizelySDKUserProfileService.h in Headers */,
+				EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
-				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
+				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
-				EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
-				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
+				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,9 +1162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52CDF01E8649B800D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKTVOSUniversalTests" */;
 			buildPhases = (
+				D119266B83472599082E839D /* [CP] Check Pods Manifest.lock */,
 				EA52CDE41E8649B800D4FCA0 /* Sources */,
 				EA52CDE51E8649B800D4FCA0 /* Frameworks */,
 				EA52CDE61E8649B800D4FCA0 /* Resources */,
+				A94BF9626F2CB3FB00E9B271 /* [CP] Embed Pods Frameworks */,
+				BF18BBBAC0994E44F563C56D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1124,9 +1183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52CE011E8649DB00D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKiOSUniversalTests" */;
 			buildPhases = (
+				9F5F0584E4D7863960A6DCBE /* [CP] Check Pods Manifest.lock */,
 				EA52CDF51E8649DA00D4FCA0 /* Sources */,
 				EA52CDF61E8649DA00D4FCA0 /* Frameworks */,
 				EA52CDF71E8649DA00D4FCA0 /* Resources */,
+				233009EB73772B296AB4B52C /* [CP] Embed Pods Frameworks */,
+				BC68B211576439AD2EA338E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1216,6 +1278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3144FA1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,12 +1286,103 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3144FB1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		233009EB73772B296AB4B52C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F5F0584E4D7863960A6DCBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A94BF9626F2CB3FB00E9B271 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC68B211576439AD2EA338E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF18BBBAC0994E44F563C56D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D119266B83472599082E839D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		EAC5F8C01E82EE7B00C087B8 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1349,7 +1503,6 @@
 				EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
 				EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
-				EA52CA8F1E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Sources */,
 				EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */,
 				EA52CA911E851CEE00D4FCA0 /* OPTLYClientBuilder.m in Sources */,
 				EA52CA921E851CEE00D4FCA0 /* OPTLYLogger.m in Sources */,
@@ -1421,6 +1574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA31450C1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */,
 				EA52CDEB1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1429,6 +1583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA31450D1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */,
 				EA52CDFC1E8649DB00D4FCA0 /* OptimizelySDKiOSUniversalTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1825,13 +1980,14 @@
 		};
 		EA52CDF11E8649B800D4FCA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35F5BAC1A9A52290AED1688C /* Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1842,9 +1998,10 @@
 		};
 		EA52CDF21E8649B800D4FCA0 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23CEAECCE3FF7A4D2FBE17FA /* Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1855,9 +2012,10 @@
 		};
 		EA52CDF31E8649B800D4FCA0 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4255C48815E69CE80CA972F1 /* Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1868,9 +2026,10 @@
 		};
 		EA52CDF41E8649B800D4FCA0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BF812707C2B1BF4FC2F69E6 /* Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKTVOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKTVOSUniversalTests/OptimizelySDKTVOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1881,13 +2040,14 @@
 		};
 		EA52CE021E8649DB00D4FCA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ADF7261EAD24B3E49FB6031 /* Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1896,9 +2056,10 @@
 		};
 		EA52CE031E8649DB00D4FCA0 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF3B458188C49ABCF5CC56E4 /* Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1907,9 +2068,10 @@
 		};
 		EA52CE041E8649DB00D4FCA0 /* RC */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F6E90F761F4B4023BCD8886 /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1918,9 +2080,10 @@
 		};
 		EA52CE051E8649DB00D4FCA0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E55812A42A88FA30C03D74F0 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = BDMC9C2X5M;
-				INFOPLIST_FILE = OptimizelySDKiOSUniversalTests/Info.plist;
+				INFOPLIST_FILE = "OptimizelySDKiOSUniversalTests/OptimizelySDKiOSUniversalTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSUniversalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
