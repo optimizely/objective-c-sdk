@@ -52,11 +52,11 @@
     self = [super init];
     if (self != nil) {
         // _clientVersion is initialized by OPTLYManager subclass .
-        _deviceModel = [[UIDevice currentDevice] model];
-        _osVersion = [[UIDevice currentDevice] systemVersion];
+        _deviceModel = [[[UIDevice currentDevice] model] copy];
+        _osVersion = [[[UIDevice currentDevice] systemVersion] copy];
         {
             NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
-            _appVersion = dict[@"CFBundleShortVersionString"];
+            _appVersion = [dict[@"CFBundleShortVersionString"] copy];
         }
     };
     return self;
