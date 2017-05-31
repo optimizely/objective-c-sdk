@@ -51,12 +51,23 @@
 - (instancetype)init {
     self = [super init];
     if (self != nil) {
-        // _clientVersion is initialized by OPTLYManager subclass .
+        // _clientVersion is properly initialized by OPTLYManager subclass .
+        // _clientVersion starts life initialized to empty string which is better
+        // for unit testing (XCTest).
+        _clientVersion = @"";
         _deviceModel = [[[UIDevice currentDevice] model] copy];
         _osVersion = [[[UIDevice currentDevice] systemVersion] copy];
         {
+            // Get _appVersion from the app's main bundle
             NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
             _appVersion = [dict[@"CFBundleShortVersionString"] copy];
+            if (_appVersion == nil) {
+                // This will happen if there is no @"CFBundleShortVersionString" key in dict,
+                // which will be the case during unit testing (XCTest).  Empty string seems
+                // like the best default alternative to nil since empty string but not nil can
+                // be stuffed as a value in defaultAttributes .
+                _appVersion = @"";
+            }
         }
     };
     return self;

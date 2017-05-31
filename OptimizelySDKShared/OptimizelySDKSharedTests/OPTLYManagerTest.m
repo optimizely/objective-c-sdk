@@ -177,6 +177,29 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
 }
 
+- (void)checkClientDefaultAttributes: (OPTLYClient *)client {
+    XCTAssertNotNil(client);
+    XCTAssertNotNil(client.defaultAttributes);
+    XCTAssert([client.defaultAttributes isKindOfClass:[NSDictionary class]]);
+    NSArray* expectedKeys = @[@"optimizely_ios_app_version",
+                              @"optimizely_ios_device_model",
+                              @"optimizely_ios_os_version",
+                              @"optimizely_ios_sdk_version"];
+    NSDictionary* dict=(NSDictionary*)client.defaultAttributes;
+    XCTAssert(dict.count==expectedKeys.count);
+    [client.defaultAttributes enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        XCTAssert([key isKindOfClass:[NSString class]]);
+        XCTAssert([expectedKeys containsObject:key]);
+        XCTAssert([value isKindOfClass:[NSString class]]);
+        NSLog(@"key == \"%@\", value == \"%@\"",key,value);
+    }];
+    // For good measure
+    XCTAssert([dict[@"optimizely_ios_device_model"]
+               isEqualToString:[[UIDevice currentDevice] model]]);
+    XCTAssert([dict[@"optimizely_ios_os_version"]
+               isEqualToString:[[UIDevice currentDevice] systemVersion]]);
+}
+
 - (void)testInitializeClientAsync {
     // initialize manager
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
@@ -211,6 +234,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertEqual(optimizelyClient, manager.getOptimizely);
+    [self checkClientDefaultAttributes:optimizelyClient];
 }
 
 - (void)checkConfigIsUsingDefaultDatafile: (OPTLYProjectConfig *)config {
