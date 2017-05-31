@@ -36,9 +36,15 @@ Further installation instructions for Cocoapods: https://guides.cocoapods.org/us
 #### Carthage
 1. Add the following lines to the _Cartfile_:<pre> 
 github "optimizely/objective-c-sdk"
-github "jsonmodel/jsonmodel"
+github "jsonmodel/jsonmodel" "1e80ecaec8314c7d367676ed0e8545c10c563612"
 github "ccgus/fmdb"
 </pre>
+
+Xcode 8.3.2 is unable to compile JSONModel 1.7.0 released on Oct 7, 2016,
+but will compile JSONModel master branch as of its last commit Apr 29, 2017
+which was commit "1e80ecaec8314c7d367676ed0e8545c10c563612" .  Hopefully,
+a future release of JSONModel will make specifying this particular commit
+on JSONModel master branch unnecessary.
 
 2. Run the following command:<pre>```carthage update```</pre>
 
