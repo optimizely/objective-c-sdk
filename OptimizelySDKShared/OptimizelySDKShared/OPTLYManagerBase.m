@@ -112,6 +112,7 @@
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
     }];
+    client.defaultAttributes = [self newDefaultAttributes];
     return client;
 }
 
