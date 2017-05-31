@@ -1,6 +1,11 @@
 # Objective-C SDK
 [![Build Status](https://travis-ci.org/optimizely/objective-c-sdk.svg?branch=master)](https://travis-ci.org/optimizely/objective-c-sdk/)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/gradle-extra-configurations-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/carthage/carthage)
+![Platforms](https://img.shields.io/cocoapods/p/OptimizelySDKiOS.svg)
+[![Podspec](https://img.shields.io/cocoapods/v/OptimizelySDKiOS.svg)](https://cocoapods.org/pods/OptimizelySDKiOS)
+![Platforms](https://img.shields.io/cocoapods/p/OptimizelySDKTVOS.svg)
+[![Podspec](https://img.shields.io/cocoapods/v/OptimizelySDKTVOS.svg)](https://cocoapods.org/pods/OptimizelySDKTVOS)
 
 This repository houses the Optimizely Mobile and OTT experimentation SDKs.
 
