@@ -86,6 +86,11 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertNotNil(optimizely.config);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
+    {
+        NSDictionary *dict = client.defaultAttributes;
+        XCTAssert([dict[OptimizelySDKVersionKey]
+                   isEqualToString:optimizely.config.clientVersion]);
+    }
 }
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
