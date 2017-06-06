@@ -32,6 +32,11 @@
 
 @import UIKit;
 
+NSString * _Nonnull const OptimizelyAppVersionKey = @"optimizely_ios_app_version";
+NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_ios_device_model";
+NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_ios_os_version";
+NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version";
+
 @interface OPTLYManagerBase()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
 /// Version number of the Optimizely iOS SDK
@@ -107,10 +112,10 @@
 }
 
 - (nonnull NSDictionary *)newDefaultAttributes {
-    return @{@"optimizely_ios_device_model":_deviceModel,
-             @"optimizely_ios_sdk_version":_clientVersion,
-             @"optimizely_ios_os_version":_osVersion,
-             @"optimizely_ios_app_version":_appVersion};
+    return @{OptimizelyDeviceModelKey:_deviceModel,
+             OptimizelySDKVersionKey:_clientVersion,
+             OptimizelyOSVersionKey:_osVersion,
+             OptimizelyAppVersionKey:_appVersion};
 }
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {

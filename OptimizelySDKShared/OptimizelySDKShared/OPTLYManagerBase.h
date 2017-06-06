@@ -16,6 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * _Nonnull const OptimizelyAppVersionKey;
+extern NSString * _Nonnull const OptimizelyDeviceModelKey;
+extern NSString * _Nonnull const OptimizelyOSVersionKey;
+extern NSString * _Nonnull const OptimizelySDKVersionKey;
+
 @class OPTLYClient, OPTLYManagerBuilder;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 

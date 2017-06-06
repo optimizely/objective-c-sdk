@@ -19,6 +19,7 @@
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import <OptimizelySDKShared/OPTLYManagerBase.h>
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBasic.h"
@@ -181,10 +182,10 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.defaultAttributes);
     XCTAssert([client.defaultAttributes isKindOfClass:[NSDictionary class]]);
-    NSArray* expectedKeys = @[@"optimizely_ios_app_version",
-                              @"optimizely_ios_device_model",
-                              @"optimizely_ios_os_version",
-                              @"optimizely_ios_sdk_version"];
+    NSArray* expectedKeys = @[OptimizelyAppVersionKey,
+                              OptimizelyDeviceModelKey,
+                              OptimizelyOSVersionKey,
+                              OptimizelySDKVersionKey];
     NSDictionary* dict=(NSDictionary*)client.defaultAttributes;
     XCTAssert(dict.count==expectedKeys.count);
     [client.defaultAttributes enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
@@ -194,9 +195,9 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
         NSLog(@"key == \"%@\", value == \"%@\"",key,value);
     }];
     // For good measure
-    XCTAssert([dict[@"optimizely_ios_device_model"]
+    XCTAssert([dict[OptimizelyDeviceModelKey]
                isEqualToString:[[UIDevice currentDevice] model]]);
-    XCTAssert([dict[@"optimizely_ios_os_version"]
+    XCTAssert([dict[OptimizelyOSVersionKey]
                isEqualToString:[[UIDevice currentDevice] systemVersion]]);
 }
 
