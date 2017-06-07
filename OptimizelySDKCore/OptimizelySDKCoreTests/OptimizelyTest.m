@@ -18,6 +18,7 @@
 #import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "Optimizely.h"
+#import "OPTLYErrorHandler.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
@@ -80,7 +81,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = self.datafile;
-        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }];
     
     XCTAssertNotNil(self.optimizely);
@@ -283,7 +285,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSString *variableStringNotInExperimentVariation = [self.optimizely variableString:kVariableKeyForStringNotInExperimentVariation
+    NSString *variableStringNotInExperimentVariation = [optimizelyMock variableString:kVariableKeyForStringNotInExperimentVariation
                                                                                 userId:kUserId
                                                                             attributes:nil
                                                                     activateExperiment:YES
@@ -510,7 +512,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSInteger variableIntActivateExperiment = [self.optimizely variableInteger:kVariableKeyForInt
+    NSInteger variableIntActivateExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
                                                                         userId:kUserId
                                                                     attributes:self.attributes
                                                             activateExperiment:YES
@@ -534,7 +536,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    NSInteger variableIntActivateExperiment = [self.optimizely variableInteger:kVariableKeyForInt
+    NSInteger variableIntActivateExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
                                                                         userId:kUserId
                                                                     attributes:self.attributes
                                                             activateExperiment:YES
@@ -562,7 +564,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    NSInteger variableIntWithGroupedExperiment = [self.optimizely variableInteger:kVariableKeyForIntegerGroupedExperiment
+    NSInteger variableIntWithGroupedExperiment = [optimizelyMock variableInteger:kVariableKeyForIntegerGroupedExperiment
                                                                            userId:kUserId
                                                                        attributes:nil
                                                                activateExperiment:NO
@@ -581,7 +583,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSInteger variableIntNotInExperimentVariation = [self.optimizely variableInteger:kVariableKeyForIntegerNotInExperimentVariation
+    NSInteger variableIntNotInExperimentVariation = [optimizelyMock variableInteger:kVariableKeyForIntegerNotInExperimentVariation
                                                                               userId:kUserId
                                                                           attributes:nil
                                                                   activateExperiment:YES
@@ -618,7 +620,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    double variableDouble = [self.optimizely variableDouble:kVariableKeyForDouble
+    double variableDouble = [optimizelyMock variableDouble:kVariableKeyForDouble
                                                      userId:kUserId
                                                  attributes:self.attributes
                                          activateExperiment:NO
@@ -653,7 +655,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    double variableDoubleActivateExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+    double variableDoubleActivateExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
                                                                        userId:kUserId
                                                                    attributes:self.attributes
                                                            activateExperiment:YES
@@ -677,7 +679,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [self stubFailureResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    double variableDoubleActivateExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+    double variableDoubleActivateExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
                                                                        userId:kUserId
                                                                    attributes:self.attributes
                                                            activateExperiment:YES
@@ -699,13 +701,13 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 - (void) testGetVariableDoubleWithGroupedExperiment {
     id optimizelyMock = OCMPartialMock(self.optimizely);
-    
+
     // Ensure activateExperiment is not called
     OCMReject([optimizelyMock activate:[OCMArg isNotNil]
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNil]]);
     
-    double variableDoubleWithGroupedExperiment = [self.optimizely variableDouble:kVariableKeyForDoubleGroupedExperiment
+    double variableDoubleWithGroupedExperiment = [optimizelyMock variableDouble:kVariableKeyForDoubleGroupedExperiment
                                                                           userId:kUserId
                                                                       attributes:nil
                                                               activateExperiment:NO
@@ -725,7 +727,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                             attributes:[OCMArg isNil]]);
     
     // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    double variableDoubleNotInExperimentVariation = [self.optimizely variableDouble:kVariableKeyForDoubleNotInExperimentVariation
+    double variableDoubleNotInExperimentVariation = [optimizelyMock variableDouble:kVariableKeyForDoubleNotInExperimentVariation
                                                                              userId:kUserId
                                                                          attributes:nil
                                                                  activateExperiment:YES
@@ -744,7 +746,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                 userId:[OCMArg isNotNil]
                             attributes:[OCMArg isNotNil]]);
     
-    double variableDoubleUserNotBucketedIntoExperiment = [self.optimizely variableDouble:kVariableKeyForDouble
+    double variableDoubleUserNotBucketedIntoExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
                                                                                   userId:kUserId
                                                                               attributes:nil
                                                                       activateExperiment:NO
