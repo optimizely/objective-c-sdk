@@ -61,7 +61,7 @@ static NSString *const kProjectId = @"6372300739";
     XCTAssertNotNil(manager.logger);
     XCTAssertNotNil(manager.datafileManager);
     XCTAssertNil(manager.clientEngine);
-    XCTAssert([manager.clientVersion isEqual:@""]);
+    XCTAssertEqualObjects(manager.clientVersion,@"");
 }
 
 - (void)testBuilderCanAssignErrorHandler {
