@@ -30,11 +30,64 @@
 #import "OPTLYManagerBase.h"
 #import "OPTLYManagerBuilder.h"
 
+@import UIKit;
+
+NSString * _Nonnull const OptimizelyAppVersionKey = @"optimizely_ios_app_version";
+NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_ios_device_model";
+
+// Currently, Optimizely only supports tvOS and iOS, but this #if...#endif
+// could be elaborated with TARGET_OS_MAC or TARGET_OS_WATCH also defined in
+// usr/include/TargetConditionals.h in the future if the need should arise.
+#if TARGET_OS_TV
+// Code compiled only when building for tvOS.
+NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_tvos_os_version";
+#else
+// Not for tvOS
+NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_ios_os_version";
+#endif
+
+NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version";
+
 @interface OPTLYManagerBase()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
+/// Version number of the Optimizely iOS SDK
+@property (nonatomic, readwrite, strong, nonnull) NSString *clientVersion;
+/// iOS Device Model
+@property (nonatomic, readwrite, strong, nonnull) NSString *deviceModel;
+/// iOS OS Version
+@property (nonatomic, readwrite, strong, nonnull) NSString *osVersion;
+/// iOS App Version
+@property (nonatomic, readwrite, strong, nonnull) NSString *appVersion;
 @end
 
 @implementation OPTLYManagerBase
+
+#pragma mark - Constructors
+
+- (instancetype)init {
+    self = [super init];
+    if (self != nil) {
+        // _clientVersion is properly initialized by OPTLYManager subclass .
+        // _clientVersion starts life initialized to empty string which is better
+        // for unit testing (XCTest).
+        _clientVersion = @"";
+        _deviceModel = [[[UIDevice currentDevice] model] copy];
+        _osVersion = [[[UIDevice currentDevice] systemVersion] copy];
+        {
+            // Get _appVersion from the app's main bundle
+            NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
+            _appVersion = [dict[@"CFBundleShortVersionString"] copy];
+            if (_appVersion == nil) {
+                // This will happen if there is no @"CFBundleShortVersionString" key in dict,
+                // which will be the case during unit testing (XCTest).  Empty string seems
+                // like the best default alternative to nil since empty string but not nil can
+                // be stuffed as a value in defaultAttributes .
+                _appVersion = @"";
+            }
+        }
+    };
+    return self;
+}
 
 #pragma mark - Client Getters
 
@@ -69,6 +122,13 @@
     return self.optimizelyClient;
 }
 
+- (nonnull NSDictionary *)newDefaultAttributes {
+    return @{OptimizelyDeviceModelKey:_deviceModel,
+             OptimizelySDKVersionKey:_clientVersion,
+             OptimizelyOSVersionKey:_osVersion,
+             OptimizelyAppVersionKey:_appVersion};
+}
+
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
     OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;
@@ -79,6 +139,7 @@
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
     }];
+    client.defaultAttributes = [self newDefaultAttributes];
     return client;
 }
 
