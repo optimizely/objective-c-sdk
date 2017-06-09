@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -19,6 +19,7 @@
 #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #import <OptimizelySDKCore/OPTLYProjectConfig.h>
+#import <OptimizelySDKShared/OPTLYManagerBase.h>
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBasic.h"
@@ -85,6 +86,11 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     XCTAssertNotNil(optimizely.config);
     XCTAssertNotNil(optimizely.config.clientEngine);
     XCTAssertNotNil(optimizely.config.clientVersion);
+    {
+        NSDictionary *dict = client.defaultAttributes;
+        XCTAssert([dict[OptimizelySDKVersionKey]
+                   isEqualToString:optimizely.config.clientVersion]);
+    }
 }
 
 - (void)testInitializeClientWithoutDatafileReturnsDummy {
@@ -177,6 +183,29 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
 }
 
+- (void)checkClientDefaultAttributes: (OPTLYClient *)client {
+    XCTAssertNotNil(client);
+    XCTAssertNotNil(client.defaultAttributes);
+    XCTAssert([client.defaultAttributes isKindOfClass:[NSDictionary class]]);
+    NSArray* expectedKeys = @[OptimizelyAppVersionKey,
+                              OptimizelyDeviceModelKey,
+                              OptimizelyOSVersionKey,
+                              OptimizelySDKVersionKey];
+    NSDictionary* dict=(NSDictionary*)client.defaultAttributes;
+    XCTAssert(dict.count==expectedKeys.count);
+    [client.defaultAttributes enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        XCTAssert([key isKindOfClass:[NSString class]]);
+        XCTAssert([expectedKeys containsObject:key]);
+        XCTAssert([value isKindOfClass:[NSString class]]);
+        NSLog(@"key == \"%@\", value == \"%@\"",key,value);
+    }];
+    // For good measure
+    XCTAssert([dict[OptimizelyDeviceModelKey]
+               isEqualToString:[[UIDevice currentDevice] model]]);
+    XCTAssert([dict[OptimizelyOSVersionKey]
+               isEqualToString:[[UIDevice currentDevice] systemVersion]]);
+}
+
 - (void)testInitializeClientAsync {
     // initialize manager
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
@@ -211,6 +240,7 @@ static NSString *const kAlternateDatafilename = @"validator_whitelisting_test_da
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
     XCTAssertEqual(optimizelyClient, manager.getOptimizely);
+    [self checkClientDefaultAttributes:optimizelyClient];
 }
 
 - (void)checkConfigIsUsingDefaultDatafile: (OPTLYProjectConfig *)config {
