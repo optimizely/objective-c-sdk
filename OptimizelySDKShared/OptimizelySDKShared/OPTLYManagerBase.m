@@ -32,21 +32,22 @@
 
 @import UIKit;
 
-NSString * _Nonnull const OptimizelyAppVersionKey = @"optimizely_ios_app_version";
-NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_ios_device_model";
-
 // Currently, Optimizely only supports tvOS and iOS, but this #if...#endif
 // could be elaborated with TARGET_OS_MAC or TARGET_OS_WATCH also defined in
 // usr/include/TargetConditionals.h in the future if the need should arise.
 #if TARGET_OS_TV
 // Code compiled only when building for tvOS.
+NSString * _Nonnull const OptimizelyAppVersionKey = @"optimizely_tvos_app_version";
+NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_tvos_device_model";
 NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_tvos_os_version";
+NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_tvos_sdk_version";
 #else
-// Not for tvOS
+// for iOS
+NSString * _Nonnull const OptimizelyAppVersionKey = @"optimizely_ios_app_version";
+NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_ios_device_model";
 NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_ios_os_version";
-#endif
-
 NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version";
+#endif
 
 @interface OPTLYManagerBase()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;

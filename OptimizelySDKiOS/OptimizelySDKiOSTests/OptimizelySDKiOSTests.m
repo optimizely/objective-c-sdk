@@ -100,4 +100,23 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_iOS_VERSION);
 }
 
+
+- (void)testDefaultAttributesKeysAreCorrect {
+    XCTAssertEqualObjects(@"optimizely_ios_app_version", OptimizelyAppVersionKey);
+    XCTAssertEqualObjects(@"optimizely_ios_device_model", OptimizelyDeviceModelKey);
+    XCTAssertEqualObjects(@"optimizely_ios_os_version", OptimizelyOSVersionKey);
+    XCTAssertEqualObjects(@"optimizely_ios_sdk_version", OptimizelySDKVersionKey);
+    
+    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.datafile = kDefaultDatafile;
+        builder.projectId = kProjectId;
+    }];
+    
+    OPTLYClient *client = [manager initialize];
+    XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
+    XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
+}
+
 @end
