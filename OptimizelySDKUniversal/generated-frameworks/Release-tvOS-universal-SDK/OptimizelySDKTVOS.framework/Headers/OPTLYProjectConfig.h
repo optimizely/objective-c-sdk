@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, Ignore> userProfile;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, Ignore> userProfileService;
 
 /// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;

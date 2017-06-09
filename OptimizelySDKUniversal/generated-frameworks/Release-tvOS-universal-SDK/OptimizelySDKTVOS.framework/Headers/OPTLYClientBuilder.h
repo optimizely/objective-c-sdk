@@ -40,7 +40,7 @@ typedef void (^OPTLYClientBuilderBlock)(OPTLYClientBuilder * _Nonnull builder);
 /// The logger is by default set to one that is created by Optimizely. This default logger can be overridden by any object that conforms to the OPTLYLogger protocol.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYLogger> logger;
 /// User profile to be used by the Optimizely instance to store user-specific data.
-@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfile;
+@property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfileService;
 /// The client version
 @property (nonatomic, strong, nonnull) NSString *clientVersion;
 /// The client engine

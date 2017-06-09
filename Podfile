@@ -205,3 +205,18 @@ target 'OptimizelyTVOSDemoApp' do
   platform :tvos, '9.0'
   common_tvos_pods
 end
+
+# OptimizelySDKiOSUniversal target
+target 'OptimizelySDKiOSUniversalTests' do
+    project 'OptimizelySDKUniversal/OptimizelySDKUniversal.xcodeproj/'
+    platform :ios, '8.0'
+    use_frameworks!
+    common_test_pods
+end
+
+# OptimizelySDKTVOSUniversal targets
+target 'OptimizelySDKTVOSUniversalTests' do
+    project 'OptimizelySDKUniversal/OptimizelySDKUniversal.xcodeproj/'
+    platform :tvos, '9.0'
+    common_test_pods
+end

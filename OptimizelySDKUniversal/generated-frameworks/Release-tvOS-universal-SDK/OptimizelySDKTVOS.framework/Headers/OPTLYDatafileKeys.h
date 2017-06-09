@@ -78,6 +78,10 @@ extern NSString * const OPTLYDatafileKeysVariableValue;
 // Variation Live Variable
 extern NSString * const OPTLYDatafileKeysVariationVariableId;
 extern NSString * const OPTLYDatafileKeysVariationVariableValue;
+// User Profile Service (not in datafile yet)
+extern NSString * const OPTLYDatafileKeysUserProfileServiceUserId;
+extern NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap;
+extern NSString * const OPTLYDatafileKeysUserProfileServiceVariationId;
 
 @interface OPTLYDatafileKeys : NSObject
 

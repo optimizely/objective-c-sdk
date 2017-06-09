@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52CDE71E8649B800D4FCA0"
+               BuildableName = "OptimizelySDKTVOSUniversalTests.xctest"
+               BlueprintName = "OptimizelySDKTVOSUniversalTests"
+               ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EAC5F8BA1E82EE7400C087B8"
+            BuildableName = "OptimizelySDKTVOS-Universal"
+            BlueprintName = "OptimizelySDKTVOS-Universal"
+            ReferencedContainer = "container:OptimizelySDKUniversal.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
