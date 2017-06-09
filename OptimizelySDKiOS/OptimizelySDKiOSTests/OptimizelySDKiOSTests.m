@@ -118,5 +118,5 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
     XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
 }
-@end
 
+@end
