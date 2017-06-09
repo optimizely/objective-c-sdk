@@ -126,13 +126,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
+    __weak typeof(self) weakSelf = self;
     [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                             __typeof__(self) strongSelf = weakSelf;
                                              if (error) {
-                                                 [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+                                                 [strongSelf handleErrorLogsForActivateUser:userId experiment:experimentKey];
                                              } else {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experimentKey];
-                                                 [self.logger logMessage:logMessage
+                                                 [strongSelf.logger logMessage:logMessage
                                                                withLevel:OptimizelyLogLevelInfo];
                                              }
                                          }];
@@ -252,13 +254,15 @@ attributes:(NSDictionary *)attributes
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, eventKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
+    __weak typeof(self) weakSelf = self;
     [self.eventDispatcher dispatchConversionEvent:conversionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                             __typeof__(self) strongSelf = weakSelf;
                                              if (error) {
-                                                 [self handleErrorLogsForTrackEvent:eventKey userId:userId];
+                                                 [strongSelf handleErrorLogsForTrackEvent:eventKey userId:userId];
                                              } else {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingSuccess, eventKey, userId];
-                                                 [self.logger logMessage:logMessage
+                                                 [strongSelf.logger logMessage:logMessage
                                                                withLevel:OptimizelyLogLevelInfo];
                                              }
                                          }];
