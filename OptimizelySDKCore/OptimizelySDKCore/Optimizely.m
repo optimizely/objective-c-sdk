@@ -99,7 +99,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+{
+    return [self activate:experimentKey userId:userId attributes:attributes callback:nil];
+}
+
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                    callback:(void (^)(NSError *))callback {
     
     // get variation
     OPTLYVariation *variation = [self variation:experimentKey
@@ -107,19 +115,25 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                      attributes:attributes];
     
     if (!variation) {
-        [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+        NSError *error = [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+        if (callback) {
+            callback(error);
+        }
         return nil;
     }
     
     // send impression event
     NSDictionary *impressionEventParams = [self.eventBuilder buildDecisionEventTicket:self.config
-                                                                                     userId:userId
-                                                                              experimentKey:experimentKey
-                                                                                variationId:variation.variationId
-                                                                                 attributes:attributes];
+                                                                               userId:userId
+                                                                        experimentKey:experimentKey
+                                                                          variationId:variation.variationId
+                                                                           attributes:attributes];
     
     if ([impressionEventParams count] == 0) {
-        [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+        NSError *error = [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
+        if (callback) {
+            callback(error);
+        }
         return variation;
     }
     
@@ -135,7 +149,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                              } else {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experimentKey];
                                                  [strongSelf.logger logMessage:logMessage
-                                                               withLevel:OptimizelyLogLevelInfo];
+                                                                     withLevel:OptimizelyLogLevelInfo];
+                                             }
+                                             if (callback) {
+                                                 callback(error);
                                              }
                                          }];
     
@@ -207,7 +224,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-attributes:(NSDictionary *)attributes
+   attributes:(NSDictionary *)attributes
    eventValue:(NSNumber *)eventValue
 {
     [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
@@ -263,7 +280,7 @@ attributes:(NSDictionary *)attributes
                                              } else {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingSuccess, eventKey, userId];
                                                  [strongSelf.logger logMessage:logMessage
-                                                               withLevel:OptimizelyLogLevelInfo];
+                                                                     withLevel:OptimizelyLogLevelInfo];
                                              }
                                          }];
     
@@ -330,32 +347,6 @@ attributes:(NSDictionary *)attributes
 }
 
 /**
- * Buckets user into a variation of the provided experiment.
- *
- * @param experimentKey Key of experiment that user is being bucketed into
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the user should be activated into the experiment
- * @return Variation of the experiment that the user has been bucketed into
- */
-- (OPTLYVariation *)variation:(NSString *)experimentKey
-                       userId:(nonnull NSString *)userId
-                   attributes:(nullable NSDictionary *)attributes
-           activateExperiment:(BOOL)activateExperiment {
-    OPTLYVariation *variation = nil;
-    if (activateExperiment) {
-        variation = [self activate:experimentKey
-                            userId:userId
-                        attributes:attributes];
-    } else {
-        variation = [self variation:experimentKey
-                             userId:userId
-                         attributes:attributes];
-    }
-    return variation;
-}
-
-/**
  * Gets the stringified value of the live variable that is stored in the datafile.
  *
  * @param variableId ID of the live variable
@@ -410,6 +401,20 @@ attributes:(NSDictionary *)attributes
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
                                 error:(NSError * _Nullable * _Nullable)error {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:attributes
+             activateExperiment:activateExperiment
+                          error:error
+                       callback:nil];
+}
+
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(NSError * _Nullable * _Nullable)error
+                             callback:(void (^)(NSError *))callback {
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
     
     if (!variable) {
@@ -426,6 +431,9 @@ attributes:(NSDictionary *)attributes
         } else {
             [self.errorHandler handleError:variableUnknownForVariableKey];
         }
+        if (callback) {
+            callback(*error);
+        }
         
         return nil;
     }
@@ -437,24 +445,52 @@ attributes:(NSDictionary *)attributes
     if ([experimentKeysForLiveVariable count] == 0) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNoExperimentsContainVariable, variableKey];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        
+        if (callback) {
+            callback(nil);
+        }
+        
         return variable.defaultValue;
     }
     
     for (NSString *experimentKey in experimentKeysForLiveVariable) {
+        
         OPTLYVariation *variation = [self variation:experimentKey
                                              userId:userId
-                                         attributes:attributes
-                                 activateExperiment:activateExperiment];
+                                         attributes:attributes];
         
-        if (variation == nil) {
+        
+        if (variation) {
+            NSString *valueForLiveVariable = [self getValueForLiveVariable:variableId variation:variation];
+            
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableValue, variableId, valueForLiveVariable];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            
+            if (activateExperiment) {
+                [self activate:experimentKey
+                        userId:userId
+                    attributes:attributes
+                      callback:^(NSError *error) {
+                          if (callback) {
+                              callback(error);
+                          }
+                      }];
+            } else {
+                if (callback) {
+                    callback(nil);
+                }
+            }
+            
+            return valueForLiveVariable;
+        } else {
             // If user is not bucketed into experiment, then continue to another experiment
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable, userId, experimentKey, variableKey];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            continue;
-        } else {
-            return [self getValueForLiveVariable:variableId
-                                       variation:variation];
         }
+    }
+    
+    if (callback) {
+        callback(nil);
     }
     
     return variable.defaultValue;
@@ -622,8 +658,8 @@ attributes:(NSDictionary *)attributes
 }
 
 // log and propagate error for a activate failure
-- (void)handleErrorLogsForActivateUser:(NSString *)userId
-                            experiment:(NSString *)experimentKey
+- (NSError *)handleErrorLogsForActivateUser:(NSString *)userId
+                                 experiment:(NSString *)experimentKey
 {
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
     NSDictionary *errorDictionary = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
@@ -632,6 +668,7 @@ attributes:(NSDictionary *)attributes
                                      userInfo:errorDictionary];
     [self.errorHandler handleError:error];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    return error;
 }
 
 - (NSString *)description {

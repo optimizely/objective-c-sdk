@@ -65,6 +65,20 @@ static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
 // variation IDs
 static NSString * const kVariationIDForWhitelisting = @"variation4";
 
+
+@interface Optimizely(test)
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(NSError * _Nullable * _Nullable)error
+                             callback:(void (^)(NSError *))callback;
+- (OPTLYVariation *)activate:(NSString *)experimentKey
+                      userId:(NSString *)userId
+                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                    callback:(void (^)(NSError *))callback;
+@end
+
 @interface OptimizelyTest : XCTestCase
 
 @property (nonatomic, strong) NSData *datafile;
@@ -97,6 +111,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [OHHTTPStubs removeAllStubs];
 }
 
+#pragma mark - Get Variation Tests
+
 - (void)testBasicGetVariation {
     NSString *experimentKey = @"testExperiment1";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
@@ -116,7 +132,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
 }
 
-- (void)testWithAudience {
+- (void)testVariationWithAudience {
     NSString *experimentKey = @"testExperimentWithFirefoxAudience";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
     XCTAssertNotNil(experiment);
@@ -139,60 +155,166 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertNotNil(variation);
 }
 
-- (void)stubSuccessResponseForEventRequest {
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testGetVariableString"];
+// Test whitelisting works with get variation
+- (void)testVariationWhitelisting {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        return [request.URL.host isEqualToString:@"logx.optimizely.com"];
-    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-        [expectation fulfill];
-        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
     }];
+    XCTAssertNotNil(optimizely);
+    
+    // get variation
+    OPTLYVariation *variation = [optimizely variation:kExperimentKeyForWhitelisting userId:kUserIdForWhitelisting];
+    XCTAssertNotNil(variation);
+    XCTAssertEqualObjects(variation.variationId, kVariationIDForWhitelisting);
+    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForWhitelisting);
 }
 
-- (void)stubFailureResponseForEventRequest {
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testGetVariableString"];
-    
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
-        return YES; // Stub ALL requests without any condition
-    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        [expectation fulfill];
-        NSError *error = [NSError errorWithDomain:NSURLErrorDomain
-                                             code:NSURLErrorTimedOut
-                                         userInfo:nil];
-        return [OHHTTPStubsResponse responseWithError:error];
-    }];
-}
+// variableStringWithCompletion is used by all the live variable APIs
+// These tests check that activate is called at the appropriate times
+#pragma mark - Live Variable Tests: variableStringWithCompletion
 
-- (void)testGetVariableString {
+- (void)testVariableStringWithCompletionActivateTrueSuccess {
+    [self stubSuccessResponseForEventRequest];
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
-    // Ensure activateExperiment is not called
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Get variable with string and completion block activate call succeeds!"];
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:YES
+                                                        error:nil
+                                                     callback:^(NSError *error) {
+                                                         [expectation fulfill];
+                                                     }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        // Ensure activateExperiment is called
+        OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                    userId:[OCMArg isNotNil]
+                                attributes:[OCMArg isNotNil]
+                                  callback:[OCMArg isNotNil]]);
+        if(error) {
+            XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+        }
+    }];
+    
+    [optimizelyMock stopMocking];
+}
+
+- (void)testVariableStringWithCompletionActivateTrueFailure {
+    [self stubFailureResponseForEventRequest];
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Get variable with string and completion block activate call succeeds.!"];
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:YES
+                                                        error:nil
+                                                     callback:^(NSError *error) {
+                                                         XCTAssertNotNil(error);
+                                                         [expectation fulfill];
+                                                     }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        // Ensure activateExperiment is not called
+        OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
+                                    userId:[OCMArg isNotNil]
+                                attributes:[OCMArg isNotNil]
+                                  callback:[OCMArg isNotNil]]);
+        XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+    }];
+    
+    [optimizelyMock stopMocking];
+}
+
+- (void)testVariableStringWithCompletionActivateFalseSuccess {
+    [self stubSuccessResponseForEventRequest];
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    
     OCMReject([optimizelyMock activate:[OCMArg isNotNil]
                                 userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
+                            attributes:[OCMArg isNotNil]
+                              callback:[OCMArg isNotNil]]);
     
     NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:NO
+                                                        error:nil
+                                                     callback:nil];
+    
+    XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+    [optimizelyMock stopMocking];
+}
+
+- (void)testVariableStringWithCompletionActivateFalseFailure {
+    [self stubFailureResponseForEventRequest];
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                userId:[OCMArg isNotNil]
+                            attributes:[OCMArg isNotNil]
+                              callback:[OCMArg isNotNil]]);
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:NO
+                                                        error:nil
+                                                     callback:nil];
+    
+    XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+    [optimizelyMock stopMocking];
+}
+
+- (void)testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment {
+    [self stubSuccessResponseForEventRequest];
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Get variable with string and completion block activate call succeeds!"];
+    NSString *variableString = [optimizelyMock variableString:kVariableKeyForBoolNotInExperimentVariation
+                                                       userId:kUserId
+                                                   attributes:self.attributes
+                                           activateExperiment:YES
+                                                        error:nil
+                                                     callback:^(NSError *error) {
+                                                         [expectation fulfill];
+                                                     }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        // Ensure activateExperiment is called
+        OCMReject([optimizelyMock activate:[OCMArg isNotNil]
+                                    userId:[OCMArg isNotNil]
+                                attributes:[OCMArg isNotNil]
+                                  callback:[OCMArg isNotNil]]);
+        if(error) {
+            XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
+        }
+    }];
+    
+    [optimizelyMock stopMocking];
+}
+
+#pragma mark - Live Variable Tests: variableString
+- (void)testVariableString {
+    NSString *variableString = [self.optimizely variableString:kVariableKeyForString
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:NO
                                                         error:nil];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
-    
-    [optimizelyMock stopMocking];
 }
 
-- (void)testGetVariableStringShortAPI {
+- (void)testVariableStringShortAPI {
     NSString *variableString = [self.optimizely variableString:kVariableKeyForString
                                                         userId:kUserId];
     
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
-- (void)testGetVariableStringShortAPIWithActivateExperimentParamIncluded {
+- (void)testVariableStringShortAPIWithActivateExperimentParamIncluded {
     NSString *variableString = [self.optimizely variableString:kVariableKeyForString
                                                         userId:kUserId
                                             activateExperiment:NO];
@@ -200,7 +322,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\" when user doesn't pass audience conditions.");
 }
 
-- (void)testGetVariableStringShortAPIWithAttributes {
+- (void)testVariableStringShortAPIWithAttributes {
     
     NSString *variableString = [self.optimizely variableString:kVariableKeyForString
                                                         userId:kUserId
@@ -210,129 +332,15 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
 }
 
-- (void)testGetVariableStringWithActivateExperimentTrue {
-    [self stubSuccessResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    NSString *variableStringActivateExperiment = [optimizelyMock variableString:kVariableKeyForString
-                                                                         userId:kUserId
-                                                                     attributes:self.attributes
-                                                             activateExperiment:YES
-                                                                          error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableStringWithActivateExperimentTrue: %@", error);
-        }
-    }];
-    
-    XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableStringWithActivateExperimentTrueAndFailureResponseForEventRequest {
-    [self stubFailureResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    NSString *variableStringActivateExperiment = [optimizelyMock variableString:kVariableKeyForString
-                                                                         userId:kUserId
-                                                                     attributes:self.attributes
-                                                             activateExperiment:YES
-                                                                          error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableStringWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
-        }
-    }];
-    
-    XCTAssertEqualObjects(variableStringActivateExperiment, kVariableStringValue, "Variable string value should be \"Hello\".");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableStringWithGroupedExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    NSString *variableStringWithGroupedExperiment = [optimizelyMock variableString:kVariableKeyForStringGroupedExperiment
-                                                                            userId:kUserId
-                                                                        attributes:nil
-                                                                activateExperiment:NO
-                                                                             error:nil];
-    XCTAssertEqualObjects(variableStringWithGroupedExperiment, kVariableStringValueGroupedExperiment, "Variable string value should be \"Ciao\".");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableStringVariableNotInAnyExperiments {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSString *variableStringNotInExperimentVariation = [optimizelyMock variableString:kVariableKeyForStringNotInExperimentVariation
-                                                                                userId:kUserId
-                                                                            attributes:nil
-                                                                    activateExperiment:YES
-                                                                                 error:nil];
-    
-    XCTAssertEqualObjects(variableStringNotInExperimentVariation, kVariableStringNotInExperimentVariation, "Variable string value should be \"default string value\".");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableStringUserNotBucketedIntoExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    NSString *variableString = [optimizelyMock variableString:kVariableKeyForString
-                                                       userId:kUserId
-                                                   attributes:nil
-                                           activateExperiment:NO
-                                                        error:nil];
-    
-    // Should return default value
-    XCTAssertEqualObjects(variableString, kVariableStringDefaultValue, "Variable string value should be \"defaultStringValue\".");
-    
-    [optimizelyMock stopMocking];
-}
-
+#pragma mark - Live Variable Tests: variableBoolean
 - (void)testGetVariableBoolean {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    BOOL variableBool = [optimizelyMock variableBoolean:kVariableKeyForBool
-                                                 userId:kUserId
-                                             attributes:self.attributes
-                                     activateExperiment:NO
-                                                  error:nil];
+    BOOL variableBool = [self.optimizely variableBoolean:kVariableKeyForBool
+                                                  userId:kUserId
+                                              attributes:self.attributes
+                                      activateExperiment:NO
+                                                   error:nil];
     
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
-    
-    [optimizelyMock stopMocking];
 }
 
 - (void)testGetVariableBooleanShortAPI {
@@ -359,131 +367,14 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertFalse(variableBool, "Variable boolean value should be false.");
 }
 
-- (void)testGetVariableBooleanWithActivateExperimentTrue {
-    [self stubSuccessResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    BOOL variableBoolActivateExperiment = [optimizelyMock variableBoolean:kVariableKeyForBool
-                                                                   userId:kUserId
-                                                               attributes:self.attributes
-                                                       activateExperiment:YES
-                                                                    error:nil];
-    
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableBooleanWithActivateExperimentTrue: %@", error);
-        }
-    }];
-    
-    XCTAssertFalse(variableBoolActivateExperiment, "Variable boolean value should be false.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableBooleanWithActivateExperimentTrueAndFailureResponseForEventRequest {
-    [self stubFailureResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    BOOL variableBoolActivateExperiment = [optimizelyMock variableBoolean:kVariableKeyForBool
-                                                                   userId:kUserId
-                                                               attributes:self.attributes
-                                                       activateExperiment:YES
-                                                                    error:nil];
-    
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableBooleanWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
-        }
-    }];
-    
-    XCTAssertFalse(variableBoolActivateExperiment, "Variable boolean value should be false.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableBooleanWithGroupedExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    BOOL variableBoolWithGroupedExperiment = [optimizelyMock variableBoolean:kVariableKeyForBoolGroupedExperiment
-                                                                      userId:kUserId
-                                                                  attributes:nil
-                                                          activateExperiment:NO
-                                                                       error:nil];
-    
-    XCTAssertTrue(variableBoolWithGroupedExperiment);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableBooleanVariableNotInAnyExperiments {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    BOOL variableBoolNotInExperimentVariation = [optimizelyMock variableBoolean:kVariableKeyForBoolNotInExperimentVariation
-                                                                         userId:kUserId
-                                                                     attributes:nil
-                                                             activateExperiment:YES
-                                                                          error:nil];
-    
-    XCTAssertTrue(variableBoolNotInExperimentVariation);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableBooleanUserNotBucketedIntoExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    BOOL variableBool = [optimizelyMock variableBoolean:kVariableKeyForBool
-                                                 userId:kUserId
-                                             attributes:nil
-                                     activateExperiment:NO
-                                                  error:nil];
-    
-    // Should return default value
-    XCTAssertFalse(variableBool, "Variable boolean value should be false.");
-    
-    [optimizelyMock stopMocking];
-}
-
+#pragma mark - Live Variable Tests: variableInteger
 - (void)testGetVariableInteger {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    NSInteger variableInt = [optimizelyMock variableInteger:kVariableKeyForInt
+    NSInteger variableInt = [self.optimizely variableInteger:kVariableKeyForInt
                                                      userId:kUserId
                                                  attributes:self.attributes
                                          activateExperiment:NO
                                                       error:nil];
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
-    
-    [optimizelyMock stopMocking];
 }
 
 - (void)testGetVariableIntegerShortAPI {
@@ -500,7 +391,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 }
 
 - (void)testGetVariableIntegerShortAPIWithAttributes {
-    
     NSInteger variableInt = [self.optimizely variableInteger:kVariableKeyForInt
                                                       userId:kUserId
                                                   attributes:self.attributes
@@ -508,126 +398,14 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqual(variableInt, 8, "Variable integer value should be 8.");
 }
 
-- (void)testGetVariableIntegerWithActivateExperimentTrue {
-    [self stubSuccessResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    NSInteger variableIntActivateExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
-                                                                        userId:kUserId
-                                                                    attributes:self.attributes
-                                                            activateExperiment:YES
-                                                                         error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableIntegerWithActivateExperimentTrue: %@", error);
-        }
-    }];
-    
-    XCTAssertEqual(variableIntActivateExperiment, 8, "Variable integer value should be 8.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableIntegerWithActivateExperimentTrueAndFailureResponseForEventRequest {
-    [self stubFailureResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    NSInteger variableIntActivateExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
-                                                                        userId:kUserId
-                                                                    attributes:self.attributes
-                                                            activateExperiment:YES
-                                                                         error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableIntegerWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
-        }
-    }];
-    
-    XCTAssertEqual(variableIntActivateExperiment, 8, "Variable integer value should be 8.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableIntegerWithGroupedExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    NSInteger variableIntWithGroupedExperiment = [optimizelyMock variableInteger:kVariableKeyForIntegerGroupedExperiment
-                                                                           userId:kUserId
-                                                                       attributes:nil
-                                                               activateExperiment:NO
-                                                                            error:nil];
-    XCTAssertEqual(variableIntWithGroupedExperiment, 90, "Variable integer value should be 90.");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableIntegerVariableNotInAnyExperiments {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    NSInteger variableIntNotInExperimentVariation = [optimizelyMock variableInteger:kVariableKeyForIntegerNotInExperimentVariation
-                                                                              userId:kUserId
-                                                                          attributes:nil
-                                                                  activateExperiment:YES
-                                                                               error:nil];
-    XCTAssertEqual(variableIntNotInExperimentVariation, 101010101, "Variable integer value should be 101010101.");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableIntegerUserNotBucketedIntoExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    NSInteger variableIntUserNotBucketedIntoExperiment = [optimizelyMock variableInteger:kVariableKeyForInt
-                                                                                  userId:kUserId
-                                                                              attributes:nil
-                                                                      activateExperiment:NO
-                                                                                   error:nil];
-    // Should return default value
-    XCTAssertEqual(variableIntUserNotBucketedIntoExperiment, 1, "Variable integer value should be 1.");
-    
-    [optimizelyMock stopMocking];
-}
-
+#pragma mark - Live Variable Tests: variableDouble
 - (void)testGetVariableDouble {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    double variableDouble = [optimizelyMock variableDouble:kVariableKeyForDouble
-                                                     userId:kUserId
-                                                 attributes:self.attributes
-                                         activateExperiment:NO
-                                                      error:nil];
+    double variableDouble = [self.optimizely variableDouble:kVariableKeyForDouble
+                                                    userId:kUserId
+                                                attributes:self.attributes
+                                        activateExperiment:NO
+                                                     error:nil];
     XCTAssertEqualWithAccuracy(variableDouble, 1.8, 0.0000001);
-    
-    [optimizelyMock stopMocking];
 }
 
 - (void)testGetVariableDoubleShortAPI {
@@ -651,113 +429,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqualWithAccuracy(variableDoubleShortAPIWithAttributes, 1.8, 0.0000001);
 }
 
-- (void) testGetVariableDoubleWithActivateExperimentTrue {
-    [self stubSuccessResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    double variableDoubleActivateExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
-                                                                       userId:kUserId
-                                                                   attributes:self.attributes
-                                                           activateExperiment:YES
-                                                                        error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableDoubleWithActivateExperimentTrue: %@", error);
-        }
-    }];
-    
-    XCTAssertEqualWithAccuracy(variableDoubleActivateExperiment, 1.8, 0.0000001, "Variable float value should be 1.8.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableDoubleWithActivateExperimentTrueAndFailureResponseForEventRequest {
-    [self stubFailureResponseForEventRequest];
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    double variableDoubleActivateExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
-                                                                       userId:kUserId
-                                                                   attributes:self.attributes
-                                                           activateExperiment:YES
-                                                                        error:nil];
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testGetVariableDoubleWithActivateExperimentTrueAndFailureResponseForEventRequest: %@", error);
-        }
-    }];
-    
-    XCTAssertEqualWithAccuracy(variableDoubleActivateExperiment, 1.8, 0.0000001, "Variable float value should be 1.8.");
-    // Ensure activateExperiment is called
-    OCMVerify([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableDoubleWithGroupedExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    double variableDoubleWithGroupedExperiment = [optimizelyMock variableDouble:kVariableKeyForDoubleGroupedExperiment
-                                                                          userId:kUserId
-                                                                      attributes:nil
-                                                              activateExperiment:NO
-                                                                           error:nil];
-    
-    XCTAssertEqualWithAccuracy(variableDoubleWithGroupedExperiment, 75.5, 0.0000001, "Variable float value should be 75.5.");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void) testGetVariableDoubleVariableNotInAnyExperiments {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNil]]);
-    
-    // Even though activateExperiment is set to YES, activate will not be called because there is no experiment associated with the variable
-    double variableDoubleNotInExperimentVariation = [optimizelyMock variableDouble:kVariableKeyForDoubleNotInExperimentVariation
-                                                                             userId:kUserId
-                                                                         attributes:nil
-                                                                 activateExperiment:YES
-                                                                              error:nil];
-    
-    XCTAssertEqualWithAccuracy(variableDoubleNotInExperimentVariation, 10101.101, 0.0000001, "Variable float value should be 10101.101.");
-    
-    [optimizelyMock stopMocking];
-}
-
-- (void)testGetVariableDoubleUserNotBucketedIntoExperiment {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    
-    // Ensure activateExperiment is not called
-    OCMReject([optimizelyMock activate:[OCMArg isNotNil]
-                                userId:[OCMArg isNotNil]
-                            attributes:[OCMArg isNotNil]]);
-    
-    double variableDoubleUserNotBucketedIntoExperiment = [optimizelyMock variableDouble:kVariableKeyForDouble
-                                                                                  userId:kUserId
-                                                                              attributes:nil
-                                                                      activateExperiment:NO
-                                                                                   error:nil];
-    // Should return default value
-    XCTAssertEqualWithAccuracy(variableDoubleUserNotBucketedIntoExperiment, 0.5, 0.0000001);
-    
-    [optimizelyMock stopMocking];
-}
-
-# pragma mark -- integration tests
+# pragma mark - Integration Tests
 
 - (void)testOptimizelyPostsActivateExperimentNotification {
     
@@ -820,24 +492,27 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                  handler:nil];
 }
 
+#pragma mark - Helper Methods
 
-/**
- * Test whitelisting works with get variation
- */
-- (void)testWhitelisting {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
-    
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
-        builder.datafile = datafile;
+- (void)stubSuccessResponseForEventRequest {
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"logx.optimizely.com"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
+                                          statusCode:200
+                                             headers:@{@"Content-Type":@"application/json"}];
     }];
-    XCTAssertNotNil(optimizely);
-    
-    // get variation
-    OPTLYVariation *variation = [optimizely variation:kExperimentKeyForWhitelisting userId:kUserIdForWhitelisting];
-    XCTAssertNotNil(variation);
-    XCTAssertEqualObjects(variation.variationId, kVariationIDForWhitelisting);
-    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForWhitelisting);
 }
 
+- (void)stubFailureResponseForEventRequest {
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return YES; // Stub ALL requests without any condition
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSError *error = [NSError errorWithDomain:NSURLErrorDomain
+                                             code:NSURLErrorTimedOut
+                                         userInfo:nil];
+        return [OHHTTPStubsResponse responseWithError:error];
+    }];
+}
 
 @end
