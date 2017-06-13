@@ -32,8 +32,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		EA11A7031EE9FF610017DB1B /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA11A7021EE9FF610017DB1B /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
-		EA11A7051EE9FF680017DB1B /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA11A7041EE9FF680017DB1B /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
 		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
@@ -375,8 +373,6 @@
 		3F6E90F761F4B4023BCD8886 /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
 		4255C48815E69CE80CA972F1 /* Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
 		E55812A42A88FA30C03D74F0 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
-		EA11A7021EE9FF610017DB1B /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKiOSUniversalTests.framework; path = "/Users/aluong/src/objective-c-sdk-universal-framework-user-profile-refactor/Pods/../build/Debug-iphoneos/Pods_OptimizelySDKiOSUniversalTests.framework"; sourceTree = "<absolute>"; };
-		EA11A7041EE9FF680017DB1B /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKTVOSUniversalTests.framework; path = "/Users/aluong/src/objective-c-sdk-universal-framework-user-profile-refactor/Pods/../build/Debug-appletvos/Pods_OptimizelySDKTVOSUniversalTests.framework"; sourceTree = "<absolute>"; };
 		EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDecisionService.h; sourceTree = "<group>"; };
 		EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDecisionService.m; sourceTree = "<group>"; };
 		EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYExperimentBucketMapEntity.h; sourceTree = "<group>"; };
@@ -578,7 +574,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA11A7051EE9FF680017DB1B /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */,
 				EA52CDED1E8649B800D4FCA0 /* OptimizelySDKTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,7 +582,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA11A7031EE9FF610017DB1B /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */,
 				EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,8 +904,6 @@
 		EAC5F2981E7B658700C087B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA11A7041EE9FF680017DB1B /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
-				EA11A7021EE9FF610017DB1B /* Pods_OptimizelySDKiOSUniversalTests.framework */,
 				EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */,
 				EA52CD3D1E85E10300D4FCA0 /* JSONModel */,
 				EA4D95CC1E83AE0A00E40C14 /* fmdb */,
