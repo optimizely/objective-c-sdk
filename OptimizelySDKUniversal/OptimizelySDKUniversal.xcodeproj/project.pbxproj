@@ -1118,6 +1118,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52CA861E851CC100D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKiOSUniversal" */;
 			buildPhases = (
+				EA212A591EF13F7F00EE4F26 /* ShellScript */,
 				EA52C9E51E851CC100D4FCA0 /* Sources */,
 				EA52CA2F1E851CC100D4FCA0 /* Frameworks */,
 				EA52CA311E851CC100D4FCA0 /* Headers */,
@@ -1136,6 +1137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA52CB1F1E851CEE00D4FCA0 /* Build configuration list for PBXNativeTarget "OptimizelySDKTVOSUniversal" */;
 			buildPhases = (
+				EA212A5A1EF13F9800EE4F26 /* ShellScript */,
 				EA52CA8E1E851CEE00D4FCA0 /* Sources */,
 				EA52CAD21E851CEE00D4FCA0 /* Frameworks */,
 				EA52CAD31E851CEE00D4FCA0 /* Headers */,
@@ -1370,6 +1372,32 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		EA212A591EF13F7F00EE4F26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git submodule update --init --recursive;";
+		};
+		EA212A5A1EF13F9800EE4F26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git submodule update --init --recursive;";
 		};
 		EAC5F8C01E82EE7B00C087B8 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
