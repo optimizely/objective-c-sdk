@@ -16,6 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * _Nonnull const OptimizelyAppVersionKey;
+extern NSString * _Nonnull const OptimizelyDeviceModelKey;
+extern NSString * _Nonnull const OptimizelyOSVersionKey;
+extern NSString * _Nonnull const OptimizelySDKVersionKey;
+
 @class OPTLYClient, OPTLYManagerBuilder;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
@@ -53,8 +58,14 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfileService;
 /// The client engine
 @property (nonatomic, readonly, strong, nonnull) NSString *clientEngine;
-/// The client version
+/// Version number of the Optimizely iOS SDK
 @property (nonatomic, readonly, strong, nonnull) NSString *clientVersion;
+/// iOS Device Model
+@property (nonatomic, readonly, strong, nonnull) NSString *deviceModel;
+/// iOS OS Version
+@property (nonatomic, readonly, strong, nonnull) NSString *osVersion;
+/// iOS App Version
+@property (nonatomic, readonly, strong, nonnull) NSString *appVersion;
 
 /*
  * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance

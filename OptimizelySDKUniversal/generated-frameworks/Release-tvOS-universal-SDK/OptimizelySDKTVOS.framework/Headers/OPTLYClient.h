@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -32,6 +32,8 @@
 @property (nonatomic, strong, readonly, nullable) Optimizely *optimizely;
 /// The Optimizely Core's logger, or if no logger a default logger
 @property (nonatomic, strong, readonly, nonnull) id<OPTLYLogger> logger;
+/// Optimizely X Mobile Default Attributes
+@property (atomic, strong, readwrite, nullable) NSDictionary *defaultAttributes;
 
 + (nonnull instancetype)init:(nonnull OPTLYClientBuilderBlock)builderBlock;
 

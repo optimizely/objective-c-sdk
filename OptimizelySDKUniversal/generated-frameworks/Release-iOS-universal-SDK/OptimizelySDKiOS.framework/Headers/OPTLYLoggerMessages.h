@@ -133,6 +133,7 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
 // ---- Live Variables ----
 // info
+extern NSString *const OPTLYLoggerMessagesVariableValue;
 extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
 // warning
 extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
