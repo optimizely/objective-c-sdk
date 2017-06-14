@@ -71,7 +71,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(NSError * _Nullable * _Nullable)error
                              callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
@@ -184,7 +183,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:YES
-                                                        error:nil
                                                      callback:^(NSError *error) {
                                                          [expectation fulfill];
                                                      }];
@@ -212,7 +210,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:YES
-                                                        error:nil
                                                      callback:^(NSError *error) {
                                                          XCTAssertNotNil(error);
                                                          [expectation fulfill];
@@ -243,7 +240,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:NO
-                                                        error:nil
                                                      callback:nil];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
@@ -261,7 +257,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:NO
-                                                        error:nil
                                                      callback:nil];
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
@@ -277,7 +272,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                        userId:kUserId
                                                    attributes:self.attributes
                                            activateExperiment:YES
-                                                        error:nil
                                                      callback:^(NSError *error) {
                                                          [expectation fulfill];
                                                      }];

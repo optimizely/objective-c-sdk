@@ -403,15 +403,17 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                          userId:userId
                      attributes:attributes
              activateExperiment:activateExperiment
-                          error:error
-                       callback:nil];
+                       callback:^(NSError *e) {
+                           if (e) {
+                               *error = e;
+                           }
+                       }];
 }
 
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(NSError * _Nullable * _Nullable)error
                              callback:(void (^)(NSError *))callback {
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
     
@@ -424,13 +426,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                      code:OPTLYLiveVariableErrorKeyUnknown
                                                                  userInfo:@{NSLocalizedDescriptionKey :
                                                                                 [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
-        if (error) {
-            *error = variableUnknownForVariableKey;
-            [self.errorHandler handleError:variableUnknownForVariableKey];
-        }
-        
+    
+        [self.errorHandler handleError:variableUnknownForVariableKey];
+    
         if (callback) {
-            callback(*error);
+            callback(variableUnknownForVariableKey);
         }
         
         return nil;
