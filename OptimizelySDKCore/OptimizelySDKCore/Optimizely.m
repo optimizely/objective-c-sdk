@@ -426,9 +426,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                                 [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
         if (error) {
             *error = variableUnknownForVariableKey;
-        } else {
             [self.errorHandler handleError:variableUnknownForVariableKey];
         }
+        
         if (callback) {
             callback(*error);
         }
@@ -468,11 +468,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                 [self activate:experimentKey
                         userId:userId
                     attributes:attributes
-                      callback:^(NSError *error) {
-                          if (callback) {
-                              callback(error);
-                          }
-                      }];
+                      callback:callback];
             } else {
                 if (callback) {
                     callback(nil);
