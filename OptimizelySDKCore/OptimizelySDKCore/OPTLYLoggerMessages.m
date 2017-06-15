@@ -128,6 +128,7 @@ NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT D
 
 // ---- Live Variables ----
 // info
+NSString *const OPTLYLoggerMessagesVariableValue = @"[LIVE VARIABLES] Variable %@ has value: %@.";
 NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"[LIVE VARIABLES] Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
 // warning
 NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"[LIVE VARIABLES] No experiment was found to contain variable key: %@.";
