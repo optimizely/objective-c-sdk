@@ -345,6 +345,8 @@
 		EAF880F81EF1D46300143F7C /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* FMDB.h */; };
 		EAF880FA1EF1D46300143F7C /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E61EF1D46300143F7C /* FMResultSet.h */; };
 		EAF880FC1EF1D46300143F7C /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E71EF1D46300143F7C /* FMResultSet.m */; };
+		EAF881271EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
+		EAF881291EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -551,6 +553,8 @@
 		EAF880E51EF1D46300143F7C /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = ../Pods/FMDB/src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		EAF880E61EF1D46300143F7C /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = ../Pods/FMDB/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
 		EAF880E71EF1D46300143F7C /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = ../Pods/FMDB/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
+		EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKTVOSUniversalTests.framework; path = "../build/Debug-appletvos/Pods_OptimizelySDKTVOSUniversalTests.framework"; sourceTree = "<group>"; };
+		EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKiOSUniversalTests.framework; path = "../build/Debug-iphoneos/Pods_OptimizelySDKiOSUniversalTests.framework"; sourceTree = "<group>"; };
 		FF3B458188C49ABCF5CC56E4 /* Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -574,6 +578,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF881271EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */,
 				EA52CDED1E8649B800D4FCA0 /* OptimizelySDKTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +587,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF881291EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */,
 				EA52CDFE1E8649DB00D4FCA0 /* OptimizelySDKiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,6 +910,8 @@
 		EAC5F2981E7B658700C087B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */,
+				EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
 				EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */,
 				EA52CD3D1E85E10300D4FCA0 /* JSONModel */,
 				EA4D95CC1E83AE0A00E40C14 /* fmdb */,
