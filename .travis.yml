@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode8.3
+before_install: gem install cocoapods xcpretty obcd slather -N
 branches:
   only:
     - master
@@ -14,6 +15,6 @@ env:
 script:
   - pod spec lint --quick
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME"; fi
-after_success:
+after_success: slather
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
 
