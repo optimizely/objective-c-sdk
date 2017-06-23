@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode8.3
-before_install: gem install cocoapods xcpretty obcd slather -N
+before_install: gem install cocoapods xcpretty obcd slather -N;gem install coveralls
 branches:
   only:
     - master
