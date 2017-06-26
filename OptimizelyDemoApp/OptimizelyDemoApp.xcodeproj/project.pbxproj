@@ -800,6 +800,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -830,6 +832,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AD2B4CCAE039F03823867E5 /* Pods-OptimizelyiOSDemoApp.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/OptimizelyiOSDemoApp/OptimizelyiOSDemoApp-Info.plist";
