@@ -174,7 +174,7 @@
 		EA299EE31E55313B00931399 /* OPTLYFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYFailureViewController.swift; sourceTree = "<group>"; };
 		EA299EE41E55313B00931399 /* OPTLYSplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYSplashScreenViewController.swift; sourceTree = "<group>"; };
 		EA299EE51E55313B00931399 /* OPTLYVariationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPTLYVariationViewController.swift; sourceTree = "<group>"; };
-		EA299EEE1E55316300931399 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		EA299EEE1E55316300931399 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA299F071E55335300931399 /* Pods_OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA299F0E1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_OptimizelyTVOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4A62BA1E566F3500F1C3CE /* demoTestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = demoTestDatafile.json; sourceTree = "<group>"; };
@@ -245,7 +245,6 @@
 		EA4F2B651E3695FD00C09876 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EA299EEE1E55316300931399 /* Assets.xcassets */,
 				EA70FFC11E552D0B00590BEF /* ProximaNova-Regular.otf */,
 				EA70FFC21E552D0B00590BEF /* ProximaNovaCond-Regular.otf */,
 				EA70FFC31E552D0B00590BEF /* Roboto-Medium.ttf */,
@@ -284,6 +283,7 @@
 		EA5246BF1DC7186800AF6685 /* OptimizelyiOSDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA299EEE1E55316300931399 /* Assets.xcassets */,
 				EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */,
 				EA5246CC1DC7186800AF6685 /* OptimizelyiOSDemoApp-Info.plist */,
 				EA299EDD1E55312200931399 /* iOSMain.storyboard */,
