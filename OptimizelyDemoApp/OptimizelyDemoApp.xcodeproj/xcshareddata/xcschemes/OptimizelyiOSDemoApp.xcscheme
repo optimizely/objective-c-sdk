@@ -29,6 +29,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA3C68561DC1E6B600C578CA"
+               BuildableName = "OptimizelySDKiOSTests.xctest"
+               BlueprintName = "OptimizelySDKiOSTests"
+               ReferencedContainer = "container:../OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

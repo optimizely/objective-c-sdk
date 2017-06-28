@@ -1,4 +1,6 @@
 ci_service: travis_ci
 coverage_service: coveralls
 xcodeproj: OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj
-source-directory: objective-c-sdk-code-coverage
+workspace: OptimizelySDK.xcworkspace
+scheme: OptimizelySDKiOS
+source-directory: Pods
