@@ -16,5 +16,5 @@ script:
   - pod spec lint --quick
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME"; fi
 after_success:
-  - slather
+  - slather coverage -c
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
