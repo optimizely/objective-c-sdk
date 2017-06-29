@@ -3,4 +3,5 @@ coverage_service: coveralls
 xcodeproj: OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj
 workspace: OptimizelySDK.xcworkspace
 scheme: OptimizelySDKiOS
+input_format: profdata
 source-directory: Pods
