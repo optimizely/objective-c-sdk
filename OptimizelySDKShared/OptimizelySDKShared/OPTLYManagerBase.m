@@ -32,6 +32,8 @@
 
 @import UIKit;
 
+NSString * _Nonnull const OptimizelyBucketId = @"optimizely_bucketid";
+
 // Currently, Optimizely only supports tvOS and iOS, but this #if...#endif
 // could be elaborated with TARGET_OS_MAC or TARGET_OS_WATCH also defined in
 // usr/include/TargetConditionals.h in the future if the need should arise.
