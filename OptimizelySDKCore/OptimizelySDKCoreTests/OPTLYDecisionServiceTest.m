@@ -214,7 +214,20 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         attributes:nil];
     XCTAssertNil(variation, @"Get variation with an invalid audience should return nil: %@", variation);
 }
-    
+
+// invalid audience should return nil for getVariation overridden by call to setForcedVariation
+- (void)testGetVariationWithInvalidAudienceOverriddenBySetForcedVariation
+{
+    [self.optimizely setForcedVariation:kExperimentWithAudienceKey
+                                 userId:kUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
+                                                        experiment:experimentWithAudience
+                                                        attributes:nil];
+    XCTAssertNotNil(variation, @"Get variation with an invalid audience  should be overridden by setForcedVariation");
+}
+
 // if the experiment is running and the user is not whitelisted,
 // lookup should be called to get the stored variation
 - (void)testGetVariationNoAudience
