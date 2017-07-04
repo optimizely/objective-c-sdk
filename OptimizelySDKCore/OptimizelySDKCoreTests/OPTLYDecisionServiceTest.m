@@ -191,7 +191,20 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         attributes:nil];
     XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
 }
-    
+
+// whitelisted user should return the whitelisted variation for getVariation overridden by call to setForcedVariation
+- (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariation
+{
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+}
+
 // invalid audience should return nil for getVariation
 - (void)testGetVariationWithInvalidAudience
 {
