@@ -203,6 +203,7 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         experiment:experimentWhitelisted
                                                         attributes:nil];
     XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
 }
 
 // invalid audience should return nil for getVariation
@@ -226,6 +227,7 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         experiment:experimentWithAudience
                                                         attributes:nil];
     XCTAssertNotNil(variation, @"Get variation with an invalid audience  should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
 }
 
 // if the experiment is running and the user is not whitelisted,
