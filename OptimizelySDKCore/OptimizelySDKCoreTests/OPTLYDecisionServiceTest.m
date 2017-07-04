@@ -170,6 +170,17 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
     XCTAssertNil(variation, @"Get variation on an experiment not running should return nil: %@", variation);
 }
+
+// if the experiment is not running should return nil for getVariation even after setForcedVariation
+- (void)testSetForcedVariationExperimentNotRunning
+{
+    OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
+    [self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                 userId:kUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
+    XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
+}
     
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
