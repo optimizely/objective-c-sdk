@@ -60,6 +60,12 @@
         return nil;
     }
     
+    // ---- check for forced variation ----
+    bucketedVariation = [self.config getForcedVariation:experimentKey userId:userId];
+    if (bucketedVariation != nil) {
+        return bucketedVariation;
+    }
+
     // ---- check if the experiment is whitelisted ----
     if ([self checkWhitelistingForUser:userId experiment:experiment]) {
         return [self getWhitelistedVariationForUser:userId
