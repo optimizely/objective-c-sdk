@@ -43,6 +43,8 @@ NSString * const kExpectedDatafileVersion  = @"3";
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
+//@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, OPTLYVariation *>><Ignore> *preferredVariationMap;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *preferredVariationMap;
 
 @end
 
@@ -230,6 +232,47 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return variable;
 }
 
+- (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId {
+    OPTLYVariation *variation = nil;
+    NSMutableDictionary<NSString *, OPTLYVariation *> *dictionary = self.preferredVariationMap[userId];
+    if (dictionary != nil) {
+        variation = dictionary[experimentKey];
+    }
+    return variation;
+}
+
+- (OPTLYVariation *)setForcedVariation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId
+                          variationKey:(nonnull NSString *)variationKey {
+    OPTLYVariation *variation = nil;
+    if (variationKey != nil) {
+        // CASE variationKey != nil and all goes well...
+        OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
+        variation = [experiment getVariationForVariationKey:variationKey];
+    }
+    NSMutableDictionary<NSString *, OPTLYVariation *> *dictionary = self.preferredVariationMap[userId];
+    if ((dictionary == nil) && (variationKey != nil)) {
+        // We need a non-nil dictionary to store an OPTLYVariation .
+        dictionary = [[NSMutableDictionary alloc] init];
+        self.preferredVariationMap[userId] = dictionary;
+    }
+    if (variation == nil) {
+        [dictionary removeObjectForKey:experimentKey];
+        if ([dictionary count] == 0) {
+            // For elegance, we can remove empty dictionary for userId from self.preferredVariationMap
+            [self.preferredVariationMap removeObjectForKey:userId];
+        }
+    } else {
+        dictionary[experimentKey] = variation;
+    };
+    // Let's say setForcedVariation only returns "forced" variations.
+    // OW, in case a forced variation is removed (variationKey == nil),
+    // we would make setForcedVariation do all the extra work to compute
+    // the unforced variation, but the caller might not even care.
+    return variation;
+}
+
 #pragma mark -- Property Getters --
 
 - (NSArray *)allExperiments
@@ -311,6 +354,14 @@ NSString * const kExpectedDatafileVersion  = @"3";
         _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
     }
     return _variableKeyToVariableMap;
+}
+
+//- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, OPTLYVariation *>> *)preferredVariationMap {
+- (NSMutableDictionary<NSString *, NSMutableDictionary *> *)preferredVariationMap {
+    if (!_preferredVariationMap) {
+        _preferredVariationMap = [[NSMutableDictionary alloc] init];
+    }
+    return _preferredVariationMap;
 }
 
 #pragma mark -- Generate Mappings --

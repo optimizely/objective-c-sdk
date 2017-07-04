@@ -127,6 +127,19 @@ NS_ASSUME_NONNULL_END
 - (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
+ * Get forced variation for a given experiment key and user id.
+ */
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
+
+/**
+ * Set forced variation for a given experiment key and user id according to a given variation key.
+ */
+- (nullable OPTLYVariation *)setForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId
+                                   variationKey:(nonnull NSString *)variationKey;
+
+/**
  * Get variation for experiment and user ID with user attributes.
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
