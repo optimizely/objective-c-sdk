@@ -198,8 +198,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (nullable OPTLYVariation *)setForcedVariation:(nonnull NSString *)experimentKey
                                          userId:(nonnull NSString *)userId
                                    variationKey:(nonnull NSString *)variationKey {
-    // TODO: ADD REAL CODE HERE.
-    return nil;
+    OPTLYVariation *bucketedVariation = [self.config setForcedVariation:experimentKey
+                                                                 userId:userId
+                                                           variationKey:variationKey];
+    // Let's say setForcedVariation only returns "forced" variations.
+    // OW, in case a forced variation is removed (variationKey == nil),
+    // we would make setForcedVariation do all the extra work to compute
+    // the unforced variation, but the caller might not even care.
+    return bucketedVariation;
 }
 
 #pragma mark trackEvent methods
