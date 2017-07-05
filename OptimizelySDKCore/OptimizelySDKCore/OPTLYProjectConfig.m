@@ -247,9 +247,13 @@ NSString * const kExpectedDatafileVersion  = @"3";
                           variationKey:(nonnull NSString *)variationKey {
     OPTLYVariation *variation = nil;
     if (variationKey != nil) {
-        // CASE variationKey != nil and all goes well...
         OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
+        // NOTE: getExperimentForKey: will log any non-existent experimentKey and return experiment == nil for us.
         variation = [experiment getVariationForVariationKey:variationKey];
+        if (!variation) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey, variationKey, experimentKey];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        }
     }
     NSMutableDictionary<NSString *, OPTLYVariation *> *dictionary = self.preferredVariationMap[userId];
     if ((dictionary == nil) && (variationKey != nil)) {
@@ -258,12 +262,16 @@ NSString * const kExpectedDatafileVersion  = @"3";
         self.preferredVariationMap[userId] = dictionary;
     }
     if (variation == nil) {
+        // NOTE: removeObjectForKey: "Does nothing if [experimentKey] does not exist."
+        // https://developer.apple.com/documentation/foundation/nsmutabledictionary/1416518-removeobjectforkey?language=objc
         [dictionary removeObjectForKey:experimentKey];
         if ([dictionary count] == 0) {
             // For elegance, we can remove empty dictionary for userId from self.preferredVariationMap
             [self.preferredVariationMap removeObjectForKey:userId];
         }
     } else {
+        // If there is no OPTLYExperiment *experiment corresponding to experimentKey ,
+        // then we will land in the "(variation == nil)" case above due to code above.
         dictionary[experimentKey] = variation;
     };
     // Let's say setForcedVariation only returns "forced" variations.

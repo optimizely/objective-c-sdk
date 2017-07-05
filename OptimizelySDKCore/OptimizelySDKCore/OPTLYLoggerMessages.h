@@ -160,6 +160,7 @@ extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
+extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;
 
 // ---- User Profile ----
 // debug
