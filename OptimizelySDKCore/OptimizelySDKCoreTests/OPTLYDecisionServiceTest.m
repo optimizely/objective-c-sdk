@@ -254,6 +254,30 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation_test_data_10_experiments, @"Should be the forced varation %@ .", kWhitelistedVariation_test_data_10_experiments);
 }
 
+// two different users experience two different setForcedVariation's in the same experiment differently
+- (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariationForTwoDifferentUsers
+{
+    // First call to setForcedVariation:userId:variationKey:
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    // Second call to setForcedVariation:userId:variationKey: to a different variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kWhitelistedVariation_test_data_10_experiments];
+    // Query variation's experienced by the two different users
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation1 = [self.decisionService getVariation:kWhitelistedUserId
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    OPTLYVariation *variation2 = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                         experiment:experimentWhitelisted
+                                                         attributes:nil];
+    // Confirm the two variations are different and they agree with predictions
+    XCTAssertNotEqualObjects(variation1.variationKey,variation2.variationKey,@"Expecting two different forced variations for the two different users in this experiment");
+    XCTAssertEqualObjects(variation1.variationKey,kExperimentNoAudienceVariationKey,@"Should have been variation predicted for the first user");
+    XCTAssertEqualObjects(variation2.variationKey,kWhitelistedVariation_test_data_10_experiments,@"Should have been variation predicted for the second user");
+}
 
 // invalid audience should return nil for getVariation
 - (void)testGetVariationWithInvalidAudience
