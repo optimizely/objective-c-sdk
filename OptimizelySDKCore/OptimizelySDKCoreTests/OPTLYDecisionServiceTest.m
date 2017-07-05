@@ -206,6 +206,31 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
 }
 
+// whitelisted user should return the whitelisted variation for getVariation after setForcedVariation is cleared
+- (void)testGetVariationWithWhitelistedVariationAfterClearingSetForcedVariation
+{
+    // Set a forced variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+    // Clear the forced variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:nil];
+    // Confirm return to variation expected in absence of a forced variation.
+    variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                        experiment:experimentWhitelisted
+                                        attributes:nil];
+    XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
+}
+
+
 // invalid audience should return nil for getVariation
 - (void)testGetVariationWithInvalidAudience
 {

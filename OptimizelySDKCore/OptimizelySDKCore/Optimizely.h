@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (nullable OPTLYVariation *)setForcedVariation:(nonnull NSString *)experimentKey
                                          userId:(nonnull NSString *)userId
-                                   variationKey:(nonnull NSString *)variationKey;
+                                   variationKey:(nullable NSString *)variationKey;
 
 #pragma mark - trackEvent methods
 /**
