@@ -1,0 +1,541 @@
+11:57:52.012 Xcode[1487:7156] Beginning test session OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 at 2017-07-05 11:57:52.012 with Xcode 8E3004b on target <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+} (10.3.1 (14E8301))
+11:57:52.012 Xcode[1487:7156] Launching with Xcode.DebuggerFoundation.Launcher.LLDB
+11:57:52.012 Xcode[1487:3062691] Sim iPhone 7 Plus: Unregistering for sim device notification with token 40
+11:57:52.012 Xcode[1487:3062691] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+11:57:52.013 Xcode[1487:3062691] Sim iPhone 7 Plus has testmanagerd socket at /private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket
+11:57:52.013 Xcode[1487:3062691] Validating test connection socket path (/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket)
+11:57:52.013 Xcode[1487:3062691] Constructing transport for test connection socket
+11:57:52.013 Xcode[1487:3062691] Connected socket 49 to testmanagerd for Sim iPhone 7 Plus
+11:57:52.013 Xcode[1487:3062691] Received connection for test runner session
+11:57:52.013 Xcode[1487:3062691] Listening for proxy connection request from the test bundle
+11:57:52.013 Xcode[1487:3062691] Initiating session with identifier: 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7
+11:57:52.074 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.074 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9d9b1c30 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9edbe720 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc87d42870 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca12ce780 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.076 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.076 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc89e03140 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.226 Xcode[1487:7156] Test runner session acquired connection.
+11:57:52.226 Xcode[1487:7156] Waiting for test process to launch.
+11:57:55.302 Xcode[1487:3062750] Got reply to session initiation request with identifier 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 (result:error): 22: (null)
+11:57:55.380 Xcode[1487:7156] Launch session started.
+11:57:55.426 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.426 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc868d5b40 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.429 Xcode[1487:7156] Adding console adaptor <IDEConsoleAdaptor: 0x7fcc9fa46c00 'target'> for test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.
+11:57:55.431 Xcode[1487:3067741] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+}
+11:57:55.433 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.433 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9da94170 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.460 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+} (pid = 49716)
+11:57:55.460 Xcode[1487:3067738] Tracking pid 49716 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:57:55.460 Xcode[1487:3067738] Checking to see if pid 49716 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:57:55.460 Xcode[1487:3067738] Setting up DVTTaskNotifyOnProcDeath for pid 49716
+11:57:55.461 Xcode[1487:7156] Test process runnable PID is 49716.
+11:57:57.193 Xcode[1487:7156] Waiting for test process to check in..., will wait up to 120s
+11:57:57.333 Xcode[1487:3067740] Handling proxy channel request from test runner
+11:57:57.333 Xcode[1487:3067740] Test runner is ready, running protocol 22, requires at least version 8. Control framework is running 22 and requires at least 8
+11:57:57.333 Xcode[1487:7156] Test runner session successfully initiated.
+11:57:57.333 Xcode[1487:7156] Creating the daemon control session.
+11:57:57.333 Xcode[1487:7156] Whitelisting test process ID 49716
+11:57:57.333 Xcode[1487:7156] Got authorization request for pid 49716
+11:57:57.334 Xcode[1487:3067740] Requesting authorization for pid 49716
+11:57:57.336 Xcode[1487:3067738] Got reply to authorization request for pid 49716 (result:error): 22: (null)
+11:57:57.337 Xcode[1487:7156] Got whitelisting response from test daemon. Success: 1
+11:57:55.265 testmanagerd[49299:3067762] Launched testmanagerd from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/libexec/testmanagerd, modified on Wednesday, May 10, 2017 at 10:05:42 PM Pacific Daylight Time
+11:57:55.296 testmanagerd[49299:3068688] IDE connected over socket 5 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:55.296 testmanagerd[49299:3067762] Setting availability state.
+11:57:55.296 testmanagerd[49299:3068688] Created session with socket 5
+11:57:55.297 testmanagerd[49299:3067762] Posting availability to test bundles...
+11:57:55.298 testmanagerd[49299:3068688] IDE connected over socket 7 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:57.337 testmanagerd[49299:3067762] Received request to collect crash reports in directories '/Users/nbuduma/Library/Logs/DiagnosticReports', '/Library/Logs/DiagnosticReports' for processes with names 'XCTRunner', 'xctest'
+11:57:55.299 testmanagerd[49299:3068688] Created session with socket 7
+11:57:55.299 testmanagerd[49299:3068688] IDE connected over socket 9 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:55.299 testmanagerd[49299:3068688] Created session with socket 9
+11:57:55.299 testmanagerd[49299:3068721] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5a403d20> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a409010>
+11:57:57.338 testmanagerd[49299:3067762] Initializing crash report observer for /Users/nbuduma/Library/Logs/DiagnosticReports
+11:57:55.300 testmanagerd[49299:3068720] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5a60d390> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a409480>
+11:57:55.300 testmanagerd[49299:3067762] -[XCIDESession _IDE_initiateSessionWithIdentifier:forClient:atPath:protocolVersion:]_block_invoke 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 1 5 from client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA (/Applications/Xcode.app)
+11:57:57.338 testmanagerd[49299:3067762] Getting files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:57:55.300 testmanagerd[49299:3068724] IDE connected over socket 11 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:55.301 testmanagerd[49299:3067762] -[XCIDESession _IDE_initiateSessionWithIdentifier:forClient:atPath:protocolVersion:]_block_invoke C338CEE3-8380-4141-B526-9476D071A773 1 7 from client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA (/Applications/Xcode.app)
+11:57:55.301 testmanagerd[49299:3068724] Created session with socket 11
+11:57:55.301 testmanagerd[49299:3068722] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5a60e280> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a408fa0>
+11:57:55.301 testmanagerd[49299:3068688] -[XCTDaemon setIDESession:forIdentifier:]_block_invoke <XCIDESession: 0x7ffb5a403d20> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 -> 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7
+11:57:55.302 testmanagerd[49299:3068688] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:55.302 testmanagerd[49299:3068724] IDE connected over socket 13 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:55.302 testmanagerd[49299:3067762] -[XCIDESession _IDE_initiateSessionWithIdentifier:forClient:atPath:protocolVersion:]_block_invoke ACAE445F-588E-43B6-808C-69534F93AA57 1 9 from client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA (/Applications/Xcode.app)
+11:57:57.340 testmanagerd[49299:3067762] Found 20 files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:57:55.302 testmanagerd[49299:3068724] Created session with socket 13
+11:57:55.302 testmanagerd[49299:3068688] -[XCTDaemon setIDESession:forIdentifier:]_block_invoke <XCIDESession: 0x7ffb5a60d390> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session C338CEE3-8380-4141-B526-9476D071A773 -> C338CEE3-8380-4141-B526-9476D071A773
+11:57:55.302 testmanagerd[49299:3068726] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5c201940> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a701ba0>
+11:57:57.340 testmanagerd[49299:3067762] Started monitoring /Users/nbuduma/Library/Logs/DiagnosticReports
+11:57:55.304 testmanagerd[49299:3068725] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5c301630> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a50b4a0>
+11:57:55.304 testmanagerd[49299:3068688] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:57.341 testmanagerd[49299:3067762] Initializing crash report observer for /Library/Logs/DiagnosticReports
+11:57:55.305 testmanagerd[49299:3067762] -[XCIDESession _IDE_initiateSessionWithIdentifier:forClient:atPath:protocolVersion:]_block_invoke BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8 1 13 from client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA (/Applications/Xcode.app)
+11:57:55.305 testmanagerd[49299:3068688] -[XCTDaemon setIDESession:forIdentifier:]_block_invoke <XCIDESession: 0x7ffb5a60e280> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ACAE445F-588E-43B6-808C-69534F93AA57 -> ACAE445F-588E-43B6-808C-69534F93AA57
+11:57:57.342 testmanagerd[49299:3067762] Getting files in /Library/Logs/DiagnosticReports
+11:57:55.305 testmanagerd[49299:3067762] -[XCIDESession _IDE_initiateSessionWithIdentifier:forClient:atPath:protocolVersion:]_block_invoke ABC92B17-2501-41A5-BD5F-21F40B49E115 1 11 from client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA (/Applications/Xcode.app)
+11:57:55.306 testmanagerd[49299:3068688] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:55.306 testmanagerd[49299:3068688] -[XCTDaemon setIDESession:forIdentifier:]_block_invoke <XCIDESession: 0x7ffb5c301630> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8 -> BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8
+11:57:55.307 testmanagerd[49299:3068688] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:55.307 testmanagerd[49299:3068688] -[XCTDaemon setIDESession:forIdentifier:]_block_invoke <XCIDESession: 0x7ffb5c201940> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ABC92B17-2501-41A5-BD5F-21F40B49E115 -> ABC92B17-2501-41A5-BD5F-21F40B49E115
+11:57:55.308 testmanagerd[49299:3068688] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:57.217 testmanagerd[49299:3068688] Received new test session connection from process with PID 49716
+11:57:57.219 testmanagerd[49299:3067762] Initial orientation 0
+11:57:57.222 testmanagerd[49299:3068724] app info (null)
+11:57:57.223 testmanagerd[49299:3068688] Test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 requested socket (-[XCTestSession _XCT_requestSocketForSessionIdentifier:reply:])
+11:57:57.223 testmanagerd[49299:3068724] Test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7 requested socket (-[XCTDaemon requestSocketForSessionIdentifier:reply:]_block_invoke)
+11:57:57.224 testmanagerd[49299:3068724] -[XCTDaemon _queue_handleRequestForSessionWithIdentifier:]
+11:57:57.344 testmanagerd[49299:3067762] Found 46 files in /Library/Logs/DiagnosticReports
+11:57:57.224 testmanagerd[49299:3068724] Closing IDE connection before sending socket 15 to test host.
+11:57:57.224 testmanagerd[49299:3068724] -[XCIDESession closeIDEConnection:] sending barrier
+11:57:57.224 testmanagerd[49299:3067762] barrier flushed, closing DTXConnection to IDE, socket will not be closed
+11:57:57.344 testmanagerd[49299:3067762] Started monitoring /Library/Logs/DiagnosticReports
+11:57:57.224 testmanagerd[49299:3068688] DTXSocketTransport disconnected, owner is <XCIDESession: 0x7ffb5a403d20> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7
+11:57:57.225 testmanagerd[49299:3068725] -[XCTDaemon closeIDESession:]_block_invoke <XCIDESession: 0x7ffb5a403d20> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7
+11:57:57.226 testmanagerd[49299:3068725] Considering exiting:
+11:57:57.226 testmanagerd[49299:3068725] Session summary: 1 test sessions, 4 sessions with identifiers, 0 unidentified sessions, does not have control session
+11:57:57.226 testmanagerd[49299:3068725] Unpaired test sessions: {
+    "ACAE445F-588E-43B6-808C-69534F93AA57" = "<XCIDESession: 0x7ffb5a60e280> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ACAE445F-588E-43B6-808C-69534F93AA57";
+    "C338CEE3-8380-4141-B526-9476D071A773" = "<XCIDESession: 0x7ffb5a60d390> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session C338CEE3-8380-4141-B526-9476D071A773";
+    "BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8" = "<XCIDESession: 0x7ffb5c301630> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8";
+    "ABC92B17-2501-41A5-BD5F-21F40B49E115" = "<XCIDESession: 0x7ffb5c201940> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ABC92B17-2501-41A5-BD5F-21F40B49E115";
+}
+11:57:57.329 testmanagerd[49299:3067762] Sending socket 15 to test host
+11:57:57.330 testmanagerd[49299:3068725] -[XCTDaemon closeIDESession:]_block_invoke <XCIDESession: 0x7ffb5a403d20> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session 07810F27-4D7A-4106-8BFE-A6FF60C1C3D7
+11:57:57.211 xctest[49716:3068732] Linked XCTest.framework from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/XCTest, built with Xcode 0833(8E3002), modified on Wednesday, May 10, 2017 at 10:10:51 PM Pacific Daylight Time
+11:57:57.211 xctest[49716:3068732] XCTest.framework bundle version: 12124
+11:57:57.330 testmanagerd[49299:3068725] Considering exiting:
+11:57:57.213 xctest[49716:3068732] System uptime: 4d 1:16:17
+11:57:57.213 xctest[49716:3068732] Process arguments: (
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+    "-NSTreatUnknownArgumentsAsOpen",
+    NO,
+    "-ApplePersistenceIgnoreState",
+    YES
+)
+11:57:57.331 testmanagerd[49299:3068725] Session summary: 1 test sessions, 4 sessions with identifiers, 0 unidentified sessions, does not have control session
+11:57:57.214 xctest[49716:3068732] Process environment: {
+    "CFFIXED_USER_HOME" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "CUPS_SERVER" = "/private/tmp/com.apple.launchd.TlM2LGodOC/Listeners";
+    "DYLD_FALLBACK_FRAMEWORK_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks";
+    "DYLD_FALLBACK_LIBRARY_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib";
+    "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_ROOT_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "DYLD_SHARED_REGION" = avoid;
+    HOME = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+    "IOS_SIMULATOR_SYSLOG_SOCKET" = "/private/tmp/com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim/syslogsock";
+    "IPHONE_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "IPHONE_SIMULATOR_CLASS" = D11;
+    "IPHONE_SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "IPHONE_TVOUT_EXTENDED_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    NSApplicationQuitWithoutSuddenTermination = YES;
+    NSUnbufferedIO = YES;
+    "OS_ACTIVITY_DT_MODE" = YES;
+    PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/local/bin";
+    "SIMULATOR_CAPABILITIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/Profiles/DeviceTypes/iPhone 7 Plus.simdevicetype/Contents/Resources/capabilities.plist";
+    "SIMULATOR_DEVICE_NAME" = "iPhone 7 Plus";
+    "SIMULATOR_EXTENDED_DISPLAY_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "SIMULATOR_HID_SYSTEM_MANAGER" = "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/Resources/Platforms/iphoneos/SimulatorHID.framework";
+    "SIMULATOR_HOST_HOME" = "/Users/nbuduma";
+    "SIMULATOR_LEGACY_ASSET_SUFFIX" = iphone;
+    "SIMULATOR_LOG_ROOT" = "/Users/nbuduma/Library/Logs/CoreSimulator/F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_MAINSCREEN_HEIGHT" = 2208;
+    "SIMULATOR_MAINSCREEN_PITCH" = "461.000000";
+    "SIMULATOR_MAINSCREEN_SCALE" = "3.000000";
+    "SIMULATOR_MAINSCREEN_WIDTH" = 1242;
+    "SIMULATOR_MEMORY_WARNINGS" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/var/run/memory_warning_simulation";
+    "SIMULATOR_MODEL_IDENTIFIER" = "iPhone9,2";
+    "SIMULATOR_PLATFORM_RUNTIME_OVERLAY_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/RuntimeOverlay";
+    "SIMULATOR_PRODUCT_CLASS" = D11;
+    "SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "SIMULATOR_RUNTIME_BUILD_VERSION" = 14E8301;
+    "SIMULATOR_RUNTIME_VERSION" = "10.3.1";
+    "SIMULATOR_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "SIMULATOR_UDID" = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_VERSION_INFO" = "CoreSimulator 375.21 - Device: iPhone 7 Plus - Runtime: iOS 10.3 (14E8301) - DeviceType: iPhone 7 Plus";
+    "TESTMANAGERD_SIM_SOCK" = "/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket";
+    TMPDIR = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/tmp/";
+    "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+    XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+    "XPC_FLAGS" = 0x0;
+    "XPC_SERVICE_NAME" = "com.apple.xpc.launchd.oneshot.0x10000005.xctest";
+    "XPC_SIMULATOR_LAUNCHD_NAME" = "com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim";
+    "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+}
+11:57:57.217 xctest[49716:3068732] <XCTWaiter: 0x7fca379074c0> entering wait loop for 5.00s
+11:57:57.331 testmanagerd[49299:3068725] Unpaired test sessions: {
+    "ACAE445F-588E-43B6-808C-69534F93AA57" = "<XCIDESession: 0x7ffb5a60e280> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ACAE445F-588E-43B6-808C-69534F93AA57";
+    "C338CEE3-8380-4141-B526-9476D071A773" = "<XCIDESession: 0x7ffb5a60d390> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session C338CEE3-8380-4141-B526-9476D071A773";
+    "BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8" = "<XCIDESession: 0x7ffb5c301630> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8";
+    "ABC92B17-2501-41A5-BD5F-21F40B49E115" = "<XCIDESession: 0x7ffb5c201940> created Wednesday, July 5, 2017 at 11:57:55 AM Pacific Daylight Time for client BCB1A460-F3B3-441E-85BA-E2505188B87A-1487-0000AD263365EBAA waiting to pair with test session ABC92B17-2501-41A5-BD5F-21F40B49E115";
+}
+11:57:57.222 xctest[49716:3068778] Got daemon protocol version 12
+11:57:57.334 testmanagerd[49299:3068725] IDE connected over socket 6 (-[XCTestManagerIDEServer listenForControlConnectionsOverNamedSocket]_block_invoke)
+11:57:57.223 xctest[49716:3068781] <XCTWaiter: 0x7fca379074c0>: cancelWaiting
+11:57:57.334 testmanagerd[49299:3068725] Created session with socket 6
+11:57:57.223 xctest[49716:3068732] <XCTWaiter: 0x7fca379074c0> done waiting
+11:57:57.223 xctest[49716:3068732] <XCTWaiter: 0x7fca379074c0> cleaning up Exchange protocol versions with daemon
+11:57:57.223 xctest[49716:3068732] Requesting socket
+11:57:57.335 testmanagerd[49299:3068725] Handled a proxy request from the IDE with session <XCIDESession: 0x7ffb5a60c6e0> created Wednesday, July 5, 2017 at 11:57:57 AM Pacific Daylight Time proxy <_DTXProxy: 0x7ffb5a40b2c0>
+11:57:57.223 xctest[49716:3068732] <XCTWaiter: 0x7fca37910cd0> entering wait loop for 30.00s
+11:57:57.336 testmanagerd[49299:3068725] -[XCIDESession _IDE_initiateControlSessionForTestProcessID:protocolVersion:] 49716 22
+11:57:57.330 xctest[49716:3068781] <XCTWaiter: 0x7fca37910cd0>: cancelWaiting
+11:57:57.330 xctest[49716:3068732] <XCTWaiter: 0x7fca37910cd0> done waiting
+11:57:57.330 xctest[49716:3068732] <XCTWaiter: 0x7fca37910cd0> cleaning up Socket for IDE session acquired
+11:57:57.336 testmanagerd[49299:3067762] Set control session <XCIDESession: 0x7ffb5a60c6e0> created Wednesday, July 5, 2017 at 11:57:57 AM Pacific Daylight Time with proto 22 and proxy <_DTXProxy: 0x7ffb5a40b2c0>
+11:57:57.330 xctest[49716:3068732] Creating transport with socket 5
+11:57:57.331 xctest[49716:3068732] Creating connection with transport <DTXSocketTransport: 0x7fca354584d0>
+11:57:57.332 xctest[49716:3068732] Creating the proxy channel with connection <DTXConnection 0x7fca37b02d70 : x1>
+11:57:57.332 xctest[49716:3068732] Messaging IDE proxy - _XCT_testBundleReadyWithProtocolVersion:22 minimumVersion:8
+11:57:57.333 xctest[49716:3068732] <XCTWaiter: 0x7fca35459f20> entering wait loop for 30.00s
+11:57:57.333 xctest[49716:3068784] _XCT_testBundleReadyWithProtocolVersion:minimumVersion: reply received
+11:57:57.345 xctest[49716:3068783] _IDE_startExecutingTestPlanWithProtocolVersion:22
+11:57:57.346 xctest[49716:3068784] <XCTWaiter: 0x7fca35459f20>: cancelWaiting
+11:57:57.346 xctest[49716:3068732] <XCTWaiter: 0x7fca35459f20> done waiting
+11:57:57.346 xctest[49716:3068732] <XCTWaiter: 0x7fca35459f20> cleaning up IDE session ready for test plan
+11:57:57.349 Xcode[1487:7156] Starting test plan, clearing initialization timeout timer.
+11:57:57.349 xctest[49716:3068732] Loading test suite...
+11:57:57.394 xctest[49716:3068732] Finished loading test suite, took 0.045s
+11:57:57.395 xctest[49716:3068732] -[XCTRunnerIDESession testBundleWillStart:]
+11:57:57.395 xctest[49716:3068732] Running suite...
+11:57:57.395 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteWillStart:]
+11:57:57.396 Xcode[1487:7156] _XCT_testSuite:All tests didStartAt:2017-07-05 18:57:57 +0000
+11:57:57.411 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.444 Xcode[1487:3067735] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.444 Xcode[1487:3067735] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.448 Xcode[1487:3067741] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.529 Xcode[1487:3067741] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.561 Xcode[1487:3067739] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.589 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.591 Xcode[1487:3067741] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.617 Xcode[1487:3067727] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.642 Xcode[1487:3067741] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.678 Xcode[1487:3067736] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.679 Xcode[1487:3067731] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:57:57.932 Xcode[1487:3067736] (LOG ARBITER) Dumping buffered message data; 0 messages.
+Test Suite 'All tests' started at 2017-07-05 11:57:57.395
+Test Suite 'OptimizelySDKDatafileManageriOSTests.xctest' started at 2017-07-05 11:57:57.396
+Test Suite 'OPTLYDatafileManagerBuilderTest' started at 2017-07-05 11:57:57.396
+Test Case '-[OPTLYDatafileManagerBuilderTest testBasicInitializationWorks]' started.
+2017-07-05 11:57:57.397 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project projectID.
+2017-07-05 11:57:57.398 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project projectID.
+2017-07-05 11:57:57.398 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.398 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+Test Case '-[OPTLYDatafileManagerBuilderTest testBasicInitializationWorks]' passed (0.004 seconds).
+11:57:57.396 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteWillStart:]
+11:57:57.410 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKDatafileManageriOSTests.xctest didStartAt:2017-07-05 18:57:57 +0000
+11:57:57.396 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteWillStart:]
+11:57:57.411 Xcode[1487:7156] _XCT_testSuite:OPTLYDatafileManagerBuilderTest didStartAt:2017-07-05 18:57:57 +0000
+11:57:57.397 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerBuilderTest testBasicInitializationWorks
+11:57:57.411 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerBuilderTest method:testBasicInitializationWorks
+11:57:57.401 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.411 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerBuilderTest method:testBasicInitializationWorks withStatus:passed duration:0.004247009754180908
+11:57:57.410 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerBuilderTest testDatafileFetchIntervalIsSetCorrectly
+11:57:57.413 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerBuilderTest method:testDatafileFetchIntervalIsSetCorrectly
+Test Case '-[OPTLYDatafileManagerBuilderTest testDatafileFetchIntervalIsSetCorrectly]' started.
+2017-07-05 11:57:57.411 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project projectID.
+2017-07-05 11:57:57.411 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project projectID.
+2017-07-05 11:57:57.411 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+Test Case '-[OPTLYDatafileManagerBuilderTest testDatafileFetchIntervalIsSetCorrectly]' passed (0.011 seconds).
+Test Case '-[OPTLYDatafileManagerBuilderTest testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval]' started.
+2017-07-05 11:57:57.413 xctest[49716:3068732] [OPTIMIZELY SDK][ERROR]:[DATAFILE MANAGER BUILDER] A datafile fetch interval of -1.000000 is invalid. Please set a datafile fetch interval >= 0.
+Test Case '-[OPTLYDatafileManagerBuilderTest testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval]' passed (0.001 seconds).
+Test Case '-[OPTLYDatafileManagerBuilderTest testLoggerInBuilderSetsLoggerInDatafileManager]' started.
+2017-07-05 11:57:57.414 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+Test Case '-[OPTLYDatafileManagerBuilderTest testLoggerInBuilderSetsLoggerInDatafileManager]' passed (0.011 seconds).
+Test Suite 'OPTLYDatafileManagerBuilderTest' passed at 2017-07-05 11:57:57.425.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.027 (0.028) seconds
+Test Suite 'OPTLYDatafileManagerTest' started at 2017-07-05 11:57:57.425
+Test Case '-[OPTLYDatafileManagerTest test304Response]' started.
+11:57:57.412 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.444 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerBuilderTest method:testDatafileFetchIntervalIsSetCorrectly withStatus:passed duration:0.01091301441192627
+11:57:57.413 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerBuilderTest testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval
+11:57:57.444 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerBuilderTest method:testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval
+11:57:57.413 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.444 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerBuilderTest method:testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval withStatus:passed duration:0.0008819699287414551
+11:57:57.414 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerBuilderTest testLoggerInBuilderSetsLoggerInDatafileManager
+11:57:57.444 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerBuilderTest method:testLoggerInBuilderSetsLoggerInDatafileManager
+11:57:57.424 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.447 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerBuilderTest method:testLoggerInBuilderSetsLoggerInDatafileManager withStatus:passed duration:0.01075798273086548
+11:57:57.425 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:57:57.448 Xcode[1487:7156] _XCT_testSuite:OPTLYDatafileManagerBuilderTest didFinishAt:2017-07-05 18:57:57 +0000 runCount:4 withFailures:0 unexpected:0 testDuration:0.02679997682571411 totalDuration:0.02848297357559204
+11:57:57.448 Xcode[1487:7156] _XCT_testSuite:OPTLYDatafileManagerTest didStartAt:2017-07-05 18:57:57 +0000
+11:57:57.425 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteWillStart:]
+11:57:57.448 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:test304Response
+11:57:57.427 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest test304Response
+11:57:57.444 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] starting to wait on 'should get a 200 on first try'
+11:57:57.445 xctest[49716:3068732] <XCTWaiter: 0x7fca378050b0> entering wait loop for 2.00s
+11:57:57.458 xctest[49716:3068784] <XCTWaiter: 0x7fca378050b0>: cancelWaiting
+11:57:57.458 xctest[49716:3068732] <XCTWaiter: 0x7fca378050b0> done waiting
+11:57:57.458 xctest[49716:3068732] <XCTWaiter: 0x7fca378050b0> cleaning up should get a 200 on first try
+11:57:57.458 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] done waiting on 'should get a 200 on first try'
+11:57:57.459 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] starting to wait on 'downloadDatafile304Response'
+11:57:57.460 xctest[49716:3068732] <XCTWaiter: 0x7fca35526ca0> entering wait loop for 2.00s
+11:57:57.474 xctest[49716:3068781] <XCTWaiter: 0x7fca35526ca0>: cancelWaiting
+11:57:57.474 xctest[49716:3068732] <XCTWaiter: 0x7fca35526ca0> done waiting
+11:57:57.474 xctest[49716:3068732] <XCTWaiter: 0x7fca35526ca0> cleaning up downloadDatafile304Response
+11:57:57.474 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] done waiting on 'downloadDatafile304Response'
+11:57:57.475 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] starting to wait on 'testInitializeClientAsync'
+11:57:57.475 xctest[49716:3068732] <XCTWaiter: 0x7fca379c4fb0> entering wait loop for 2.00s
+11:57:57.503 xctest[49716:3068782] <XCTWaiter: 0x7fca379c4fb0>: cancelWaiting
+11:57:57.503 xctest[49716:3068732] <XCTWaiter: 0x7fca379c4fb0> done waiting
+11:57:57.504 xctest[49716:3068732] <XCTWaiter: 0x7fca379c4fb0> cleaning up testInitializeClientAsync
+11:57:57.504 xctest[49716:3068732] -[OPTLYDatafileManagerTest test304Response] done waiting on 'testInitializeClientAsync'
+2017-07-05 11:57:57.432 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.432 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.432 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.442 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.443 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.443 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.443 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.444 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.445 xctest[49716:3068784] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+2017-07-05 11:57:57.445 xctest[49716:3068782] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+2017-07-05 11:57:57.446 xctest[49716:3068784] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile for project 6372300739 downloaded. Saving datafile and last modified date: Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.446 xctest[49716:3068782] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile for project 6372300739 downloaded. Saving datafile and last modified date: Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.458 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date Mon, 28 Nov 2016 06:10:59 GMT found for project 6372300739.
+2017-07-05 11:57:57.458 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.458 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date Mon, 28 Nov 2016 06:10:59 GMT found for project 6372300739.
+2017-07-05 11:57:57.459 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.459 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.460 xctest[49716:3068783] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. No datafile changes have been made.
+2017-07-05 11:57:57.474 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.474 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date Mon, 28 Nov 2016 06:10:59 GMT found for project 6372300739.
+2017-07-05 11:57:57.474 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.474 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.475 xctest[49716:3068784] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. No datafile changes have been made.
+Test Case '-[OPTLYDatafileManagerTest test304Response]' passed (0.083 seconds).
+Test Case '-[OPTLYDatafileManagerTest testDatafileManagerDownloadDatafileSavesDatafile]' started.
+11:57:57.510 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.528 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:test304Response withStatus:passed duration:0.0829930305480957
+11:57:57.510 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testDatafileManagerDownloadDatafileSavesDatafile
+11:57:57.528 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testDatafileManagerDownloadDatafileSavesDatafile
+2017-07-05 11:57:57.514 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.514 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.514 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.514 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.515 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.515 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.516 xctest[49716:3068783] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+2017-07-05 11:57:57.527 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.527 xctest[49716:3068783] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile for project 6372300739 downloaded. Saving datafile and last modified date: Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.527 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.529 xctest[49716:3068787] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+2017-07-05 11:57:57.529 xctest[49716:3068787] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile for project 6372300739 downloaded. Saving datafile and last modified date: Mon, 28 Nov 2016 06:10:59 GMT.
+2017-07-05 11:57:57.530 xctest[49716:3068787] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date Mon, 28 Nov 2016 06:10:59 GMT found for project 6372300739.
+Test Case '-[OPTLYDatafileManagerTest testDatafileManagerDownloadDatafileSavesDatafile]' passed (0.025 seconds).
+Test Case '-[OPTLYDatafileManagerTest testIsDatafileCachedFlag]' started.
+11:57:57.528 xctest[49716:3068732] -[OPTLYDatafileManagerTest testDatafileManagerDownloadDatafileSavesDatafile] starting to wait on 'testInitializeClientAsync'
+11:57:57.528 xctest[49716:3068732] <XCTWaiter: 0x7fca37c29070> entering wait loop for 2.00s
+11:57:57.530 xctest[49716:3068788] <XCTWaiter: 0x7fca37c29070>: cancelWaiting
+11:57:57.531 xctest[49716:3068732] <XCTWaiter: 0x7fca37c29070> done waiting
+11:57:57.531 xctest[49716:3068732] <XCTWaiter: 0x7fca37c29070> cleaning up testInitializeClientAsync
+11:57:57.531 xctest[49716:3068732] -[OPTLYDatafileManagerTest testDatafileManagerDownloadDatafileSavesDatafile] done waiting on 'testInitializeClientAsync'
+11:57:57.536 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.561 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testDatafileManagerDownloadDatafileSavesDatafile withStatus:passed duration:0.02536898851394653
+11:57:57.536 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testIsDatafileCachedFlag
+11:57:57.561 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testIsDatafileCachedFlag
+2017-07-05 11:57:57.541 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.542 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.542 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.542 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.560 xctest[49716:3068797] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+2017-07-05 11:57:57.560 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+Test Case '-[OPTLYDatafileManagerTest testIsDatafileCachedFlag]' passed (0.029 seconds).
+Test Case '-[OPTLYDatafileManagerTest testNetworkTimerIsDisabled]' started.
+11:57:57.565 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.589 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testIsDatafileCachedFlag withStatus:passed duration:0.02871096134185791
+11:57:57.565 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testNetworkTimerIsDisabled
+11:57:57.589 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testNetworkTimerIsDisabled
+11:57:57.581 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.591 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testNetworkTimerIsDisabled withStatus:passed duration:0.0154840350151062
+2017-07-05 11:57:57.569 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.569 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.570 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.570 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.570 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.570 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.571 xctest[49716:3068797] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+2017-07-05 11:57:57.574 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.574 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.574 xctest[49716:3068732] [OPTIMIZELY SDK][ERROR]:[DATAFILE MANAGER BUILDER] A datafile fetch interval of -5.000000 is invalid. Please set a datafile fetch interval >= 0.
+2017-07-05 11:57:57.575 xctest[49716:3068787] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+Test Case '-[OPTLYDatafileManagerTest testNetworkTimerIsDisabled]' passed (0.015 seconds).
+Test Case '-[OPTLYDatafileManagerTest testNetworkTimerIsEnabled]' started.
+2017-07-05 11:57:57.592 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.592 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.592 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.593 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.593 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.593 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.593 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.594 xctest[49716:3068784] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+Test Case '-[OPTLYDatafileManagerTest testNetworkTimerIsEnabled]' passed (0.010 seconds).
+2017-07-05 11:57:57.594 xctest[49716:3068797] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+11:57:57.588 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testNetworkTimerIsEnabled
+11:57:57.615 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testNetworkTimerIsEnabled
+11:57:57.615 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.617 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testNetworkTimerIsEnabled withStatus:passed duration:0.01044201850891113
+Test Case '-[OPTLYDatafileManagerTest testRequestDatafileHandlesCompletionEvenWithBadRequest]' started.
+2017-07-05 11:57:57.618 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.618 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.619 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.619 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.619 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.619 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.619 xctest[49716:3068784] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+2017-07-05 11:57:57.619 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.626 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.627 xctest[49716:3068781] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+Test Case '-[OPTLYDatafileManagerTest testRequestDatafileHandlesCompletionEvenWithBadRequest]' passed (0.017 seconds).
+Test Case '-[OPTLYDatafileManagerTest testSaveDatafileMethod]' started.
+11:57:57.615 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testRequestDatafileHandlesCompletionEvenWithBadRequest
+11:57:57.641 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testRequestDatafileHandlesCompletionEvenWithBadRequest
+11:57:57.627 xctest[49716:3068732] -[OPTLYDatafileManagerTest testRequestDatafileHandlesCompletionEvenWithBadRequest] starting to wait on 'testInitializeClientAsync'
+11:57:57.627 xctest[49716:3068732] <XCTWaiter: 0x7fca3780b360> entering wait loop for 2.00s
+11:57:57.627 xctest[49716:3068788] <XCTWaiter: 0x7fca3780b360>: cancelWaiting
+11:57:57.627 xctest[49716:3068732] <XCTWaiter: 0x7fca3780b360> done waiting
+11:57:57.628 xctest[49716:3068732] <XCTWaiter: 0x7fca3780b360> cleaning up testInitializeClientAsync
+11:57:57.628 xctest[49716:3068732] -[OPTLYDatafileManagerTest testRequestDatafileHandlesCompletionEvenWithBadRequest] done waiting on 'testInitializeClientAsync'
+11:57:57.632 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.641 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testRequestDatafileHandlesCompletionEvenWithBadRequest withStatus:passed duration:0.01656597852706909
+11:57:57.632 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDatafileManagerTest testSaveDatafileMethod
+11:57:57.641 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDatafileManagerTest method:testSaveDatafileMethod
+2017-07-05 11:57:57.636 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:57:57.636 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Last modified date not found for project 6372300739.
+2017-07-05 11:57:57.640 xctest[49716:3068732] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile was last modified on (null).
+2017-07-05 11:57:57.640 xctest[49716:3068732] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:57:57.641 xctest[49716:3068788] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project 6372300739 NOT downloaded. Error received: (null).
+2017-07-05 11:57:57.641 xctest[49716:3068732] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Datafile saved for project 6372300739.
+Test Case '-[OPTLYDatafileManagerTest testSaveDatafileMethod]' passed (0.013 seconds).
+Test Suite 'OPTLYDatafileManagerTest' passed at 2017-07-05 11:57:57.646.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.193 (0.220) seconds
+Test Suite 'OptimizelySDKDatafileManagerTests' started at 2017-07-05 11:57:57.646
+Test Case '-[OptimizelySDKDatafileManagerTests testExample]' started.
+Test Case '-[OptimizelySDKDatafileManagerTests testExample]' passed (0.001 seconds).
+11:57:57.645 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.678 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDatafileManagerTest method:testSaveDatafileMethod withStatus:passed duration:0.0131879448890686
+11:57:57.646 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:57:57.678 Xcode[1487:7156] _XCT_testSuite:OPTLYDatafileManagerTest didFinishAt:2017-07-05 18:57:57 +0000 runCount:7 withFailures:0 unexpected:0 testDuration:0.1927529573440552 totalDuration:0.2202900052070618
+11:57:57.646 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteWillStart:]
+11:57:57.679 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKDatafileManagerTests didStartAt:2017-07-05 18:57:57 +0000
+11:57:57.646 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OptimizelySDKDatafileManagerTests testExample
+11:57:57.679 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelySDKDatafileManagerTests method:testExample
+11:57:57.652 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.679 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelySDKDatafileManagerTests method:testExample withStatus:passed duration:0.0005970001220703125
+11:57:57.653 xctest[49716:3068732] -[XCTRunnerIDESession testCaseWillStart:] OptimizelySDKDatafileManagerTests testPerformanceExample
+11:57:57.679 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelySDKDatafileManagerTests method:testPerformanceExample
+Test Case '-[OptimizelySDKDatafileManagerTests testPerformanceExample]' started.
+11:57:57.931 xctest[49716:3068732] -[XCTRunnerIDESession _testCase:didMeasureValues:forPerformanceMetricID:name:unitsOfMeasurement:baselineName:baselineAverage:maxPercentRegression:maxPercentRelativeStandardDeviation:maxRegression:maxStandardDeviation:file:line:]
+11:57:57.931 Xcode[1487:7156] -[XCTTestRunnerSession _XCT_testMethod:ofClass:didMeasureMetric:file:line:]_block_invoke
+2017-07-05 11:57:57.752 xctest[49716:3068784] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project projectID NOT downloaded. Error received: (null).
+2017-07-05 11:57:57.850 xctest[49716:3068784] [OPTIMIZELY SDK][DEBUG]:[DATAFILE MANAGER] Datafile for project projectID NOT downloaded. Error received: (null).
+/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDKDatafileManager/OptimizelySDKDatafileManagerTests/OptimizelySDKDatafileManagerTests.m:42: Test Case '-[OptimizelySDKDatafileManagerTests testPerformanceExample]' measured [Time, seconds] average: 0.000, relative standard deviation: 129.769%, values: [0.000004, 0.000001, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000], performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, baselineName: "", baselineAverage: , maxPercentRegression: 10.000%, maxPercentRelativeStandardDeviation: 10.000%, maxRegression: 0.100, maxStandardDeviation: 0.100
+11:57:57.931 xctest[49716:3068732] -[XCTRunnerIDESession testCaseDidFinish:]
+11:57:57.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelySDKDatafileManagerTests method:testPerformanceExample withStatus:passed duration:0.2789379954338074
+Test Case '-[OptimizelySDKDatafileManagerTests testPerformanceExample]' passed (0.279 seconds).
+Test Suite 'OptimizelySDKDatafileManagerTests' passed at 2017-07-05 11:57:57.932.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.280 (0.286) seconds
+Test Suite 'OptimizelySDKDatafileManageriOSTests.xctest' passed at 2017-07-05 11:57:57.932.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.499 (0.537) seconds
+11:57:57.932 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:57:57.954 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKDatafileManagerTests didFinishAt:2017-07-05 18:57:57 +0000 runCount:2 withFailures:0 unexpected:0 testDuration:0.2795349955558777 totalDuration:0.28581303358078
+11:57:57.932 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:57:57.955 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKDatafileManageriOSTests.xctest didFinishAt:2017-07-05 18:57:57 +0000 runCount:13 withFailures:0 unexpected:0 testDuration:0.499087929725647 totalDuration:0.5365239977836609
+11:57:57.933 xctest[49716:3068732] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:57:57.955 Xcode[1487:7156] _XCT_testSuite:All tests didFinishAt:2017-07-05 18:57:57 +0000 runCount:13 withFailures:0 unexpected:0 testDuration:0.499087929725647 totalDuration:0.5382350087165833
+11:57:57.933 xctest[49716:3068732] Finished running suite.
+11:57:57.955 Xcode[1487:7156] -[XCTTestRunnerSession _XCT_didFinishExecutingTestPlan]_block_invoke
+11:57:57.933 xctest[49716:3068732] -[XCTRunnerIDESession testBundleDidFinish:], Flushing connection to IDE...
+11:57:57.933 xctest[49716:3068732] Calling completion.
+11:57:57.934 xctest[49716:3068732] <XCTWaiter: 0x7fca3551cbf0> entering wait loop for 15.00s
+11:57:57.955 Xcode[1487:7156] _finishWithError:(null) didCancel: 0

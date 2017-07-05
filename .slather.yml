@@ -4,5 +4,5 @@ xcodeproj: OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj
 workspace: OptimizelySDK.xcworkspace
 scheme: OptimizelySDKiOS
 input_format: profdata
-build-directory: ./
-source-directory: Pods
+build_directory: ./
+source_directory: Pods
