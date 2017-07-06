@@ -113,11 +113,11 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID to be used for bucketing.
  * @param variationKey The variation the user should be forced into.
  * This value can be nil, in which case, the forced variation is cleared.
- * @return The variation the user is bucketed into. This value can be nil.
+ * @return YES if there were no errors, otherwise return NO.
  */
-- (nullable OPTLYVariation *)setForcedVariation:(nonnull NSString *)experimentKey
-                                         userId:(nonnull NSString *)userId
-                                   variationKey:(nullable NSString *)variationKey;
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nullable NSString *)variationKey;
 
 #pragma mark - trackEvent methods
 /**
