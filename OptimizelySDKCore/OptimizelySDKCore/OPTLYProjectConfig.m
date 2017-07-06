@@ -43,7 +43,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
-//@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, OPTLYVariation *>><Ignore> *preferredVariationMap;
+//@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><Ignore> *preferredVariationMap;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *preferredVariationMap;
 
 @end
@@ -235,9 +235,17 @@ NSString * const kExpectedDatafileVersion  = @"3";
 - (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId {
     OPTLYVariation *variation = nil;
-    NSMutableDictionary<NSString *, OPTLYVariation *> *dictionary = self.preferredVariationMap[userId];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = self.preferredVariationMap[userId];
     if (dictionary != nil) {
-        variation = dictionary[experimentKey];
+        NSString *variationId = dictionary[experimentKey];
+        // Convert variationId to variation
+        OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
+        if (!experiment) {
+            // NOTE: getExperimentForKey: will log any non-existent experimentKey and return experiment == nil for us.
+            return nil;
+        }
+        // Get variation from experiment and variationId .
+        variation = [experiment getVariationForVariationId:variationId];
     }
     return variation;
 }
@@ -264,7 +272,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
         }
     }
     // Locate relevant dictionary inside preferredVariationMap
-    NSMutableDictionary<NSString *, OPTLYVariation *> *dictionary = self.preferredVariationMap[userId];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = self.preferredVariationMap[userId];
     if ((dictionary == nil) && (variationKey != nil)) {
         // We need a non-nil dictionary to store an OPTLYVariation .
         dictionary = [[NSMutableDictionary alloc] init];
@@ -282,7 +290,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     } else {
         // If there is no OPTLYExperiment *experiment corresponding to experimentKey ,
         // then we will land in the "(variation == nil)" case above due to code above.
-        dictionary[experimentKey] = variation;
+        dictionary[experimentKey] = variation.variationId;
     };
     return YES;
 }
@@ -370,7 +378,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return _variableKeyToVariableMap;
 }
 
-//- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, OPTLYVariation *>> *)preferredVariationMap {
+//- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>> *)preferredVariationMap {
 - (NSMutableDictionary<NSString *, NSMutableDictionary *> *)preferredVariationMap {
     if (!_preferredVariationMap) {
         _preferredVariationMap = [[NSMutableDictionary alloc] init];
