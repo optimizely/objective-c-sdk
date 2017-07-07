@@ -1,4 +1,13 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.3
+Jul 7, 2017
+
+### Bug Fixes
+* Added NS_SWIFT_NOTHROW to make 4 variableXxx:...:error: Swift method signatures more consistent in appearance.
+
+### Breaking Changes
+* Signatures for 2 existing variableXxx:...:error: Swift methods changed.
+
 ## 1.1.1
 May 23, 2017
 
