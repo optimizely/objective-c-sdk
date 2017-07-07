@@ -15,7 +15,7 @@ echo 'xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDK
 xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
 
 echo 'xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=10.1,name=iPhone 7 Plus"'
-xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=10.1,name=iPhone 7 Plus" | egrep -B 5 -A 5 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"
+xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=10.1,name=iPhone 7 Plus"
 
 echo 'xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=10.2,name=Apple TV 1080p"'
 xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=10.2,name=Apple TV 1080p"
