@@ -1,0 +1,558 @@
+11:57:52.038 Xcode[1487:7156] Beginning test session OptimizelySDKiOSTests-BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8 at 2017-07-05 11:57:52.038 with Xcode 8E3004b on target <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+} (10.3.1 (14E8301))
+11:57:52.039 Xcode[1487:7156] Launching with Xcode.DebuggerFoundation.Launcher.LLDB
+11:57:52.039 Xcode[1487:3062691] Sim iPhone 7 Plus: Unregistering for sim device notification with token 44
+11:57:52.039 Xcode[1487:3062691] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+11:57:52.039 Xcode[1487:3062691] Sim iPhone 7 Plus has testmanagerd socket at /private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket
+11:57:52.039 Xcode[1487:3062691] Validating test connection socket path (/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket)
+11:57:52.039 Xcode[1487:3062691] Constructing transport for test connection socket
+11:57:52.039 Xcode[1487:3062691] Connected socket 61 to testmanagerd for Sim iPhone 7 Plus
+11:57:52.039 Xcode[1487:3067042] Received connection for test runner session
+11:57:52.039 Xcode[1487:3067042] Listening for proxy connection request from the test bundle
+11:57:52.040 Xcode[1487:3067042] Initiating session with identifier: BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8
+11:57:52.074 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.074 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9d9b1c30 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.074 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9edbe720 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc87d42870 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca12ce780 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.076 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.076 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc89e03140 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.226 Xcode[1487:7156] Test runner session acquired connection.
+11:57:52.226 Xcode[1487:7156] Waiting for test process to launch.
+11:57:55.306 Xcode[1487:3067733] Got reply to session initiation request with identifier BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8 (result:error): 22: (null)
+11:57:55.426 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.426 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc868d5b40 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.431 Xcode[1487:3067741] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+}
+11:57:55.433 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.433 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9da94170 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.460 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+} (pid = 49716)
+11:57:55.460 Xcode[1487:3067738] Tracking pid 49716 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:57:55.460 Xcode[1487:3067738] Checking to see if pid 49716 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:57:55.460 Xcode[1487:3067738] Setting up DVTTaskNotifyOnProcDeath for pid 49716
+11:57:57.966 Xcode[1487:3067731] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:57:57.989 Xcode[1487:7156] Got death notice for pid 49716, removing from SimulatorSessionMap
+11:57:58.251 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:58.251 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9dc8da10 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:58.253 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 47
+11:57:58.253 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 47
+11:57:58.253 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKSharediOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/C338CEE3-8380-4141-B526-9476D071A773/remote-container/tmp/OptimizelySDKSharediOSTests-C338CEE3-8380-4141-B526-9476D071A773.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+    };
+    stderr = 66;
+    stdin = 64;
+    stdout = 65;
+    "wait_for_debugger" = 1;
+}
+11:57:58.255 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:58.255 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9d615110 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:58.284 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKSharediOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/C338CEE3-8380-4141-B526-9476D071A773/remote-container/tmp/OptimizelySDKSharediOSTests-C338CEE3-8380-4141-B526-9476D071A773.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+    };
+    stderr = 66;
+    stdin = 64;
+    stdout = 65;
+    "wait_for_debugger" = 1;
+} (pid = 49719)
+11:57:58.285 Xcode[1487:3067737] Tracking pid 49719 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:57:58.285 Xcode[1487:3067737] Checking to see if pid 49719 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:57:58.285 Xcode[1487:3067737] Setting up DVTTaskNotifyOnProcDeath for pid 49719
+11:58:00.658 Xcode[1487:3067740] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:00.682 Xcode[1487:7156] Got death notice for pid 49719, removing from SimulatorSessionMap
+11:58:00.940 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:00.940 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc86f90e50 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:00.943 Xcode[1487:3067740] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 49
+11:58:00.943 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 49
+11:58:00.943 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKEventDispatcheriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ACAE445F-588E-43B6-808C-69534F93AA57/remote-container/tmp/OptimizelySDKEventDispatcheriOSTests-ACAE445F-588E-43B6-808C-69534F93AA57.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+    };
+    stderr = 65;
+    stdin = 63;
+    stdout = 64;
+    "wait_for_debugger" = 1;
+}
+11:58:00.944 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:00.945 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9e9c6df0 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:00.955 Xcode[1487:3067739] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKEventDispatcheriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ACAE445F-588E-43B6-808C-69534F93AA57/remote-container/tmp/OptimizelySDKEventDispatcheriOSTests-ACAE445F-588E-43B6-808C-69534F93AA57.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+    };
+    stderr = 65;
+    stdin = 63;
+    stdout = 64;
+    "wait_for_debugger" = 1;
+} (pid = 49725)
+11:58:00.956 Xcode[1487:3067739] Tracking pid 49725 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:58:00.956 Xcode[1487:3067739] Checking to see if pid 49725 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:58:00.956 Xcode[1487:3067739] Setting up DVTTaskNotifyOnProcDeath for pid 49725
+11:58:03.063 Xcode[1487:3067727] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:03.102 Xcode[1487:7156] Got death notice for pid 49725, removing from SimulatorSessionMap
+11:58:03.340 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:03.340 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc86cdd290 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:03.342 Xcode[1487:3067727] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 51
+11:58:03.343 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 51
+11:58:03.343 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKCoreiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ABC92B17-2501-41A5-BD5F-21F40B49E115/remote-container/tmp/OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+    };
+    stderr = 64;
+    stdin = 54;
+    stdout = 63;
+    "wait_for_debugger" = 1;
+}
+11:58:03.343 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:03.343 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca31d9400 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:03.355 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKCoreiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ABC92B17-2501-41A5-BD5F-21F40B49E115/remote-container/tmp/OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+    };
+    stderr = 64;
+    stdin = 54;
+    stdout = 63;
+    "wait_for_debugger" = 1;
+} (pid = 49728)
+11:58:03.356 Xcode[1487:3067737] Tracking pid 49728 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:58:03.356 Xcode[1487:3067737] Checking to see if pid 49728 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:58:03.356 Xcode[1487:3067737] Setting up DVTTaskNotifyOnProcDeath for pid 49728
+11:58:06.391 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:06.416 Xcode[1487:7156] Got death notice for pid 49728, removing from SimulatorSessionMap
+11:58:06.702 Xcode[1487:7156] Launch session started.
+11:58:06.712 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:06.712 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca1291c30 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:06.713 Xcode[1487:7156] Adding console adaptor <IDEConsoleAdaptor: 0x7fcc9d95e1b0 'target'> for test session BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8.
+11:58:06.715 Xcode[1487:3067727] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 53
+11:58:06.715 Xcode[1487:3062750] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 53
+11:58:06.715 Xcode[1487:3062750] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8/remote-container/tmp/OptimizelySDKiOSTests-BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+    };
+    stderr = 63;
+    stdin = 54;
+    stdout = 57;
+    "wait_for_debugger" = 1;
+}
+11:58:06.716 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:06.716 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9eba2830 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:06.746 Xcode[1487:3067735] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8/remote-container/tmp/OptimizelySDKiOSTests-BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+    };
+    stderr = 63;
+    stdin = 54;
+    stdout = 57;
+    "wait_for_debugger" = 1;
+} (pid = 49731)
+11:58:06.746 Xcode[1487:3067735] Tracking pid 49731 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:58:06.746 Xcode[1487:3067735] Checking to see if pid 49731 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:58:06.746 Xcode[1487:3067735] Setting up DVTTaskNotifyOnProcDeath for pid 49731
+11:58:06.746 Xcode[1487:7156] Test process runnable PID is 49731.
+11:58:08.412 Xcode[1487:7156] Waiting for test process to check in..., will wait up to 120s
+11:58:08.534 Xcode[1487:3062753] Handling proxy channel request from test runner
+11:58:08.534 Xcode[1487:3062753] Test runner is ready, running protocol 22, requires at least version 8. Control framework is running 22 and requires at least 8
+11:58:08.534 Xcode[1487:7156] Test runner session successfully initiated.
+11:58:08.534 Xcode[1487:7156] Creating the daemon control session.
+11:58:08.535 Xcode[1487:7156] Whitelisting test process ID 49731
+11:58:08.535 Xcode[1487:7156] Got authorization request for pid 49731
+11:58:08.536 Xcode[1487:3067738] Requesting authorization for pid 49731
+11:58:08.539 Xcode[1487:3067738] Got reply to authorization request for pid 49731 (result:error): 22: (null)
+11:58:08.539 Xcode[1487:7156] Got whitelisting response from test daemon. Success: 1
+11:58:08.539 testmanagerd[49299:3067762] Received request to collect crash reports in directories '/Users/nbuduma/Library/Logs/DiagnosticReports', '/Library/Logs/DiagnosticReports' for processes with names 'XCTRunner', 'xctest'
+11:58:08.540 testmanagerd[49299:3067762] Initializing crash report observer for /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:08.540 testmanagerd[49299:3067762] Getting files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:08.541 testmanagerd[49299:3067762] Found 20 files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:08.541 testmanagerd[49299:3067762] Started monitoring /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:08.542 testmanagerd[49299:3067762] Initializing crash report observer for /Library/Logs/DiagnosticReports
+11:58:08.542 testmanagerd[49299:3067762] Getting files in /Library/Logs/DiagnosticReports
+11:58:08.543 testmanagerd[49299:3067762] Found 46 files in /Library/Logs/DiagnosticReports
+11:58:08.543 testmanagerd[49299:3067762] Started monitoring /Library/Logs/DiagnosticReports
+11:58:08.412 xctest[49731:3069051] Linked XCTest.framework from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/XCTest, built with Xcode 0833(8E3002), modified on Wednesday, May 10, 2017 at 10:10:51 PM Pacific Daylight Time
+11:58:08.412 xctest[49731:3069051] XCTest.framework bundle version: 12124
+11:58:08.414 xctest[49731:3069051] System uptime: 4d 1:16:29
+11:58:08.414 xctest[49731:3069051] Process arguments: (
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+    "-NSTreatUnknownArgumentsAsOpen",
+    NO,
+    "-ApplePersistenceIgnoreState",
+    YES
+)
+11:58:08.414 xctest[49731:3069051] Process environment: {
+    "CFFIXED_USER_HOME" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "CUPS_SERVER" = "/private/tmp/com.apple.launchd.TlM2LGodOC/Listeners";
+    "DYLD_FALLBACK_FRAMEWORK_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks";
+    "DYLD_FALLBACK_LIBRARY_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib";
+    "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_ROOT_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "DYLD_SHARED_REGION" = avoid;
+    HOME = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    IDEiPhoneInternalTestBundleName = "OptimizelySDKiOSTests.xctest";
+    "IOS_SIMULATOR_SYSLOG_SOCKET" = "/private/tmp/com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim/syslogsock";
+    "IPHONE_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "IPHONE_SIMULATOR_CLASS" = D11;
+    "IPHONE_SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "IPHONE_TVOUT_EXTENDED_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+    NSApplicationQuitWithoutSuddenTermination = YES;
+    NSUnbufferedIO = YES;
+    "OS_ACTIVITY_DT_MODE" = YES;
+    PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/local/bin";
+    "SIMULATOR_CAPABILITIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/Profiles/DeviceTypes/iPhone 7 Plus.simdevicetype/Contents/Resources/capabilities.plist";
+    "SIMULATOR_DEVICE_NAME" = "iPhone 7 Plus";
+    "SIMULATOR_EXTENDED_DISPLAY_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "SIMULATOR_HID_SYSTEM_MANAGER" = "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/Resources/Platforms/iphoneos/SimulatorHID.framework";
+    "SIMULATOR_HOST_HOME" = "/Users/nbuduma";
+    "SIMULATOR_LEGACY_ASSET_SUFFIX" = iphone;
+    "SIMULATOR_LOG_ROOT" = "/Users/nbuduma/Library/Logs/CoreSimulator/F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_MAINSCREEN_HEIGHT" = 2208;
+    "SIMULATOR_MAINSCREEN_PITCH" = "461.000000";
+    "SIMULATOR_MAINSCREEN_SCALE" = "3.000000";
+    "SIMULATOR_MAINSCREEN_WIDTH" = 1242;
+    "SIMULATOR_MEMORY_WARNINGS" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/var/run/memory_warning_simulation";
+    "SIMULATOR_MODEL_IDENTIFIER" = "iPhone9,2";
+    "SIMULATOR_PLATFORM_RUNTIME_OVERLAY_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/RuntimeOverlay";
+    "SIMULATOR_PRODUCT_CLASS" = D11;
+    "SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "SIMULATOR_RUNTIME_BUILD_VERSION" = 14E8301;
+    "SIMULATOR_RUNTIME_VERSION" = "10.3.1";
+    "SIMULATOR_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "SIMULATOR_UDID" = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_VERSION_INFO" = "CoreSimulator 375.21 - Device: iPhone 7 Plus - Runtime: iOS 10.3 (14E8301) - DeviceType: iPhone 7 Plus";
+    "TESTMANAGERD_SIM_SOCK" = "/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket";
+    TMPDIR = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/tmp/";
+    "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+    XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8/remote-container/tmp/OptimizelySDKiOSTests-BDA30AC6-9DDA-400B-B5E2-8CCE4A6AB2B8.xctestconfiguration";
+    "XPC_FLAGS" = 0x0;
+    "XPC_SERVICE_NAME" = "com.apple.xpc.launchd.oneshot.0x10000009.xctest";
+    "XPC_SIMULATOR_LAUNCHD_NAME" = "com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim";
+    "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/91D836C0-DC5D-4467-A186-BA8D57A5E553-1487-00013E7AEBD69687/%p.profraw";
+}
+11:58:08.417 xctest[49731:3069051] <XCTWaiter: 0x7feca34185b0> entering wait loop for 5.00s
+11:58:08.419 xctest[49731:3069079] Got daemon protocol version 12
+11:58:08.419 xctest[49731:3069081] <XCTWaiter: 0x7feca34185b0>: cancelWaiting
+11:58:08.419 xctest[49731:3069051] <XCTWaiter: 0x7feca34185b0> done waiting
+11:58:08.419 xctest[49731:3069051] <XCTWaiter: 0x7feca34185b0> cleaning up Exchange protocol versions with daemon
+11:58:08.419 xctest[49731:3069051] Requesting socket
+11:58:08.419 xctest[49731:3069051] <XCTWaiter: 0x7feca4b02b90> entering wait loop for 30.00s
+11:58:08.531 xctest[49731:3069079] <XCTWaiter: 0x7feca4b02b90>: cancelWaiting
+11:58:08.531 xctest[49731:3069051] <XCTWaiter: 0x7feca4b02b90> done waiting
+11:58:08.531 xctest[49731:3069051] <XCTWaiter: 0x7feca4b02b90> cleaning up Socket for IDE session acquired
+11:58:08.531 xctest[49731:3069051] Creating transport with socket 5
+11:58:08.531 xctest[49731:3069051] Creating connection with transport <DTXSocketTransport: 0x7feca344abd0>
+11:58:08.533 xctest[49731:3069051] Creating the proxy channel with connection <DTXConnection 0x7feca3524400 : x1>
+11:58:08.534 xctest[49731:3069051] Messaging IDE proxy - _XCT_testBundleReadyWithProtocolVersion:22 minimumVersion:8
+11:58:08.534 xctest[49731:3069051] <XCTWaiter: 0x7feca35260c0> entering wait loop for 30.00s
+11:58:08.535 xctest[49731:3069079] _XCT_testBundleReadyWithProtocolVersion:minimumVersion: reply received
+11:58:08.544 xctest[49731:3069080] _IDE_startExecutingTestPlanWithProtocolVersion:22
+11:58:08.545 xctest[49731:3069083] <XCTWaiter: 0x7feca35260c0>: cancelWaiting
+11:58:08.545 xctest[49731:3069051] <XCTWaiter: 0x7feca35260c0> done waiting
+11:58:08.545 xctest[49731:3069051] <XCTWaiter: 0x7feca35260c0> cleaning up IDE session ready for test plan
+11:58:08.548 Xcode[1487:7156] Starting test plan, clearing initialization timeout timer.
+11:58:08.548 xctest[49731:3069051] Loading test suite...
+11:58:08.595 xctest[49731:3069051] Finished loading test suite, took 0.047s
+11:58:08.595 xctest[49731:3069051] -[XCTRunnerIDESession testBundleWillStart:]
+11:58:08.595 xctest[49731:3069051] Running suite...
+11:58:08.595 xctest[49731:3069051] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:08.596 Xcode[1487:7156] _XCT_testSuite:All tests didStartAt:2017-07-05 18:58:08 +0000
+11:58:08.615 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:08.638 Xcode[1487:3062753] (LOG ARBITER) Rotating message buffer with 15 messages.
+11:58:08.650 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 15 messages.
+2017-07-05 11:58:08.615 xctest[49731:3069051] [OPTIMIZELY SDK][INFO]:[DATAFILE MANAGER] Downloading datafile for project 6372300739.
+2017-07-05 11:58:08.615 xctest[49731:3069051] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+Test Case '-[OptimizelySDKiOSTests testiOSSDKInitializedWithOverrides]' passed (0.008 seconds).
+Test Suite 'OptimizelySDKiOSTests' passed at 2017-07-05 11:58:08.622.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.021 (0.026) seconds
+Test Suite 'OptimizelySDKiOSTests.xctest' passed at 2017-07-05 11:58:08.623.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.021 (0.027) seconds
+11:58:08.650 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelySDKiOSTests method:testiOSSDKInitializedWithOverrides
+11:58:08.622 xctest[49731:3069051] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:08.650 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelySDKiOSTests method:testiOSSDKInitializedWithOverrides withStatus:passed duration:0.007513999938964844
+11:58:08.622 xctest[49731:3069051] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:08.650 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKiOSTests didFinishAt:2017-07-05 18:58:08 +0000 runCount:2 withFailures:0 unexpected:0 testDuration:0.02062499523162842 totalDuration:0.0258139967918396
+11:58:08.623 xctest[49731:3069051] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:08.650 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKiOSTests.xctest didFinishAt:2017-07-05 18:58:08 +0000 runCount:2 withFailures:0 unexpected:0 testDuration:0.02062499523162842 totalDuration:0.02673399448394775
+11:58:08.623 xctest[49731:3069051] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:08.651 Xcode[1487:7156] _XCT_testSuite:All tests didFinishAt:2017-07-05 18:58:08 +0000 runCount:2 withFailures:0 unexpected:0 testDuration:0.02062499523162842 totalDuration:0.02802097797393799
+11:58:08.623 xctest[49731:3069051] Finished running suite.
+11:58:08.651 Xcode[1487:7156] -[XCTTestRunnerSession _XCT_didFinishExecutingTestPlan]_block_invoke
+11:58:08.623 xctest[49731:3069051] -[XCTRunnerIDESession testBundleDidFinish:], Flushing connection to IDE...
+11:58:08.623 xctest[49731:3069051] Calling completion.
+11:58:08.624 xctest[49731:3069051] <XCTWaiter: 0x7feca4c4ff70> entering wait loop for 15.00s
+11:58:08.663 Xcode[1487:3069010] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:08.712 Xcode[1487:7156] _finishWithError:(null) didCancel: 0

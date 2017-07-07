@@ -1,0 +1,1604 @@
+11:57:52.032 Xcode[1487:7156] Beginning test session OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115 at 2017-07-05 11:57:52.032 with Xcode 8E3004b on target <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+} (10.3.1 (14E8301))
+11:57:52.032 Xcode[1487:7156] Launching with Xcode.DebuggerFoundation.Launcher.LLDB
+11:57:52.032 Xcode[1487:3062873] Sim iPhone 7 Plus: Unregistering for sim device notification with token 43
+11:57:52.032 Xcode[1487:3062873] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+11:57:52.033 Xcode[1487:3062873] Sim iPhone 7 Plus has testmanagerd socket at /private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket
+11:57:52.033 Xcode[1487:3062873] Validating test connection socket path (/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket)
+11:57:52.033 Xcode[1487:3062873] Constructing transport for test connection socket
+11:57:52.033 Xcode[1487:3062873] Connected socket 58 to testmanagerd for Sim iPhone 7 Plus
+11:57:52.033 Xcode[1487:3062691] Received connection for test runner session
+11:57:52.033 Xcode[1487:3062691] Listening for proxy connection request from the test bundle
+11:57:52.033 Xcode[1487:3062691] Initiating session with identifier: ABC92B17-2501-41A5-BD5F-21F40B49E115
+11:57:52.074 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.074 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9d9b1c30 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9edbe720 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc87d42870 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.075 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.075 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca12ce780 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.076 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:52.076 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc89e03140 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:52.226 Xcode[1487:7156] Test runner session acquired connection.
+11:57:52.226 Xcode[1487:7156] Waiting for test process to launch.
+11:57:55.307 Xcode[1487:3067740] Got reply to session initiation request with identifier ABC92B17-2501-41A5-BD5F-21F40B49E115 (result:error): 22: (null)
+11:57:55.426 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.426 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc868d5b40 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.431 Xcode[1487:3067741] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 45
+11:57:55.432 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+}
+11:57:55.433 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:55.433 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9da94170 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:55.460 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKDatafileManageriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/07810F27-4D7A-4106-8BFE-A6FF60C1C3D7/remote-container/tmp/OptimizelySDKDatafileManageriOSTests-07810F27-4D7A-4106-8BFE-A6FF60C1C3D7.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/164D6138-00EC-4276-B11A-0E28FE64ED89-1487-00013E7AEA380049/%p.profraw";
+    };
+    stderr = 67;
+    stdin = 65;
+    stdout = 66;
+    "wait_for_debugger" = 1;
+} (pid = 49716)
+11:57:55.460 Xcode[1487:3067738] Tracking pid 49716 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:57:55.460 Xcode[1487:3067738] Checking to see if pid 49716 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:57:55.460 Xcode[1487:3067738] Setting up DVTTaskNotifyOnProcDeath for pid 49716
+11:57:57.966 Xcode[1487:3067731] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:57:57.989 Xcode[1487:7156] Got death notice for pid 49716, removing from SimulatorSessionMap
+11:57:58.251 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:58.251 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9dc8da10 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:58.253 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 47
+11:57:58.253 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 47
+11:57:58.253 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKSharediOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/C338CEE3-8380-4141-B526-9476D071A773/remote-container/tmp/OptimizelySDKSharediOSTests-C338CEE3-8380-4141-B526-9476D071A773.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+    };
+    stderr = 66;
+    stdin = 64;
+    stdout = 65;
+    "wait_for_debugger" = 1;
+}
+11:57:58.255 Xcode[1487:7156] Received Ready from iOSSimulator
+11:57:58.255 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9d615110 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:57:58.284 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKSharediOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/C338CEE3-8380-4141-B526-9476D071A773/remote-container/tmp/OptimizelySDKSharediOSTests-C338CEE3-8380-4141-B526-9476D071A773.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/F1B831B1-AC65-4409-BCFC-59080BCB974C-1487-00013E7AEAA8CC61/%p.profraw";
+    };
+    stderr = 66;
+    stdin = 64;
+    stdout = 65;
+    "wait_for_debugger" = 1;
+} (pid = 49719)
+11:57:58.285 Xcode[1487:3067737] Tracking pid 49719 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:57:58.285 Xcode[1487:3067737] Checking to see if pid 49719 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:57:58.285 Xcode[1487:3067737] Setting up DVTTaskNotifyOnProcDeath for pid 49719
+11:58:00.659 Xcode[1487:3067740] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:00.682 Xcode[1487:7156] Got death notice for pid 49719, removing from SimulatorSessionMap
+11:58:00.940 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:00.940 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc86f90e50 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:00.943 Xcode[1487:3067740] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 49
+11:58:00.943 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 49
+11:58:00.943 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKEventDispatcheriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ACAE445F-588E-43B6-808C-69534F93AA57/remote-container/tmp/OptimizelySDKEventDispatcheriOSTests-ACAE445F-588E-43B6-808C-69534F93AA57.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+    };
+    stderr = 65;
+    stdin = 63;
+    stdout = 64;
+    "wait_for_debugger" = 1;
+}
+11:58:00.944 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:00.945 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc9e9c6df0 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:00.956 Xcode[1487:3067739] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKEventDispatcheriOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ACAE445F-588E-43B6-808C-69534F93AA57/remote-container/tmp/OptimizelySDKEventDispatcheriOSTests-ACAE445F-588E-43B6-808C-69534F93AA57.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/B836AC6E-8A5D-4AC3-961F-063B754770B7-1487-00013E7AEB0F36CE/%p.profraw";
+    };
+    stderr = 65;
+    stdin = 63;
+    stdout = 64;
+    "wait_for_debugger" = 1;
+} (pid = 49725)
+11:58:00.956 Xcode[1487:3067739] Tracking pid 49725 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:58:00.956 Xcode[1487:3067739] Checking to see if pid 49725 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:58:00.956 Xcode[1487:3067739] Setting up DVTTaskNotifyOnProcDeath for pid 49725
+11:58:03.063 Xcode[1487:3067727] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:03.102 Xcode[1487:7156] Got death notice for pid 49725, removing from SimulatorSessionMap
+11:58:03.330 Xcode[1487:7156] Launch session started.
+11:58:03.340 Xcode[1487:7156] Adding console adaptor <IDEConsoleAdaptor: 0x7fcc892e43b0 'target'> for test session ABC92B17-2501-41A5-BD5F-21F40B49E115.
+11:58:03.340 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:03.340 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcc86cdd290 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:03.342 Xcode[1487:3067727] F29F823E-CBD4-43DC-A597-3B7B82685851: Registered for sim device notification, got token 51
+11:58:03.343 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Unregistering for sim device notification with token 51
+11:58:03.343 Xcode[1487:3067738] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawning executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest and options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKCoreiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ABC92B17-2501-41A5-BD5F-21F40B49E115/remote-container/tmp/OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+    };
+    stderr = 64;
+    stdin = 54;
+    stdout = 63;
+    "wait_for_debugger" = 1;
+}
+11:58:03.343 Xcode[1487:7156] Received Ready from iOSSimulator
+11:58:03.343 Xcode[1487:7156] Sending notification: NSConcreteNotification 0x7fcca31d9400 {name = com.apple.iphonesimulator.startSession; userInfo = {
+    deviceUDID = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+}}
+11:58:03.355 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Spawned executable at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest with options: {
+    arguments =     (
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+        "-NSTreatUnknownArgumentsAsOpen",
+        NO,
+        "-ApplePersistenceIgnoreState",
+        YES
+    );
+    binpref = "x86_64";
+    environment =     {
+        "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        "DYLD_INSERT_LIBRARIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib";
+        "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+        IDEiPhoneInternalTestBundleName = "OptimizelySDKCoreiOSTests.xctest";
+        "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+        NSApplicationQuitWithoutSuddenTermination = YES;
+        NSUnbufferedIO = YES;
+        "OS_ACTIVITY_DT_MODE" = YES;
+        "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+        XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ABC92B17-2501-41A5-BD5F-21F40B49E115/remote-container/tmp/OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115.xctestconfiguration";
+        "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+        "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+    };
+    stderr = 64;
+    stdin = 54;
+    stdout = 63;
+    "wait_for_debugger" = 1;
+} (pid = 49728)
+11:58:03.356 Xcode[1487:3067737] Tracking pid 49728 for simulator <DVTiPhoneSimulator: 0x7fcc98e4dc60> {
+		SimDevice: SimDevice : iPhone 7 Plus (F29F823E-CBD4-43DC-A597-3B7B82685851) : state={ Booted } deviceType={ SimDeviceType : com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus } runtime={ SimRuntime : 10.3.1 (14E8301) - com.apple.CoreSimulator.SimRuntime.iOS-10-3 }
+}
+11:58:03.356 Xcode[1487:3067737] Checking to see if pid 49728 is valid: kill(pid, 0) = 0 (YES, it's still running)
+11:58:03.356 Xcode[1487:3067737] Setting up DVTTaskNotifyOnProcDeath for pid 49728
+11:58:03.356 Xcode[1487:7156] Test process runnable PID is 49728.
+11:58:05.027 Xcode[1487:7156] Waiting for test process to check in..., will wait up to 120s
+11:58:05.251 Xcode[1487:3067727] Handling proxy channel request from test runner
+11:58:05.251 Xcode[1487:3067727] Test runner is ready, running protocol 22, requires at least version 8. Control framework is running 22 and requires at least 8
+11:58:05.251 Xcode[1487:7156] Test runner session successfully initiated.
+11:58:05.251 Xcode[1487:7156] Creating the daemon control session.
+11:58:05.251 Xcode[1487:7156] Whitelisting test process ID 49728
+11:58:05.251 Xcode[1487:7156] Got authorization request for pid 49728
+11:58:05.252 Xcode[1487:3067727] Requesting authorization for pid 49728
+11:58:05.255 Xcode[1487:3067733] Got reply to authorization request for pid 49728 (result:error): 22: (null)
+11:58:05.255 Xcode[1487:7156] Got whitelisting response from test daemon. Success: 1
+11:58:05.255 testmanagerd[49299:3067762] Received request to collect crash reports in directories '/Users/nbuduma/Library/Logs/DiagnosticReports', '/Library/Logs/DiagnosticReports' for processes with names 'XCTRunner', 'xctest'
+11:58:05.256 testmanagerd[49299:3067762] Initializing crash report observer for /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:05.256 testmanagerd[49299:3067762] Getting files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:05.257 testmanagerd[49299:3067762] Found 20 files in /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:05.257 testmanagerd[49299:3067762] Started monitoring /Users/nbuduma/Library/Logs/DiagnosticReports
+11:58:05.257 testmanagerd[49299:3067762] Initializing crash report observer for /Library/Logs/DiagnosticReports
+11:58:05.258 testmanagerd[49299:3067762] Getting files in /Library/Logs/DiagnosticReports
+11:58:05.259 testmanagerd[49299:3067762] Found 46 files in /Library/Logs/DiagnosticReports
+11:58:05.259 testmanagerd[49299:3067762] Started monitoring /Library/Logs/DiagnosticReports
+11:58:05.131 xctest[49728:3068964] Linked XCTest.framework from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/XCTest, built with Xcode 0833(8E3002), modified on Wednesday, May 10, 2017 at 10:10:51 PM Pacific Daylight Time
+11:58:05.131 xctest[49728:3068964] XCTest.framework bundle version: 12124
+11:58:05.133 xctest[49728:3068964] System uptime: 4d 1:16:25
+11:58:05.133 xctest[49728:3068964] Process arguments: (
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest",
+    "-NSTreatUnknownArgumentsAsOpen",
+    NO,
+    "-ApplePersistenceIgnoreState",
+    YES
+)
+11:58:05.133 xctest[49728:3068964] Process environment: {
+    "CFFIXED_USER_HOME" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "CUPS_SERVER" = "/private/tmp/com.apple.launchd.TlM2LGodOC/Listeners";
+    "DYLD_FALLBACK_FRAMEWORK_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks";
+    "DYLD_FALLBACK_LIBRARY_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib";
+    "DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/Developer/Library/PrivateFrameworks";
+    "DYLD_ROOT_PATH" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "DYLD_SHARED_REGION" = avoid;
+    HOME = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    IDEiPhoneInternalTestBundleName = "OptimizelySDKCoreiOSTests.xctest";
+    "IOS_SIMULATOR_SYSLOG_SOCKET" = "/private/tmp/com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim/syslogsock";
+    "IPHONE_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "IPHONE_SIMULATOR_CLASS" = D11;
+    "IPHONE_SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "IPHONE_TVOUT_EXTENDED_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+    NSApplicationQuitWithoutSuddenTermination = YES;
+    NSUnbufferedIO = YES;
+    "OS_ACTIVITY_DT_MODE" = YES;
+    PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/sbin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/local/bin";
+    "SIMULATOR_CAPABILITIES" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/Profiles/DeviceTypes/iPhone 7 Plus.simdevicetype/Contents/Resources/capabilities.plist";
+    "SIMULATOR_DEVICE_NAME" = "iPhone 7 Plus";
+    "SIMULATOR_EXTENDED_DISPLAY_PROPERTIES" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/Library/Application Support/Simulator/extended_display.plist";
+    "SIMULATOR_HID_SYSTEM_MANAGER" = "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/Resources/Platforms/iphoneos/SimulatorHID.framework";
+    "SIMULATOR_HOST_HOME" = "/Users/nbuduma";
+    "SIMULATOR_LEGACY_ASSET_SUFFIX" = iphone;
+    "SIMULATOR_LOG_ROOT" = "/Users/nbuduma/Library/Logs/CoreSimulator/F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_MAINSCREEN_HEIGHT" = 2208;
+    "SIMULATOR_MAINSCREEN_PITCH" = "461.000000";
+    "SIMULATOR_MAINSCREEN_SCALE" = "3.000000";
+    "SIMULATOR_MAINSCREEN_WIDTH" = 1242;
+    "SIMULATOR_MEMORY_WARNINGS" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/var/run/memory_warning_simulation";
+    "SIMULATOR_MODEL_IDENTIFIER" = "iPhone9,2";
+    "SIMULATOR_PLATFORM_RUNTIME_OVERLAY_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/RuntimeOverlay";
+    "SIMULATOR_PRODUCT_CLASS" = D11;
+    "SIMULATOR_ROOT" = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk";
+    "SIMULATOR_RUNTIME_BUILD_VERSION" = 14E8301;
+    "SIMULATOR_RUNTIME_VERSION" = "10.3.1";
+    "SIMULATOR_SHARED_RESOURCES_DIRECTORY" = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data";
+    "SIMULATOR_UDID" = "F29F823E-CBD4-43DC-A597-3B7B82685851";
+    "SIMULATOR_VERSION_INFO" = "CoreSimulator 375.21 - Device: iPhone 7 Plus - Runtime: iOS 10.3 (14E8301) - DeviceType: iPhone 7 Plus";
+    "TESTMANAGERD_SIM_SOCK" = "/private/tmp/com.apple.launchd.NNbaO48dH7/com.apple.testmanagerd.unix-domain.socket";
+    TMPDIR = "/Users/nbuduma/Library/Developer/CoreSimulator/Devices/F29F823E-CBD4-43DC-A597-3B7B82685851/data/tmp/";
+    "XCODE_DBG_XPC_EXCLUSIONS" = "com.apple.dt.xctestSymbolicator";
+    XCTestConfigurationFilePath = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/com.apple.dt.XCTest/ABC92B17-2501-41A5-BD5F-21F40B49E115/remote-container/tmp/OptimizelySDKCoreiOSTests-ABC92B17-2501-41A5-BD5F-21F40B49E115.xctestconfiguration";
+    "XPC_FLAGS" = 0x0;
+    "XPC_SERVICE_NAME" = "com.apple.xpc.launchd.oneshot.0x10000008.xctest";
+    "XPC_SIMULATOR_LAUNCHD_NAME" = "com.apple.CoreSimulator.SimDevice.F29F823E-CBD4-43DC-A597-3B7B82685851.launchd_sim";
+    "__XCODE_BUILT_PRODUCTS_DIR_PATHS" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_FRAMEWORK_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_DYLD_LIBRARY_PATH" = "/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDK/Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator";
+    "__XPC_LLVM_PROFILE_FILE" = "/var/folders/w7/clr0y8ys1hbgln_k6yq50c_0dc08yz/T/A3CA2B35-9072-4956-9D63-56488BE99FCB-1487-00013E7AEB75A01C/%p.profraw";
+}
+11:58:05.136 xctest[49728:3068964] <XCTWaiter: 0x7f92dba36df0> entering wait loop for 5.00s
+11:58:05.137 xctest[49728:3068998] Got daemon protocol version 12
+11:58:05.137 xctest[49728:3068999] <XCTWaiter: 0x7f92dba36df0>: cancelWaiting
+11:58:05.138 xctest[49728:3068964] <XCTWaiter: 0x7f92dba36df0> done waiting
+11:58:05.138 xctest[49728:3068964] <XCTWaiter: 0x7f92dba36df0> cleaning up Exchange protocol versions with daemon
+11:58:05.138 xctest[49728:3068964] Requesting socket
+11:58:05.138 xctest[49728:3068964] <XCTWaiter: 0x7f92da507040> entering wait loop for 30.00s
+11:58:05.249 xctest[49728:3068998] <XCTWaiter: 0x7f92da507040>: cancelWaiting
+11:58:05.249 xctest[49728:3068964] <XCTWaiter: 0x7f92da507040> done waiting
+11:58:05.249 xctest[49728:3068964] <XCTWaiter: 0x7f92da507040> cleaning up Socket for IDE session acquired
+11:58:05.249 xctest[49728:3068964] Creating transport with socket 5
+11:58:05.250 xctest[49728:3068964] Creating connection with transport <DTXSocketTransport: 0x7f92da503730>
+11:58:05.251 xctest[49728:3068964] Creating the proxy channel with connection <DTXConnection 0x7f92da508610 : x1>
+11:58:05.251 xctest[49728:3068964] Messaging IDE proxy - _XCT_testBundleReadyWithProtocolVersion:22 minimumVersion:8
+11:58:05.251 xctest[49728:3068964] <XCTWaiter: 0x7f92da601860> entering wait loop for 30.00s
+11:58:05.251 xctest[49728:3069000] _XCT_testBundleReadyWithProtocolVersion:minimumVersion: reply received
+11:58:05.260 xctest[49728:3068999] _IDE_startExecutingTestPlanWithProtocolVersion:22
+11:58:05.260 xctest[49728:3069000] <XCTWaiter: 0x7f92da601860>: cancelWaiting
+11:58:05.260 xctest[49728:3068964] <XCTWaiter: 0x7f92da601860> done waiting
+11:58:05.260 xctest[49728:3068964] <XCTWaiter: 0x7f92da601860> cleaning up IDE session ready for test plan
+11:58:05.263 Xcode[1487:7156] Starting test plan, clearing initialization timeout timer.
+11:58:05.263 xctest[49728:3068964] Loading test suite...
+11:58:05.317 xctest[49728:3068964] Finished loading test suite, took 0.053s
+11:58:05.317 xctest[49728:3068964] -[XCTRunnerIDESession testBundleWillStart:]
+11:58:05.317 xctest[49728:3068964] Running suite...
+11:58:05.317 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+Test Suite 'All tests' started at 2017-07-05 11:58:05.317
+11:58:05.318 Xcode[1487:7156] _XCT_testSuite:All tests didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.321 Xcode[1487:3067738] (LOG ARBITER) Rotating message buffer with 8 messages.
+11:58:05.322 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 8 messages.
+11:58:05.356 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.356 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.356 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.356 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.359 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.360 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.360 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.361 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.362 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.392 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.392 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.432 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.432 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.432 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.436 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.437 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.438 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.472 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.472 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.472 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.472 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.472 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.476 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.476 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.477 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.477 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.478 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.496 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.497 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.497 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.517 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.517 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.517 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.517 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.517 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.539 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.539 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.539 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.560 Xcode[1487:3067733] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.560 Xcode[1487:3067733] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.560 Xcode[1487:3067733] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.560 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.584 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.584 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.586 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.586 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.606 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.606 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.606 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.609 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.609 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.630 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.630 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.630 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.630 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.634 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.635 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.655 Xcode[1487:3067733] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.655 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.684 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.684 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.717 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.738 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.758 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.758 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.778 Xcode[1487:3067740] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.779 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.779 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.800 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.822 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.822 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.822 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.822 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.826 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.826 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.827 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.846 Xcode[1487:3069022] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.848 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.866 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.866 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.890 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.890 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.890 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.910 Xcode[1487:3069010] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.911 Xcode[1487:3069022] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.912 Xcode[1487:3069022] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.912 Xcode[1487:3067733] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.933 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:05.938 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.209 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.231 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.231 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.233 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.234 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.234 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.276 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.276 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.277 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.277 Xcode[1487:3062753] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.281 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.282 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.283 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.284 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.285 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.319 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.319 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.319 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.319 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.319 Xcode[1487:3067738] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.323 Xcode[1487:3062750] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.353 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.353 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.353 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.353 Xcode[1487:3069009] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.377 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+11:58:06.377 Xcode[1487:3067737] (LOG ARBITER) Dumping buffered message data; 0 messages.
+Test Case '-[OPTLYAudienceTest testAudienceInitializedFromDictionaryEvaluatesCorrectly]' started.
+11:58:05.321 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+Test Case '-[OPTLYAudienceTest testAudienceInitializedFromDictionaryEvaluatesCorrectly]' passed (0.002 seconds).
+11:58:05.322 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYAudienceTest method:testAudienceInitializedFromDictionaryEvaluatesCorrectly withStatus:passed duration:0.002154052257537842
+11:58:05.322 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYAudienceTest method:testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly
+11:58:05.321 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYAudienceTest testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly
+11:58:05.322 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+Test Case '-[OPTLYAudienceTest testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly]' started.
+Test Case '-[OPTLYAudienceTest testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly]' passed (0.001 seconds).
+Test Case '-[OPTLYAudienceTest testComplexAudience]' started.
+Test Case '-[OPTLYAudienceTest testComplexAudience]' passed (0.001 seconds).
+Test Suite 'OPTLYAudienceTest' passed at 2017-07-05 11:58:05.323.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'OPTLYBucketerTest' started at 2017-07-05 11:58:05.324
+Test Case '-[OPTLYBucketerTest testBucketExperimentInMutexGroup]' started.
+Test Case '-[OPTLYBucketerTest testBucketExperimentInMutexGroup]' passed (0.005 seconds).
+Test Case '-[OPTLYBucketerTest testBucketExperimentWithMutexDoesNotChangeExperimentReference]' started.
+Test Case '-[OPTLYBucketerTest testBucketExperimentWithMutexDoesNotChangeExperimentReference]' passed (0.003 seconds).
+Test Case '-[OPTLYBucketerTest testBucketingRandom]' started.
+Test Case '-[OPTLYBucketerTest testBucketingRandom]' passed (0.001 seconds).
+Test Case '-[OPTLYBucketerTest testBucketingWithExperiment]' started.
+Test Case '-[OPTLYBucketerTest testBucketingWithExperiment]' passed (0.001 seconds).
+Test Case '-[OPTLYBucketerTest testBucketReturnsNilWhenExperimentIsExcludedFromMutex]' started.
+Test Case '-[OPTLYBucketerTest testBucketReturnsNilWhenExperimentIsExcludedFromMutex]' passed (0.002 seconds).
+Test Case '-[OPTLYBucketerTest testInitWithConfig]' started.
+Test Case '-[OPTLYBucketerTest testInitWithConfig]' passed (0.001 seconds).
+Test Suite 'OPTLYBucketerTest' passed at 2017-07-05 11:58:05.339.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.012 (0.015) seconds
+Test Suite 'OPTLYBuilderTest' started at 2017-07-05 11:58:05.339
+Test Case '-[OPTLYBuilderTest testBuilderBuildsDefaults]' started.
+Test Case '-[OPTLYBuilderTest testBuilderBuildsDefaults]' passed (0.007 seconds).
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYAudienceTest method:testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly withStatus:passed duration:0.0006920099258422852
+11:58:05.322 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYAudienceTest testComplexAudience
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYAudienceTest method:testComplexAudience
+11:58:05.323 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYAudienceTest method:testComplexAudience withStatus:passed duration:0.001008987426757812
+11:58:05.323 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.356 Xcode[1487:7156] _XCT_testSuite:OPTLYAudienceTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:3 withFailures:0 unexpected:0 testDuration:0.003855049610137939 totalDuration:0.005416989326477051
+11:58:05.324 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.356 Xcode[1487:7156] _XCT_testSuite:OPTLYBucketerTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testBucketExperimentInMutexGroup
+11:58:05.324 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testBucketExperimentInMutexGroup
+11:58:05.329 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testBucketExperimentInMutexGroup withStatus:passed duration:0.004805982112884521
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testBucketExperimentWithMutexDoesNotChangeExperimentReference
+11:58:05.329 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testBucketExperimentWithMutexDoesNotChangeExperimentReference
+11:58:05.332 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testBucketExperimentWithMutexDoesNotChangeExperimentReference withStatus:passed duration:0.00261300802230835
+11:58:05.332 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testBucketingRandom
+11:58:05.356 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testBucketingRandom
+11:58:05.335 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.359 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testBucketingRandom withStatus:passed duration:0.0008389949798583984
+11:58:05.335 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testBucketingWithExperiment
+11:58:05.359 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testBucketingWithExperiment
+11:58:05.336 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.360 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testBucketingWithExperiment withStatus:passed duration:0.0006980299949645996
+11:58:05.336 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testBucketReturnsNilWhenExperimentIsExcludedFromMutex
+11:58:05.360 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testBucketReturnsNilWhenExperimentIsExcludedFromMutex
+11:58:05.338 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.360 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testBucketReturnsNilWhenExperimentIsExcludedFromMutex withStatus:passed duration:0.00204998254776001
+11:58:05.338 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBucketerTest testInitWithConfig
+11:58:05.360 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBucketerTest method:testInitWithConfig
+11:58:05.339 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.361 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBucketerTest method:testInitWithConfig withStatus:passed duration:0.0005510449409484863
+11:58:05.339 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.361 Xcode[1487:7156] _XCT_testSuite:OPTLYBucketerTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:6 withFailures:0 unexpected:0 testDuration:0.01155704259872437 totalDuration:0.01508998870849609
+11:58:05.339 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.361 Xcode[1487:7156] _XCT_testSuite:OPTLYBuilderTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.340 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderBuildsDefaults
+11:58:05.361 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderBuildsDefaults
+11:58:05.355 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.362 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderBuildsDefaults withStatus:passed duration:0.007016956806182861
+11:58:05.355 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderCanAssignErrorHandler
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignErrorHandler]' started.
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignErrorHandler]' passed (0.012 seconds).
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignEventDispatcher]' started.
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignEventDispatcher]' passed (0.012 seconds).
+11:58:05.391 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderCanAssignErrorHandler
+11:58:05.367 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.392 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderCanAssignErrorHandler withStatus:passed duration:0.01203101873397827
+11:58:05.368 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderCanAssignEventDispatcher
+11:58:05.392 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderCanAssignEventDispatcher
+11:58:05.379 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.392 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderCanAssignEventDispatcher withStatus:passed duration:0.01168197393417358
+11:58:05.380 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderCanAssignLogger
+11:58:05.392 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderCanAssignLogger
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignLogger]' started.
+Test Case '-[OPTLYBuilderTest testBuilderCanAssignLogger]' passed (0.012 seconds).
+Test Case '-[OPTLYBuilderTest testBuilderCanPassClientEngineAndVersionToProjectConfig]' started.
+Test Case '-[OPTLYBuilderTest testBuilderCanPassClientEngineAndVersionToProjectConfig]' passed (0.008 seconds).
+Test Case '-[OPTLYBuilderTest testBuilderRequiresDatafile]' started.
+2017-07-05 11:58:05.401 xctest[49728:3068964] [OPTIMIZELY SDK][ERROR]:Provided OPTLYBuilder object is invalid
+Test Case '-[OPTLYBuilderTest testBuilderRequiresDatafile]' passed (0.001 seconds).
+Test Case '-[OPTLYBuilderTest testBuilderReturnsNilWithBadDatafile]' started.
+2017-07-05 11:58:05.402 xctest[49728:3068964] [OPTIMIZELY SDK][WARNING]:[PROJECT CONFIG] Datafile version is invalid for this SDK version: expected 3 and received (null).
+2017-07-05 11:58:05.403 xctest[49728:3068964] [OPTIMIZELY SDK][ERROR]:Project config is nil or invalid.
+2017-07-05 11:58:05.403 xctest[49728:3068964] [OPTIMIZELY SDK][ERROR]:Provided OPTLYBuilder object is invalid
+Test Case '-[OPTLYBuilderTest testBuilderReturnsNilWithBadDatafile]' passed (0.010 seconds).
+Test Case '-[OPTLYBuilderTest testInitializationWithoutBuilder]' started.
+2017-07-05 11:58:05.413 xctest[49728:3068964] [OPTIMIZELY SDK][ERROR]:Provided OPTLYBuilder object is invalid
+Test Case '-[OPTLYBuilderTest testInitializationWithoutBuilder]' passed (0.001 seconds).
+Test Suite 'OPTLYBuilderTest' passed at 2017-07-05 11:58:05.414.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.063 (0.075) seconds
+Test Suite 'OPTLYConditionTest' started at 2017-07-05 11:58:05.415
+Test Case '-[OPTLYConditionTest testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse]' started.
+Test Case '-[OPTLYConditionTest testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse]' passed (0.005 seconds).
+11:58:05.392 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderCanAssignLogger withStatus:passed duration:0.01242703199386597
+11:58:05.392 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderCanPassClientEngineAndVersionToProjectConfig
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderCanPassClientEngineAndVersionToProjectConfig
+11:58:05.400 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderCanPassClientEngineAndVersionToProjectConfig withStatus:passed duration:0.007852017879486084
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderRequiresDatafile
+11:58:05.401 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderRequiresDatafile
+11:58:05.402 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderRequiresDatafile withStatus:passed duration:0.001336038112640381
+11:58:05.432 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testBuilderReturnsNilWithBadDatafile
+11:58:05.402 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testBuilderReturnsNilWithBadDatafile
+11:58:05.412 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.436 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testBuilderReturnsNilWithBadDatafile withStatus:passed duration:0.009923994541168213
+11:58:05.413 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYBuilderTest testInitializationWithoutBuilder
+11:58:05.436 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYBuilderTest method:testInitializationWithoutBuilder
+11:58:05.414 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.437 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYBuilderTest method:testInitializationWithoutBuilder withStatus:passed duration:0.001019001007080078
+11:58:05.414 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.437 Xcode[1487:7156] _XCT_testSuite:OPTLYBuilderTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:8 withFailures:0 unexpected:0 testDuration:0.06328803300857544 totalDuration:0.07486802339553833
+11:58:05.437 Xcode[1487:7156] _XCT_testSuite:OPTLYConditionTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.415 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.415 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse
+11:58:05.438 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse
+11:58:05.420 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.438 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse withStatus:passed duration:0.005087971687316895
+11:58:05.431 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue
+11:58:05.438 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue
+Test Case '-[OPTLYConditionTest testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue]' started.
+Test Case '-[OPTLYConditionTest testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue]' passed (0.012 seconds).
+Test Case '-[OPTLYConditionTest testConditionBaseCaseDeserializationWithAndContainer]' started.
+Test Case '-[OPTLYConditionTest testConditionBaseCaseDeserializationWithAndContainer]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testConditionBaseCaseDeserializationWithOrContainer]' started.
+Test Case '-[OPTLYConditionTest testConditionBaseCaseDeserializationWithOrContainer]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testDeserializeConditions]' started.
+Test Case '-[OPTLYConditionTest testDeserializeConditions]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testEvaluateReturnsFalseOnNonMatchingUserAttribute]' started.
+Test Case '-[OPTLYConditionTest testEvaluateReturnsFalseOnNonMatchingUserAttribute]' passed (0.000 seconds).
+Test Case '-[OPTLYConditionTest testEvaluateReturnsFalseOnUnknownVisitorAttributes]' started.
+Test Case '-[OPTLYConditionTest testEvaluateReturnsFalseOnUnknownVisitorAttributes]' passed (0.025 seconds).
+Test Case '-[OPTLYConditionTest testEvaluateReturnsTrueOnMatchingUserAttribute]' started.
+Test Case '-[OPTLYConditionTest testEvaluateReturnsTrueOnMatchingUserAttribute]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testNotConditionEvaluatesFalseWhenChildrenAreTrue]' started.
+Test Case '-[OPTLYConditionTest testNotConditionEvaluatesFalseWhenChildrenAreTrue]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testNotConditionEvaluatesTrueWhenChildrenAreFalse]' started.
+Test Case '-[OPTLYConditionTest testNotConditionEvaluatesTrueWhenChildrenAreFalse]' passed (0.002 seconds).
+Test Case '-[OPTLYConditionTest testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse]' started.
+11:58:05.433 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue withStatus:passed duration:0.0123559832572937
+11:58:05.433 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testConditionBaseCaseDeserializationWithAndContainer
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testConditionBaseCaseDeserializationWithAndContainer
+11:58:05.433 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testConditionBaseCaseDeserializationWithAndContainer withStatus:passed duration:0.000594019889831543
+11:58:05.434 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testConditionBaseCaseDeserializationWithOrContainer
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testConditionBaseCaseDeserializationWithOrContainer
+11:58:05.434 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testConditionBaseCaseDeserializationWithOrContainer withStatus:passed duration:0.0006439685821533203
+11:58:05.435 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testDeserializeConditions
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testDeserializeConditions
+11:58:05.435 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testDeserializeConditions withStatus:passed duration:0.0006220340728759766
+11:58:05.435 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testEvaluateReturnsFalseOnNonMatchingUserAttribute
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testEvaluateReturnsFalseOnNonMatchingUserAttribute
+11:58:05.436 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.472 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testEvaluateReturnsFalseOnNonMatchingUserAttribute withStatus:passed duration:0.0004690289497375488
+11:58:05.436 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testEvaluateReturnsFalseOnUnknownVisitorAttributes
+11:58:05.475 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testEvaluateReturnsFalseOnUnknownVisitorAttributes
+11:58:05.462 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.476 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testEvaluateReturnsFalseOnUnknownVisitorAttributes withStatus:passed duration:0.02548801898956299
+11:58:05.462 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testEvaluateReturnsTrueOnMatchingUserAttribute
+11:58:05.476 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testEvaluateReturnsTrueOnMatchingUserAttribute
+11:58:05.463 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.476 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testEvaluateReturnsTrueOnMatchingUserAttribute withStatus:passed duration:0.0005460381507873535
+11:58:05.463 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testNotConditionEvaluatesFalseWhenChildrenAreTrue
+11:58:05.477 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testNotConditionEvaluatesFalseWhenChildrenAreTrue
+11:58:05.464 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.477 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testNotConditionEvaluatesFalseWhenChildrenAreTrue withStatus:passed duration:0.001420021057128906
+11:58:05.464 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testNotConditionEvaluatesTrueWhenChildrenAreFalse
+11:58:05.477 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testNotConditionEvaluatesTrueWhenChildrenAreFalse
+11:58:05.466 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.477 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testNotConditionEvaluatesTrueWhenChildrenAreFalse withStatus:passed duration:0.001872003078460693
+11:58:05.478 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse
+11:58:05.467 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse
+11:58:05.471 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.478 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse withStatus:passed duration:0.00132298469543457
+Test Case '-[OPTLYConditionTest testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse]' passed (0.001 seconds).
+Test Case '-[OPTLYConditionTest testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue]' started.
+Test Case '-[OPTLYConditionTest testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue]' passed (0.001 seconds).
+Test Suite 'OPTLYConditionTest' passed at 2017-07-05 11:58:05.473.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.052 (0.058) seconds
+Test Suite 'OPTLYDecisionServiceTest' started at 2017-07-05 11:58:05.473
+Test Case '-[OPTLYDecisionServiceTest testGetVariationExperimentNotRunning]' started.
+Test Case '-[OPTLYDecisionServiceTest testGetVariationExperimentNotRunning]' passed (0.003 seconds).
+Test Case '-[OPTLYDecisionServiceTest testGetVariationNoAudience]' started.
+Test Case '-[OPTLYDecisionServiceTest testGetVariationNoAudience]' passed (0.004 seconds).
+11:58:05.472 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYConditionTest testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYConditionTest method:testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue
+11:58:05.473 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYConditionTest method:testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue withStatus:passed duration:0.001205027103424072
+11:58:05.473 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.496 Xcode[1487:7156] _XCT_testSuite:OPTLYConditionTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:12 withFailures:0 unexpected:0 testDuration:0.05162709951400757 totalDuration:0.05847597122192383
+11:58:05.473 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.496 Xcode[1487:7156] _XCT_testSuite:OPTLYDecisionServiceTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.474 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testGetVariationExperimentNotRunning
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testGetVariationExperimentNotRunning
+11:58:05.477 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testGetVariationExperimentNotRunning withStatus:passed duration:0.00306999683380127
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testGetVariationNoAudience
+11:58:05.477 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testGetVariationNoAudience
+11:58:05.481 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testGetVariationNoAudience withStatus:passed duration:0.004472970962524414
+11:58:05.482 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testGetVariationWithInvalidAudience
+11:58:05.496 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testGetVariationWithInvalidAudience
+Test Case '-[OPTLYDecisionServiceTest testGetVariationWithInvalidAudience]' started.
+11:58:05.495 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testGetVariationWithInvalidAudience withStatus:passed duration:0.004153013229370117
+11:58:05.496 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testGetVariationWithWhitelistedVariation
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testGetVariationWithWhitelistedVariation
+11:58:05.499 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testGetVariationWithWhitelistedVariation withStatus:passed duration:0.003596007823944092
+11:58:05.500 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testSaveMultipleVariations
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testSaveMultipleVariations
+11:58:05.504 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testSaveMultipleVariations withStatus:passed duration:0.00429999828338623
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testSaveVariation
+11:58:05.504 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testSaveVariation
+11:58:05.508 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testSaveVariation withStatus:passed duration:0.003531992435455322
+11:58:05.508 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testValidatePreconditions
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditions
+11:58:05.511 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.517 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditions withStatus:passed duration:0.002857029438018799
+Test Case '-[OPTLYDecisionServiceTest testGetVariationWithInvalidAudience]' passed (0.004 seconds).
+Test Case '-[OPTLYDecisionServiceTest testGetVariationWithWhitelistedVariation]' started.
+2017-07-05 11:58:05.498 xctest[49728:3068964] [OPTIMIZELY SDK][INFO]:[BUCKETER] User forced_variation_user is forced in variation variation.
+Test Case '-[OPTLYDecisionServiceTest testGetVariationWithWhitelistedVariation]' passed (0.004 seconds).
+Test Case '-[OPTLYDecisionServiceTest testSaveMultipleVariations]' started.
+Test Case '-[OPTLYDecisionServiceTest testSaveMultipleVariations]' passed (0.004 seconds).
+Test Case '-[OPTLYDecisionServiceTest testSaveVariation]' started.
+Test Case '-[OPTLYDecisionServiceTest testSaveVariation]' passed (0.004 seconds).
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditions]' started.
+11:58:05.517 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation
+11:58:05.518 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditions]' passed (0.003 seconds).
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation]' started.
+2017-07-05 11:58:05.520 xctest[49728:3068964] [OPTIMIZELY SDK][INFO]:[BUCKETER] User whitelisted_user is forced in variation a.
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation]' passed (0.010 seconds).
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsBadAttributes]' started.
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsBadAttributes]' passed (0.003 seconds).
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsExperimentNotRunning]' started.
+Test Case '-[OPTLYDecisionServiceTest testValidatePreconditionsExperimentNotRunning]' passed (0.003 seconds).
+Test Suite 'OPTLYDecisionServiceTest' passed at 2017-07-05 11:58:05.528.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.041 (0.054) seconds
+Test Suite 'OPTLYErrorHandlerTest' started at 2017-07-05 11:58:05.528
+11:58:05.521 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.539 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation withStatus:passed duration:0.009896993637084961
+11:58:05.522 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testValidatePreconditionsBadAttributes
+11:58:05.539 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsBadAttributes
+11:58:05.524 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.539 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsBadAttributes withStatus:passed duration:0.002761960029602051
+11:58:05.539 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsExperimentNotRunning
+11:58:05.525 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYDecisionServiceTest testValidatePreconditionsExperimentNotRunning
+11:58:05.527 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.539 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYDecisionServiceTest method:testValidatePreconditionsExperimentNotRunning withStatus:passed duration:0.002831041812896729
+11:58:05.528 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.539 Xcode[1487:7156] _XCT_testSuite:OPTLYDecisionServiceTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:10 withFailures:0 unexpected:0 testDuration:0.04147100448608398 totalDuration:0.0541679859161377
+11:58:05.528 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.539 Xcode[1487:7156] _XCT_testSuite:OPTLYErrorHandlerTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.538 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYErrorHandlerTest testConformsToOPTLYLoggerProtocol
+11:58:05.542 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYErrorHandlerTest method:testConformsToOPTLYLoggerProtocol
+Test Case '-[OPTLYErrorHandlerTest testConformsToOPTLYLoggerProtocol]' started.
+Test Case '-[OPTLYErrorHandlerTest testConformsToOPTLYLoggerProtocol]' passed (0.011 seconds).
+Test Suite 'OPTLYErrorHandlerTest' passed at 2017-07-05 11:58:05.539.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.011 (0.011) seconds
+Test Suite 'OPTLYEventBuilderTest' started at 2017-07-05 11:58:05.540
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithAllArguments]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithAllArguments]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithNoAudience]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithNoAudience]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithUnknownExperiment]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionEventTicketWithUnknownExperiment]' passed (0.004 seconds).
+11:58:05.539 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYErrorHandlerTest method:testConformsToOPTLYLoggerProtocol withStatus:passed duration:0.01074099540710449
+11:58:05.539 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.560 Xcode[1487:7156] _XCT_testSuite:OPTLYErrorHandlerTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:1 withFailures:0 unexpected:0 testDuration:0.01074099540710449 totalDuration:0.01132798194885254
+11:58:05.540 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.560 Xcode[1487:7156] _XCT_testSuite:OPTLYEventBuilderTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.540 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildDecisionEventTicketWithAllArguments
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithAllArguments
+11:58:05.543 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithAllArguments withStatus:passed duration:0.003265023231506348
+11:58:05.543 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildDecisionEventTicketWithNoAudience
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithNoAudience
+11:58:05.546 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithNoAudience withStatus:passed duration:0.003021001815795898
+11:58:05.546 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildDecisionEventTicketWithUnknownExperiment
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithUnknownExperiment
+11:58:05.550 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.560 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildDecisionEventTicketWithUnknownExperiment withStatus:passed duration:0.003915965557098389
+11:58:05.560 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildDecisionTicketWithAnonymizeIPFalse
+11:58:05.563 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildDecisionTicketWithAnonymizeIPFalse
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionTicketWithAnonymizeIPFalse]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildDecisionTicketWithAnonymizeIPFalse]' passed (0.016 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithAllArguments]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithAllArguments]' passed (0.004 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithAnonymizeIPFalse]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithAnonymizeIPFalse]' passed (0.007 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithEventMultipleExperiments]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithEventMultipleExperiments]' passed (0.004 seconds).
+11:58:05.584 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildDecisionTicketWithAnonymizeIPFalse withStatus:passed duration:0.01602298021316528
+11:58:05.567 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.567 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithAllArguments
+11:58:05.584 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithAllArguments
+11:58:05.571 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.584 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithAllArguments withStatus:passed duration:0.003875017166137695
+11:58:05.571 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithAnonymizeIPFalse
+11:58:05.584 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithAnonymizeIPFalse
+11:58:05.578 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.586 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithAnonymizeIPFalse withStatus:passed duration:0.006756007671356201
+11:58:05.578 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithEventMultipleExperiments
+11:58:05.586 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithEventMultipleExperiments
+11:58:05.582 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.586 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithEventMultipleExperiments withStatus:passed duration:0.003726959228515625
+11:58:05.582 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithEventTags
+11:58:05.587 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithEventTags
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithEventTags]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithEventTags]' passed (0.004 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithExperimentNotRunning]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithExperimentNotRunning]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidAudience]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidAudience]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidBooleanRevenue]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidBooleanRevenue]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidDoubleRevenue]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithInvalidDoubleRevenue]' passed (0.005 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithNoAudience]' started.
+11:58:05.586 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithEventTags withStatus:passed duration:0.003677964210510254
+11:58:05.586 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithExperimentNotRunning
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithExperimentNotRunning
+11:58:05.589 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithExperimentNotRunning withStatus:passed duration:0.003143012523651123
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidAudience
+11:58:05.589 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithInvalidAudience
+11:58:05.592 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidAudience withStatus:passed duration:0.002876996994018555
+11:58:05.593 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithInvalidBooleanRevenue
+11:58:05.606 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidBooleanRevenue
+11:58:05.596 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.608 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidBooleanRevenue withStatus:passed duration:0.00331801176071167
+11:58:05.596 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithInvalidDoubleRevenue
+11:58:05.609 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidDoubleRevenue
+11:58:05.601 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.609 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithInvalidDoubleRevenue withStatus:passed duration:0.004949986934661865
+11:58:05.609 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithNoAudience
+11:58:05.601 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithNoAudience
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithNoAudience]' passed (0.004 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithoutExperiment]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithoutExperiment]' passed (0.003 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithRevenue]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithRevenue]' passed (0.004 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithRevenueAndEventTags]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithRevenueAndEventTags]' passed (0.004 seconds).
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithValidAudience]' started.
+Test Case '-[OPTLYEventBuilderTest testBuildEventTicketWithValidAudience]' passed (0.004 seconds).
+Test Suite 'OPTLYEventBuilderTest' passed at 2017-07-05 11:58:05.622.
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.077 (0.082) seconds
+Test Suite 'OPTLYEventDispatcherTest' started at 2017-07-05 11:58:05.622
+Test Case '-[OPTLYEventDispatcherTest testConformsToOPTLYEventDispatcherProtocol]' started.
+Test Case '-[OPTLYEventDispatcherTest testConformsToOPTLYEventDispatcherProtocol]' passed (0.001 seconds).
+Test Suite 'OPTLYEventDispatcherTest' passed at 2017-07-05 11:58:05.623.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'OPTLYHTTPRequestManagerTest' started at 2017-07-05 11:58:05.623
+Test Case '-[OPTLYHTTPRequestManagerTest testGETBackoffRetrySuccess]' started.
+11:58:05.605 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.629 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithNoAudience withStatus:passed duration:0.003987967967987061
+11:58:05.606 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithoutExperiment
+11:58:05.629 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithoutExperiment
+11:58:05.609 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithoutExperiment withStatus:passed duration:0.003026008605957031
+11:58:05.609 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithRevenue
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithRevenue
+11:58:05.613 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithRevenue withStatus:passed duration:0.00357896089553833
+11:58:05.613 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithRevenueAndEventTags
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithRevenueAndEventTags
+11:58:05.617 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithRevenueAndEventTags withStatus:passed duration:0.004478037357330322
+11:58:05.618 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventBuilderTest testBuildEventTicketWithValidAudience
+11:58:05.630 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithValidAudience
+11:58:05.621 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.634 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventBuilderTest method:testBuildEventTicketWithValidAudience withStatus:passed duration:0.003646969795227051
+11:58:05.622 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.634 Xcode[1487:7156] _XCT_testSuite:OPTLYEventBuilderTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:17 withFailures:0 unexpected:0 testDuration:0.0772668719291687 totalDuration:0.08213204145431519
+11:58:05.622 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.635 Xcode[1487:7156] _XCT_testSuite:OPTLYEventDispatcherTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.622 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYEventDispatcherTest testConformsToOPTLYEventDispatcherProtocol
+11:58:05.635 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYEventDispatcherTest method:testConformsToOPTLYEventDispatcherProtocol
+11:58:05.623 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.635 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYEventDispatcherTest method:testConformsToOPTLYEventDispatcherProtocol withStatus:passed duration:0.000599980354309082
+11:58:05.623 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.636 Xcode[1487:7156] _XCT_testSuite:OPTLYEventDispatcherTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:1 withFailures:0 unexpected:0 testDuration:0.000599980354309082 totalDuration:0.001035034656524658
+11:58:05.623 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.636 Xcode[1487:7156] _XCT_testSuite:OPTLYHTTPRequestManagerTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.624 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETBackoffRetrySuccess
+11:58:05.636 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETBackoffRetrySuccess
+2017-07-05 11:58:05.624 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 0
+Test Case '-[OPTLYHTTPRequestManagerTest testGETBackoffRetrySuccess]' passed (0.010 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETFailure]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testGETFailure]' passed (0.002 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetryFailure]' started.
+11:58:05.630 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETBackoffRetrySuccess] starting to wait on 'Wait for GETWithBackoffRetry failure.'
+11:58:05.630 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3da60> entering wait loop for 3.00s
+11:58:05.633 xctest[49728:3069007] <XCTWaiter: 0x7f92dba3da60>: cancelWaiting
+11:58:05.633 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3da60> done waiting
+11:58:05.633 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3da60> cleaning up Wait for GETWithBackoffRetry failure.
+11:58:05.633 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETBackoffRetrySuccess] done waiting on 'Wait for GETWithBackoffRetry failure.'
+11:58:05.655 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETBackoffRetrySuccess withStatus:passed duration:0.01009601354598999
+11:58:05.634 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.634 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETFailure
+11:58:05.655 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETFailure
+11:58:05.635 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETFailure] starting to wait on 'Wait for GET failure.'
+11:58:05.635 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc29710> entering wait loop for 5.00s
+11:58:05.636 xctest[49728:3069006] <XCTWaiter: 0x7f92dbc29710>: cancelWaiting
+11:58:05.636 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc29710> done waiting
+11:58:05.636 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc29710> cleaning up Wait for GET failure.
+11:58:05.636 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETFailure] done waiting on 'Wait for GET failure.'
+11:58:05.636 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.655 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETFailure withStatus:passed duration:0.001870989799499512
+11:58:05.637 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetryFailure
+11:58:05.655 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETIfModifiedBackoffRetryFailure
+11:58:05.637 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetryFailure] starting to wait on 'Wait for GETIfModifiedSince failure.'
+11:58:05.638 xctest[49728:3068964] <XCTWaiter: 0x7f92da57cc60> entering wait loop for 3.00s
+2017-07-05 11:58:05.637 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+2017-07-05 11:58:05.637 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 0 exponentialMultiplier: 1 delay_ns: 1000000, delayTime: 350186244510994
+2017-07-05 11:58:05.639 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 1
+2017-07-05 11:58:05.640 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 1 exponentialMultiplier: 2 delay_ns: 2000000, delayTime: 350186248025579
+2017-07-05 11:58:05.654 xctest[49728:3069000] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 2
+2017-07-05 11:58:05.655 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 2 exponentialMultiplier: 4 delay_ns: 4000000, delayTime: 350186265147696
+2017-07-05 11:58:05.660 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 3
+2017-07-05 11:58:05.661 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 3 exponentialMultiplier: 8 delay_ns: 8000000, delayTime: 350186274743438
+2017-07-05 11:58:05.670 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 4
+2017-07-05 11:58:05.670 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] The max backoff retry has been exceeded. GET if modified failed with error: Error Domain=NSURLErrorDomain Code=-1001 "(null)".
+Test Case '-[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetryFailure]' passed (0.035 seconds).
+11:58:05.671 xctest[49728:3069006] <XCTWaiter: 0x7f92da57cc60>: cancelWaiting
+11:58:05.671 xctest[49728:3068964] <XCTWaiter: 0x7f92da57cc60> done waiting
+11:58:05.671 xctest[49728:3068964] <XCTWaiter: 0x7f92da57cc60> cleaning up Wait for GETIfModifiedSince failure.
+11:58:05.671 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetryFailure] done waiting on 'Wait for GETIfModifiedSince failure.'
+11:58:05.676 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.684 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETIfModifiedBackoffRetryFailure withStatus:passed duration:0.03477799892425537
+11:58:05.677 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetrySuccess
+11:58:05.684 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETIfModifiedBackoffRetrySuccess
+11:58:05.677 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetrySuccess] starting to wait on 'Wait for GETIfModifiedSince failure.'
+11:58:05.677 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> entering wait loop for 3.00s
+11:58:05.678 xctest[49728:3069000] <XCTWaiter: 0x7f92da579dd0>: cancelWaiting
+11:58:05.678 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> done waiting
+11:58:05.678 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> cleaning up Wait for GETIfModifiedSince failure.
+11:58:05.678 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetrySuccess] done waiting on 'Wait for GETIfModifiedSince failure.'
+11:58:05.678 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.684 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETIfModifiedBackoffRetrySuccess withStatus:passed duration:0.001713991165161133
+11:58:05.684 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETRetryFailure
+11:58:05.679 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETRetryFailure
+11:58:05.679 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETRetryFailure] starting to wait on 'Wait for GETWithBackoffRetry failure.'
+11:58:05.679 xctest[49728:3068964] <XCTWaiter: 0x7f92db9009c0> entering wait loop for 3.00s
+Test Case '-[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetrySuccess]' started.
+2017-07-05 11:58:05.677 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETIfModifiedSince:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET if modified attempt: 0
+Test Case '-[OPTLYHTTPRequestManagerTest testGETIfModifiedBackoffRetrySuccess]' passed (0.002 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETRetryFailure]' started.
+11:58:05.704 xctest[49728:3069000] <XCTWaiter: 0x7f92db9009c0>: cancelWaiting
+11:58:05.704 xctest[49728:3068964] <XCTWaiter: 0x7f92db9009c0> done waiting
+11:58:05.704 xctest[49728:3068964] <XCTWaiter: 0x7f92db9009c0> cleaning up Wait for GETWithBackoffRetry failure.
+11:58:05.704 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETRetryFailure] done waiting on 'Wait for GETWithBackoffRetry failure.'
+11:58:05.714 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.716 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETRetryFailure withStatus:passed duration:0.02547401189804077
+2017-07-05 11:58:05.679 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 0
+2017-07-05 11:58:05.679 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 0 exponentialMultiplier: 1 delay_ns: 1000000, delayTime: 350186286464495
+2017-07-05 11:58:05.680 xctest[49728:3069000] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 1
+2017-07-05 11:58:05.684 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 1 exponentialMultiplier: 2 delay_ns: 2000000, delayTime: 350186292367470
+2017-07-05 11:58:05.687 xctest[49728:3069000] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 2
+2017-07-05 11:58:05.688 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 2 exponentialMultiplier: 4 delay_ns: 4000000, delayTime: 350186297911465
+2017-07-05 11:58:05.692 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 3
+2017-07-05 11:58:05.693 xctest[49728:3069000] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 3 exponentialMultiplier: 8 delay_ns: 8000000, delayTime: 350186307033083
+2017-07-05 11:58:05.703 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 4
+2017-07-05 11:58:05.703 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] The max backoff retry has been exceeded. GET failed with error: Error Domain=NSURLErrorDomain Code=-1001 "(null)".
+Test Case '-[OPTLYHTTPRequestManagerTest testGETRetryFailure]' passed (0.025 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETSuccess]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testGETSuccess]' passed (0.001 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetryFailure]' started.
+11:58:05.738 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETSuccess
+11:58:05.714 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETSuccess
+11:58:05.715 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETSuccess] starting to wait on 'Wait for GET success.'
+11:58:05.715 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3b5d0> entering wait loop for 5.00s
+11:58:05.715 xctest[49728:3069000] <XCTWaiter: 0x7f92dba3b5d0>: cancelWaiting
+11:58:05.715 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3b5d0> done waiting
+11:58:05.715 xctest[49728:3068964] <XCTWaiter: 0x7f92dba3b5d0> cleaning up Wait for GET success.
+11:58:05.715 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETSuccess] done waiting on 'Wait for GET success.'
+11:58:05.738 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETSuccess withStatus:passed duration:0.001488983631134033
+11:58:05.716 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.716 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetryFailure
+11:58:05.738 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersBackoffRetryFailure
+11:58:05.717 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetryFailure] starting to wait on 'Wait for GETWithParameters failure.'
+11:58:05.717 xctest[49728:3068964] <XCTWaiter: 0x7f92da479170> entering wait loop for 3.00s
+2017-07-05 11:58:05.716 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 0
+2017-07-05 11:58:05.717 xctest[49728:3069000] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 0 exponentialMultiplier: 1 delay_ns: 1000000, delayTime: 350186324086324
+2017-07-05 11:58:05.719 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 1
+2017-07-05 11:58:05.719 xctest[49728:3068999] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 1 exponentialMultiplier: 2 delay_ns: 2000000, delayTime: 350186327631460
+2017-07-05 11:58:05.727 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 2
+2017-07-05 11:58:05.728 xctest[49728:3068999] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 2 exponentialMultiplier: 4 delay_ns: 4000000, delayTime: 350186337782347
+2017-07-05 11:58:05.733 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 3
+2017-07-05 11:58:05.733 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 3 exponentialMultiplier: 8 delay_ns: 8000000, delayTime: 350186347354500
+2017-07-05 11:58:05.742 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 4
+2017-07-05 11:58:05.742 xctest[49728:3069008] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] The max backoff retry has been exceeded. GET failed with error: Error Domain=NSURLErrorDomain Code=-1001 "(null)".
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetryFailure]' passed (0.027 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetrySuccess]' started.
+2017-07-05 11:58:05.744 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager GETWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] GET with parameter attempt: 0
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetrySuccess]' passed (0.002 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersFailure]' started.
+11:58:05.743 xctest[49728:3068999] <XCTWaiter: 0x7f92da479170>: cancelWaiting
+11:58:05.743 xctest[49728:3068964] <XCTWaiter: 0x7f92da479170> done waiting
+11:58:05.743 xctest[49728:3068964] <XCTWaiter: 0x7f92da479170> cleaning up Wait for GETWithParameters failure.
+11:58:05.743 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetryFailure] done waiting on 'Wait for GETWithParameters failure.'
+11:58:05.758 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersBackoffRetryFailure withStatus:passed duration:0.02720600366592407
+11:58:05.743 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.744 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetrySuccess
+11:58:05.758 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersBackoffRetrySuccess
+11:58:05.744 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetrySuccess] starting to wait on 'Wait for GETWithParameters failure.'
+11:58:05.744 xctest[49728:3068964] <XCTWaiter: 0x7f92da576210> entering wait loop for 3.00s
+11:58:05.745 xctest[49728:3069000] <XCTWaiter: 0x7f92da576210>: cancelWaiting
+11:58:05.745 xctest[49728:3068964] <XCTWaiter: 0x7f92da576210> done waiting
+11:58:05.745 xctest[49728:3068964] <XCTWaiter: 0x7f92da576210> cleaning up Wait for GETWithParameters failure.
+11:58:05.745 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersBackoffRetrySuccess] done waiting on 'Wait for GETWithParameters failure.'
+11:58:05.745 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.758 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersBackoffRetrySuccess withStatus:passed duration:0.001536965370178223
+11:58:05.745 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETWithParametersFailure
+11:58:05.758 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersFailure
+11:58:05.746 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersFailure] starting to wait on 'Wait for GETWithParameters failure.'
+11:58:05.746 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc1dc20> entering wait loop for 5.00s
+11:58:05.746 xctest[49728:3069006] <XCTWaiter: 0x7f92dbc1dc20>: cancelWaiting
+11:58:05.747 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc1dc20> done waiting
+11:58:05.747 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc1dc20> cleaning up Wait for GETWithParameters failure.
+11:58:05.747 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersFailure] done waiting on 'Wait for GETWithParameters failure.'
+11:58:05.757 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersFailure]' passed (0.001 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersSuccess]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testGETWithParametersSuccess]' passed (0.001 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testInitWithURL]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testInitWithURL]' passed (0.001 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetryFailure]' started.
+11:58:05.778 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersFailure withStatus:passed duration:0.001466035842895508
+11:58:05.758 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testGETWithParametersSuccess
+11:58:05.778 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersSuccess
+11:58:05.758 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersSuccess] starting to wait on 'Wait for GETWithParameters success.'
+11:58:05.758 xctest[49728:3068964] <XCTWaiter: 0x7f92da572890> entering wait loop for 5.00s
+11:58:05.759 xctest[49728:3069006] <XCTWaiter: 0x7f92da572890>: cancelWaiting
+11:58:05.759 xctest[49728:3068964] <XCTWaiter: 0x7f92da572890> done waiting
+11:58:05.759 xctest[49728:3068964] <XCTWaiter: 0x7f92da572890> cleaning up Wait for GETWithParameters success.
+11:58:05.759 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testGETWithParametersSuccess] done waiting on 'Wait for GETWithParameters success.'
+11:58:05.759 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.779 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testGETWithParametersSuccess withStatus:passed duration:0.001401960849761963
+11:58:05.759 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testInitWithURL
+11:58:05.779 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testInitWithURL
+11:58:05.760 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.779 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testInitWithURL withStatus:passed duration:0.000523984432220459
+11:58:05.760 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetryFailure
+11:58:05.779 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersBackoffRetryFailure
+11:58:05.761 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetryFailure] starting to wait on 'Wait for POSTWithParameters failure.'
+11:58:05.761 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc213e0> entering wait loop for 3.00s
+11:58:05.799 xctest[49728:3068999] <XCTWaiter: 0x7f92dbc213e0>: cancelWaiting
+11:58:05.799 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc213e0> done waiting
+11:58:05.799 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc213e0> cleaning up Wait for POSTWithParameters failure.
+11:58:05.799 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetryFailure] done waiting on 'Wait for POSTWithParameters failure.'
+11:58:05.800 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+2017-07-05 11:58:05.760 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 0
+2017-07-05 11:58:05.761 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 0 exponentialMultiplier: 1 delay_ns: 1000000, delayTime: 350186368122011
+2017-07-05 11:58:05.763 xctest[49728:3069007] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 1
+2017-07-05 11:58:05.778 xctest[49728:3068999] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 1 exponentialMultiplier: 2 delay_ns: 2000000, delayTime: 350186386152298
+2017-07-05 11:58:05.780 xctest[49728:3069007] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 2
+2017-07-05 11:58:05.781 xctest[49728:3069006] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 2 exponentialMultiplier: 4 delay_ns: 4000000, delayTime: 350186391028399
+2017-07-05 11:58:05.786 xctest[49728:3069007] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 3
+2017-07-05 11:58:05.786 xctest[49728:3068999] OPTLYLogDebug (-[OPTLYHTTPRequestManager backoffDelay:backoffRetryInterval:]) [HTTP] Retry attempt: 3 exponentialMultiplier: 8 delay_ns: 8000000, delayTime: 350186400577687
+2017-07-05 11:58:05.796 xctest[49728:3069007] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 4
+2017-07-05 11:58:05.798 xctest[49728:3069007] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] The max backoff retry has been exceeded. POST failed with error: Error Domain=NSURLErrorDomain Code=-1001 "(null)".
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetryFailure]' passed (0.039 seconds).
+11:58:05.800 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersBackoffRetryFailure withStatus:passed duration:0.03940498828887939
+11:58:05.800 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetrySuccess
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetrySuccess]' started.
+2017-07-05 11:58:05.800 xctest[49728:3068964] OPTLYLogDebug (-[OPTLYHTTPRequestManager POSTWithParameters:backoffRetryInterval:retries:completionHandler:backoffRetryAttempt:error:]) [HTTP] POST attempt: 0
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetrySuccess]' passed (0.002 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersFailure]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersFailure]' passed (0.001 seconds).
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersSuccess]' started.
+Test Case '-[OPTLYHTTPRequestManagerTest testPOSTWithParametersSuccess]' passed (0.001 seconds).
+Test Suite 'OPTLYHTTPRequestManagerTest' passed at 2017-07-05 11:58:05.805.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.151 (0.182) seconds
+Test Suite 'OPTLYLoggerTest' started at 2017-07-05 11:58:05.806
+Test Case '-[OPTLYLoggerTest testConformsToOPTLYLoggerProtocol]' started.
+Test Case '-[OPTLYLoggerTest testConformsToOPTLYLoggerProtocol]' passed (0.001 seconds).
+Test Suite 'OPTLYLoggerTest' passed at 2017-07-05 11:58:05.807.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'OPTLYNetworkServiceTest' started at 2017-07-05 11:58:05.807
+Test Case '-[OPTLYNetworkServiceTest testDownloadProjectConfigRequestRetrievesProperDatafileVersion]' started.
+Test Case '-[OPTLYNetworkServiceTest testDownloadProjectConfigRequestRetrievesProperDatafileVersion]' passed (0.002 seconds).
+Test Case '-[OPTLYNetworkServiceTest testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion]' started.
+Test Case '-[OPTLYNetworkServiceTest testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion]' passed (0.002 seconds).
+Test Case '-[OPTLYNetworkServiceTest testProjectConfigURLPathReturnsExpectedUrl]' started.
+Test Case '-[OPTLYNetworkServiceTest testProjectConfigURLPathReturnsExpectedUrl]' passed (0.001 seconds).
+Test Suite 'OPTLYNetworkServiceTest' passed at 2017-07-05 11:58:05.815.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.004 (0.008) seconds
+Test Suite 'OPTLYProjectConfigTest' started at 2017-07-05 11:58:05.816
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersBackoffRetrySuccess
+11:58:05.801 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetrySuccess] starting to wait on 'Wait for POSTWithParameters failure.'
+11:58:05.801 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> entering wait loop for 3.00s
+11:58:05.801 xctest[49728:3069007] <XCTWaiter: 0x7f92da579dd0>: cancelWaiting
+11:58:05.801 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> done waiting
+11:58:05.801 xctest[49728:3068964] <XCTWaiter: 0x7f92da579dd0> cleaning up Wait for POSTWithParameters failure.
+11:58:05.801 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersBackoffRetrySuccess] done waiting on 'Wait for POSTWithParameters failure.'
+11:58:05.802 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersBackoffRetrySuccess withStatus:passed duration:0.001820027828216553
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersFailure
+11:58:05.802 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testPOSTWithParametersFailure
+11:58:05.802 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersFailure] starting to wait on 'Wait for POSTWithParameters failure.'
+11:58:05.803 xctest[49728:3068964] <XCTWaiter: 0x7f92dba4bba0> entering wait loop for 5.00s
+11:58:05.803 xctest[49728:3069006] <XCTWaiter: 0x7f92dba4bba0>: cancelWaiting
+11:58:05.803 xctest[49728:3068964] <XCTWaiter: 0x7f92dba4bba0> done waiting
+11:58:05.803 xctest[49728:3068964] <XCTWaiter: 0x7f92dba4bba0> cleaning up Wait for POSTWithParameters failure.
+11:58:05.803 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersFailure] done waiting on 'Wait for POSTWithParameters failure.'
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersFailure withStatus:passed duration:0.001093029975891113
+11:58:05.803 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.803 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYHTTPRequestManagerTest testPOSTWithParametersSuccess
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersSuccess
+11:58:05.804 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersSuccess] starting to wait on 'Wait for POSTWithParameters success.'
+11:58:05.804 xctest[49728:3068964] <XCTWaiter: 0x7f92dba43d60> entering wait loop for 5.00s
+11:58:05.804 xctest[49728:3068999] <XCTWaiter: 0x7f92dba43d60>: cancelWaiting
+11:58:05.805 xctest[49728:3068964] <XCTWaiter: 0x7f92dba43d60> done waiting
+11:58:05.805 xctest[49728:3068964] <XCTWaiter: 0x7f92dba43d60> cleaning up Wait for POSTWithParameters success.
+11:58:05.805 xctest[49728:3068964] -[OPTLYHTTPRequestManagerTest testPOSTWithParametersSuccess] done waiting on 'Wait for POSTWithParameters success.'
+11:58:05.805 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYHTTPRequestManagerTest method:testPOSTWithParametersSuccess withStatus:passed duration:0.001309990882873535
+11:58:05.805 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.822 Xcode[1487:7156] _XCT_testSuite:OPTLYHTTPRequestManagerTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:15 withFailures:0 unexpected:0 testDuration:0.1511849761009216 totalDuration:0.1817560195922852
+11:58:05.806 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.822 Xcode[1487:7156] _XCT_testSuite:OPTLYLoggerTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.806 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYLoggerTest testConformsToOPTLYLoggerProtocol
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYLoggerTest method:testConformsToOPTLYLoggerProtocol
+11:58:05.806 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.822 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYLoggerTest method:testConformsToOPTLYLoggerProtocol withStatus:passed duration:0.0005179643630981445
+11:58:05.807 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.822 Xcode[1487:7156] _XCT_testSuite:OPTLYLoggerTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:1 withFailures:0 unexpected:0 testDuration:0.0005179643630981445 totalDuration:0.000970005989074707
+11:58:05.807 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.825 Xcode[1487:7156] _XCT_testSuite:OPTLYNetworkServiceTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.825 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYNetworkServiceTest method:testDownloadProjectConfigRequestRetrievesProperDatafileVersion
+11:58:05.810 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYNetworkServiceTest testDownloadProjectConfigRequestRetrievesProperDatafileVersion
+11:58:05.810 xctest[49728:3068964] -[OPTLYNetworkServiceTest testDownloadProjectConfigRequestRetrievesProperDatafileVersion] starting to wait on 'testDownloadProjectConfigRequestRetrievesProperDatafileVersion'
+11:58:05.810 xctest[49728:3068964] <XCTWaiter: 0x7f92dba48bf0> entering wait loop for 2.00s
+11:58:05.811 xctest[49728:3069008] <XCTWaiter: 0x7f92dba48bf0>: cancelWaiting
+11:58:05.811 xctest[49728:3068964] <XCTWaiter: 0x7f92dba48bf0> done waiting
+11:58:05.811 xctest[49728:3068964] <XCTWaiter: 0x7f92dba48bf0> cleaning up testDownloadProjectConfigRequestRetrievesProperDatafileVersion
+11:58:05.811 xctest[49728:3068964] -[OPTLYNetworkServiceTest testDownloadProjectConfigRequestRetrievesProperDatafileVersion] done waiting on 'testDownloadProjectConfigRequestRetrievesProperDatafileVersion'
+11:58:05.826 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYNetworkServiceTest method:testDownloadProjectConfigRequestRetrievesProperDatafileVersion withStatus:passed duration:0.001661002635955811
+11:58:05.811 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.812 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYNetworkServiceTest testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion
+11:58:05.826 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYNetworkServiceTest method:testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion
+11:58:05.812 xctest[49728:3068964] -[OPTLYNetworkServiceTest testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion] starting to wait on 'testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion'
+11:58:05.812 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc33760> entering wait loop for 2.00s
+11:58:05.813 xctest[49728:3069006] <XCTWaiter: 0x7f92dbc33760>: cancelWaiting
+11:58:05.813 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc33760> done waiting
+11:58:05.813 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc33760> cleaning up testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion
+11:58:05.813 xctest[49728:3068964] -[OPTLYNetworkServiceTest testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion] done waiting on 'testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion'
+11:58:05.826 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYNetworkServiceTest method:testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion withStatus:passed duration:0.002009987831115723
+11:58:05.814 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.814 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYNetworkServiceTest testProjectConfigURLPathReturnsExpectedUrl
+11:58:05.827 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYNetworkServiceTest method:testProjectConfigURLPathReturnsExpectedUrl
+11:58:05.815 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.827 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYNetworkServiceTest method:testProjectConfigURLPathReturnsExpectedUrl withStatus:passed duration:0.0007320046424865723
+11:58:05.815 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.827 Xcode[1487:7156] _XCT_testSuite:OPTLYNetworkServiceTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:3 withFailures:0 unexpected:0 testDuration:0.004402995109558105 totalDuration:0.008253991603851318
+11:58:05.821 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.827 Xcode[1487:7156] _XCT_testSuite:OPTLYProjectConfigTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.822 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testClientEngineAndClientVersionAreConfigurable
+11:58:05.827 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testClientEngineAndClientVersionAreConfigurable
+Test Case '-[OPTLYProjectConfigTest testClientEngineAndClientVersionAreConfigurable]' started.
+Test Case '-[OPTLYProjectConfigTest testClientEngineAndClientVersionAreConfigurable]' passed (0.014 seconds).
+Test Case '-[OPTLYProjectConfigTest testGetVariationAudience]' started.
+Test Case '-[OPTLYProjectConfigTest testGetVariationAudience]' passed (0.006 seconds).
+11:58:05.835 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.846 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testClientEngineAndClientVersionAreConfigurable withStatus:passed duration:0.01386600732803345
+11:58:05.846 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testGetVariationAudience
+11:58:05.836 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testGetVariationAudience
+11:58:05.842 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.848 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testGetVariationAudience withStatus:passed duration:0.006201028823852539
+11:58:05.842 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testGetVariationExperiment
+11:58:05.848 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testGetVariationExperiment
+Test Case '-[OPTLYProjectConfigTest testGetVariationExperiment]' started.
+Test Case '-[OPTLYProjectConfigTest testGetVariationExperiment]' passed (0.007 seconds).
+Test Case '-[OPTLYProjectConfigTest testGetVariationWhitelisted]' started.
+2017-07-05 11:58:05.855 xctest[49728:3068964] [OPTIMIZELY SDK][INFO]:[BUCKETER] User user_b is forced in variation b.
+Test Case '-[OPTLYProjectConfigTest testGetVariationWhitelisted]' passed (0.007 seconds).
+11:58:05.849 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.866 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testGetVariationExperiment withStatus:passed duration:0.007232010364532471
+11:58:05.866 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testGetVariationWhitelisted
+11:58:05.850 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testGetVariationWhitelisted
+11:58:05.856 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.866 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testGetVariationWhitelisted withStatus:passed duration:0.006570994853973389
+11:58:05.857 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testInitWithAnonymizeIPFalse
+11:58:05.866 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testInitWithAnonymizeIPFalse
+Test Case '-[OPTLYProjectConfigTest testInitWithAnonymizeIPFalse]' started.
+Test Case '-[OPTLYProjectConfigTest testInitWithAnonymizeIPFalse]' passed (0.010 seconds).
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlock]' started.
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlock]' passed (0.012 seconds).
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlockInvalidModulesFails]' started.
+2017-07-05 11:58:05.886 xctest[49728:3068964] [OPTIMIZELY SDK][ERROR]:Provided 'error handler' is in an invalid format.
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlockInvalidModulesFails]' passed (0.008 seconds).
+11:58:05.867 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testInitWithAnonymizeIPFalse withStatus:passed duration:0.01047796010971069
+11:58:05.867 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testInitWithBuilderBlock
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlock
+11:58:05.879 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlock withStatus:passed duration:0.01152801513671875
+11:58:05.879 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testInitWithBuilderBlockInvalidModulesFails
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlockInvalidModulesFails
+11:58:05.887 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlockInvalidModulesFails withStatus:passed duration:0.007629036903381348
+11:58:05.887 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testInitWithBuilderBlockNoDatafile
+11:58:05.890 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlockNoDatafile
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlockNoDatafile]' started.
+Test Case '-[OPTLYProjectConfigTest testInitWithBuilderBlockNoDatafile]' passed (0.007 seconds).
+11:58:05.894 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.910 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testInitWithBuilderBlockNoDatafile withStatus:passed duration:0.006879031658172607
+11:58:05.894 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYProjectConfigTest testInitWithDatafile
+11:58:05.910 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYProjectConfigTest method:testInitWithDatafile
+11:58:05.907 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.911 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYProjectConfigTest method:testInitWithDatafile withStatus:passed duration:0.01287001371383667
+11:58:05.907 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.911 Xcode[1487:7156] _XCT_testSuite:OPTLYProjectConfigTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:9 withFailures:0 unexpected:0 testDuration:0.08325409889221191 totalDuration:0.09130001068115234
+11:58:05.908 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.911 Xcode[1487:7156] _XCT_testSuite:OPTLYQueueTest didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.908 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testDequeue
+11:58:05.911 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testDequeue
+11:58:05.908 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.911 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testDequeue withStatus:passed duration:0.0005629658699035645
+11:58:05.909 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testDequeueNItems
+11:58:05.912 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testDequeueNItems
+11:58:05.909 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.912 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testDequeueNItems withStatus:passed duration:0.0005350112915039062
+Test Case '-[OPTLYProjectConfigTest testInitWithDatafile]' started.
+Test Case '-[OPTLYProjectConfigTest testInitWithDatafile]' passed (0.013 seconds).
+Test Suite 'OPTLYProjectConfigTest' passed at 2017-07-05 11:58:05.907.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.083 (0.091) seconds
+Test Suite 'OPTLYQueueTest' started at 2017-07-05 11:58:05.908
+Test Case '-[OPTLYQueueTest testDequeue]' started.
+Test Case '-[OPTLYQueueTest testDequeue]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testDequeueNItems]' started.
+Test Case '-[OPTLYQueueTest testDequeueNItems]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testEnqueueAndSize]' started.
+Test Case '-[OPTLYQueueTest testEnqueueAndSize]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testFirstNItems]' started.
+Test Case '-[OPTLYQueueTest testFirstNItems]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testFront]' started.
+Test Case '-[OPTLYQueueTest testFront]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testIsEmpty]' started.
+Test Case '-[OPTLYQueueTest testIsEmpty]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testIsFull]' started.
+Test Case '-[OPTLYQueueTest testIsFull]' passed (0.001 seconds).
+Test Case '-[OPTLYQueueTest testQueueInitWithQueueSize]' started.
+11:58:05.910 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testEnqueueAndSize
+11:58:05.931 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testEnqueueAndSize
+11:58:05.910 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testEnqueueAndSize withStatus:passed duration:0.000565946102142334
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testFirstNItems
+11:58:05.911 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testFirstNItems
+11:58:05.911 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testFirstNItems withStatus:passed duration:0.0005009770393371582
+11:58:05.911 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testFront
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testFront
+11:58:05.912 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testFront withStatus:passed duration:0.0006140470504760742
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testIsEmpty
+11:58:05.912 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testIsEmpty
+11:58:05.913 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testIsEmpty withStatus:passed duration:0.0005039572715759277
+11:58:05.913 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testIsFull
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testIsFull
+11:58:05.914 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testIsFull withStatus:passed duration:0.0006289482116699219
+11:58:05.914 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OPTLYQueueTest testQueueInitWithQueueSize
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OPTLYQueueTest method:testQueueInitWithQueueSize
+11:58:05.915 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.932 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OPTLYQueueTest method:testQueueInitWithQueueSize withStatus:passed duration:0.0006070137023925781
+11:58:05.920 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:05.938 Xcode[1487:7156] _XCT_testSuite:OPTLYQueueTest didFinishAt:2017-07-05 18:58:05 +0000 runCount:8 withFailures:0 unexpected:0 testDuration:0.004518866539001465 totalDuration:0.007108986377716064
+11:58:05.938 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKCoreTests didStartAt:2017-07-05 18:58:05 +0000
+11:58:05.920 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:05.938 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelySDKCoreTests method:testExample
+11:58:05.921 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelySDKCoreTests testExample
+11:58:05.921 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:05.938 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelySDKCoreTests method:testExample withStatus:passed duration:0.0005120038986206055
+11:58:05.921 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelySDKCoreTests testPerformanceExample
+11:58:05.938 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelySDKCoreTests method:testPerformanceExample
+Test Case '-[OPTLYQueueTest testQueueInitWithQueueSize]' passed (0.001 seconds).
+Test Suite 'OPTLYQueueTest' passed at 2017-07-05 11:58:05.915.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.005 (0.007) seconds
+Test Suite 'OptimizelySDKCoreTests' started at 2017-07-05 11:58:05.920
+Test Case '-[OptimizelySDKCoreTests testExample]' started.
+Test Case '-[OptimizelySDKCoreTests testExample]' passed (0.001 seconds).
+Test Case '-[OptimizelySDKCoreTests testPerformanceExample]' started.
+11:58:06.208 xctest[49728:3068964] -[XCTRunnerIDESession _testCase:didMeasureValues:forPerformanceMetricID:name:unitsOfMeasurement:baselineName:baselineAverage:maxPercentRegression:maxPercentRelativeStandardDeviation:maxRegression:maxStandardDeviation:file:line:]
+11:58:06.209 Xcode[1487:7156] -[XCTTestRunnerSession _XCT_testMethod:ofClass:didMeasureMetric:file:line:]_block_invoke
+/Users/nbuduma/Documents/objective-c-sdk-code-coverage/OptimizelySDKCore/OptimizelySDKCoreTests/OptimizelySDKCoreTests.m:42: Test Case '-[OptimizelySDKCoreTests testPerformanceExample]' measured [Time, seconds] average: 0.000, relative standard deviation: 141.054%, values: [0.000004, 0.000001, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000], performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, baselineName: "", baselineAverage: , maxPercentRegression: 10.000%, maxPercentRelativeStandardDeviation: 10.000%, maxRegression: 0.100, maxStandardDeviation: 0.100
+Test Case '-[OptimizelySDKCoreTests testPerformanceExample]' passed (0.287 seconds).
+11:58:06.209 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.209 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelySDKCoreTests method:testPerformanceExample withStatus:passed duration:0.2872920036315918
+11:58:06.209 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+Test Suite 'OptimizelySDKCoreTests' passed at 2017-07-05 11:58:06.209.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.288 (0.289) seconds
+Test Suite 'OptimizelyTest' started at 2017-07-05 11:58:06.209
+Test Case '-[OptimizelyTest testBasicGetVariation]' started.
+Test Case '-[OptimizelyTest testBasicGetVariation]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableBoolean]' started.
+Test Case '-[OptimizelyTest testGetVariableBoolean]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPI]' started.
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPI]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded]' started.
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded]' passed (0.004 seconds).
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPIWithAttributes]' started.
+Test Case '-[OptimizelyTest testGetVariableBooleanShortAPIWithAttributes]' passed (0.003 seconds).
+11:58:06.231 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKCoreTests didFinishAt:2017-07-05 18:58:06 +0000 runCount:2 withFailures:0 unexpected:0 testDuration:0.2878040075302124 totalDuration:0.2885220050811768
+11:58:06.209 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteWillStart:]
+11:58:06.231 Xcode[1487:7156] _XCT_testSuite:OptimizelyTest didStartAt:2017-07-05 18:58:06 +0000
+11:58:06.210 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testBasicGetVariation
+11:58:06.231 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testBasicGetVariation
+11:58:06.213 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.231 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testBasicGetVariation withStatus:passed duration:0.003367006778717041
+11:58:06.213 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableBoolean
+11:58:06.231 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableBoolean
+11:58:06.217 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.231 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableBoolean withStatus:passed duration:0.00346904993057251
+11:58:06.217 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableBooleanShortAPI
+11:58:06.231 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPI
+11:58:06.220 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.233 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPI withStatus:passed duration:0.003274977207183838
+11:58:06.220 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded
+11:58:06.234 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded
+11:58:06.224 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.234 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPIWithActivateExperimentParamIncluded withStatus:passed duration:0.003579974174499512
+11:58:06.224 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableBooleanShortAPIWithAttributes
+11:58:06.234 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPIWithAttributes
+11:58:06.227 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.234 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableBooleanShortAPIWithAttributes withStatus:passed duration:0.003049015998840332
+11:58:06.227 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableDouble
+11:58:06.235 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableDouble
+Test Case '-[OptimizelyTest testGetVariableDouble]' started.
+Test Case '-[OptimizelyTest testGetVariableDouble]' passed (0.004 seconds).
+Test Case '-[OptimizelyTest testGetVariableDoubleShortAPI]' started.
+Test Case '-[OptimizelyTest testGetVariableDoubleShortAPI]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableFloatShortAPIWithActivateExperimentParamIncluded]' started.
+Test Case '-[OptimizelyTest testGetVariableFloatShortAPIWithActivateExperimentParamIncluded]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableFloatShortAPIWithAttributes]' started.
+Test Case '-[OptimizelyTest testGetVariableFloatShortAPIWithAttributes]' passed (0.005 seconds).
+Test Case '-[OptimizelyTest testGetVariableInteger]' started.
+Test Case '-[OptimizelyTest testGetVariableInteger]' passed (0.004 seconds).
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPI]' started.
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPI]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded]' started.
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded]' passed (0.003 seconds).
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPIWithAttributes]' started.
+Test Case '-[OptimizelyTest testGetVariableIntegerShortAPIWithAttributes]' passed (0.004 seconds).
+Test Case '-[OptimizelyTest testOptimizelyPostsActivateExperimentNotification]' started.
+Test Case '-[OptimizelyTest testOptimizelyPostsActivateExperimentNotification]' passed (0.011 seconds).
+11:58:06.231 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.276 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableDouble withStatus:passed duration:0.003785967826843262
+11:58:06.232 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableDoubleShortAPI
+11:58:06.276 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableDoubleShortAPI
+11:58:06.235 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.276 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableDoubleShortAPI withStatus:passed duration:0.003136038780212402
+11:58:06.235 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableFloatShortAPIWithActivateExperimentParamIncluded
+11:58:06.276 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableFloatShortAPIWithActivateExperimentParamIncluded
+11:58:06.238 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.276 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableFloatShortAPIWithActivateExperimentParamIncluded withStatus:passed duration:0.003192007541656494
+11:58:06.238 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableFloatShortAPIWithAttributes
+11:58:06.277 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableFloatShortAPIWithAttributes
+11:58:06.243 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.277 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableFloatShortAPIWithAttributes withStatus:passed duration:0.00477898120880127
+11:58:06.244 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableInteger
+11:58:06.277 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableInteger
+11:58:06.248 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.281 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableInteger withStatus:passed duration:0.003870010375976562
+11:58:06.248 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableIntegerShortAPI
+11:58:06.282 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPI
+11:58:06.251 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.282 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPI withStatus:passed duration:0.003180027008056641
+11:58:06.251 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded
+11:58:06.283 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded
+11:58:06.254 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.283 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPIWithActivateExperimentParamIncluded withStatus:passed duration:0.002939999103546143
+11:58:06.283 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPIWithAttributes
+11:58:06.255 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testGetVariableIntegerShortAPIWithAttributes
+11:58:06.258 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.284 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testGetVariableIntegerShortAPIWithAttributes withStatus:passed duration:0.003863990306854248
+11:58:06.259 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testOptimizelyPostsActivateExperimentNotification
+11:58:06.284 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testOptimizelyPostsActivateExperimentNotification
+11:58:06.262 xctest[49728:3068964] -[OptimizelyTest testOptimizelyPostsActivateExperimentNotification] starting to wait on 'getExperimentActivatedNotification'
+11:58:06.262 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6ee80> entering wait loop for 2.00s
+11:58:06.262 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6ee80> done waiting
+11:58:06.262 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6ee80> cleaning up getExperimentActivatedNotification
+11:58:06.262 xctest[49728:3068964] -[OptimizelyTest testOptimizelyPostsActivateExperimentNotification] done waiting on 'getExperimentActivatedNotification'
+11:58:06.270 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.285 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testOptimizelyPostsActivateExperimentNotification withStatus:passed duration:0.011493980884552
+11:58:06.285 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testOptimizelyPostsEventTrackedNotification
+11:58:06.271 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testOptimizelyPostsEventTrackedNotification
+Test Case '-[OptimizelyTest testOptimizelyPostsEventTrackedNotification]' started.
+Test Case '-[OptimizelyTest testOptimizelyPostsEventTrackedNotification]' passed (0.011 seconds).
+Test Case '-[OptimizelyTest testVariableString]' started.
+Test Case '-[OptimizelyTest testVariableString]' passed (0.007 seconds).
+Test Case '-[OptimizelyTest testVariableStringShortAPI]' started.
+Test Case '-[OptimizelyTest testVariableStringShortAPI]' passed (0.007 seconds).
+Test Case '-[OptimizelyTest testVariableStringShortAPIWithActivateExperimentParamIncluded]' started.
+Test Case '-[OptimizelyTest testVariableStringShortAPIWithActivateExperimentParamIncluded]' passed (0.008 seconds).
+Test Case '-[OptimizelyTest testVariableStringShortAPIWithAttributes]' started.
+Test Case '-[OptimizelyTest testVariableStringShortAPIWithAttributes]' passed (0.004 seconds).
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateFalseFailure]' started.
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateFalseFailure]' passed (0.007 seconds).
+11:58:06.280 xctest[49728:3068964] -[OptimizelyTest testOptimizelyPostsEventTrackedNotification] starting to wait on 'getExperimentActivatedNotification'
+11:58:06.280 xctest[49728:3068964] <XCTWaiter: 0x7f92dbb12ec0> entering wait loop for 2.00s
+11:58:06.280 xctest[49728:3068964] <XCTWaiter: 0x7f92dbb12ec0> done waiting
+11:58:06.280 xctest[49728:3068964] <XCTWaiter: 0x7f92dbb12ec0> cleaning up getExperimentActivatedNotification
+11:58:06.280 xctest[49728:3068964] -[OptimizelyTest testOptimizelyPostsEventTrackedNotification] done waiting on 'getExperimentActivatedNotification'
+11:58:06.281 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testOptimizelyPostsEventTrackedNotification withStatus:passed duration:0.01065003871917725
+11:58:06.282 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableString
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableString
+11:58:06.289 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableString withStatus:passed duration:0.007445991039276123
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringShortAPI
+11:58:06.290 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringShortAPI
+11:58:06.297 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringShortAPI withStatus:passed duration:0.006936967372894287
+11:58:06.297 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringShortAPIWithActivateExperimentParamIncluded
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringShortAPIWithActivateExperimentParamIncluded
+11:58:06.306 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringShortAPIWithActivateExperimentParamIncluded withStatus:passed duration:0.008224010467529297
+11:58:06.306 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringShortAPIWithAttributes
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringShortAPIWithAttributes
+11:58:06.310 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringShortAPIWithAttributes withStatus:passed duration:0.004064977169036865
+11:58:06.310 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringWithCompletionActivateFalseFailure
+11:58:06.319 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateFalseFailure
+11:58:06.318 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.323 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateFalseFailure withStatus:passed duration:0.007387995719909668
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateFalseSuccess]' started.
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateFalseSuccess]' passed (0.005 seconds).
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueFailure]' started.
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueFailure]' passed (0.008 seconds).
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccess]' started.
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccess]' passed (0.009 seconds).
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment]' started.
+Test Case '-[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment]' passed (0.006 seconds).
+11:58:06.318 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringWithCompletionActivateFalseSuccess
+11:58:06.352 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateFalseSuccess
+11:58:06.324 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.352 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateFalseSuccess withStatus:passed duration:0.005317032337188721
+11:58:06.324 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringWithCompletionActivateTrueFailure
+11:58:06.352 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueFailure
+11:58:06.330 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueFailure] starting to wait on 'Get variable with string and completion block activate call succeeds.!'
+11:58:06.331 xctest[49728:3068964] <XCTWaiter: 0x7f92da58a700> entering wait loop for 5.00s
+11:58:06.331 xctest[49728:3069006] <XCTWaiter: 0x7f92da58a700>: cancelWaiting
+11:58:06.331 xctest[49728:3068964] <XCTWaiter: 0x7f92da58a700> done waiting
+11:58:06.331 xctest[49728:3068964] <XCTWaiter: 0x7f92da58a700> cleaning up Get variable with string and completion block activate call succeeds.!
+11:58:06.331 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueFailure] done waiting on 'Get variable with string and completion block activate call succeeds.!'
+11:58:06.332 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueFailure withStatus:passed duration:0.008285999298095703
+11:58:06.333 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringWithCompletionActivateTrueSuccess
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueSuccess
+11:58:06.339 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccess] starting to wait on 'Get variable with string and completion block activate call succeeds!'
+11:58:06.340 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6efc0> entering wait loop for 5.00s
+11:58:06.340 xctest[49728:3069000] <XCTWaiter: 0x7f92dbc6efc0>: cancelWaiting
+11:58:06.340 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6efc0> done waiting
+11:58:06.340 xctest[49728:3068964] <XCTWaiter: 0x7f92dbc6efc0> cleaning up Get variable with string and completion block activate call succeeds!
+11:58:06.340 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccess] done waiting on 'Get variable with string and completion block activate call succeeds!'
+11:58:06.341 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueSuccess withStatus:passed duration:0.008647024631500244
+11:58:06.342 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment
+11:58:06.347 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment] starting to wait on 'Get variable with string and completion block activate call succeeds!'
+11:58:06.347 xctest[49728:3068964] <XCTWaiter: 0x7f92da4a3310> entering wait loop for 5.00s
+11:58:06.347 xctest[49728:3068964] <XCTWaiter: 0x7f92da4a3310> done waiting
+11:58:06.347 xctest[49728:3068964] <XCTWaiter: 0x7f92da4a3310> cleaning up Get variable with string and completion block activate call succeeds!
+11:58:06.347 xctest[49728:3068964] -[OptimizelyTest testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment] done waiting on 'Get variable with string and completion block activate call succeeds!'
+11:58:06.348 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariableStringWithCompletionActivateTrueSuccessUserNotInExperiment withStatus:passed duration:0.006349027156829834
+11:58:06.348 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariationWhitelisting
+11:58:06.353 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariationWhitelisting
+Test Case '-[OptimizelyTest testVariationWhitelisting]' started.
+2017-07-05 11:58:06.353 xctest[49728:3068964] [OPTIMIZELY SDK][INFO]:[BUCKETER] User userId is forced in variation whiteListedVariation.
+Test Case '-[OptimizelyTest testVariationWhitelisting]' passed (0.006 seconds).
+Test Case '-[OptimizelyTest testVariationWithAudience]' started.
+Test Case '-[OptimizelyTest testVariationWithAudience]' passed (0.003 seconds).
+Test Suite 'OptimizelyTest' passed at 2017-07-05 11:58:06.358.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.139 (0.149) seconds
+Test Suite 'OptimizelySDKCoreiOSTests.xctest' passed at 2017-07-05 11:58:06.358.
+	 Executed 122 tests, with 0 failures (0 unexpected) in 0.931 (1.041) seconds
+11:58:06.354 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.377 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariationWhitelisting withStatus:passed duration:0.005699992179870605
+11:58:06.377 Xcode[1487:7156] _XCT_testCaseDidStartForTestClass:OptimizelyTest method:testVariationWithAudience
+11:58:06.354 xctest[49728:3068964] -[XCTRunnerIDESession testCaseWillStart:] OptimizelyTest testVariationWithAudience
+11:58:06.358 xctest[49728:3068964] -[XCTRunnerIDESession testCaseDidFinish:]
+11:58:06.377 Xcode[1487:7156] _XCT_testCaseDidFinishForTestClass:OptimizelyTest method:testVariationWithAudience withStatus:passed duration:0.003409028053283691
+11:58:06.358 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:06.377 Xcode[1487:7156] _XCT_testSuite:OptimizelyTest didFinishAt:2017-07-05 18:58:06 +0000 runCount:26 withFailures:0 unexpected:0 testDuration:0.1393991112709045 totalDuration:0.148652970790863
+11:58:06.359 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:06.378 Xcode[1487:7156] _XCT_testSuite:OptimizelySDKCoreiOSTests.xctest didFinishAt:2017-07-05 18:58:06 +0000 runCount:122 withFailures:0 unexpected:0 testDuration:0.9314880967140198 totalDuration:1.040856957435608
+11:58:06.359 xctest[49728:3068964] -[XCTRunnerIDESession testSuiteDidFinish:]
+11:58:06.378 Xcode[1487:7156] _XCT_testSuite:All tests didFinishAt:2017-07-05 18:58:06 +0000 runCount:122 withFailures:0 unexpected:0 testDuration:0.9314880967140198 totalDuration:1.042304992675781
+11:58:06.360 xctest[49728:3068964] Finished running suite.
+11:58:06.360 xctest[49728:3068964] -[XCTRunnerIDESession testBundleDidFinish:], Flushing connection to IDE...
+11:58:06.360 xctest[49728:3068964] Calling completion.
+11:58:06.378 Xcode[1487:7156] -[XCTTestRunnerSession _XCT_didFinishExecutingTestPlan]_block_invoke
+11:58:06.360 xctest[49728:3068964] <XCTWaiter: 0x7f92da701210> entering wait loop for 15.00s
+11:58:06.391 Xcode[1487:3067737] F29F823E-CBD4-43DC-A597-3B7B82685851: Executable terminated at path: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/xctest (status = 0)
+11:58:06.416 Xcode[1487:7156] _finishWithError:(null) didCancel: 0

@@ -1,5 +1,7 @@
 workspace 'OptimizelySDK.xcworkspace'
 
+plugin 'slather'
+
 def common_pods
     pod 'JSONModel', '1.3.0'
 end
