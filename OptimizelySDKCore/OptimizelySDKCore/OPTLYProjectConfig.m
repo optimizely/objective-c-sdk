@@ -232,6 +232,8 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return variable;
 }
 
+#pragma mark -- Forced Variation Methods --
+
 - (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId {
     OPTLYVariation *variation = nil;

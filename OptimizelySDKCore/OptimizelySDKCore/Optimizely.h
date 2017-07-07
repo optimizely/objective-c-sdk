@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                                 userId:(nonnull NSString *)userId
                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
-#pragma mark - setForcedVariation method
+#pragma mark - Forced Variation Methods
 /**
  * Use the setForcedVariation method to force an experimentKey-userId
  * pair into a specific variation for QA purposes.
@@ -106,6 +106,15 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * into the forced variation overriding any variation which would be
  * computed via the network datafile.
  */
+
+/**
+ * Return forced variation for experiment and user ID.
+ * @param experimentKey The key for the experiment.
+ * @param userId The user ID to be used for bucketing.
+ * @return forced variation if it exists, otherwise return nil.
+ */
+- (OPTLYVariation *_Nullable)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
 
 /**
  * Set forced variation for experiment and user ID to variationKey.
