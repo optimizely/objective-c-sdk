@@ -325,6 +325,23 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     XCTAssertEqualObjects(variableString, kVariableStringValue, "Variable string value should be \"Hello\".");
 }
+- (void)testGetVariableStringWithError {
+    NSString *variableString = [self.optimizely variableString:@"invalidStringKey"
+                                                     userId:kUserId
+                                                 attributes:self.attributes
+                                         activateExperiment:NO
+                                                      error:nil];
+    XCTAssertNil(variableString);
+    
+    NSError *error = nil;
+    NSString *variableString2 = [self.optimizely variableString:@"invalidStringKey2"
+                                                        userId:kUserId
+                                                    attributes:self.attributes
+                                            activateExperiment:NO
+                                                         error:&error];
+    XCTAssertNil(variableString2);
+    XCTAssert(error.code == OPTLYLiveVariableErrorKeyUnknown);
+}
 
 #pragma mark - Live Variable Tests: variableBoolean
 - (void)testGetVariableBoolean {

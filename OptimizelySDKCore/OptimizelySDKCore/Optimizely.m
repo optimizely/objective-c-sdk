@@ -404,8 +404,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                      attributes:attributes
              activateExperiment:activateExperiment
                        callback:^(NSError *e) {
-                           if (e) {
-                               *error = e;
+                           if (error && e) {
+                                *error = e;
                            }
                        }];
 }
