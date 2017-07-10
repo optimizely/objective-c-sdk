@@ -134,7 +134,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         if (callback) {
             callback(error);
         }
-        return variation;
+        return nil;
     }
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
