@@ -206,21 +206,21 @@ dispatch_queue_t dispatchEventQueue()
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
     
-    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatchEventQueue(), ^{
-        __typeof__(self) strongSelf = weakSelf;
         __block NSString *logMessage =  @"";
         
         // prevent the same event from getting dispatched multiple times
-        if ([strongSelf.pendingDispatchEvents containsObject:event]) {
+        if ([self.pendingDispatchEvents containsObject:event]) {
             logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherPendingEvent, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             return;
         } else {
-            [strongSelf.pendingDispatchEvents addObject:event];
+            [self.pendingDispatchEvents addObject:event];
         }
         
-        NSURL *url = [strongSelf URLForEvent:eventType];
+        NSURL *url = [self URLForEvent:eventType];
+
+        __weak typeof(self) weakSelf = self;
         [self.networkService dispatchEvent:event
                               backoffRetry:backoffRetry
                                      toURL:url
@@ -229,13 +229,13 @@ dispatch_queue_t dispatchEventQueue()
                                  NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
                                  if (!error) {
                                      NSError *removeEventError = nil;
-                                     [strongSelf.dataStore removeEvent:event eventType:eventType error:&removeEventError];
+                                     [weakSelf.dataStore removeEvent:event eventType:eventType error:&removeEventError];
                                      logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherRemovedEvent, eventName, event, removeEventError];
                                  } else {
                                      logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchFailed, eventName, error];
                                  }
-                                 [strongSelf.pendingDispatchEvents removeObject:event];
-                                 [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                                 [weakSelf.pendingDispatchEvents removeObject:event];
+                                 [weakSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
                                  if (callback) {
                                      callback(data, response, error);
                                  }
