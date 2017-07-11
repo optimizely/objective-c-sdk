@@ -74,7 +74,9 @@
     for (OPTLYDatabaseEntity *entity in firstNEntities) {
         NSString *entityValue = entity.entityValue;
         NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
-        [firstNEvents addObject:event];
+        if (error == nil && [event count] > 0) {
+            [firstNEvents addObject:event];
+        }
     }
     
     return [firstNEvents copy];
@@ -98,7 +100,14 @@
     NSMutableArray *entityIds = [NSMutableArray new];
     for (OPTLYDatabaseEntity *entity in firstNEvents) {
         NSString *entityId = [entity.entityId stringValue];
-        [entityIds addObject:entityId];
+        if ([entityId length] > 0) {
+            [entityIds addObject:entityId];
+        } else {
+            *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                          code:OPTLYErrorTypesDataStore
+                                      userInfo:@{NSLocalizedDescriptionKey :
+                                                     [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesDataStoreInvalidDataStoreEntityValue, nil), eventTypeName]}];
+        }
     }
     [self.database deleteEntities:entityIds table:eventTypeName error:error];
 }
