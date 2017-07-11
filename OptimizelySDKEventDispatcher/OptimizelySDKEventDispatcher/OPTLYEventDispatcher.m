@@ -124,15 +124,13 @@ dispatch_queue_t dispatchEventQueue()
 // The timer must be dispatched on the main thread.
 - (void)setupNetworkTimer:(void(^)())completion
 {
-    __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
-        __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf.eventDispatcherDispatchInterval > 0) {
-            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:strongSelf.eventDispatcherDispatchInterval
-                                                                target:strongSelf
-                                                              selector:@selector(flushEvents)
-                                                              userInfo:nil
-                                                               repeats:YES];
+        if (self.eventDispatcherDispatchInterval > 0) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
+                                                          target:self
+                                                        selector:@selector(flushEvents)
+                                                        userInfo:nil
+                                                         repeats:YES];
             
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
