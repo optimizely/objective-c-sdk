@@ -204,8 +204,12 @@ dispatch_queue_t dispatchEventQueue()
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
     
+    __block NSString *logMessage =  @"";    
+    if ([event count] == 0) {
+        [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherInvalidEvent withLevel:OptimizelyLogLevelDebug];
+    }
+    
     dispatch_async(dispatchEventQueue(), ^{
-        __block NSString *logMessage =  @"";
         
         // prevent the same event from getting dispatched multiple times
         if ([self.pendingDispatchEvents containsObject:event]) {

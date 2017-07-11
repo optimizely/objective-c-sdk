@@ -126,6 +126,7 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherPendingEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 
 // error
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
