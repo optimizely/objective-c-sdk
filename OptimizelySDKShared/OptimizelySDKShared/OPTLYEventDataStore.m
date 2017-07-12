@@ -74,7 +74,7 @@
     for (OPTLYDatabaseEntity *entity in firstNEntities) {
         NSString *entityValue = entity.entityValue;
         NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
-        if (error == nil && [event count] > 0) {
+        if (*error == nil && [event count] > 0) {
             [firstNEvents addObject:event];
         }
     }
