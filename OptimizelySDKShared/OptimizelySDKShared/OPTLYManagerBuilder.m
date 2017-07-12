@@ -24,7 +24,7 @@
 #endif
 
 #import "OPTLYManagerBuilder.h"
-#import "OPTLYDatafilemanagerBasic.h"
+#import "OPTLYDatafileManagerBasic.h"
 
 @implementation OPTLYManagerBuilder
 
