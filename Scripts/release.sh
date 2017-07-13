@@ -238,8 +238,13 @@ printf "Tagging iOS-$OPTIMIZELY_SDK_iOS_VERSION\n";
 git tag -a iOS-$OPTIMIZELY_SDK_iOS_VERSION -m "Release $OPTIMIZELY_SDK_iOS_VERSION";
 printf "Tagging tvOS-$OPTIMIZELY_SDK_TVOS_VERSION\n";
 git tag -a tvOS-$OPTIMIZELY_SDK_TVOS_VERSION -m "Release $OPTIMIZELY_SDK_TVOS_VERSION"
+printf "Tagging iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION\n";
+git tag -a iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION"
+printf "Tagging tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION\n";
+git tag -a tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION"
+
 printf "\nListing all tags...\n";
-git for-each-ref --count=7 --sort=-taggerdate --format '%(refname)' refs/tags;
+git for-each-ref --count=9 --sort=-taggerdate --format '%(refname)' refs/tags;
 read  -n 1 -p "Are all tags valid? [y/n] $cr? " tagging_valid;
 if [ "$tagging_valid" != "y" ]; then
     printf "\nCorrect the tag(s) before pushing tags!!\n"
@@ -261,6 +266,10 @@ printf "\n";
 git push origin iOS-$OPTIMIZELY_SDK_iOS_VERSION --verbose;
 printf "\n";
 git push origin tvOS-$OPTIMIZELY_SDK_TVOS_VERSION --verbose;
+printf "\n";
+git push origin iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION --verbose;
+printf "\n";
+git push origin tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION --verbose;
 
 # ---- Make sure you have a Cocoapod session running ----
 printf "\n\n10. Verify Cocoapod trunk session...\n";
