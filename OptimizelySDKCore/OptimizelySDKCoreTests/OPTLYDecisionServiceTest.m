@@ -182,6 +182,24 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
 }
     
+// setForcedVariation called on invalid experimentKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey1
+{
+    NSString *invalidExperimentKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+// setForcedVariation called on invalid experimentKey (non-existent experiment)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey2
+{
+    NSString *invalidExperimentKey = @"invalid_experiment_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
 {
