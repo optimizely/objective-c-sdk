@@ -156,6 +156,7 @@ NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJEC
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@. Group ID is not in the datafile."; // group id
 NSString *const OPTLYLoggerMessagesGetVariationNilVariation = @"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experiment %@";
 NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey = @"[PROJECT CONFIG] Variation key %@ not found for experiment key %@.";
+NSString *const OPTLYLoggerMessagesProjectConfigUserIdInvalid = @"[PROJECT CONFIG] User ID cannot be an empty string.";
 
 // ---- User Profile ----
 // debug

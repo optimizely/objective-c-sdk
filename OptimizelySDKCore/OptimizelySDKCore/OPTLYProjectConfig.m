@@ -262,6 +262,11 @@ NSString * const kExpectedDatafileVersion  = @"3";
         // NOTE: getExperimentForKey: will log any non-existent experimentKey and return experiment == nil for us.
         return NO;
     }
+    // Check for valid userId
+    if ([userId length]==0) {
+        [self.logger logMessage:OPTLYLoggerMessagesProjectConfigUserIdInvalid withLevel:OptimizelyLogLevelDebug];
+        return NO;
+    }
     // Get variation from experiment and non-nil variationKey, if applicable.
     OPTLYVariation *variation = nil;
     if (variationKey != nil) {

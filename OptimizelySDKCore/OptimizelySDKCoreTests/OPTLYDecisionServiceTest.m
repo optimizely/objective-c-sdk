@@ -218,6 +218,15 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                           variationKey:invalidVariationKey]);
 }
 
+// setForcedVariation called on invalid userId (empty string)
+- (void)testSetForcedVariationCalledOnInvalidUserId
+{
+    NSString *invalidUserId = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:invalidUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
 {
