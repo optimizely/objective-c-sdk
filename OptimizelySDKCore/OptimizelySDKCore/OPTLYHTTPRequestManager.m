@@ -72,7 +72,7 @@ dispatch_queue_t networkTasksQueue()
 {
     // TODO: Wrap this in a TEST preprocessor definition
     self.delaysTest = [NSMutableArray new];
-
+    
     [self GETWithParameters:nil
        backoffRetryInterval:backoffRetryInterval
                     retries:retries
@@ -102,7 +102,7 @@ dispatch_queue_t networkTasksQueue()
 {
     // TODO: Wrap this in a TEST preprocessor definition
     self.delaysTest = [NSMutableArray new];
-
+    
     [self GETWithParameters:parameters
        backoffRetryInterval:backoffRetryInterval
                     retries:retries
@@ -136,7 +136,7 @@ dispatch_queue_t networkTasksQueue()
         
         // TODO: Wrap this in a TEST preprocessor definition
         self.delaysTest = nil;
-
+        
         return;
     }
     
@@ -144,15 +144,15 @@ dispatch_queue_t networkTasksQueue()
     [self GETWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
-                                      backoffRetryInterval:backoffRetryInterval];
+                                          backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
                 
                 [weakSelf GETWithParameters:parameters
-                         backoffRetryInterval:backoffRetryInterval
-                                      retries:retries
-                            completionHandler:completion
-                          backoffRetryAttempt:backoffRetryAttempt+1
-                                        error:error];
+                       backoffRetryInterval:backoffRetryInterval
+                                    retries:retries
+                          completionHandler:completion
+                        backoffRetryAttempt:backoffRetryAttempt+1
+                                      error:error];
             });
         } else {
             if (completion) {
@@ -186,7 +186,7 @@ dispatch_queue_t networkTasksQueue()
 {
     // TODO: Wrap this in a TEST preprocessor definition
     self.delaysTest = [NSMutableArray new];
-
+    
     [self GETIfModifiedSince:lastModifiedDate
         backoffRetryInterval:backoffRetryInterval
                      retries:retries
@@ -227,14 +227,14 @@ dispatch_queue_t networkTasksQueue()
     [self GETIfModifiedSince:lastModifiedDate completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
-                                      backoffRetryInterval:backoffRetryInterval];
+                                          backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
                 [weakSelf GETIfModifiedSince:lastModifiedDate
-                          backoffRetryInterval:backoffRetryInterval
-                                       retries:retries
-                             completionHandler:completion
-                           backoffRetryAttempt:backoffRetryAttempt+1
-                                         error:error];
+                        backoffRetryInterval:backoffRetryInterval
+                                     retries:retries
+                           completionHandler:completion
+                         backoffRetryAttempt:backoffRetryAttempt+1
+                                       error:error];
             });
         } else {
             if (completion) {
@@ -324,14 +324,14 @@ dispatch_queue_t networkTasksQueue()
     [self POSTWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
-                                      backoffRetryInterval:backoffRetryInterval];
+                                          backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
                 [weakSelf POSTWithParameters:parameters
-                          backoffRetryInterval:backoffRetryInterval
-                                       retries:retries
-                             completionHandler:completion
-                           backoffRetryAttempt:backoffRetryAttempt+1
-                                         error:error];
+                        backoffRetryInterval:backoffRetryInterval
+                                     retries:retries
+                           completionHandler:completion
+                         backoffRetryAttempt:backoffRetryAttempt+1
+                                       error:error];
             });
         } else {
             if (completion) {
