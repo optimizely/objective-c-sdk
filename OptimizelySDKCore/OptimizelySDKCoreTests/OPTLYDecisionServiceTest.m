@@ -175,9 +175,9 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
 - (void)testSetForcedVariationExperimentNotRunning
 {
     OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
-    [self.optimizely setForcedVariation:kExperimentNotRunningKey
-                                 userId:kUserId
-                           variationKey:kExperimentNoAudienceVariationKey];
+    XCTAssert([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                           userId:kUserId
+                                     variationKey:kExperimentNoAudienceVariationKey]);
     OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
     XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
 }
