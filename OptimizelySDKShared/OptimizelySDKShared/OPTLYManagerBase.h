@@ -16,17 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-// An optional bucketing ID may be provided in attributes via a
-// key-value pair
-//     OptimizelyBucketId : bucketId
-// to accomplish decoupling bucketing from user identification so
-// that a group of users that have the same bucketing ID are put
-// into the same variation.
-// A Bucketing ID allows equivalence relation on user IDs. A group
-// of users with the same bucketing ID defines an equivalence class
-// of user IDs that all map to the same experiment variation.
-extern NSString * _Nonnull const OptimizelyBucketId;
-
 extern NSString * _Nonnull const OptimizelyAppVersionKey;
 extern NSString * _Nonnull const OptimizelyDeviceModelKey;
 extern NSString * _Nonnull const OptimizelyOSVersionKey;
