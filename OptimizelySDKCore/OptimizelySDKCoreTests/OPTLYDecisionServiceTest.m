@@ -200,6 +200,24 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                           variationKey:kExperimentNoAudienceVariationKey]);
 }
 
+// setForcedVariation called on invalid variationKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey1
+{
+    NSString *invalidVariationKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
+// setForcedVariation called on invalid variationKey (non-existent variation)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey2
+{
+    NSString *invalidVariationKey = @"invalid_variation_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
 {
