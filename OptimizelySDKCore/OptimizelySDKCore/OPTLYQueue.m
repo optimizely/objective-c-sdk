@@ -44,8 +44,10 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
 
 - (bool)enqueue:(id)data {
     if (!self.isFull) {
-        [self.mutableQueue addObject:data];
-        return true;
+        if (data) {
+            [self.mutableQueue addObject:data];
+            return true;
+        }
     }
     return false;
 }

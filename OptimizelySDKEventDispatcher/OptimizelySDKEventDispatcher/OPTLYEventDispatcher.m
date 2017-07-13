@@ -124,15 +124,13 @@ dispatch_queue_t dispatchEventQueue()
 // The timer must be dispatched on the main thread.
 - (void)setupNetworkTimer:(void(^)())completion
 {
-    __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
-        __typeof__(self) strongSelf = weakSelf;
-        if (strongSelf.eventDispatcherDispatchInterval > 0) {
-            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:strongSelf.eventDispatcherDispatchInterval
-                                                                target:strongSelf
-                                                              selector:@selector(flushEvents)
-                                                              userInfo:nil
-                                                               repeats:YES];
+        if (self.eventDispatcherDispatchInterval > 0) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
+                                                          target:self
+                                                        selector:@selector(flushEvents)
+                                                        userInfo:nil
+                                                         repeats:YES];
             
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
@@ -206,39 +204,44 @@ dispatch_queue_t dispatchEventQueue()
             eventType:(OPTLYDataStoreEventType)eventType
              callback:(nullable OPTLYEventDispatcherResponse)callback {
     
-    __weak typeof(self) weakSelf = self;
+    __block NSString *logMessage =  @"";    
+    if ([event count] == 0) {
+        [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherInvalidEvent withLevel:OptimizelyLogLevelDebug];
+    }
+    
     dispatch_async(dispatchEventQueue(), ^{
-        __typeof__(self) strongSelf = weakSelf;
-        __block NSString *logMessage =  @"";
         
         // prevent the same event from getting dispatched multiple times
-        if ([strongSelf.pendingDispatchEvents containsObject:event]) {
+        if ([self.pendingDispatchEvents containsObject:event]) {
             logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherPendingEvent, event];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             return;
         } else {
-            [strongSelf.pendingDispatchEvents addObject:event];
+            [self.pendingDispatchEvents addObject:event];
         }
         
-        NSURL *url = [strongSelf URLForEvent:eventType];
+        NSURL *url = [self URLForEvent:eventType];
+
+        __weak typeof(self) weakSelf = self;
         [self.networkService dispatchEvent:event
                               backoffRetry:backoffRetry
                                      toURL:url
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                             
-                             NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
-                             if (!error) {
-                                 NSError *removeEventError = nil;
-                                 [strongSelf.dataStore removeEvent:event eventType:eventType error:&removeEventError];
-                                 logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherRemovedEvent, eventName, event, removeEventError];
-                             } else {
-                                 logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchFailed, eventName, error];
-                             }
-                             [strongSelf.pendingDispatchEvents removeObject:event];
-                             [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                             if (callback) {
-                                 callback(data, response, error);
-                             }
+                            dispatch_async(dispatchEventQueue(), ^{
+                                 NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
+                                 if (!error) {
+                                     NSError *removeEventError = nil;
+                                     [weakSelf.dataStore removeEvent:event eventType:eventType error:&removeEventError];
+                                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherRemovedEvent, eventName, event, removeEventError];
+                                 } else {
+                                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherDispatchFailed, eventName, error];
+                                 }
+                                 [weakSelf.pendingDispatchEvents removeObject:event];
+                                 [weakSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                                 if (callback) {
+                                     callback(data, response, error);
+                                 }
+                            });
                          }];
     });
 }
@@ -252,15 +255,13 @@ dispatch_queue_t dispatchEventQueue()
 {
     [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushingEvents withLevel:OptimizelyLogLevelDebug];
     
-    __weak typeof(self) weakSelf = self;
     dispatch_async(flushEventsQueue(), ^{
-        __typeof__(self) strongSelf = weakSelf;
         
-        if (strongSelf.flushEventAttempts > OPTLYEventDispatcherMaxFlushEventAttempts) {
+        if (self.flushEventAttempts > OPTLYEventDispatcherMaxFlushEventAttempts) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherFlushEventsMax, self.flushEventAttempts];
-            [strongSelf.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
-            [strongSelf disableNetworkTimer];
+            [self disableNetworkTimer];
             if (callback) {
                 callback();
             }
@@ -268,10 +269,10 @@ dispatch_queue_t dispatchEventQueue()
         }
         
         // return if no events to send
-        if ([strongSelf numberOfEvents] == 0) {
-            [strongSelf.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents withLevel:OptimizelyLogLevelDebug];
-            strongSelf.flushEventAttempts = 0;
-            [strongSelf disableNetworkTimer];
+        if ([self numberOfEvents] == 0) {
+            [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushEventsNoEvents withLevel:OptimizelyLogLevelDebug];
+            self.flushEventAttempts = 0;
+            [self disableNetworkTimer];
             if (callback) {
                 callback();
             }
@@ -279,11 +280,11 @@ dispatch_queue_t dispatchEventQueue()
         }
         
         // setup the network timer if needed
-        if (![strongSelf isTimerEnabled]) {
-            [strongSelf setupNetworkTimer:nil];
+        if (![self isTimerEnabled]) {
+            [self setupNetworkTimer:nil];
         }
         
-        strongSelf.flushEventAttempts++;
+        self.flushEventAttempts++;
         
         // ---- For Testing ----
         // call the completion block when all impression and conversion events have returned
@@ -292,12 +293,12 @@ dispatch_queue_t dispatchEventQueue()
             
             dispatch_group_t dispatchEventsGroup = dispatch_group_create();
             dispatch_group_enter(dispatchEventsGroup);
-            [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:^{
+            [self flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:^{
                 dispatch_group_leave(dispatchEventsGroup);
             }];
             
             dispatch_group_enter(dispatchEventsGroup);
-            [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:^{
+            [self flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:^{
                 dispatch_group_leave(dispatchEventsGroup);
             }];
             
@@ -307,8 +308,8 @@ dispatch_queue_t dispatchEventQueue()
             return;
         }
         
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:nil];
-        [strongSelf flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:nil];
+        [self flushSavedEvents:OPTLYDataStoreEventTypeImpression callback:nil];
+        [self flushSavedEvents:OPTLYDataStoreEventTypeConversion callback:nil];
         
     });
 }
