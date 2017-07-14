@@ -225,17 +225,14 @@ dispatch_queue_t eventsStorageQueue()
 // removes a batch of the oldest events from the events table if the table exceeds the max allowed size
 - (void)trimEvents:(OPTLYDataStoreEventType)eventType completion:(void(^)())completion
 {
-    __weak typeof(self) weakSelf = self;
     dispatch_async(eventsStorageQueue(), ^{
-        __typeof__(self) strongSelf = weakSelf;
-
         NSInteger numberOfEvents = [self numberOfEvents:eventType error:nil];
         if (numberOfEvents >= self.maxNumberOfEventsToSave) {
             // TODO : make sure that we don't set the percentage to a value greater than 100
             double percentageOfEventsToRemove = OPTLYDataStorePercentageOfEventsToRemoveUponOverflow/100.0;
             NSInteger numberOfEventsToDelete = self.maxNumberOfEventsToSave * percentageOfEventsToRemove;
             if (numberOfEventsToDelete) {
-                [strongSelf removeFirstNEvents:numberOfEventsToDelete eventType:eventType error:nil];
+                [self removeFirstNEvents:numberOfEventsToDelete eventType:eventType error:nil];
                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemovingOldEvents, numberOfEventsToDelete];
                 [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
             }
