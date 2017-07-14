@@ -88,6 +88,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
 
 
 @implementation OPTLYDecisionServiceTest
+
+#pragma mark - setUp and tearDown
     
 - (void)setUp {
     [super setUp];
@@ -113,8 +115,10 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     self.config = nil;
     self.attributes = nil;
 }
+
+#pragma mark - Validate Preconditions
     
-    // experiment is running, user is in experiment
+// experiment is running, user is in experiment
 - (void)testValidatePreconditions
 {
     BOOL isValid = [self.decisionService userPassesTargeting:self.config
@@ -163,6 +167,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
 }
 
+#pragma mark - getVariation
+
 // if the experiment is not running should return nil for getVariation
 - (void)testGetVariationExperimentNotRunning
 {
@@ -170,6 +176,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
     XCTAssertNil(variation, @"Get variation on an experiment not running should return nil: %@", variation);
 }
+
+#pragma mark - setForcedVariation
 
 // if the experiment is not running should return nil for getVariation even after setForcedVariation
 - (void)testSetForcedVariationExperimentNotRunning
@@ -226,6 +234,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                 userId:invalidUserId
                                           variationKey:kExperimentNoAudienceVariationKey]);
 }
+
+#pragma mark - getVariation
 
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
@@ -370,6 +380,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     [decisionServiceMock stopMocking];
     [userProfileServiceMock stopMocking];
 }
+
+#pragma mark - saveUserProfile
 
 // for decision service saves, the user profile service save should be called with the expected user profile
 - (void)testSaveVariation
