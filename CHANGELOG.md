@@ -1,5 +1,5 @@
 # Optimizely Objective-C SDK Changelog
-## 1.1.4
+## 1.1.5
 Jul 13, 2017
 
 ### Bug Fixes
