@@ -177,66 +177,6 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertNil(variation, @"Get variation on an experiment not running should return nil: %@", variation);
 }
 
-#pragma mark - setForcedVariation
-
-// if the experiment is not running should return nil for getVariation even after setForcedVariation
-- (void)testSetForcedVariationExperimentNotRunning
-{
-    OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
-    XCTAssert([self.optimizely setForcedVariation:kExperimentNotRunningKey
-                                           userId:kUserId
-                                     variationKey:kExperimentNoAudienceVariationKey]);
-    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
-    XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
-}
-    
-// setForcedVariation called on invalid experimentKey (empty string)
-- (void)testSetForcedVariationCalledOnInvalidExperimentKey1
-{
-    NSString *invalidExperimentKey = @"";
-    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
-                                                userId:kUserId
-                                          variationKey:kExperimentNoAudienceVariationKey]);
-}
-
-// setForcedVariation called on invalid experimentKey (non-existent experiment)
-- (void)testSetForcedVariationCalledOnInvalidExperimentKey2
-{
-    NSString *invalidExperimentKey = @"invalid_experiment_key_3817";
-    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
-                                                userId:kUserId
-                                          variationKey:kExperimentNoAudienceVariationKey]);
-}
-
-// setForcedVariation called on invalid variationKey (empty string)
-- (void)testSetForcedVariationCalledOnInvalidVariationKey1
-{
-    NSString *invalidVariationKey = @"";
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
-                                                userId:kUserId
-                                          variationKey:invalidVariationKey]);
-}
-
-// setForcedVariation called on invalid variationKey (non-existent variation)
-- (void)testSetForcedVariationCalledOnInvalidVariationKey2
-{
-    NSString *invalidVariationKey = @"invalid_variation_key_3817";
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
-                                                userId:kUserId
-                                          variationKey:invalidVariationKey]);
-}
-
-// setForcedVariation called on invalid userId (empty string)
-- (void)testSetForcedVariationCalledOnInvalidUserId
-{
-    NSString *invalidUserId = @"";
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
-                                                userId:invalidUserId
-                                          variationKey:kExperimentNoAudienceVariationKey]);
-}
-
-#pragma mark - getVariation
-
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
 {
@@ -379,6 +319,64 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     
     [decisionServiceMock stopMocking];
     [userProfileServiceMock stopMocking];
+}
+
+#pragma mark - setForcedVariation
+
+// if the experiment is not running should return nil for getVariation even after setForcedVariation
+- (void)testSetForcedVariationExperimentNotRunning
+{
+    OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
+    XCTAssert([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                           userId:kUserId
+                                     variationKey:kExperimentNoAudienceVariationKey]);
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
+    XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
+}
+
+// setForcedVariation called on invalid experimentKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey1
+{
+    NSString *invalidExperimentKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+// setForcedVariation called on invalid experimentKey (non-existent experiment)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey2
+{
+    NSString *invalidExperimentKey = @"invalid_experiment_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+// setForcedVariation called on invalid variationKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey1
+{
+    NSString *invalidVariationKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
+// setForcedVariation called on invalid variationKey (non-existent variation)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey2
+{
+    NSString *invalidVariationKey = @"invalid_variation_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
+// setForcedVariation called on invalid userId (empty string)
+- (void)testSetForcedVariationCalledOnInvalidUserId
+{
+    NSString *invalidUserId = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:invalidUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
 }
 
 #pragma mark - saveUserProfile
