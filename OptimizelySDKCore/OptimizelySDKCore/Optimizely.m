@@ -120,10 +120,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                                  attributes:attributes];
     
     if ([impressionEventParams count] == 0) {
-        NSError *error = [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
-        if (callback) {
-            callback(error);
-        }
+        [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
         return nil;
     }
     
