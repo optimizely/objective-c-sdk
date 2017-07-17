@@ -187,6 +187,55 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
 }
 
+// invalid audience should return nil for getVariation
+- (void)testGetVariationWithInvalidAudience
+{
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
+                                                        experiment:experimentWithAudience
+                                                        attributes:nil];
+    XCTAssertNil(variation, @"Get variation with an invalid audience should return nil: %@", variation);
+}
+
+// invalid audience should return nil for getVariation overridden by call to setForcedVariation
+- (void)testGetVariationWithInvalidAudienceOverriddenBySetForcedVariation
+{
+    [self.optimizely setForcedVariation:kExperimentWithAudienceKey
+                                 userId:kUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
+                                                        experiment:experimentWithAudience
+                                                        attributes:nil];
+    XCTAssertNotNil(variation, @"Get variation with an invalid audience  should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+}
+
+// if the experiment is running and the user is not whitelisted,
+// lookup should be called to get the stored variation
+- (void)testGetVariationNoAudience
+{
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    
+    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
+    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+
+    [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
+    
+    OPTLYVariation *storedVariation = [decisionServiceMock getVariation:kUserId experiment:experiment attributes:self.attributes];
+    
+    OCMVerify([userProfileServiceMock lookup:[OCMArg isNotNil]]);
+    
+    XCTAssertNotNil(storedVariation, @"Stored variation should not be nil.");
+    
+    [decisionServiceMock stopMocking];
+    [userProfileServiceMock stopMocking];
+}
+
+#pragma mark - setForcedVariation
+
 // whitelisted user should return the whitelisted variation for getVariation overridden by call to setForcedVariation
 - (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariation
 {
@@ -263,8 +312,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     // Query variation's experienced by the two different users
     OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
     OPTLYVariation *variation1 = [self.decisionService getVariation:kWhitelistedUserId
-                                                        experiment:experimentWhitelisted
-                                                        attributes:nil];
+                                                         experiment:experimentWhitelisted
+                                                         attributes:nil];
     OPTLYVariation *variation2 = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
                                                          experiment:experimentWhitelisted
                                                          attributes:nil];
@@ -273,55 +322,6 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertEqualObjects(variation1.variationKey,kExperimentNoAudienceVariationKey,@"Should have been variation predicted for the first user");
     XCTAssertEqualObjects(variation2.variationKey,kWhitelistedVariation_test_data_10_experiments,@"Should have been variation predicted for the second user");
 }
-
-// invalid audience should return nil for getVariation
-- (void)testGetVariationWithInvalidAudience
-{
-    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
-                                                        experiment:experimentWithAudience
-                                                        attributes:nil];
-    XCTAssertNil(variation, @"Get variation with an invalid audience should return nil: %@", variation);
-}
-
-// invalid audience should return nil for getVariation overridden by call to setForcedVariation
-- (void)testGetVariationWithInvalidAudienceOverriddenBySetForcedVariation
-{
-    [self.optimizely setForcedVariation:kExperimentWithAudienceKey
-                                 userId:kUserId
-                           variationKey:kExperimentNoAudienceVariationKey];
-    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
-                                                        experiment:experimentWithAudience
-                                                        attributes:nil];
-    XCTAssertNotNil(variation, @"Get variation with an invalid audience  should be overridden by setForcedVariation");
-    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
-}
-
-// if the experiment is running and the user is not whitelisted,
-// lookup should be called to get the stored variation
-- (void)testGetVariationNoAudience
-{
-    id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
-    
-    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
-    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
-    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
-
-    [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
-    
-    OPTLYVariation *storedVariation = [decisionServiceMock getVariation:kUserId experiment:experiment attributes:self.attributes];
-    
-    OCMVerify([userProfileServiceMock lookup:[OCMArg isNotNil]]);
-    
-    XCTAssertNotNil(storedVariation, @"Stored variation should not be nil.");
-    
-    [decisionServiceMock stopMocking];
-    [userProfileServiceMock stopMocking];
-}
-
-#pragma mark - setForcedVariation
 
 // if the experiment is not running should return nil for getVariation even after setForcedVariation
 - (void)testSetForcedVariationExperimentNotRunning
