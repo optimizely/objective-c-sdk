@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKDatafileManager"
-  s.version                 = "1.1.6"
+  s.version                 = "1.1.7"
   s.summary                 = "Optimizely server-side testing datafile manager framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
       ss.dependency 'JSONModel', '= 1.3.0'
       ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
   end
-  s.dependency 'OptimizelySDKShared', '1.1.6'
+  s.dependency 'OptimizelySDKShared', '1.1.7'
 
 end
