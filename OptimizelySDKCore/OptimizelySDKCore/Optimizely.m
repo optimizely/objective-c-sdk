@@ -121,7 +121,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if ([impressionEventParams count] == 0) {
         [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
-        return variation;
+        return nil;
     }
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];

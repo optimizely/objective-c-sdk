@@ -34,8 +34,9 @@
             if (err != nil) {
                 NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
                 @throw exception;
+            } else {
+                [conditions addObject:condition];
             }
-            [conditions addObject:condition];
         }
         
         // return an (And/Or/Not) Condition handling the base conditions

@@ -1,4 +1,10 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.5
+Jul 13, 2017
+
+### Bug Fixes
+* Fixed a crash caused by a dangling pointer when `dispatchEvent` is called. `strongSelf` captures the state of self (which can be an `eventDispatcher` object or `nil`) at the time the block is called. `strongSelf` will hold onto whatever it is referencing for the duration of the block execution. Therefore, `strongSelf` is still pointing to `pendingDispatchEvents` even when it gets deallocated at the time the `eventDispatcher` is deallocated. This issue was resolved by not capturing `self` using `strongSelf` and keeping the `self` reference to `self` or `weakSelf`.
+
 ## 1.1.3
 Jul 7, 2017
 
