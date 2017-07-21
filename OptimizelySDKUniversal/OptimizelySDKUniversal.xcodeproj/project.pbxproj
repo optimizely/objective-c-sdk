@@ -361,34 +361,34 @@
 		EA52CB391E85224E00D4FCA0 /* OptimizelySDKiOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKiOS.modulemap; path = OptimizelySDKUniversal/OptimizelySDKUniversal/OptimizelySDKiOS.modulemap; sourceTree = "<group>"; };
 		EA52CB3A1E85226600D4FCA0 /* OptimizelySDKTVOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "OptimizelySDKTVOS-Info.plist"; path = "OptimizelySDKUniversal/OptimizelySDKTVOS-Info.plist"; sourceTree = "<group>"; };
 		EA52CB3B1E85226600D4FCA0 /* OptimizelySDKTVOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = OptimizelySDKTVOS.modulemap; path = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap; sourceTree = "<group>"; };
-		EA52CB701E85959100D4FCA0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
-		EA52CB711E85959100D4FCA0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
-		EA52CB721E85959100D4FCA0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		EA52CB731E85959100D4FCA0 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		EA52CB741E85959100D4FCA0 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
-		EA52CB751E85959100D4FCA0 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
-		EA52CB761E85959100D4FCA0 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		EA52CB771E85959100D4FCA0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
-		EA52CB781E85959100D4FCA0 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMDB.h; sourceTree = "<group>"; };
-		EA52CB791E85959100D4FCA0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
-		EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = OptimizelySDKUniversal/Frameworks/fmdb/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
-		EA52CD511E85E35C00D4FCA0 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
-		EA52CD541E85E36B00D4FCA0 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
-		EA52CD551E85E36B00D4FCA0 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
-		EA52CD561E85E36B00D4FCA0 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
-		EA52CD571E85E36B00D4FCA0 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
-		EA52CD581E85E36B00D4FCA0 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
-		EA52CD591E85E36B00D4FCA0 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		EA52CD661E85E37500D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
-		EA52CD671E85E37500D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
-		EA52CD681E85E37500D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
-		EA52CD691E85E37500D4FCA0 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
-		EA52CD6A1E85E37500D4FCA0 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		EA52CD6B1E85E37500D4FCA0 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
-		EA52CD781E85E37E00D4FCA0 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
-		EA52CD791E85E37E00D4FCA0 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
-		EA52CD7A1E85E37E00D4FCA0 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
-		EA52CD7B1E85E37E00D4FCA0 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = OptimizelySDKUniversal/Frameworks/jsonmodel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
+		EA52CB701E85959100D4FCA0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		EA52CB711E85959100D4FCA0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		EA52CB721E85959100D4FCA0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		EA52CB731E85959100D4FCA0 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		EA52CB741E85959100D4FCA0 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		EA52CB751E85959100D4FCA0 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		EA52CB761E85959100D4FCA0 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		EA52CB771E85959100D4FCA0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		EA52CB781E85959100D4FCA0 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		EA52CB791E85959100D4FCA0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		EA52CD511E85E35C00D4FCA0 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
+		EA52CD541E85E36B00D4FCA0 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel.h; sourceTree = "<group>"; };
+		EA52CD551E85E36B00D4FCA0 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel.m; sourceTree = "<group>"; };
+		EA52CD561E85E36B00D4FCA0 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
+		EA52CD571E85E36B00D4FCA0 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
+		EA52CD581E85E36B00D4FCA0 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModelError.h; sourceTree = "<group>"; };
+		EA52CD591E85E36B00D4FCA0 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModelError.m; sourceTree = "<group>"; };
+		EA52CD661E85E37500D4FCA0 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
+		EA52CD671E85E37500D4FCA0 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
+		EA52CD681E85E37500D4FCA0 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		EA52CD691E85E37500D4FCA0 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
+		EA52CD6A1E85E37500D4FCA0 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
+		EA52CD6B1E85E37500D4FCA0 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
+		EA52CD781E85E37E00D4FCA0 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
+		EA52CD791E85E37E00D4FCA0 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
+		EA52CD7A1E85E37E00D4FCA0 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
+		EA52CD7B1E85E37E00D4FCA0 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		EA52CDE81E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKTVOSUniversalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52CDEA1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptimizelySDKTVOSUniversalTests.m; sourceTree = "<group>"; };
 		EA52CDEC1E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OptimizelySDKTVOSUniversalTests-Info.plist"; sourceTree = "<group>"; };
@@ -578,6 +578,7 @@
 				EA52CB7A1E85959100D4FCA0 /* FMResultSet.m */,
 			);
 			name = fmdb;
+			path = "../../objective-c-sdk-1.1.x/Pods/FMDB/src/fmdb";
 			sourceTree = "<group>";
 		};
 		EA52CD3D1E85E10300D4FCA0 /* JSONModel */ = {
@@ -602,6 +603,7 @@
 				EA52CD7B1E85E37E00D4FCA0 /* JSONValueTransformer.m */,
 			);
 			name = JSONModel;
+			path = ../Pods/JSONModel/JSONModel;
 			sourceTree = "<group>";
 		};
 		EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */ = {
