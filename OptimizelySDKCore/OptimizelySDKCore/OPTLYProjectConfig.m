@@ -244,12 +244,14 @@ NSString * const kExpectedDatafileVersion  = @"3";
         return nil;
     }
     OPTLYVariation *variation = nil;
-    NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
-    if (dictionary != nil) {
-        // Get variation from experimentId and variationId .
-        NSString *experimentId = experiment.experimentId;
-        NSString *variationId = dictionary[experimentId];
-        variation = [experiment getVariationForVariationId:variationId];
+    @synchronized (self.forcedVariationMap) {
+        NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
+        if (dictionary != nil) {
+            // Get variation from experimentId and variationId .
+            NSString *experimentId = experiment.experimentId;
+            NSString *variationId = dictionary[experimentId];
+            variation = [experiment getVariationForVariationId:variationId];
+        }
     }
     return variation;
 }
@@ -281,26 +283,28 @@ NSString * const kExpectedDatafileVersion  = @"3";
             return NO;
         }
     }
-    // Locate relevant dictionary inside forcedVariationMap
-    NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
-    if ((dictionary == nil) && (variationKey != nil)) {
-        // We need a non-nil dictionary to store an OPTLYVariation .
-        dictionary = [[NSMutableDictionary alloc] init];
-        self.forcedVariationMap[userId] = dictionary;
-    }
-    // Apply change to dictionary
-    if (variation == nil) {
-        // NOTE: removeObjectForKey: "Does nothing if [experimentKey] does not exist."
-        // https://developer.apple.com/documentation/foundation/nsmutabledictionary/1416518-removeobjectforkey?language=objc
-        [dictionary removeObjectForKey:experimentId];
-        if ([dictionary count] == 0) {
-            // For elegance, we can remove empty dictionary for userId from self.forcedVariationMap
-            [self.forcedVariationMap removeObjectForKey:userId];
+    @synchronized (self.forcedVariationMap) {
+        // Locate relevant dictionary inside forcedVariationMap
+        NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
+        if ((dictionary == nil) && (variationKey != nil)) {
+            // We need a non-nil dictionary to store an OPTLYVariation .
+            dictionary = [[NSMutableDictionary alloc] init];
+            self.forcedVariationMap[userId] = dictionary;
         }
-    } else {
-        // If there is no OPTLYExperiment *experiment corresponding to experimentKey ,
-        // then we will land in the "(variation == nil)" case above due to code above.
-        dictionary[experimentId] = variation.variationId;
+        // Apply change to dictionary
+        if (variation == nil) {
+            // NOTE: removeObjectForKey: "Does nothing if [experimentKey] does not exist."
+            // https://developer.apple.com/documentation/foundation/nsmutabledictionary/1416518-removeobjectforkey?language=objc
+            [dictionary removeObjectForKey:experimentId];
+            if ([dictionary count] == 0) {
+                // For elegance, we can remove empty dictionary for userId from self.forcedVariationMap
+                [self.forcedVariationMap removeObjectForKey:userId];
+            }
+        } else {
+            // If there is no OPTLYExperiment *experiment corresponding to experimentKey ,
+            // then we will land in the "(variation == nil)" case above due to code above.
+            dictionary[experimentId] = variation.variationId;
+        };
     };
     return YES;
 }
@@ -390,8 +394,10 @@ NSString * const kExpectedDatafileVersion  = @"3";
 
 //- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>> *)forcedVariationMap {
 - (NSMutableDictionary<NSString *, NSMutableDictionary *> *)forcedVariationMap {
-    if (!_forcedVariationMap) {
-        _forcedVariationMap = [[NSMutableDictionary alloc] init];
+    @synchronized (self) {
+        if (!_forcedVariationMap) {
+            _forcedVariationMap = [[NSMutableDictionary alloc] init];
+        }
     }
     return _forcedVariationMap;
 }
