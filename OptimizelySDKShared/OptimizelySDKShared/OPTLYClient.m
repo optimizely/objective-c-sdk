@@ -114,7 +114,7 @@
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
-        return nil;
+        return NO;
     }
     else {
         return [self.optimizely setForcedVariation:experimentKey
