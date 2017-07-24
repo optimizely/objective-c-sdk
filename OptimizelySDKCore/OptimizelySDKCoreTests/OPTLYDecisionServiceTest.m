@@ -88,6 +88,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
 
 
 @implementation OPTLYDecisionServiceTest
+
+#pragma mark - setUp and tearDown
     
 - (void)setUp {
     [super setUp];
@@ -113,8 +115,10 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     self.config = nil;
     self.attributes = nil;
 }
+
+#pragma mark - Validate Preconditions
     
-    // experiment is running, user is in experiment
+// experiment is running, user is in experiment
 - (void)testValidatePreconditions
 {
     BOOL isValid = [self.decisionService userPassesTargeting:self.config
@@ -163,6 +167,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
 }
 
+#pragma mark - getVariation
+
 // if the experiment is not running should return nil for getVariation
 - (void)testGetVariationExperimentNotRunning
 {
@@ -170,7 +176,7 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
     XCTAssertNil(variation, @"Get variation on an experiment not running should return nil: %@", variation);
 }
-    
+
 // whitelisted user should return the whitelisted variation for getVariation
 - (void)testGetVariationWithWhitelistedVariation
 {
@@ -180,7 +186,7 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         attributes:nil];
     XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
 }
-    
+
 // invalid audience should return nil for getVariation
 - (void)testGetVariationWithInvalidAudience
 {
@@ -190,7 +196,21 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
                                                         attributes:nil];
     XCTAssertNil(variation, @"Get variation with an invalid audience should return nil: %@", variation);
 }
-    
+
+// invalid audience should return nil for getVariation overridden by call to setForcedVariation
+- (void)testGetVariationWithInvalidAudienceOverriddenBySetForcedVariation
+{
+    [self.optimizely setForcedVariation:kExperimentWithAudienceKey
+                                 userId:kUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId
+                                                        experiment:experimentWithAudience
+                                                        attributes:nil];
+    XCTAssertNotNil(variation, @"Get variation with an invalid audience  should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+}
+
 // if the experiment is running and the user is not whitelisted,
 // lookup should be called to get the stored variation
 - (void)testGetVariationNoAudience
@@ -213,6 +233,175 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     [decisionServiceMock stopMocking];
     [userProfileServiceMock stopMocking];
 }
+
+#pragma mark - setForcedVariation
+
+// whitelisted user should return the whitelisted variation for getVariation overridden by call to setForcedVariation
+- (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariation
+{
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+}
+
+- (void)testSetForcedVariationFollowedByGetForcedVariation
+{
+    // Call setForcedVariation:userId:variationKey:
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    // Confirm getForcedVariation:userId: returns forced variation.
+    OPTLYVariation *variation1 = [self.config getForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                                          userId:kWhitelistedUserId_test_data_10_experiments];
+    XCTAssertFalse([variation1.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation1.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+    // Confirm decisionService's getVariation:experiment:attributes: finds forced variation.
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation2 = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation2.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation2.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+    // The two answers should be the same.
+    XCTAssertEqualObjects(variation1.variationKey, variation1.variationKey, @"Should be the same forced varation %@ .", kExperimentNoAudienceVariationKey);
+}
+
+// whitelisted user should return the whitelisted variation for getVariation after setForcedVariation is cleared
+- (void)testGetVariationWithWhitelistedVariationAfterClearingSetForcedVariation
+{
+    // Set a forced variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+    // Clear the forced variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:nil];
+    // Confirm return to variation expected in absence of a forced variation.
+    variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                        experiment:experimentWhitelisted
+                                        attributes:nil];
+    XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
+}
+
+// whitelisted user should return the whitelisted variation for getVariation overridden by call to setForcedVariation twice
+- (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariationTwice
+{
+    // First call to setForcedVariation:userId:variationKey:
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kExperimentNoAudienceVariationKey];
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should be overridden by setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentNoAudienceVariationKey, @"Should be the forced varation %@ .", kExperimentNoAudienceVariationKey);
+    // Second call to setForcedVariation:userId:variationKey: to a different forced variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kWhitelistedVariation_test_data_10_experiments];
+    variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                        experiment:experimentWhitelisted
+                                        attributes:nil];
+    XCTAssertFalse([variation.variationKey isEqualToString:kExperimentNoAudienceVariationKey], @"Variation should agree with second call to setForcedVariation");
+    XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation_test_data_10_experiments, @"Should be the forced varation %@ .", kWhitelistedVariation_test_data_10_experiments);
+}
+
+// two different users experience two different setForcedVariation's in the same experiment differently
+- (void)testGetVariationWithWhitelistedVariationOverriddenBySetForcedVariationForTwoDifferentUsers
+{
+    // First call to setForcedVariation:userId:variationKey:
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId
+                           variationKey:kExperimentNoAudienceVariationKey];
+    // Second call to setForcedVariation:userId:variationKey: to a different variation
+    [self.optimizely setForcedVariation:kWhitelistedExperiment_test_data_10_experiments
+                                 userId:kWhitelistedUserId_test_data_10_experiments
+                           variationKey:kWhitelistedVariation_test_data_10_experiments];
+    // Query variation's experienced by the two different users
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:kWhitelistedExperiment_test_data_10_experiments];
+    OPTLYVariation *variation1 = [self.decisionService getVariation:kWhitelistedUserId
+                                                         experiment:experimentWhitelisted
+                                                         attributes:nil];
+    OPTLYVariation *variation2 = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                         experiment:experimentWhitelisted
+                                                         attributes:nil];
+    // Confirm the two variations are different and they agree with predictions
+    XCTAssertNotEqualObjects(variation1.variationKey,variation2.variationKey,@"Expecting two different forced variations for the two different users in this experiment");
+    XCTAssertEqualObjects(variation1.variationKey,kExperimentNoAudienceVariationKey,@"Should have been variation predicted for the first user");
+    XCTAssertEqualObjects(variation2.variationKey,kWhitelistedVariation_test_data_10_experiments,@"Should have been variation predicted for the second user");
+}
+
+// if the experiment is not running should return nil for getVariation even after setForcedVariation
+- (void)testSetForcedVariationExperimentNotRunning
+{
+    OPTLYExperiment *experimentNotRunning = [self.config getExperimentForKey:kExperimentNotRunningKey];
+    XCTAssert([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                           userId:kUserId
+                                     variationKey:kExperimentNoAudienceVariationKey]);
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experimentNotRunning attributes:nil];
+    XCTAssertNil(variation, @"Set forced variation on an experiment not running should return nil: %@", variation);
+}
+
+// setForcedVariation called on invalid experimentKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey1
+{
+    NSString *invalidExperimentKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+// setForcedVariation called on invalid experimentKey (non-existent experiment)
+- (void)testSetForcedVariationCalledOnInvalidExperimentKey2
+{
+    NSString *invalidExperimentKey = @"invalid_experiment_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:invalidExperimentKey
+                                                userId:kUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+// setForcedVariation called on invalid variationKey (empty string)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey1
+{
+    NSString *invalidVariationKey = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
+// setForcedVariation called on invalid variationKey (non-existent variation)
+- (void)testSetForcedVariationCalledOnInvalidVariationKey2
+{
+    NSString *invalidVariationKey = @"invalid_variation_key_3817";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:kUserId
+                                          variationKey:invalidVariationKey]);
+}
+
+// setForcedVariation called on invalid userId (empty string)
+- (void)testSetForcedVariationCalledOnInvalidUserId
+{
+    NSString *invalidUserId = @"";
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+                                                userId:invalidUserId
+                                          variationKey:kExperimentNoAudienceVariationKey]);
+}
+
+#pragma mark - saveUserProfile
 
 // for decision service saves, the user profile service save should be called with the expected user profile
 - (void)testSaveVariation
