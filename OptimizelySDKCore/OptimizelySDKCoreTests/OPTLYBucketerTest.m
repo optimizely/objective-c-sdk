@@ -22,8 +22,10 @@
 #import "OPTLYVariation.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYGroup.h"
+#import <stdlib.h>
 
 static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
+static NSString *const kBucketerTestDatafile2Name = @"BucketerTestsDatafile2";
 
 @interface OPTLYBucketer ()
 
@@ -32,10 +34,19 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 @end
 
 @interface OPTLYBucketerTest : XCTestCase
-
+@property (nonatomic,copy) NSString* testBucketingIdControl;
+@property (nonatomic,copy) NSString* testBucketingIdVariation;
+@property (nonatomic,copy) NSString* testUserId;
 @end
 
 @implementation OPTLYBucketerTest
+
+- (void)setUp {
+    [super setUp];
+    self.testBucketingIdControl = @"1291332554";
+    self.testBucketingIdVariation = @"791931608";
+    self.testUserId = @"testUserId";
+}
 
 - (void)testInitWithConfig {
     OPTLYProjectConfig *config = [[OPTLYProjectConfig alloc] init];
@@ -189,6 +200,80 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
     OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:@"user"];
     XCTAssertNotNil(experiment);
     XCTAssertNil(variation);
+}
+
+- (void)testBucketWithBucketingId {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafile2Name];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    XCTAssertNotNil(projectConfig);
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:projectConfig];
+    XCTAssertNotNil(bucketer);
+    OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"test_experiment"];
+    XCTAssertNotNil(experiment);
+    {
+        // check testBucketingIdControl is bucketed into "control" variation
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testBucketingIdControl];
+        XCTAssertNotNil(variation);
+        XCTAssertEqualObjects(variation.variationId, @"7722370027", @"Unexpected variationId");
+        XCTAssertEqualObjects(variation.variationKey, @"control",  @"Unexpected variationKey");
+    }
+    {
+        // check testBucketingIdVariation is bucketed into "variation" variation
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testBucketingIdVariation];
+        XCTAssertNotNil(variation);
+        XCTAssertEqualObjects(variation.variationId, @"7721010009", @"Unexpected variationId");
+        XCTAssertEqualObjects(variation.variationKey, @"variation", @"Unexpected variationKey");
+    }
+}
+
+- (void)testBucketVariationInvalidExperimentsWithBucketingId {
+    // test for invalid experiment keys
+    // null variation should be returned
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafile2Name];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    XCTAssertNotNil(projectConfig);
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:projectConfig];
+    XCTAssertNotNil(bucketer);
+    OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"invalid_experiment"];
+    XCTAssertNil(experiment);
+    XCTAssertNil([bucketer bucketExperiment:experiment withBucketingId:self.testBucketingIdVariation]);
+}
+
+- (void)testBucketVariationGroupedExperimentsWithBucketingId {
+    // make sure that bucketing works with experiments in group
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafile2Name];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    XCTAssertNotNil(projectConfig);
+    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:projectConfig];
+    XCTAssertNotNil(bucketer);
+    {
+        OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"group_experiment_2"];
+        XCTAssertNotNil(experiment);
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testBucketingIdVariation];
+        XCTAssertNotNil(variation);
+        XCTAssertEqualObjects(variation.variationId, @"7725250007", @"error message");
+        XCTAssertEqualObjects(variation.variationKey, @"group_exp_2_var_2", @"error message");
+    }
+    {
+        OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"group_experiment_1"];
+        XCTAssertNotNil(experiment);
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testBucketingIdVariation];
+        XCTAssertNil(variation);
+    }
+    {
+        OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"group_experiment_2"];
+        XCTAssertNotNil(experiment);
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testUserId];
+        XCTAssertNotNil(variation);
+        XCTAssertEqualObjects(variation.variationId, @"7713030086", @"error message");
+        XCTAssertEqualObjects(variation.variationKey, @"group_exp_2_var_1", @"error message");
+    }
+    {
+        OPTLYExperiment *experiment = [projectConfig getExperimentForKey:@"group_experiment_1"];
+        XCTAssertNotNil(experiment);
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:self.testUserId];
+        XCTAssertNil(variation);
+    }
 }
 
 @end
