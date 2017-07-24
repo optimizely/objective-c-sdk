@@ -105,7 +105,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"optimizely_bucketid";
         
         // bucket user into a variation
         bucketedVariation = [self.bucketer bucketExperiment:experiment
-                                                 withUserId:userId];
+                                            withBucketingId:userId];
         
         if (bucketedVariation) {
             [self saveUserProfile:userProfileDict variation:bucketedVariation experiment:experiment userId:userId];

@@ -27,7 +27,7 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 @interface OPTLYBucketer ()
 
-- (OPTLYExperiment *)bucketToExperiment:(OPTLYGroup *)group withUserId:(NSString *)userId;
+- (OPTLYExperiment *)bucketToExperiment:(OPTLYGroup *)group withBucketingId:(NSString *)userId;
 
 @end
 
@@ -57,8 +57,8 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
                        @{@"userId": @"a very very very very very very very very very very very very very very very long ppd string", @"experimentId": experimentId, @"expect": @(6128)}];
     
     for (NSDictionary *test in tests) {
-        NSString *bucketingId = [bucketer makeBucketingIdFromUserId:test[@"userId"] andEntityId:test[@"experimentId"]];
-        int bucketingValue = [bucketer generateBucketValue:bucketingId];
+        NSString *hashId = [bucketer makeHashIdFromBucketingId:test[@"userId"] andEntityId:test[@"experimentId"]];
+        int bucketingValue = [bucketer generateBucketValue:hashId];
         
         XCTAssertEqual([test[@"expect"] integerValue], bucketingValue);
     }
@@ -99,7 +99,7 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
                        @{@"userId": @"a very very very very very very very very very very very very very very very long ppd string", @"expect": @"Variation_B"}];
     
     for (NSDictionary *test in tests) {
-        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withUserId:test[@"userId"]];
+        OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:test[@"userId"]];
         XCTAssertEqualObjects(test[@"expect"], variation.variationKey);
     }
 }
@@ -122,7 +122,7 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
                        @{@"userId": @"a very very very very very very very very very very very very very very very long ppd string", @"expect": @"nil"}];
     
     for (NSDictionary *test in tests) {
-        OPTLYExperiment *experiment = [bucketer bucketToExperiment:group withUserId:test[@"userId"]];
+        OPTLYExperiment *experiment = [bucketer bucketToExperiment:group withBucketingId:test[@"userId"]];
         if ([test[@"expect"] isEqualToString:@"nil"]) {
             XCTAssertNil(experiment);
         }
@@ -153,23 +153,23 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
     
     for (NSDictionary *test in tests) {
         if ([test[@"experiment"] isEqualToString:@"experiment1"]) {
-            variation = [bucketer bucketExperiment:experiment1 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment1 withBucketingId:test[@"userId"]];
             XCTAssertNotNil(variation);
             XCTAssertEqualObjects(variation.variationKey, test[@"expect"]);
-            variation = [bucketer bucketExperiment:experiment2 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment2 withBucketingId:test[@"userId"]];
             XCTAssertNil(variation);
         }
         else if([test[@"experiment"] isEqualToString:@"experiment2"]) {
-            variation = [bucketer bucketExperiment:experiment2 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment2 withBucketingId:test[@"userId"]];
             XCTAssertNotNil(variation);
             XCTAssertEqualObjects(variation.variationKey, test[@"expect"]);
-            variation = [bucketer bucketExperiment:experiment1 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment1 withBucketingId:test[@"userId"]];
             XCTAssertNil(variation);
         }
         else {
-            variation = [bucketer bucketExperiment:experiment1 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment1 withBucketingId:test[@"userId"]];
             XCTAssertNil(variation);
-            variation = [bucketer bucketExperiment:experiment2 withUserId:test[@"userId"]];
+            variation = [bucketer bucketExperiment:experiment2 withBucketingId:test[@"userId"]];
             XCTAssertNil(variation);
         }
     }
@@ -186,7 +186,7 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
     OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:projectConfig];
     
     XCTAssertNotNil(experiment);
-    OPTLYVariation *variation = [bucketer bucketExperiment:experiment withUserId:@"user"];
+    OPTLYVariation *variation = [bucketer bucketExperiment:experiment withBucketingId:@"user"];
     XCTAssertNotNil(experiment);
     XCTAssertNil(variation);
 }

@@ -61,7 +61,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
 }
 
 - (OPTLYVariation *)bucketExperiment:(OPTLYExperiment *)experiment
-                          withUserId:(NSString *)userId {
+                          withBucketingId:(NSString *)bucketingId {
     
     // check for mutex
     NSString *groupId = experiment.groupId;
@@ -74,7 +74,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
             // do nothing if it is overlapping policy
         }
         else if ([group.policy isEqualToString:OPTLYBucketerMutexPolicy]) {
-            OPTLYExperiment *mutexExperiment = [self bucketToExperiment:group withUserId:userId];
+            OPTLYExperiment *mutexExperiment = [self bucketToExperiment:group withBucketingId:bucketingId];
             if (mutexExperiment != experiment) { // check to see if the experiment the user should fall into is the same experiment we are bucketing
                 experiment = nil;
             }
@@ -86,20 +86,20 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     
     // bucket to variation only if experiment passes Mutex check
     if (experiment != nil) {
-        OPTLYVariation *variation = [self bucketToVariation:experiment withUserId:userId];
+        OPTLYVariation *variation = [self bucketToVariation:experiment withBucketingId:bucketingId];
         return variation;
     }
     else {
         // log message if the user is mutually excluded
-        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesUserMutuallyExcluded, userId, experiment.experimentKey, groupId];
+        NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesUserMutuallyExcluded, bucketingId, experiment.experimentKey, groupId];
         [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return nil;
     }
 }
 
-- (OPTLYExperiment *)bucketToExperiment:(OPTLYGroup *)group withUserId:(NSString *)userId {
-    NSString *bucketingId = [self makeBucketingIdFromUserId:userId andEntityId:group.groupId];
-    int bucketValue = [self generateBucketValue:bucketingId];
+- (OPTLYExperiment *)bucketToExperiment:(OPTLYGroup *)group withBucketingId:(NSString *)bucketingId {
+    NSString *hashId = [self makeHashIdFromBucketingId:bucketingId andEntityId:group.groupId];
+    int bucketValue = [self generateBucketValue:hashId];
     
     if ([group.trafficAllocations count] == 0) {
         // log error if there are no traffic allocation values
@@ -121,7 +121,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
                                           code:OPTLYErrorTypesDataUnknown
                                    description:NSLocalizedString(OPTLYErrorHandlerMessagesExperimentUnknown, experimentId)];
                 
-                NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesForcedBucketingFailed, experimentId, userId];
+                NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesForcedBucketingFailed, experimentId, bucketingId];
                 [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
             }
             return experiment;
@@ -136,9 +136,9 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     return nil;
 }
 
-- (OPTLYVariation *)bucketToVariation:(OPTLYExperiment *)experiment withUserId: (NSString *)userId {
-    NSString *bucketingId = [self makeBucketingIdFromUserId:userId andEntityId:experiment.experimentId];
-    int bucketValue = [self generateBucketValue:bucketingId];
+- (OPTLYVariation *)bucketToVariation:(OPTLYExperiment *)experiment withBucketingId: (NSString *)bucketingId {
+    NSString *hashId = [self makeHashIdFromBucketingId:bucketingId andEntityId:experiment.experimentId];
+    int bucketValue = [self generateBucketValue:hashId];
     
     if ([experiment.trafficAllocations count] == 0) {
         // log error if there are no traffic allocation values
@@ -162,11 +162,11 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
                                           code:OPTLYErrorTypesDataUnknown
                                    description:NSLocalizedString(OPTLYErrorHandlerMessagesVariationUnknown, variationId)];
                 
-                NSString *variationUnknownMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedBucketingFailed, variationId, userId];
+                NSString *variationUnknownMessage = [NSString stringWithFormat:OPTLYLoggerMessagesForcedBucketingFailed, variationId, bucketingId];
                 [self.config.logger logMessage:variationUnknownMessage withLevel:OptimizelyLogLevelError];
             }
             else {
-                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesBucketAssigned, variation.variationKey, userId];
+                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesBucketAssigned, variation.variationKey, bucketingId];
                 [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             }
             return variation;
@@ -181,21 +181,21 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     return nil;
 }
 
-- (int)generateBucketValue:(NSString *)bucketingId {
-    double ratio = ((double) [self generateUnsignedHashCode32Bit:bucketingId] / (double) MAX_HASH_VALUE);
+- (int)generateBucketValue:(NSString *)hashId {
+    double ratio = ((double) [self generateUnsignedHashCode32Bit:hashId] / (double) MAX_HASH_VALUE);
     return ratio * MAX_TRAFFIC_VALUE;
 }
 
-- (uint32_t)generateUnsignedHashCode32Bit:(NSString *)bucketingId {
-    const char *str = [bucketingId UTF8String];
-    int len = (int)[bucketingId length];
+- (uint32_t)generateUnsignedHashCode32Bit:(NSString *)hashId {
+    const char *str = [hashId UTF8String];
+    int len = (int)[hashId length];
     uint32_t result = 0;
     MurmurHash3_x86_32(str, len, self.bucket_seed, &result);
     return result;
 }
 
-- (NSString *)makeBucketingIdFromUserId:(NSString *)userId andEntityId:(NSString *)entityId {
-    return [NSString stringWithFormat:BUCKETING_ID_TEMPLATE, userId, entityId];
+- (NSString *)makeHashIdFromBucketingId:(NSString *)bucketingId andEntityId:(NSString *)entityId {
+    return [NSString stringWithFormat:BUCKETING_ID_TEMPLATE, bucketingId, entityId];
 }
 
 @end
