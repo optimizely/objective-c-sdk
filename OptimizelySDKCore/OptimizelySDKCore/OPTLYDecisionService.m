@@ -56,6 +56,20 @@ NSString * _Nonnull const OptimizelyBucketId = @"optimizely_bucketid";
     NSString *experimentKey = experiment.experimentKey;
     NSString *experimentId = experiment.experimentId;
     
+    // Acquire bucketingId .
+    NSString *bucketingId;
+    // If the bucketing ID key is defined in attributes, then use that in place of the userID for the murmur hash key
+    if (attributes != nil) {
+        bucketingId = attributes[OptimizelyBucketId];
+    }
+    if (bucketingId != nil) {
+        [self.config.logger logMessage:[NSString stringWithFormat:@"Setting the bucketing ID to %@.", bucketingId]
+                             withLevel:OptimizelyLogLevelDebug];
+    } else {
+        // By default, the bucketing ID should be the user ID .
+        bucketingId = userId;
+    }
+
     // ---- check if the experiment is running ----
     if (![self isExperimentActive:self.config
                     experimentKey:experimentKey]) {
