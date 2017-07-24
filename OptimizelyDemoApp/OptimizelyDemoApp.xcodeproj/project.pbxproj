@@ -818,7 +818,7 @@
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
 					"\"${PODS_ROOT}/Google/Frameworks\"",
-					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.2.0\"",
+					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.3.2\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/OptimizelyiOSDemoApp/OptimizelyiOSDemoApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -6,14 +6,14 @@ branches:
 env:
   matrix:
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=8.4 NAME='iPad Retina'
-    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.3 NAME='iPhone 6s Plus'
+    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
-    - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
+    - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.3 NAME='iPhone 6s'
     - SCHEME=OptimizelySDKTVOS TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=10.2 NAME='Apple TV 1080p'
     - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 script:
   - pod spec lint --quick
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME"; fi
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_retry xcodebuild test -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
 

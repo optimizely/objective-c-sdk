@@ -100,7 +100,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
             table:(NSString *)tableName
             error:(NSError **)error
 {
-    if (!data) {
+    if ([data count] == 0) {
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataStoreDatabaseNoDataToSave, tableName];
             
