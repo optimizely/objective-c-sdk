@@ -97,6 +97,36 @@
     }
 }
 
+#pragma mark Forced Variation Methods
+
+- (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    else {
+        return [self.optimizely getForcedVariation:experimentKey
+                                            userId:userId];
+    }
+}
+
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nullable NSString *)variationKey {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    else {
+        return [self.optimizely setForcedVariation:experimentKey
+                                            userId:userId
+                                      variationKey:variationKey];
+    }
+}
+
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {

@@ -28,6 +28,7 @@
 #import "OPTLYUserProfileBasic.h"
 #import "OPTLYTestHelper.h"
 #import "OPTLYVariation.h"
+#import "OPTLYVariable.h"
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
@@ -65,6 +66,8 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
+
+#pragma mark - Test init:
 
 - (void)testInitWithBuilderBlock
 {
@@ -127,6 +130,8 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
 }
 
+#pragma mark - Test initWithDatafile:
+
 - (void)testInitWithDatafile
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
@@ -140,6 +145,202 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     
     XCTAssertFalse(projectConfig.anonymizeIP, @"IP anonymization should be set to false.");
 }
+
+#pragma mark - Test getExperimentForKey:
+
+- (void)testGetExperimentForKey
+{
+    NSString* experimentKey = @"testExperiment31";
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForKey:experimentKey];
+    XCTAssertNotNil(experiment, @"Should find experiment for key: %@", experimentKey);
+    XCTAssert([experiment isKindOfClass:[OPTLYExperiment class]], @"Expected to be an OPTLYExperiment: %@", experiment);
+    XCTAssertEqualObjects(experiment.experimentKey, experimentKey,
+                          @"Expecting experiment's experimentKey %@ to be: %@", experiment.experimentKey, experimentKey);
+}
+
+- (void)testGetExperimentForNonexistentKey
+{
+    NSString* experimentKey = @"testExperimentDoesntExist";
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForKey:experimentKey];
+    XCTAssertNil(experiment, @"Shouldn't find experiment for key: %@", experimentKey);
+}
+#pragma mark - Test getExperimentForId:
+
+- (void)testGetExperimentForId
+{
+    NSString* experimentId = @"6313973431";
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForId:experimentId];
+    XCTAssertNotNil(experiment, @"Should find experiment for id: %@", experimentId);
+    XCTAssert([experiment isKindOfClass:[OPTLYExperiment class]], @"Expected to be an OPTLYExperiment: %@", experiment);
+    XCTAssertEqualObjects(experiment.experimentId, experimentId,
+                          @"Expecting experiment's experimentId %@ to be: %@", experiment.experimentId, experimentId);
+}
+
+- (void)testGetExperimentForNonexistentId
+{
+    NSString* experimentId = @"66666666666";
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForId:experimentId];
+    XCTAssertNil(experiment, @"Shouldn't find experiment for id: %@", experimentId);
+}
+
+#pragma mark - Test getExperimentIdForKey:
+
+- (void)testGetExperimentIdForKey
+{
+    NSString* experimentKey = @"testExperiment31";
+    NSString* experimentId = [self.projectConfig getExperimentIdForKey:experimentKey];
+    XCTAssertNotNil(experimentId, @"Should find experiment id for key: %@", experimentKey);
+    XCTAssert([experimentId isKindOfClass:[NSString class]], @"Expected to be an NSString: %@", experimentId);
+    XCTAssertEqualObjects(experimentId, @"6313973431",
+                          @"Expecting experiment's experimentKey %@ to be: %@", experimentId, @"6313973431");
+}
+
+- (void)testGetExperimentIdForNonexistentKey
+{
+    NSString* experimentKey = @"testExperimentDoesntExist";
+    NSString* experimentId = [self.projectConfig getExperimentIdForKey:experimentKey];
+    XCTAssertNil(experimentId, @"Shouldn't find experiment id for key: %@", experimentKey);
+}
+
+#pragma mark - Test getGroupForGroupId:
+
+- (void)testGetGroupForGroupId
+{
+    NSString* groupId = @"6455220163";
+    OPTLYGroup* group = [self.projectConfig getGroupForGroupId:groupId];
+    XCTAssertNotNil(group, @"Should find group for id: %@", groupId);
+    XCTAssert([group isKindOfClass:[OPTLYGroup class]], @"Expected to be an OPTLYGroup: %@", group);
+    XCTAssertEqualObjects(group.groupId, groupId,
+                          @"Expecting group's groupId %@ to be: %@", group.groupId, groupId);
+}
+
+- (void)testGetGroupForNonexistentId
+{
+    NSString* groupId = @"66666666666";
+    OPTLYGroup *group = [self.projectConfig getGroupForGroupId:groupId];
+    XCTAssertNil(group, @"Shouldn't find group for id: %@", groupId);
+}
+
+#pragma mark - Test getEventIdForKey:
+
+- (void)testGetEventIdForKey
+{
+    NSString* eventKey = @"testEvent";
+    NSString* eventId = [self.projectConfig getEventIdForKey:eventKey];
+    XCTAssertNotNil(eventId, @"Should find event id for key: %@", eventKey);
+    XCTAssert([eventId isKindOfClass:[NSString class]], @"Expected to be an NSString: %@", eventId);
+    XCTAssertEqualObjects(eventId, @"6370537431",
+                          @"Expecting event's eventId %@ to be: %@", eventId, @"6370537431");
+}
+
+- (void)testGetEventIdForNonexistentKey
+{
+    NSString* eventKey = @"testEventDoesntExist";
+    NSString* eventId = [self.projectConfig getEventIdForKey:eventKey];
+    XCTAssertNil(eventId, @"Shouldn't find event id for key: %@", eventKey);
+}
+
+#pragma mark - Test getEventForKey:
+
+- (void)testGetEventForKey
+{
+    NSString* eventKey = @"testEvent";
+    OPTLYEvent *event = [self.projectConfig getEventForKey:eventKey];
+    XCTAssertNotNil(event, @"Should find event for key: %@", eventKey);
+    XCTAssert([event isKindOfClass:[OPTLYEvent class]], @"Expected to be an OPTLYEvent: %@", event);
+    XCTAssertEqualObjects(event.eventKey, eventKey,
+                          @"Expecting event's eventKey %@ to be: %@", event.eventKey, eventKey);
+}
+
+- (void)testGetEventForNonexistentKey
+{
+    NSString* eventKey = @"nonexistent_browser_type";
+    OPTLYEvent *event = [self.projectConfig getEventForKey:eventKey];
+    XCTAssertNil(event, @"Shouldn't find event for id: %@", eventKey);
+}
+
+#pragma mark - Test getAttributeForKey:
+
+- (void)testGetAttributeForKey
+{
+    NSString* attributeKey = @"browser_type";
+    OPTLYAttribute *attribute = [self.projectConfig getAttributeForKey:attributeKey];
+    XCTAssertNotNil(attribute, @"Should find attribute for key: %@", attributeKey);
+    XCTAssert([attribute isKindOfClass:[OPTLYAttribute class]], @"Expected to be an OPTLYAttribute: %@", attribute);
+    XCTAssertEqualObjects(attribute.attributeKey, attributeKey,
+                          @"Expecting attribute's attributeKey %@ to be: %@", attribute.attributeKey, attributeKey);
+}
+
+- (void)testGetAttributeForNonexistentKey
+{
+    NSString* attributeKey = @"nonexistent_browser_type";
+    OPTLYAttribute *attribute = [self.projectConfig getAttributeForKey:attributeKey];
+    XCTAssertNil(attribute, @"Shouldn't find attribute for id: %@", attributeKey);
+}
+
+#pragma mark - Test getAudienceForId:
+
+- (void)testGetAudienceForId
+{
+    NSString* audienceId = @"6373742627";
+    OPTLYAudience *audience = [self.projectConfig getAudienceForId:audienceId];
+    XCTAssertNotNil(audience, @"Should find audience for id: %@", audienceId);
+    XCTAssert([audience isKindOfClass:[OPTLYAudience class]], @"Expected to be an OPTLYAudience: %@", audience);
+    XCTAssertEqualObjects(audience.audienceId, audienceId,
+                          @"Expecting audience's audienceId %@ to be: %@", audience.audienceId, audienceId);
+}
+
+- (void)testGetAudienceForNonexistentId
+{
+    NSString* audienceId = @"66666666666";
+    OPTLYAudience *audience = [self.projectConfig getAudienceForId:audienceId];
+    XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
+}
+
+#pragma mark - Test getVariableForVariableKey:
+
+- (void)testGetVariableForVariableKey
+{
+    NSString* variableKey = @"someString";
+    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
+    XCTAssertNotNil(variable, @"Should find variable for key: %@", variableKey);
+    XCTAssert([variable isKindOfClass:[OPTLYVariable class]], @"Expected to be an OPTLYVariable: %@", variable);
+    XCTAssertEqualObjects(variable.variableKey, variableKey,
+                          @"Expecting variable's variableKey %@ to be: %@", variable.variableKey, variableKey);
+}
+
+- (void)testGetVariableForVariableNonexistentKey
+{
+    NSString* variableKey = @"someBlob";
+    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
+    XCTAssertNil(variable, @"Shouldn't find variable for key: %@", variableKey);
+}
+
+#pragma mark - Test setForcedVariation:userId:variationKey: and getForcedVariation:userId:
+
+- (void)testSetForcedVariationAndGetForcedVariation
+{
+    NSString* experimentKey = @"testExperiment31";
+    [self.projectConfig setForcedVariation:experimentKey
+                                 userId:@"user_a"
+                           variationKey:@"variation"];
+    OPTLYVariation* variation = [self.projectConfig getForcedVariation:experimentKey
+                                                                userId:@"user_a"];
+    XCTAssertNotNil(variation, @"getForcedVariation should find forced variation");
+    XCTAssert([variation isKindOfClass:[OPTLYVariation class]], @"Expected to be an OPTLYVariation: %@", variation);
+    XCTAssertEqualObjects(variation.variationKey, @"variation",
+                          @"Expecting variation's variationKey %@ to be: %@", variation.variationKey, @"variation");
+}
+
+- (void)testGetForcedVariationWhenNoVariationIsForced
+{
+    NSString* experimentKey = @"testExperiment31";
+    OPTLYVariation* variation = [self.projectConfig getForcedVariation:experimentKey
+                                                                userId:@"user_a"];
+    XCTAssertNil(variation, @"getForcedVariation shouldn't find forced variation");
+}
+
+#pragma mark - Test getVariationForExperiment:userId:attributes:bucketer:
 
 // "user_b": "b"
 - (void)testGetVariationWhitelisted
@@ -186,6 +387,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
                                                                                   bucketer:self.bucketer];
     XCTAssertNil(variationExpNotRunning, @"Variation should be nil for experiment that is paused: %@", variationExpNotRunning.variationKey);
 }
+
 #pragma mark - Helper Methods
 
 // Check all properties in an ProjectConfig object

@@ -174,6 +174,21 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return bucketedVariation;
 }
 
+#pragma mark Forced variation methods
+- (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                userId:(nonnull NSString *)userId {
+    return [self.config getForcedVariation:experimentKey
+                                    userId:userId];
+}
+
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nullable NSString *)variationKey {
+    return [self.config setForcedVariation:experimentKey
+                                    userId:userId
+                              variationKey:variationKey];
+}
+
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
