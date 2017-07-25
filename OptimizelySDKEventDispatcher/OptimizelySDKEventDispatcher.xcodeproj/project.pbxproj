@@ -11,6 +11,10 @@
 		3E0027511ECBBE5F0072DDAD /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027501ECBBE5F0072DDAD /* Pods_OptimizelySDKSharediOS.framework */; };
 		3E0027551ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027541ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework */; };
 		3E0027571ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027561ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework */; };
+		3E2B00BD1F27AE18004F66E9 /* OPTLYMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */; };
+		3E2B00BE1F27AE18004F66E9 /* OPTLYMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */; };
+		3E2B00BF1F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */; };
+		3E2B00C01F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */; };
 		54770275047095CC925FC46E /* Pods_OptimizelySDKEventDispatcheriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3E25CA29BD3B84317654DD /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */; };
 		88620F49A57781AD90653E9C /* Pods_OptimizelySDKEventDispatcheriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE3CCF1E529546113D4F010 /* Pods_OptimizelySDKEventDispatcheriOS.framework */; };
 		DF8C6B377B170C031FF71C57 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69AAECF8B785E459CC3BFA9 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */; };
@@ -101,6 +105,8 @@
 		3E0027501ECBBE5F0072DDAD /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_OptimizelySDKSharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0027541ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = "../../Library/Developer/Xcode/DerivedData/OptimizelySDK-exeyzvnfpwxywqafentqnxughgiy/Build/Products/Debug-iphoneos/OptimizelySDKUserProfileService.framework"; sourceTree = "<group>"; };
 		3E0027561ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = "../../Library/Developer/Xcode/DerivedData/OptimizelySDK-exeyzvnfpwxywqafentqnxughgiy/Build/Products/Debug-appletvos/OptimizelySDKUserProfileService.framework"; sourceTree = "<group>"; };
+		3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYMutableSet.h; sourceTree = "<group>"; };
+		3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYMutableSet.m; sourceTree = "<group>"; };
 		4B2747E0A19EA244FD34A0B2 /* Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOS/Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		4BF934501CBCB2643883E1D7 /* Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOS/Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig"; sourceTree = "<group>"; };
 		55C9A855C92A29B591DAA300 /* Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 				EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */,
 				EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */,
 				EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */,
+				3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */,
+				3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */,
 			);
 			path = OptimizelySDKEventDispatcher;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */,
+				3E2B00BD1F27AE18004F66E9 /* OPTLYMutableSet.h in Headers */,
 				EA52499F1DC7D91800AF6685 /* OptimizelySDKEventDispatcher.h in Headers */,
 				EA29D8F11DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */,
 			);
@@ -288,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5249C31DC7DD5500AF6685 /* OPTLYEventDispatcher.h in Headers */,
+				3E2B00BE1F27AE18004F66E9 /* OPTLYMutableSet.h in Headers */,
 				EA5249EC1DC7E76400AF6685 /* OptimizelySDKEventDispatcher.h in Headers */,
 				EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */,
 			);
@@ -657,6 +667,7 @@
 			files = (
 				EA29D8F31DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */,
+				3E2B00BF1F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +685,7 @@
 			files = (
 				EA29D8F41DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA5249C21DC7DD4A00AF6685 /* OPTLYEventDispatcher.m in Sources */,
+				3E2B00C01F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

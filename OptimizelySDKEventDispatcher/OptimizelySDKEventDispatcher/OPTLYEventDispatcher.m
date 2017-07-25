@@ -19,6 +19,7 @@
     #import <OptimizelySDKCore/OPTLYNetworkService.h>
 #endif
 #import "OPTLYEventDispatcher.h"
+#import "OPTLYMutableSet.h"
 
 // TODO - Flush events when network connection has become available.
 
@@ -39,7 +40,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) OPTLYNetworkService *networkService;
-@property (nonatomic, strong) NSMutableSet *pendingDispatchEvents;
+@property (nonatomic, strong) OPTLYMutableSet *pendingDispatchEvents;
 @property (nonatomic, assign) NSInteger flushEventAttempts;
 @end
 
@@ -59,7 +60,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
         _flushEventAttempts = 0;
         _timer = nil;
         _eventDispatcherDispatchInterval = OPTLYEventDispatcherDefaultDispatchIntervalTime_s;
-        _pendingDispatchEvents = [NSMutableSet new];
+        _pendingDispatchEvents = [OPTLYMutableSet new];
         _logger = builder.logger;
         _maxNumberOfEventsToSave = OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave;
         if (builder.maxNumberOfEventsToSave > 0) {
