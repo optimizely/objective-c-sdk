@@ -29,6 +29,11 @@
     }
     return self;
 }
+- (NSUInteger)count {
+    @synchronized (_lockObject) {
+        return [_mutableSet count];
+    }
+}
 - (BOOL)containsObject:(id)anObject {
     BOOL answer=NO;
     @synchronized (_lockObject) {
@@ -44,6 +49,11 @@
 - (void)removeObject:(id)object {
     @synchronized (_lockObject) {
         [_mutableSet removeObject:object];
+    }
+}
+- (void)removeAllObjects {
+    @synchronized (_lockObject) {
+        [_mutableSet removeAllObjects];
     }
 }
 @end

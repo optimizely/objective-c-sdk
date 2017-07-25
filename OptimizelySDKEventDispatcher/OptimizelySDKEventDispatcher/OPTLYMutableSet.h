@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface OPTLYMutableSet<ObjectType> : NSObject
+@property(readonly) NSUInteger count;
 - (BOOL)containsObject:(ObjectType)anObject;
 - (void)addObject:(ObjectType)object;
 - (void)removeObject:(ObjectType)object;
+- (void)removeAllObjects;
 @end

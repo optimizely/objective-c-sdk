@@ -15,6 +15,8 @@
 		3E2B00BE1F27AE18004F66E9 /* OPTLYMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */; };
 		3E2B00BF1F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */; };
 		3E2B00C01F27AE18004F66E9 /* OPTLYMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */; };
+		3EBEC6461F27EFD70012797B /* OPTLYMutableSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC6451F27EFD70012797B /* OPTLYMutableSetTest.m */; };
+		3EBEC6471F27EFD70012797B /* OPTLYMutableSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC6451F27EFD70012797B /* OPTLYMutableSetTest.m */; };
 		54770275047095CC925FC46E /* Pods_OptimizelySDKEventDispatcheriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3E25CA29BD3B84317654DD /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */; };
 		88620F49A57781AD90653E9C /* Pods_OptimizelySDKEventDispatcheriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE3CCF1E529546113D4F010 /* Pods_OptimizelySDKEventDispatcheriOS.framework */; };
 		DF8C6B377B170C031FF71C57 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69AAECF8B785E459CC3BFA9 /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */; };
@@ -107,6 +109,7 @@
 		3E0027561ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = "../../Library/Developer/Xcode/DerivedData/OptimizelySDK-exeyzvnfpwxywqafentqnxughgiy/Build/Products/Debug-appletvos/OptimizelySDKUserProfileService.framework"; sourceTree = "<group>"; };
 		3E2B00BB1F27AE18004F66E9 /* OPTLYMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYMutableSet.h; sourceTree = "<group>"; };
 		3E2B00BC1F27AE18004F66E9 /* OPTLYMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYMutableSet.m; sourceTree = "<group>"; };
+		3EBEC6451F27EFD70012797B /* OPTLYMutableSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYMutableSetTest.m; sourceTree = "<group>"; };
 		4B2747E0A19EA244FD34A0B2 /* Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOS/Pods-OptimizelySDKEventDispatcherTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		4BF934501CBCB2643883E1D7 /* Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOS/Pods-OptimizelySDKEventDispatcheriOS.release.xcconfig"; sourceTree = "<group>"; };
 		55C9A855C92A29B591DAA300 /* Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 			children = (
 				EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */,
 				EA52495E1DC7B4FE00AF6685 /* OPTLYEventDispatcherTest.m */,
+				3EBEC6451F27EFD70012797B /* OPTLYMutableSetTest.m */,
 			);
 			path = OptimizelySDKEventDispatcherTests;
 			sourceTree = "<group>";
@@ -675,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EBEC6461F27EFD70012797B /* OPTLYMutableSetTest.m in Sources */,
 				EA5249661DC7BA0800AF6685 /* OPTLYEventDispatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,6 +698,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EBEC6471F27EFD70012797B /* OPTLYMutableSetTest.m in Sources */,
 				EA87A00B1DDE7356002E9EF7 /* OPTLYEventDispatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
