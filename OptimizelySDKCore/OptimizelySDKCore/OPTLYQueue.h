@@ -25,9 +25,9 @@ extern const NSInteger OPTLYQueueDefaultMaxSize;
 @interface OPTLYQueue : NSObject
 
 /// the queue
-@property (nonatomic, strong) NSArray *queue;
+@property (nonatomic, readonly, strong) NSArray *queue;
 /// the maximum size of the queue
-@property (nonatomic, assign) NSInteger maxQueueSize;
+@property (nonatomic, readonly, assign) NSInteger maxQueueSize;
 
 /*
  * Initializes the queue with a max size.
