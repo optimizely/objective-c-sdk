@@ -173,7 +173,7 @@ dispatch_queue_t eventsStorageCacheQueue()
         eventType:(nonnull NSString *)eventTypeName
             error:(NSError * _Nullable * _Nullable)error
 {
-    dispatch_async(eventsStorageCacheQueue(), ^{
+    dispatch_barrier_async(eventsStorageCacheQueue(), ^{
         __weak typeof(self) weakSelf = self;
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue enqueue:data];
@@ -198,7 +198,7 @@ dispatch_queue_t eventsStorageCacheQueue()
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable * _Nullable)error
 {
-    dispatch_async(eventsStorageCacheQueue(), ^{
+    dispatch_barrier_async(eventsStorageCacheQueue(), ^{
         __weak typeof(self) weakSelf = self;
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue dequeueNItems:numberOfEvents];
@@ -209,7 +209,7 @@ dispatch_queue_t eventsStorageCacheQueue()
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
-    dispatch_async(eventsStorageCacheQueue(), ^{
+    dispatch_barrier_async(eventsStorageCacheQueue(), ^{
         __weak typeof(self) weakSelf = self;
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue removeItem:event];
