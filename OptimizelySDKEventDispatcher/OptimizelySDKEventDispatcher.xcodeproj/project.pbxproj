@@ -123,7 +123,7 @@
 		EA5249A71DC7DCD900AF6685 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OptimizelySDKEventDispatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5249AF1DC7DCD900AF6685 /* OptimizelySDKEventDispatcherTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKEventDispatcherTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9FD3501E8B9A7200D86791 /* OptimizelySDKShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKShared.xcodeproj; path = ../OptimizelySDKShared/OptimizelySDKShared.xcodeproj; sourceTree = "<group>"; };
-		EA9FD3901E8C57BE00D86791 /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKSharediOS.framework; path = "/Users/aluong/src/objective-c-sdk-universal-framework/Pods/../build/Debug-iphoneos/Pods_OptimizelySDKSharediOS.framework"; sourceTree = "<absolute>"; };
+		EA9FD3901E8C57BE00D86791 /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_OptimizelySDKSharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEEA573DC462834DA4D553BD /* Pods-OptimizelySDKEventDispatcheriOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcheriOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOS/Pods-OptimizelySDKEventDispatcheriOS.beta.xcconfig"; sourceTree = "<group>"; };
 		EFE3CCF1E529546113D4F010 /* Pods_OptimizelySDKEventDispatcheriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKEventDispatcheriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB98CEB5A64A0C856A5C2B5 /* Pods-OptimizelySDKEventDispatcherTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKEventDispatcherTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOS/Pods-OptimizelySDKEventDispatcherTVOS.rc.xcconfig"; sourceTree = "<group>"; };
@@ -750,7 +750,7 @@
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -807,7 +807,7 @@
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX = "-rc";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -871,7 +871,7 @@
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX = "-debug";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -927,7 +927,7 @@
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION = "$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR).$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH)$(OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION_SUFFIX = "-beta";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

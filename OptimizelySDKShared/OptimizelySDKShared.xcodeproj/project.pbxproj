@@ -204,7 +204,7 @@
 		EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimizelySDKSharedTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OptimizelySDKShared.modulemap; sourceTree = "<group>"; };
 		EA52497C1DC7C9AE00AF6685 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-erjurkichwjuqxdcgaywtbodfztf/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
-		EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "/Users/aluong/src/objective-c-sdk-public/OptimizelySDKCore/Pods/../build/Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = "<absolute>"; };
+		EA52497F1DC7C9C500AF6685 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "../Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA58C5201E12E58400EE44AE /* OPTLYEventDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventDataStore.h; sourceTree = "<group>"; };
 		EA58C5211E12E58400EE44AE /* OPTLYEventDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventDataStore.m; sourceTree = "<group>"; };
 		EA92F81F1E27FB6000A859C7 /* OPTLYManagerBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYManagerBuilder.h; sourceTree = "<group>"; };
@@ -968,7 +968,7 @@
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-beta";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1025,7 +1025,7 @@
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1089,7 +1089,7 @@
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-debug";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1145,7 +1145,7 @@
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 7;
+				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 8;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-rc";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
