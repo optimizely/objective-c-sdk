@@ -39,6 +39,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
 @property (nonatomic, strong) OPTLYDataStore *dataStore;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) OPTLYNetworkService *networkService;
+// keep this thread safe by performing actions in dispatchEventQueue
 @property (nonatomic, strong) NSMutableSet *pendingDispatchEvents;
 @property (nonatomic, assign) NSInteger flushEventAttempts;
 @end
@@ -98,7 +99,7 @@ dispatch_queue_t dispatchEventQueue()
     static dispatch_queue_t _dispatchEventQueue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _dispatchEventQueue = dispatch_queue_create("com.Optimizely.dispatchEvent", DISPATCH_QUEUE_CONCURRENT);
+        _dispatchEventQueue = dispatch_queue_create("com.Optimizely.dispatchEvent", DISPATCH_QUEUE_SERIAL);
     });
     return _dispatchEventQueue;
 }
