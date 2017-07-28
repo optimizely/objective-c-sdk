@@ -26,7 +26,7 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
 
-NSString * _Nonnull const OptimizelyBucketId = @"optimizely_bucketid";
+NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;
