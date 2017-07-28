@@ -1,4 +1,9 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.8
+July 28, 2017
+### Bug Fixes
+*Fixed a `dispatchEvent` crash by changing a concurrent queue to a serial queue -- this was causing one of the properties we were accessing not thread-safe. 
+
 ## 1.1.7
 Jul 20, 2017
 
