@@ -21,6 +21,7 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
+#import "OPTLYLoggerMessages.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileServiceBasic.h"
@@ -63,7 +64,8 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
         bucketingId = attributes[OptimizelyBucketId];
     }
     if (bucketingId != nil) {
-        [self.config.logger logMessage:[NSString stringWithFormat:@"Setting the bucketing ID to %@.", bucketingId]
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
+                                        bucketingId]
                              withLevel:OptimizelyLogLevelDebug];
     } else {
         // By default, the bucketing ID should be the user ID .
