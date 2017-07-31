@@ -36,7 +36,9 @@
 - (id)initWithBlock:(OPTLYClientBuilderBlock)block {
     self = [super init];
     if (self) {
-        block(self);
+        if (block != nil) {
+            block(self);
+        }
         _optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
             builder.datafile = _datafile;
             builder.errorHandler = _errorHandler;
