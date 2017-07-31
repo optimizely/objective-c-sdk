@@ -102,7 +102,7 @@
         NSString *entityId = [entity.entityId stringValue];
         if ([entityId length] > 0) {
             [entityIds addObject:entityId];
-        } else {
+        } else if (error != nil) {
             *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                           code:OPTLYErrorTypesDataStore
                                       userInfo:@{NSLocalizedDescriptionKey :
