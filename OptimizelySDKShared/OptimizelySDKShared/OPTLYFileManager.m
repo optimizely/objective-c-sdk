@@ -36,18 +36,20 @@
     return self;
 }
 
-- (void)saveFile:(nonnull NSString *)fileName
+- (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
           subDir:(nullable NSString *)subDir
            error:(NSError * _Nullable * _Nullable)error
 {
+    BOOL ok = YES;
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
     NSString *filePath = [self filePathFor:fileName subDir:subDir];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:fileDir isDirectory:nil]) {
-        [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
+        ok = [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
     }
     [fileManager createFileAtPath:filePath contents:data attributes:nil];
+    return ok;
 }
 
 
@@ -79,27 +81,27 @@
     return dirExists;
 }
 
-- (void)removeFile:(nonnull NSString *)fileName
+- (BOOL)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
              error:(NSError * _Nullable * _Nullable)error
 {
     NSString *filePath = [self filePathFor:fileName subDir:subDir];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:filePath error:error];
+    return [fileManager removeItemAtPath:filePath error:error];
 }
 
-- (void)removeDataSubDir:(nullable NSString *)subDir
+- (BOOL)removeDataSubDir:(nullable NSString *)subDir
                    error:(NSError * _Nullable * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
-    [fileManager removeItemAtPath:fileDir error:error];
+    return [fileManager removeItemAtPath:fileDir error:error];
 }
 
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:self.baseDir error:error];
+    return [fileManager removeItemAtPath:self.baseDir error:error];
 }
 
 # pragma mark - Helper Methods
