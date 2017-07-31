@@ -23,7 +23,6 @@
 		EA6112B41EC28931001967ED /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9861DD147DA0034A4FE /* OptimizelySDKEventDispatcher.framework */; };
 		EA92F8341E27FB7900A859C7 /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA92F8321E27FB7900A859C7 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA92F8351E27FB7900A859C7 /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92F8331E27FB7900A859C7 /* OPTLYManager.m */; };
-		EAC5F85C1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAC5F85B1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,7 +370,7 @@
 		EA2FA71B1DC1FA9F00B1D81B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA2FA7231DC1FA9F00B1D81B = {
@@ -520,7 +519,6 @@
 				2D3504171DFA78D600B0A822 /* BucketerTestsDatafile.json in Resources */,
 				2D3504181DFA78D600B0A822 /* datafile_6372300739.json in Resources */,
 				2D35041A1DFA78D600B0A822 /* test_data_25_experiments.json in Resources */,
-				EAC5F85C1E81C52500C087B8 /* OptimizelySDKTVOSTests-Info.plist in Resources */,
 				2D35041C1DFA78D600B0A822 /* validator_whitelisting_test_datafile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
