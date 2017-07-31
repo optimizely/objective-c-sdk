@@ -48,7 +48,20 @@
     if (![fileManager fileExistsAtPath:fileDir isDirectory:nil]) {
         ok = [fileManager createDirectoryAtPath:fileDir withIntermediateDirectories:YES attributes:nil error:error];
     }
-    [fileManager createFileAtPath:filePath contents:data attributes:nil];
+    if (ok) {
+        // NSDataWritingAtomic
+        // A hint to write data to an auxiliary file first and then exchange the files.
+        // https://developer.apple.com/documentation/foundation/nsdatawritingoptions/nsdatawritingatomic?language=objc
+        // NSDataWritingFileProtectionCompleteUnlessOpen
+        // In this case, the file cannot be opened for reading or writing
+        // when the device is locked, although new files can be created with
+        // this class. If one of these files is open when the device is locked,
+        // reading and writing are still allowed.
+        // https://developer.apple.com/documentation/foundation/nsdatawritingoptions/nsdatawritingfileprotectioncompleteunlessopen?language=objc
+        ok = [data writeToFile:filePath
+                       options:NSDataWritingAtomic|NSDataWritingFileProtectionCompleteUnlessOpen
+                         error:error];
+    }
     return ok;
 }
 
