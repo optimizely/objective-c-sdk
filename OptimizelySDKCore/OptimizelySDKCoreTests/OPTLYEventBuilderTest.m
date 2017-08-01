@@ -106,6 +106,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.bucketer = nil;
 }
 
+#pragma mark - Test buildEventTicket:...
+
 - (void)testBuildEventTicketWithNoAudience
 {
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
@@ -369,6 +371,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
+
+#pragma mark - Test buildDecisionEventTicket:...
 
 - (void)testBuildDecisionEventTicketWithAllArguments
 {
