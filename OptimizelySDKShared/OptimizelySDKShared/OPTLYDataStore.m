@@ -100,10 +100,16 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     return _fileManager;
 }
 
-- (void)removeAll:(NSError * _Nullable * _Nullable)error {
+- (BOOL)removeAll:(NSError * _Nullable * _Nullable)error {
+    BOOL ok = YES;
     [self removeAllUserData];
-    [self removeEventsStorage:error];
-    [self removeAllFiles:error];
+    if (![self removeEventsStorage:error]) {
+        ok = NO;
+    }
+    if (![self removeAllFiles:error]) {
+        ok = NO;
+    }
+    return ok;
 }
 
 # pragma mark - NSUserDefault Data
@@ -146,16 +152,17 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 # pragma mark - File Manager Methods
-- (void)saveFile:(nonnull NSString *)fileName
+- (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error
 {
-    [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
+    BOOL ok = [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerSaveFile, dataType, fileName, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
@@ -181,35 +188,38 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     return [self.fileManager subDirExists:[OPTLYDataStore stringForDataTypeEnum:dataType]];
 }
 
-- (void)removeFile:(nonnull NSString *)fileName
+- (BOOL)removeFile:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType
              error:(NSError * _Nullable * _Nullable)error
 {
-    [self.fileManager removeFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
+    BOOL ok = [self.fileManager removeFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveFileForDataTypeError, dataType, fileName, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
-- (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
+- (BOOL)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
                          error:(NSError * _Nullable * _Nullable)error
 {
-    [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
+    BOOL ok = [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveFilesForDataTypeError, dataType, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error
 {
-    [self.fileManager removeAllFiles:error];
+    BOOL ok = [self.fileManager removeAllFiles:error];
     self.fileManager = nil;
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreFileManagerRemoveAllFilesError, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
 # pragma mark - Event Storage Methods
@@ -244,20 +254,20 @@ dispatch_queue_t eventsStorageQueue()
     });
 }
 
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable * _Nullable)error
 {
-    [self saveEvent:data eventType:eventType error:error completion:nil];
+    return [self saveEvent:data eventType:eventType error:error completion:nil];
 }
 
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable * _Nullable)error
        completion:(void(^)())completion
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];
+    BOOL ok = [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];
     
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseSaveError, data, eventTypeName, *error];
@@ -265,6 +275,7 @@ dispatch_queue_t eventsStorageQueue()
     }
     
     [self trimEvents:eventType completion:completion];
+    return ok;
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
@@ -307,43 +318,45 @@ dispatch_queue_t eventsStorageQueue()
     return allEvents;
 }
 
-- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+- (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
                      error:(NSError * _Nullable * _Nullable)error
 {
+    BOOL ok = YES;
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    [self.eventDataStore removeFirstNEvents:numberOfEvents eventType:eventTypeName error:error];
-    
+    ok = [self.eventDataStore removeFirstNEvents:numberOfEvents eventType:eventTypeName error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemoveError, numberOfEvents, eventTypeName, *error];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
-- (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
+- (BOOL)removeOldestEvent:(OPTLYDataStoreEventType)eventType
                     error:(NSError * _Nullable * _Nullable)error
 {
-    [self removeFirstNEvents:1 eventType:eventType error:error];
+    return [self removeFirstNEvents:1 eventType:eventType error:error];
 }
 
-- (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
+- (BOOL)removeAllEvents:(OPTLYDataStoreEventType)eventType
                   error:(NSError * _Nullable * _Nullable)error
 {
     NSInteger numberOfEvents = [self numberOfEvents:eventType error:error];
-    [self removeFirstNEvents:numberOfEvents eventType:eventType error:error];
+    return [self removeFirstNEvents:numberOfEvents eventType:eventType error:error];
 }
 
-- (void)removeEvent:(nonnull NSDictionary *)event
+- (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(OPTLYDataStoreEventType)eventType
               error:(NSError * _Nullable * _Nullable)error
 {
+    BOOL ok = YES;
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
-    [self.eventDataStore removeEvent:event eventType:eventTypeName error:error];
-    
+    ok = [self.eventDataStore removeEvent:event eventType:eventTypeName error:error];
     if (error && *error) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDataStoreDatabaseRemoveEventError, *error, eventTypeName, event];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
+    return ok;
 }
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
@@ -360,19 +373,21 @@ dispatch_queue_t eventsStorageQueue()
     return numberOfEvents;
 }
 
-- (void)removeAllEvents:(NSError * _Nullable * _Nullable)error {
-    for (NSInteger i = 0; i <= OPTLYDataStoreEventTypeConversion; ++i ) {
-        [self removeAllEvents:i error:error];
+- (BOOL)removeAllEvents:(NSError * _Nullable * _Nullable)error {
+    BOOL ok = YES;
+    for (NSInteger i = 0; i < OPTLYDataStoreEventTypeCOUNT; ++i ) {
+        ok = ok && [self removeAllEvents:i error:error];
     }
-    
     [self.logger logMessage:OPTLYLoggerMessagesDataStoreEventsRemoveAllWarning withLevel:OptimizelyLogLevelDebug];
+    return ok;
 }
 
 // removes all events, including the data structures that store the events
-- (void)removeEventsStorage:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeEventsStorage:(NSError * _Nullable * _Nullable)error
 {
-    [self removeAllEvents:error];
+    BOOL ok = [self removeAllEvents:error];
     self.eventDataStore = nil;
+    return ok;
 }
 
 # pragma mark - Helper Methods
