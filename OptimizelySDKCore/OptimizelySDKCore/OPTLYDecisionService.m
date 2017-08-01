@@ -59,7 +59,8 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     
     // Acquire bucketingId .
     NSString *bucketingId;
-    // If the bucketing ID key is defined in attributes, then use that in place of the userID for the murmur hash key
+    // If the bucketing ID key is defined in attributes, then use that
+    // in place of the userID for the murmur hash key
     if (attributes != nil) {
         bucketingId = attributes[OptimizelyBucketId];
     }
