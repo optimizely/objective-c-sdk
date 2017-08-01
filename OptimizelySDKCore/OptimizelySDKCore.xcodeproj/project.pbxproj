@@ -268,8 +268,6 @@
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		3E92800B1F26AD3900214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BucketerTestsDatafile2.json; path = OptimizelySDKCoreTests/TestData/BucketerTestsDatafile2.json; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BucketerTestsDatafile2.json; path = OptimizelySDKCoreTests/TestData/BucketerTestsDatafile2.json; sourceTree = "<group>"; };
-		3EDBAC431F26AC38002F3739 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BucketerTestsDatafile2.json; path = ../OptimizelySDKiOS/OptimizelySDKiOSTests/TestData/BucketerTestsDatafile2.json; sourceTree = "<group>"; };
-		3EDBAC451F26AC52002F3739 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BucketerTestsDatafile2.json; path = ../OptimizelySDKiOS/OptimizelySDKiOSTests/TestData/BucketerTestsDatafile2.json; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -641,8 +639,6 @@
 			children = (
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
 				3E92800B1F26AD3900214C58 /* BucketerTestsDatafile2.json */,
-				3EDBAC451F26AC52002F3739 /* BucketerTestsDatafile2.json */,
-				3EDBAC431F26AC38002F3739 /* BucketerTestsDatafile2.json */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
 				EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */,
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
