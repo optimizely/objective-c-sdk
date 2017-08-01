@@ -25,6 +25,7 @@
 
 // --- Event URLs ----
 NS_ASSUME_NONNULL_BEGIN
+extern NSString * const OptimizelyBucketIdEventParam;
 extern NSString * const OPTLYEventBuilderDecisionTicketEventURL;
 extern NSString * const OPTLYEventBuilderEventTicketURL;
 NS_ASSUME_NONNULL_END

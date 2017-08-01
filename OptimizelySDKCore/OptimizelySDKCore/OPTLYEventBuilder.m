@@ -35,7 +35,7 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 
-static NSString * const OptimizelyBucketIdEventParam = @"optimizely_bucketing_id";
+NSString * const OptimizelyBucketIdEventParam = @"optimizely_bucketing_id";
 
 // --- Event URLs ----
 NSString * const OPTLYEventBuilderDecisionTicketEventURL   = @"https://p13nlog.dz.optimizely.com/log/decision";

@@ -21,6 +21,7 @@
 #import "OPTLYEventTicket.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYDecisionEventTicket.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYMacros.h"
 #import "OPTLYEventFeature.h"
@@ -372,6 +373,48 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
+- (void)testCreateImpressionEventWithBucketingIDAttribute
+{
+    NSDictionary *attributes = @{OptimizelyBucketIdEventParam : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithoutAudienceName
+                                                     eventTags:nil
+                                                    attributes:@{OptimizelyBucketId:kAttributeValueFirefox}];
+    [self checkCommonParams:params
+             withAttributes:attributes];
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithoutAudienceId
+                 eventName:kEventWithoutAudienceName
+                 eventTags:nil
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithoutAudienceId]];
+}
+
+- (void)testCreateConversionEventWithBucketingIDAttribute
+{
+    NSDictionary *attributes = @{OptimizelyBucketIdEventParam : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithoutAudienceName
+                                                     eventTags:nil
+                                                    attributes:@{OptimizelyBucketId:kAttributeValueFirefox}];
+    [self checkCommonParams:params
+             withAttributes:attributes];
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithoutAudienceId
+                 eventName:kEventWithoutAudienceName
+                 eventTags:nil
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithoutAudienceId]];
+}
+
 #pragma mark - Test buildDecisionEventTicket:...
 
 - (void)testBuildDecisionEventTicketWithAllArguments
@@ -579,7 +622,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         
         // check id
         NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
-        XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+        if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
+            XCTAssertNil(featureID, @"There should be no id here.");
+        } else {
+            XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+        }
         
         // check type
         NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
