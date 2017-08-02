@@ -375,7 +375,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 - (void)testCreateImpressionEventWithBucketingIDAttribute
 {
-    NSDictionary *attributes = @{OptimizelyBucketIdEventParam : kAttributeValueFirefox};
+    NSDictionary *attributes = @{OptimizelyBucketId : kAttributeValueFirefox};
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -396,7 +396,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 - (void)testCreateConversionEventWithBucketingIDAttribute
 {
-    NSDictionary *attributes = @{OptimizelyBucketIdEventParam : kAttributeValueFirefox};
+    NSDictionary *attributes = @{OptimizelyBucketId : kAttributeValueFirefox};
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -616,15 +616,15 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
         NSString *anAttributeKey = sortedAttributeKeys[i];
         NSString *anAttributeValue = [attributes objectForKey:anAttributeKey];
         
-        // check name
         NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
-        XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
-        
-        // check id
         NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
         if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
+            // check id
             XCTAssertNil(featureID, @"There should be no id here.");
         } else {
+            // check name
+            XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+            // check id
             XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
         }
         
