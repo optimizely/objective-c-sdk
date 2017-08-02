@@ -51,17 +51,17 @@
     return self;
 }
 
-- (void)createTable:(NSString *)eventTypeName
+- (BOOL)createTable:(NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
-    [self.database createTable:eventTypeName error:error];
+    return [self.database createTable:eventTypeName error:error];
 }
 
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(nonnull NSString *)eventTypeName
             error:(NSError * _Nullable * _Nullable)error
 {
-     [self.database saveEvent:data table:eventTypeName error:error];
+     return [self.database saveEvent:data table:eventTypeName error:error];
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
@@ -82,19 +82,21 @@
     return [firstNEvents copy];
 }
 
-- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+- (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable * _Nullable)error
 {
+    BOOL ok = YES;
     NSArray *firstNEvents = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
     if ([firstNEvents count] <= 0) {
+        ok = NO;
         if (error) {
             *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                           code:OPTLYErrorTypesDataStore
                                       userInfo:@{NSLocalizedDescriptionKey :
                                                      [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents, nil), eventTypeName]}];
         }
-        return;
+        return ok;
     }
     
     NSMutableArray *entityIds = [NSMutableArray new];
@@ -103,22 +105,28 @@
         if ([entityId length] > 0) {
             [entityIds addObject:entityId];
         } else {
-            *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                          code:OPTLYErrorTypesDataStore
-                                      userInfo:@{NSLocalizedDescriptionKey :
-                                                     [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesDataStoreInvalidDataStoreEntityValue, nil), eventTypeName]}];
+            ok = NO;
+            if (error != nil) {
+                *error =  [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                              code:OPTLYErrorTypesDataStore
+                                          userInfo:@{NSLocalizedDescriptionKey :
+                                                         [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesDataStoreInvalidDataStoreEntityValue, nil), eventTypeName]}];
+            }
         }
     }
-    [self.database deleteEntities:entityIds table:eventTypeName error:error];
+    if (![self.database deleteEntities:entityIds table:eventTypeName error:error]) {
+        ok = NO;
+    }
+    return ok;
 }
 
-- (void)removeEvent:(nonnull NSDictionary *)event
+- (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:event options:NSJSONWritingPrettyPrinted error:error];
     NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [self.database deleteEntityWithJSON:json table:eventTypeName error:error];
+    return [self.database deleteEntityWithJSON:json table:eventTypeName error:error];
 }
 
 - (NSInteger)numberOfEvents:(NSString *)eventTypeName
@@ -169,7 +177,7 @@ dispatch_queue_t eventsStorageCacheQueue()
     return _eventsStorageCacheQueue;
 }
 
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(nonnull NSString *)eventTypeName
             error:(NSError * _Nullable * _Nullable)error
 {
@@ -178,6 +186,7 @@ dispatch_queue_t eventsStorageCacheQueue()
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue enqueue:data];
     });
+    return YES;
 }
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
@@ -194,7 +203,7 @@ dispatch_queue_t eventsStorageCacheQueue()
     return firstNEvents;
 }
 
-- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+- (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable * _Nullable)error
 {
@@ -203,9 +212,10 @@ dispatch_queue_t eventsStorageCacheQueue()
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue dequeueNItems:numberOfEvents];
     });
+    return YES;
 }
 
-- (void)removeEvent:(nonnull NSDictionary *)event
+- (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error
 {
@@ -214,6 +224,7 @@ dispatch_queue_t eventsStorageCacheQueue()
         OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
         [queue removeItem:event];
     });
+    return YES;
 }
 
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName

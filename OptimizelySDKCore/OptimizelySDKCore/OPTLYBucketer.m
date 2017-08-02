@@ -62,13 +62,13 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
 
 - (OPTLYVariation *)bucketExperiment:(OPTLYExperiment *)experiment
                           withBucketingId:(NSString *)bucketingId {
-    
+    BOOL ok = YES;
     // check for mutex
     NSString *groupId = experiment.groupId;
     if (groupId != nil) {
         OPTLYGroup *group = [self.config getGroupForGroupId:groupId];
         if (group == nil) {
-            experiment = nil;
+            ok = NO;
         }
         else if ([group.policy isEqualToString:OPTLYBucketerOverlappingPolicy]) {
             // do nothing if it is overlapping policy
@@ -76,16 +76,16 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
         else if ([group.policy isEqualToString:OPTLYBucketerMutexPolicy]) {
             OPTLYExperiment *mutexExperiment = [self bucketToExperiment:group withBucketingId:bucketingId];
             if (mutexExperiment != experiment) { // check to see if the experiment the user should fall into is the same experiment we are bucketing
-                experiment = nil;
+                ok = NO;
             }
         }
         else {
-            experiment = nil;
+            ok = NO;
         }
     }
     
     // bucket to variation only if experiment passes Mutex check
-    if (experiment != nil) {
+    if (ok) {
         OPTLYVariation *variation = [self bucketToVariation:experiment withBucketingId:bucketingId];
         return variation;
     }

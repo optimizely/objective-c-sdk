@@ -43,8 +43,12 @@
 - (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder {
     self = [super init];
     if (self) {
-        _optimizely = builder.optimizely;
-        _logger = builder.logger;
+        if (builder != nil) {
+            _optimizely = builder.optimizely;
+            if (builder.logger != nil) {
+                _logger = builder.logger;
+            }
+        }
     }
     return self;
 }

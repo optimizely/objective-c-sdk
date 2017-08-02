@@ -31,7 +31,9 @@ NSString * const kClientEngine = @"objective-c-sdk";
 - (id)initWithBlock:(OPTLYProjectConfigBuilderBlock)block {
     self = [super init];
     if (self != nil) {
-        block(self);
+        if (block != nil) {
+            block(self);
+        }
         if (!_clientEngine) {
             _clientEngine = kClientEngine;
         }

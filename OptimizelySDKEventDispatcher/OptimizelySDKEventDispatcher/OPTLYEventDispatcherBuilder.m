@@ -29,7 +29,9 @@
 - (id)initWithBlock:(OPTLYEventDispatcherBuilderBlock)block {
     self = [super init];
     if (self != nil) {
-        block(self);
+        if (block != nil) {
+            block(self);
+        }
     }
     return self;
 }
