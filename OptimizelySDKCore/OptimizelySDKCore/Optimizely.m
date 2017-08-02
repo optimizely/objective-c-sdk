@@ -56,9 +56,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 - (instancetype)initWithBuilder:(OPTLYBuilder *)builder {
-    if (builder != nil) {
-        self = [super init];
-        if (self != nil) {
+    self = [super init];
+    if (self != nil) {
+        if (builder != nil) {
             _bucketer = builder.bucketer;
             _config = builder.config;
             _eventBuilder = builder.eventBuilder;
@@ -66,28 +66,25 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
             _userProfileService = builder.userProfileService;
+        } else {
+            // Provided OPTLYBuilder object is invalid
+            if (_logger == nil) {
+                _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
+            }
+            NSString *logMessage = NSLocalizedString(OPTLYErrorHandlerMessagesBuilderInvalid, nil);
+            [_logger logMessage:logMessage
+                      withLevel:OptimizelyLogLevelError];
+            NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesBuilderInvalid
+                                             userInfo:@{NSLocalizedDescriptionKey : logMessage}];
+            if (_errorHandler == nil) {
+                _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
+            }
+            [_errorHandler handleError:error];
+            self = nil;
         }
-        return self;
     }
-    else {
-        if (_logger == nil) {
-            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
-        }
-        
-        NSString *logMessage = NSLocalizedString(OPTLYErrorHandlerMessagesBuilderInvalid, nil);
-        [_logger logMessage:logMessage
-                  withLevel:OptimizelyLogLevelError];
-        
-        NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
-                                             code:OPTLYErrorTypesBuilderInvalid
-                                         userInfo:@{NSLocalizedDescriptionKey : logMessage}];
-        
-        if (_errorHandler == nil) {
-            _errorHandler = [[OPTLYErrorHandlerNoOp alloc] init];
-        }
-        [_errorHandler handleError:error];
-        return nil;
-    }
+    return self;
 }
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey

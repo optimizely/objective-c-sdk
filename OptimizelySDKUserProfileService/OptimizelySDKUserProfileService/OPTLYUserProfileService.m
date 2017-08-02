@@ -106,7 +106,10 @@
     
     // convert map to a User Profile object to check data type
     NSError *userProfileError;
-    OPTLYUserProfile *userProfile = [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
+    [[OPTLYUserProfile alloc] initWithDictionary:userProfileDict error:&userProfileError];
+#pragma clang diagnostic pop
     if (userProfileError) {
         [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileLookupInvalidFormat, userProfileError]
                       withLevel:OptimizelyLogLevelWarning];
