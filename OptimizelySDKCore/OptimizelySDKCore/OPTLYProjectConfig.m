@@ -446,21 +446,19 @@ NSString * const kExpectedDatafileVersion  = @"3";
                               experimentKey:experiment.experimentKey
                                      userId:userId
                                  attributes:attributes]) {
-        
         // bucket user into a variation
         bucketedVariation = [bucketer bucketExperiment:experiment withUserId:userId];
     }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    // Attempt to save user profile
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
-                  withLevel:OptimizelyLogLevelDebug];
-    [self.userProfile saveUserId:userId
-                    experimentId:experimentId
-                     variationId:bucketedVariation.variationId];
-    
+    if (bucketedVariation != nil) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationUserAssigned, userId, bucketedVariation.variationKey, experimentKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        // Attempt to save user profile
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesUserProfileAttemptToSaveVariation, experimentId, bucketedVariation.variationId, userId]
+                      withLevel:OptimizelyLogLevelDebug];
+        [self.userProfile saveUserId:userId
+                        experimentId:experimentId
+                         variationId:bucketedVariation.variationId];
+    }
     return bucketedVariation;
 }
 

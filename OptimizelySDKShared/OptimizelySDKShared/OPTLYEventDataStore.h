@@ -39,7 +39,7 @@
  * @param eventTypeName The name of the event type of the data that needs to be saved.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(nonnull NSString *)eventTypeName
             error:(NSError * _Nullable * _Nullable)error;
 
@@ -61,7 +61,7 @@
  * @param eventTypeName The name of The name of the event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+- (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable * _Nullable)error;
 
@@ -72,7 +72,7 @@
  * @param eventTypeName The name of The name of the event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeEvent:(nonnull NSDictionary *)event
+- (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable * _Nullable)error;
 
