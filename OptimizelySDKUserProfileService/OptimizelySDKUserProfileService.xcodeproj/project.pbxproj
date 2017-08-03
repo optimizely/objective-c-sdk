@@ -1016,6 +1016,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B07BCFFF1A02A8C81C57B172 /* Pods-OptimizelySDKUserProfileServiceiOS.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1040,6 +1041,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8B8B4A0A7ECE6844282C863 /* Pods-OptimizelySDKUserProfileServiceiOS.rc.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1060,6 +1062,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A1050EBFE15DF8DAA1352E5 /* Pods-OptimizelySDKUserProfileServiceiOS.beta.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1080,6 +1083,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA98DB4CE8BB8952823E03DF /* Pods-OptimizelySDKUserProfileServiceiOS.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1148,6 +1152,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04D9F38D8C6D6C08D2D7F4CC /* Pods-OptimizelySDKUserProfileServiceTVOS.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1175,6 +1180,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 588BE11EDD8B993D230FD89C /* Pods-OptimizelySDKUserProfileServiceTVOS.rc.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1198,6 +1204,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D4AB4982F103CA04E148DA02 /* Pods-OptimizelySDKUserProfileServiceTVOS.beta.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1221,6 +1228,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 594B129BCDEE2BCCB0B4A5D2 /* Pods-OptimizelySDKUserProfileServiceTVOS.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
