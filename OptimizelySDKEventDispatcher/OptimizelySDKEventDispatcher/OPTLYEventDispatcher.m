@@ -377,37 +377,36 @@ dispatch_queue_t dispatchEventQueue()
 
 - (void)setupApplicationNotificationHandlers {
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    UIApplication *app = [UIApplication sharedApplication];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidFinishLaunching:)
                           name:UIApplicationDidFinishLaunchingNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidBecomeActive:)
                           name:UIApplicationDidBecomeActiveNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidEnterBackground:)
                           name:UIApplicationDidEnterBackgroundNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationWillEnterForeground:)
                           name:UIApplicationWillEnterForegroundNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationWillResignActive:)
                           name:UIApplicationWillResignActiveNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationWillTerminate:)
                           name:UIApplicationWillTerminateNotification
-                        object:app];
+                        object:nil];
 }
 
 

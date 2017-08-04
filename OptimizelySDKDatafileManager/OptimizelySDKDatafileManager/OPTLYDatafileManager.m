@@ -185,27 +185,25 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
 #pragma mark - Application Lifecycle Handlers
 - (void)setupApplicationNotificationHandlers {
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    UIApplication *app = [UIApplication sharedApplication];
-    
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidFinishLaunching:)
                           name:UIApplicationDidFinishLaunchingNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidBecomeActive:)
                           name:UIApplicationDidBecomeActiveNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationDidEnterBackground:)
                           name:UIApplicationDidEnterBackgroundNotification
-                        object:app];
+                        object:nil];
     
     [defaultCenter addObserver:self
                       selector:@selector(applicationWillTerminate:)
                           name:UIApplicationWillTerminateNotification
-                        object:app];
+                        object:nil];
 }
 
 - (void)applicationDidFinishLaunching:(id)notificaton {
