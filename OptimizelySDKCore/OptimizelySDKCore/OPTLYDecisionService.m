@@ -21,10 +21,13 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
+#import "OPTLYLoggerMessages.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
+
+NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;
@@ -54,6 +57,22 @@
     NSString *experimentKey = experiment.experimentKey;
     NSString *experimentId = experiment.experimentId;
     
+    // Acquire bucketingId .
+    NSString *bucketingId;
+    // If the bucketing ID key is defined in attributes, then use that
+    // in place of the userID for the murmur hash key
+    if (attributes != nil) {
+        bucketingId = attributes[OptimizelyBucketId];
+    }
+    if (bucketingId != nil) {
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
+                                        bucketingId]
+                             withLevel:OptimizelyLogLevelDebug];
+    } else {
+        // By default, the bucketing ID should be the user ID .
+        bucketingId = userId;
+    }
+
     // ---- check if the experiment is running ----
     if (![self isExperimentActive:self.config
                     experimentKey:experimentKey]) {
@@ -103,7 +122,7 @@
         
         // bucket user into a variation
         bucketedVariation = [self.bucketer bucketExperiment:experiment
-                                                 withUserId:userId];
+                                            withBucketingId:bucketingId];
         
         if (bucketedVariation) {
             [self saveUserProfile:userProfileDict variation:bucketedVariation experiment:experiment userId:userId];

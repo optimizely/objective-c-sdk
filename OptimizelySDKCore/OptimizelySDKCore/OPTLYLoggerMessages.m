@@ -186,6 +186,7 @@ NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist = @"[DECIS
 NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to save user bucket information for: %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity = @"[DECISION SERVICE] Replacing user %@ experiment bucket map entity %@ with %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID = @"[DECISION SERVICE] Setting the bucketing ID to %@.";
 
 
 // ---- HTTP Request Manager ----

@@ -17,6 +17,7 @@
 #import "OPTLYAttribute.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYDecisionEventTicket.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventBuilder.h"
@@ -33,6 +34,8 @@
 #import "OPTLYMacros.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
+
+NSString * const OptimizelyBucketIdEventParam = @"optimizely_bucketing_id";
 
 // --- Event URLs ----
 NSString * const OPTLYEventBuilderDecisionTicketEventURL   = @"https://p13nlog.dz.optimizely.com/log/decision";
@@ -248,24 +251,32 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         NSString *attributeValue = attributes[attributeKey];
         NSString *attributeId = attribute.attributeId;
         
-        if ([attributeId length] == 0) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeInvalidFormat, attributeKey];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            continue;
-        }
-        
         if ([attributeValue length] == 0) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
         }
         
-        NSDictionary *featureParams = @{ OPTLYEventParameterKeysFeaturesId           : attributeId,
-                                         OPTLYEventParameterKeysFeaturesName         : attributeKey,
-                                         OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
-                                         OPTLYEventParameterKeysFeaturesValue        : attributeValue,
-                                         OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
-        
+        NSDictionary *featureParams;
+        if ([attributeKey isEqualToString:OptimizelyBucketId]) {
+            // check for reserved attribute OptimizelyBucketId
+            featureParams = @{ OPTLYEventParameterKeysFeaturesName         : OptimizelyBucketIdEventParam,
+                               OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
+                               OPTLYEventParameterKeysFeaturesValue        : attributeValue,
+                               OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
+            
+        } else {
+            if ([attributeId length] == 0) {
+                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeInvalidFormat, attributeKey];
+                [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+                continue;
+            }
+            featureParams = @{ OPTLYEventParameterKeysFeaturesId           : attributeId,
+                               OPTLYEventParameterKeysFeaturesName         : attributeKey,
+                               OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
+                               OPTLYEventParameterKeysFeaturesValue        : attributeValue,
+                               OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
+        }
         if (featureParams) {
             [features addObject:featureParams];
         }

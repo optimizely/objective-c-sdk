@@ -189,6 +189,7 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

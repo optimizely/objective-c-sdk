@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */; };
+		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
+		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
 		5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		5E3C0E711DDF7A3C0025DB85 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -264,6 +266,7 @@
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
+		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -620,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
+				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
 				EA2FAB961DC6FDFA00B1D81B /* datafile_6372300739.json */,
 				EA2FAB971DC6FDFA00B1D81B /* test_data_10_experiments.json */,
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
@@ -992,6 +996,7 @@
 				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD21DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
+				3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1006,6 +1011,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */,
 				EA2FABCD1DC6FDFA00B1D81B /* datafile_6372300739.json in Resources */,
 				EA2FABD91DC6FDFA00B1D81B /* validator_whitelisting_test_datafile.json in Resources */,
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
