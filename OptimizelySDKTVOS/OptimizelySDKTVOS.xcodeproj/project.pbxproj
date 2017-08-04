@@ -721,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E62FD13CF8241FFB0083F99C /* Pods-OptimizelySDKTVOS.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -810,6 +811,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 876F26E13F09AA5120932B3E /* Pods-OptimizelySDKTVOS.rc.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -899,6 +901,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 28DE410B256E509B248B59A2 /* Pods-OptimizelySDKTVOS.beta.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -988,6 +991,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 642771BAF551A7140B449867 /* Pods-OptimizelySDKTVOS.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
