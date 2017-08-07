@@ -1159,6 +1159,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 202293A05EDCEE1B7C19C05B /* Pods-OptimizelySDKSharediOS.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1188,6 +1189,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 777829E224F9AB001A46FE0E /* Pods-OptimizelySDKSharediOS.rc.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1213,6 +1215,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EEA436FFCE95FFFF3CAC0BC8 /* Pods-OptimizelySDKSharediOS.beta.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1238,6 +1241,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DABB0664478DB341DEF3237 /* Pods-OptimizelySDKSharediOS.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1327,6 +1331,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1358,6 +1363,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0567D389B36E6BC68E678D64 /* Pods-OptimizelySDKSharedTVOS.rc.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1385,6 +1391,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC9DFCEBC227A64F4FE43A04 /* Pods-OptimizelySDKSharedTVOS.beta.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1412,6 +1419,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6042179012EFD11109128C34 /* Pods-OptimizelySDKSharedTVOS.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
