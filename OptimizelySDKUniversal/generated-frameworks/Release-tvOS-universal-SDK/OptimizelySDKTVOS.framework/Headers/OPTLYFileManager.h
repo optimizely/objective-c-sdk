@@ -47,7 +47,7 @@
  *  If error is nil, than the file save was successful.
  *
  **/
-- (void)saveFile:(nonnull NSString *)fileName
+- (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
           subDir:(nullable NSString *)subDir
            error:(NSError * _Nullable * _Nullable)error;
@@ -96,7 +96,7 @@
  *  If error is nil, than the file deletion was successful.
  *
  **/
-- (void)removeFile:(nonnull NSString *)fileName
+- (BOOL)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
              error:(NSError * _Nullable * _Nullable)error;
 
@@ -106,7 +106,7 @@
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
+- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Removes a particular data type.
@@ -115,7 +115,7 @@
  * @param error An error object which will store any errors if the directory removal fails.
  *
  **/
-- (void)removeDataSubDir:(nullable NSString *)subDir
+- (BOOL)removeDataSubDir:(nullable NSString *)subDir
                    error:(NSError * _Nullable * _Nullable)error;
 
 @end
