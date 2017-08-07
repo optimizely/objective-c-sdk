@@ -725,6 +725,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKiOS/OptimizelySDKiOS.modulemap;
+				OPTIMIZELY_SDK_iOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -812,6 +813,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKiOS/OptimizelySDKiOS.modulemap;
+				OPTIMIZELY_SDK_iOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -958,6 +960,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKiOS/OptimizelySDKiOS.modulemap;
+				OPTIMIZELY_SDK_iOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -978,6 +981,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKiOS/OptimizelySDKiOS.modulemap;
+				OPTIMIZELY_SDK_iOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

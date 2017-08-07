@@ -731,6 +731,7 @@
 				INFOPLIST_FILE = "OptimizelySDKTVOS/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -821,6 +822,7 @@
 				INFOPLIST_FILE = "OptimizelySDKTVOS/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -911,6 +913,7 @@
 				INFOPLIST_FILE = "OptimizelySDKTVOS/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1001,6 +1004,7 @@
 				INFOPLIST_FILE = "OptimizelySDKTVOS/OptimizelySDKTVOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_TVOS_VERSION_PATCH = 9;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
