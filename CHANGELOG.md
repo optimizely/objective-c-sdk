@@ -1,23 +1,33 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.9
+August 7, 2017
+
+### New Features
+* Added Apple App Extension support by adding `APPLICATION_EXTENSION_API_ONLY = YES` to Build Settings of all Optimizely frameworks.
+
+### Bug Fixes
+* Fixed potential bugs identified by Apple's Xcode static analyzer Analyze.
+
 ## 1.1.8
 July 28, 2017
+
 ### Bug Fixes
-*Fixed a `dispatchEvent` crash by changing a concurrent queue to a serial queue -- this was causing one of the properties we were accessing not thread-safe. 
+* Fixed a `dispatchEvent` crash by changing a concurrent queue to a serial queue -- this was causing one of the properties we were accessing not thread-safe.
 
 ## 1.1.7
-Jul 20, 2017
+July 20, 2017
 
 ### Bug Fixes
 * Fixed a crash caused by a dangling pointer when `dispatchEvent` is called. `strongSelf` captures the state of self (which can be an `eventDispatcher` object or `nil`) at the time the block is called. `strongSelf` will hold onto whatever it is referencing for the duration of the block execution. Therefore, `strongSelf` is still pointing to `pendingDispatchEvents` even when it gets deallocated at the time the `eventDispatcher` is deallocated. This issue was resolved by not capturing `self` using `strongSelf` and keeping the `self` reference to `self` or `weakSelf`.
 
 ## 1.1.3
-Jul 7, 2017
+July 7, 2017
 
 ### Bug Fixes
-* Added NS_SWIFT_NOTHROW to make 4 variableXxx:...:error: Swift method signatures more consistent in appearance.
+* Added `NS_SWIFT_NOTHROW` to make 4 `variableXxx:...:error:` Swift method signatures more consistent in appearance.
 
 ### Breaking Changes
-* Signatures for 2 existing variableXxx:...:error: Swift methods changed.
+* Signatures for 2 existing `variableXxx:...:error:` Swift methods changed.
 
 ## 1.1.1
 May 23, 2017
