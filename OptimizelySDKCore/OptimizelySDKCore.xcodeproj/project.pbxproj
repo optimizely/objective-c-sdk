@@ -1452,7 +1452,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1479,7 +1478,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1506,7 +1504,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1533,7 +1530,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
