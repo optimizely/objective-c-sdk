@@ -118,9 +118,7 @@ class Variant: NSObject, NSCoding {
 
     func execute() {
         if !running && !finished {
-            for tweak in tweaks {
-                tweak.execute()
-            }
+            executeTweaks()
             for action in actions {
                 guard let action = action as? VariantAction else {
                     continue
@@ -128,6 +126,12 @@ class Variant: NSObject, NSCoding {
                 action.execute()
             }
             running = true
+        }
+    }
+
+    func executeTweaks() {
+        for tweak in tweaks {
+            tweak.execute()
         }
     }
 
@@ -157,7 +161,7 @@ class Variant: NSObject, NSCoding {
         if object === self {
             return true
         } else {
-            return self.ID == object.ID
+            return self.ID == object.ID && self.actions == object.actions
         }
     }
 

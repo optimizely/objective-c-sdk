@@ -9,7 +9,7 @@
 [![CocoaPods Compatible](http://img.shields.io/cocoapods/v/Mixpanel-swift.svg)](https://mixpanel.com)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![Apache License](http://img.shields.io/cocoapods/l/Mixpanel-swift.svg)](https://mixpanel.com)
-
+[![Documentation](https://mixpanel.github.io/mixpanel-swift/badge.svg)](https://mixpanel.github.io/mixpanel-swift)
 # Table of Contents
 
 <!-- MarkdownTOC -->
@@ -39,6 +39,8 @@ If you are using Objective-C, we recommend using our **[Objective-C Library](htt
 <a name="current-supported-features"></a>
 ## Current supported features
 
+**Our library now also has Swift 4 support. If you wish to use our Swift 4 implementation, please point to our 'swift4' branch (https://github.com/mixpanel/mixpanel-swift/tree/swift4)**
+
 **Our master branch and our releases are in Swift 3. If you wish to use our Swift 2.3 implementation, please point to our v1.0.1 release.**
 
 Our Swift library fully supports all of the Mixpanel features, and has full parity with the [Objective-C Library](https://github.com/mixpanel/mixpanel-iphone).
@@ -54,13 +56,9 @@ Our Swift library fully supports all of the Mixpanel features, and has full pari
 Mixpanel supports `CocoaPods` for easy installation.
 To Install, see our **[swift integration guide »](https://mixpanel.com/help/reference/swift)**
 
-For iOS, tvOS, and macOS integrations:
+For iOS, tvOS, macOS, and App Extension integrations:
 
 `pod 'Mixpanel-swift'`
-
-For App Extension integrations (you may need both the above *and* this):
-
-`pod 'Mixpanel-swift-appex'`
 
 <a name="carthage"></a>
 ## Carthage
@@ -119,7 +117,9 @@ You initialize your Mixpanel instance with the token provided to you on mixpanel
 <a name="start-tracking"></a>
 ## Start tracking
 
-To interact with the instance and start tracking, you can either use the mixpanel instance given when initializing:
+After installing the library into your iOS app, Mixpanel will <a href="https://mixpanel.com/help/questions/articles/which-common-mobile-events-can-mixpanel-collect-on-my-behalf-automatically" target="_blank">automatically collect common mobile events</a>. You can enable/ disable automatic collection through your <a href="https://mixpanel.com/help/questions/articles/how-do-i-enable-common-mobile-events-if-i-have-already-implemented-mixpanel" target="_blank">project settings</a>.
+
+To interact with the instance and track additional events, you can either use the mixpanel instance given when initializing:
 ```swift
 mixpanel.track(event: "Tracked Event!")
 ```
