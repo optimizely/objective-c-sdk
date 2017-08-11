@@ -1,7 +1,7 @@
 workspace 'OptimizelySDK.xcworkspace'
 
 def common_pods
-    pod 'JSONModel', '1.3.0'
+    pod 'JSONModel', :git => 'https://github.com/jsonmodel/jsonmodel.git', :commit => '364f57b'
 end
 
 def common_tvos_pods
@@ -10,7 +10,7 @@ end
 
 def common_ios_pods
     common_pods
-    pod 'FMDB', '2.6.2'
+    pod 'FMDB', '2.7.2'
 end
 
 def common_test_pods
