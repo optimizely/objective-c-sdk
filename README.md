@@ -19,8 +19,6 @@ up an Optimizely X project and start using the SDK.
 
 ### Requirements
 * iOS 8.0+ / tvOS 9.0+
-* [FMDB](https://github.com/ccgus/fmdb)
-* [JSONModel](https://github.com/jsonmodel/jsonmodel)
 
 ### Installing the SDK
  
@@ -36,26 +34,16 @@ Further installation instructions for Cocoapods: https://guides.cocoapods.org/us
 #### Carthage
 1. Add the following lines to the _Cartfile_:<pre> 
 github "optimizely/objective-c-sdk"
-github "jsonmodel/jsonmodel" "1e80ecaec8314c7d367676ed0e8545c10c563612"
-github "ccgus/fmdb"
 </pre>
-
-Xcode 8.3.2 is unable to compile JSONModel 1.7.0 released on Oct 7, 2016,
-but will compile JSONModel master branch as of its last commit Apr 29, 2017
-which was commit "1e80ecaec8314c7d367676ed0e8545c10c563612" .  Hopefully,
-a future release of JSONModel will make specifying this particular commit
-on JSONModel master branch unnecessary.
 
 2. Run the following command:<pre>```carthage update```</pre>
 
 3. Link the frameworks to your project. Go to your project target's **Link Binary With Libraries** and drag over the following from the _Carthage/Build/\<platform\>_ folder: <pre> 
-      FMDB.framework
-      JSONModel.framework
       OptimizelySDKCore.framework
       OptimizelySDKDatafileManager.framework
       OptimizelySDKEventDispatcher.framework
       OptimizelySDKShared.framework
-      OptimizelySDKUserProfile.framework<
+      OptimizelySDKUserProfileService.framework
       OptimizelySDK\<platform\>.framework</pre>
 
 4. To ensure that proper bitcode-related files and dSYMs are copied when archiving your app, you will need to install a Carthage build script:
@@ -63,13 +51,11 @@ on JSONModel master branch unnecessary.
       - In the script area include:<pre>
       ```/usr/local/bin/carthage copy-frameworks```</pre> 
       - Add the frameworks to the **Input Files** list:<pre>
-            ```$(SRCROOT)/Carthage/Build/<platform>/FMDB.framework```
-            ```$(SRCROOT)/Carthage/Build/<platform>/JSONModel.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKCore.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKDatafileManager.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKEventDispatcher.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKShared.framework```
-            ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfile.framework```
+            ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfileService.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDK<platform>.framework```</pre>
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
@@ -81,11 +67,7 @@ The universal framework can be used in an application without the need for a thi
 	```OptimizelySDKShared```
 	```OptimizelySDKDatafileManager```
 	```OptimizelySDKEventDispatcher```
-	```OptimzielySDKUserProfile```</pre>
-
-The framework also embeds its third-party dependencies:<pre>
-	```FMDB```
-	```JSONModel```</pre>
+	```OptimizelySDKUserProfileService```</pre>
 
 The universal framework for iOS includes builds for the following architectures:<pre>
 	```i386```
