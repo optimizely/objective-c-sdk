@@ -49,6 +49,8 @@
 		3E858C4A1F4226E800D53856 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C4B1F4226E800D53856 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C401F4226E800D53856 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C4C1F4226E800D53856 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* FMResultSet.m */; };
+		3ECBCC191F43983400160937 /* FMDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* FMDBTests.m */; };
+		3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
@@ -102,6 +104,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3ECBCC1C1F43983400160937 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C68201DC1E68E00C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5247021DC7192200AF6685;
+			remoteInfo = OptimizelySDKSharediOS;
+		};
 		EA5246F61DC718D300AF6685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
@@ -194,6 +203,9 @@
 		3E858C411F4226E800D53856 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = FMDB/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = FMDB/LICENSE.txt; sourceTree = "<group>"; };
 		3E858C591F42272F00D53856 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = FMDB/README.markdown; sourceTree = "<group>"; };
+		3ECBCC161F43983400160937 /* FMDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ECBCC181F43983400160937 /* FMDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBTests.m; sourceTree = "<group>"; };
+		3ECBCC1A1F43983400160937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
@@ -246,6 +258,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3ECBCC131F43983400160937 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA5246FF1DC7192200AF6685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,6 +378,15 @@
 			name = fmdb;
 			sourceTree = "<group>";
 		};
+		3ECBCC171F43983400160937 /* FMDBTests */ = {
+			isa = PBXGroup;
+			children = (
+				3ECBCC181F43983400160937 /* FMDBTests.m */,
+				3ECBCC1A1F43983400160937 /* Info.plist */,
+			);
+			path = FMDBTests;
+			sourceTree = "<group>";
+		};
 		B770041BA173BC0CC7E9DB5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				3E858C341F4226BA00D53856 /* FMDB */,
+				3ECBCC171F43983400160937 /* FMDBTests */,
 				EA3C682B1DC1E68E00C578CA /* OptimizelySDKShared */,
 				EA3C68371DC1E68E00C578CA /* OptimizelySDKSharedTests */,
 				EA3C682A1DC1E68E00C578CA /* Products */,
@@ -400,6 +430,7 @@
 				EA52470B1DC7192200AF6685 /* OptimizelySDKSharediOSTests.xctest */,
 				EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */,
 				EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
+				3ECBCC161F43983400160937 /* FMDBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -539,6 +570,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3ECBCC151F43983400160937 /* FMDBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "FMDBTests" */;
+			buildPhases = (
+				3ECBCC121F43983400160937 /* Sources */,
+				3ECBCC131F43983400160937 /* Frameworks */,
+				3ECBCC141F43983400160937 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3ECBCC1D1F43983400160937 /* PBXTargetDependency */,
+			);
+			name = FMDBTests;
+			productName = FMDBTests;
+			productReference = 3ECBCC161F43983400160937 /* FMDBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA5247141DC7192200AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKSharediOS" */;
@@ -632,6 +681,10 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
+					3ECBCC151F43983400160937 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					EA5247021DC7192200AF6685 = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
@@ -668,6 +721,7 @@
 			);
 			projectRoot = "";
 			targets = (
+				3ECBCC151F43983400160937 /* FMDBTests */,
 				EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */,
 				EA52470A1DC7192200AF6685 /* OptimizelySDKSharediOSTests */,
 				EA5247221DC7193B00AF6685 /* OptimizelySDKSharedTVOS */,
@@ -708,6 +762,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3ECBCC141F43983400160937 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA5247011DC7192200AF6685 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -906,6 +967,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3ECBCC121F43983400160937 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ECBCC191F43983400160937 /* FMDBTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA5246FE1DC7192200AF6685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -976,6 +1045,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3ECBCC1D1F43983400160937 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */;
+			targetProxy = 3ECBCC1C1F43983400160937 /* PBXContainerItemProxy */;
+		};
 		EA52470E1DC7192200AF6685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */;
@@ -999,6 +1073,66 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3ECBCC1E1F43983400160937 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FMDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3ECBCC1F1F43983400160937 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = FMDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		3ECBCC201F43983400160937 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = FMDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		3ECBCC211F43983400160937 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = FMDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EA2FA7631DC40EAB00B1D81B /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1592,6 +1726,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "FMDBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ECBCC1E1F43983400160937 /* Debug */,
+				3ECBCC1F1F43983400160937 /* RC */,
+				3ECBCC201F43983400160937 /* Beta */,
+				3ECBCC211F43983400160937 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EA3C68231DC1E68E00C578CA /* Build configuration list for PBXProject "OptimizelySDKShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
