@@ -38,6 +38,16 @@
                ReferencedContainer = "container:OptimizelySDKShared.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3ECBCC151F43983400160937"
+               BuildableName = "FMDBTests.xctest"
+               BlueprintName = "FMDBTests"
+               ReferencedContainer = "container:OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

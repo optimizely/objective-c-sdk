@@ -51,6 +51,14 @@
 		3E858C4C1F4226E800D53856 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* FMResultSet.m */; };
 		3ECBCC191F43983400160937 /* FMDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* FMDBTests.m */; };
 		3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
+		3ECBCC2F1F439AD000160937 /* FMDatabaseAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */; };
+		3ECBCC321F439AD000160937 /* FMDatabasePoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */; };
+		3ECBCC331F439AD000160937 /* FMDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */; };
+		3ECBCC341F439AD000160937 /* FMDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */; };
+		3ECBCC351F439AD000160937 /* FMDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */; };
+		3ECBCC361F439AD000160937 /* FMResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */; };
+		3ECBCC3A1F439B6D00160937 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ECBCC381F439B6D00160937 /* InfoPlist.strings */; };
+		3ECBCC4A1F43A39200160937 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
 		5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
@@ -205,7 +213,16 @@
 		3E858C591F42272F00D53856 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = FMDB/README.markdown; sourceTree = "<group>"; };
 		3ECBCC161F43983400160937 /* FMDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ECBCC181F43983400160937 /* FMDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBTests.m; sourceTree = "<group>"; };
-		3ECBCC1A1F43983400160937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ECBCC1A1F43983400160937 /* FMDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FMDBTests-Info.plist"; sourceTree = "<group>"; };
+		3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditionsTests.m; sourceTree = "<group>"; };
+		3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePoolTests.m; sourceTree = "<group>"; };
+		3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueueTests.m; sourceTree = "<group>"; };
+		3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseTests.m; sourceTree = "<group>"; };
+		3ECBCC2B1F439AD000160937 /* FMDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBTempDBTests.h; sourceTree = "<group>"; };
+		3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBTempDBTests.m; sourceTree = "<group>"; };
+		3ECBCC2D1F439AD000160937 /* FMDBTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDBTests-Prefix.pch"; sourceTree = "<group>"; };
+		3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSetTests.m; sourceTree = "<group>"; };
+		3ECBCC391F439B6D00160937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
@@ -262,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ECBCC4A1F43A39200160937 /* libsqlite3.tbd in Frameworks */,
 				3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,10 +399,27 @@
 		3ECBCC171F43983400160937 /* FMDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */,
+				3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */,
+				3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */,
+				3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */,
+				3ECBCC2B1F439AD000160937 /* FMDBTempDBTests.h */,
+				3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */,
 				3ECBCC181F43983400160937 /* FMDBTests.m */,
-				3ECBCC1A1F43983400160937 /* Info.plist */,
+				3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */,
+				3ECBCC371F439B1D00160937 /* Supporting Files */,
 			);
 			path = FMDBTests;
+			sourceTree = "<group>";
+		};
+		3ECBCC371F439B1D00160937 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3ECBCC1A1F43983400160937 /* FMDBTests-Info.plist */,
+				3ECBCC2D1F439AD000160937 /* FMDBTests-Prefix.pch */,
+				3ECBCC381F439B6D00160937 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B770041BA173BC0CC7E9DB5F /* Pods */ = {
@@ -766,6 +801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ECBCC3A1F439B6D00160937 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,7 +1007,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ECBCC361F439AD000160937 /* FMResultSetTests.m in Sources */,
 				3ECBCC191F43983400160937 /* FMDBTests.m in Sources */,
+				3ECBCC341F439AD000160937 /* FMDatabaseTests.m in Sources */,
+				3ECBCC2F1F439AD000160937 /* FMDatabaseAdditionsTests.m in Sources */,
+				3ECBCC351F439AD000160937 /* FMDBTempDBTests.m in Sources */,
+				3ECBCC321F439AD000160937 /* FMDatabasePoolTests.m in Sources */,
+				3ECBCC331F439AD000160937 /* FMDatabaseQueueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,6 +1114,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		3ECBCC381F439B6D00160937 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3ECBCC391F439B6D00160937 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		3ECBCC1E1F43983400160937 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1079,11 +1132,12 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FMDBTests/Info.plist;
+				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
@@ -1097,7 +1151,8 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FMDBTests/Info.plist;
+				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
+				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
@@ -1111,7 +1166,8 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FMDBTests/Info.plist;
+				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
+				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
@@ -1125,7 +1181,8 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FMDBTests/Info.plist;
+				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
+				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
@@ -1735,6 +1792,7 @@
 				3ECBCC211F43983400160937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA3C68231DC1E68E00C578CA /* Build configuration list for PBXProject "OptimizelySDKShared" */ = {
 			isa = XCConfigurationList;
