@@ -17,7 +17,7 @@
 #ifdef UNIVERSAL
     #import "JSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/JSONModelLib.h>
 #endif
 
 // Model object representing a Decision Ticket sent when layer decision is made.

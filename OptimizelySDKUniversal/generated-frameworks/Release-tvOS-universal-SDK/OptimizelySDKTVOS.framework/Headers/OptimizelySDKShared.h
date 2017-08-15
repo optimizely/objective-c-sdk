@@ -30,6 +30,15 @@
 #import "OPTLYManagerBasic.h"
 #import "OPTLYManagerBuilder.h"
 
+#if TARGET_OS_IOS
+#import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
+#import "FMDatabasePool.h"
+#import "FMDatabaseQueue.h"
+#import "FMDB.h"
+#import "FMResultSet.h"
+#endif
+
 //! Project version number for OptimizelySDKShared.
 FOUNDATION_EXPORT double OptimizelySDKSharedVersionNumber;
 

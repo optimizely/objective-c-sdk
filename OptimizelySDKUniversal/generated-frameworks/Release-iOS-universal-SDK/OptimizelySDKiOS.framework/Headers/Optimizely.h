@@ -95,6 +95,39 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                                 userId:(nonnull NSString *)userId
                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
+#pragma mark - Forced Variation Methods
+/**
+ * Use the setForcedVariation method to force an experimentKey-userId
+ * pair into a specific variation for QA purposes.
+ * The forced bucketing feature allows customers to force users into
+ * variations in real time for QA purposes without requiring datafile
+ * downloads from the network. Methods activate and track are called
+ * as usual after the variation is set, but the user will be bucketed
+ * into the forced variation overriding any variation which would be
+ * computed via the network datafile.
+ */
+
+/**
+ * Return forced variation for experiment and user ID.
+ * @param experimentKey The key for the experiment.
+ * @param userId The user ID to be used for bucketing.
+ * @return forced variation if it exists, otherwise return nil.
+ */
+- (OPTLYVariation *_Nullable)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
+
+/**
+ * Set forced variation for experiment and user ID to variationKey.
+ * @param experimentKey The key for the experiment.
+ * @param userId The user ID to be used for bucketing.
+ * @param variationKey The variation the user should be forced into.
+ * This value can be nil, in which case, the forced variation is cleared.
+ * @return YES if there were no errors, otherwise return NO.
+ */
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nullable NSString *)variationKey;
+
 #pragma mark - trackEvent methods
 /**
  * Track an event
@@ -226,7 +259,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(NSError * _Nullable * _Nullable)error;
+                                error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
 
 /**
  * Gets the boolean value of the live variable.
@@ -294,7 +327,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-                  error:(NSError * _Nullable * _Nullable)error;
+                  error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
 
 
 /**
@@ -363,7 +396,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-                       error:(NSError * _Nullable * _Nullable)error;
+                       error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
 
 /**
  * Gets the double value of the live variable.
@@ -431,7 +464,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-                   error:(NSError * _Nullable * _Nullable)error;
+                   error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
 
 @end
 

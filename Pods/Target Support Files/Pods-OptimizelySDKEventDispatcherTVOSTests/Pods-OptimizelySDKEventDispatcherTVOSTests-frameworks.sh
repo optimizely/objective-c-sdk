@@ -89,22 +89,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "RC" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-tvOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OCMock-tvOS/OCMock.framework"
   install_framework "$BUILT_PRODUCTS_DIR/OHHTTPStubs-tvOS/OHHTTPStubs.framework"
 fi

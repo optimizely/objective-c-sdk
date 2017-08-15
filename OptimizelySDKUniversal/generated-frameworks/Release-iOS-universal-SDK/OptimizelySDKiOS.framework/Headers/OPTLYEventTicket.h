@@ -17,7 +17,7 @@
 #ifdef UNIVERSAL
     #import "JSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/JSONModelLib.h>
 #endif
 
 // Model object representing an Event Ticket sent when an event triggers in the client.

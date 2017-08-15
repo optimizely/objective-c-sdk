@@ -19,7 +19,7 @@
     #import "FMDB.h"
     #import "OptimizelySDKCore.h"
 #else
-    #import <FMDB/FMDB.h>
+    #import <OptimizelySDKShared/FMDB.h>
     #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #endif
 #import "OPTLYDatabase.h"

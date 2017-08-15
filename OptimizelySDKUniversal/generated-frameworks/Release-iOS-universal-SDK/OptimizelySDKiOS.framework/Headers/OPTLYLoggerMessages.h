@@ -126,6 +126,7 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherPendingEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 
 // error
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
@@ -160,6 +161,8 @@ extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
+extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;
+extern NSString *const OPTLYLoggerMessagesProjectConfigUserIdInvalid;
 
 // ---- User Profile ----
 // debug
@@ -186,6 +189,7 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceUserProfileNotExist;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

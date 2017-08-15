@@ -33,7 +33,7 @@
 #ifdef UNIVERSAL
     #import "JSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/JSONModelLib.h>
 #endif
 
 @interface OPTLYExperimentBucketMapEntity : JSONModel

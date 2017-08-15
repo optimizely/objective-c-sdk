@@ -31,13 +31,13 @@ NS_ASSUME_NONNULL_END
 @protocol OPTLYBucketer <NSObject>
 
 /**
- * Bucket a user into an experiment.
- * @param experiment The experiment in which to bucket the user.
- * @param userId The ID of the user. This must be a non-null, non-empty string.
- * @return The variation the user was bucketed into.
+ * Bucket a bucketingId into an experiment.
+ * @param experiment The experiment in which to bucket the bucketingId.
+ * @param bucketingId The ID to bucket. This must be a non-null, non-empty string.
+ * @return The variation the bucketingId was bucketed into.
  */
 - (nullable OPTLYVariation *)bucketExperiment:(nonnull OPTLYExperiment *)experiment
-                                   withUserId:(nonnull NSString *)userId;
+                              withBucketingId:(nonnull NSString *)bucketingId;
 
 @end
 
@@ -63,11 +63,11 @@ NS_ASSUME_NONNULL_END
 
 /**
  * Generate an ID to be used in Murmur3 hash based on the provided User ID and the ID of the entity the user is bucketed into.
- * @param userId The user ID provided into the bucketing API.
+ * @param bucketingId The bucket ID provided to the bucketing API.
  * @param entityId The ID of the entity the user is being bucketed into. ex: OPTLYExperiment.experimentId.
  * @return The string to be used in the Murmur3 hash for bucketing.
  */
-- (nonnull NSString *)makeBucketingIdFromUserId:(nonnull NSString *)userId
+- (nonnull NSString *)makeHashIdFromBucketingId:(nonnull NSString *)bucketingId
                                     andEntityId:(nonnull NSString *)entityId;
 
 @end

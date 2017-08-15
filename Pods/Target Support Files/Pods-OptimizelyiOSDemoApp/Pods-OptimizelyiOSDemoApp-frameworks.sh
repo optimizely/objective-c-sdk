@@ -89,16 +89,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Amplitude-iOS/Amplitude_iOS.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1/Localytics.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Mixpanel-swift/Mixpanel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONModel-iOS/JSONModel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Amplitude-iOS/Amplitude_iOS.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1/Localytics.framework"
