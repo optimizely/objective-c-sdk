@@ -1,81 +1,12 @@
 # OPDB v2.7
-<!--[![Platform](https://img.shields.io/cocoapods/p/OPDB.svg?style=flat)](http://cocoadocs.org/docsets/Alamofire)-->
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/OPDB.svg)](https://img.shields.io/cocoapods/v/OPDB.svg)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-This is an Objective-C wrapper around SQLite: http://sqlite.org/
+This is an Objective-C wrapper around SQLite: http://sqlite.org/ .
 
-## The OPDB Mailing List:
-http://groups.google.com/group/opdb
+OPDB is a modified copy of the original FMDB covered by the "License.txt"
+file mentioned at the end of this document.
 
-## Read the SQLite FAQ:
-http://www.sqlite.org/faq.html
-
-Since OPDB is built on top of SQLite, you're going to want to read this page top to bottom at least once.  And while you're there, make sure to bookmark the SQLite Documentation page: http://www.sqlite.org/docs.html
-
-## Contributing
-Do you have an awesome idea that deserves to be in OPDB?  You might consider pinging ccgus first to make sure he hasn't already ruled it out for some reason.  Otherwise pull requests are great, and make sure you stick to the local coding conventions.  However, please be patient and if you haven't heard anything from ccgus for a week or more, you might want to send a note asking what's up.
-
-## Installing
-
-### CocoaPods
-
-[![Dependency Status](https://www.versioneye.com/objective-c/opdb/2.3/badge.svg?style=flat)](https://www.versioneye.com/objective-c/opdb/2.3)
-[![Reference Status](https://www.versioneye.com/objective-c/opdb/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/opdb/references)
-
-OPDB can be installed using [CocoaPods](https://cocoapods.org/).
-
-If you haven't done so already, you might want to initialize the project, to have it produce a `Podfile` template for you:
-
-```
-$ pod init
-```
-
-Then, edit the `Podfile`, adding `OPDB`:
-
-```ruby
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
-
-target 'MyApp' do
-    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-    use_frameworks!
-
-    # Pods for MyApp2
-
-    pod 'OPDB'
-    # pod 'OPDB/FTS'   # OPDB with FTS
-    # pod 'OPDB/standalone'   # OPDB with latest SQLite amalgamation source
-    # pod 'OPDB/standalone/FTS'   # OPDB with latest SQLite amalgamation source and FTS
-    # pod 'OPDB/SQLCipher'   # OPDB with SQLCipher
-end
-```
-
-Then install the pods:
-
-```
-$ pod install
-```
-
-Then open the `.xcworkspace` rather than the `.xcodeproj`.
-
-For more information on Cocoapods visit https://cocoapods.org.
-
-**If using OPDB with [SQLCipher](https://www.zetetic.net/sqlcipher/) you must use the OPDB/SQLCipher subspec. The OPDB/SQLCipher subspec declares SQLCipher as a dependency, allowing OPDB to be compiled with the `-DSQLITE_HAS_CODEC` flag.**
-
-### Carthage
-
-Once you make sure you have [the latest version of Carthage](https://github.com/Carthage/Carthage/releases), you can open up a command line terminal, navigate to your project's main directory, and then do the following commands:
-
-```
-$ echo ' github "ccgus/opdb" ' > ./Cartfile
-$ carthage update
-```
-
-You can then configure your project as outlined in Carthage's [Getting Started](https://github.com/Carthage/Carthage#getting-started) (i.e. for iOS, adding the framework to the "Link Binary with Libraries" in your target and adding the `copy-frameworks` script; in macOS, adding the framework to the list of "Embedded Binaries").
-
-## OPDB Class Reference:
-http://ccgus.github.io/opdb/html/index.html
+## FMDB Class Reference:
+http://ccgus.github.io/fmdb/html/index.html
 
 ## Automatic Reference Counting (ARC) or Manual Memory Management?
 You can use either style in your Cocoa project.  OPDB will figure out which you are using at compile time and do the right thing.
@@ -491,51 +422,26 @@ do {
 database.close()
 ```
 
-## History
-
-The history and changes are availbe on its [GitHub page](https://github.com/ccgus/opdb) and are summarized in the "CHANGES_AND_TODO_LIST.txt" file.
-
-## Contributors
-
-The contributors to OPDB are contained in the "Contributors.txt" file.
-
-## Additional projects using OPDB, which might be interesting to the discerning developer.
-
- * OPDBMigrationManager, A SQLite schema migration management system for OPDB: https://github.com/layerhq/OPDBMigrationManager
- * FCModel, An alternative to Core Data for people who like having direct SQL access: https://github.com/marcoarment/FCModel
-
-## Quick notes on OPDB's coding style
-
-Spaces, not tabs.  Square brackets, not dot notation.  Look at what OPDB already does with curly brackets and such, and stick to that style.
-
-## Reporting bugs
-
-Reduce your bug down to the smallest amount of code possible.  You want to make it super easy for the developers to see and reproduce your bug.  If it helps, pretend that the person who can fix your bug is active on shipping 3 major products, works on a handful of open source projects, has a newborn baby, and is generally very very busy.
-
-And we've even added a template function to main.m (OPDBReportABugFunction) in the OPDB distribution to help you out:
-
-* Open up opdb project in Xcode.
-* Open up main.m and modify the OPDBReportABugFunction to reproduce your bug.
-    * Setup your table(s) in the code.
-    * Make your query or update(s).
-    * Add some assertions which demonstrate the bug.
-
-Then you can bring it up on the OPDB mailing list by showing your nice and compact OPDBReportABugFunction, or you can report the bug via the github OPDB bug reporter.
-
-**Optional:**
-
-Figure out where the bug is, fix it, and send a patch in or bring that up on the mailing list.  Make sure all the other tests run after your modifications.
-
-## Support
-
-The support channels for OPDB are the mailing list (see above), filing a bug here, or maybe on Stack Overflow.  So that is to say, support is provided by the community and on a voluntary basis.
-
-OPDB development is overseen by Gus Mueller of Flying Meat.  If OPDB been helpful to you, consider purchasing an app from FM or telling all your friends about it.
-
 ## License
 
-The license for OPDB is contained in the "License.txt" file.
+The license for FMDB is contained in the "License.txt" file.
 
-If you happen to come across either Gus Mueller or Rob Ryan in a bar, you might consider purchasing a drink of their choosing if OPDB has been useful to you.
+If you happen to come across either Gus Mueller or Rob Ryan in a bar, you might consider purchasing a drink of their choosing if FMDB has been useful to you.
 
 (The drink is for them of course, shame on you for trying to keep it.)
+
+## Modifications to FMDB by Optimizely, Inc.
+
+Copyright 2017, Optimizely, Inc. and contributors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.  

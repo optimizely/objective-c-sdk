@@ -210,7 +210,7 @@
 		3E858C401F4226E800D53856 /* OPDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBResultSet.h; path = OPDB/src/opdb/OPDBResultSet.h; sourceTree = "<group>"; };
 		3E858C411F4226E800D53856 /* OPDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBResultSet.m; path = OPDB/src/opdb/OPDBResultSet.m; sourceTree = "<group>"; };
 		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = OPDB/LICENSE.txt; sourceTree = "<group>"; };
-		3E858C591F42272F00D53856 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = OPDB/README.markdown; sourceTree = "<group>"; };
+		3E858C591F42272F00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPDB/README.md; sourceTree = "<group>"; };
 		3ECBCC161F43983400160937 /* OPDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ECBCC181F43983400160937 /* OPDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPDBTests.m; sourceTree = "<group>"; };
 		3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPDBTests-Info.plist"; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				3E858C581F42272F00D53856 /* LICENSE.txt */,
-				3E858C591F42272F00D53856 /* README.markdown */,
+				3E858C591F42272F00D53856 /* README.md */,
 				3E858C351F4226C700D53856 /* src */,
 			);
 			name = OPDB;
