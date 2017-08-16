@@ -54,6 +54,13 @@
 			remoteGlobalIDString = EA52486C1DC72B6500AF6685;
 			remoteInfo = OptimizelySDKUserProfileServiceTVOSTests;
 		};
+		3ECBCCB51F43CAAC00160937 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA5248631DC72B6500AF6685;
+			remoteInfo = OptimizelySDKUserProfileServiceTVOS;
+		};
 		EA29D9811DD147DA0034A4FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA29D9771DD147DA0034A4FE /* OptimizelySDKEventDispatcher.xcodeproj */;
@@ -335,6 +342,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3ECBCCB61F43CAAC00160937 /* PBXTargetDependency */,
 				EA29D98D1DD148040034A4FE /* PBXTargetDependency */,
 				EA524A721DC8499100AF6685 /* PBXTargetDependency */,
 			);
@@ -624,6 +632,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3ECBCCB61F43CAAC00160937 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OptimizelySDKUserProfileServiceTVOS;
+			targetProxy = 3ECBCCB51F43CAAC00160937 /* PBXContainerItemProxy */;
+		};
 		EA29D98D1DD148040034A4FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OptimizelySDKEventDispatcherTVOS;
