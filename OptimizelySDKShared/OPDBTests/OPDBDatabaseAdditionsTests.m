@@ -1,6 +1,6 @@
 //
-//  FMDatabaseAdditionsTests.m
-//  fmdb
+//  OPDBDatabaseAdditionsTests.m
+//  opdb
 //
 //  Created by Graham Dennis on 24/11/2013.
 //
@@ -23,19 +23,19 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "FMDatabaseAdditions.h"
+#import "OPDBDatabaseAdditions.h"
 
-#if FMDB_SQLITE_STANDALONE
+#if OPDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-@interface FMDatabaseAdditionsTests : FMDBTempDBTests
+@interface OPDBDatabaseAdditionsTests : OPDBTempDBTests
 
 @end
 
-@implementation FMDatabaseAdditionsTests
+@implementation OPDBDatabaseAdditionsTests
 
 - (void)setUp
 {
@@ -53,7 +53,7 @@
 {
     [self.db executeUpdate:@"create table '234 fds' (foo text)"];
     XCTAssertFalse([self.db hadError], @"table creation should have succeeded");
-    FMResultSet *rs = [self.db getTableSchema:@"234 fds"];
+    OPDBResultSet *rs = [self.db getTableSchema:@"234 fds"];
     XCTAssertTrue([rs next], @"Schema should have succeded");
     [rs close];
     XCTAssertFalse([self.db hadError], @"There shouldn't be any errors");
@@ -111,7 +111,7 @@
     XCTAssertTrue([self.db tableExists:@"t4"]);
     XCTAssertFalse([self.db tableExists:@"thisdoesntexist"]);
     
-    FMResultSet *rs = [self.db getSchema];
+    OPDBResultSet *rs = [self.db getSchema];
     while ([rs next]) {
         XCTAssertEqualObjects([rs stringForColumn:@"type"], @"table");
     }

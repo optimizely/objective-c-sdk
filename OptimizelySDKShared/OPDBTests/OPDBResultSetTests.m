@@ -1,6 +1,6 @@
 //
-//  FMResultSetTests.m
-//  fmdb
+//  OPDBResultSetTests.m
+//  opdb
 //
 //  Created by Muralidharan,Roshan on 10/6/14.
 //
@@ -22,23 +22,23 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "FMDBTempDBTests.h"
-#import "FMDatabase.h"
-#import "FMResultSet.h"
+#import "OPDBTempDBTests.h"
+#import "OPDBDatabase.h"
+#import "OPDBResultSet.h"
 
-#if FMDB_SQLITE_STANDALONE
+#if OPDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-@interface FMResultSetTests : FMDBTempDBTests
+@interface OPDBResultSetTests : OPDBTempDBTests
 
 @end
 
-@implementation FMResultSetTests
+@implementation OPDBResultSetTests
 
-+ (void)populateDatabase:(FMDatabase *)db
++ (void)populateDatabase:(OPDBDatabase *)db
 {
     [db executeUpdate:@"create table test (a text, b text, c integer, d double, e double)"];
     
@@ -61,7 +61,7 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    FMResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
+    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
     XCTAssertNotNil(resultSet);
     NSError *error;
     XCTAssertTrue([resultSet nextWithError:&error]);
@@ -79,10 +79,10 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    FMResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
+    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
     XCTAssertNotNil(resultSet);
     
-    FMDatabase *newDB = [FMDatabase databaseWithPath:self.databasePath];
+    OPDBDatabase *newDB = [OPDBDatabase databaseWithPath:self.databasePath];
     [newDB open];
     
     [newDB beginTransaction];
@@ -101,7 +101,7 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    FMResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=9"];
+    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=9"];
     XCTAssertNotNil(resultSet);
     XCTAssertFalse([resultSet next]);
     NSError *error;

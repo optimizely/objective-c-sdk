@@ -1,29 +1,29 @@
-# FMDB v2.7
-<!--[![Platform](https://img.shields.io/cocoapods/p/FMDB.svg?style=flat)](http://cocoadocs.org/docsets/Alamofire)-->
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/FMDB.svg)](https://img.shields.io/cocoapods/v/FMDB.svg)
+# OPDB v2.7
+<!--[![Platform](https://img.shields.io/cocoapods/p/OPDB.svg?style=flat)](http://cocoadocs.org/docsets/Alamofire)-->
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/OPDB.svg)](https://img.shields.io/cocoapods/v/OPDB.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 This is an Objective-C wrapper around SQLite: http://sqlite.org/
 
-## The FMDB Mailing List:
-http://groups.google.com/group/fmdb
+## The OPDB Mailing List:
+http://groups.google.com/group/opdb
 
 ## Read the SQLite FAQ:
 http://www.sqlite.org/faq.html
 
-Since FMDB is built on top of SQLite, you're going to want to read this page top to bottom at least once.  And while you're there, make sure to bookmark the SQLite Documentation page: http://www.sqlite.org/docs.html
+Since OPDB is built on top of SQLite, you're going to want to read this page top to bottom at least once.  And while you're there, make sure to bookmark the SQLite Documentation page: http://www.sqlite.org/docs.html
 
 ## Contributing
-Do you have an awesome idea that deserves to be in FMDB?  You might consider pinging ccgus first to make sure he hasn't already ruled it out for some reason.  Otherwise pull requests are great, and make sure you stick to the local coding conventions.  However, please be patient and if you haven't heard anything from ccgus for a week or more, you might want to send a note asking what's up.
+Do you have an awesome idea that deserves to be in OPDB?  You might consider pinging ccgus first to make sure he hasn't already ruled it out for some reason.  Otherwise pull requests are great, and make sure you stick to the local coding conventions.  However, please be patient and if you haven't heard anything from ccgus for a week or more, you might want to send a note asking what's up.
 
 ## Installing
 
 ### CocoaPods
 
-[![Dependency Status](https://www.versioneye.com/objective-c/fmdb/2.3/badge.svg?style=flat)](https://www.versioneye.com/objective-c/fmdb/2.3)
-[![Reference Status](https://www.versioneye.com/objective-c/fmdb/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/fmdb/references)
+[![Dependency Status](https://www.versioneye.com/objective-c/opdb/2.3/badge.svg?style=flat)](https://www.versioneye.com/objective-c/opdb/2.3)
+[![Reference Status](https://www.versioneye.com/objective-c/opdb/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/opdb/references)
 
-FMDB can be installed using [CocoaPods](https://cocoapods.org/).
+OPDB can be installed using [CocoaPods](https://cocoapods.org/).
 
 If you haven't done so already, you might want to initialize the project, to have it produce a `Podfile` template for you:
 
@@ -31,7 +31,7 @@ If you haven't done so already, you might want to initialize the project, to hav
 $ pod init
 ```
 
-Then, edit the `Podfile`, adding `FMDB`:
+Then, edit the `Podfile`, adding `OPDB`:
 
 ```ruby
 # Uncomment the next line to define a global platform for your project
@@ -43,11 +43,11 @@ target 'MyApp' do
 
     # Pods for MyApp2
 
-    pod 'FMDB'
-    # pod 'FMDB/FTS'   # FMDB with FTS
-    # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
-    # pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS
-    # pod 'FMDB/SQLCipher'   # FMDB with SQLCipher
+    pod 'OPDB'
+    # pod 'OPDB/FTS'   # OPDB with FTS
+    # pod 'OPDB/standalone'   # OPDB with latest SQLite amalgamation source
+    # pod 'OPDB/standalone/FTS'   # OPDB with latest SQLite amalgamation source and FTS
+    # pod 'OPDB/SQLCipher'   # OPDB with SQLCipher
 end
 ```
 
@@ -61,40 +61,40 @@ Then open the `.xcworkspace` rather than the `.xcodeproj`.
 
 For more information on Cocoapods visit https://cocoapods.org.
 
-**If using FMDB with [SQLCipher](https://www.zetetic.net/sqlcipher/) you must use the FMDB/SQLCipher subspec. The FMDB/SQLCipher subspec declares SQLCipher as a dependency, allowing FMDB to be compiled with the `-DSQLITE_HAS_CODEC` flag.**
+**If using OPDB with [SQLCipher](https://www.zetetic.net/sqlcipher/) you must use the OPDB/SQLCipher subspec. The OPDB/SQLCipher subspec declares SQLCipher as a dependency, allowing OPDB to be compiled with the `-DSQLITE_HAS_CODEC` flag.**
 
 ### Carthage
 
 Once you make sure you have [the latest version of Carthage](https://github.com/Carthage/Carthage/releases), you can open up a command line terminal, navigate to your project's main directory, and then do the following commands:
 
 ```
-$ echo ' github "ccgus/fmdb" ' > ./Cartfile
+$ echo ' github "ccgus/opdb" ' > ./Cartfile
 $ carthage update
 ```
 
 You can then configure your project as outlined in Carthage's [Getting Started](https://github.com/Carthage/Carthage#getting-started) (i.e. for iOS, adding the framework to the "Link Binary with Libraries" in your target and adding the `copy-frameworks` script; in macOS, adding the framework to the list of "Embedded Binaries").
 
-## FMDB Class Reference:
-http://ccgus.github.io/fmdb/html/index.html
+## OPDB Class Reference:
+http://ccgus.github.io/opdb/html/index.html
 
 ## Automatic Reference Counting (ARC) or Manual Memory Management?
-You can use either style in your Cocoa project.  FMDB will figure out which you are using at compile time and do the right thing.
+You can use either style in your Cocoa project.  OPDB will figure out which you are using at compile time and do the right thing.
 
-## What's New in FMDB 2.7
+## What's New in OPDB 2.7
 
-FMDB 2.7 attempts to support a more natural interface. This represents a fairly significant change for Swift developers (audited for nullability; shifted to properties in external interfaces where possible rather than methods; etc.). For Objective-C developers, this should be a fairly seamless transition (unless you were using the ivars that were previously exposed in the public interface, which you shouldn't have been doing, anyway!). 
+OPDB 2.7 attempts to support a more natural interface. This represents a fairly significant change for Swift developers (audited for nullability; shifted to properties in external interfaces where possible rather than methods; etc.). For Objective-C developers, this should be a fairly seamless transition (unless you were using the ivars that were previously exposed in the public interface, which you shouldn't have been doing, anyway!).
 
 ### Nullability and Swift Optionals
 
-FMDB 2.7 is largely the same as prior versions, but has been audited for nullability. For Objective-C users, this simply means that if you perform a static analysis of your FMDB-based project, you may receive more meaningful warnings as you review your project, but there are likely to be few, if any, changes necessary in your code.
+OPDB 2.7 is largely the same as prior versions, but has been audited for nullability. For Objective-C users, this simply means that if you perform a static analysis of your OPDB-based project, you may receive more meaningful warnings as you review your project, but there are likely to be few, if any, changes necessary in your code.
 
-For Swift users, this nullability audit results in changes that are not entirely backward compatible with FMDB 2.6, but is a little more Swifty. Before FMDB was audited for nullability, Swift was forced to defensively assume that variables were optional, but the library now more accurately knows which properties and method parameters are optional, and which are not.
+For Swift users, this nullability audit results in changes that are not entirely backward compatible with OPDB 2.6, but is a little more Swifty. Before OPDB was audited for nullability, Swift was forced to defensively assume that variables were optional, but the library now more accurately knows which properties and method parameters are optional, and which are not.
 
-This means, though, that Swift code written for FMDB 2.7 may require changes. For example, consider the following Swift 3/Swift 4 code for FMDB 2.6:
+This means, though, that Swift code written for OPDB 2.7 may require changes. For example, consider the following Swift 3/Swift 4 code for OPDB 2.6:
 ```swift
 
-guard let queue = FMDatabaseQueue(path: fileURL.path) else {
-    print("Unable to create FMDatabaseQueue")
+guard let queue = OPDBDatabaseQueue(path: fileURL.path) else {
+    print("Unable to create OPDBDatabaseQueue")
     return
 }
 
@@ -113,11 +113,11 @@ queue.inTransaction { db, rollback in
 }
 ```
 
-Because FMDB 2.6 was not audited for nullability, Swift inferred that `db` and `rollback` were optionals. But, now, in FMDB 2.7, Swift now knows that, for example, neither `db` nor `rollback` above can be `nil`, so they are no longer optionals. Thus it becomes:
+Because OPDB 2.6 was not audited for nullability, Swift inferred that `db` and `rollback` were optionals. But, now, in OPDB 2.7, Swift now knows that, for example, neither `db` nor `rollback` above can be `nil`, so they are no longer optionals. Thus it becomes:
 
 ```swift
 
-let queue = FMDatabaseQueue(url: fileURL)
+let queue = OPDBDatabaseQueue(url: fileURL)
 
 queue.inTransaction { db, rollback in
     do {
@@ -131,9 +131,9 @@ queue.inTransaction { db, rollback in
 
 ### Custom Functions
 
-In the past, when writing custom functions, you would have to generally include your own `@autoreleasepool` block to avoid problems when writing functions that scanned through a large table. Now, FMDB will automatically wrap it in an autorelease pool, so you don't have to.
+In the past, when writing custom functions, you would have to generally include your own `@autoreleasepool` block to avoid problems when writing functions that scanned through a large table. Now, OPDB will automatically wrap it in an autorelease pool, so you don't have to.
 
-Also, in the past, when retrieving the values passed to the function, you had to drop down to the SQLite C API and include your own `sqlite3_value_XXX` calls. There are now `FMDatabase` methods, `valueInt`, `valueString`, etc., so you can stay within Swift and/or Objective-C, without needing to call the C functions yourself. Likewise, when specifying the return values, you no longer need to call `sqlite3_result_XXX` C API, but rather you can use `FMDatabase` methods, `resultInt`, `resultString`, etc. There is a new `enum` for `valueType` called `SqliteValueType`, which can be used for checking the type of parameter passed to the custom function.
+Also, in the past, when retrieving the values passed to the function, you had to drop down to the SQLite C API and include your own `sqlite3_value_XXX` calls. There are now `OPDBDatabase` methods, `valueInt`, `valueString`, etc., so you can stay within Swift and/or Objective-C, without needing to call the C functions yourself. Likewise, when specifying the return values, you no longer need to call `sqlite3_result_XXX` C API, but rather you can use `OPDBDatabase` methods, `resultInt`, `resultString`, etc. There is a new `enum` for `valueType` called `SqliteValueType`, which can be used for checking the type of parameter passed to the custom function.
 
 Thus, you can do something like (as of Swift 3):
 
@@ -168,33 +168,33 @@ In addition to the `makeFunctionNamed` noted above, there are a few other API ch
 
  - Note, the `objectForColumn` (and the associted subscript operator) now returns `nil` if an invalid column name/index is passed to it. It used to return `NSNull`.
 
- - To avoid confusion with `FMDatabaseQueue` method `inTransaction`, which performs transactions, the `FMDatabase` method to determine whether you are in a transaction or not, `inTransaction`, has been replaced with a read-only property, `isInTransaction`. 
+ - To avoid confusion with `OPDBDatabaseQueue` method `inTransaction`, which performs transactions, the `OPDBDatabase` method to determine whether you are in a transaction or not, `inTransaction`, has been replaced with a read-only property, `isInTransaction`.
 
- - Several functions have been converted to properties, namely, `databasePath`, `maxBusyRetryTimeInterval`, `shouldCacheStatements`, `sqliteHandle`, `hasOpenResultSets`, `lastInsertRowId`, `changes`, `goodConnection`, `columnCount`, `resultDictionary`, `applicationID`, `applicationIDString`, `userVersion`, `countOfCheckedInDatabases`, `countOfCheckedOutDatabases`, and `countOfOpenDatabases`. For Objective-C users, this has little material impact, but for Swift users, it results in a slightly more natural interface. Note: For Objective-C developers, previously versions of FMDB exposed many ivars (but we hope you weren't using them directly, anyway!), but the implmentation details for these are no longer exposed.
+ - Several functions have been converted to properties, namely, `databasePath`, `maxBusyRetryTimeInterval`, `shouldCacheStatements`, `sqliteHandle`, `hasOpenResultSets`, `lastInsertRowId`, `changes`, `goodConnection`, `columnCount`, `resultDictionary`, `applicationID`, `applicationIDString`, `userVersion`, `countOfCheckedInDatabases`, `countOfCheckedOutDatabases`, and `countOfOpenDatabases`. For Objective-C users, this has little material impact, but for Swift users, it results in a slightly more natural interface. Note: For Objective-C developers, previously versions of OPDB exposed many ivars (but we hope you weren't using them directly, anyway!), but the implmentation details for these are no longer exposed.
 
 ### URL Methods
 
 In keeping with Apple's shift from paths to URLs, there are now `NSURL` renditions of the various `init` methods, previously only accepting paths. 
 
 ## Usage
-There are three main classes in FMDB:
+There are three main classes in OPDB:
 
-1. `FMDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
-2. `FMResultSet` - Represents the results of executing a query on an `FMDatabase`.
-3. `FMDatabaseQueue` - If you're wanting to perform queries and updates on multiple threads, you'll want to use this class.  It's described in the "Thread Safety" section below.
+1. `OPDBDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
+2. `OPDBResultSet` - Represents the results of executing a query on an `OPDBDatabase`.
+3. `OPDBDatabaseQueue` - If you're wanting to perform queries and updates on multiple threads, you'll want to use this class.  It's described in the "Thread Safety" section below.
 
 ### Database Creation
-An `FMDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
+An `OPDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
 
 1. A file system path.  The file does not have to exist on disk.  If it does not exist, it is created for you.
-2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `FMDatabase` connection is closed.
-3. `NULL`.  An in-memory database is created.  This database will be destroyed with the `FMDatabase` connection is closed.
+2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `OPDBDatabase` connection is closed.
+3. `NULL`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
 
 (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: http://www.sqlite.org/inmemorydb.html)
 
 ```objc
 NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.db"];
-FMDatabase *db = [FMDatabase databaseWithPath:path];
+OPDBDatabase *db = [OPDBDatabase databaseWithPath:path];
 ```
 
 ### Opening
@@ -219,27 +219,27 @@ Executing updates returns a single value, a `BOOL`.  A return value of `YES` mea
 
 A `SELECT` statement is a query and is executed via one of the `-executeQuery...` methods.
 
-Executing queries returns an `FMResultSet` object if successful, and `nil` upon failure.  You should use the `-lastErrorMessage` and `-lastErrorCode` methods to determine why a query failed.
+Executing queries returns an `OPDBResultSet` object if successful, and `nil` upon failure.  You should use the `-lastErrorMessage` and `-lastErrorCode` methods to determine why a query failed.
 
-In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" from one record to the other.  With FMDB, the easiest way to do that is like this:
+In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" from one record to the other.  With OPDB, the easiest way to do that is like this:
 
 ```objc
-FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
+OPDBResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
 while ([s next]) {
     //retrieve values for each record
 }
 ```
 
-You must always invoke `-[FMResultSet next]` before attempting to access the values returned in a query, even if you're only expecting one:
+You must always invoke `-[OPDBResultSet next]` before attempting to access the values returned in a query, even if you're only expecting one:
 
 ```objc
-FMResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
+OPDBResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
 if ([s next]) {
     int totalCount = [s intForColumnIndex:0];
 }
 ```
 
-`FMResultSet` has many methods to retrieve data in an appropriate format:
+`OPDBResultSet` has many methods to retrieve data in an appropriate format:
 
 - `intForColumn:`
 - `longForColumn:`
@@ -255,11 +255,11 @@ if ([s next]) {
 
 Each of these methods also has a `{type}ForColumnIndex:` variant that is used to retrieve the data based on the position of the column in the results, as opposed to the column's name.
 
-Typically, there's no need to `-close` an `FMResultSet` yourself, since that happens when either the result set is deallocated, or the parent database is closed.
+Typically, there's no need to `-close` an `OPDBResultSet` yourself, since that happens when either the result set is deallocated, or the parent database is closed.
 
 ### Closing
 
-When you have finished executing queries and updates on the database, you should `-close` the `FMDatabase` connection so that SQLite will relinquish any resources it has acquired during the course of its operation.
+When you have finished executing queries and updates on the database, you should `-close` the `OPDBDatabase` connection so that SQLite will relinquish any resources it has acquired during the course of its operation.
 
 ```objc
 [db close];
@@ -267,11 +267,11 @@ When you have finished executing queries and updates on the database, you should
 
 ### Transactions
 
-`FMDatabase` can begin and commit a transaction by invoking one of the appropriate methods or executing a begin/end transaction statement.
+`OPDBDatabase` can begin and commit a transaction by invoking one of the appropriate methods or executing a begin/end transaction statement.
 
 ### Multiple Statements and Batch Stuff
 
-You can use `FMDatabase`'s executeStatements:withResultBlock: to do multiple statements in a string:
+You can use `OPDBDatabase`'s executeStatements:withResultBlock: to do multiple statements in a string:
 
 ```objc
 NSString *sql = @"create table bulktest1 (id integer primary key autoincrement, x text);"
@@ -296,7 +296,7 @@ success = [self.db executeStatements:sql withResultBlock:^int(NSDictionary *dict
 
 ### Data Sanitization
 
-When providing a SQL statement to FMDB, you should not attempt to "sanitize" any values before insertion.  Instead, you should use the standard SQLite binding syntax:
+When providing a SQL statement to OPDB, you should not attempt to "sanitize" any values before insertion.  Instead, you should use the standard SQLite binding syntax:
 
 ```sql
 INSERT INTO myTable VALUES (?, ?, ?, ?)
@@ -357,30 +357,30 @@ if (!success) {
 
 The key point is that one should not use `NSString` method `stringWithFormat` to manually insert values into the SQL statement, itself. Nor should one Swift string interpolation to insert values into the SQL. Use `?` placeholders for values to be inserted into the database (or used in `WHERE` clauses in `SELECT` statements).
 
-<h2 id="threads">Using FMDatabaseQueue and Thread Safety.</h2>
+<h2 id="threads">Using OPDBDatabaseQueue and Thread Safety.</h2>
 
-Using a single instance of `FMDatabase` from multiple threads at once is a bad idea.  It has always been OK to make a `FMDatabase` object *per thread*.  Just don't share a single instance across threads, and definitely not across multiple threads at the same time.  Bad things will eventually happen and you'll eventually get something to crash, or maybe get an exception, or maybe meteorites will fall out of the sky and hit your Mac Pro.  *This would suck*.
+Using a single instance of `OPDBDatabase` from multiple threads at once is a bad idea.  It has always been OK to make a `OPDBDatabase` object *per thread*.  Just don't share a single instance across threads, and definitely not across multiple threads at the same time.  Bad things will eventually happen and you'll eventually get something to crash, or maybe get an exception, or maybe meteorites will fall out of the sky and hit your Mac Pro.  *This would suck*.
 
-**So don't instantiate a single `FMDatabase` object and use it across multiple threads.**
+**So don't instantiate a single `OPDBDatabase` object and use it across multiple threads.**
 
-Instead, use `FMDatabaseQueue`. Instantiate a single `FMDatabaseQueue` and use it across multiple threads. The `FMDatabaseQueue` object will synchronize and coordinate access across the multiple threads. Here's how to use it:
+Instead, use `OPDBDatabaseQueue`. Instantiate a single `OPDBDatabaseQueue` and use it across multiple threads. The `OPDBDatabaseQueue` object will synchronize and coordinate access across the multiple threads. Here's how to use it:
 
 First, make your queue.
 
 ```objc
-FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];
+OPDBDatabaseQueue *queue = [OPDBDatabaseQueue databaseQueueWithPath:aPath];
 ```
 
 Then use it like so:
 
 
 ```objc
-[queue inDatabase:^(FMDatabase *db) {
+[queue inDatabase:^(OPDBDatabase *db) {
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @1];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @2];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @3];
 
-    FMResultSet *rs = [db executeQuery:@"select * from foo"];
+    OPDBResultSet *rs = [db executeQuery:@"select * from foo"];
     while ([rs next]) {
         …
     }
@@ -390,7 +390,7 @@ Then use it like so:
 An easy way to wrap things up in a transaction can be done like this:
 
 ```objc
-[queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+[queue inTransaction:^(OPDBDatabase *db, BOOL *rollback) {
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @1];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @2];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @3];
@@ -428,9 +428,9 @@ queue.inTransaction { db, rollback in
 
 (Note, as of Swift 3, use `pointee`. But in Swift 2.3, use `memory` rather than `pointee`.)
 
-`FMDatabaseQueue` will run the blocks on a serialized queue (hence the name of the class).  So if you call `FMDatabaseQueue`'s methods from multiple threads at the same time, they will be executed in the order they are received.  This way queries and updates won't step on each other's toes, and every one is happy.
+`OPDBDatabaseQueue` will run the blocks on a serialized queue (hence the name of the class).  So if you call `OPDBDatabaseQueue`'s methods from multiple threads at the same time, they will be executed in the order they are received.  This way queries and updates won't step on each other's toes, and every one is happy.
 
-**Note:** The calls to `FMDatabaseQueue`'s methods are blocking.  So even though you are passing along blocks, they will **not** be run on another thread.
+**Note:** The calls to `OPDBDatabaseQueue`'s methods are blocking.  So even though you are passing along blocks, they will **not** be run on another thread.
 
 ## Making custom sqlite functions, based on blocks.
 
@@ -438,13 +438,13 @@ You can do this!  For an example, look for `-makeFunctionNamed:` in main.m
 
 ## Swift
 
-You can use FMDB in Swift projects too.
+You can use OPDB in Swift projects too.
 
 To do this, you must:
 
-1. Copy the relevant `.m` and `.h` files from the FMDB `src` folder into your project.
+1. Copy the relevant `.m` and `.h` files from the OPDB `src` folder into your project.
 
- You can copy all of them (which is easiest), or only the ones you need. Likely you will need [`FMDatabase`](http://ccgus.github.io/fmdb/html/Classes/FMDatabase.html) and [`FMResultSet`](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html) at a minimum. [`FMDatabaseAdditions`](http://ccgus.github.io/fmdb/html/Categories/FMDatabase+FMDatabaseAdditions.html) provides some very useful convenience methods, so you will likely want that, too. If you are doing multithreaded access to a database, [`FMDatabaseQueue`](http://ccgus.github.io/fmdb/html/Classes/FMDatabaseQueue.html) is quite useful, too. If you choose to not copy all of the files from the `src` directory, though, you may want to update `FMDB.h` to only reference the files that you included in your project.
+ You can copy all of them (which is easiest), or only the ones you need. Likely you will need [`OPDBDatabase`](http://ccgus.github.io/opdb/html/Classes/OPDBDatabase.html) and [`OPDBResultSet`](http://ccgus.github.io/opdb/html/Classes/OPDBResultSet.html) at a minimum. [`OPDBDatabaseAdditions`](http://ccgus.github.io/opdb/html/Categories/OPDBDatabase+OPDBDatabaseAdditions.html) provides some very useful convenience methods, so you will likely want that, too. If you are doing multithreaded access to a database, [`OPDBDatabaseQueue`](http://ccgus.github.io/opdb/html/Classes/OPDBDatabaseQueue.html) is quite useful, too. If you choose to not copy all of the files from the `src` directory, though, you may want to update `OPDB.h` to only reference the files that you included in your project.
 
  Note, if you're copying all of the files from the `src` folder into to your project (which is recommended), you may want to drag the individual files into your project, not the folder, itself, because if you drag the folder, you won't be prompted to add the bridging header (see next point).
 
@@ -454,19 +454,19 @@ To do this, you must:
 
 3. In your bridging header, add a line that says:
     ```objc
-    #import "FMDB.h"
+    #import "OPDB.h"
     ```
 
 4. Use the variations of `executeQuery` and `executeUpdate` with the `sql` and `values` parameters with `try` pattern, as shown below. These renditions of `executeQuery` and `executeUpdate` both `throw` errors in true Swift fashion.
 
-If you do the above, you can then write Swift code that uses `FMDatabase`. For example, as of Swift 3:
+If you do the above, you can then write Swift code that uses `OPDBDatabase`. For example, as of Swift 3:
 
 ```swift
 let fileURL = try! FileManager.default
     .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
     .appendingPathComponent("test.sqlite")
 
-let database = FMDatabase(url: fileURL)
+let database = OPDBDatabase(url: fileURL)
 
 guard database.open() else {
     print("Unable to open database")
@@ -493,34 +493,34 @@ database.close()
 
 ## History
 
-The history and changes are availbe on its [GitHub page](https://github.com/ccgus/fmdb) and are summarized in the "CHANGES_AND_TODO_LIST.txt" file.
+The history and changes are availbe on its [GitHub page](https://github.com/ccgus/opdb) and are summarized in the "CHANGES_AND_TODO_LIST.txt" file.
 
 ## Contributors
 
-The contributors to FMDB are contained in the "Contributors.txt" file.
+The contributors to OPDB are contained in the "Contributors.txt" file.
 
-## Additional projects using FMDB, which might be interesting to the discerning developer.
+## Additional projects using OPDB, which might be interesting to the discerning developer.
 
- * FMDBMigrationManager, A SQLite schema migration management system for FMDB: https://github.com/layerhq/FMDBMigrationManager
+ * OPDBMigrationManager, A SQLite schema migration management system for OPDB: https://github.com/layerhq/OPDBMigrationManager
  * FCModel, An alternative to Core Data for people who like having direct SQL access: https://github.com/marcoarment/FCModel
 
-## Quick notes on FMDB's coding style
+## Quick notes on OPDB's coding style
 
-Spaces, not tabs.  Square brackets, not dot notation.  Look at what FMDB already does with curly brackets and such, and stick to that style.
+Spaces, not tabs.  Square brackets, not dot notation.  Look at what OPDB already does with curly brackets and such, and stick to that style.
 
 ## Reporting bugs
 
 Reduce your bug down to the smallest amount of code possible.  You want to make it super easy for the developers to see and reproduce your bug.  If it helps, pretend that the person who can fix your bug is active on shipping 3 major products, works on a handful of open source projects, has a newborn baby, and is generally very very busy.
 
-And we've even added a template function to main.m (FMDBReportABugFunction) in the FMDB distribution to help you out:
+And we've even added a template function to main.m (OPDBReportABugFunction) in the OPDB distribution to help you out:
 
-* Open up fmdb project in Xcode.
-* Open up main.m and modify the FMDBReportABugFunction to reproduce your bug.
+* Open up opdb project in Xcode.
+* Open up main.m and modify the OPDBReportABugFunction to reproduce your bug.
     * Setup your table(s) in the code.
     * Make your query or update(s).
     * Add some assertions which demonstrate the bug.
 
-Then you can bring it up on the FMDB mailing list by showing your nice and compact FMDBReportABugFunction, or you can report the bug via the github FMDB bug reporter.
+Then you can bring it up on the OPDB mailing list by showing your nice and compact OPDBReportABugFunction, or you can report the bug via the github OPDB bug reporter.
 
 **Optional:**
 
@@ -528,14 +528,14 @@ Figure out where the bug is, fix it, and send a patch in or bring that up on the
 
 ## Support
 
-The support channels for FMDB are the mailing list (see above), filing a bug here, or maybe on Stack Overflow.  So that is to say, support is provided by the community and on a voluntary basis.
+The support channels for OPDB are the mailing list (see above), filing a bug here, or maybe on Stack Overflow.  So that is to say, support is provided by the community and on a voluntary basis.
 
-FMDB development is overseen by Gus Mueller of Flying Meat.  If FMDB been helpful to you, consider purchasing an app from FM or telling all your friends about it.
+OPDB development is overseen by Gus Mueller of Flying Meat.  If OPDB been helpful to you, consider purchasing an app from FM or telling all your friends about it.
 
 ## License
 
-The license for FMDB is contained in the "License.txt" file.
+The license for OPDB is contained in the "License.txt" file.
 
-If you happen to come across either Gus Mueller or Rob Ryan in a bar, you might consider purchasing a drink of their choosing if FMDB has been useful to you.
+If you happen to come across either Gus Mueller or Rob Ryan in a bar, you might consider purchasing a drink of their choosing if OPDB has been useful to you.
 
 (The drink is for them of course, shame on you for trying to keep it.)

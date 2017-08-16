@@ -1,6 +1,6 @@
 //
-//  FMDatabasePool.m
-//  fmdb
+//  OPDBDatabasePool.m
+//  opdb
 //
 //  Created by August Mueller on 6/22/11.
 //  Copyright 2011 Flying Meat Inc. All rights reserved.
@@ -22,29 +22,29 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#if FMDB_SQLITE_STANDALONE
+#if OPDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-#import "FMDatabasePool.h"
-#import "FMDatabase.h"
+#import "OPDBDatabasePool.h"
+#import "OPDBDatabase.h"
 
-@interface FMDatabasePool () {
+@interface OPDBDatabasePool () {
     dispatch_queue_t    _lockQueue;
     
     NSMutableArray      *_databaseInPool;
     NSMutableArray      *_databaseOutPool;
 }
 
-- (void)pushDatabaseBackInPool:(FMDatabase*)db;
-- (FMDatabase*)db;
+- (void)pushDatabaseBackInPool:(OPDBDatabase*)db;
+- (OPDBDatabase*)db;
 
 @end
 
 
-@implementation FMDatabasePool
+@implementation OPDBDatabasePool
 @synthesize path=_path;
 @synthesize delegate=_delegate;
 @synthesize maximumNumberOfDatabasesToCreate=_maximumNumberOfDatabasesToCreate;
@@ -52,19 +52,19 @@
 
 
 + (instancetype)databasePoolWithPath:(NSString *)aPath {
-    return FMDBReturnAutoreleased([[self alloc] initWithPath:aPath]);
+    return OPDBReturnAutoreleased([[self alloc] initWithPath:aPath]);
 }
 
 + (instancetype)databasePoolWithURL:(NSURL *)url {
-    return FMDBReturnAutoreleased([[self alloc] initWithPath:url.path]);
+    return OPDBReturnAutoreleased([[self alloc] initWithPath:url.path]);
 }
 
 + (instancetype)databasePoolWithPath:(NSString *)aPath flags:(int)openFlags {
-    return FMDBReturnAutoreleased([[self alloc] initWithPath:aPath flags:openFlags]);
+    return OPDBReturnAutoreleased([[self alloc] initWithPath:aPath flags:openFlags]);
 }
 
 + (instancetype)databasePoolWithURL:(NSURL *)url flags:(int)openFlags {
-    return FMDBReturnAutoreleased([[self alloc] initWithPath:url.path flags:openFlags]);
+    return OPDBReturnAutoreleased([[self alloc] initWithPath:url.path flags:openFlags]);
 }
 
 - (instancetype)initWithURL:(NSURL *)url flags:(int)openFlags vfs:(NSString *)vfsName {
@@ -77,9 +77,9 @@
     
     if (self != nil) {
         _path               = [aPath copy];
-        _lockQueue          = dispatch_queue_create([[NSString stringWithFormat:@"fmdb.%@", self] UTF8String], NULL);
-        _databaseInPool     = FMDBReturnRetained([NSMutableArray array]);
-        _databaseOutPool    = FMDBReturnRetained([NSMutableArray array]);
+        _lockQueue          = dispatch_queue_create([[NSString stringWithFormat:@"opdb.%@", self] UTF8String], NULL);
+        _databaseInPool     = OPDBReturnRetained([NSMutableArray array]);
+        _databaseOutPool    = OPDBReturnRetained([NSMutableArray array]);
         _openFlags          = openFlags;
         _vfsName            = [vfsName copy];
     }
@@ -109,19 +109,19 @@
 }
 
 + (Class)databaseClass {
-    return [FMDatabase class];
+    return [OPDBDatabase class];
 }
 
 - (void)dealloc {
     
     _delegate = 0x00;
-    FMDBRelease(_path);
-    FMDBRelease(_databaseInPool);
-    FMDBRelease(_databaseOutPool);
-    FMDBRelease(_vfsName);
+    OPDBRelease(_path);
+    OPDBRelease(_databaseInPool);
+    OPDBRelease(_databaseOutPool);
+    OPDBRelease(_vfsName);
     
     if (_lockQueue) {
-        FMDBDispatchQueueRelease(_lockQueue);
+        OPDBDispatchQueueRelease(_lockQueue);
         _lockQueue = 0x00;
     }
 #if ! __has_feature(objc_arc)
@@ -134,7 +134,7 @@
     dispatch_sync(_lockQueue, aBlock);
 }
 
-- (void)pushDatabaseBackInPool:(FMDatabase*)db {
+- (void)pushDatabaseBackInPool:(OPDBDatabase*)db {
     
     if (!db) { // db can be null if we set an upper bound on the # of databases to create.
         return;
@@ -143,7 +143,7 @@
     [self executeLocked:^() {
         
         if ([self->_databaseInPool containsObject:db]) {
-            [[NSException exceptionWithName:@"Database already in pool" reason:@"The FMDatabase being put back into the pool is already present in the pool" userInfo:nil] raise];
+            [[NSException exceptionWithName:@"Database already in pool" reason:@"The OPDBDatabase being put back into the pool is already present in the pool" userInfo:nil] raise];
         }
         
         [self->_databaseInPool addObject:db];
@@ -152,9 +152,9 @@
     }];
 }
 
-- (FMDatabase*)db {
+- (OPDBDatabase*)db {
     
-    __block FMDatabase *db;
+    __block OPDBDatabase *db;
     
     
     [self executeLocked:^() {
@@ -251,20 +251,20 @@
     }];
 }
 
-- (void)inDatabase:(void (^)(FMDatabase *db))block {
+- (void)inDatabase:(void (^)(OPDBDatabase *db))block {
     
-    FMDatabase *db = [self db];
+    OPDBDatabase *db = [self db];
     
     block(db);
     
     [self pushDatabaseBackInPool:db];
 }
 
-- (void)beginTransaction:(BOOL)useDeferred withBlock:(void (^)(FMDatabase *db, BOOL *rollback))block {
+- (void)beginTransaction:(BOOL)useDeferred withBlock:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
     
     BOOL shouldRollback = NO;
     
-    FMDatabase *db = [self db];
+    OPDBDatabase *db = [self db];
     
     if (useDeferred) {
         [db beginDeferredTransaction];
@@ -286,15 +286,15 @@
     [self pushDatabaseBackInPool:db];
 }
 
-- (void)inDeferredTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
+- (void)inDeferredTransaction:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:YES withBlock:block];
 }
 
-- (void)inTransaction:(void (^)(FMDatabase *db, BOOL *rollback))block {
+- (void)inTransaction:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:NO withBlock:block];
 }
 
-- (NSError*)inSavePoint:(void (^)(FMDatabase *db, BOOL *rollback))block {
+- (NSError*)inSavePoint:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
 #if SQLITE_VERSION_NUMBER >= 3007000
     static unsigned long savePointIdx = 0;
     
@@ -302,7 +302,7 @@
     
     BOOL shouldRollback = NO;
     
-    FMDatabase *db = [self db];
+    OPDBDatabase *db = [self db];
     
     NSError *err = 0x00;
     
@@ -325,7 +325,7 @@
 #else
     NSString *errorMessage = NSLocalizedString(@"Save point functions require SQLite 3.7", nil);
     if (self.logsErrors) NSLog(@"%@", errorMessage);
-    return [NSError errorWithDomain:@"FMDatabase" code:0 userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+    return [NSError errorWithDomain:@"OPDBDatabase" code:0 userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
 #endif
 }
 

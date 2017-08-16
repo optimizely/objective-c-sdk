@@ -283,7 +283,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 ###############################################################################
-FMDB
+OPDB
 ###############################################################################
 
 Copyright (c) 2008-2014 Flying Meat Inc.

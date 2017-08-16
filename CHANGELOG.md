@@ -33,7 +33,7 @@ March 6, 2017
 
 ### Bug Fixes
 * Initializing the client with the saved datafile `initialize()` or `-(OPTLYClient *)initialize` now pulls from the saved datafile (before, this method was dependent on the builder’s datafile).
-* Fixed an SQLite error that was occurring when multiple FMDatabaseQueues were created. 
+* Fixed an SQLite error that was occurring when multiple OPDBDatabaseQueues were created.
 * Fixed a bug with the events cache for tvOS such that when the app is background, the events are not purged.
 * Experiment status is now checked so that users are not bucketed into a variation if the experiment is paused. 
 * Fixed linking errors when building and running demo apps on iOS and tvOS devices.

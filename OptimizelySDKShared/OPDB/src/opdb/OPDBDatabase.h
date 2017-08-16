@@ -16,38 +16,38 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "FMResultSet.h"
-#import "FMDatabasePool.h"
+#import "OPDBResultSet.h"
+#import "OPDBDatabasePool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #if ! __has_feature(objc_arc)
-    #define FMDBAutorelease(__v) ([__v autorelease]);
-    #define FMDBReturnAutoreleased FMDBAutorelease
+    #define OPDBAutorelease(__v) ([__v autorelease]);
+    #define OPDBReturnAutoreleased OPDBAutorelease
 
-    #define FMDBRetain(__v) ([__v retain]);
-    #define FMDBReturnRetained FMDBRetain
+    #define OPDBRetain(__v) ([__v retain]);
+    #define OPDBReturnRetained OPDBRetain
 
-    #define FMDBRelease(__v) ([__v release]);
+    #define OPDBRelease(__v) ([__v release]);
 
-    #define FMDBDispatchQueueRelease(__v) (dispatch_release(__v));
+    #define OPDBDispatchQueueRelease(__v) (dispatch_release(__v));
 #else
     // -fobjc-arc
-    #define FMDBAutorelease(__v)
-    #define FMDBReturnAutoreleased(__v) (__v)
+    #define OPDBAutorelease(__v)
+    #define OPDBReturnAutoreleased(__v) (__v)
 
-    #define FMDBRetain(__v)
-    #define FMDBReturnRetained(__v) (__v)
+    #define OPDBRetain(__v)
+    #define OPDBReturnRetained(__v) (__v)
 
-    #define FMDBRelease(__v)
+    #define OPDBRelease(__v)
 
 // If OS_OBJECT_USE_OBJC=1, then the dispatch objects will be treated like ObjC objects
 // and will participate in ARC.
 // See the section on "Dispatch Queues and Automatic Reference Counting" in "Grand Central Dispatch (GCD) Reference" for details. 
     #if OS_OBJECT_USE_OBJC
-        #define FMDBDispatchQueueRelease(__v)
+        #define OPDBDispatchQueueRelease(__v)
     #else
-        #define FMDBDispatchQueueRelease(__v) (dispatch_release(__v));
+        #define OPDBDispatchQueueRelease(__v) (dispatch_release(__v));
     #endif
 #endif
 
@@ -56,31 +56,31 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 
 
-typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary);
+typedef int(^OPDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary);
 
 
 /** A SQLite ([http://sqlite.org/](http://sqlite.org/)) Objective-C wrapper.
  
  ### Usage
- The three main classes in FMDB are:
+ The three main classes in OPDB are:
 
- - `FMDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
- - `<FMResultSet>` - Represents the results of executing a query on an `FMDatabase`.
- - `<FMDatabaseQueue>` - If you want to perform queries and updates on multiple threads, you'll want to use this class.
+ - `OPDBDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
+ - `<OPDBResultSet>` - Represents the results of executing a query on an `OPDBDatabase`.
+ - `<OPDBDatabaseQueue>` - If you want to perform queries and updates on multiple threads, you'll want to use this class.
 
  ### See also
  
- - `<FMDatabasePool>` - A pool of `FMDatabase` objects.
- - `<FMStatement>` - A wrapper for `sqlite_stmt`.
+ - `<OPDBDatabasePool>` - A pool of `OPDBDatabase` objects.
+ - `<OPDBStatement>` - A wrapper for `sqlite_stmt`.
  
  ### External links
  
- - [FMDB on GitHub](https://github.com/ccgus/fmdb) including introductory documentation
+ - [OPDB on GitHub](https://github.com/ccgus/opdb) including introductory documentation
  - [SQLite web site](http://sqlite.org/)
- - [FMDB mailing list](http://groups.google.com/group/fmdb)
+ - [OPDB mailing list](http://groups.google.com/group/opdb)
  - [SQLite FAQ](http://www.sqlite.org/faq.html)
  
- @warning Do not instantiate a single `FMDatabase` object and use it across multiple threads. Instead, use `<FMDatabaseQueue>`.
+ @warning Do not instantiate a single `OPDBDatabase` object and use it across multiple threads. Instead, use `<OPDBDatabaseQueue>`.
 
  */
 
@@ -88,7 +88,7 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 #pragma clang diagnostic ignored "-Wobjc-interface-ivars"
 
 
-@interface FMDatabase : NSObject
+@interface OPDBDatabase : NSObject
 
 ///-----------------
 /// @name Properties
@@ -118,111 +118,111 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 /// @name Initialization
 ///---------------------
 
-/** Create a `FMDatabase` object.
+/** Create a `OPDBDatabase` object.
  
- An `FMDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
+ An `OPDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
 
  1. A file system path.  The file does not have to exist on disk.  If it does not exist, it is created for you.
- 2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `FMDatabase` connection is closed.
- 3. `nil`.  An in-memory database is created.  This database will be destroyed with the `FMDatabase` connection is closed.
+ 2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `OPDBDatabase` connection is closed.
+ 3. `nil`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
 
  For example, to create/open a database in your Mac OS X `tmp` folder:
 
-    FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
+    OPDBDatabase *db = [OPDBDatabase databaseWithPath:@"/tmp/tmp.db"];
 
  Or, in iOS, you might open a database in the app's `Documents` directory:
 
     NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *dbPath   = [docsPath stringByAppendingPathComponent:@"test.db"];
-    FMDatabase *db     = [FMDatabase databaseWithPath:dbPath];
+    OPDBDatabase *db     = [OPDBDatabase databaseWithPath:dbPath];
 
  (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: [http://www.sqlite.org/inmemorydb.html](http://www.sqlite.org/inmemorydb.html))
 
  @param inPath Path of database file
 
- @return `FMDatabase` object if successful; `nil` if failure.
+ @return `OPDBDatabase` object if successful; `nil` if failure.
 
  */
 
 + (instancetype)databaseWithPath:(NSString * _Nullable)inPath;
 
-/** Create a `FMDatabase` object.
+/** Create a `OPDBDatabase` object.
  
- An `FMDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
+ An `OPDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
  
  1. A file system URL.  The file does not have to exist on disk.  If it does not exist, it is created for you.
- 2. `nil`.  An in-memory database is created.  This database will be destroyed with the `FMDatabase` connection is closed.
+ 2. `nil`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
  
  For example, to create/open a database in your Mac OS X `tmp` folder:
  
-    FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
+    OPDBDatabase *db = [OPDBDatabase databaseWithPath:@"/tmp/tmp.db"];
  
  Or, in iOS, you might open a database in the app's `Documents` directory:
  
     NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *dbPath   = [docsPath stringByAppendingPathComponent:@"test.db"];
-    FMDatabase *db     = [FMDatabase databaseWithPath:dbPath];
+    OPDBDatabase *db     = [OPDBDatabase databaseWithPath:dbPath];
  
  (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: [http://www.sqlite.org/inmemorydb.html](http://www.sqlite.org/inmemorydb.html))
  
  @param url The local file URL (not remote URL) of database file
  
- @return `FMDatabase` object if successful; `nil` if failure.
+ @return `OPDBDatabase` object if successful; `nil` if failure.
  
  */
 
 + (instancetype)databaseWithURL:(NSURL * _Nullable)url;
 
-/** Initialize a `FMDatabase` object.
+/** Initialize a `OPDBDatabase` object.
  
- An `FMDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
+ An `OPDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
 
  1. A file system path.  The file does not have to exist on disk.  If it does not exist, it is created for you.
- 2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `FMDatabase` connection is closed.
- 3. `nil`.  An in-memory database is created.  This database will be destroyed with the `FMDatabase` connection is closed.
+ 2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `OPDBDatabase` connection is closed.
+ 3. `nil`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
 
  For example, to create/open a database in your Mac OS X `tmp` folder:
 
-    FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
+    OPDBDatabase *db = [OPDBDatabase databaseWithPath:@"/tmp/tmp.db"];
 
  Or, in iOS, you might open a database in the app's `Documents` directory:
 
     NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *dbPath   = [docsPath stringByAppendingPathComponent:@"test.db"];
-    FMDatabase *db     = [FMDatabase databaseWithPath:dbPath];
+    OPDBDatabase *db     = [OPDBDatabase databaseWithPath:dbPath];
 
  (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: [http://www.sqlite.org/inmemorydb.html](http://www.sqlite.org/inmemorydb.html))
 
  @param path Path of database file.
  
- @return `FMDatabase` object if successful; `nil` if failure.
+ @return `OPDBDatabase` object if successful; `nil` if failure.
 
  */
 
 - (instancetype)initWithPath:(NSString * _Nullable)path;
 
-/** Initialize a `FMDatabase` object.
+/** Initialize a `OPDBDatabase` object.
  
- An `FMDatabase` is created with a local file URL to a SQLite database file.  This path can be one of these three:
+ An `OPDBDatabase` is created with a local file URL to a SQLite database file.  This path can be one of these three:
  
  1. A file system URL.  The file does not have to exist on disk.  If it does not exist, it is created for you.
- 2. `nil`.  An in-memory database is created.  This database will be destroyed with the `FMDatabase` connection is closed.
+ 2. `nil`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
  
  For example, to create/open a database in your Mac OS X `tmp` folder:
  
- FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
+ OPDBDatabase *db = [OPDBDatabase databaseWithPath:@"/tmp/tmp.db"];
  
  Or, in iOS, you might open a database in the app's `Documents` directory:
  
  NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
  NSString *dbPath   = [docsPath stringByAppendingPathComponent:@"test.db"];
- FMDatabase *db     = [FMDatabase databaseWithPath:dbPath];
+ OPDBDatabase *db     = [OPDBDatabase databaseWithPath:dbPath];
  
  (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: [http://www.sqlite.org/inmemorydb.html](http://www.sqlite.org/inmemorydb.html))
  
  @param url The file `NSURL` of database file.
  
- @return `FMDatabase` object if successful; `nil` if failure.
+ @return `OPDBDatabase` object if successful; `nil` if failure.
  
  */
 
@@ -528,7 +528,7 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
  */
 
-- (BOOL)executeStatements:(NSString *)sql withResultBlock:(__attribute__((noescape)) FMDBExecuteStatementsCallbackBlock _Nullable)block;
+- (BOOL)executeStatements:(NSString *)sql withResultBlock:(__attribute__((noescape)) OPDBExecuteStatementsCallbackBlock _Nullable)block;
 
 /** Last insert rowid
  
@@ -563,9 +563,9 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
 /** Execute select statement
 
- Executing queries returns an `<FMResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
- In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[FMResultSet next]>`) from one record to the other.
+ In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPDBResultSet next]>`) from one record to the other.
  
  This method employs [`sqlite3_bind`](http://sqlite.org/c3ref/bind_blob.html) for any optional value parameters. This  properly escapes any characters that need escape sequences (e.g. quotation marks), which eliminates simple SQL errors as well as protects against SQL injection attacks. This method natively handles `NSString`, `NSNumber`, `NSNull`, `NSDate`, and `NSData` objects. All other object types will be interpreted as text values using the object's `description` method.
 
@@ -573,32 +573,32 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
  @param ... Optional parameters to bind to `?` placeholders in the SQL statement. These should be Objective-C objects (e.g. `NSString`, `NSNumber`, etc.), not fundamental C data types (e.g. `int`, `char *`, etc.).
 
- @return A `<FMResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
+ @return A `<OPDBResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
  
- @see FMResultSet
- @see [`FMResultSet next`](<[FMResultSet next]>)
+ @see OPDBResultSet
+ @see [`OPDBResultSet next`](<[OPDBResultSet next]>)
  @see [`sqlite3_bind`](http://sqlite.org/c3ref/bind_blob.html)
  
  @note You cannot use this method from Swift due to incompatibilities between Swift and Objective-C variadic implementations. Consider using `<executeQuery:values:>` instead.
  */
 
-- (FMResultSet * _Nullable)executeQuery:(NSString*)sql, ...;
+- (OPDBResultSet * _Nullable)executeQuery:(NSString*)sql, ...;
 
 /** Execute select statement
 
- Executing queries returns an `<FMResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
- In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[FMResultSet next]>`) from one record to the other.
+ In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPDBResultSet next]>`) from one record to the other.
  
  @param format The SQL to be performed, with `printf`-style escape sequences.
 
  @param ... Optional parameters to bind to use in conjunction with the `printf`-style escape sequences in the SQL statement.
 
- @return A `<FMResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
+ @return A `<OPDBResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
 
  @see executeQuery:
- @see FMResultSet
- @see [`FMResultSet next`](<[FMResultSet next]>)
+ @see OPDBResultSet
+ @see [`OPDBResultSet next`](<[OPDBResultSet next]>)
 
  @note This method does not technically perform a traditional printf-style replacement. What this method actually does is replace the printf-style percent sequences with a SQLite `?` placeholder, and then bind values to that placeholder. Thus the following command
  
@@ -612,38 +612,38 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
  
  */
 
-- (FMResultSet * _Nullable)executeQueryWithFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
+- (OPDBResultSet * _Nullable)executeQueryWithFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 
 /** Execute select statement
 
- Executing queries returns an `<FMResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
- In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[FMResultSet next]>`) from one record to the other.
+ In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPDBResultSet next]>`) from one record to the other.
  
  @param sql The SELECT statement to be performed, with optional `?` placeholders.
 
  @param arguments A `NSArray` of objects to be used when binding values to the `?` placeholders in the SQL statement.
 
- @return A `<FMResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
+ @return A `<OPDBResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
 
  @see -executeQuery:values:error:
- @see FMResultSet
- @see [`FMResultSet next`](<[FMResultSet next]>)
+ @see OPDBResultSet
+ @see [`OPDBResultSet next`](<[OPDBResultSet next]>)
  */
 
-- (FMResultSet * _Nullable)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray *)arguments;
+- (OPDBResultSet * _Nullable)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray *)arguments;
 
 /** Execute select statement
  
- Executing queries returns an `<FMResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
- In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[FMResultSet next]>`) from one record to the other.
+ In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPDBResultSet next]>`) from one record to the other.
  
  This is similar to `<executeQuery:withArgumentsInArray:>`, except that this also accepts a pointer to a `NSError` pointer, so that errors can be returned.
  
  In Swift, this throws errors, as if it were defined as follows:
  
- `func executeQuery(sql: String, values: [Any]?) throws  -> FMResultSet!`
+ `func executeQuery(sql: String, values: [Any]?) throws  -> OPDBResultSet!`
 
  @param sql The SELECT statement to be performed, with optional `?` placeholders.
  
@@ -651,38 +651,38 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
  @param error A `NSError` object to receive any error object (if any).
 
- @return A `<FMResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
+ @return A `<OPDBResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
  
- @see FMResultSet
- @see [`FMResultSet next`](<[FMResultSet next]>)
+ @see OPDBResultSet
+ @see [`OPDBResultSet next`](<[OPDBResultSet next]>)
  
  @note When called from Swift, only use the first two parameters, `sql` and `values`. This but throws the error.
 
  */
 
-- (FMResultSet * _Nullable)executeQuery:(NSString *)sql values:(NSArray * _Nullable)values error:(NSError * _Nullable __autoreleasing *)error;
+- (OPDBResultSet * _Nullable)executeQuery:(NSString *)sql values:(NSArray * _Nullable)values error:(NSError * _Nullable __autoreleasing *)error;
 
 /** Execute select statement
 
- Executing queries returns an `<FMResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
- In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[FMResultSet next]>`) from one record to the other.
+ In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPDBResultSet next]>`) from one record to the other.
  
  @param sql The SELECT statement to be performed, with optional `?` placeholders.
 
  @param arguments A `NSDictionary` of objects keyed by column names that will be used when binding values to the `?` placeholders in the SQL statement.
 
- @return A `<FMResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
+ @return A `<OPDBResultSet>` for the result set upon success; `nil` upon failure. If failed, you can call `<lastError>`, `<lastErrorCode>`, or `<lastErrorMessage>` for diagnostic information regarding the failure.
 
- @see FMResultSet
- @see [`FMResultSet next`](<[FMResultSet next]>)
+ @see OPDBResultSet
+ @see [`OPDBResultSet next`](<[OPDBResultSet next]>)
  */
 
-- (FMResultSet * _Nullable)executeQuery:(NSString *)sql withParameterDictionary:(NSDictionary * _Nullable)arguments;
+- (OPDBResultSet * _Nullable)executeQuery:(NSString *)sql withParameterDictionary:(NSDictionary * _Nullable)arguments;
 
 
 // Documentation forthcoming.
-- (FMResultSet * _Nullable)executeQuery:(NSString *)sql withVAList:(va_list)args;
+- (OPDBResultSet * _Nullable)executeQuery:(NSString *)sql withVAList:(va_list)args;
 
 ///-------------------
 /// @name Transactions
@@ -1027,9 +1027,9 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 + (NSString*)sqliteLibVersion;
 
 
-+ (NSString*)FMDBUserVersion;
++ (NSString*)OPDBUserVersion;
 
-+ (SInt32)FMDBVersion;
++ (SInt32)OPDBVersion;
 
 
 ///------------------------
@@ -1055,7 +1055,7 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
         [self.db resultString:result context:context];
     }];
 
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM employees WHERE RemoveDiacritics(first_name) LIKE 'jose'"];
+    OPDBResultSet *rs = [db executeQuery:@"SELECT * FROM employees WHERE RemoveDiacritics(first_name) LIKE 'jose'"];
     NSAssert(rs, @"Error %@", [db lastErrorMessage]);
  
  @param name Name of function.
@@ -1238,7 +1238,7 @@ typedef NS_ENUM(int, SqliteValueType) {
  
  Example:
 
-    myDB.dateFormat = [FMDatabase storeableDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    myDB.dateFormat = [OPDBDatabase storeableDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
  @param format A valid NSDateFormatter format string.
  
@@ -1250,7 +1250,7 @@ typedef NS_ENUM(int, SqliteValueType) {
  @see stringFromDate:
  @see storeableDateFormat:
 
- @warning Note that `NSDateFormatter` is not thread-safe, so the formatter generated by this method should be assigned to only one FMDB instance and should not be used for other purposes.
+ @warning Note that `NSDateFormatter` is not thread-safe, so the formatter generated by this method should be assigned to only one OPDB instance and should not be used for other purposes.
 
  */
 
@@ -1271,7 +1271,7 @@ typedef NS_ENUM(int, SqliteValueType) {
 
 /** Set to a date formatter to use string dates with sqlite instead of the default UNIX timestamps.
  
- @param format Set to nil to use UNIX timestamps. Defaults to nil. Should be set using a formatter generated using FMDatabase::storeableDateFormat.
+ @param format Set to nil to use UNIX timestamps. Defaults to nil. Should be set using a formatter generated using OPDBDatabase::storeableDateFormat.
  
  @see hasDateFormatter
  @see setDateFormat:
@@ -1279,7 +1279,7 @@ typedef NS_ENUM(int, SqliteValueType) {
  @see stringFromDate:
  @see storeableDateFormat:
  
- @warning Note there is no direct getter for the `NSDateFormatter`, and you should not use the formatter you pass to FMDB for other purposes, as `NSDateFormatter` is not thread-safe.
+ @warning Note there is no direct getter for the `NSDateFormatter`, and you should not use the formatter you pass to OPDB for other purposes, as `NSDateFormatter` is not thread-safe.
  */
 
 - (void)setDateFormat:(NSDateFormatter *)format;
@@ -1319,16 +1319,16 @@ typedef NS_ENUM(int, SqliteValueType) {
 
 /** Objective-C wrapper for `sqlite3_stmt`
  
- This is a wrapper for a SQLite `sqlite3_stmt`. Generally when using FMDB you will not need to interact directly with `FMStatement`, but rather with `<FMDatabase>` and `<FMResultSet>` only.
+ This is a wrapper for a SQLite `sqlite3_stmt`. Generally when using OPDB you will not need to interact directly with `OPDBStatement`, but rather with `<OPDBDatabase>` and `<OPDBResultSet>` only.
  
  ### See also
  
- - `<FMDatabase>`
- - `<FMResultSet>`
+ - `<OPDBDatabase>`
+ - `<OPDBResultSet>`
  - [`sqlite3_stmt`](http://www.sqlite.org/c3ref/stmt.html)
  */
 
-@interface FMStatement : NSObject {
+@interface OPDBStatement : NSObject {
     void *_statement;
     NSString *_query;
     long _useCount;

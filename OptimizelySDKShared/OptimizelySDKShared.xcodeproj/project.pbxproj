@@ -38,25 +38,25 @@
 		3E0027591ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027581ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework */; };
 		3E00275D1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E00275C1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework */; };
 		3E2BF4211F422C69007DB013 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
-		3E858C421F4226E800D53856 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C371F4226E800D53856 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C431F4226E800D53856 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C381F4226E800D53856 /* FMDatabase.m */; };
-		3E858C441F4226E800D53856 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C391F4226E800D53856 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C451F4226E800D53856 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3A1F4226E800D53856 /* FMDatabaseAdditions.m */; };
-		3E858C461F4226E800D53856 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3B1F4226E800D53856 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C471F4226E800D53856 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3C1F4226E800D53856 /* FMDatabasePool.m */; };
-		3E858C481F4226E800D53856 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3D1F4226E800D53856 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C491F4226E800D53856 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3E1F4226E800D53856 /* FMDatabaseQueue.m */; };
-		3E858C4A1F4226E800D53856 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C4B1F4226E800D53856 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C401F4226E800D53856 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C4C1F4226E800D53856 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* FMResultSet.m */; };
-		3ECBCC191F43983400160937 /* FMDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* FMDBTests.m */; };
+		3E858C421F4226E800D53856 /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C371F4226E800D53856 /* OPDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C431F4226E800D53856 /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C381F4226E800D53856 /* OPDBDatabase.m */; };
+		3E858C441F4226E800D53856 /* OPDBDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C451F4226E800D53856 /* OPDBDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */; };
+		3E858C461F4226E800D53856 /* OPDBDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C471F4226E800D53856 /* OPDBDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */; };
+		3E858C481F4226E800D53856 /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C491F4226E800D53856 /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */; };
+		3E858C4A1F4226E800D53856 /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* OPDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C4B1F4226E800D53856 /* OPDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C401F4226E800D53856 /* OPDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C4C1F4226E800D53856 /* OPDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* OPDBResultSet.m */; };
+		3ECBCC191F43983400160937 /* OPDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* OPDBTests.m */; };
 		3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
-		3ECBCC2F1F439AD000160937 /* FMDatabaseAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */; };
-		3ECBCC321F439AD000160937 /* FMDatabasePoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */; };
-		3ECBCC331F439AD000160937 /* FMDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */; };
-		3ECBCC341F439AD000160937 /* FMDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */; };
-		3ECBCC351F439AD000160937 /* FMDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */; };
-		3ECBCC361F439AD000160937 /* FMResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */; };
+		3ECBCC2F1F439AD000160937 /* OPDBDatabaseAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */; };
+		3ECBCC321F439AD000160937 /* OPDBDatabasePoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */; };
+		3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */; };
+		3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */; };
+		3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */; };
+		3ECBCC361F439AD000160937 /* OPDBResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */; };
 		3ECBCC3A1F439B6D00160937 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ECBCC381F439B6D00160937 /* InfoPlist.strings */; };
 		3ECBCC4A1F43A39200160937 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
@@ -198,30 +198,30 @@
 		2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerTest.m; sourceTree = "<group>"; };
 		3E0027581ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E00275C1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "../Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E858C371F4226E800D53856 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = FMDB/src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
-		3E858C381F4226E800D53856 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = FMDB/src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
-		3E858C391F4226E800D53856 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = FMDB/src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		3E858C3A1F4226E800D53856 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = FMDB/src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		3E858C3B1F4226E800D53856 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = FMDB/src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
-		3E858C3C1F4226E800D53856 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = FMDB/src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
-		3E858C3D1F4226E800D53856 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = FMDB/src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		3E858C3E1F4226E800D53856 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = FMDB/src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
-		3E858C3F1F4226E800D53856 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = FMDB/src/fmdb/FMDB.h; sourceTree = "<group>"; };
-		3E858C401F4226E800D53856 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = FMDB/src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
-		3E858C411F4226E800D53856 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = FMDB/src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
-		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = FMDB/LICENSE.txt; sourceTree = "<group>"; };
-		3E858C591F42272F00D53856 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = FMDB/README.markdown; sourceTree = "<group>"; };
-		3ECBCC161F43983400160937 /* FMDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FMDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3ECBCC181F43983400160937 /* FMDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBTests.m; sourceTree = "<group>"; };
-		3ECBCC1A1F43983400160937 /* FMDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FMDBTests-Info.plist"; sourceTree = "<group>"; };
-		3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditionsTests.m; sourceTree = "<group>"; };
-		3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePoolTests.m; sourceTree = "<group>"; };
-		3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueueTests.m; sourceTree = "<group>"; };
-		3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseTests.m; sourceTree = "<group>"; };
-		3ECBCC2B1F439AD000160937 /* FMDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBTempDBTests.h; sourceTree = "<group>"; };
-		3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBTempDBTests.m; sourceTree = "<group>"; };
-		3ECBCC2D1F439AD000160937 /* FMDBTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDBTests-Prefix.pch"; sourceTree = "<group>"; };
-		3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSetTests.m; sourceTree = "<group>"; };
+		3E858C371F4226E800D53856 /* OPDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabase.h; path = OPDB/src/opdb/OPDBDatabase.h; sourceTree = "<group>"; };
+		3E858C381F4226E800D53856 /* OPDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabase.m; path = OPDB/src/opdb/OPDBDatabase.m; sourceTree = "<group>"; };
+		3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseAdditions.h; path = OPDB/src/opdb/OPDBDatabaseAdditions.h; sourceTree = "<group>"; };
+		3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseAdditions.m; path = OPDB/src/opdb/OPDBDatabaseAdditions.m; sourceTree = "<group>"; };
+		3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabasePool.h; path = OPDB/src/opdb/OPDBDatabasePool.h; sourceTree = "<group>"; };
+		3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabasePool.m; path = OPDB/src/opdb/OPDBDatabasePool.m; sourceTree = "<group>"; };
+		3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseQueue.h; path = OPDB/src/opdb/OPDBDatabaseQueue.h; sourceTree = "<group>"; };
+		3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseQueue.m; path = OPDB/src/opdb/OPDBDatabaseQueue.m; sourceTree = "<group>"; };
+		3E858C3F1F4226E800D53856 /* OPDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDB.h; path = OPDB/src/opdb/OPDB.h; sourceTree = "<group>"; };
+		3E858C401F4226E800D53856 /* OPDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBResultSet.h; path = OPDB/src/opdb/OPDBResultSet.h; sourceTree = "<group>"; };
+		3E858C411F4226E800D53856 /* OPDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBResultSet.m; path = OPDB/src/opdb/OPDBResultSet.m; sourceTree = "<group>"; };
+		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = OPDB/LICENSE.txt; sourceTree = "<group>"; };
+		3E858C591F42272F00D53856 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = OPDB/README.markdown; sourceTree = "<group>"; };
+		3ECBCC161F43983400160937 /* OPDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ECBCC181F43983400160937 /* OPDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPDBTests.m; sourceTree = "<group>"; };
+		3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPDBTests-Info.plist"; sourceTree = "<group>"; };
+		3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseAdditionsTests.m; sourceTree = "<group>"; };
+		3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabasePoolTests.m; sourceTree = "<group>"; };
+		3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseQueueTests.m; sourceTree = "<group>"; };
+		3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseTests.m; sourceTree = "<group>"; };
+		3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPDBTempDBTests.h; sourceTree = "<group>"; };
+		3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBTempDBTests.m; sourceTree = "<group>"; };
+		3ECBCC2D1F439AD000160937 /* OPDBTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OPDBTests-Prefix.pch"; sourceTree = "<group>"; };
+		3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBResultSetTests.m; sourceTree = "<group>"; };
 		3ECBCC391F439B6D00160937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
@@ -360,63 +360,63 @@
 			name = "Datafile Manger";
 			sourceTree = "<group>";
 		};
-		3E858C341F4226BA00D53856 /* FMDB */ = {
+		3E858C341F4226BA00D53856 /* OPDB */ = {
 			isa = PBXGroup;
 			children = (
 				3E858C581F42272F00D53856 /* LICENSE.txt */,
 				3E858C591F42272F00D53856 /* README.markdown */,
 				3E858C351F4226C700D53856 /* src */,
 			);
-			name = FMDB;
+			name = OPDB;
 			sourceTree = "<group>";
 		};
 		3E858C351F4226C700D53856 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C361F4226D100D53856 /* fmdb */,
+				3E858C361F4226D100D53856 /* opdb */,
 			);
 			name = src;
 			sourceTree = "<group>";
 		};
-		3E858C361F4226D100D53856 /* fmdb */ = {
+		3E858C361F4226D100D53856 /* opdb */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C371F4226E800D53856 /* FMDatabase.h */,
-				3E858C381F4226E800D53856 /* FMDatabase.m */,
-				3E858C391F4226E800D53856 /* FMDatabaseAdditions.h */,
-				3E858C3A1F4226E800D53856 /* FMDatabaseAdditions.m */,
-				3E858C3B1F4226E800D53856 /* FMDatabasePool.h */,
-				3E858C3C1F4226E800D53856 /* FMDatabasePool.m */,
-				3E858C3D1F4226E800D53856 /* FMDatabaseQueue.h */,
-				3E858C3E1F4226E800D53856 /* FMDatabaseQueue.m */,
-				3E858C3F1F4226E800D53856 /* FMDB.h */,
-				3E858C401F4226E800D53856 /* FMResultSet.h */,
-				3E858C411F4226E800D53856 /* FMResultSet.m */,
+				3E858C371F4226E800D53856 /* OPDBDatabase.h */,
+				3E858C381F4226E800D53856 /* OPDBDatabase.m */,
+				3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */,
+				3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */,
+				3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */,
+				3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */,
+				3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */,
+				3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */,
+				3E858C3F1F4226E800D53856 /* OPDB.h */,
+				3E858C401F4226E800D53856 /* OPDBResultSet.h */,
+				3E858C411F4226E800D53856 /* OPDBResultSet.m */,
 			);
-			name = fmdb;
+			name = opdb;
 			sourceTree = "<group>";
 		};
-		3ECBCC171F43983400160937 /* FMDBTests */ = {
+		3ECBCC171F43983400160937 /* OPDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				3ECBCC251F439AD000160937 /* FMDatabaseAdditionsTests.m */,
-				3ECBCC281F439AD000160937 /* FMDatabasePoolTests.m */,
-				3ECBCC291F439AD000160937 /* FMDatabaseQueueTests.m */,
-				3ECBCC2A1F439AD000160937 /* FMDatabaseTests.m */,
-				3ECBCC2B1F439AD000160937 /* FMDBTempDBTests.h */,
-				3ECBCC2C1F439AD000160937 /* FMDBTempDBTests.m */,
-				3ECBCC181F43983400160937 /* FMDBTests.m */,
-				3ECBCC2E1F439AD000160937 /* FMResultSetTests.m */,
+				3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */,
+				3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */,
+				3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */,
+				3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */,
+				3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */,
+				3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */,
+				3ECBCC181F43983400160937 /* OPDBTests.m */,
+				3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */,
 				3ECBCC371F439B1D00160937 /* Supporting Files */,
 			);
-			path = FMDBTests;
+			path = OPDBTests;
 			sourceTree = "<group>";
 		};
 		3ECBCC371F439B1D00160937 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3ECBCC1A1F43983400160937 /* FMDBTests-Info.plist */,
-				3ECBCC2D1F439AD000160937 /* FMDBTests-Prefix.pch */,
+				3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */,
+				3ECBCC2D1F439AD000160937 /* OPDBTests-Prefix.pch */,
 				3ECBCC381F439B6D00160937 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -448,8 +448,8 @@
 		EA3C681F1DC1E68E00C578CA = {
 			isa = PBXGroup;
 			children = (
-				3E858C341F4226BA00D53856 /* FMDB */,
-				3ECBCC171F43983400160937 /* FMDBTests */,
+				3E858C341F4226BA00D53856 /* OPDB */,
+				3ECBCC171F43983400160937 /* OPDBTests */,
 				EA3C682B1DC1E68E00C578CA /* OptimizelySDKShared */,
 				EA3C68371DC1E68E00C578CA /* OptimizelySDKSharedTests */,
 				EA3C682A1DC1E68E00C578CA /* Products */,
@@ -465,7 +465,7 @@
 				EA52470B1DC7192200AF6685 /* OptimizelySDKSharediOSTests.xctest */,
 				EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */,
 				EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
-				3ECBCC161F43983400160937 /* FMDBTests.xctest */,
+				3ECBCC161F43983400160937 /* OPDBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,12 +564,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C441F4226E800D53856 /* FMDatabaseAdditions.h in Headers */,
-				3E858C481F4226E800D53856 /* FMDatabaseQueue.h in Headers */,
-				3E858C421F4226E800D53856 /* FMDatabase.h in Headers */,
-				3E858C4B1F4226E800D53856 /* FMResultSet.h in Headers */,
-				3E858C4A1F4226E800D53856 /* FMDB.h in Headers */,
-				3E858C461F4226E800D53856 /* FMDatabasePool.h in Headers */,
+				3E858C441F4226E800D53856 /* OPDBDatabaseAdditions.h in Headers */,
+				3E858C481F4226E800D53856 /* OPDBDatabaseQueue.h in Headers */,
+				3E858C421F4226E800D53856 /* OPDBDatabase.h in Headers */,
+				3E858C4B1F4226E800D53856 /* OPDBResultSet.h in Headers */,
+				3E858C4A1F4226E800D53856 /* OPDB.h in Headers */,
+				3E858C461F4226E800D53856 /* OPDBDatabasePool.h in Headers */,
 				2D08FB9F1DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
@@ -605,9 +605,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3ECBCC151F43983400160937 /* FMDBTests */ = {
+		3ECBCC151F43983400160937 /* OPDBTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "FMDBTests" */;
+			buildConfigurationList = 3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPDBTests" */;
 			buildPhases = (
 				3ECBCC121F43983400160937 /* Sources */,
 				3ECBCC131F43983400160937 /* Frameworks */,
@@ -618,9 +618,9 @@
 			dependencies = (
 				3ECBCC1D1F43983400160937 /* PBXTargetDependency */,
 			);
-			name = FMDBTests;
-			productName = FMDBTests;
-			productReference = 3ECBCC161F43983400160937 /* FMDBTests.xctest */;
+			name = OPDBTests;
+			productName = OPDBTests;
+			productReference = 3ECBCC161F43983400160937 /* OPDBTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */ = {
@@ -756,7 +756,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				3ECBCC151F43983400160937 /* FMDBTests */,
+				3ECBCC151F43983400160937 /* OPDBTests */,
 				EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */,
 				EA52470A1DC7192200AF6685 /* OptimizelySDKSharediOSTests */,
 				EA5247221DC7193B00AF6685 /* OptimizelySDKSharedTVOS */,
@@ -1007,13 +1007,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ECBCC361F439AD000160937 /* FMResultSetTests.m in Sources */,
-				3ECBCC191F43983400160937 /* FMDBTests.m in Sources */,
-				3ECBCC341F439AD000160937 /* FMDatabaseTests.m in Sources */,
-				3ECBCC2F1F439AD000160937 /* FMDatabaseAdditionsTests.m in Sources */,
-				3ECBCC351F439AD000160937 /* FMDBTempDBTests.m in Sources */,
-				3ECBCC321F439AD000160937 /* FMDatabasePoolTests.m in Sources */,
-				3ECBCC331F439AD000160937 /* FMDatabaseQueueTests.m in Sources */,
+				3ECBCC361F439AD000160937 /* OPDBResultSetTests.m in Sources */,
+				3ECBCC191F43983400160937 /* OPDBTests.m in Sources */,
+				3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */,
+				3ECBCC2F1F439AD000160937 /* OPDBDatabaseAdditionsTests.m in Sources */,
+				3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */,
+				3ECBCC321F439AD000160937 /* OPDBDatabasePoolTests.m in Sources */,
+				3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,17 +1024,17 @@
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
 				EAC5F34D1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
-				3E858C431F4226E800D53856 /* FMDatabase.m in Sources */,
+				3E858C431F4226E800D53856 /* OPDBDatabase.m in Sources */,
 				EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
-				3E858C491F4226E800D53856 /* FMDatabaseQueue.m in Sources */,
-				3E858C4C1F4226E800D53856 /* FMResultSet.m in Sources */,
+				3E858C491F4226E800D53856 /* OPDBDatabaseQueue.m in Sources */,
+				3E858C4C1F4226E800D53856 /* OPDBResultSet.m in Sources */,
 				2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				EA92F8271E27FB6000A859C7 /* OPTLYManagerBuilder.m in Sources */,
 				EA92F86E1E28243E00A859C7 /* OPTLYManagerBase.m in Sources */,
-				3E858C451F4226E800D53856 /* FMDatabaseAdditions.m in Sources */,
+				3E858C451F4226E800D53856 /* OPDBDatabaseAdditions.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				EA064BD41DD4030700DF7537 /* OPTLYDataStore.m in Sources */,
-				3E858C471F4226E800D53856 /* FMDatabasePool.m in Sources */,
+				3E858C471F4226E800D53856 /* OPDBDatabasePool.m in Sources */,
 				EA92F8661E281DE200A859C7 /* OPTLYManagerBasic.m in Sources */,
 				EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */,
 			);
@@ -1132,15 +1132,15 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "OPDBTests/OPDBTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
+				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1151,11 +1151,11 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
-				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
+				GCC_PREFIX_HEADER = "OPDBTests/OPDBTests-Prefix.pch";
+				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = RC;
@@ -1166,11 +1166,11 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
-				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
+				GCC_PREFIX_HEADER = "OPDBTests/OPDBTests-Prefix.pch";
+				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
@@ -1181,11 +1181,11 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "FMDBTests/FMDBTests-Prefix.pch";
-				INFOPLIST_FILE = "FMDBTests/FMDBTests-Info.plist";
+				GCC_PREFIX_HEADER = "OPDBTests/OPDBTests-Prefix.pch";
+				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.FMDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1783,7 +1783,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "FMDBTests" */ = {
+		3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPDBTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3ECBCC1E1F43983400160937 /* Debug */,

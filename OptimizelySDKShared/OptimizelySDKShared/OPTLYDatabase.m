@@ -16,10 +16,10 @@
 
 #import <UIKit/UIKit.h>
 #ifdef UNIVERSAL
-    #import "FMDB.h"
+    #import "OPDB.h"
     #import "OptimizelySDKCore.h"
 #else
-    #import <OptimizelySDKShared/FMDB.h>
+    #import <OptimizelySDKShared/OPDB.h>
     #import <OptimizelySDKCore/OptimizelySDKCore.h>
 #endif
 #import "OPTLYDatabase.h"
@@ -45,7 +45,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 @interface OPTLYDatabase()
 @property (nonatomic, strong) NSString *databaseFileDirectory;
 @property (nonatomic, strong) NSString *databaseFilePath;
-@property (nonatomic, strong) FMDatabaseQueue *fmDatabaseQueue;
+@property (nonatomic, strong) OPDBDatabaseQueue *fmDatabaseQueue;
 @property (nonatomic, strong) NSString *baseDir;
 @end
 
@@ -68,7 +68,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         
         // set the database queue
         _databaseFilePath =  [_baseDir stringByAppendingPathComponent:kDatabaseFileName];
-        _fmDatabaseQueue =  [FMDatabaseQueue databaseQueueWithPath:_databaseFilePath];
+        _fmDatabaseQueue =  [OPDBDatabaseQueue databaseQueueWithPath:_databaseFilePath];
     }
     return self;
 }
@@ -84,7 +84,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
               error:(NSError **)error
 {
     __block BOOL ok = YES;
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db) {
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db) {
         NSString *query = [NSString stringWithFormat:kCreateTableQuery, tableName];
         if (![db executeUpdate:query]) {
             ok = NO;
@@ -117,7 +117,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
         return ok;
     }
     
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db){
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         
@@ -148,7 +148,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
                  error:(NSError **)error
 {
     __block BOOL ok = YES;
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db){
         NSString *commaSeperatedIds = [NSString stringWithFormat:@"(%@)", [entityIds componentsJoinedByString:@","]];
         NSString *query = [NSString stringWithFormat:kDeleteEntityIDQuery, tableName, commaSeperatedIds];
         if (![db executeUpdate:query]) {
@@ -170,7 +170,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
                        error:(NSError * _Nullable * _Nullable)error
 {
     __block BOOL ok = YES;
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db){
         NSString *query = [NSString stringWithFormat:kDeleteEntityQuery, tableName, json];
         if (![db executeUpdate:query]) {
             ok = NO;
@@ -199,12 +199,12 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 {
     NSMutableArray *results = [NSMutableArray new];
     
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db){
         NSMutableString *query = [NSMutableString stringWithFormat:kRetrieveEntityQuery, tableName];
         if (numberOfEntries) {
             [query appendFormat:kRetrieveEntityQueryLimit, (long)numberOfEntries];
         }
-        FMResultSet *resultSet = [db executeQuery:query];
+        OPDBResultSet *resultSet = [db executeQuery:query];
         if (!resultSet) {
             if (error) {
                 *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -233,9 +233,9 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 {
     __block NSInteger rows = 0;
     
-    [self.fmDatabaseQueue inDatabase:^(FMDatabase *db){
+    [self.fmDatabaseQueue inDatabase:^(OPDBDatabase *db){
         NSString *query = [NSString stringWithFormat:kEntitiesCountQuery, tableName];
-        FMResultSet *resultSet = [db executeQuery:query];
+        OPDBResultSet *resultSet = [db executeQuery:query];
         if (!resultSet) {
             if (error) {
                 *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

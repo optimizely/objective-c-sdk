@@ -1,6 +1,6 @@
 //
-//  FMDatabasePoolTests.m
-//  fmdb
+//  OPDBDatabasePoolTests.m
+//  opdb
 //
 //  Created by Graham Dennis on 24/11/2013.
 //
@@ -24,21 +24,21 @@
 
 #import <XCTest/XCTest.h>
 
-#if FMDB_SQLITE_STANDALONE
+#if OPDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-@interface FMDatabasePoolTests : FMDBTempDBTests
+@interface OPDBDatabasePoolTests : OPDBTempDBTests
 
-@property FMDatabasePool *pool;
+@property OPDBDatabasePool *pool;
 
 @end
 
-@implementation FMDatabasePoolTests
+@implementation OPDBDatabasePoolTests
 
-+ (void)populateDatabase:(FMDatabase *)db
++ (void)populateDatabase:(OPDBDatabase *)db
 {
     [db executeUpdate:@"create table easy (a text)"];
     [db executeUpdate:@"create table easy2 (a text)"];
@@ -57,7 +57,7 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    [self setPool:[FMDatabasePool databasePoolWithPath:self.databasePath]];
+    [self setPool:[OPDBDatabasePool databasePoolWithPath:self.databasePath]];
     
     [[self pool] setDelegate:self];
     
@@ -69,7 +69,7 @@
 }
 
 - (void)testURLOpenNoURL {
-    FMDatabasePool *pool = [[FMDatabasePool alloc] initWithURL:nil];
+    OPDBDatabasePool *pool = [[OPDBDatabasePool alloc] initWithURL:nil];
     XCTAssert(pool, @"Database pool should be returned");
     pool = nil;
 }
@@ -78,7 +78,7 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    FMDatabasePool *pool = [FMDatabasePool databasePoolWithURL:fileURL];
+    OPDBDatabasePool *pool = [OPDBDatabasePool databasePoolWithURL:fileURL];
     XCTAssert(pool, @"Database pool should be returned");
     pool = nil;
     [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
@@ -88,7 +88,7 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    FMDatabasePool *pool = [[FMDatabasePool alloc] initWithURL:fileURL];
+    OPDBDatabasePool *pool = [[OPDBDatabasePool alloc] initWithURL:fileURL];
     XCTAssert(pool, @"Database pool should be returned");
     pool = nil;
     [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
@@ -98,8 +98,8 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    FMDatabasePool *pool = [FMDatabasePool databasePoolWithURL:fileURL flags:SQLITE_OPEN_READWRITE];
-    [pool inDatabase:^(FMDatabase * _Nonnull db) {
+    OPDBDatabasePool *pool = [OPDBDatabasePool databasePoolWithURL:fileURL flags:SQLITE_OPEN_READWRITE];
+    [pool inDatabase:^(OPDBDatabase * _Nonnull db) {
         XCTAssertNil(db, @"The database should not have been created");
     }];
 }
@@ -108,13 +108,13 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    FMDatabasePool *pool = [[FMDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE];
-    [pool inDatabase:^(FMDatabase * _Nonnull db) {
+    OPDBDatabasePool *pool = [[OPDBDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE];
+    [pool inDatabase:^(OPDBDatabase * _Nonnull db) {
         XCTAssertNil(db, @"The database should not have been created");
     }];
     
-    pool = [[FMDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE];
-    [pool inDatabase:^(FMDatabase * _Nonnull db) {
+    pool = [[OPDBDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE];
+    [pool inDatabase:^(OPDBDatabase * _Nonnull db) {
         XCTAssert(db, @"The database should have been created");
 
         BOOL success = [db executeUpdate:@"CREATE TABLE foo (bar INT)"];
@@ -123,8 +123,8 @@
         XCTAssert(success, @"Insert failed");
     }];
     
-    pool = [[FMDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READONLY];
-    [pool inDatabase:^(FMDatabase * _Nonnull db) {
+    pool = [[OPDBDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READONLY];
+    [pool inDatabase:^(OPDBDatabase * _Nonnull db) {
         XCTAssert(db, @"Now database pool should open have been created");
         BOOL success = [db executeUpdate:@"CREATE TABLE baz (qux INT)"];
         XCTAssertFalse(success, @"But updates should fail on read only database");
@@ -142,7 +142,7 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    FMDatabasePool *pool = [[FMDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE vfs:@"MyCustomVFS"];
+    OPDBDatabasePool *pool = [[OPDBDatabasePool alloc] initWithURL:fileURL flags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE vfs:@"MyCustomVFS"];
     XCTAssert(pool, @"Database pool should not have been created");
     pool = nil;
     
@@ -154,9 +154,9 @@
 }
 
 - (void)testDatabaseCreation {
-    __block FMDatabase *db1;
+    __block OPDBDatabase *db1;
     
-    [self.pool inDatabase:^(FMDatabase *db) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
         
         XCTAssertEqual([self.pool countOfOpenDatabases], (NSUInteger)1, @"Should only have one database at this point");
         
@@ -164,10 +164,10 @@
         
     }];
     
-    [self.pool inDatabase:^(FMDatabase *db) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
         XCTAssertEqualObjects(db, db1, @"We should get the same database back because there was no need to create a new one");
         
-        [self.pool inDatabase:^(FMDatabase *db2) {
+        [self.pool inDatabase:^(OPDBDatabase *db2) {
             XCTAssertNotEqualObjects(db2, db, @"We should get a different database because the first was in use.");
         }];
         
@@ -182,7 +182,7 @@
 
 - (void)testCheckedInCheckoutOutCount
 {
-    [self.pool inDatabase:^(FMDatabase *aDb) {
+    [self.pool inDatabase:^(OPDBDatabase *aDb) {
         
         XCTAssertEqual([self.pool countOfCheckedInDatabases],   (NSUInteger)0);
         XCTAssertEqual([self.pool countOfCheckedOutDatabases],  (NSUInteger)1);
@@ -190,7 +190,7 @@
         XCTAssertTrue(([aDb executeUpdate:@"insert into easy (a) values (?)", @"hi"]));
         
         // just for fun.
-        FMResultSet *rs = [aDb executeQuery:@"select * from easy"];
+        OPDBResultSet *rs = [aDb executeQuery:@"select * from easy"];
         XCTAssertNotNil(rs);
         XCTAssertTrue([rs next]);
         while ([rs next]) { ; } // whatevers.
@@ -207,9 +207,9 @@
 {
     [self.pool setMaximumNumberOfDatabasesToCreate:2];
     
-    [self.pool inDatabase:^(FMDatabase *db) {
-        [self.pool inDatabase:^(FMDatabase *db2) {
-            [self.pool inDatabase:^(FMDatabase *db3) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
+        [self.pool inDatabase:^(OPDBDatabase *db2) {
+            [self.pool inDatabase:^(OPDBDatabase *db3) {
                 XCTAssertEqual([self.pool countOfOpenDatabases], (NSUInteger)2);
                 XCTAssertNil(db3, @"The third database must be nil because we have a maximum of 2 databases in the pool");
             }];
@@ -220,7 +220,7 @@
 
 - (void)testTransaction
 {
-    [self.pool inTransaction:^(FMDatabase *adb, BOOL *rollback) {
+    [self.pool inTransaction:^(OPDBDatabase *adb, BOOL *rollback) {
         [adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1001]];
         [adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1002]];
         [adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1003]];
@@ -237,8 +237,8 @@
 
 - (void)testSelect
 {
-    [self.pool inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"select * from easy where a = ?", [NSNumber numberWithInt:1001]];
+    [self.pool inDatabase:^(OPDBDatabase *db) {
+        OPDBResultSet *rs = [db executeQuery:@"select * from easy where a = ?", [NSNumber numberWithInt:1001]];
         XCTAssertNotNil(rs);
         XCTAssertTrue ([rs next]);
         XCTAssertFalse([rs next]);
@@ -247,7 +247,7 @@
 
 - (void)testTransactionRollback
 {
-    [self.pool inDeferredTransaction:^(FMDatabase *adb, BOOL *rollback) {
+    [self.pool inDeferredTransaction:^(OPDBDatabase *adb, BOOL *rollback) {
         XCTAssertTrue(([adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1004]]));
         XCTAssertTrue(([adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1005]]));
         XCTAssertTrue([[adb executeQuery:@"select * from easy where a == '1004'"] next], @"1004 should be in database");
@@ -255,7 +255,7 @@
         *rollback = YES;
     }];
     
-    [self.pool inDatabase:^(FMDatabase *db) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
         XCTAssertFalse([[db executeQuery:@"select * from easy where a == '1004'"] next], @"1004 should not be in database");
     }];
 
@@ -266,7 +266,7 @@
 
 - (void)testSavepoint
 {
-    NSError *err = [self.pool inSavePoint:^(FMDatabase *db, BOOL *rollback) {
+    NSError *err = [self.pool inSavePoint:^(OPDBDatabase *db, BOOL *rollback) {
         [db executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1006]];
     }];
     
@@ -275,7 +275,7 @@
 
 - (void)testNestedSavepointRollback
 {
-    NSError *err = [self.pool inSavePoint:^(FMDatabase *adb, BOOL *rollback) {
+    NSError *err = [self.pool inSavePoint:^(OPDBDatabase *adb, BOOL *rollback) {
         XCTAssertFalse([adb hadError]);
         XCTAssertTrue(([adb executeUpdate:@"insert into easy values (?)", [NSNumber numberWithInt:1009]]));
         
@@ -288,8 +288,8 @@
     
     XCTAssertNil(err);
     
-    [self.pool inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"select * from easy where a = ?", [NSNumber numberWithInt:1009]];
+    [self.pool inDatabase:^(OPDBDatabase *db) {
+        OPDBResultSet *rs = [db executeQuery:@"select * from easy where a = ?", [NSNumber numberWithInt:1009]];
         XCTAssertTrue ([rs next]);
         XCTAssertFalse([rs next]); // close it out.
         
@@ -300,9 +300,9 @@
 
 - (void)testLikeStringQuery
 {
-    [self.pool inDatabase:^(FMDatabase *db) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
         int count = 0;
-        FMResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
+        OPDBResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
         while ([rsl next]) {
             count++;
         }
@@ -334,8 +334,8 @@
             [NSThread sleepForTimeInterval:.001];
         }
         
-        [self.pool inDatabase:^(FMDatabase *db) {
-            FMResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
+        [self.pool inDatabase:^(OPDBDatabase *db) {
+            OPDBResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
             XCTAssertNotNil(rsl);
             int i = 0;
             while ([rsl next]) {
@@ -352,7 +352,7 @@
 }
 
 
-- (BOOL)databasePool:(FMDatabasePool*)pool shouldAddDatabaseToPool:(FMDatabase*)database {
+- (BOOL)databasePool:(OPDBDatabasePool*)pool shouldAddDatabaseToPool:(OPDBDatabase*)database {
     [database setMaxBusyRetryTimeInterval:10];
     // [database setCrashOnErrors:YES];
     return YES;
@@ -370,8 +370,8 @@
         if (nby % 2 == 1) {
             [NSThread sleepForTimeInterval:.01];
             
-            [self.pool inTransaction:^(FMDatabase *db, BOOL *rollback) {
-                FMResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
+            [self.pool inTransaction:^(OPDBDatabase *db, BOOL *rollback) {
+                OPDBResultSet *rsl = [db executeQuery:@"select * from likefoo where foo like 'h%'"];
                 XCTAssertNotNil(rsl);
                 while ([rsl next]) {
                     ;// whatever.
@@ -385,7 +385,7 @@
             [NSThread sleepForTimeInterval:.01];
         }
         
-        [self.pool inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [self.pool inTransaction:^(OPDBDatabase *db, BOOL *rollback) {
             XCTAssertTrue([db executeUpdate:@"insert into likefoo values ('1')"]);
             XCTAssertTrue([db executeUpdate:@"insert into likefoo values ('2')"]);
             XCTAssertTrue([db executeUpdate:@"insert into likefoo values ('3')"]);
@@ -394,7 +394,7 @@
     
     [self.pool releaseAllDatabases];
     
-    [self.pool inDatabase:^(FMDatabase *db) {
+    [self.pool inDatabase:^(OPDBDatabase *db) {
         XCTAssertTrue([db executeUpdate:@"insert into likefoo values ('1')"]);
     }];
 }

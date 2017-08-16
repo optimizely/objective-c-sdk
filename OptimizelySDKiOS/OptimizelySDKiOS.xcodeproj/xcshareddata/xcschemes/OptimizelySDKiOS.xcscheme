@@ -93,8 +93,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3ECBCC151F43983400160937"
-               BuildableName = "FMDBTests.xctest"
-               BlueprintName = "FMDBTests"
+               BuildableName = "OPDBTests.xctest"
+               BlueprintName = "OPDBTests"
                ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
             </BuildableReference>
          </TestableReference>

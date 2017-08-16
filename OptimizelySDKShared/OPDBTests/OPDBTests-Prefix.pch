@@ -1,10 +1,3 @@
-//
-//  FMDBTempDBTests.h
-//  fmdb
-//
-//  Created by Graham Dennis on 24/11/2013.
-//
-//
 /****************************************************************************
  * Modifications to FMDB by Optimizely, Inc.                                *
  * Copyright 2017, Optimizely, Inc. and contributors                        *
@@ -21,20 +14,13 @@
  * See the License for the specific language governing permissions and      *
  * limitations under the License.                                           *
  ***************************************************************************/
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
 
-#import <XCTest/XCTest.h>
-#import "FMDatabase.h"
-
-@protocol FMDBTempDBTests <NSObject>
-
-@optional
-+ (void)populateDatabase:(FMDatabase *)database;
-
-@end
-
-@interface FMDBTempDBTests : XCTestCase <FMDBTempDBTests>
-
-@property FMDatabase *db;
-@property (readonly) NSString *databasePath;
-
-@end
+#ifdef __OBJC__
+    #import <XCTest/XCTest.h>
+    #import "OPDBTempDBTests.h"
+#endif
