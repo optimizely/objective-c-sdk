@@ -19,9 +19,9 @@
 
 @implementation OPTLYVariable
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableId     : @"variableId",
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableId     : @"variableId",
                                                         OPTLYDatafileKeysVariableKey    : @"variableKey"
                                                         }];
 }

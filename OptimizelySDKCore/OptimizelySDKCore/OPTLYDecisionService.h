@@ -15,9 +15,9 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 // An optional bucketing ID may be provided in attributes via a
@@ -33,7 +33,7 @@ extern NSString * _Nonnull const OptimizelyBucketId;
 
 @class OPTLYExperiment, OPTLYVariation;
 
-@interface OPTLYDecisionService : JSONModel
+@interface OPTLYDecisionService : OPJMModel
 
 /**
  * Initializer for the Decision Service.

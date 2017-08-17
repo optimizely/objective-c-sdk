@@ -1,6 +1,6 @@
-# JSONModel - Magical Data Modeling Framework for JSON
+# OPJMModel - Magical Data Modeling Framework for JSON
 
-JSONModel allows rapid creation of smart data models. You can use it in your
+OPJMModel allows rapid creation of smart data models. You can use it in your
 iOS, macOS, watchOS and tvOS apps. Automatic introspection of your model classes
 and JSON input drastically reduces the amount of code you have to write.
 
@@ -11,19 +11,19 @@ See [CHANGELOG.md](CHANGELOG.md) for details on changes.
 ### CocoaPods
 
 ```ruby
-pod 'JSONModel'
+pod 'OPJMModel'
 ```
 
 ### Carthage
 
 ```ruby
-github "jsonmodel/jsonmodel"
+github "opjmmodel/opjmmodel"
 ```
 
 ### Manual
 
-0. download the JSONModel repository
-0. copy the JSONModel sub-folder into your Xcode project
+0. download the OPJMModel repository
+0. copy the OPJMModel sub-folder into your Xcode project
 0. link your app to SystemConfiguration.framework
 
 ## Basic Usage
@@ -34,11 +34,11 @@ Consider you have JSON like this:
 { "id": 10, "country": "Germany", "dialCode": 49, "isInEurope": true }
 ```
 
-- create a JSONModel subclass for your data model
+- create a OPJMModel subclass for your data model
 - declare properties in your header file with the name of the JSON keys:
 
 ```objc
-@interface CountryModel : JSONModel
+@interface CountryModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *country;
 @property (nonatomic) NSString *dialCode;
@@ -56,7 +56,7 @@ CountryModel *country = [[CountryModel alloc] initWithString:myJson error:&error
 ```
 
 If the validation of the JSON passes. you have all the corresponding properties
-in your model populated from the JSON. JSONModel will also try to convert as
+in your model populated from the JSON. OPJMModel will also try to convert as
 much data to the types you expect. In the example above it will:
 
 - convert `id` from string (in the JSON) to an `int` for your class
@@ -79,7 +79,7 @@ All you have to do is define the properties and their expected types.
 ```
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) float price;
@@ -101,13 +101,13 @@ All you have to do is define the properties and their expected types.
 ```
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) float price;
 @end
 
-@interface OrderModel : JSONModel
+@interface OrderModel : OPJMModel
 @property (nonatomic) NSInteger orderId;
 @property (nonatomic) float totalPrice;
 @property (nonatomic) ProductModel *product;
@@ -138,13 +138,13 @@ All you have to do is define the properties and their expected types.
 ```objc
 @protocol ProductModel;
 
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) float price;
 @end
 
-@interface OrderModel : JSONModel
+@interface OrderModel : OPJMModel
 @property (nonatomic) NSInteger orderId;
 @property (nonatomic) float totalPrice;
 @property (nonatomic) NSArray <ProductModel> *products;
@@ -153,7 +153,7 @@ All you have to do is define the properties and their expected types.
 
 Note: the angle brackets after `NSArray` contain a protocol. This is not the
 same as the Objective-C generics system. They are not mutually exclusive, but
-for JSONModel to work, the protocol must be in place.
+for OPJMModel to work, the protocol must be in place.
 
 ### Nested key mapping
 
@@ -170,7 +170,7 @@ for JSONModel to work, the protocol must be in place.
 ```
 
 ```objc
-@interface OrderModel : JSONModel
+@interface OrderModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *productName;
 @property (nonatomic) float price;
@@ -178,9 +178,9 @@ for JSONModel to work, the protocol must be in place.
 
 @implementation OrderModel
 
-+ (JSONKeyMapper *)keyMapper
++ (OPJMKeyMapper *)keyMapper
 {
-	return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+	return [[OPJMKeyMapper alloc] initWithModelToJSONDictionary:@{
 		@"id": @"orderId",
 		@"productName": @"orderDetails.name",
 		@"price": @"orderDetails.price.usd"
@@ -201,7 +201,7 @@ for JSONModel to work, the protocol must be in place.
 ```
 
 ```objc
-@interface OrderModel : JSONModel
+@interface OrderModel : OPJMModel
 @property (nonatomic) NSInteger orderId;
 @property (nonatomic) NSString *orderProduct;
 @property (nonatomic) float orderPrice;
@@ -209,9 +209,9 @@ for JSONModel to work, the protocol must be in place.
 
 @implementation OrderModel
 
-+ (JSONKeyMapper *)keyMapper
++ (OPJMKeyMapper *)keyMapper
 {
-	return [JSONKeyMapper mapperForSnakeCase];
+	return [OPJMKeyMapper mapperForSnakeCase];
 }
 
 @end
@@ -228,7 +228,7 @@ for JSONModel to work, the protocol must be in place.
 ```
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString <Optional> *name;
 @property (nonatomic) float price;
@@ -236,7 +236,7 @@ for JSONModel to work, the protocol must be in place.
 @end
 ```
 
-### Ignored properties (i.e. JSONModel completely ignores them)
+### Ignored properties (i.e. OPJMModel completely ignores them)
 
 ```json
 {
@@ -246,7 +246,7 @@ for JSONModel to work, the protocol must be in place.
 ```
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString <Ignore> *customProperty;
 @end
@@ -261,7 +261,7 @@ for JSONModel to work, the protocol must be in place.
 ```
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @end
 
@@ -294,10 +294,10 @@ NSString *string = [pm toJSONString];
 ### Custom data transformers
 
 ```objc
-@interface JSONValueTransformer (CustomNSDate)
+@interface OPJMValueTransformer (CustomNSDate)
 @end
 
-@implementation JSONValueTransformer (CustomTransformer)
+@implementation OPJMValueTransformer (CustomTransformer)
 
 - (NSDate *)NSDateFromNSString:(NSString *)string
 {
@@ -319,7 +319,7 @@ NSString *string = [pm toJSONString];
 ### Custom getters/setters
 
 ```objc
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) float price;
@@ -350,7 +350,7 @@ NSString *string = [pm toJSONString];
 
 ```objc
 
-@interface ProductModel : JSONModel
+@interface ProductModel : OPJMModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) float price;

@@ -46,7 +46,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 // NOTE: A dictionary is used to build the decision event ticket object instead of
 // OPTLYDecisionEventTicket object to simplify the logic. The OPTLYEventFeature value can be a
 // string, double, float, int, or boolean.
-// The JSONModel cannot support a generic primitive/object type, so each event tag
+// The OPJMModel cannot support a generic primitive/object type, so each event tag
 // value would have to be manually checked and converted to the appropriate OPTLYEventFeature type.
 - (NSDictionary *)buildDecisionEventTicket:(OPTLYProjectConfig *)config
                                     userId:(NSString *)userId

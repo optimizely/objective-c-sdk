@@ -18,9 +18,9 @@
 #import "OPTLYDatafileKeys.h"
 
 @implementation OPTLYVariationVariable
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationVariableId     : @"variableId",
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationVariableId     : @"variableId",
                                                         }];
 }
 

@@ -19,9 +19,9 @@
 
 @implementation OPTLYAudience
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysAudienceId   : @"audienceId",
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysAudienceId   : @"audienceId",
                                                         OPTLYDatafileKeysAudienceName : @"audienceName"
                                                         }];
 }

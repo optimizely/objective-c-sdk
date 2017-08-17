@@ -16,16 +16,16 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 
 @protocol OPTLYAttribute
 @end
 
-@interface OPTLYAttribute : JSONModel
+@interface OPTLYAttribute : OPJMModel
 
 /// The attribute id
 @property (nonatomic, strong) NSString *attributeId;

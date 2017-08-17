@@ -15,8 +15,8 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONValueTransformer.h
-//  JSONModel
+//  OPJMValueTransformer.h
+//  OPJMModel
 //
 
 #import <Foundation/Foundation.h>
@@ -32,21 +32,21 @@ extern BOOL isNull(id value);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - JSONValueTransformer interface
+#pragma mark - OPJMValueTransformer interface
 /**
  * **You don't need to call methods of this class manually.**
  *
  * Class providing methods to transform values from one class to another.
  * You are given a number of built-in transformers, but you are encouraged to
  * extend this class with your own categories to add further value transformers.
- * Just few examples of what can you add to JSONValueTransformer: hex colors in JSON to UIColor,
+ * Just few examples of what can you add to OPJMValueTransformer: hex colors in JSON to UIColor,
  * hex numbers in JSON to NSNumber model properties, base64 encoded strings in JSON to UIImage properties, and more.
  *
- * The class is invoked by JSONModel while transforming incoming
+ * The class is invoked by OPJMModel while transforming incoming
  * JSON types into your target class property classes, and vice versa.
- * One static copy is create and store in the JSONModel class scope.
+ * One static copy is create and store in the OPJMModel class scope.
  */
-@interface JSONValueTransformer : NSObject
+@interface OPJMValueTransformer : NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary *primitivesNames;
 

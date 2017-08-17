@@ -15,19 +15,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModel+networking.m
-//  JSONModel
+//  OPJMModel+networking.m
+//  OPJMModel
 //
 
-#import "JSONModel+networking.h"
-#import "JSONHTTPClient.h"
+#import "OPJMModel+networking.h"
+#import "OPJMHTTPClient.h"
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 BOOL _isLoading;
 
-@implementation JSONModel(Networking)
+@implementation OPJMModel(Networking)
 
 @dynamic isLoading;
 
@@ -41,7 +41,7 @@ BOOL _isLoading;
     _isLoading = isLoading;
 }
 
--(instancetype)initFromURLWithString:(NSString *)urlString completion:(JSONModelBlock)completeBlock
+-(instancetype)initFromURLWithString:(NSString *)urlString completion:(OPJMModelBlock)completeBlock
 {
     id placeholder = [super init];
     __block id blockSelf = self;
@@ -50,10 +50,10 @@ BOOL _isLoading;
         //initialization
         self.isLoading = YES;
 
-        [JSONHTTPClient getJSONFromURLWithString:urlString
-                                      completion:^(NSDictionary *json, JSONModelError* e) {
+        [OPJMHTTPClient getJSONFromURLWithString:urlString
+                                      completion:^(NSDictionary *json, OPJMModelError* e) {
 
-                                          JSONModelError* initError = nil;
+                                          OPJMModelError* initError = nil;
                                           blockSelf = [self initWithDictionary:json error:&initError];
 
                                           if (completeBlock) {
@@ -69,12 +69,12 @@ BOOL _isLoading;
     return placeholder;
 }
 
-+ (void)getModelFromURLWithString:(NSString*)urlString completion:(JSONModelBlock)completeBlock
++ (void)getModelFromURLWithString:(NSString*)urlString completion:(OPJMModelBlock)completeBlock
 {
-    [JSONHTTPClient getJSONFromURLWithString:urlString
-                                  completion:^(NSDictionary* jsonDict, JSONModelError* err)
+    [OPJMHTTPClient getJSONFromURLWithString:urlString
+                                  completion:^(NSDictionary* jsonDict, OPJMModelError* err)
     {
-        JSONModel* model = nil;
+        OPJMModel* model = nil;
 
         if(err == nil)
         {
@@ -91,13 +91,13 @@ BOOL _isLoading;
     }];
 }
 
-+ (void)postModel:(JSONModel*)post toURLWithString:(NSString*)urlString completion:(JSONModelBlock)completeBlock
++ (void)postModel:(OPJMModel*)post toURLWithString:(NSString*)urlString completion:(OPJMModelBlock)completeBlock
 {
-    [JSONHTTPClient postJSONFromURLWithString:urlString
+    [OPJMHTTPClient postJSONFromURLWithString:urlString
                                    bodyString:[post toJSONString]
-                                   completion:^(NSDictionary* jsonDict, JSONModelError* err)
+                                   completion:^(NSDictionary* jsonDict, OPJMModelError* err)
     {
-        JSONModel* model = nil;
+        OPJMModel* model = nil;
 
         if(err == nil)
         {

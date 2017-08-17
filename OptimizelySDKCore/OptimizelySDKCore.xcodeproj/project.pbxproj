@@ -10,40 +10,40 @@
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		3E858C601F42277B00D53856 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3E858C5E1F42277B00D53856 /* LICENSE */; };
-		3E858C661F4227BA00D53856 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C6D1F4227CD00D53856 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C6E1F4227CD00D53856 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* JSONModel.m */; };
-		3E858C6F1F4227CD00D53856 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C701F4227CD00D53856 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* JSONModelClassProperty.m */; };
-		3E858C711F4227CD00D53856 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C721F4227CD00D53856 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* JSONModelError.m */; };
-		3E858C791F4227D900D53856 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7A1F4227D900D53856 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* JSONAPI.m */; };
-		3E858C7B1F4227D900D53856 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7C1F4227D900D53856 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* JSONHTTPClient.m */; };
-		3E858C7D1F4227D900D53856 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7E1F4227D900D53856 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* JSONModel+networking.m */; };
-		3E858C831F4227E300D53856 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C841F4227E300D53856 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* JSONKeyMapper.m */; };
-		3E858C851F4227E300D53856 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C861F4227E300D53856 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* JSONValueTransformer.m */; };
-		3E858C871F4227ED00D53856 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C881F4227F100D53856 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* JSONModel.m */; };
-		3E858C891F4227F400D53856 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8A1F4227F900D53856 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* JSONModelClassProperty.m */; };
-		3E858C8B1F4227F900D53856 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* JSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8C1F4227F900D53856 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* JSONModelError.m */; };
-		3E858C8D1F4227FE00D53856 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8E1F4227FE00D53856 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* JSONAPI.m */; };
-		3E858C8F1F4227FE00D53856 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C901F4227FE00D53856 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* JSONHTTPClient.m */; };
-		3E858C911F4227FE00D53856 /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C921F4227FE00D53856 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* JSONModel+networking.m */; };
-		3E858C931F42280500D53856 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C941F42280900D53856 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C951F42280900D53856 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* JSONKeyMapper.m */; };
-		3E858C961F42280900D53856 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C971F42280900D53856 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* JSONValueTransformer.m */; };
+		3E858C661F4227BA00D53856 /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6D1F4227CD00D53856 /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6E1F4227CD00D53856 /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPJMModel.m */; };
+		3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C701F4227CD00D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
+		3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C721F4227CD00D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
+		3E858C791F4227D900D53856 /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* OPJMAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C7A1F4227D900D53856 /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* OPJMAPI.m */; };
+		3E858C7B1F4227D900D53856 /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* OPJMHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C7C1F4227D900D53856 /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* OPJMHTTPClient.m */; };
+		3E858C7D1F4227D900D53856 /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* OPJMModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C7E1F4227D900D53856 /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* OPJMModel+networking.m */; };
+		3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
+		3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C861F4227E300D53856 /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPJMValueTransformer.m */; };
+		3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C881F4227F100D53856 /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPJMModel.m */; };
+		3E858C891F4227F400D53856 /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8A1F4227F900D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
+		3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8C1F4227F900D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
+		3E858C8D1F4227FE00D53856 /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* OPJMAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8E1F4227FE00D53856 /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* OPJMAPI.m */; };
+		3E858C8F1F4227FE00D53856 /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* OPJMHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C901F4227FE00D53856 /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* OPJMHTTPClient.m */; };
+		3E858C911F4227FE00D53856 /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* OPJMModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C921F4227FE00D53856 /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* OPJMModel+networking.m */; };
+		3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C951F42280900D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
+		3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C971F42280900D53856 /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPJMValueTransformer.m */; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
@@ -301,25 +301,25 @@
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
-		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = JSONModel/LICENSE; sourceTree = "<group>"; };
-		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = JSONModel/README.md; sourceTree = "<group>"; };
-		3E858C651F4227BA00D53856 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
-		3E858C671F4227CD00D53856 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
-		3E858C681F4227CD00D53856 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
-		3E858C691F4227CD00D53856 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
-		3E858C6A1F4227CD00D53856 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
-		3E858C6B1F4227CD00D53856 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
-		3E858C6C1F4227CD00D53856 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		3E858C731F4227D900D53856 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModel/JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
-		3E858C741F4227D900D53856 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
-		3E858C751F4227D900D53856 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
-		3E858C761F4227D900D53856 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
-		3E858C771F4227D900D53856 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		3E858C781F4227D900D53856 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
-		3E858C7F1F4227E300D53856 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
-		3E858C801F4227E300D53856 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
-		3E858C811F4227E300D53856 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
-		3E858C821F4227E300D53856 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
+		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OPJMModel/LICENSE; sourceTree = "<group>"; };
+		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPJMModel/README.md; sourceTree = "<group>"; };
+		3E858C651F4227BA00D53856 /* OPJMModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelLib.h; path = OPJMModel/OPJMModel/OPJMModelLib.h; sourceTree = "<group>"; };
+		3E858C671F4227CD00D53856 /* OPJMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModel.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModel.h; sourceTree = "<group>"; };
+		3E858C681F4227CD00D53856 /* OPJMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModel.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModel.m; sourceTree = "<group>"; };
+		3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelClassProperty.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.h; sourceTree = "<group>"; };
+		3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelClassProperty.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.m; sourceTree = "<group>"; };
+		3E858C6B1F4227CD00D53856 /* OPJMModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelError.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.h; sourceTree = "<group>"; };
+		3E858C6C1F4227CD00D53856 /* OPJMModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelError.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.m; sourceTree = "<group>"; };
+		3E858C731F4227D900D53856 /* OPJMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMAPI.h; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.h; sourceTree = "<group>"; };
+		3E858C741F4227D900D53856 /* OPJMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMAPI.m; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.m; sourceTree = "<group>"; };
+		3E858C751F4227D900D53856 /* OPJMHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMHTTPClient.h; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.h; sourceTree = "<group>"; };
+		3E858C761F4227D900D53856 /* OPJMHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMHTTPClient.m; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.m; sourceTree = "<group>"; };
+		3E858C771F4227D900D53856 /* OPJMModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPJMModel+networking.h"; path = "OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.h"; sourceTree = "<group>"; };
+		3E858C781F4227D900D53856 /* OPJMModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPJMModel+networking.m"; path = "OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.m"; sourceTree = "<group>"; };
+		3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMKeyMapper.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.h; sourceTree = "<group>"; };
+		3E858C801F4227E300D53856 /* OPJMKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMKeyMapper.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.m; sourceTree = "<group>"; };
+		3E858C811F4227E300D53856 /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
+		3E858C821F4227E300D53856 /* OPJMValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMValueTransformer.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
@@ -502,62 +502,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E858C5C1F42275700D53856 /* JSONModel */ = {
+		3E858C5C1F42275700D53856 /* OPJMModel */ = {
 			isa = PBXGroup;
 			children = (
 				3E858C5E1F42277B00D53856 /* LICENSE */,
 				3E858C5F1F42277B00D53856 /* README.md */,
-				3E858C5D1F42276400D53856 /* JSONModel */,
+				3E858C5D1F42276400D53856 /* OPJMModel */,
 			);
-			name = JSONModel;
+			name = OPJMModel;
 			sourceTree = "<group>";
 		};
-		3E858C5D1F42276400D53856 /* JSONModel */ = {
+		3E858C5D1F42276400D53856 /* OPJMModel */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C621F42279000D53856 /* JSONModel */,
-				3E858C651F4227BA00D53856 /* JSONModelLib.h */,
-				3E858C631F42279900D53856 /* JSONModelNetworking */,
-				3E858C641F4227A600D53856 /* JSONModelTransformations */,
+				3E858C621F42279000D53856 /* OPJMModel */,
+				3E858C651F4227BA00D53856 /* OPJMModelLib.h */,
+				3E858C631F42279900D53856 /* OPJMModelNetworking */,
+				3E858C641F4227A600D53856 /* OPJMModelTransformations */,
 			);
-			name = JSONModel;
+			name = OPJMModel;
 			sourceTree = "<group>";
 		};
-		3E858C621F42279000D53856 /* JSONModel */ = {
+		3E858C621F42279000D53856 /* OPJMModel */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C671F4227CD00D53856 /* JSONModel.h */,
-				3E858C681F4227CD00D53856 /* JSONModel.m */,
-				3E858C691F4227CD00D53856 /* JSONModelClassProperty.h */,
-				3E858C6A1F4227CD00D53856 /* JSONModelClassProperty.m */,
-				3E858C6B1F4227CD00D53856 /* JSONModelError.h */,
-				3E858C6C1F4227CD00D53856 /* JSONModelError.m */,
+				3E858C671F4227CD00D53856 /* OPJMModel.h */,
+				3E858C681F4227CD00D53856 /* OPJMModel.m */,
+				3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */,
+				3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */,
+				3E858C6B1F4227CD00D53856 /* OPJMModelError.h */,
+				3E858C6C1F4227CD00D53856 /* OPJMModelError.m */,
 			);
-			name = JSONModel;
+			name = OPJMModel;
 			sourceTree = "<group>";
 		};
-		3E858C631F42279900D53856 /* JSONModelNetworking */ = {
+		3E858C631F42279900D53856 /* OPJMModelNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C731F4227D900D53856 /* JSONAPI.h */,
-				3E858C741F4227D900D53856 /* JSONAPI.m */,
-				3E858C751F4227D900D53856 /* JSONHTTPClient.h */,
-				3E858C761F4227D900D53856 /* JSONHTTPClient.m */,
-				3E858C771F4227D900D53856 /* JSONModel+networking.h */,
-				3E858C781F4227D900D53856 /* JSONModel+networking.m */,
+				3E858C731F4227D900D53856 /* OPJMAPI.h */,
+				3E858C741F4227D900D53856 /* OPJMAPI.m */,
+				3E858C751F4227D900D53856 /* OPJMHTTPClient.h */,
+				3E858C761F4227D900D53856 /* OPJMHTTPClient.m */,
+				3E858C771F4227D900D53856 /* OPJMModel+networking.h */,
+				3E858C781F4227D900D53856 /* OPJMModel+networking.m */,
 			);
-			name = JSONModelNetworking;
+			name = OPJMModelNetworking;
 			sourceTree = "<group>";
 		};
-		3E858C641F4227A600D53856 /* JSONModelTransformations */ = {
+		3E858C641F4227A600D53856 /* OPJMModelTransformations */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C7F1F4227E300D53856 /* JSONKeyMapper.h */,
-				3E858C801F4227E300D53856 /* JSONKeyMapper.m */,
-				3E858C811F4227E300D53856 /* JSONValueTransformer.h */,
-				3E858C821F4227E300D53856 /* JSONValueTransformer.m */,
+				3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */,
+				3E858C801F4227E300D53856 /* OPJMKeyMapper.m */,
+				3E858C811F4227E300D53856 /* OPJMValueTransformer.h */,
+				3E858C821F4227E300D53856 /* OPJMValueTransformer.m */,
 			);
-			name = JSONModelTransformations;
+			name = OPJMModelTransformations;
 			sourceTree = "<group>";
 		};
 		93BE4E5119FD429B5D9A3435 /* Pods */ = {
@@ -749,7 +749,7 @@
 		EA3C67FB1DC1E66C00C578CA = {
 			isa = PBXGroup;
 			children = (
-				3E858C5C1F42275700D53856 /* JSONModel */,
+				3E858C5C1F42275700D53856 /* OPJMModel */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
 				EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */,
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
@@ -856,15 +856,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C6F1F4227CD00D53856 /* JSONModelClassProperty.h in Headers */,
-				3E858C7B1F4227D900D53856 /* JSONHTTPClient.h in Headers */,
-				3E858C7D1F4227D900D53856 /* JSONModel+networking.h in Headers */,
-				3E858C851F4227E300D53856 /* JSONValueTransformer.h in Headers */,
-				3E858C831F4227E300D53856 /* JSONKeyMapper.h in Headers */,
-				3E858C711F4227CD00D53856 /* JSONModelError.h in Headers */,
-				3E858C791F4227D900D53856 /* JSONAPI.h in Headers */,
-				3E858C6D1F4227CD00D53856 /* JSONModel.h in Headers */,
-				3E858C661F4227BA00D53856 /* JSONModelLib.h in Headers */,
+				3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */,
+				3E858C7B1F4227D900D53856 /* OPJMHTTPClient.h in Headers */,
+				3E858C7D1F4227D900D53856 /* OPJMModel+networking.h in Headers */,
+				3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */,
+				3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */,
+				3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */,
+				3E858C791F4227D900D53856 /* OPJMAPI.h in Headers */,
+				3E858C6D1F4227CD00D53856 /* OPJMModel.h in Headers */,
+				3E858C661F4227BA00D53856 /* OPJMModelLib.h in Headers */,
 				EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAC5F3431E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
@@ -918,15 +918,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C8F1F4227FE00D53856 /* JSONHTTPClient.h in Headers */,
-				3E858C871F4227ED00D53856 /* JSONModel.h in Headers */,
-				3E858C8B1F4227F900D53856 /* JSONModelError.h in Headers */,
-				3E858C931F42280500D53856 /* JSONModelLib.h in Headers */,
-				3E858C961F42280900D53856 /* JSONValueTransformer.h in Headers */,
-				3E858C941F42280900D53856 /* JSONKeyMapper.h in Headers */,
-				3E858C891F4227F400D53856 /* JSONModelClassProperty.h in Headers */,
-				3E858C8D1F4227FE00D53856 /* JSONAPI.h in Headers */,
-				3E858C911F4227FE00D53856 /* JSONModel+networking.h in Headers */,
+				3E858C8F1F4227FE00D53856 /* OPJMHTTPClient.h in Headers */,
+				3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */,
+				3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */,
+				3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */,
+				3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */,
+				3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */,
+				3E858C891F4227F400D53856 /* OPJMModelClassProperty.h in Headers */,
+				3E858C8D1F4227FE00D53856 /* OPJMAPI.h in Headers */,
+				3E858C911F4227FE00D53856 /* OPJMModel+networking.h in Headers */,
 				EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB291DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */,
@@ -1314,7 +1314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C721F4227CD00D53856 /* JSONModelError.m in Sources */,
+				3E858C721F4227CD00D53856 /* OPJMModelError.m in Sources */,
 				EA2FAC2B1DC6FFCF00B1D81B /* murmur3.c in Sources */,
 				EA16D9381ECBA9B200C4C998 /* OPTLYUserProfile.m in Sources */,
 				EA2FAC071DC6FFC600B1D81B /* Optimizely.m in Sources */,
@@ -1332,13 +1332,13 @@
 				EA2FAC111DC6FFC600B1D81B /* OPTLYEventAudience.m in Sources */,
 				EA2FAC121DC6FFC600B1D81B /* OPTLYEventDecision.m in Sources */,
 				EA2FAC131DC6FFC600B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
-				3E858C841F4227E300D53856 /* JSONKeyMapper.m in Sources */,
+				3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */,
 				EA2FAC141DC6FFC600B1D81B /* OPTLYEventFeature.m in Sources */,
-				3E858C7E1F4227D900D53856 /* JSONModel+networking.m in Sources */,
+				3E858C7E1F4227D900D53856 /* OPJMModel+networking.m in Sources */,
 				EA2FAC151DC6FFC600B1D81B /* OPTLYEventHeader.m in Sources */,
-				3E858C7C1F4227D900D53856 /* JSONHTTPClient.m in Sources */,
+				3E858C7C1F4227D900D53856 /* OPJMHTTPClient.m in Sources */,
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
-				3E858C7A1F4227D900D53856 /* JSONAPI.m in Sources */,
+				3E858C7A1F4227D900D53856 /* OPJMAPI.m in Sources */,
 				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
@@ -1359,10 +1359,10 @@
 				EA8FD0DD1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA2FAC251DC6FFC600B1D81B /* OPTLYLogger.m in Sources */,
 				5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */,
-				3E858C861F4227E300D53856 /* JSONValueTransformer.m in Sources */,
-				3E858C701F4227CD00D53856 /* JSONModelClassProperty.m in Sources */,
+				3E858C861F4227E300D53856 /* OPJMValueTransformer.m in Sources */,
+				3E858C701F4227CD00D53856 /* OPJMModelClassProperty.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
-				3E858C6E1F4227CD00D53856 /* JSONModel.m in Sources */,
+				3E858C6E1F4227CD00D53856 /* OPJMModel.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
 				EAC5F3451E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
@@ -1403,9 +1403,9 @@
 				EA2FABE41DC6FFA100B1D81B /* OPTLYBuilder.m in Sources */,
 				EA2FABE51DC6FFA100B1D81B /* OPTLYAttribute.m in Sources */,
 				EA2FABE61DC6FFA100B1D81B /* OPTLYAudience.m in Sources */,
-				3E858C921F4227FE00D53856 /* JSONModel+networking.m in Sources */,
+				3E858C921F4227FE00D53856 /* OPJMModel+networking.m in Sources */,
 				EA2FABE71DC6FFA100B1D81B /* OPTLYBaseCondition.m in Sources */,
-				3E858C8E1F4227FE00D53856 /* JSONAPI.m in Sources */,
+				3E858C8E1F4227FE00D53856 /* OPJMAPI.m in Sources */,
 				EA2FABE81DC6FFA100B1D81B /* OPTLYCondition.m in Sources */,
 				EA2FABE91DC6FFA100B1D81B /* OPTLYDatafileKeys.m in Sources */,
 				EA2FABEA1DC6FFA100B1D81B /* OPTLYDecisionEventTicket.m in Sources */,
@@ -1417,13 +1417,13 @@
 				EA2FABEF1DC6FFA100B1D81B /* OPTLYEventFeature.m in Sources */,
 				EA2FABF01DC6FFA100B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FABF11DC6FFA100B1D81B /* OPTLYEventLayerState.m in Sources */,
-				3E858C8C1F4227F900D53856 /* JSONModelError.m in Sources */,
+				3E858C8C1F4227F900D53856 /* OPJMModelError.m in Sources */,
 				EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
-				3E858C881F4227F100D53856 /* JSONModel.m in Sources */,
+				3E858C881F4227F100D53856 /* OPJMModel.m in Sources */,
 				EA2FABF51DC6FFA100B1D81B /* OPTLYEventTicket.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,
@@ -1432,17 +1432,17 @@
 				EA2FABF81DC6FFA100B1D81B /* OPTLYGroup.m in Sources */,
 				EA2FABF91DC6FFA100B1D81B /* OPTLYProjectConfig.m in Sources */,
 				EA2FABFA1DC6FFA100B1D81B /* OPTLYTrafficAllocation.m in Sources */,
-				3E858C901F4227FE00D53856 /* JSONHTTPClient.m in Sources */,
+				3E858C901F4227FE00D53856 /* OPJMHTTPClient.m in Sources */,
 				EA2FABFB1DC6FFA100B1D81B /* OPTLYVariation.m in Sources */,
 				EA2FABFC1DC6FFA100B1D81B /* OPTLYErrorHandler.m in Sources */,
 				EA2FABFD1DC6FFA100B1D81B /* OPTLYErrorHandlerMessages.m in Sources */,
 				EAC5F3561E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA2FABFF1DC6FFA100B1D81B /* OPTLYEventBuilder.m in Sources */,
 				EA8FD0DE1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
-				3E858C971F42280900D53856 /* JSONValueTransformer.m in Sources */,
-				3E858C8A1F4227F900D53856 /* JSONModelClassProperty.m in Sources */,
+				3E858C971F42280900D53856 /* OPJMValueTransformer.m in Sources */,
+				3E858C8A1F4227F900D53856 /* OPJMModelClassProperty.m in Sources */,
 				EA2FAC001DC6FFA100B1D81B /* OPTLYLogger.m in Sources */,
-				3E858C951F42280900D53856 /* JSONKeyMapper.m in Sources */,
+				3E858C951F42280900D53856 /* OPJMKeyMapper.m in Sources */,
 				5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,

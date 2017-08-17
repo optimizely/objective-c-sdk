@@ -16,16 +16,16 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 #import "OPTLYCondition.h"
 
 @protocol OPTLYAudience
 @end
 
-@interface OPTLYAudience : JSONModel <OPTLYCondition>
+@interface OPTLYAudience : OPJMModel <OPTLYCondition>
 
 /// The audience id
 @property (nonatomic, strong) NSString *audienceId;
@@ -34,7 +34,7 @@
 /// Audience evaluator conditionals
 @property (nonatomic, strong) NSArray<OPTLYCondition> *conditions;
 
-/// Override JSONModel set conditions
+/// Override OPJMModel set conditions
 - (void)setConditionsWithNSString:(NSString *)string;
 
 @end

@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 // Model object for a view.
@@ -28,7 +28,7 @@
 @protocol OPTLYEventView
 @end
 
-@interface OPTLYEventView : JSONModel
+@interface OPTLYEventView : OPJMModel
 
 // The ID of the view containing this impression.
 @property (nonatomic, strong, nullable) NSString<Optional> *viewId;

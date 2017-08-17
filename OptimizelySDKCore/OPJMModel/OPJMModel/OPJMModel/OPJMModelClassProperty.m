@@ -15,13 +15,13 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModelClassProperty.m
-//  JSONModel
+//  OPJMModelClassProperty.m
+//  OPJMModel
 //
 
-#import "JSONModelClassProperty.h"
+#import "OPJMModelClassProperty.h"
 
-@implementation JSONModelClassProperty
+@implementation OPJMModelClassProperty
 
 -(NSString*)description
 {

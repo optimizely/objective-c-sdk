@@ -31,9 +31,9 @@
     return self;
 }
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysGroupId : @"groupId",
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysGroupId : @"groupId",
                                                         OPTLYDatafileKeysGroupTrafficAllocation : @"trafficAllocations"}];
 }
 

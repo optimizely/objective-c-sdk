@@ -19,9 +19,9 @@
 
 @implementation OPTLYEvent
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysEventId   : @"eventId",
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysEventId   : @"eventId",
                                                         OPTLYDatafileKeysEventKey  : @"eventKey"
                                                       }];
 }

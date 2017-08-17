@@ -21,9 +21,9 @@ NSString * const OPTLYEventFeatureFeatureTypeCustomAttribute = @"custom";
 
 @implementation OPTLYEventFeature
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYEventParameterKeysFeaturesId : @"featureId" }];
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYEventParameterKeysFeaturesId : @"featureId" }];
 }
 
 @end

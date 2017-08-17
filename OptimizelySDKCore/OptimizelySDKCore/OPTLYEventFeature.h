@@ -18,9 +18,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_END
 @protocol OPTLYEventFeature
 @end
 
-@interface OPTLYEventFeature : JSONModel
+@interface OPTLYEventFeature : OPJMModel
 
 // The ID of feature for non-custom features. Should be the GAE ID if it exists.
 @property (nonatomic, strong, nullable) NSString<Optional> *featureId;

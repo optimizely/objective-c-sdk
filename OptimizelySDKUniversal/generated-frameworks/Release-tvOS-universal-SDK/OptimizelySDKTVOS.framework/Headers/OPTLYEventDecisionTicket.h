@@ -18,9 +18,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 @protocol OPTLYEventAudience;
@@ -28,7 +28,7 @@
 @protocol OPTLYEventDecisionTicket
 @end
 
-@interface OPTLYEventDecisionTicket : JSONModel
+@interface OPTLYEventDecisionTicket : OPJMModel
 
 // The audiences bucketed at decision time
 @property (nonatomic, strong, nullable) NSArray<OPTLYEventAudience, Optional> *audiences;

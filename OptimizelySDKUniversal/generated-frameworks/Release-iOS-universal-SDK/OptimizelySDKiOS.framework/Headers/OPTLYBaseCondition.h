@@ -15,16 +15,16 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 #import "OPTLYCondition.h"
 
 @protocol OPTLYBaseCondition
 @end
 
-@interface OPTLYBaseCondition : JSONModel <OPTLYCondition>
+@interface OPTLYBaseCondition : OPJMModel <OPTLYCondition>
 
 /// Condition name
 @property (nonatomic, strong) NSString *name;

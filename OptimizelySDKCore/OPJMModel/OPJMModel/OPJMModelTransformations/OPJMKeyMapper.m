@@ -15,20 +15,20 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONKeyMapper.m
-//  JSONModel
+//  OPJMKeyMapper.m
+//  OPJMModel
 //
 
-#import "JSONKeyMapper.h"
+#import "OPJMKeyMapper.h"
 
-@implementation JSONKeyMapper
+@implementation OPJMKeyMapper
 
-- (instancetype)initWithJSONToModelBlock:(JSONModelKeyMapBlock)toModel modelToJSONBlock:(JSONModelKeyMapBlock)toJSON
+- (instancetype)initWithJSONToModelBlock:(OPJMModelKeyMapBlock)toModel modelToJSONBlock:(OPJMModelKeyMapBlock)toJSON
 {
     return [self initWithModelToJSONBlock:toJSON];
 }
 
-- (instancetype)initWithModelToJSONBlock:(JSONModelKeyMapBlock)toJSON
+- (instancetype)initWithModelToJSONBlock:(OPJMModelKeyMapBlock)toJSON
 {
     if (!(self = [self init]))
         return nil;
@@ -40,7 +40,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)map
 {
-    NSDictionary *toJSON  = [JSONKeyMapper swapKeysAndValuesInDictionary:map];
+    NSDictionary *toJSON  = [OPJMKeyMapper swapKeysAndValuesInDictionary:map];
 
     return [self initWithModelToJSONDictionary:toJSON];
 }
@@ -58,7 +58,7 @@
     return self;
 }
 
-- (JSONModelKeyMapBlock)JSONToModelKeyBlock
+- (OPJMModelKeyMapBlock)JSONToModelKeyBlock
 {
     return nil;
 }
@@ -138,14 +138,14 @@
     }];
 }
 
-+ (instancetype)mapper:(JSONKeyMapper *)baseKeyMapper withExceptions:(NSDictionary *)exceptions
++ (instancetype)mapper:(OPJMKeyMapper *)baseKeyMapper withExceptions:(NSDictionary *)exceptions
 {
-    NSDictionary *toJSON = [JSONKeyMapper swapKeysAndValuesInDictionary:exceptions];
+    NSDictionary *toJSON = [OPJMKeyMapper swapKeysAndValuesInDictionary:exceptions];
 
     return [self baseMapper:baseKeyMapper withModelToJSONExceptions:toJSON];
 }
 
-+ (instancetype)baseMapper:(JSONKeyMapper *)baseKeyMapper withModelToJSONExceptions:(NSDictionary *)toJSON
++ (instancetype)baseMapper:(OPJMKeyMapper *)baseKeyMapper withModelToJSONExceptions:(NSDictionary *)toJSON
 {
     return [[self alloc] initWithModelToJSONBlock:^NSString *(NSString *keyName)
     {

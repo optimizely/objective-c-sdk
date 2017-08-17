@@ -15,21 +15,21 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModelClassProperty.h
-//  JSONModel
+//  OPJMModelClassProperty.h
+//  OPJMModel
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- * **You do not need to instantiate this class yourself.** This class is used internally by JSONModel
+ * **You do not need to instantiate this class yourself.** This class is used internally by OPJMModel
  * to inspect the declared properties of your model class.
  *
  * Class to contain the information, representing a class property
  * It features the property's name, type, whether it's a required property,
  * and (optionally) the class protocol
  */
-@interface JSONModelClassProperty : NSObject
+@interface OPJMModelClassProperty : NSObject
 
 // deprecated
 @property (assign, nonatomic) BOOL isIndex DEPRECATED_ATTRIBUTE;

@@ -18,9 +18,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_END
 @protocol OPTLYEventMetric
 @end
 
-@interface OPTLYEventMetric : JSONModel
+@interface OPTLYEventMetric : OPJMModel
 
 // The name of the metric, e.g. 'revenue'
 @property (nonatomic, strong, nonnull) NSString *name;

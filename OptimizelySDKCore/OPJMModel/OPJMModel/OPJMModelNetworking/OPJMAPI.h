@@ -15,15 +15,15 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONAPI.h
-//  JSONModel
+//  OPJMAPI.h
+//  OPJMModel
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONHTTPClient.h"
+#import "OPJMHTTPClient.h"
 
 DEPRECATED_ATTRIBUTE
-@interface JSONAPI : NSObject
+@interface OPJMAPI : NSObject
 
 + (void)setAPIBaseURLWithString:(NSString *)base DEPRECATED_ATTRIBUTE;
 + (void)setContentType:(NSString *)ctype DEPRECATED_ATTRIBUTE;

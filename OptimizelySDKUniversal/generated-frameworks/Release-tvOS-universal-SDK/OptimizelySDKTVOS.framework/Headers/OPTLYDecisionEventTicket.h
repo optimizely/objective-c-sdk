@@ -15,9 +15,9 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 // Model object representing a Decision Ticket sent when layer decision is made.
@@ -25,7 +25,7 @@
 @class OPTLYEventHeader, OPTLYEventDecision;
 @protocol OPTLYEventDecisionTicket, OPTLYEventFeature;
 
-@interface OPTLYDecisionEventTicket : JSONModel
+@interface OPTLYDecisionEventTicket : OPJMModel
 
 //The time the decision was made.
 @property (nonatomic, assign) long long timestamp;

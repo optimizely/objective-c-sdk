@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 @class OPTLYVariation;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYExperimentStatusRunning;
 NS_ASSUME_NONNULL_END
 
-@interface OPTLYExperiment : JSONModel
+@interface OPTLYExperiment : OPJMModel
 
 /// The experiment's ID.
 @property (nonatomic, strong, nonnull) NSString *experimentId;

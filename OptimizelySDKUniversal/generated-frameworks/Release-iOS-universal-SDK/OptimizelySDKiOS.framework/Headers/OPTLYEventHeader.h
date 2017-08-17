@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 @protocol OPTLYEventHeader
 @end
 
-@interface OPTLYEventHeader : JSONModel
+@interface OPTLYEventHeader : OPJMModel
 
 // The IP address of the client
 @property (nonatomic, strong, nonnull) NSString *clientIp;

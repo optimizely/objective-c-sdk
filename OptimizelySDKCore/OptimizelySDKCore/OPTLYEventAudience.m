@@ -19,9 +19,9 @@
 
 @implementation OPTLYEventAudience
 
-+ (JSONKeyMapper*)keyMapper
++ (OPJMKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYEventParameterKeysAudienceId : @"audienceId" }];
+    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYEventParameterKeysAudienceId : @"audienceId" }];
 }
 
 @end

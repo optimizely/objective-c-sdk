@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPJMModelLib.h"
 #else
-    #import <OptimizelySDKCore/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPJMModelLib.h>
 #endif
 
 /**
@@ -40,7 +40,7 @@
 @protocol OPTLYVariationVariable
 @end
 
-@interface OPTLYVariationVariable : JSONModel
+@interface OPTLYVariationVariable : OPJMModel
 
 /// The variable's ID.
 @property (nonatomic, strong) NSString *variableId;

@@ -15,21 +15,21 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModelLib.h
-//  JSONModel
+//  OPJMModelLib.h
+//  OPJMModel
 //
 
 #import <Foundation/Foundation.h>
 
 // core
-#import "JSONModel.h"
-#import "JSONModelError.h"
+#import "OPJMModel.h"
+#import "OPJMModelError.h"
 
 // transformations
-#import "JSONValueTransformer.h"
-#import "JSONKeyMapper.h"
+#import "OPJMValueTransformer.h"
+#import "OPJMKeyMapper.h"
 
 // networking (deprecated)
-#import "JSONHTTPClient.h"
-#import "JSONModel+networking.h"
-#import "JSONAPI.h"
+#import "OPJMHTTPClient.h"
+#import "OPJMModel+networking.h"
+#import "OPJMAPI.h"

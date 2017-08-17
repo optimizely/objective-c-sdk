@@ -15,17 +15,17 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONAPI.m
-//  JSONModel
+//  OPJMAPI.m
+//  OPJMModel
 //
 
-#import "JSONAPI.h"
+#import "OPJMAPI.h"
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 #pragma mark - helper error model class
-@interface JSONAPIRPCErrorModel: JSONModel
+@interface OPJMAPIRPCErrorModel: OPJMModel
 @property (assign, nonatomic) int code;
 @property (strong, nonatomic) NSString* message;
 @property (strong, nonatomic) id<Optional> data;
@@ -33,19 +33,19 @@
 
 #pragma mark - static variables
 
-static JSONAPI* sharedInstance = nil;
+static OPJMAPI* sharedInstance = nil;
 
 static long jsonRpcId = 0;
 
-#pragma mark - JSONAPI() private interface
+#pragma mark - OPJMAPI() private interface
 
-@interface JSONAPI ()
+@interface OPJMAPI ()
 @property (strong, nonatomic) NSString* baseURLString;
 @end
 
-#pragma mark - JSONAPI implementation
+#pragma mark - OPJMAPI implementation
 
-@implementation JSONAPI
+@implementation OPJMAPI
 
 #pragma mark - initialize
 
@@ -53,7 +53,7 @@ static long jsonRpcId = 0;
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        sharedInstance = [[JSONAPI alloc] init];
+        sharedInstance = [[OPJMAPI alloc] init];
     });
 }
 
@@ -66,7 +66,7 @@ static long jsonRpcId = 0;
 
 +(void)setContentType:(NSString*)ctype
 {
-    [JSONHTTPClient setRequestContentType: ctype];
+    [OPJMHTTPClient setRequestContentType: ctype];
 }
 
 #pragma mark - GET methods
@@ -74,7 +74,7 @@ static long jsonRpcId = 0;
 {
     NSString* fullURL = [NSString stringWithFormat:@"%@%@", sharedInstance.baseURLString, path];
 
-    [JSONHTTPClient getJSONFromURLWithString: fullURL params:params completion:^(NSDictionary *json, JSONModelError *e) {
+    [OPJMHTTPClient getJSONFromURLWithString: fullURL params:params completion:^(NSDictionary *json, OPJMModelError *e) {
         completeBlock(json, e);
     }];
 }
@@ -84,7 +84,7 @@ static long jsonRpcId = 0;
 {
     NSString* fullURL = [NSString stringWithFormat:@"%@%@", sharedInstance.baseURLString, path];
 
-    [JSONHTTPClient postJSONFromURLWithString: fullURL params:params completion:^(NSDictionary *json, JSONModelError *e) {
+    [OPJMHTTPClient postJSONFromURLWithString: fullURL params:params completion:^(NSDictionary *json, OPJMModelError *e) {
         completeBlock(json, e);
     }];
 }
@@ -99,25 +99,25 @@ static long jsonRpcId = 0;
     NSString* jsonRequestString = [[NSString alloc] initWithData:jsonRequestData encoding: NSUTF8StringEncoding];
 
     NSAssert(sharedInstance.baseURLString, @"API base URL not set");
-    [JSONHTTPClient postJSONFromURLWithString: sharedInstance.baseURLString
+    [OPJMHTTPClient postJSONFromURLWithString: sharedInstance.baseURLString
                                    bodyString: jsonRequestString
-                                   completion:^(NSDictionary *json, JSONModelError* e) {
+                                   completion:^(NSDictionary *json, OPJMModelError* e) {
 
                                        if (completeBlock) {
                                            //handle the rpc response
                                            NSDictionary* result = json[@"result"];
 
                                            if (!result) {
-                                               JSONAPIRPCErrorModel* error = [[JSONAPIRPCErrorModel alloc] initWithDictionary:json[@"error"] error:nil];
+                                               OPJMAPIRPCErrorModel* error = [[OPJMAPIRPCErrorModel alloc] initWithDictionary:json[@"error"] error:nil];
                                                if (error) {
                                                    //custom server error
                                                    if (!error.message) error.message = @"Generic json rpc error";
-                                                   e = [JSONModelError errorWithDomain:JSONModelErrorDomain
+                                                   e = [OPJMModelError errorWithDomain:OPJMModelErrorDomain
                                                                                   code:error.code
                                                                               userInfo: @{ NSLocalizedDescriptionKey : error.message}];
                                                } else {
                                                    //generic error
-                                                   e = [JSONModelError errorBadResponse];
+                                                   e = [OPJMModelError errorBadResponse];
                                                }
                                            }
 
@@ -157,5 +157,5 @@ static long jsonRpcId = 0;
 @end
 
 #pragma mark - helper rpc error model class implementation
-@implementation JSONAPIRPCErrorModel
+@implementation OPJMAPIRPCErrorModel
 @end

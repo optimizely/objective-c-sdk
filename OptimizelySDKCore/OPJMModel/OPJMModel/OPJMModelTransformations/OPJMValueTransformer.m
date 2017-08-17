@@ -15,11 +15,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONValueTransformer.m
-//  JSONModel
+//  OPJMValueTransformer.m
+//  OPJMModel
 //
 
-#import "JSONValueTransformer.h"
+#import "OPJMValueTransformer.h"
 
 #pragma mark - functions
 extern BOOL isNull(id value)
@@ -30,7 +30,7 @@ extern BOOL isNull(id value)
     return NO;
 }
 
-@implementation JSONValueTransformer
+@implementation OPJMValueTransformer
 
 -(id)init
 {
@@ -189,7 +189,7 @@ extern BOOL isNull(id value)
 -(NSURL*)NSURLFromNSString:(NSString*)string
 {
     // do not change this behavior - there are other ways of overriding it
-    // see: https://github.com/jsonmodel/jsonmodel/pull/119
+    // see: https://github.com/opjmmodel/opjmmodel/pull/119
     return [NSURL URLWithString:string];
 }
 
@@ -246,7 +246,7 @@ extern BOOL isNull(id value)
 }
 
 #pragma mark - hidden transform for empty dictionaries
-//https://github.com/jsonmodel/jsonmodel/issues/163
+//https://github.com/opjmmodel/opjmmodel/issues/163
 -(NSDictionary*)__NSDictionaryFromNSArray:(NSArray*)array
 {
     if (array.count==0) return @{};

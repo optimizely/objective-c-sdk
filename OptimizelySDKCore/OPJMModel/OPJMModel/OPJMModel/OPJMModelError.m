@@ -15,66 +15,66 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModelError.m
-//  JSONModel
+//  OPJMModelError.m
+//  OPJMModel
 //
 
-#import "JSONModelError.h"
+#import "OPJMModelError.h"
 
-NSString* const JSONModelErrorDomain = @"JSONModelErrorDomain";
-NSString* const kJSONModelMissingKeys = @"kJSONModelMissingKeys";
-NSString* const kJSONModelTypeMismatch = @"kJSONModelTypeMismatch";
-NSString* const kJSONModelKeyPath = @"kJSONModelKeyPath";
+NSString* const OPJMModelErrorDomain = @"OPJMModelErrorDomain";
+NSString* const kOPJMModelMissingKeys = @"kOPJMModelMissingKeys";
+NSString* const kOPJMModelTypeMismatch = @"kOPJMModelTypeMismatch";
+NSString* const kOPJMModelKeyPath = @"kOPJMModelKeyPath";
 
-@implementation JSONModelError
+@implementation OPJMModelError
 
 +(id)errorInvalidDataWithMessage:(NSString*)message
 {
     message = [NSString stringWithFormat:@"Invalid JSON data: %@", message];
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorInvalidData
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorInvalidData
                                   userInfo:@{NSLocalizedDescriptionKey:message}];
 }
 
 +(id)errorInvalidDataWithMissingKeys:(NSSet *)keys
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorInvalidData
-                                  userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON data. Required JSON keys are missing from the input. Check the error user information.",kJSONModelMissingKeys:[keys allObjects]}];
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorInvalidData
+                                  userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON data. Required JSON keys are missing from the input. Check the error user information.",kOPJMModelMissingKeys:[keys allObjects]}];
 }
 
 +(id)errorInvalidDataWithTypeMismatch:(NSString*)mismatchDescription
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorInvalidData
-                                  userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON data. The JSON type mismatches the expected type. Check the error user information.",kJSONModelTypeMismatch:mismatchDescription}];
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorInvalidData
+                                  userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON data. The JSON type mismatches the expected type. Check the error user information.",kOPJMModelTypeMismatch:mismatchDescription}];
 }
 
 +(id)errorBadResponse
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorBadResponse
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorBadResponse
                                   userInfo:@{NSLocalizedDescriptionKey:@"Bad network response. Probably the JSON URL is unreachable."}];
 }
 
 +(id)errorBadJSON
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorBadJSON
-                                  userInfo:@{NSLocalizedDescriptionKey:@"Malformed JSON. Check the JSONModel data input."}];
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorBadJSON
+                                  userInfo:@{NSLocalizedDescriptionKey:@"Malformed JSON. Check the OPJMModel data input."}];
 }
 
 +(id)errorModelIsInvalid
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorModelIsInvalid
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorModelIsInvalid
                                   userInfo:@{NSLocalizedDescriptionKey:@"Model does not validate. The custom validation for the input data failed."}];
 }
 
 +(id)errorInputIsNil
 {
-    return [JSONModelError errorWithDomain:JSONModelErrorDomain
-                                      code:kJSONModelErrorNilInput
+    return [OPJMModelError errorWithDomain:OPJMModelErrorDomain
+                                      code:kOPJMModelErrorNilInput
                                   userInfo:@{NSLocalizedDescriptionKey:@"Initializing model with nil input object."}];
 }
 
@@ -84,13 +84,13 @@ NSString* const kJSONModelKeyPath = @"kJSONModelKeyPath";
     NSMutableDictionary* userInfo = [self.userInfo mutableCopy];
 
     // Create or update the key-path
-    NSString* existingPath = userInfo[kJSONModelKeyPath];
+    NSString* existingPath = userInfo[kOPJMModelKeyPath];
     NSString* separator = [existingPath hasPrefix:@"["] ? @"" : @".";
     NSString* updatedPath = (existingPath == nil) ? component : [component stringByAppendingFormat:@"%@%@", separator, existingPath];
-    userInfo[kJSONModelKeyPath] = updatedPath;
+    userInfo[kOPJMModelKeyPath] = updatedPath;
 
     // Create the new error
-    return [JSONModelError errorWithDomain:self.domain
+    return [OPJMModelError errorWithDomain:self.domain
                                       code:self.code
                                   userInfo:[NSDictionary dictionaryWithDictionary:userInfo]];
 }

@@ -15,20 +15,20 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 //
-//  JSONModel+networking.h
-//  JSONModel
+//  OPJMModel+networking.h
+//  OPJMModel
 //
 
-#import "JSONModel.h"
-#import "JSONHTTPClient.h"
+#import "OPJMModel.h"
+#import "OPJMHTTPClient.h"
 
-typedef void (^JSONModelBlock)(id model, JSONModelError *err) DEPRECATED_ATTRIBUTE;
+typedef void (^OPJMModelBlock)(id model, OPJMModelError *err) DEPRECATED_ATTRIBUTE;
 
-@interface JSONModel (Networking)
+@interface OPJMModel (Networking)
 
 @property (assign, nonatomic) BOOL isLoading DEPRECATED_ATTRIBUTE;
-- (instancetype)initFromURLWithString:(NSString *)urlString completion:(JSONModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
-+ (void)getModelFromURLWithString:(NSString *)urlString completion:(JSONModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
-+ (void)postModel:(JSONModel *)post toURLWithString:(NSString *)urlString completion:(JSONModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
+- (instancetype)initFromURLWithString:(NSString *)urlString completion:(OPJMModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
++ (void)getModelFromURLWithString:(NSString *)urlString completion:(OPJMModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
++ (void)postModel:(OPJMModel *)post toURLWithString:(NSString *)urlString completion:(OPJMModelBlock)completeBlock DEPRECATED_ATTRIBUTE;
 
 @end
