@@ -4,27 +4,8 @@ OPJMModel allows rapid creation of smart data models. You can use it in your
 iOS, macOS, watchOS and tvOS apps. Automatic introspection of your model classes
 and JSON input drastically reduces the amount of code you have to write.
 
-See [CHANGELOG.md](CHANGELOG.md) for details on changes.
-
-## Installation
-
-### CocoaPods
-
-```ruby
-pod 'OPJMModel'
-```
-
-### Carthage
-
-```ruby
-github "opjmmodel/opjmmodel"
-```
-
-### Manual
-
-0. download the OPJMModel repository
-0. copy the OPJMModel sub-folder into your Xcode project
-0. link your app to SystemConfiguration.framework
+OPJMModel is a modified copy of the original JSONModel covered by the "LICENSE"
+file mentioned at the end of this document.
 
 ## Basic Usage
 
@@ -381,6 +362,18 @@ NSString *string = [pm toJSONString];
 
 MIT licensed - see [LICENSE](LICENSE) file.
 
-## Contributing
+## Modifications to JSONModel by Optimizely, Inc.
 
-We love pull requests! See [CONTRIBUTING.md](CONTRIBUTING.md) for full details.
+Copyright 2017, Optimizely, Inc. and contributors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.  
