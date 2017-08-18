@@ -24,7 +24,6 @@
 
 #import "OPDBTempDBTests.h"
 #import "OPDBDatabase.h"
-#import "OPDBDatabaseAdditions.h"
 
 #if OPDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
@@ -1219,28 +1218,6 @@
     XCTAssert(isThreadSafe, @"not threadsafe");
 }
 
-- (void)testOpenNilPath
-{
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
-    XCTAssert([db open], @"open failed");
-    XCTAssert([db executeUpdate:@"create table foo (bar text)"], @"create failed");
-    NSString *value = @"baz";
-    XCTAssert([db executeUpdate:@"insert into foo (bar) values (?)" withArgumentsInArray:@[value]], @"insert failed");
-    NSString *retrievedValue = [db stringForQuery:@"select bar from foo"];
-    XCTAssert([value compare:retrievedValue] == NSOrderedSame, @"values didn't match");
-}
-
-- (void)testOpenZeroLengthPath
-{
-    OPDBDatabase *db = [[OPDBDatabase alloc] initWithPath:@""];
-    XCTAssert([db open], @"open failed");
-    XCTAssert([db executeUpdate:@"create table foo (bar text)"], @"create failed");
-    NSString *value = @"baz";
-    XCTAssert([db executeUpdate:@"insert into foo (bar) values (?)" withArgumentsInArray:@[value]], @"insert failed");
-    NSString *retrievedValue = [db stringForQuery:@"select bar from foo"];
-    XCTAssert([value compare:retrievedValue] == NSOrderedSame, @"values didn't match");
-}
-
 - (void)testOpenTwice
 {
     OPDBDatabase *db = [[OPDBDatabase alloc] init];
@@ -1347,124 +1324,6 @@
     int changes = [db changes];
     
     XCTAssertEqual(changes, 2, @"two rows should have incremented \(%ld)", (long)changes);
-}
-
-- (void)testBind {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
-    XCTAssert([db open], @"open failed");
-    XCTAssert([db executeUpdate:@"create table foo (id integer primary key autoincrement, a numeric)"], @"create failed");
-    
-    NSNumber *insertedValue;
-    NSNumber *retrievedValue;
-    
-    insertedValue = [NSNumber numberWithChar:51];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithUnsignedChar:52];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-
-    insertedValue = [NSNumber numberWithShort:53];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithUnsignedShort:54];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithInt:54];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithUnsignedInt:55];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithLong:56];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db longForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithUnsignedLong:57];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db longForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithLongLong:56];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db longForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithUnsignedLongLong:57];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db longForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithFloat:58];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db doubleForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-    
-    insertedValue = [NSNumber numberWithDouble:59];
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db doubleForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-
-    insertedValue = @TRUE;
-    XCTAssert([db executeUpdate:@"insert into foo (a) values (?)" withArgumentsInArray:@[insertedValue]], @"insert failed");
-    retrievedValue = @([db boolForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])]);
-    XCTAssertEqualObjects(insertedValue, retrievedValue, @"values don't match");
-}
-
-- (void)testFormatStrings {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
-    XCTAssert([db open], @"open failed");
-    XCTAssert([db executeUpdate:@"create table foo (id integer primary key autoincrement, a numeric)"], @"create failed");
-    
-    BOOL success;
-    
-    char insertedChar = 'A';
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%c)", insertedChar];
-    XCTAssert(success, @"insert failed");
-    const char *retrievedChar = [[db stringForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])] UTF8String];
-    XCTAssertEqual(insertedChar, retrievedChar[0], @"values don't match");
-    
-    const char *insertedString = "baz";
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%s)", insertedString];
-    XCTAssert(success, @"insert failed");
-    const char *retrievedString = [[db stringForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])] UTF8String];
-    XCTAssert(strcmp(insertedString, retrievedString) == 0, @"values don't match");
-    
-    int insertedInt = 42;
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%d)", insertedInt];
-    XCTAssert(success, @"insert failed");
-    int retrievedInt = [db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])];
-    XCTAssertEqual(insertedInt, retrievedInt, @"values don't match");
-
-    char insertedUnsignedInt = 43;
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%u)", insertedUnsignedInt];
-    XCTAssert(success, @"insert failed");
-    char retrievedUnsignedInt = [db intForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])];
-    XCTAssertEqual(insertedUnsignedInt, retrievedUnsignedInt, @"values don't match");
-    
-    float insertedFloat = 44;
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%f)", insertedFloat];
-    XCTAssert(success, @"insert failed");
-    float retrievedFloat = [db doubleForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])];
-    XCTAssertEqual(insertedFloat, retrievedFloat, @"values don't match");
-    
-    unsigned long long insertedUnsignedLongLong = 45;
-    success = [db executeUpdateWithFormat:@"insert into foo (a) values (%llu)", insertedUnsignedLongLong];
-    XCTAssert(success, @"insert failed");
-    unsigned long long retrievedUnsignedLongLong = [db longForQuery:@"select a from foo where id = ?", @([db lastInsertRowId])];
-    XCTAssertEqual(insertedUnsignedLongLong, retrievedUnsignedLongLong, @"values don't match");
 }
 
 - (void)testStepError {

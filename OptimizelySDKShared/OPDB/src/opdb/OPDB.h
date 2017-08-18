@@ -22,5 +22,4 @@ FOUNDATION_EXPORT const unsigned char OPDBVersionString[];
 
 #import "OPDBDatabase.h"
 #import "OPDBResultSet.h"
-#import "OPDBDatabaseAdditions.h"
 #import "OPDBDatabaseQueue.h"

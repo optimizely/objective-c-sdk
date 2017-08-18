@@ -326,8 +326,6 @@
 		EAF880DC1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
 		EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */; };
 		EAF880EA1EF1D46300143F7C /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */; };
-		EAF880EC1EF1D46300143F7C /* OPDBDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DF1EF1D46300143F7C /* OPDBDatabaseAdditions.h */; };
-		EAF880EE1EF1D46300143F7C /* OPDBDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E01EF1D46300143F7C /* OPDBDatabaseAdditions.m */; };
 		EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */; };
 		EAF880F61EF1D46300143F7C /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */; };
 		EAF880F81EF1D46300143F7C /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPDB.h */; };
@@ -971,7 +969,6 @@
 				EA52CA481E851CC100D4FCA0 /* OPTLYExperiment.h in Headers */,
 				EA52CA491E851CC100D4FCA0 /* OPTLYGroup.h in Headers */,
 				EA52CA4A1E851CC100D4FCA0 /* OPTLYHTTPRequestManager.h in Headers */,
-				EAF880EC1EF1D46300143F7C /* OPDBDatabaseAdditions.h in Headers */,
 				EAF880F81EF1D46300143F7C /* OPDB.h in Headers */,
 				EA52CA4B1E851CC100D4FCA0 /* OPTLYLog.h in Headers */,
 				EA52CA4C1E851CC100D4FCA0 /* OPTLYLoggerMessages.h in Headers */,
@@ -1423,7 +1420,6 @@
 				EA52C9F61E851CC100D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
 				EA52C9FA1E851CC100D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
 				EA52C9FB1E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
-				EAF880EE1EF1D46300143F7C /* OPDBDatabaseAdditions.m in Sources */,
 				EA52C9FC1E851CC100D4FCA0 /* OPTLYDatafileManager.m in Sources */,
 				EA52C9FD1E851CC100D4FCA0 /* OPTLYDatafileManagerBuilder.m in Sources */,
 				EAF880D71EF1D42500143F7C /* OPJMKeyMapper.m in Sources */,
