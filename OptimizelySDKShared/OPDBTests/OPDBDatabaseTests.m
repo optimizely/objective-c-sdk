@@ -22,6 +22,7 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <XCTest/XCTest.h>
 #import "OPDBTempDBTests.h"
 #import "OPDBDatabase.h"
 

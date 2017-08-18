@@ -23,6 +23,7 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
+#import "OPDBTempDBTests.h"
 #import "OPDBDatabaseQueue.h"
 
 #if OPDB_SQLITE_STANDALONE
