@@ -9,7 +9,6 @@ _MurmurHash3_x64_128
 _MurmurHash3_x86_128
 _MurmurHash3_x86_32
 _OBJC_CLASS_$_OPDBDatabase
-_OBJC_CLASS_$_OPDBDatabasePool
 _OBJC_CLASS_$_OPDBDatabaseQueue
 _OBJC_CLASS_$_OPDBResultSet
 _OBJC_CLASS_$_OPDBStatement
@@ -33,14 +32,6 @@ _OBJC_IVAR_$_OPDBDatabase._openResultSets
 _OBJC_IVAR_$_OPDBDatabase._shouldCacheStatements
 _OBJC_IVAR_$_OPDBDatabase._startBusyRetryTime
 _OBJC_IVAR_$_OPDBDatabase._traceExecution
-_OBJC_IVAR_$_OPDBDatabasePool._databaseInPool
-_OBJC_IVAR_$_OPDBDatabasePool._databaseOutPool
-_OBJC_IVAR_$_OPDBDatabasePool._delegate
-_OBJC_IVAR_$_OPDBDatabasePool._lockQueue
-_OBJC_IVAR_$_OPDBDatabasePool._maximumNumberOfDatabasesToCreate
-_OBJC_IVAR_$_OPDBDatabasePool._openFlags
-_OBJC_IVAR_$_OPDBDatabasePool._path
-_OBJC_IVAR_$_OPDBDatabasePool._vfsName
 _OBJC_IVAR_$_OPDBDatabaseQueue._db
 _OBJC_IVAR_$_OPDBDatabaseQueue._openFlags
 _OBJC_IVAR_$_OPDBDatabaseQueue._path
@@ -55,7 +46,6 @@ _OBJC_IVAR_$_OPDBStatement._query
 _OBJC_IVAR_$_OPDBStatement._statement
 _OBJC_IVAR_$_OPDBStatement._useCount
 _OBJC_METACLASS_$_OPDBDatabase
-_OBJC_METACLASS_$_OPDBDatabasePool
 _OBJC_METACLASS_$_OPDBDatabaseQueue
 _OBJC_METACLASS_$_OPDBResultSet
 _OBJC_METACLASS_$_OPDBStatement

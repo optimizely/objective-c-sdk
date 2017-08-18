@@ -328,8 +328,6 @@
 		EAF880EA1EF1D46300143F7C /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */; };
 		EAF880EC1EF1D46300143F7C /* OPDBDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DF1EF1D46300143F7C /* OPDBDatabaseAdditions.h */; };
 		EAF880EE1EF1D46300143F7C /* OPDBDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E01EF1D46300143F7C /* OPDBDatabaseAdditions.m */; };
-		EAF880F01EF1D46300143F7C /* OPDBDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E11EF1D46300143F7C /* OPDBDatabasePool.h */; };
-		EAF880F21EF1D46300143F7C /* OPDBDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E21EF1D46300143F7C /* OPDBDatabasePool.m */; };
 		EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */; };
 		EAF880F61EF1D46300143F7C /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */; };
 		EAF880F81EF1D46300143F7C /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPDB.h */; };
@@ -1000,7 +998,6 @@
 				EA52CA611E851CC100D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CA621E851CC100D4FCA0 /* OPTLYManagerBasic.h in Headers */,
 				EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
-				EAF880F01EF1D46300143F7C /* OPDBDatabasePool.h in Headers */,
 				EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
 				EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */,
 				EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */,
@@ -1408,7 +1405,6 @@
 				EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C42A1EC4E61E00A76A2D /* OPTLYManager.m in Sources */,
 				EAE8C4161EC4E4E500A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
-				EAF880F21EF1D46300143F7C /* OPDBDatabasePool.m in Sources */,
 				EAE8C4171EC4E4E500A76A2D /* OPTLYUserProfileService.m in Sources */,
 				EA52C9E61E851CC100D4FCA0 /* OPTLYLogger.m in Sources */,
 				EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */,

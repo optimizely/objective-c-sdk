@@ -17,7 +17,6 @@
 
 #import <Foundation/Foundation.h>
 #import "OPDBResultSet.h"
-#import "OPDBDatabasePool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -70,8 +69,7 @@ typedef int(^OPDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
  ### See also
  
- - `<OPDBDatabasePool>` - A pool of `OPDBDatabase` objects.
- - `<OPDBStatement>` - A wrapper for `sqlite_stmt`.
+  - `<OPDBStatement>` - A wrapper for `sqlite_stmt`.
  
  ### External links
  

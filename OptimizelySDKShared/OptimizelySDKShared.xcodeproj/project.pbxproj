@@ -42,8 +42,6 @@
 		3E858C431F4226E800D53856 /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C381F4226E800D53856 /* OPDBDatabase.m */; };
 		3E858C441F4226E800D53856 /* OPDBDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C451F4226E800D53856 /* OPDBDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */; };
-		3E858C461F4226E800D53856 /* OPDBDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C471F4226E800D53856 /* OPDBDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */; };
 		3E858C481F4226E800D53856 /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C491F4226E800D53856 /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */; };
 		3E858C4A1F4226E800D53856 /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* OPDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,7 +50,6 @@
 		3ECBCC191F43983400160937 /* OPDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* OPDBTests.m */; };
 		3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
 		3ECBCC2F1F439AD000160937 /* OPDBDatabaseAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */; };
-		3ECBCC321F439AD000160937 /* OPDBDatabasePoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */; };
 		3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */; };
 		3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */; };
 		3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */; };
@@ -202,8 +199,6 @@
 		3E858C381F4226E800D53856 /* OPDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabase.m; path = OPDB/src/opdb/OPDBDatabase.m; sourceTree = "<group>"; };
 		3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseAdditions.h; path = OPDB/src/opdb/OPDBDatabaseAdditions.h; sourceTree = "<group>"; };
 		3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseAdditions.m; path = OPDB/src/opdb/OPDBDatabaseAdditions.m; sourceTree = "<group>"; };
-		3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabasePool.h; path = OPDB/src/opdb/OPDBDatabasePool.h; sourceTree = "<group>"; };
-		3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabasePool.m; path = OPDB/src/opdb/OPDBDatabasePool.m; sourceTree = "<group>"; };
 		3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseQueue.h; path = OPDB/src/opdb/OPDBDatabaseQueue.h; sourceTree = "<group>"; };
 		3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseQueue.m; path = OPDB/src/opdb/OPDBDatabaseQueue.m; sourceTree = "<group>"; };
 		3E858C3F1F4226E800D53856 /* OPDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDB.h; path = OPDB/src/opdb/OPDB.h; sourceTree = "<group>"; };
@@ -215,7 +210,6 @@
 		3ECBCC181F43983400160937 /* OPDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPDBTests.m; sourceTree = "<group>"; };
 		3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPDBTests-Info.plist"; sourceTree = "<group>"; };
 		3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseAdditionsTests.m; sourceTree = "<group>"; };
-		3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabasePoolTests.m; sourceTree = "<group>"; };
 		3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseQueueTests.m; sourceTree = "<group>"; };
 		3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseTests.m; sourceTree = "<group>"; };
 		3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPDBTempDBTests.h; sourceTree = "<group>"; };
@@ -385,8 +379,6 @@
 				3E858C381F4226E800D53856 /* OPDBDatabase.m */,
 				3E858C391F4226E800D53856 /* OPDBDatabaseAdditions.h */,
 				3E858C3A1F4226E800D53856 /* OPDBDatabaseAdditions.m */,
-				3E858C3B1F4226E800D53856 /* OPDBDatabasePool.h */,
-				3E858C3C1F4226E800D53856 /* OPDBDatabasePool.m */,
 				3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */,
 				3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */,
 				3E858C3F1F4226E800D53856 /* OPDB.h */,
@@ -400,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				3ECBCC251F439AD000160937 /* OPDBDatabaseAdditionsTests.m */,
-				3ECBCC281F439AD000160937 /* OPDBDatabasePoolTests.m */,
 				3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */,
 				3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */,
 				3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */,
@@ -569,7 +560,6 @@
 				3E858C421F4226E800D53856 /* OPDBDatabase.h in Headers */,
 				3E858C4B1F4226E800D53856 /* OPDBResultSet.h in Headers */,
 				3E858C4A1F4226E800D53856 /* OPDB.h in Headers */,
-				3E858C461F4226E800D53856 /* OPDBDatabasePool.h in Headers */,
 				2D08FB9F1DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
@@ -1012,7 +1002,6 @@
 				3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */,
 				3ECBCC2F1F439AD000160937 /* OPDBDatabaseAdditionsTests.m in Sources */,
 				3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */,
-				3ECBCC321F439AD000160937 /* OPDBDatabasePoolTests.m in Sources */,
 				3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1034,7 +1023,6 @@
 				3E858C451F4226E800D53856 /* OPDBDatabaseAdditions.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
 				EA064BD41DD4030700DF7537 /* OPTLYDataStore.m in Sources */,
-				3E858C471F4226E800D53856 /* OPDBDatabasePool.m in Sources */,
 				EA92F8661E281DE200A859C7 /* OPTLYManagerBasic.m in Sources */,
 				EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */,
 			);
