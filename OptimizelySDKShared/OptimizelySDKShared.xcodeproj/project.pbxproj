@@ -51,7 +51,6 @@
 		3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */; };
 		3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */; };
 		3ECBCC361F439AD000160937 /* OPDBResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */; };
-		3ECBCC3A1F439B6D00160937 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ECBCC381F439B6D00160937 /* InfoPlist.strings */; };
 		3ECBCC4A1F43A39200160937 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
@@ -210,7 +209,6 @@
 		3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBTempDBTests.m; sourceTree = "<group>"; };
 		3ECBCC2D1F439AD000160937 /* OPDBTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OPDBTests-Prefix.pch"; sourceTree = "<group>"; };
 		3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBResultSetTests.m; sourceTree = "<group>"; };
-		3ECBCC391F439B6D00160937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 			children = (
 				3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */,
 				3ECBCC2D1F439AD000160937 /* OPDBTests-Prefix.pch */,
-				3ECBCC381F439B6D00160937 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -781,7 +778,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ECBCC3A1F439B6D00160937 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,17 +1085,6 @@
 			targetProxy = EA5249781DC7C83200AF6685 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		3ECBCC381F439B6D00160937 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3ECBCC391F439B6D00160937 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3ECBCC1E1F43983400160937 /* Debug */ = {
