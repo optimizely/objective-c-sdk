@@ -61,9 +61,6 @@
 #import "OPJMModelClassProperty.h"
 #import "OPJMModelError.h"
 #import "OPJMModelLib.h"
-#import "OPJMAPI.h"
-#import "OPJMHTTPClient.h"
-#import "OPJMModel+networking.h"
 #import "OPJMKeyMapper.h"
 #import "OPJMValueTransformer.h"
 

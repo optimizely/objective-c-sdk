@@ -316,18 +316,6 @@
 		EAF880BB1EF1D40200143F7C /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPJMModelError.m */; };
 		EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; };
 		EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; };
-		EAF880C51EF1D41400143F7C /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BF1EF1D41400143F7C /* OPJMAPI.h */; };
-		EAF880C61EF1D41400143F7C /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BF1EF1D41400143F7C /* OPJMAPI.h */; };
-		EAF880C71EF1D41400143F7C /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C01EF1D41400143F7C /* OPJMAPI.m */; };
-		EAF880C81EF1D41400143F7C /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C01EF1D41400143F7C /* OPJMAPI.m */; };
-		EAF880C91EF1D41400143F7C /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880C11EF1D41400143F7C /* OPJMHTTPClient.h */; };
-		EAF880CA1EF1D41400143F7C /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880C11EF1D41400143F7C /* OPJMHTTPClient.h */; };
-		EAF880CB1EF1D41400143F7C /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C21EF1D41400143F7C /* OPJMHTTPClient.m */; };
-		EAF880CC1EF1D41400143F7C /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C21EF1D41400143F7C /* OPJMHTTPClient.m */; };
-		EAF880CD1EF1D41400143F7C /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880C31EF1D41400143F7C /* OPJMModel+networking.h */; };
-		EAF880CE1EF1D41400143F7C /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880C31EF1D41400143F7C /* OPJMModel+networking.h */; };
-		EAF880CF1EF1D41400143F7C /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C41EF1D41400143F7C /* OPJMModel+networking.m */; };
-		EAF880D01EF1D41400143F7C /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880C41EF1D41400143F7C /* OPJMModel+networking.m */; };
 		EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; };
 		EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; };
 		EAF880D71EF1D42500143F7C /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */; };
@@ -960,7 +948,6 @@
 				EA52CA321E851CC100D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CA331E851CC100D4FCA0 /* OPTLYAttribute.h in Headers */,
 				EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */,
-				EAF880CD1EF1D41400143F7C /* OPJMModel+networking.h in Headers */,
 				EA52CA341E851CC100D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CA351E851CC100D4FCA0 /* OPTLYBaseCondition.h in Headers */,
 				EA52CA361E851CC100D4FCA0 /* OPTLYBuilder.h in Headers */,
@@ -968,7 +955,6 @@
 				EA52CA381E851CC100D4FCA0 /* OPTLYDatafileKeys.h in Headers */,
 				EA52CA391E851CC100D4FCA0 /* OPTLYDecisionEventTicket.h in Headers */,
 				EA52CA3A1E851CC100D4FCA0 /* OPTLYErrorHandlerMessages.h in Headers */,
-				EAF880C91EF1D41400143F7C /* OPJMHTTPClient.h in Headers */,
 				EA52CA3B1E851CC100D4FCA0 /* OPTLYEvent.h in Headers */,
 				EA52CA3C1E851CC100D4FCA0 /* OPTLYEventAudience.h in Headers */,
 				EA52CA3D1E851CC100D4FCA0 /* OPTLYEventBuilder.h in Headers */,
@@ -978,7 +964,6 @@
 				EA52CA401E851CC100D4FCA0 /* OPTLYEventFeature.h in Headers */,
 				EA52CA411E851CC100D4FCA0 /* OPTLYEventHeader.h in Headers */,
 				EA52CA421E851CC100D4FCA0 /* OPTLYEventLayerState.h in Headers */,
-				EAF880C51EF1D41400143F7C /* OPJMAPI.h in Headers */,
 				EA52CA431E851CC100D4FCA0 /* OPTLYEventMetric.h in Headers */,
 				EA52CA441E851CC100D4FCA0 /* OPTLYEventParameterKeys.h in Headers */,
 				EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
@@ -1059,7 +1044,6 @@
 				EA52CADC1E851CEE00D4FCA0 /* OPTLYEventAudience.h in Headers */,
 				EA52CADD1E851CEE00D4FCA0 /* OPTLYEventBuilder.h in Headers */,
 				EA52CADE1E851CEE00D4FCA0 /* OPTLYEventDecision.h in Headers */,
-				EAF880C61EF1D41400143F7C /* OPJMAPI.h in Headers */,
 				EA52CADF1E851CEE00D4FCA0 /* OPTLYEventDecisionTicket.h in Headers */,
 				EA52CAE01E851CEE00D4FCA0 /* OPTLYEventFeature.h in Headers */,
 				EA52CAE11E851CEE00D4FCA0 /* OPTLYEventHeader.h in Headers */,
@@ -1111,14 +1095,12 @@
 				EA52CB151E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Headers */,
 				EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */,
 				EA52CB101E851CEE00D4FCA0 /* OPTLYLogger.h in Headers */,
-				EAF880CA1EF1D41400143F7C /* OPJMHTTPClient.h in Headers */,
 				EA52CB111E851CEE00D4FCA0 /* OPTLYVariation.h in Headers */,
 				EA61126B1EC28689001967ED /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41D1EC4E51D00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAE8C41E1EC4E51D00A76A2D /* OptimizelySDKUserProfileService.h in Headers */,
 				EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */,
 				EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
-				EAF880CE1EF1D41400143F7C /* OPJMModel+networking.h in Headers */,
 				EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
@@ -1456,13 +1438,11 @@
 				EA52CA051E851CC100D4FCA0 /* OPTLYBuilder.m in Sources */,
 				EAF880B21EF1D40200143F7C /* OPJMModel.m in Sources */,
 				EA52CA061E851CC100D4FCA0 /* OPTLYCondition.m in Sources */,
-				EAF880CB1EF1D41400143F7C /* OPJMHTTPClient.m in Sources */,
 				EA52CA071E851CC100D4FCA0 /* OPTLYDatafileKeys.m in Sources */,
 				EA52CA081E851CC100D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */,
 				EA52CA091E851CC100D4FCA0 /* OPTLYErrorHandler.m in Sources */,
 				EA52CA0B1E851CC100D4FCA0 /* OPTLYErrorHandlerMessages.m in Sources */,
 				EA52CA0C1E851CC100D4FCA0 /* OPTLYEvent.m in Sources */,
-				EAF880C71EF1D41400143F7C /* OPJMAPI.m in Sources */,
 				EA52CA0D1E851CC100D4FCA0 /* OPTLYEventAudience.m in Sources */,
 				EA52CA0E1E851CC100D4FCA0 /* OPTLYEventBuilder.m in Sources */,
 				EA52CA0F1E851CC100D4FCA0 /* OPTLYEventDecision.m in Sources */,
@@ -1492,7 +1472,6 @@
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EAF880FC1EF1D46300143F7C /* OPDBResultSet.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
-				EAF880CF1EF1D41400143F7C /* OPJMModel+networking.m in Sources */,
 				EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */,
 				EA6112611EC285DA001967ED /* OPTLYUserProfileServiceBuilder.m in Sources */,
@@ -1523,7 +1502,6 @@
 				EA52CA9D1E851CEE00D4FCA0 /* OPTLYManagerBase.m in Sources */,
 				EA52CA9E1E851CEE00D4FCA0 /* OPTLYManagerBasic.m in Sources */,
 				EA52CA9F1E851CEE00D4FCA0 /* OPTLYManagerBuilder.m in Sources */,
-				EAF880CC1EF1D41400143F7C /* OPJMHTTPClient.m in Sources */,
 				EA52CAA51E851CEE00D4FCA0 /* OPTLYEventDispatcher.m in Sources */,
 				EA52CAA61E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA52CAA71E851CEE00D4FCA0 /* OPTLYDatafileManager.m in Sources */,
@@ -1562,11 +1540,9 @@
 				EA52CAC81E851CEE00D4FCA0 /* OPTLYProjectConfig.m in Sources */,
 				EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */,
-				EAF880C81EF1D41400143F7C /* OPJMAPI.m in Sources */,
 				EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EAF880BB1EF1D40200143F7C /* OPJMModelError.m in Sources */,
 				EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */,
-				EAF880D01EF1D41400143F7C /* OPJMModel+networking.m in Sources */,
 				EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CAD11E851CEE00D4FCA0 /* OPTLYVariationVariable.m in Sources */,

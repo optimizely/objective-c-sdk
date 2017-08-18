@@ -17,12 +17,6 @@
 		3E858C701F4227CD00D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
 		3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C721F4227CD00D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
-		3E858C791F4227D900D53856 /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* OPJMAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7A1F4227D900D53856 /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* OPJMAPI.m */; };
-		3E858C7B1F4227D900D53856 /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* OPJMHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7C1F4227D900D53856 /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* OPJMHTTPClient.m */; };
-		3E858C7D1F4227D900D53856 /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* OPJMModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C7E1F4227D900D53856 /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* OPJMModel+networking.m */; };
 		3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
 		3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,12 +27,6 @@
 		3E858C8A1F4227F900D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
 		3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C8C1F4227F900D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
-		3E858C8D1F4227FE00D53856 /* OPJMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C731F4227D900D53856 /* OPJMAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8E1F4227FE00D53856 /* OPJMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C741F4227D900D53856 /* OPJMAPI.m */; };
-		3E858C8F1F4227FE00D53856 /* OPJMHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C751F4227D900D53856 /* OPJMHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C901F4227FE00D53856 /* OPJMHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C761F4227D900D53856 /* OPJMHTTPClient.m */; };
-		3E858C911F4227FE00D53856 /* OPJMModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C771F4227D900D53856 /* OPJMModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C921F4227FE00D53856 /* OPJMModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C781F4227D900D53856 /* OPJMModel+networking.m */; };
 		3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C951F42280900D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
@@ -310,12 +298,6 @@
 		3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelClassProperty.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.m; sourceTree = "<group>"; };
 		3E858C6B1F4227CD00D53856 /* OPJMModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelError.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.h; sourceTree = "<group>"; };
 		3E858C6C1F4227CD00D53856 /* OPJMModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelError.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.m; sourceTree = "<group>"; };
-		3E858C731F4227D900D53856 /* OPJMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMAPI.h; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.h; sourceTree = "<group>"; };
-		3E858C741F4227D900D53856 /* OPJMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMAPI.m; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.m; sourceTree = "<group>"; };
-		3E858C751F4227D900D53856 /* OPJMHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMHTTPClient.h; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.h; sourceTree = "<group>"; };
-		3E858C761F4227D900D53856 /* OPJMHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMHTTPClient.m; path = OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.m; sourceTree = "<group>"; };
-		3E858C771F4227D900D53856 /* OPJMModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPJMModel+networking.h"; path = "OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.h"; sourceTree = "<group>"; };
-		3E858C781F4227D900D53856 /* OPJMModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPJMModel+networking.m"; path = "OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.m"; sourceTree = "<group>"; };
 		3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMKeyMapper.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.h; sourceTree = "<group>"; };
 		3E858C801F4227E300D53856 /* OPJMKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMKeyMapper.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.m; sourceTree = "<group>"; };
 		3E858C811F4227E300D53856 /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
@@ -517,7 +499,6 @@
 			children = (
 				3E858C621F42279000D53856 /* OPJMModel */,
 				3E858C651F4227BA00D53856 /* OPJMModelLib.h */,
-				3E858C631F42279900D53856 /* OPJMModelNetworking */,
 				3E858C641F4227A600D53856 /* OPJMModelTransformations */,
 			);
 			name = OPJMModel;
@@ -534,19 +515,6 @@
 				3E858C6C1F4227CD00D53856 /* OPJMModelError.m */,
 			);
 			name = OPJMModel;
-			sourceTree = "<group>";
-		};
-		3E858C631F42279900D53856 /* OPJMModelNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				3E858C731F4227D900D53856 /* OPJMAPI.h */,
-				3E858C741F4227D900D53856 /* OPJMAPI.m */,
-				3E858C751F4227D900D53856 /* OPJMHTTPClient.h */,
-				3E858C761F4227D900D53856 /* OPJMHTTPClient.m */,
-				3E858C771F4227D900D53856 /* OPJMModel+networking.h */,
-				3E858C781F4227D900D53856 /* OPJMModel+networking.m */,
-			);
-			name = OPJMModelNetworking;
 			sourceTree = "<group>";
 		};
 		3E858C641F4227A600D53856 /* OPJMModelTransformations */ = {
@@ -857,12 +825,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */,
-				3E858C7B1F4227D900D53856 /* OPJMHTTPClient.h in Headers */,
-				3E858C7D1F4227D900D53856 /* OPJMModel+networking.h in Headers */,
 				3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */,
 				3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */,
 				3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */,
-				3E858C791F4227D900D53856 /* OPJMAPI.h in Headers */,
 				3E858C6D1F4227CD00D53856 /* OPJMModel.h in Headers */,
 				3E858C661F4227BA00D53856 /* OPJMModelLib.h in Headers */,
 				EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
@@ -918,15 +883,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C8F1F4227FE00D53856 /* OPJMHTTPClient.h in Headers */,
 				3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */,
 				3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */,
 				3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */,
 				3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */,
 				3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */,
 				3E858C891F4227F400D53856 /* OPJMModelClassProperty.h in Headers */,
-				3E858C8D1F4227FE00D53856 /* OPJMAPI.h in Headers */,
-				3E858C911F4227FE00D53856 /* OPJMModel+networking.h in Headers */,
 				EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB291DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */,
@@ -1334,11 +1296,8 @@
 				EA2FAC131DC6FFC600B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
 				3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */,
 				EA2FAC141DC6FFC600B1D81B /* OPTLYEventFeature.m in Sources */,
-				3E858C7E1F4227D900D53856 /* OPJMModel+networking.m in Sources */,
 				EA2FAC151DC6FFC600B1D81B /* OPTLYEventHeader.m in Sources */,
-				3E858C7C1F4227D900D53856 /* OPJMHTTPClient.m in Sources */,
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
-				3E858C7A1F4227D900D53856 /* OPJMAPI.m in Sources */,
 				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
@@ -1403,9 +1362,7 @@
 				EA2FABE41DC6FFA100B1D81B /* OPTLYBuilder.m in Sources */,
 				EA2FABE51DC6FFA100B1D81B /* OPTLYAttribute.m in Sources */,
 				EA2FABE61DC6FFA100B1D81B /* OPTLYAudience.m in Sources */,
-				3E858C921F4227FE00D53856 /* OPJMModel+networking.m in Sources */,
 				EA2FABE71DC6FFA100B1D81B /* OPTLYBaseCondition.m in Sources */,
-				3E858C8E1F4227FE00D53856 /* OPJMAPI.m in Sources */,
 				EA2FABE81DC6FFA100B1D81B /* OPTLYCondition.m in Sources */,
 				EA2FABE91DC6FFA100B1D81B /* OPTLYDatafileKeys.m in Sources */,
 				EA2FABEA1DC6FFA100B1D81B /* OPTLYDecisionEventTicket.m in Sources */,
@@ -1432,7 +1389,6 @@
 				EA2FABF81DC6FFA100B1D81B /* OPTLYGroup.m in Sources */,
 				EA2FABF91DC6FFA100B1D81B /* OPTLYProjectConfig.m in Sources */,
 				EA2FABFA1DC6FFA100B1D81B /* OPTLYTrafficAllocation.m in Sources */,
-				3E858C901F4227FE00D53856 /* OPJMHTTPClient.m in Sources */,
 				EA2FABFB1DC6FFA100B1D81B /* OPTLYVariation.m in Sources */,
 				EA2FABFC1DC6FFA100B1D81B /* OPTLYErrorHandler.m in Sources */,
 				EA2FABFD1DC6FFA100B1D81B /* OPTLYErrorHandlerMessages.m in Sources */,

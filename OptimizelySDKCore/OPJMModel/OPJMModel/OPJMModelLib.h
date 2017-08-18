@@ -28,8 +28,3 @@
 // transformations
 #import "OPJMValueTransformer.h"
 #import "OPJMKeyMapper.h"
-
-// networking (deprecated)
-#import "OPJMHTTPClient.h"
-#import "OPJMModel+networking.h"
-#import "OPJMAPI.h"
