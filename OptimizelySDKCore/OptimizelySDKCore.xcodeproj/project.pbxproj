@@ -708,7 +708,7 @@
 			name = OPJMModelTransformations;
 			sourceTree = "<group>";
 		};
-		3EA27B081F47AB0D00C0208F /* OPJMModeliOSTests */ = {
+		3EA27B081F47AB0D00C0208F /* OPJMModelTests */ = {
 			isa = PBXGroup;
 			children = (
 				3E35DC321F47ACFE00018732 /* ArrayTests.m */,
@@ -738,7 +738,8 @@
 				3E0347A51F4B612A001F13E3 /* OPJMModelTestHelper.h */,
 				3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */,
 			);
-			path = OPJMModeliOSTests;
+			name = OPJMModelTests;
+			path = OPJMModelTests;
 			sourceTree = "<group>";
 		};
 		3EA27B141F47AB7800C0208F /* Data */ = {
@@ -1032,7 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				3E858C5C1F42275700D53856 /* OPJMModel */,
-				3EA27B081F47AB0D00C0208F /* OPJMModeliOSTests */,
+				3EA27B081F47AB0D00C0208F /* OPJMModelTests */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
 				EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */,
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
@@ -1879,7 +1880,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OPJMModeliOSTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
@@ -1896,7 +1897,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModeliOSTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
@@ -1913,7 +1914,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModeliOSTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
@@ -1930,7 +1931,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModeliOSTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
