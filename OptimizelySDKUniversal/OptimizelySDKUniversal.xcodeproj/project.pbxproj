@@ -37,10 +37,10 @@
 		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
-		EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; };
+		EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; };
+		EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E51ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
@@ -299,37 +299,36 @@
 		EAE8C41E1EC4E51D00A76A2D /* OptimizelySDKUserProfileService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61126E1EC286D7001967ED /* OptimizelySDKUserProfileService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6112631EC28637001967ED /* OPTLYUserProfileServiceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileServiceBasic.m */; };
-		EAE8C4291EC4E5F900A76A2D /* OptimizelySDKTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52CEF51E86698A00D4FCA0 /* OptimizelySDKTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAE8C42A1EC4E61E00A76A2D /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */; };
 		EAE8C42B1EC4E62800A76A2D /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; };
-		EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; };
+		EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880B21EF1D40200143F7C /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPJMModel.m */; };
 		EAF880B31EF1D40200143F7C /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPJMModel.m */; };
-		EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; };
-		EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; };
+		EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880B61EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */; };
 		EAF880B71EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */; };
-		EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; };
-		EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; };
+		EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880BA1EF1D40200143F7C /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPJMModelError.m */; };
 		EAF880BB1EF1D40200143F7C /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPJMModelError.m */; };
-		EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; };
-		EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; };
-		EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; };
-		EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; };
+		EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880D71EF1D42500143F7C /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */; };
 		EAF880D81EF1D42500143F7C /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */; };
-		EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; };
-		EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; };
+		EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880DB1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
 		EAF880DC1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
-		EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */; };
+		EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880EA1EF1D46300143F7C /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */; };
-		EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */; };
+		EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880F61EF1D46300143F7C /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */; };
-		EAF880F81EF1D46300143F7C /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPDB.h */; };
-		EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E61EF1D46300143F7C /* OPDBResultSet.h */; };
+		EAF880F81EF1D46300143F7C /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E61EF1D46300143F7C /* OPDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880FC1EF1D46300143F7C /* OPDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E71EF1D46300143F7C /* OPDBResultSet.m */; };
 		EAF881271EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
 		EAF881291EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
@@ -940,10 +939,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */,
+				EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
+				EAF880F81EF1D46300143F7C /* OPDB.h in Headers */,
+				EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */,
+				EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
+				EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */,
+				EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */,
+				EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */,
+				EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
+				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
+				EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
 				EA61126F1EC286D7001967ED /* OptimizelySDKUserProfileService.h in Headers */,
 				EA52CA321E851CC100D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CA331E851CC100D4FCA0 /* OPTLYAttribute.h in Headers */,
-				EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */,
 				EA52CA341E851CC100D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CA351E851CC100D4FCA0 /* OPTLYBaseCondition.h in Headers */,
 				EA52CA361E851CC100D4FCA0 /* OPTLYBuilder.h in Headers */,
@@ -956,20 +965,17 @@
 				EA52CA3D1E851CC100D4FCA0 /* OPTLYEventBuilder.h in Headers */,
 				EA52CA3E1E851CC100D4FCA0 /* OPTLYEventDecision.h in Headers */,
 				EA52CA3F1E851CC100D4FCA0 /* OPTLYEventDecisionTicket.h in Headers */,
-				EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
 				EA52CA401E851CC100D4FCA0 /* OPTLYEventFeature.h in Headers */,
 				EA52CA411E851CC100D4FCA0 /* OPTLYEventHeader.h in Headers */,
 				EA52CA421E851CC100D4FCA0 /* OPTLYEventLayerState.h in Headers */,
 				EA52CA431E851CC100D4FCA0 /* OPTLYEventMetric.h in Headers */,
 				EA52CA441E851CC100D4FCA0 /* OPTLYEventParameterKeys.h in Headers */,
-				EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
 				EA52CA451E851CC100D4FCA0 /* OPTLYEventRelatedEvent.h in Headers */,
 				EA52CA461E851CC100D4FCA0 /* OPTLYEventTicket.h in Headers */,
 				EA52CA471E851CC100D4FCA0 /* OPTLYEventView.h in Headers */,
 				EA52CA481E851CC100D4FCA0 /* OPTLYExperiment.h in Headers */,
 				EA52CA491E851CC100D4FCA0 /* OPTLYGroup.h in Headers */,
 				EA52CA4A1E851CC100D4FCA0 /* OPTLYHTTPRequestManager.h in Headers */,
-				EAF880F81EF1D46300143F7C /* OPDB.h in Headers */,
 				EA52CA4B1E851CC100D4FCA0 /* OPTLYLog.h in Headers */,
 				EA52CA4C1E851CC100D4FCA0 /* OPTLYLoggerMessages.h in Headers */,
 				EA52CA4D1E851CC100D4FCA0 /* OPTLYProjectConfig.h in Headers */,
@@ -985,7 +991,6 @@
 				EA52CA581E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.h in Headers */,
 				EA52CA591E851CC100D4FCA0 /* OptimizelySDKShared.h in Headers */,
 				EA52CA5A1E851CC100D4FCA0 /* OPTLYClient.h in Headers */,
-				EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */,
 				EA52CA5B1E851CC100D4FCA0 /* OPTLYClientBuilder.h in Headers */,
 				EA52CA5C1E851CC100D4FCA0 /* OPTLYDatabase.h in Headers */,
 				EA52CA5D1E851CC100D4FCA0 /* OPTLYDatabaseEntity.h in Headers */,
@@ -995,8 +1000,6 @@
 				EA52CA611E851CC100D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CA621E851CC100D4FCA0 /* OPTLYManagerBasic.h in Headers */,
 				EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
-				EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
-				EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */,
 				EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */,
 				EA52CEF41E86690500D4FCA0 /* OptimizelySDKiOS.h in Headers */,
@@ -1004,22 +1007,17 @@
 				EA52CA6C1E851CC100D4FCA0 /* OptimizelySDKDatafileManager.h in Headers */,
 				EA52CA6D1E851CC100D4FCA0 /* OptimizelySDKEventDispatcher.h in Headers */,
 				EA52CA701E851CC100D4FCA0 /* OPTLYBucketer.h in Headers */,
-				EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */,
 				EA52CA711E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */,
-				EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */,
 				EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */,
 				EA52CA821E851CC100D4FCA0 /* OPTLYLogger.h in Headers */,
 				EAE8C4191EC4E4FA00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAE8C41A1EC4E4FA00A76A2D /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41B1EC4E4FA00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
-				EAE8C4291EC4E5F900A76A2D /* OptimizelySDKTVOS.h in Headers */,
 				EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAE8C42B1EC4E62800A76A2D /* OPTLYManager.h in Headers */,
 				EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CA831E851CC100D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */,
-				EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
-				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1025,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
+				EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
+				EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
+				EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */,
+				EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */,
+				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
+				EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
 				EA52CAD41E851CEE00D4FCA0 /* OPTLYAttribute.h in Headers */,
 				EA52CAD51E851CEE00D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CAD61E851CEE00D4FCA0 /* OPTLYBaseCondition.h in Headers */,
@@ -1044,14 +1049,12 @@
 				EA52CAE21E851CEE00D4FCA0 /* OPTLYEventLayerState.h in Headers */,
 				EA52CAE31E851CEE00D4FCA0 /* OPTLYEventMetric.h in Headers */,
 				EA52CAE41E851CEE00D4FCA0 /* OPTLYEventParameterKeys.h in Headers */,
-				EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
 				EA52CAE51E851CEE00D4FCA0 /* OPTLYEventRelatedEvent.h in Headers */,
 				EA52CAE61E851CEE00D4FCA0 /* OPTLYEventTicket.h in Headers */,
 				EA52CAE71E851CEE00D4FCA0 /* OPTLYEventView.h in Headers */,
 				EA52CAE81E851CEE00D4FCA0 /* OPTLYExperiment.h in Headers */,
 				EA52CAE91E851CEE00D4FCA0 /* OPTLYGroup.h in Headers */,
 				EA52CAEA1E851CEE00D4FCA0 /* OPTLYHTTPRequestManager.h in Headers */,
-				EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
 				EA52CAEB1E851CEE00D4FCA0 /* OPTLYLog.h in Headers */,
 				EA52CAEC1E851CEE00D4FCA0 /* OPTLYLoggerMessages.h in Headers */,
 				EA52CAED1E851CEE00D4FCA0 /* OPTLYProjectConfig.h in Headers */,
@@ -1065,9 +1068,7 @@
 				EA52CAF61E851CEE00D4FCA0 /* OPTLYEventDispatcher.h in Headers */,
 				EA52CAF71E851CEE00D4FCA0 /* OPTLYEventDispatcherBuilder.h in Headers */,
 				EA52CAF81E851CEE00D4FCA0 /* OptimizelySDKShared.h in Headers */,
-				EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
 				EA52CAF91E851CEE00D4FCA0 /* OPTLYClient.h in Headers */,
-				EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
 				EA52CAFA1E851CEE00D4FCA0 /* OPTLYClientBuilder.h in Headers */,
 				EA52CAFB1E851CEE00D4FCA0 /* OPTLYDatafileManagerBasic.h in Headers */,
 				EA52CAFC1E851CEE00D4FCA0 /* OPTLYDataStore.h in Headers */,
@@ -1087,19 +1088,16 @@
 				EA52CB0E1E851CEE00D4FCA0 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA52CB0F1E851CEE00D4FCA0 /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA52CB151E851CEE00D4FCA0 /* OPTLYEventDataStore.h in Headers */,
-				EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */,
 				EA52CB101E851CEE00D4FCA0 /* OPTLYLogger.h in Headers */,
 				EA52CB111E851CEE00D4FCA0 /* OPTLYVariation.h in Headers */,
 				EA61126B1EC28689001967ED /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41D1EC4E51D00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAE8C41E1EC4E51D00A76A2D /* OptimizelySDKUserProfileService.h in Headers */,
-				EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */,
 				EA3144F01ED7A22300A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
-				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
