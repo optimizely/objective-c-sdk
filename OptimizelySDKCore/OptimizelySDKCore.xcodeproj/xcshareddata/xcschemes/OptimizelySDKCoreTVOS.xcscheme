@@ -38,6 +38,16 @@
                ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E99A9F21F4BAF9A009F8805"
+               BuildableName = "OPJMModelTVOSTests.xctest"
+               BlueprintName = "OPJMModelTVOSTests"
+               ReferencedContainer = "container:OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

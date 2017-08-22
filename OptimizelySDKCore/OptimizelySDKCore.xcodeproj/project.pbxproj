@@ -99,6 +99,73 @@
 		3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C971F42280900D53856 /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPJMValueTransformer.m */; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
+		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
+		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
+		3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
+		3E99AA021F4BB1BA009F8805 /* ConcurrentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC341F47ACFE00018732 /* ConcurrentTests.m */; };
+		3E99AA031F4BB1BA009F8805 /* CustomPropsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC351F47ACFE00018732 /* CustomPropsTests.m */; };
+		3E99AA041F4BB1BA009F8805 /* ExtremeNestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC361F47ACFE00018732 /* ExtremeNestingTests.m */; };
+		3E99AA051F4BB1BA009F8805 /* IdPropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC371F47ACFE00018732 /* IdPropertyTests.m */; };
+		3E99AA061F4BB1BA009F8805 /* InitWithDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC381F47ACFE00018732 /* InitWithDataTests.m */; };
+		3E99AA071F4BB1BA009F8805 /* JSONTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC391F47ACFE00018732 /* JSONTypesReadTests.m */; };
+		3E99AA081F4BB1BA009F8805 /* KeyMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3A1F47ACFE00018732 /* KeyMappingTests.m */; };
+		3E99AA091F4BB1BA009F8805 /* NestedModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3B1F47ACFE00018732 /* NestedModelsTests.m */; };
+		3E99AA0A1F4BB1BA009F8805 /* NullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3C1F47ACFE00018732 /* NullTests.m */; };
+		3E99AA0B1F4BB1BA009F8805 /* OptionalPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3D1F47ACFE00018732 /* OptionalPropertiesTests.m */; };
+		3E99AA0C1F4BB1BA009F8805 /* PersistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3E1F47ACFE00018732 /* PersistTests.m */; };
+		3E99AA0D1F4BB1BA009F8805 /* PrimitiveTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3F1F47ACFE00018732 /* PrimitiveTypesReadTests.m */; };
+		3E99AA0E1F4BB1BA009F8805 /* SanityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC401F47ACFE00018732 /* SanityTests.m */; };
+		3E99AA0F1F4BB1BA009F8805 /* SimpleDataErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC411F47ACFE00018732 /* SimpleDataErrorTests.m */; };
+		3E99AA101F4BB1BA009F8805 /* SpecialPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC421F47ACFE00018732 /* SpecialPropertiesTests.m */; };
+		3E99AA111F4BB1BA009F8805 /* SpecialPropertyNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC431F47ACFE00018732 /* SpecialPropertyNameTests.m */; };
+		3E99AA121F4BB1BA009F8805 /* SpecialValuesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC441F47ACFE00018732 /* SpecialValuesTests.m */; };
+		3E99AA131F4BB1BA009F8805 /* TransformerExceptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC451F47ACFE00018732 /* TransformerExceptionTests.m */; };
+		3E99AA141F4BB1BA009F8805 /* ValidationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC461F47ACFE00018732 /* ValidationTests.m */; };
+		3E99AA151F4BB1BA009F8805 /* ConcurrentReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */; };
+		3E99AA161F4BB1E2009F8805 /* BuiltInConversionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */; };
+		3E99AA171F4BB1E2009F8805 /* CopyrightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7A1F47AD2800018732 /* CopyrightModel.m */; };
+		3E99AA181F4BB1E2009F8805 /* CustomPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */; };
+		3E99AA191F4BB1E2009F8805 /* DrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7C1F47AD2800018732 /* DrugModel.m */; };
+		3E99AA1A1F4BB1E2009F8805 /* EnumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7D1F47AD2800018732 /* EnumModel.m */; };
+		3E99AA1B1F4BB1E2009F8805 /* ExtremeNestingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7E1F47AD2800018732 /* ExtremeNestingModel.m */; };
+		3E99AA1C1F4BB1E2009F8805 /* GitHubKeyMapRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7F1F47AD2800018732 /* GitHubKeyMapRepoModel.m */; };
+		3E99AA1D1F4BB1E2009F8805 /* GitHubKeyMapRepoModelDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC801F47AD2800018732 /* GitHubKeyMapRepoModelDict.m */; };
+		3E99AA1E1F4BB1E2009F8805 /* GitHubRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC811F47AD2800018732 /* GitHubRepoModel.m */; };
+		3E99AA1F1F4BB1E2009F8805 /* GitHubRepoModelForUSMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC821F47AD2800018732 /* GitHubRepoModelForUSMapper.m */; };
+		3E99AA201F4BB1E2009F8805 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC831F47AD2800018732 /* ImageModel.m */; };
+		3E99AA211F4BB1E2009F8805 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC841F47AD2800018732 /* InteractionModel.m */; };
+		3E99AA221F4BB1E2009F8805 /* JSONTypesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC851F47AD2800018732 /* JSONTypesModel.m */; };
+		3E99AA231F4BB1E2009F8805 /* JSONTypesModelWithValidation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC861F47AD2800018732 /* JSONTypesModelWithValidation1.m */; };
+		3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */; };
+		3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */; };
+		3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC891F47AD2800018732 /* NestedModel.m */; };
+		3E99AA271F4BB1E2009F8805 /* OPJMValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPJMValueTransformer+UIColor.m */; };
+		3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */; };
+		3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8C1F47AD2800018732 /* PostModel.m */; };
+		3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8D1F47AD2800018732 /* PostsModel.m */; };
+		3E99AA2B1F4BB1E2009F8805 /* PrimitivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8E1F47AD2800018732 /* PrimitivesModel.m */; };
+		3E99AA2C1F4BB1E2009F8805 /* RenamedPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8F1F47AD2800018732 /* RenamedPropertyModel.m */; };
+		3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC901F47AD2800018732 /* ReposModel.m */; };
+		3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC911F47AD2800018732 /* RpcRequestModel.m */; };
+		3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */; };
+		3E99AA301F4BB1E2009F8805 /* OPJMModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */; };
+		3E99AA321F4BB1FE009F8805 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */; };
+		3E99AA341F4BB206009F8805 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA331F4BB206009F8805 /* UIKit.framework */; };
+		3E99AA351F4BB21A009F8805 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAD1F47AD3D00018732 /* colors.json */; };
+		3E99AA361F4BB21A009F8805 /* converts.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAE1F47AD3D00018732 /* converts.json */; };
+		3E99AA371F4BB21A009F8805 /* github-iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAF1F47AD3D00018732 /* github-iphone.json */; };
+		3E99AA381F4BB21A009F8805 /* jsonTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB01F47AD3D00018732 /* jsonTypes.json */; };
+		3E99AA391F4BB21A009F8805 /* nestedData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB11F47AD3D00018732 /* nestedData.json */; };
+		3E99AA3A1F4BB21A009F8805 /* nestedDataWithArrayError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB21F47AD3D00018732 /* nestedDataWithArrayError.json */; };
+		3E99AA3B1F4BB21A009F8805 /* nestedDataWithDictionaryError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB31F47AD3D00018732 /* nestedDataWithDictionaryError.json */; };
+		3E99AA3C1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json */; };
+		3E99AA3D1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB51F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json */; };
+		3E99AA3E1F4BB21A009F8805 /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB61F47AD3D00018732 /* post.json */; };
+		3E99AA3F1F4BB21A009F8805 /* primitives.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB71F47AD3D00018732 /* primitives.json */; };
+		3E99AA401F4BB21A009F8805 /* primitivesWithErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB81F47AD3D00018732 /* primitivesWithErrors.json */; };
+		3E99AA411F4BB21A009F8805 /* specialPropertyName.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB91F47AD3D00018732 /* specialPropertyName.json */; };
+		3E99AA421F4BB21A009F8805 /* withOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBA1F47AD3D00018732 /* withOptProp.json */; };
+		3E99AA431F4BB21A009F8805 /* withoutOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */; };
 		3EA27B0C1F47AB0D00C0208F /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
@@ -335,6 +402,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E99A9F91F4BAF9A009F8805 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C67FC1DC1E66C00C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA81D1DC5DBB100B1D81B;
+			remoteInfo = OptimizelySDKCoreTVOS;
+		};
 		3EA27B0D1F47AB0D00C0208F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA3C67FC1DC1E66C00C578CA /* Project object */;
@@ -471,6 +545,9 @@
 		3E858C811F4227E300D53856 /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
 		3E858C821F4227E300D53856 /* OPJMValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMValueTransformer.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
+		3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPJMModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		3E99AA331F4BB206009F8805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		3EA27B071F47AB0D00C0208F /* OPJMModeliOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPJMModeliOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA27B0B1F47AB0D00C0208F /* OPJMModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPJMModelTests-Info.plist"; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
@@ -616,6 +693,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3E99A9F01F4BAF9A009F8805 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA341F4BB206009F8805 /* UIKit.framework in Frameworks */,
+				3E99AA321F4BB1FE009F8805 /* CoreGraphics.framework in Frameworks */,
+				3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EA27B041F47AB0D00C0208F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -738,7 +825,6 @@
 				3E0347A51F4B612A001F13E3 /* OPJMModelTestHelper.h */,
 				3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */,
 			);
-			name = OPJMModelTests;
 			path = OPJMModelTests;
 			sourceTree = "<group>";
 		};
@@ -1000,6 +1086,8 @@
 		EA2FA9721DC6F3CF00B1D81B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E99AA331F4BB206009F8805 /* UIKit.framework */,
+				3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */,
 				3E35DCE71F47B44900018732 /* CoreGraphics.framework */,
 				3E35DCE51F47B42E00018732 /* UIKit.framework */,
 				2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */,
@@ -1050,6 +1138,7 @@
 				EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */,
 				EA2FA8261DC5DBB100B1D81B /* OptimizelySDKCoreTVOSTests.xctest */,
 				3EA27B071F47AB0D00C0208F /* OPJMModeliOSTests.xctest */,
+				3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1258,6 +1347,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3E99A9F21F4BAF9A009F8805 /* OPJMModelTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPJMModelTVOSTests" */;
+			buildPhases = (
+				3E99A9EF1F4BAF9A009F8805 /* Sources */,
+				3E99A9F01F4BAF9A009F8805 /* Frameworks */,
+				3E99A9F11F4BAF9A009F8805 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E99A9FA1F4BAF9A009F8805 /* PBXTargetDependency */,
+			);
+			name = OPJMModelTVOSTests;
+			productName = OPJMModelTVOSTests;
+			productReference = 3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3EA27B061F47AB0D00C0208F /* OPJMModeliOSTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPJMModeliOSTests" */;
@@ -1367,6 +1474,10 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
+					3E99A9F21F4BAF9A009F8805 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					3EA27B061F47AB0D00C0208F = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
@@ -1402,6 +1513,7 @@
 			projectRoot = "";
 			targets = (
 				3EA27B061F47AB0D00C0208F /* OPJMModeliOSTests */,
+				3E99A9F21F4BAF9A009F8805 /* OPJMModelTVOSTests */,
 				EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */,
 				EA2FA8051DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests */,
 				EA2FA81D1DC5DBB100B1D81B /* OptimizelySDKCoreTVOS */,
@@ -1411,6 +1523,28 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3E99A9F11F4BAF9A009F8805 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA351F4BB21A009F8805 /* colors.json in Resources */,
+				3E99AA361F4BB21A009F8805 /* converts.json in Resources */,
+				3E99AA371F4BB21A009F8805 /* github-iphone.json in Resources */,
+				3E99AA381F4BB21A009F8805 /* jsonTypes.json in Resources */,
+				3E99AA391F4BB21A009F8805 /* nestedData.json in Resources */,
+				3E99AA3A1F4BB21A009F8805 /* nestedDataWithArrayError.json in Resources */,
+				3E99AA3B1F4BB21A009F8805 /* nestedDataWithDictionaryError.json in Resources */,
+				3E99AA3C1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImages.json in Resources */,
+				3E99AA3D1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */,
+				3E99AA3E1F4BB21A009F8805 /* post.json in Resources */,
+				3E99AA3F1F4BB21A009F8805 /* primitives.json in Resources */,
+				3E99AA401F4BB21A009F8805 /* primitivesWithErrors.json in Resources */,
+				3E99AA411F4BB21A009F8805 /* specialPropertyName.json in Resources */,
+				3E99AA421F4BB21A009F8805 /* withOptProp.json in Resources */,
+				3E99AA431F4BB21A009F8805 /* withoutOptProp.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EA27B051F47AB0D00C0208F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1634,6 +1768,62 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3E99A9EF1F4BAF9A009F8805 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA161F4BB1E2009F8805 /* BuiltInConversionsModel.m in Sources */,
+				3E99AA171F4BB1E2009F8805 /* CopyrightModel.m in Sources */,
+				3E99AA181F4BB1E2009F8805 /* CustomPropertyModel.m in Sources */,
+				3E99AA191F4BB1E2009F8805 /* DrugModel.m in Sources */,
+				3E99AA1A1F4BB1E2009F8805 /* EnumModel.m in Sources */,
+				3E99AA1B1F4BB1E2009F8805 /* ExtremeNestingModel.m in Sources */,
+				3E99AA1C1F4BB1E2009F8805 /* GitHubKeyMapRepoModel.m in Sources */,
+				3E99AA1D1F4BB1E2009F8805 /* GitHubKeyMapRepoModelDict.m in Sources */,
+				3E99AA1E1F4BB1E2009F8805 /* GitHubRepoModel.m in Sources */,
+				3E99AA1F1F4BB1E2009F8805 /* GitHubRepoModelForUSMapper.m in Sources */,
+				3E99AA201F4BB1E2009F8805 /* ImageModel.m in Sources */,
+				3E99AA211F4BB1E2009F8805 /* InteractionModel.m in Sources */,
+				3E99AA221F4BB1E2009F8805 /* JSONTypesModel.m in Sources */,
+				3E99AA231F4BB1E2009F8805 /* JSONTypesModelWithValidation1.m in Sources */,
+				3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */,
+				3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */,
+				3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */,
+				3E99AA271F4BB1E2009F8805 /* OPJMValueTransformer+UIColor.m in Sources */,
+				3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */,
+				3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */,
+				3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */,
+				3E99AA2B1F4BB1E2009F8805 /* PrimitivesModel.m in Sources */,
+				3E99AA2C1F4BB1E2009F8805 /* RenamedPropertyModel.m in Sources */,
+				3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */,
+				3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */,
+				3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */,
+				3E99AA301F4BB1E2009F8805 /* OPJMModelTestHelper.m in Sources */,
+				3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */,
+				3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */,
+				3E99AA021F4BB1BA009F8805 /* ConcurrentTests.m in Sources */,
+				3E99AA031F4BB1BA009F8805 /* CustomPropsTests.m in Sources */,
+				3E99AA041F4BB1BA009F8805 /* ExtremeNestingTests.m in Sources */,
+				3E99AA051F4BB1BA009F8805 /* IdPropertyTests.m in Sources */,
+				3E99AA061F4BB1BA009F8805 /* InitWithDataTests.m in Sources */,
+				3E99AA071F4BB1BA009F8805 /* JSONTypesReadTests.m in Sources */,
+				3E99AA081F4BB1BA009F8805 /* KeyMappingTests.m in Sources */,
+				3E99AA091F4BB1BA009F8805 /* NestedModelsTests.m in Sources */,
+				3E99AA0A1F4BB1BA009F8805 /* NullTests.m in Sources */,
+				3E99AA0B1F4BB1BA009F8805 /* OptionalPropertiesTests.m in Sources */,
+				3E99AA0C1F4BB1BA009F8805 /* PersistTests.m in Sources */,
+				3E99AA0D1F4BB1BA009F8805 /* PrimitiveTypesReadTests.m in Sources */,
+				3E99AA0E1F4BB1BA009F8805 /* SanityTests.m in Sources */,
+				3E99AA0F1F4BB1BA009F8805 /* SimpleDataErrorTests.m in Sources */,
+				3E99AA101F4BB1BA009F8805 /* SpecialPropertiesTests.m in Sources */,
+				3E99AA111F4BB1BA009F8805 /* SpecialPropertyNameTests.m in Sources */,
+				3E99AA121F4BB1BA009F8805 /* SpecialValuesTests.m in Sources */,
+				3E99AA131F4BB1BA009F8805 /* TransformerExceptionTests.m in Sources */,
+				3E99AA141F4BB1BA009F8805 /* ValidationTests.m in Sources */,
+				3E99AA151F4BB1BA009F8805 /* ConcurrentReposModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EA27B031F47AB0D00C0208F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1851,6 +2041,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3E99A9FA1F4BAF9A009F8805 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA2FA81D1DC5DBB100B1D81B /* OptimizelySDKCoreTVOS */;
+			targetProxy = 3E99A9F91F4BAF9A009F8805 /* PBXContainerItemProxy */;
+		};
 		3EA27B0E1F47AB0D00C0208F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */;
@@ -1869,6 +2064,70 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3E99A9FB1F4BAF9A009F8805 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		3E99A9FC1F4BAF9A009F8805 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = RC;
+		};
+		3E99A9FD1F4BAF9A009F8805 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Beta;
+		};
+		3E99A9FE1F4BAF9A009F8805 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
 		3EA27B0F1F47AB0D00C0208F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2558,6 +2817,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPJMModelTVOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E99A9FB1F4BAF9A009F8805 /* Debug */,
+				3E99A9FC1F4BAF9A009F8805 /* RC */,
+				3E99A9FD1F4BAF9A009F8805 /* Beta */,
+				3E99A9FE1F4BAF9A009F8805 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPJMModeliOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
