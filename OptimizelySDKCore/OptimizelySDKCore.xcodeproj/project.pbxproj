@@ -192,8 +192,8 @@
 		EA16D93D1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA16D93E1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA16D93F1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */; };
-		EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; };
-		EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; };
+		EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA16D9441ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D9411ECCC5C600C4C998 /* OPTLYDecisionService.m */; };
 		EA16D9451ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D9411ECCC5C600C4C998 /* OPTLYDecisionService.m */; };
 		EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1228,6 +1228,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */,
 				3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */,
 				3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */,
@@ -1250,7 +1251,6 @@
 				EA2FAB521DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */,
 				EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */,
 				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
-				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
 				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
@@ -1287,6 +1287,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */,
 				3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */,
 				3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */,
@@ -1309,7 +1310,6 @@
 				EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
-				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
 				EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
 				EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
