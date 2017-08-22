@@ -38,6 +38,46 @@
                ReferencedContainer = "container:OptimizelySDKEventDispatcher.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52470A1DC7192200AF6685"
+               BuildableName = "OptimizelySDKSharediOSTests.xctest"
+               BlueprintName = "OptimizelySDKSharediOSTests"
+               ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3ECBCC151F43983400160937"
+               BuildableName = "OPDBTests.xctest"
+               BlueprintName = "OPDBTests"
+               ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA2FA8051DC5DBA000B1D81B"
+               BuildableName = "OptimizelySDKCoreiOSTests.xctest"
+               BlueprintName = "OptimizelySDKCoreiOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3EA27B061F47AB0D00C0208F"
+               BuildableName = "OPJMModeliOSTests.xctest"
+               BlueprintName = "OPJMModeliOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

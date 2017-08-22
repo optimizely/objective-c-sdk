@@ -178,7 +178,6 @@
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */; };
-		73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -462,7 +461,7 @@
 		3E35DC461F47ACFE00018732 /* ValidationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationTests.m; sourceTree = "<group>"; };
 		3E35DC5C1F47AD1500018732 /* BuiltInConversionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuiltInConversionsModel.h; path = Models/Headers/BuiltInConversionsModel.h; sourceTree = "<group>"; };
 		3E35DC5D1F47AD1500018732 /* ConcurrentReposModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentReposModel.h; path = Models/Headers/ConcurrentReposModel.h; sourceTree = "<group>"; };
-		3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentReposModel.m; path = Models/Headers/ConcurrentReposModel.m; sourceTree = "<group>"; };
+		3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentReposModel.m; path = Models/Implementations/ConcurrentReposModel.m; sourceTree = "<group>"; };
 		3E35DC5F1F47AD1500018732 /* CopyrightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CopyrightModel.h; path = Models/Headers/CopyrightModel.h; sourceTree = "<group>"; };
 		3E35DC601F47AD1500018732 /* CustomPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPropertyModel.h; path = Models/Headers/CustomPropertyModel.h; sourceTree = "<group>"; };
 		3E35DC611F47AD1500018732 /* DrugModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrugModel.h; path = Models/Headers/DrugModel.h; sourceTree = "<group>"; };
@@ -718,7 +717,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
-				73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,7 +862,6 @@
 			children = (
 				3E35DC5C1F47AD1500018732 /* BuiltInConversionsModel.h */,
 				3E35DC5D1F47AD1500018732 /* ConcurrentReposModel.h */,
-				3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */,
 				3E35DC5F1F47AD1500018732 /* CopyrightModel.h */,
 				3E35DC601F47AD1500018732 /* CustomPropertyModel.h */,
 				3E35DC611F47AD1500018732 /* DrugModel.h */,
@@ -898,6 +895,7 @@
 			isa = PBXGroup;
 			children = (
 				3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */,
+				3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */,
 				3E35DC7A1F47AD2800018732 /* CopyrightModel.m */,
 				3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */,
 				3E35DC7C1F47AD2800018732 /* DrugModel.m */,
@@ -2826,6 +2824,7 @@
 				3E99A9FE1F4BAF9A009F8805 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPJMModeliOSTests" */ = {
 			isa = XCConfigurationList;
