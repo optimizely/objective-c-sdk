@@ -1,4 +1,5 @@
 /****************************************************************************
+ * Modifications to FMDB by Optimizely, Inc.                                *
  * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
@@ -14,11 +15,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#define UNIVERSAL 1
+#import <Foundation/Foundation.h>
 
-#import "OptimizelySDKCore.h"
-#import "OptimizelySDKDatafileManager.h"
-#import "OptimizelySDKEventDispatcher.h"
-#import "OptimizelySDKShared.h"
-#import "OptimizelySDKUserProfileService.h"
-#import "OPTLYManager.h"
+FOUNDATION_EXPORT double OPDBVersionNumber;
+FOUNDATION_EXPORT const unsigned char OPDBVersionString[];
+
+#import "OPDBDatabase.h"
+#import "OPDBResultSet.h"
+#import "OPDBDatabaseQueue.h"

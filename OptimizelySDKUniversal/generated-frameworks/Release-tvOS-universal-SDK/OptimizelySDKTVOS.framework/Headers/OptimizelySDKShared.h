@@ -32,8 +32,6 @@
 
 #if TARGET_OS_IOS
 #import "OPDBDatabase.h"
-#import "OPDBDatabaseAdditions.h"
-#import "OPDBDatabasePool.h"
 #import "OPDBDatabaseQueue.h"
 #import "OPDB.h"
 #import "OPDBResultSet.h"

@@ -22,6 +22,7 @@
 #import "OPTLYBuilder.h"
 #import "OPTLYCondition.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYDecisionEventTicket.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYErrorHandlerMessages.h"
@@ -61,9 +62,6 @@
 #import "OPJMModelClassProperty.h"
 #import "OPJMModelError.h"
 #import "OPJMModelLib.h"
-#import "OPJMAPI.h"
-#import "OPJMHTTPClient.h"
-#import "OPJMModel+networking.h"
 #import "OPJMKeyMapper.h"
 #import "OPJMValueTransformer.h"
 
