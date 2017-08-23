@@ -178,6 +178,7 @@
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */; };
+		D911A44A9FA5EF33D15471EB /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -717,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
+				D911A44A9FA5EF33D15471EB /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
