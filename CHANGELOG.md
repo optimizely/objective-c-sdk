@@ -1,4 +1,43 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.9
+August 7, 2017
+
+### New Features
+* Added Apple App Extension support by adding `APPLICATION_EXTENSION_API_ONLY = YES` to Build Settings of all Optimizely frameworks.
+
+### Bug Fixes
+* Fixed potential bugs identified by Apple's Xcode static analyzer Analyze.
+
+## 1.1.8
+July 28, 2017
+
+### Bug Fixes
+* Fixed a `dispatchEvent` crash by changing a concurrent queue to a serial queue -- this was causing one of the properties we were accessing not thread-safe.
+
+## 1.1.7
+July 20, 2017
+
+### Bug Fixes
+* Fixed a crash caused by a dangling pointer when `dispatchEvent` is called. `strongSelf` captures the state of self (which can be an `eventDispatcher` object or `nil`) at the time the block is called. `strongSelf` will hold onto whatever it is referencing for the duration of the block execution. Therefore, `strongSelf` is still pointing to `pendingDispatchEvents` even when it gets deallocated at the time the `eventDispatcher` is deallocated. This issue was resolved by not capturing `self` using `strongSelf` and keeping the `self` reference to `self` or `weakSelf`.
+
+## 1.1.3
+July 7, 2017
+
+### Bug Fixes
+* Added `NS_SWIFT_NOTHROW` to make 4 `variableXxx:...:error:` Swift method signatures more consistent in appearance.
+
+### Breaking Changes
+* Signatures for 2 existing `variableXxx:...:error:` Swift methods changed.
+
+## 1.1.1
+May 23, 2017
+
+### New Features
+* Added unexported_symbols.sh to create unexported_symbols.txt which hides all third-party dependency symbols in the Universal frameworks.
+
+### Breaking Changes
+* Supply your own FMDB or JSONModel if you previously counted on Universal frameworks exposing these third-party dependencies.
+
 ## 1.1.0
 May 2, 2017
 
@@ -33,7 +72,7 @@ March 6, 2017
 
 ### Bug Fixes
 * Initializing the client with the saved datafile `initialize()` or `-(OPTLYClient *)initialize` now pulls from the saved datafile (before, this method was dependent on the builder’s datafile).
-* Fixed an SQLite error that was occurring when multiple OPDBDatabaseQueues were created.
+* Fixed an SQLite error that was occurring when multiple FMDatabaseQueues were created. 
 * Fixed a bug with the events cache for tvOS such that when the app is background, the events are not purged.
 * Experiment status is now checked so that users are not bucketed into a variation if the experiment is paused. 
 * Fixed linking errors when building and running demo apps on iOS and tvOS devices.
