@@ -38,19 +38,19 @@
 		3E0027591ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027581ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework */; };
 		3E00275D1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E00275C1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework */; };
 		3E2BF4211F422C69007DB013 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
-		3E858C421F4226E800D53856 /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C371F4226E800D53856 /* OPDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C431F4226E800D53856 /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C381F4226E800D53856 /* OPDBDatabase.m */; };
-		3E858C481F4226E800D53856 /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C491F4226E800D53856 /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */; };
-		3E858C4A1F4226E800D53856 /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* OPDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C4B1F4226E800D53856 /* OPDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C401F4226E800D53856 /* OPDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C4C1F4226E800D53856 /* OPDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* OPDBResultSet.m */; };
-		3ECBCC191F43983400160937 /* OPDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* OPDBTests.m */; };
+		3E858C421F4226E800D53856 /* OPTLYFMDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C371F4226E800D53856 /* OPTLYFMDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C431F4226E800D53856 /* OPTLYFMDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C381F4226E800D53856 /* OPTLYFMDBDatabase.m */; };
+		3E858C481F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3D1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C491F4226E800D53856 /* OPTLYFMDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C3E1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.m */; };
+		3E858C4A1F4226E800D53856 /* OPTLYFMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C3F1F4226E800D53856 /* OPTLYFMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C4B1F4226E800D53856 /* OPTLYFMDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C401F4226E800D53856 /* OPTLYFMDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C4C1F4226E800D53856 /* OPTLYFMDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C411F4226E800D53856 /* OPTLYFMDBResultSet.m */; };
+		3ECBCC191F43983400160937 /* OPTLYFMDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC181F43983400160937 /* OPTLYFMDBTests.m */; };
 		3ECBCC1B1F43983400160937 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247031DC7192200AF6685 /* OptimizelySDKShared.framework */; };
-		3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */; };
-		3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */; };
-		3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */; };
-		3ECBCC361F439AD000160937 /* OPDBResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */; };
+		3ECBCC331F439AD000160937 /* OPTLYFMDBDatabaseQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC291F439AD000160937 /* OPTLYFMDBDatabaseQueueTests.m */; };
+		3ECBCC341F439AD000160937 /* OPTLYFMDBDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2A1F439AD000160937 /* OPTLYFMDBDatabaseTests.m */; };
+		3ECBCC351F439AD000160937 /* OPTLYFMDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPTLYFMDBTempDBTests.m */; };
+		3ECBCC361F439AD000160937 /* OPTLYFMDBResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* OPTLYFMDBResultSetTests.m */; };
 		3ECBCC4A1F43A39200160937 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA29D9581DD012160034A4FE /* libsqlite3.tbd */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
 		5A8753FCE65715A7A353C14C /* Pods_OptimizelySDKSharediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */; };
@@ -191,23 +191,23 @@
 		2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerTest.m; sourceTree = "<group>"; };
 		3E0027581ECBBF1A0072DDAD /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E00275C1ECBBF270072DDAD /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreTVOS.framework; path = "../Debug-appletvos/Pods_OptimizelySDKCoreTVOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E858C371F4226E800D53856 /* OPDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabase.h; path = OPDB/src/opdb/OPDBDatabase.h; sourceTree = "<group>"; };
-		3E858C381F4226E800D53856 /* OPDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabase.m; path = OPDB/src/opdb/OPDBDatabase.m; sourceTree = "<group>"; };
-		3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseQueue.h; path = OPDB/src/opdb/OPDBDatabaseQueue.h; sourceTree = "<group>"; };
-		3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseQueue.m; path = OPDB/src/opdb/OPDBDatabaseQueue.m; sourceTree = "<group>"; };
-		3E858C3F1F4226E800D53856 /* OPDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDB.h; path = OPDB/src/opdb/OPDB.h; sourceTree = "<group>"; };
-		3E858C401F4226E800D53856 /* OPDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBResultSet.h; path = OPDB/src/opdb/OPDBResultSet.h; sourceTree = "<group>"; };
-		3E858C411F4226E800D53856 /* OPDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBResultSet.m; path = OPDB/src/opdb/OPDBResultSet.m; sourceTree = "<group>"; };
-		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = OPDB/LICENSE.txt; sourceTree = "<group>"; };
-		3E858C591F42272F00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPDB/README.md; sourceTree = "<group>"; };
-		3ECBCC161F43983400160937 /* OPDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3ECBCC181F43983400160937 /* OPDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPDBTests.m; sourceTree = "<group>"; };
-		3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPDBTests-Info.plist"; sourceTree = "<group>"; };
-		3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseQueueTests.m; sourceTree = "<group>"; };
-		3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBDatabaseTests.m; sourceTree = "<group>"; };
-		3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPDBTempDBTests.h; sourceTree = "<group>"; };
-		3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBTempDBTests.m; sourceTree = "<group>"; };
-		3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPDBResultSetTests.m; sourceTree = "<group>"; };
+		3E858C371F4226E800D53856 /* OPTLYFMDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabase.h; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.h; sourceTree = "<group>"; };
+		3E858C381F4226E800D53856 /* OPTLYFMDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabase.m; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.m; sourceTree = "<group>"; };
+		3E858C3D1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabaseQueue.h; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseQueue.h; sourceTree = "<group>"; };
+		3E858C3E1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabaseQueue.m; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseQueue.m; sourceTree = "<group>"; };
+		3E858C3F1F4226E800D53856 /* OPTLYFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDB.h; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDB.h; sourceTree = "<group>"; };
+		3E858C401F4226E800D53856 /* OPTLYFMDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBResultSet.h; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBResultSet.h; sourceTree = "<group>"; };
+		3E858C411F4226E800D53856 /* OPTLYFMDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBResultSet.m; path = OPTLYFMDB/src/optlyfmdb/OPTLYFMDBResultSet.m; sourceTree = "<group>"; };
+		3E858C581F42272F00D53856 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = OPTLYFMDB/LICENSE.txt; sourceTree = "<group>"; };
+		3E858C591F42272F00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPTLYFMDB/README.md; sourceTree = "<group>"; };
+		3ECBCC161F43983400160937 /* OPTLYFMDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYFMDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ECBCC181F43983400160937 /* OPTLYFMDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBTests.m; sourceTree = "<group>"; };
+		3ECBCC1A1F43983400160937 /* OPTLYFMDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYFMDBTests-Info.plist"; sourceTree = "<group>"; };
+		3ECBCC291F439AD000160937 /* OPTLYFMDBDatabaseQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBDatabaseQueueTests.m; sourceTree = "<group>"; };
+		3ECBCC2A1F439AD000160937 /* OPTLYFMDBDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBDatabaseTests.m; sourceTree = "<group>"; };
+		3ECBCC2B1F439AD000160937 /* OPTLYFMDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYFMDBTempDBTests.h; sourceTree = "<group>"; };
+		3ECBCC2C1F439AD000160937 /* OPTLYFMDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBTempDBTests.m; sourceTree = "<group>"; };
+		3ECBCC2E1F439AD000160937 /* OPTLYFMDBResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBResultSetTests.m; sourceTree = "<group>"; };
 		5CF4F1B8D6539A2AE661E1E1 /* Pods-OptimizelySDKSharedTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOS/Pods-OptimizelySDKSharedTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
@@ -345,56 +345,56 @@
 			name = "Datafile Manger";
 			sourceTree = "<group>";
 		};
-		3E858C341F4226BA00D53856 /* OPDB */ = {
+		3E858C341F4226BA00D53856 /* OPTLYFMDB */ = {
 			isa = PBXGroup;
 			children = (
 				3E858C581F42272F00D53856 /* LICENSE.txt */,
 				3E858C591F42272F00D53856 /* README.md */,
 				3E858C351F4226C700D53856 /* src */,
 			);
-			name = OPDB;
+			name = OPTLYFMDB;
 			sourceTree = "<group>";
 		};
 		3E858C351F4226C700D53856 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C361F4226D100D53856 /* opdb */,
+				3E858C361F4226D100D53856 /* optlyfmdb */,
 			);
 			name = src;
 			sourceTree = "<group>";
 		};
-		3E858C361F4226D100D53856 /* opdb */ = {
+		3E858C361F4226D100D53856 /* optlyfmdb */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C371F4226E800D53856 /* OPDBDatabase.h */,
-				3E858C381F4226E800D53856 /* OPDBDatabase.m */,
-				3E858C3D1F4226E800D53856 /* OPDBDatabaseQueue.h */,
-				3E858C3E1F4226E800D53856 /* OPDBDatabaseQueue.m */,
-				3E858C3F1F4226E800D53856 /* OPDB.h */,
-				3E858C401F4226E800D53856 /* OPDBResultSet.h */,
-				3E858C411F4226E800D53856 /* OPDBResultSet.m */,
+				3E858C371F4226E800D53856 /* OPTLYFMDBDatabase.h */,
+				3E858C381F4226E800D53856 /* OPTLYFMDBDatabase.m */,
+				3E858C3D1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h */,
+				3E858C3E1F4226E800D53856 /* OPTLYFMDBDatabaseQueue.m */,
+				3E858C3F1F4226E800D53856 /* OPTLYFMDB.h */,
+				3E858C401F4226E800D53856 /* OPTLYFMDBResultSet.h */,
+				3E858C411F4226E800D53856 /* OPTLYFMDBResultSet.m */,
 			);
-			name = opdb;
+			name = optlyfmdb;
 			sourceTree = "<group>";
 		};
-		3ECBCC171F43983400160937 /* OPDBTests */ = {
+		3ECBCC171F43983400160937 /* OPTLYFMDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				3ECBCC291F439AD000160937 /* OPDBDatabaseQueueTests.m */,
-				3ECBCC2A1F439AD000160937 /* OPDBDatabaseTests.m */,
-				3ECBCC2B1F439AD000160937 /* OPDBTempDBTests.h */,
-				3ECBCC2C1F439AD000160937 /* OPDBTempDBTests.m */,
-				3ECBCC181F43983400160937 /* OPDBTests.m */,
-				3ECBCC2E1F439AD000160937 /* OPDBResultSetTests.m */,
+				3ECBCC291F439AD000160937 /* OPTLYFMDBDatabaseQueueTests.m */,
+				3ECBCC2A1F439AD000160937 /* OPTLYFMDBDatabaseTests.m */,
+				3ECBCC2B1F439AD000160937 /* OPTLYFMDBTempDBTests.h */,
+				3ECBCC2C1F439AD000160937 /* OPTLYFMDBTempDBTests.m */,
+				3ECBCC181F43983400160937 /* OPTLYFMDBTests.m */,
+				3ECBCC2E1F439AD000160937 /* OPTLYFMDBResultSetTests.m */,
 				3ECBCC371F439B1D00160937 /* Supporting Files */,
 			);
-			path = OPDBTests;
+			path = OPTLYFMDBTests;
 			sourceTree = "<group>";
 		};
 		3ECBCC371F439B1D00160937 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3ECBCC1A1F43983400160937 /* OPDBTests-Info.plist */,
+				3ECBCC1A1F43983400160937 /* OPTLYFMDBTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -425,8 +425,8 @@
 		EA3C681F1DC1E68E00C578CA = {
 			isa = PBXGroup;
 			children = (
-				3E858C341F4226BA00D53856 /* OPDB */,
-				3ECBCC171F43983400160937 /* OPDBTests */,
+				3E858C341F4226BA00D53856 /* OPTLYFMDB */,
+				3ECBCC171F43983400160937 /* OPTLYFMDBTests */,
 				EA3C682B1DC1E68E00C578CA /* OptimizelySDKShared */,
 				EA3C68371DC1E68E00C578CA /* OptimizelySDKSharedTests */,
 				EA3C682A1DC1E68E00C578CA /* Products */,
@@ -442,7 +442,7 @@
 				EA52470B1DC7192200AF6685 /* OptimizelySDKSharediOSTests.xctest */,
 				EA5247231DC7193B00AF6685 /* OptimizelySDKShared.framework */,
 				EA52472B1DC7193B00AF6685 /* OptimizelySDKSharedTVOSTests.xctest */,
-				3ECBCC161F43983400160937 /* OPDBTests.xctest */,
+				3ECBCC161F43983400160937 /* OPTLYFMDBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -541,10 +541,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C481F4226E800D53856 /* OPDBDatabaseQueue.h in Headers */,
-				3E858C421F4226E800D53856 /* OPDBDatabase.h in Headers */,
-				3E858C4B1F4226E800D53856 /* OPDBResultSet.h in Headers */,
-				3E858C4A1F4226E800D53856 /* OPDB.h in Headers */,
+				3E858C481F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h in Headers */,
+				3E858C421F4226E800D53856 /* OPTLYFMDBDatabase.h in Headers */,
+				3E858C4B1F4226E800D53856 /* OPTLYFMDBResultSet.h in Headers */,
+				3E858C4A1F4226E800D53856 /* OPTLYFMDB.h in Headers */,
 				2D08FB9F1DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
@@ -580,9 +580,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3ECBCC151F43983400160937 /* OPDBTests */ = {
+		3ECBCC151F43983400160937 /* OPTLYFMDBTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPDBTests" */;
+			buildConfigurationList = 3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPTLYFMDBTests" */;
 			buildPhases = (
 				3ECBCC121F43983400160937 /* Sources */,
 				3ECBCC131F43983400160937 /* Frameworks */,
@@ -593,9 +593,9 @@
 			dependencies = (
 				3ECBCC1D1F43983400160937 /* PBXTargetDependency */,
 			);
-			name = OPDBTests;
-			productName = OPDBTests;
-			productReference = 3ECBCC161F43983400160937 /* OPDBTests.xctest */;
+			name = OPTLYFMDBTests;
+			productName = OPTLYFMDBTests;
+			productReference = 3ECBCC161F43983400160937 /* OPTLYFMDBTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */ = {
@@ -731,7 +731,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				3ECBCC151F43983400160937 /* OPDBTests */,
+				3ECBCC151F43983400160937 /* OPTLYFMDBTests */,
 				EA5247021DC7192200AF6685 /* OptimizelySDKSharediOS */,
 				EA52470A1DC7192200AF6685 /* OptimizelySDKSharediOSTests */,
 				EA5247221DC7193B00AF6685 /* OptimizelySDKSharedTVOS */,
@@ -981,11 +981,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ECBCC361F439AD000160937 /* OPDBResultSetTests.m in Sources */,
-				3ECBCC191F43983400160937 /* OPDBTests.m in Sources */,
-				3ECBCC341F439AD000160937 /* OPDBDatabaseTests.m in Sources */,
-				3ECBCC351F439AD000160937 /* OPDBTempDBTests.m in Sources */,
-				3ECBCC331F439AD000160937 /* OPDBDatabaseQueueTests.m in Sources */,
+				3ECBCC361F439AD000160937 /* OPTLYFMDBResultSetTests.m in Sources */,
+				3ECBCC191F43983400160937 /* OPTLYFMDBTests.m in Sources */,
+				3ECBCC341F439AD000160937 /* OPTLYFMDBDatabaseTests.m in Sources */,
+				3ECBCC351F439AD000160937 /* OPTLYFMDBTempDBTests.m in Sources */,
+				3ECBCC331F439AD000160937 /* OPTLYFMDBDatabaseQueueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,10 +996,10 @@
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
 				EAC5F34D1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
-				3E858C431F4226E800D53856 /* OPDBDatabase.m in Sources */,
+				3E858C431F4226E800D53856 /* OPTLYFMDBDatabase.m in Sources */,
 				EA58C5241E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
-				3E858C491F4226E800D53856 /* OPDBDatabaseQueue.m in Sources */,
-				3E858C4C1F4226E800D53856 /* OPDBResultSet.m in Sources */,
+				3E858C491F4226E800D53856 /* OPTLYFMDBDatabaseQueue.m in Sources */,
+				3E858C4C1F4226E800D53856 /* OPTLYFMDBResultSet.m in Sources */,
 				2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */,
 				EA92F8271E27FB6000A859C7 /* OPTLYManagerBuilder.m in Sources */,
 				EA92F86E1E28243E00A859C7 /* OPTLYManagerBase.m in Sources */,
@@ -1096,10 +1096,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1111,10 +1111,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = RC;
@@ -1126,10 +1126,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
@@ -1141,10 +1141,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "OPDBTests/OPDBTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPDBTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1742,7 +1742,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPDBTests" */ = {
+		3ECBCC241F43983400160937 /* Build configuration list for PBXNativeTarget "OPTLYFMDBTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3ECBCC1E1F43983400160937 /* Debug */,

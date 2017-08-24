@@ -31,10 +31,10 @@
 #import "OPTLYManagerBuilder.h"
 
 #if TARGET_OS_IOS
-#import "OPDBDatabase.h"
-#import "OPDBDatabaseQueue.h"
-#import "OPDB.h"
-#import "OPDBResultSet.h"
+#import "OPTLYFMDBDatabase.h"
+#import "OPTLYFMDBDatabaseQueue.h"
+#import "OPTLYFMDB.h"
+#import "OPTLYFMDBResultSet.h"
 #endif
 
 //! Project version number for OptimizelySDKShared.

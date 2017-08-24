@@ -1,31 +1,31 @@
-# OPDB v2.7
+# OPTLYFMDB v2.7
 
 This is an Objective-C wrapper around SQLite: http://sqlite.org/ .
 
-OPDB is a modified copy of the original FMDB covered by the "License.txt"
+OPTLYFMDB is a modified copy of the original FMDB covered by the "License.txt"
 file mentioned at the end of this document.
 
 ## FMDB Class Reference:
 http://ccgus.github.io/fmdb/html/index.html
 
 ## Automatic Reference Counting (ARC) or Manual Memory Management?
-You can use either style in your Cocoa project.  OPDB will figure out which you are using at compile time and do the right thing.
+You can use either style in your Cocoa project.  OPTLYFMDB will figure out which you are using at compile time and do the right thing.
 
-## What's New in OPDB 2.7
+## What's New in OPTLYFMDB 2.7
 
-OPDB 2.7 attempts to support a more natural interface. This represents a fairly significant change for Swift developers (audited for nullability; shifted to properties in external interfaces where possible rather than methods; etc.). For Objective-C developers, this should be a fairly seamless transition (unless you were using the ivars that were previously exposed in the public interface, which you shouldn't have been doing, anyway!).
+OPTLYFMDB 2.7 attempts to support a more natural interface. This represents a fairly significant change for Swift developers (audited for nullability; shifted to properties in external interfaces where possible rather than methods; etc.). For Objective-C developers, this should be a fairly seamless transition (unless you were using the ivars that were previously exposed in the public interface, which you shouldn't have been doing, anyway!).
 
 ### Nullability and Swift Optionals
 
-OPDB 2.7 is largely the same as prior versions, but has been audited for nullability. For Objective-C users, this simply means that if you perform a static analysis of your OPDB-based project, you may receive more meaningful warnings as you review your project, but there are likely to be few, if any, changes necessary in your code.
+OPTLYFMDB 2.7 is largely the same as prior versions, but has been audited for nullability. For Objective-C users, this simply means that if you perform a static analysis of your OPTLYFMDB-based project, you may receive more meaningful warnings as you review your project, but there are likely to be few, if any, changes necessary in your code.
 
-For Swift users, this nullability audit results in changes that are not entirely backward compatible with OPDB 2.6, but is a little more Swifty. Before OPDB was audited for nullability, Swift was forced to defensively assume that variables were optional, but the library now more accurately knows which properties and method parameters are optional, and which are not.
+For Swift users, this nullability audit results in changes that are not entirely backward compatible with OPTLYFMDB 2.6, but is a little more Swifty. Before OPTLYFMDB was audited for nullability, Swift was forced to defensively assume that variables were optional, but the library now more accurately knows which properties and method parameters are optional, and which are not.
 
-This means, though, that Swift code written for OPDB 2.7 may require changes. For example, consider the following Swift 3/Swift 4 code for OPDB 2.6:
+This means, though, that Swift code written for OPTLYFMDB 2.7 may require changes. For example, consider the following Swift 3/Swift 4 code for OPTLYFMDB 2.6:
 ```swift
 
-guard let queue = OPDBDatabaseQueue(path: fileURL.path) else {
-    print("Unable to create OPDBDatabaseQueue")
+guard let queue = OPTLYFMDBDatabaseQueue(path: fileURL.path) else {
+    print("Unable to create OPTLYFMDBDatabaseQueue")
     return
 }
 
@@ -44,11 +44,11 @@ queue.inTransaction { db, rollback in
 }
 ```
 
-Because OPDB 2.6 was not audited for nullability, Swift inferred that `db` and `rollback` were optionals. But, now, in OPDB 2.7, Swift now knows that, for example, neither `db` nor `rollback` above can be `nil`, so they are no longer optionals. Thus it becomes:
+Because OPTLYFMDB 2.6 was not audited for nullability, Swift inferred that `db` and `rollback` were optionals. But, now, in OPTLYFMDB 2.7, Swift now knows that, for example, neither `db` nor `rollback` above can be `nil`, so they are no longer optionals. Thus it becomes:
 
 ```swift
 
-let queue = OPDBDatabaseQueue(url: fileURL)
+let queue = OPTLYFMDBDatabaseQueue(url: fileURL)
 
 queue.inTransaction { db, rollback in
     do {
@@ -62,9 +62,9 @@ queue.inTransaction { db, rollback in
 
 ### Custom Functions
 
-In the past, when writing custom functions, you would have to generally include your own `@autoreleasepool` block to avoid problems when writing functions that scanned through a large table. Now, OPDB will automatically wrap it in an autorelease pool, so you don't have to.
+In the past, when writing custom functions, you would have to generally include your own `@autoreleasepool` block to avoid problems when writing functions that scanned through a large table. Now, OPTLYFMDB will automatically wrap it in an autorelease pool, so you don't have to.
 
-Also, in the past, when retrieving the values passed to the function, you had to drop down to the SQLite C API and include your own `sqlite3_value_XXX` calls. There are now `OPDBDatabase` methods, `valueInt`, `valueString`, etc., so you can stay within Swift and/or Objective-C, without needing to call the C functions yourself. Likewise, when specifying the return values, you no longer need to call `sqlite3_result_XXX` C API, but rather you can use `OPDBDatabase` methods, `resultInt`, `resultString`, etc. There is a new `enum` for `valueType` called `SqliteValueType`, which can be used for checking the type of parameter passed to the custom function.
+Also, in the past, when retrieving the values passed to the function, you had to drop down to the SQLite C API and include your own `sqlite3_value_XXX` calls. There are now `OPTLYFMDBDatabase` methods, `valueInt`, `valueString`, etc., so you can stay within Swift and/or Objective-C, without needing to call the C functions yourself. Likewise, when specifying the return values, you no longer need to call `sqlite3_result_XXX` C API, but rather you can use `OPTLYFMDBDatabase` methods, `resultInt`, `resultString`, etc. There is a new `enum` for `valueType` called `SqliteValueType`, which can be used for checking the type of parameter passed to the custom function.
 
 Thus, you can do something like (as of Swift 3):
 
@@ -99,33 +99,33 @@ In addition to the `makeFunctionNamed` noted above, there are a few other API ch
 
  - Note, the `objectForColumn` (and the associted subscript operator) now returns `nil` if an invalid column name/index is passed to it. It used to return `NSNull`.
 
- - To avoid confusion with `OPDBDatabaseQueue` method `inTransaction`, which performs transactions, the `OPDBDatabase` method to determine whether you are in a transaction or not, `inTransaction`, has been replaced with a read-only property, `isInTransaction`.
+ - To avoid confusion with `OPTLYFMDBDatabaseQueue` method `inTransaction`, which performs transactions, the `OPTLYFMDBDatabase` method to determine whether you are in a transaction or not, `inTransaction`, has been replaced with a read-only property, `isInTransaction`.
 
- - Several functions have been converted to properties, namely, `databasePath`, `maxBusyRetryTimeInterval`, `shouldCacheStatements`, `sqliteHandle`, `hasOpenResultSets`, `lastInsertRowId`, `changes`, `goodConnection`, `columnCount`, `resultDictionary`, `applicationID`, `applicationIDString`, `userVersion`, `countOfCheckedInDatabases`, `countOfCheckedOutDatabases`, and `countOfOpenDatabases`. For Objective-C users, this has little material impact, but for Swift users, it results in a slightly more natural interface. Note: For Objective-C developers, previously versions of OPDB exposed many ivars (but we hope you weren't using them directly, anyway!), but the implmentation details for these are no longer exposed.
+ - Several functions have been converted to properties, namely, `databasePath`, `maxBusyRetryTimeInterval`, `shouldCacheStatements`, `sqliteHandle`, `hasOpenResultSets`, `lastInsertRowId`, `changes`, `goodConnection`, `columnCount`, `resultDictionary`, `applicationID`, `applicationIDString`, `userVersion`, `countOfCheckedInDatabases`, `countOfCheckedOutDatabases`, and `countOfOpenDatabases`. For Objective-C users, this has little material impact, but for Swift users, it results in a slightly more natural interface. Note: For Objective-C developers, previously versions of OPTLYFMDB exposed many ivars (but we hope you weren't using them directly, anyway!), but the implmentation details for these are no longer exposed.
 
 ### URL Methods
 
 In keeping with Apple's shift from paths to URLs, there are now `NSURL` renditions of the various `init` methods, previously only accepting paths. 
 
 ## Usage
-There are three main classes in OPDB:
+There are three main classes in OPTLYFMDB:
 
-1. `OPDBDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
-2. `OPDBResultSet` - Represents the results of executing a query on an `OPDBDatabase`.
-3. `OPDBDatabaseQueue` - If you're wanting to perform queries and updates on multiple threads, you'll want to use this class.  It's described in the "Thread Safety" section below.
+1. `OPTLYFMDBDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
+2. `OPTLYFMDBResultSet` - Represents the results of executing a query on an `OPTLYFMDBDatabase`.
+3. `OPTLYFMDBDatabaseQueue` - If you're wanting to perform queries and updates on multiple threads, you'll want to use this class.  It's described in the "Thread Safety" section below.
 
 ### Database Creation
-An `OPDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
+An `OPTLYFMDBDatabase` is created with a path to a SQLite database file.  This path can be one of these three:
 
 1. A file system path.  The file does not have to exist on disk.  If it does not exist, it is created for you.
-2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `OPDBDatabase` connection is closed.
-3. `NULL`.  An in-memory database is created.  This database will be destroyed with the `OPDBDatabase` connection is closed.
+2. An empty string (`@""`).  An empty database is created at a temporary location.  This database is deleted with the `OPTLYFMDBDatabase` connection is closed.
+3. `NULL`.  An in-memory database is created.  This database will be destroyed with the `OPTLYFMDBDatabase` connection is closed.
 
 (For more information on temporary and in-memory databases, read the sqlite documentation on the subject: http://www.sqlite.org/inmemorydb.html)
 
 ```objc
 NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.db"];
-OPDBDatabase *db = [OPDBDatabase databaseWithPath:path];
+OPTLYFMDBDatabase *db = [OPTLYFMDBDatabase databaseWithPath:path];
 ```
 
 ### Opening
@@ -150,27 +150,27 @@ Executing updates returns a single value, a `BOOL`.  A return value of `YES` mea
 
 A `SELECT` statement is a query and is executed via one of the `-executeQuery...` methods.
 
-Executing queries returns an `OPDBResultSet` object if successful, and `nil` upon failure.  You should use the `-lastErrorMessage` and `-lastErrorCode` methods to determine why a query failed.
+Executing queries returns an `OPTLYFMDBResultSet` object if successful, and `nil` upon failure.  You should use the `-lastErrorMessage` and `-lastErrorCode` methods to determine why a query failed.
 
-In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" from one record to the other.  With OPDB, the easiest way to do that is like this:
+In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" from one record to the other.  With OPTLYFMDB, the easiest way to do that is like this:
 
 ```objc
-OPDBResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
+OPTLYFMDBResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
 while ([s next]) {
     //retrieve values for each record
 }
 ```
 
-You must always invoke `-[OPDBResultSet next]` before attempting to access the values returned in a query, even if you're only expecting one:
+You must always invoke `-[OPTLYFMDBResultSet next]` before attempting to access the values returned in a query, even if you're only expecting one:
 
 ```objc
-OPDBResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
+OPTLYFMDBResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
 if ([s next]) {
     int totalCount = [s intForColumnIndex:0];
 }
 ```
 
-`OPDBResultSet` has many methods to retrieve data in an appropriate format:
+`OPTLYFMDBResultSet` has many methods to retrieve data in an appropriate format:
 
 - `intForColumn:`
 - `longForColumn:`
@@ -186,11 +186,11 @@ if ([s next]) {
 
 Each of these methods also has a `{type}ForColumnIndex:` variant that is used to retrieve the data based on the position of the column in the results, as opposed to the column's name.
 
-Typically, there's no need to `-close` an `OPDBResultSet` yourself, since that happens when either the result set is deallocated, or the parent database is closed.
+Typically, there's no need to `-close` an `OPTLYFMDBResultSet` yourself, since that happens when either the result set is deallocated, or the parent database is closed.
 
 ### Closing
 
-When you have finished executing queries and updates on the database, you should `-close` the `OPDBDatabase` connection so that SQLite will relinquish any resources it has acquired during the course of its operation.
+When you have finished executing queries and updates on the database, you should `-close` the `OPTLYFMDBDatabase` connection so that SQLite will relinquish any resources it has acquired during the course of its operation.
 
 ```objc
 [db close];
@@ -198,11 +198,11 @@ When you have finished executing queries and updates on the database, you should
 
 ### Transactions
 
-`OPDBDatabase` can begin and commit a transaction by invoking one of the appropriate methods or executing a begin/end transaction statement.
+`OPTLYFMDBDatabase` can begin and commit a transaction by invoking one of the appropriate methods or executing a begin/end transaction statement.
 
 ### Multiple Statements and Batch Stuff
 
-You can use `OPDBDatabase`'s executeStatements:withResultBlock: to do multiple statements in a string:
+You can use `OPTLYFMDBDatabase`'s executeStatements:withResultBlock: to do multiple statements in a string:
 
 ```objc
 NSString *sql = @"create table bulktest1 (id integer primary key autoincrement, x text);"
@@ -227,7 +227,7 @@ success = [self.db executeStatements:sql withResultBlock:^int(NSDictionary *dict
 
 ### Data Sanitization
 
-When providing a SQL statement to OPDB, you should not attempt to "sanitize" any values before insertion.  Instead, you should use the standard SQLite binding syntax:
+When providing a SQL statement to OPTLYFMDB, you should not attempt to "sanitize" any values before insertion.  Instead, you should use the standard SQLite binding syntax:
 
 ```sql
 INSERT INTO myTable VALUES (?, ?, ?, ?)
@@ -288,30 +288,30 @@ if (!success) {
 
 The key point is that one should not use `NSString` method `stringWithFormat` to manually insert values into the SQL statement, itself. Nor should one Swift string interpolation to insert values into the SQL. Use `?` placeholders for values to be inserted into the database (or used in `WHERE` clauses in `SELECT` statements).
 
-<h2 id="threads">Using OPDBDatabaseQueue and Thread Safety.</h2>
+<h2 id="threads">Using OPTLYFMDBDatabaseQueue and Thread Safety.</h2>
 
-Using a single instance of `OPDBDatabase` from multiple threads at once is a bad idea.  It has always been OK to make a `OPDBDatabase` object *per thread*.  Just don't share a single instance across threads, and definitely not across multiple threads at the same time.  Bad things will eventually happen and you'll eventually get something to crash, or maybe get an exception, or maybe meteorites will fall out of the sky and hit your Mac Pro.  *This would suck*.
+Using a single instance of `OPTLYFMDBDatabase` from multiple threads at once is a bad idea.  It has always been OK to make a `OPTLYFMDBDatabase` object *per thread*.  Just don't share a single instance across threads, and definitely not across multiple threads at the same time.  Bad things will eventually happen and you'll eventually get something to crash, or maybe get an exception, or maybe meteorites will fall out of the sky and hit your Mac Pro.  *This would suck*.
 
-**So don't instantiate a single `OPDBDatabase` object and use it across multiple threads.**
+**So don't instantiate a single `OPTLYFMDBDatabase` object and use it across multiple threads.**
 
-Instead, use `OPDBDatabaseQueue`. Instantiate a single `OPDBDatabaseQueue` and use it across multiple threads. The `OPDBDatabaseQueue` object will synchronize and coordinate access across the multiple threads. Here's how to use it:
+Instead, use `OPTLYFMDBDatabaseQueue`. Instantiate a single `OPTLYFMDBDatabaseQueue` and use it across multiple threads. The `OPTLYFMDBDatabaseQueue` object will synchronize and coordinate access across the multiple threads. Here's how to use it:
 
 First, make your queue.
 
 ```objc
-OPDBDatabaseQueue *queue = [OPDBDatabaseQueue databaseQueueWithPath:aPath];
+OPTLYFMDBDatabaseQueue *queue = [OPTLYFMDBDatabaseQueue databaseQueueWithPath:aPath];
 ```
 
 Then use it like so:
 
 
 ```objc
-[queue inDatabase:^(OPDBDatabase *db) {
+[queue inDatabase:^(OPTLYFMDBDatabase *db) {
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @1];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @2];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @3];
 
-    OPDBResultSet *rs = [db executeQuery:@"select * from foo"];
+    OPTLYFMDBResultSet *rs = [db executeQuery:@"select * from foo"];
     while ([rs next]) {
         …
     }
@@ -321,7 +321,7 @@ Then use it like so:
 An easy way to wrap things up in a transaction can be done like this:
 
 ```objc
-[queue inTransaction:^(OPDBDatabase *db, BOOL *rollback) {
+[queue inTransaction:^(OPTLYFMDBDatabase *db, BOOL *rollback) {
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @1];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @2];
     [db executeUpdate:@"INSERT INTO myTable VALUES (?)", @3];
@@ -359,9 +359,9 @@ queue.inTransaction { db, rollback in
 
 (Note, as of Swift 3, use `pointee`. But in Swift 2.3, use `memory` rather than `pointee`.)
 
-`OPDBDatabaseQueue` will run the blocks on a serialized queue (hence the name of the class).  So if you call `OPDBDatabaseQueue`'s methods from multiple threads at the same time, they will be executed in the order they are received.  This way queries and updates won't step on each other's toes, and every one is happy.
+`OPTLYFMDBDatabaseQueue` will run the blocks on a serialized queue (hence the name of the class).  So if you call `OPTLYFMDBDatabaseQueue`'s methods from multiple threads at the same time, they will be executed in the order they are received.  This way queries and updates won't step on each other's toes, and every one is happy.
 
-**Note:** The calls to `OPDBDatabaseQueue`'s methods are blocking.  So even though you are passing along blocks, they will **not** be run on another thread.
+**Note:** The calls to `OPTLYFMDBDatabaseQueue`'s methods are blocking.  So even though you are passing along blocks, they will **not** be run on another thread.
 
 ## Making custom sqlite functions, based on blocks.
 
@@ -369,13 +369,13 @@ You can do this!  For an example, look for `-makeFunctionNamed:` in main.m
 
 ## Swift
 
-You can use OPDB in Swift projects too.
+You can use OPTLYFMDB in Swift projects too.
 
 To do this, you must:
 
-1. Copy the relevant `.m` and `.h` files from the OPDB `src` folder into your project.
+1. Copy the relevant `.m` and `.h` files from the OPTLYFMDB `src` folder into your project.
 
- You can copy all of them (which is easiest), or only the ones you need. Likely you will need [`OPDBDatabase`](http://ccgus.github.io/opdb/html/Classes/OPDBDatabase.html) and [`OPDBResultSet`](http://ccgus.github.io/opdb/html/Classes/OPDBResultSet.html) at a minimum. If you are doing multithreaded access to a database, [`OPDBDatabaseQueue`](http://ccgus.github.io/opdb/html/Classes/OPDBDatabaseQueue.html) is quite useful, too. If you choose to not copy all of the files from the `src` directory, though, you may want to update `OPDB.h` to only reference the files that you included in your project.
+ You can copy all of them (which is easiest), or only the ones you need. Likely you will need [`OPTLYFMDBDatabase`](http://ccgus.github.io/optlyfmdb/html/Classes/OPTLYFMDBDatabase.html) and [`OPTLYFMDBResultSet`](http://ccgus.github.io/optlyfmdb/html/Classes/OPTLYFMDBResultSet.html) at a minimum. If you are doing multithreaded access to a database, [`OPTLYFMDBDatabaseQueue`](http://ccgus.github.io/optlyfmdb/html/Classes/OPTLYFMDBDatabaseQueue.html) is quite useful, too. If you choose to not copy all of the files from the `src` directory, though, you may want to update `OPTLYFMDB.h` to only reference the files that you included in your project.
 
  Note, if you're copying all of the files from the `src` folder into to your project (which is recommended), you may want to drag the individual files into your project, not the folder, itself, because if you drag the folder, you won't be prompted to add the bridging header (see next point).
 
@@ -385,19 +385,19 @@ To do this, you must:
 
 3. In your bridging header, add a line that says:
     ```objc
-    #import "OPDB.h"
+    #import "OPTLYFMDB.h"
     ```
 
 4. Use the variations of `executeQuery` and `executeUpdate` with the `sql` and `values` parameters with `try` pattern, as shown below. These renditions of `executeQuery` and `executeUpdate` both `throw` errors in true Swift fashion.
 
-If you do the above, you can then write Swift code that uses `OPDBDatabase`. For example, as of Swift 3:
+If you do the above, you can then write Swift code that uses `OPTLYFMDBDatabase`. For example, as of Swift 3:
 
 ```swift
 let fileURL = try! FileManager.default
     .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
     .appendingPathComponent("test.sqlite")
 
-let database = OPDBDatabase(url: fileURL)
+let database = OPTLYFMDBDatabase(url: fileURL)
 
 guard database.open() else {
     print("Unable to open database")

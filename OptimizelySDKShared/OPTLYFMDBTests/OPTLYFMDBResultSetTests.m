@@ -1,6 +1,6 @@
 //
-//  OPDBResultSetTests.m
-//  opdb
+//  OPTLYFMDBResultSetTests.m
+//  optlyfmdb
 //
 //  Created by Muralidharan,Roshan on 10/6/14.
 //
@@ -23,23 +23,23 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPDBTempDBTests.h"
-#import "OPDBDatabase.h"
-#import "OPDBResultSet.h"
+#import "OPTLYFMDBTempDBTests.h"
+#import "OPTLYFMDBDatabase.h"
+#import "OPTLYFMDBResultSet.h"
 
-#if OPDB_SQLITE_STANDALONE
+#if OPTLYFMDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-@interface OPDBResultSetTests : OPDBTempDBTests
+@interface OPTLYFMDBResultSetTests : OPTLYFMDBTempDBTests
 
 @end
 
-@implementation OPDBResultSetTests
+@implementation OPTLYFMDBResultSetTests
 
-+ (void)populateDatabase:(OPDBDatabase *)db
++ (void)populateDatabase:(OPTLYFMDBDatabase *)db
 {
     [db executeUpdate:@"create table test (a text, b text, c integer, d double, e double)"];
     
@@ -62,7 +62,7 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
+    OPTLYFMDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
     XCTAssertNotNil(resultSet);
     NSError *error;
     XCTAssertTrue([resultSet nextWithError:&error]);
@@ -80,10 +80,10 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
+    OPTLYFMDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=1"];
     XCTAssertNotNil(resultSet);
     
-    OPDBDatabase *newDB = [OPDBDatabase databaseWithPath:self.databasePath];
+    OPTLYFMDBDatabase *newDB = [OPTLYFMDBDatabase databaseWithPath:self.databasePath];
     [newDB open];
     
     [newDB beginTransaction];
@@ -102,7 +102,7 @@
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (1, 2)"];
     [self.db executeUpdate:@"INSERT INTO testTable (key, value) VALUES (2, 4)"];
     
-    OPDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=9"];
+    OPTLYFMDBResultSet *resultSet = [self.db executeQuery:@"SELECT * FROM testTable WHERE key=9"];
     XCTAssertNotNil(resultSet);
     XCTAssertFalse([resultSet next]);
     NSError *error;

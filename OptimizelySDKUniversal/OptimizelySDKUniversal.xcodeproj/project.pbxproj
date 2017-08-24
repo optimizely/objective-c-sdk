@@ -323,13 +323,13 @@
 		EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880DB1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
 		EAF880DC1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
-		EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880EA1EF1D46300143F7C /* OPDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */; };
-		EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880F61EF1D46300143F7C /* OPDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */; };
-		EAF880F81EF1D46300143F7C /* OPDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E61EF1D46300143F7C /* OPDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880FC1EF1D46300143F7C /* OPDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E71EF1D46300143F7C /* OPDBResultSet.m */; };
+		EAF880E81EF1D46300143F7C /* OPTLYFMDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPTLYFMDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880EA1EF1D46300143F7C /* OPTLYFMDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPTLYFMDBDatabase.m */; };
+		EAF880F41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880F61EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.m */; };
+		EAF880F81EF1D46300143F7C /* OPTLYFMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E51EF1D46300143F7C /* OPTLYFMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880FA1EF1D46300143F7C /* OPTLYFMDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E61EF1D46300143F7C /* OPTLYFMDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880FC1EF1D46300143F7C /* OPTLYFMDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880E71EF1D46300143F7C /* OPTLYFMDBResultSet.m */; };
 		EAF881271EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
 		EAF881291EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
 /* End PBXBuildFile section */
@@ -529,17 +529,17 @@
 		EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMKeyMapper.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.m; sourceTree = "<group>"; };
 		EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
 		EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMValueTransformer.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.m; sourceTree = "<group>"; };
-		EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabase.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabase.h; sourceTree = "<group>"; };
-		EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabase.m; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabase.m; sourceTree = "<group>"; };
-		EAF880DF1EF1D46300143F7C /* OPDBDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseAdditions.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabaseAdditions.h; sourceTree = "<group>"; };
-		EAF880E01EF1D46300143F7C /* OPDBDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseAdditions.m; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabaseAdditions.m; sourceTree = "<group>"; };
-		EAF880E11EF1D46300143F7C /* OPDBDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabasePool.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabasePool.h; sourceTree = "<group>"; };
-		EAF880E21EF1D46300143F7C /* OPDBDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabasePool.m; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabasePool.m; sourceTree = "<group>"; };
-		EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBDatabaseQueue.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabaseQueue.h; sourceTree = "<group>"; };
-		EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBDatabaseQueue.m; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBDatabaseQueue.m; sourceTree = "<group>"; };
-		EAF880E51EF1D46300143F7C /* OPDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDB.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDB.h; sourceTree = "<group>"; };
-		EAF880E61EF1D46300143F7C /* OPDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPDBResultSet.h; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBResultSet.h; sourceTree = "<group>"; };
-		EAF880E71EF1D46300143F7C /* OPDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPDBResultSet.m; path = ../OptimizelySDKShared/OPDB/src/opdb/OPDBResultSet.m; sourceTree = "<group>"; };
+		EAF880DD1EF1D46300143F7C /* OPTLYFMDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabase.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.h; sourceTree = "<group>"; };
+		EAF880DE1EF1D46300143F7C /* OPTLYFMDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabase.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.m; sourceTree = "<group>"; };
+		EAF880DF1EF1D46300143F7C /* OPTLYFMDBDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabaseAdditions.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseAdditions.h; sourceTree = "<group>"; };
+		EAF880E01EF1D46300143F7C /* OPTLYFMDBDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabaseAdditions.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseAdditions.m; sourceTree = "<group>"; };
+		EAF880E11EF1D46300143F7C /* OPTLYFMDBDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabasePool.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabasePool.h; sourceTree = "<group>"; };
+		EAF880E21EF1D46300143F7C /* OPTLYFMDBDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabasePool.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabasePool.m; sourceTree = "<group>"; };
+		EAF880E31EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabaseQueue.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseQueue.h; sourceTree = "<group>"; };
+		EAF880E41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabaseQueue.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseQueue.m; sourceTree = "<group>"; };
+		EAF880E51EF1D46300143F7C /* OPTLYFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDB.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDB.h; sourceTree = "<group>"; };
+		EAF880E61EF1D46300143F7C /* OPTLYFMDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBResultSet.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBResultSet.h; sourceTree = "<group>"; };
+		EAF880E71EF1D46300143F7C /* OPTLYFMDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBResultSet.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBResultSet.m; sourceTree = "<group>"; };
 		EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKTVOSUniversalTests.framework; path = "../build/Debug-appletvos/Pods_OptimizelySDKTVOSUniversalTests.framework"; sourceTree = "<group>"; };
 		EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKiOSUniversalTests.framework; path = "../build/Debug-iphoneos/Pods_OptimizelySDKiOSUniversalTests.framework"; sourceTree = "<group>"; };
 		FF3B458188C49ABCF5CC56E4 /* Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.beta.xcconfig"; sourceTree = "<group>"; };
@@ -618,22 +618,22 @@
 			name = "Common Tests";
 			sourceTree = "<group>";
 		};
-		EA4D95CC1E83AE0A00E40C14 /* opdb */ = {
+		EA4D95CC1E83AE0A00E40C14 /* optlyfmdb */ = {
 			isa = PBXGroup;
 			children = (
-				EAF880DD1EF1D46300143F7C /* OPDBDatabase.h */,
-				EAF880DE1EF1D46300143F7C /* OPDBDatabase.m */,
-				EAF880DF1EF1D46300143F7C /* OPDBDatabaseAdditions.h */,
-				EAF880E01EF1D46300143F7C /* OPDBDatabaseAdditions.m */,
-				EAF880E11EF1D46300143F7C /* OPDBDatabasePool.h */,
-				EAF880E21EF1D46300143F7C /* OPDBDatabasePool.m */,
-				EAF880E31EF1D46300143F7C /* OPDBDatabaseQueue.h */,
-				EAF880E41EF1D46300143F7C /* OPDBDatabaseQueue.m */,
-				EAF880E51EF1D46300143F7C /* OPDB.h */,
-				EAF880E61EF1D46300143F7C /* OPDBResultSet.h */,
-				EAF880E71EF1D46300143F7C /* OPDBResultSet.m */,
+				EAF880DD1EF1D46300143F7C /* OPTLYFMDBDatabase.h */,
+				EAF880DE1EF1D46300143F7C /* OPTLYFMDBDatabase.m */,
+				EAF880DF1EF1D46300143F7C /* OPTLYFMDBDatabaseAdditions.h */,
+				EAF880E01EF1D46300143F7C /* OPTLYFMDBDatabaseAdditions.m */,
+				EAF880E11EF1D46300143F7C /* OPTLYFMDBDatabasePool.h */,
+				EAF880E21EF1D46300143F7C /* OPTLYFMDBDatabasePool.m */,
+				EAF880E31EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h */,
+				EAF880E41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.m */,
+				EAF880E51EF1D46300143F7C /* OPTLYFMDB.h */,
+				EAF880E61EF1D46300143F7C /* OPTLYFMDBResultSet.h */,
+				EAF880E71EF1D46300143F7C /* OPTLYFMDBResultSet.m */,
 			);
-			name = opdb;
+			name = optlyfmdb;
 			sourceTree = "<group>";
 		};
 		EA52CD3D1E85E10300D4FCA0 /* OPJMModel */ = {
@@ -903,7 +903,7 @@
 				EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
 				EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */,
 				EA52CD3D1E85E10300D4FCA0 /* OPJMModel */,
-				EA4D95CC1E83AE0A00E40C14 /* opdb */,
+				EA4D95CC1E83AE0A00E40C14 /* optlyfmdb */,
 				EAC5F29B1E7B65EF00C087B8 /* murmur */,
 				AB5B18573E1770FC43BE1EF9 /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
 				821ECAB08BA28A73A7D94EAC /* Pods_OptimizelySDKiOSUniversalTests.framework */,
@@ -941,12 +941,12 @@
 			files = (
 				EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */,
 				EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
-				EAF880F81EF1D46300143F7C /* OPDB.h in Headers */,
+				EAF880F81EF1D46300143F7C /* OPTLYFMDB.h in Headers */,
 				EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */,
 				EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
-				EAF880E81EF1D46300143F7C /* OPDBDatabase.h in Headers */,
-				EAF880FA1EF1D46300143F7C /* OPDBResultSet.h in Headers */,
-				EAF880F41EF1D46300143F7C /* OPDBDatabaseQueue.h in Headers */,
+				EAF880E81EF1D46300143F7C /* OPTLYFMDBDatabase.h in Headers */,
+				EAF880FA1EF1D46300143F7C /* OPTLYFMDBResultSet.h in Headers */,
+				EAF880F41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h in Headers */,
 				EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
 				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
 				EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
@@ -1440,12 +1440,12 @@
 				EA52CA121E851CC100D4FCA0 /* OPTLYEventDispatcherBasic.m in Sources */,
 				EA52CA131E851CC100D4FCA0 /* OPTLYEventFeature.m in Sources */,
 				EA52CA141E851CC100D4FCA0 /* OPTLYEventHeader.m in Sources */,
-				EAF880F61EF1D46300143F7C /* OPDBDatabaseQueue.m in Sources */,
+				EAF880F61EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.m in Sources */,
 				EA52CA151E851CC100D4FCA0 /* OPTLYEventLayerState.m in Sources */,
 				EA52CA161E851CC100D4FCA0 /* OPTLYEventMetric.m in Sources */,
 				EA52CA171E851CC100D4FCA0 /* OPTLYEventParameterKeys.m in Sources */,
 				EA52CA181E851CC100D4FCA0 /* OPTLYEventRelatedEvent.m in Sources */,
-				EAF880EA1EF1D46300143F7C /* OPDBDatabase.m in Sources */,
+				EAF880EA1EF1D46300143F7C /* OPTLYFMDBDatabase.m in Sources */,
 				EA52CA191E851CC100D4FCA0 /* OPTLYEventTicket.m in Sources */,
 				EA52CA1A1E851CC100D4FCA0 /* OPTLYEventView.m in Sources */,
 				EA52CA1B1E851CC100D4FCA0 /* OPTLYExperiment.m in Sources */,
@@ -1460,7 +1460,7 @@
 				EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */,
 				EAF880DB1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */,
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
-				EAF880FC1EF1D46300143F7C /* OPDBResultSet.m in Sources */,
+				EAF880FC1EF1D46300143F7C /* OPTLYFMDBResultSet.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
 				EA52CA2D1E851CC100D4FCA0 /* OPTLYVariation.m in Sources */,
 				EA52CA2E1E851CC100D4FCA0 /* OPTLYVariationVariable.m in Sources */,
@@ -1593,7 +1593,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
@@ -1615,7 +1615,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Debug;
@@ -1639,7 +1639,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
@@ -1661,7 +1661,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Beta;
@@ -1685,7 +1685,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
@@ -1707,7 +1707,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = RC;
@@ -1731,7 +1731,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
@@ -1752,7 +1752,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Release;
@@ -2365,7 +2365,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
@@ -2388,7 +2388,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
@@ -2411,7 +2411,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
@@ -2434,7 +2434,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opdb/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",

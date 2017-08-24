@@ -23,23 +23,23 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPDBTempDBTests.h"
-#import "OPDBDatabase.h"
+#import "OPTLYFMDBTempDBTests.h"
+#import "OPTLYFMDBDatabase.h"
 
-#if OPDB_SQLITE_STANDALONE
+#if OPTLYFMDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
 
-@interface OPDBDatabaseTests : OPDBTempDBTests
+@interface OPTLYFMDBDatabaseTests : OPTLYFMDBTempDBTests
 
 @end
 
-@implementation OPDBDatabaseTests
+@implementation OPTLYFMDBDatabaseTests
 
-+ (void)populateDatabase:(OPDBDatabase *)db {
++ (void)populateDatabase:(OPTLYFMDBDatabase *)db {
     [db executeUpdate:@"create table test (a text, b text, c integer, d double, e double)"];
     
     [db beginTransaction];
@@ -92,7 +92,7 @@
     vfs.zName = "MyCustomVFS";
     XCTAssertEqual(SQLITE_OK, sqlite3_vfs_register(&vfs, 0));
     // use custom vfs to open a in memory database
-    OPDBDatabase *db = [[OPDBDatabase alloc] initWithPath:@":memory:"];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] initWithPath:@":memory:"];
     [db openWithFlags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE vfs:@"MyCustomVFS"];
     XCTAssertFalse([db hadError], @"Open with a custom VFS should have succeeded");
     XCTAssertEqual(SQLITE_OK, sqlite3_vfs_unregister(&vfs));
@@ -102,7 +102,7 @@
     NSURL *tempFolder = [NSURL fileURLWithPath:NSTemporaryDirectory()];
     NSURL *fileURL = [tempFolder URLByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
     
-    OPDBDatabase *db = [OPDBDatabase databaseWithURL:fileURL];
+    OPTLYFMDBDatabase *db = [OPTLYFMDBDatabase databaseWithURL:fileURL];
     XCTAssert(db, @"Database should be returned");
     XCTAssertTrue([db open], @"Open should succeed");
     XCTAssertEqualObjects([db databaseURL], fileURL);
@@ -111,7 +111,7 @@
 }
 
 - (void)testFailOnOpenWithUnknownVFS {
-    OPDBDatabase *db = [[OPDBDatabase alloc] initWithPath:@":memory:"];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] initWithPath:@":memory:"];
     [db openWithFlags:SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE vfs:@"UnknownVFS"];
     XCTAssertTrue([db hadError], @"Should have failed");    
 }
@@ -138,7 +138,7 @@
 
 - (void)testPragmaJournalMode
 {
-    OPDBResultSet *ps = [self.db executeQuery:@"pragma journal_mode=delete"];
+    OPTLYFMDBResultSet *ps = [self.db executeQuery:@"pragma journal_mode=delete"];
     XCTAssertFalse([self.db hadError], @"pragma should have succeeded");
     XCTAssertNotNil(ps, @"Result set should be non-nil");
     XCTAssertTrue([ps next], @"Result set should have a next result");
@@ -165,7 +165,7 @@
     [self.db executeUpdate:@"insert into ull (a) values (?)", [NSNumber numberWithUnsignedLongLong:ULLONG_MAX]];
     XCTAssertFalse([self.db hadError], @"Shouldn't have any errors");
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select a from ull"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select a from ull"];
     while ([rs next]) {
         XCTAssertEqual([rs unsignedLongLongIntForColumnIndex:0], ULLONG_MAX, @"Result should be ULLONG_MAX");
         XCTAssertEqual([rs unsignedLongLongIntForColumn:@"a"],   ULLONG_MAX, @"Result should be ULLONG_MAX");
@@ -178,7 +178,7 @@
 
 - (void)testSelectByColumnName
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"select rowid,* from test where a = ?", @"hi"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select rowid,* from test where a = ?", @"hi"];
     
     XCTAssertNotNil(rs, @"Should have a non-nil result set");
     
@@ -202,7 +202,7 @@
 
 - (void)testInvalidColumnNames
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"select rowid, a, b, c from test"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select rowid, a, b, c from test"];
     
     XCTAssertNotNil(rs, @"Should have a non-nil result set");
     
@@ -225,7 +225,7 @@
 
 - (void)testInvalidColumnIndexes
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"select rowid, a, b, c from test"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select rowid, a, b, c from test"];
     
     XCTAssertNotNil(rs, @"Should have a non-nil result set");
     
@@ -253,10 +253,10 @@
     
     [self.db setMaxBusyRetryTimeInterval:2];
     
-    OPDBDatabase *newDB = [OPDBDatabase databaseWithPath:self.databasePath];
+    OPTLYFMDBDatabase *newDB = [OPTLYFMDBDatabase databaseWithPath:self.databasePath];
     [newDB open];
     
-    OPDBResultSet *rs = [newDB executeQuery:@"select rowid,* from test where a = ?", @"hi'"];
+    OPTLYFMDBResultSet *rs = [newDB executeQuery:@"select rowid,* from test where a = ?", @"hi'"];
     [rs next]; // just grab one... which will keep the db locked
     
     XCTAssertFalse([self.db executeUpdate:@"insert into t1 values (5)"], @"Insert should fail because the db is locked by a read");
@@ -276,7 +276,7 @@
 
     XCTAssertFalse([self.db hadError], @"Shouldn't have any errors");
 
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from cs"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from cs"];
     while ([rs next]) {
         NSDictionary *d = [rs resultDictionary];
         
@@ -298,7 +298,7 @@
     
     XCTAssertFalse([self.db hadError], @"Shouldn't have any errors");
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from btest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from btest"];
     while ([rs next]) {
         
         XCTAssertTrue([rs boolForColumnIndex:0], @"first column should be true.");
@@ -321,7 +321,7 @@
     [dictionaryArgs setObject:[NSNumber numberWithDouble:2.0] forKey:@"d"];
     XCTAssertTrue([self.db executeUpdate:@"insert into namedparamcounttest values (:a, :b, :c, :d)" withParameterDictionary:dictionaryArgs]);
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from namedparamcounttest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from namedparamcounttest"];
     
     XCTAssertNotNil(rs);
     
@@ -363,7 +363,7 @@
     if (safariCompass) {
         [self.db executeUpdate:@"insert into blobTable (a, b) values (?, ?)", @"safari's compass", safariCompass];
         
-        OPDBResultSet *rs = [self.db executeQuery:@"select b from blobTable where a = ?", @"safari's compass"];
+        OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select b from blobTable where a = ?", @"safari's compass"];
         XCTAssertTrue([rs next]);
         NSData *readData = [rs dataForColumn:@"b"];
         XCTAssertEqualObjects(readData, safariCompass);
@@ -385,7 +385,7 @@
     BOOL result = [self.db executeUpdate:@"insert into t2 values (?, ?)", nil, [NSNumber numberWithInt:5]];
     XCTAssertTrue(result, @"Failed to insert a nil value");
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from t2"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from t2"];
     while ([rs next]) {
         XCTAssertNil([rs stringForColumnIndex:0], @"Wasn't able to retrieve a null string");
         XCTAssertEqualObjects([rs stringForColumnIndex:1], @"5");
@@ -398,7 +398,7 @@
 
 - (void)testNestedResultSets
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from t3"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from t3"];
     while ([rs next]) {
         int foo = [rs intForColumnIndex:0];
         
@@ -406,7 +406,7 @@
         
         [self.db executeUpdate:@"update t3 set a = ? where a = ?", [NSNumber numberWithInt:newVal], [NSNumber numberWithInt:foo]];
         
-        OPDBResultSet *rs2 = [self.db executeQuery:@"select a from t3 where a = ?", [NSNumber numberWithInt:newVal]];
+        OPTLYFMDBResultSet *rs2 = [self.db executeQuery:@"select a from t3 where a = ?", [NSNumber numberWithInt:newVal]];
         [rs2 next];
         
         XCTAssertEqual([rs2 intForColumnIndex:0], newVal);
@@ -425,7 +425,7 @@
     [self.db executeUpdate:@"insert into nulltest (a, b) values (?, ?)", [NSNull null], @"a"];
     [self.db executeUpdate:@"insert into nulltest (a, b) values (?, ?)", nil, @"b"];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from nulltest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from nulltest"];
     
     while ([rs next]) {
         XCTAssertNil([rs stringForColumnIndex:0]);
@@ -444,7 +444,7 @@
     [self.db executeUpdate:@"create table datetest (a double, b double, c double)"];
     [self.db executeUpdate:@"insert into datetest (a, b, c) values (?, ?, 0)" , [NSNull null], date];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from datetest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from datetest"];
     
     XCTAssertNotNil(rs);
     
@@ -477,7 +477,7 @@
     [self.db executeUpdate:@"insert into nulltest2 (s, d, i, f, b) values (?, ?, ?, ?, ?)" , @"Hi", safariCompass, [NSNumber numberWithInt:12], [NSNumber numberWithFloat:4.4f], [NSNumber numberWithBool:YES]];
     [self.db executeUpdate:@"insert into nulltest2 (s, d, i, f, b) values (?, ?, ?, ?, ?)" , nil, nil, nil, nil, [NSNull null]];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from nulltest2"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from nulltest2"];
     
     while ([rs next]) {
         
@@ -534,7 +534,7 @@
     [self.db executeUpdate:@"create table utest (a text)"];
     [self.db executeUpdate:@"insert into utest values (?)", @"/??bertest"];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from utest where a = ?", @"/??bertest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from utest where a = ?", @"/??bertest"];
     XCTAssertTrue([rs next]);
     [rs close];
     XCTAssertFalse([self.db hasOpenResultSets], @"Shouldn't have any open result sets");
@@ -548,7 +548,7 @@
     [self.db executeUpdate:@"insert into testOneHundredTwelvePointTwo values (?, ?)" withArgumentsInArray:[NSArray arrayWithObjects:@"one", [NSNumber numberWithInteger:3], nil]];
     
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from testOneHundredTwelvePointTwo where b > ?" withArgumentsInArray:[NSArray arrayWithObject:[NSNumber numberWithInteger:1]]];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from testOneHundredTwelvePointTwo where b > ?" withArgumentsInArray:[NSArray arrayWithObject:[NSNumber numberWithInteger:1]]];
     
     XCTAssertTrue([rs next]);
     
@@ -571,7 +571,7 @@
     XCTAssertTrue([self.db executeUpdate:@"create table t4 (a text, b text)"]);
     [self.db executeUpdate:@"insert into t4 (a, b) values (?, ?)", @"one", @"two"];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select t4.a as 't4.a', t4.b from t4;"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select t4.a as 't4.a', t4.b from t4;"];
     
     XCTAssertNotNil(rs);
     
@@ -609,7 +609,7 @@
     XCTAssertTrue([self.db executeUpdate:@"create table t5 (a text, b int, c blob, d text, e text)"]);
     [self.db executeUpdateWithFormat:@"insert into t5 values (%s, %d, %@, %c, %lld)", "text", 42, @"BLOB", 'd', 12345678901234ll];
     
-    OPDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from t5 where a = %s and a = %@ and b = %d", "text", @"text", 42];
+    OPTLYFMDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from t5 where a = %s and a = %@ and b = %d", "text", @"text", 42];
     XCTAssertNotNil(rs);
     
     XCTAssertTrue([rs next]);
@@ -634,7 +634,7 @@
     [self.db executeUpdateWithFormat:@"insert into t55 values (%c, %hu, %g)", 'a', testUShort, testFloat];
     
     
-    OPDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from t55 where a = %s order by 2", "a"];
+    OPTLYFMDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from t55 where a = %s order by 2", "a"];
     XCTAssertNotNil(rs);
     
     XCTAssertTrue([rs next]);
@@ -661,7 +661,7 @@
     
     XCTAssertTrue(worked);
     
-    OPDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from tatwhat"];
+    OPTLYFMDBResultSet *rs = [self.db executeQueryWithFormat:@"select * from tatwhat"];
     XCTAssertNotNil(rs);
     XCTAssertTrue([rs next]);
     XCTAssertTrue([rs columnIndexIsNull:0]);
@@ -680,7 +680,7 @@
 
 - (void)testSelectWithEmptyArgumentsArray
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from test where a=?" withArgumentsInArray:@[]];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from test where a=?" withArgumentsInArray:@[]];
     XCTAssertNil(rs);
 }
 
@@ -689,7 +689,7 @@
     NSFileManager *fileManager = [NSFileManager new];
     [fileManager removeItemAtPath:@"/tmp/attachme.db" error:nil];
     
-    OPDBDatabase *dbB = [OPDBDatabase databaseWithPath:@"/tmp/attachme.db"];
+    OPTLYFMDBDatabase *dbB = [OPTLYFMDBDatabase databaseWithPath:@"/tmp/attachme.db"];
     XCTAssertTrue([dbB open]);
     XCTAssertTrue([dbB executeUpdate:@"create table attached (a text)"]);
     XCTAssertTrue(([dbB executeUpdate:@"insert into attached values (?)", @"test"]));
@@ -697,7 +697,7 @@
     
     [self.db executeUpdate:@"attach database '/tmp/attachme.db' as attack"];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from attack.attached"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from attack.attached"];
     XCTAssertNotNil(rs);
     XCTAssertTrue([rs next]);
     [rs close];
@@ -716,7 +716,7 @@
     [dictionaryArgs setObject:[NSNumber numberWithDouble:2.0] forKey:@"d"];
     XCTAssertTrue([self.db executeUpdate:@"insert into namedparamtest values (:a, :b, :c, :d)" withParameterDictionary:dictionaryArgs]);
     
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from namedparamtest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from namedparamtest"];
     
     XCTAssertNotNil(rs);
     XCTAssertTrue([rs next]);
@@ -745,7 +745,7 @@
 
 - (void)testPragmaDatabaseList
 {
-    OPDBResultSet *rs = [self.db executeQuery:@"pragma database_list"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"pragma database_list"];
     int counter = 0;
     while ([rs next]) {
         counter++;
@@ -780,14 +780,14 @@
     //  the second time through all statements come from the cache.
     for (int i = 1; i <= 2; i++ ) {
         
-        OPDBResultSet* rs1 = [self.db executeQuery: @"SELECT rowid, * FROM testStatementCaching WHERE value = ?", @1]; // results in 2 rows...
+        OPTLYFMDBResultSet* rs1 = [self.db executeQuery: @"SELECT rowid, * FROM testStatementCaching WHERE value = ?", @1]; // results in 2 rows...
         XCTAssertNotNil(rs1);
         XCTAssertTrue([rs1 next]);
         
         // confirm that we're seeing the benefits of caching.
         XCTAssertEqual([[rs1 statement] useCount], (long)i);
         
-        OPDBResultSet* rs2 = [self.db executeQuery:@"SELECT rowid, * FROM testStatementCaching WHERE value = ?", @2]; // results in 1 row
+        OPTLYFMDBResultSet* rs2 = [self.db executeQuery:@"SELECT rowid, * FROM testStatementCaching WHERE value = ?", @2]; // results in 1 row
         XCTAssertNotNil(rs2);
         XCTAssertTrue([rs2 next]);
         XCTAssertEqual([[rs2 statement] useCount], (long)i);
@@ -807,12 +807,12 @@
 
 - (void)testDateFormat
 {
-    void (^testOneDateFormat)(OPDBDatabase *, NSDate *) = ^( OPDBDatabase *db, NSDate *testDate ){
+    void (^testOneDateFormat)(OPTLYFMDBDatabase *, NSDate *) = ^( OPTLYFMDBDatabase *db, NSDate *testDate ){
         [db executeUpdate:@"DROP TABLE IF EXISTS test_format"];
         [db executeUpdate:@"CREATE TABLE test_format ( test TEXT )"];
         [db executeUpdate:@"INSERT INTO test_format(test) VALUES (?)", testDate];
         
-        OPDBResultSet *rs = [db executeQuery:@"SELECT test FROM test_format"];
+        OPTLYFMDBResultSet *rs = [db executeQuery:@"SELECT test FROM test_format"];
         XCTAssertNotNil(rs);
         XCTAssertTrue([rs next]);
         
@@ -821,7 +821,7 @@
         [rs close];
     };
     
-    NSDateFormatter *fmt = [OPDBDatabase storeableDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDateFormatter *fmt = [OPTLYFMDBDatabase storeableDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     NSDate *testDate = [fmt dateFromString:@"2013-02-20 12:00:00"];
     
@@ -838,7 +838,7 @@
     XCTAssertTrue([self.db executeUpdate:@"create table colNameTest (a, b, c, d)"]);
     XCTAssertTrue([self.db executeUpdate:@"insert into colNameTest values (1, 2, 3, 4)"]);
     
-    OPDBResultSet *ars = [self.db executeQuery:@"select * from colNameTest"];
+    OPTLYFMDBResultSet *ars = [self.db executeQuery:@"select * from colNameTest"];
     XCTAssertNotNil(ars);
     
     NSDictionary *d = [ars columnNameToIndexMap];
@@ -854,7 +854,7 @@
 - (void)testCustomStringFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *ars = [self.db executeQuery:@"SELECT RemoveDiacritics(?)", @"José"];
+    OPTLYFMDBResultSet *ars = [self.db executeQuery:@"SELECT RemoveDiacritics(?)", @"José"];
     if (![ars next]) {
         XCTFail("Should have returned value");
         return;
@@ -866,7 +866,7 @@
 - (void)testFailCustomStringFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT RemoveDiacritics(?)", @(M_PI)];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT RemoveDiacritics(?)", @(M_PI)];
     XCTAssert(rs, @"Prepare should have succeeded");
     
     NSError *error;
@@ -886,7 +886,7 @@
 - (void)testCustomDoubleFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @(3.0), @(4.0)];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @(3.0), @(4.0)];
     if (![rs next]) {
         XCTFail("Should have returned value");
         return;
@@ -898,7 +898,7 @@
 - (void)testCustomIntFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @(3), @(4)];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @(3), @(4)];
     if (![rs next]) {
         XCTFail("Should have returned value");
         return;
@@ -910,7 +910,7 @@
 - (void)testFailCustomNumericFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @"foo", @"bar"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT Hypotenuse(?, ?)", @"foo", @"bar"];
     NSError *error;
     if ([rs nextWithError:&error]) {
         XCTFail("Should have failed");
@@ -934,7 +934,7 @@
         [data appendBytes:&byte length:1];
     }
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT SetAlternatingByteToOne(?)", data];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT SetAlternatingByteToOne(?)", data];
     if (![rs next]) {
         XCTFail("Should have returned value");
         return;
@@ -957,7 +957,7 @@
 - (void)testFailCustomDataFunction {
     [self createCustomFunctions];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT SetAlternatingByteToOne(?)", @"foo"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT SetAlternatingByteToOne(?)", @"foo"];
     XCTAssert(rs, @"Query should succeed");
     NSError *error;
     BOOL success = [rs nextWithError:&error];
@@ -981,7 +981,7 @@
         [self.db resultInt:42 context:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT FunctionThatDoesntTestTypes(?)", [NSNull null]];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT FunctionThatDoesntTestTypes(?)", [NSNull null]];
     XCTAssert(rs, @"Creating query should succeed");
     
     NSError *error = nil;
@@ -996,7 +996,7 @@
         [self.db resultInt:42 context:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT IntResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT IntResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     BOOL success = [rs next];
@@ -1010,7 +1010,7 @@
         [self.db resultLong:42 context:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT LongResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT LongResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     BOOL success = [rs next];
@@ -1024,7 +1024,7 @@
         [self.db resultDouble:0.1 context:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT DoubleResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT DoubleResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     BOOL success = [rs next];
@@ -1038,7 +1038,7 @@
         [self.db resultNullInContext:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT NullResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT NullResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     BOOL success = [rs next];
@@ -1053,7 +1053,7 @@
         [self.db resultErrorCode:42 context:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT ErrorResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT ErrorResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     NSError *error = nil;
@@ -1069,7 +1069,7 @@
         [self.db resultErrorTooBigInContext:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT TooBigErrorResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT TooBigErrorResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     NSError *error = nil;
@@ -1085,7 +1085,7 @@
         [self.db resultErrorNoMemoryInContext:context];
     }];
     
-    OPDBResultSet *rs = [self.db executeQuery:@"SELECT NoMemoryErrorResultFunction()"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"SELECT NoMemoryErrorResultFunction()"];
     XCTAssert(rs, @"Creating query should succeed");
     
     NSError *error = nil;
@@ -1141,7 +1141,7 @@
 }
 
 - (void)testVersionNumber {
-    XCTAssertTrue([OPDBDatabase OPDBVersion] == 0x0272); // this is going to break everytime we bump it.
+    XCTAssertTrue([OPTLYFMDBDatabase OPTLYFMDBVersion] == 0x0272); // this is going to break everytime we bump it.
 }
 
 - (void)testExecuteStatements {
@@ -1186,7 +1186,7 @@
     BOOL success = [self.db executeUpdate:@"insert into charBoolTest values (?, ?, ?)", @YES, @NO, @('x')];
     XCTAssertTrue(success, @"Unable to insert values");
 
-    OPDBResultSet *rs = [self.db executeQuery:@"select * from charBoolTest"];
+    OPTLYFMDBResultSet *rs = [self.db executeQuery:@"select * from charBoolTest"];
     XCTAssertNotNil(rs);
 
     XCTAssertTrue([rs next], @"Did not return row");
@@ -1208,20 +1208,20 @@
 
 - (void)testSqliteLibVersion
 {
-    NSString *version = [OPDBDatabase sqliteLibVersion];
+    NSString *version = [OPTLYFMDBDatabase sqliteLibVersion];
     XCTAssert([version compare:@"3.7" options:NSNumericSearch] == NSOrderedDescending, @"earlier than 3.7");
     XCTAssert([version compare:@"4.0" options:NSNumericSearch] == NSOrderedAscending, @"not earlier than 4.0");
 }
 
 - (void)testIsThreadSafe
 {
-    BOOL isThreadSafe = [OPDBDatabase isSQLiteThreadSafe];
+    BOOL isThreadSafe = [OPTLYFMDBDatabase isSQLiteThreadSafe];
     XCTAssert(isThreadSafe, @"not threadsafe");
 }
 
 - (void)testOpenTwice
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     [db open];
     XCTAssert([db open], @"Double open failed");
 }
@@ -1231,13 +1231,13 @@
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *path          = [documentsPath stringByAppendingPathComponent:@"nonexistentfolder/test.sqlite"];
 
-    OPDBDatabase *db = [[OPDBDatabase alloc] initWithPath:path];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] initWithPath:path];
     XCTAssertFalse([db open], @"open did NOT fail");
 }
 
 - (void)testChangingMaxBusyRetryTimeInterval
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
 
     NSTimeInterval originalInterval = db.maxBusyRetryTimeInterval;
@@ -1251,7 +1251,7 @@
 
 - (void)testChangingMaxBusyRetryTimeIntervalDatabaseNotOpened
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     // XCTAssert([db open], @"open failed");   // deliberately not opened
 
     NSTimeInterval originalInterval = db.maxBusyRetryTimeInterval;
@@ -1263,7 +1263,7 @@
 
 - (void)testZeroMaxBusyRetryTimeInterval
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     
     NSTimeInterval updatedInterval = 0;
@@ -1274,33 +1274,33 @@
 
 - (void)testCloseOpenResultSets
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     XCTAssert([db executeUpdate:@"create table foo (bar text)"], @"create failed");
     NSString *value = @"baz";
     XCTAssert([db executeUpdate:@"insert into foo (bar) values (?)" withArgumentsInArray:@[value]], @"insert failed");
-    OPDBResultSet *rs = [db executeQuery:@"select bar from foo"];
+    OPTLYFMDBResultSet *rs = [db executeQuery:@"select bar from foo"];
     [db closeOpenResultSets];
     XCTAssertFalse([rs next], @"step should have failed");
 }
 
 - (void)testGoodConnection
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     XCTAssert([db goodConnection], @"no good connection");
 }
 
 - (void)testBadConnection
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     // XCTAssert([db open], @"open failed");  // deliberately did not open
     XCTAssertFalse([db goodConnection], @"no good connection");
 }
 
 - (void)testLastRowId
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     XCTAssert([db executeUpdate:@"create table foo (foo_id integer primary key autoincrement, bar text)"], @"create failed");
     
@@ -1315,7 +1315,7 @@
 
 - (void)testChanges
 {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     XCTAssert([db executeUpdate:@"create table foo (foo_id integer primary key autoincrement, bar text)"], @"create failed");
     
@@ -1328,7 +1328,7 @@
 }
 
 - (void)testStepError {
-    OPDBDatabase *db = [[OPDBDatabase alloc] init];
+    OPTLYFMDBDatabase *db = [[OPTLYFMDBDatabase alloc] init];
     XCTAssert([db open], @"open failed");
     XCTAssert([db executeUpdate:@"create table foo (id integer primary key)"], @"create failed");
     XCTAssert([db executeUpdate:@"insert into foo (id) values (?)" values:@[@1] error:nil], @"create failed");

@@ -31,19 +31,19 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 #endif
 
-@class OPDBDatabase;
-@class OPDBStatement;
+@class OPTLYFMDBDatabase;
+@class OPTLYFMDBStatement;
 
-/** Represents the results of executing a query on an `<OPDBDatabase>`.
+/** Represents the results of executing a query on an `<OPTLYFMDBDatabase>`.
  
  ### See also
  
- - `<OPDBDatabase>`
+ - `<OPTLYFMDBDatabase>`
  */
 
-@interface OPDBResultSet : NSObject
+@interface OPTLYFMDBResultSet : NSObject
 
-@property (nonatomic, retain, nullable) OPDBDatabase *parentDB;
+@property (nonatomic, retain, nullable) OPTLYFMDBDatabase *parentDB;
 
 ///-----------------
 /// @name Properties
@@ -57,24 +57,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly) NSMutableDictionary *columnNameToIndexMap;
 
-/** `OPDBStatement` used by result set. */
+/** `OPTLYFMDBStatement` used by result set. */
 
-@property (atomic, retain, nullable) OPDBStatement *statement;
+@property (atomic, retain, nullable) OPTLYFMDBStatement *statement;
 
 ///------------------------------------
 /// @name Creating and closing database
 ///------------------------------------
 
-/** Create result set from `<OPDBStatement>`
+/** Create result set from `<OPTLYFMDBStatement>`
  
- @param statement A `<OPDBStatement>` to be performed
+ @param statement A `<OPTLYFMDBStatement>` to be performed
  
- @param aDB A `<OPDBDatabase>` to be used
+ @param aDB A `<OPTLYFMDBDatabase>` to be used
  
- @return A `OPDBResultSet` on success; `nil` on failure
+ @return A `OPTLYFMDBResultSet` on success; `nil` on failure
  */
 
-+ (instancetype)resultSetWithStatement:(OPDBStatement *)statement usingParentDatabase:(OPDBDatabase*)aDB;
++ (instancetype)resultSetWithStatement:(OPTLYFMDBStatement *)statement usingParentDatabase:(OPTLYFMDBDatabase*)aDB;
 
 /** Close result set */
 

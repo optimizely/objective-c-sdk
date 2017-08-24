@@ -1,6 +1,6 @@
 //
-//  OPDBDatabaseQueue.m
-//  opdb
+//  OPTLYFMDBDatabaseQueue.m
+//  optlyfmdb
 //
 //  Created by August Mueller on 6/22/11.
 //  Copyright 2011 Flying Meat Inc. All rights reserved.
@@ -22,10 +22,10 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPDBDatabaseQueue.h"
-#import "OPDBDatabase.h"
+#import "OPTLYFMDBDatabaseQueue.h"
+#import "OPTLYFMDBDatabase.h"
 
-#if OPDB_SQLITE_STANDALONE
+#if OPTLYFMDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
@@ -34,30 +34,30 @@
 /*
  
  Note: we call [self retain]; before using dispatch_sync, just incase 
- OPDBDatabaseQueue is released on another thread and we're in the middle of doing
+ OPTLYFMDBDatabaseQueue is released on another thread and we're in the middle of doing
  something in dispatch_sync
  
  */
 
 /*
- * A key used to associate the OPDBDatabaseQueue object with the dispatch_queue_t it uses.
+ * A key used to associate the OPTLYFMDBDatabaseQueue object with the dispatch_queue_t it uses.
  * This in turn is used for deadlock detection by seeing if inDatabase: is called on
  * the queue's dispatch queue, which should not happen and causes a deadlock.
  */
 static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey;
 
-@interface OPDBDatabaseQueue () {
+@interface OPTLYFMDBDatabaseQueue () {
     dispatch_queue_t    _queue;
-    OPDBDatabase          *_db;
+    OPTLYFMDBDatabase          *_db;
 }
 @end
 
-@implementation OPDBDatabaseQueue
+@implementation OPTLYFMDBDatabaseQueue
 
 + (instancetype)databaseQueueWithPath:(NSString *)aPath {
-    OPDBDatabaseQueue *q = [[self alloc] initWithPath:aPath];
+    OPTLYFMDBDatabaseQueue *q = [[self alloc] initWithPath:aPath];
     
-    OPDBAutorelease(q);
+    OPTLYFMDBAutorelease(q);
     
     return q;
 }
@@ -67,9 +67,9 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 }
 
 + (instancetype)databaseQueueWithPath:(NSString *)aPath flags:(int)openFlags {
-    OPDBDatabaseQueue *q = [[self alloc] initWithPath:aPath flags:openFlags];
+    OPTLYFMDBDatabaseQueue *q = [[self alloc] initWithPath:aPath flags:openFlags];
     
-    OPDBAutorelease(q);
+    OPTLYFMDBAutorelease(q);
     
     return q;
 }
@@ -79,7 +79,7 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 }
 
 + (Class)databaseClass {
-    return [OPDBDatabase class];
+    return [OPTLYFMDBDatabase class];
 }
 
 - (instancetype)initWithURL:(NSURL *)url flags:(int)openFlags vfs:(NSString *)vfsName {
@@ -92,7 +92,7 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
     if (self != nil) {
         
         _db = [[[self class] databaseClass] databaseWithPath:aPath];
-        OPDBRetain(_db);
+        OPTLYFMDBRetain(_db);
         
 #if SQLITE_VERSION_NUMBER >= 3005000
         BOOL success = [_db openWithFlags:openFlags vfs:vfsName];
@@ -101,13 +101,13 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 #endif
         if (!success) {
             NSLog(@"Could not create database queue for path %@", aPath);
-            OPDBRelease(self);
+            OPTLYFMDBRelease(self);
             return 0x00;
         }
         
-        _path = OPDBReturnRetained(aPath);
+        _path = OPTLYFMDBReturnRetained(aPath);
         
-        _queue = dispatch_queue_create([[NSString stringWithFormat:@"opdb.%@", self] UTF8String], NULL);
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"optlyfmdb.%@", self] UTF8String], NULL);
         dispatch_queue_set_specific(_queue, kDispatchQueueSpecificKey, (__bridge void *)self, NULL);
         _openFlags = openFlags;
         _vfsName = [vfsName copy];
@@ -139,12 +139,12 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 
     
 - (void)dealloc {
-    OPDBRelease(_db);
-    OPDBRelease(_path);
-    OPDBRelease(_vfsName);
+    OPTLYFMDBRelease(_db);
+    OPTLYFMDBRelease(_path);
+    OPTLYFMDBRelease(_vfsName);
     
     if (_queue) {
-        OPDBDispatchQueueRelease(_queue);
+        OPTLYFMDBDispatchQueueRelease(_queue);
         _queue = 0x00;
     }
 #if ! __has_feature(objc_arc)
@@ -153,22 +153,22 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 }
 
 - (void)close {
-    OPDBRetain(self);
+    OPTLYFMDBRetain(self);
     dispatch_sync(_queue, ^() {
         [self->_db close];
-        OPDBRelease(_db);
+        OPTLYFMDBRelease(_db);
         self->_db = 0x00;
     });
-    OPDBRelease(self);
+    OPTLYFMDBRelease(self);
 }
 
 - (void)interrupt {
     [[self database] interrupt];
 }
 
-- (OPDBDatabase*)database {
+- (OPTLYFMDBDatabase*)database {
     if (!_db) {
-       _db = OPDBReturnRetained([[[self class] databaseClass] databaseWithPath:_path]);
+       _db = OPTLYFMDBReturnRetained([[[self class] databaseClass] databaseWithPath:_path]);
         
 #if SQLITE_VERSION_NUMBER >= 3005000
         BOOL success = [_db openWithFlags:_openFlags vfs:_vfsName];
@@ -176,8 +176,8 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
         BOOL success = [_db open];
 #endif
         if (!success) {
-            NSLog(@"OPDBDatabaseQueue could not reopen database for path %@", _path);
-            OPDBRelease(_db);
+            NSLog(@"OPTLYFMDBDatabaseQueue could not reopen database for path %@", _path);
+            OPTLYFMDBRelease(_db);
             _db  = 0x00;
             return 0x00;
         }
@@ -186,39 +186,39 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
     return _db;
 }
 
-- (void)inDatabase:(void (^)(OPDBDatabase *db))block {
+- (void)inDatabase:(void (^)(OPTLYFMDBDatabase *db))block {
 #ifndef NDEBUG
     /* Get the currently executing queue (which should probably be nil, but in theory could be another DB queue
      * and then check it against self to make sure we're not about to deadlock. */
-    OPDBDatabaseQueue *currentSyncQueue = (__bridge id)dispatch_get_specific(kDispatchQueueSpecificKey);
+    OPTLYFMDBDatabaseQueue *currentSyncQueue = (__bridge id)dispatch_get_specific(kDispatchQueueSpecificKey);
     assert(currentSyncQueue != self && "inDatabase: was called reentrantly on the same queue, which would lead to a deadlock");
 #endif
     
-    OPDBRetain(self);
+    OPTLYFMDBRetain(self);
     
     dispatch_sync(_queue, ^() {
         
-        OPDBDatabase *db = [self database];
+        OPTLYFMDBDatabase *db = [self database];
         block(db);
         
         if ([db hasOpenResultSets]) {
-            NSLog(@"Warning: there is at least one open result set around after performing [OPDBDatabaseQueue inDatabase:]");
+            NSLog(@"Warning: there is at least one open result set around after performing [OPTLYFMDBDatabaseQueue inDatabase:]");
             
 #if defined(DEBUG) && DEBUG
-            NSSet *openSetCopy = OPDBReturnAutoreleased([[db valueForKey:@"_openResultSets"] copy]);
+            NSSet *openSetCopy = OPTLYFMDBReturnAutoreleased([[db valueForKey:@"_openResultSets"] copy]);
             for (NSValue *rsInWrappedInATastyValueMeal in openSetCopy) {
-                OPDBResultSet *rs = (OPDBResultSet *)[rsInWrappedInATastyValueMeal pointerValue];
+                OPTLYFMDBResultSet *rs = (OPTLYFMDBResultSet *)[rsInWrappedInATastyValueMeal pointerValue];
                 NSLog(@"query: '%@'", [rs query]);
             }
 #endif
         }
     });
     
-    OPDBRelease(self);
+    OPTLYFMDBRelease(self);
 }
 
-- (void)beginTransaction:(BOOL)useDeferred withBlock:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
-    OPDBRetain(self);
+- (void)beginTransaction:(BOOL)useDeferred withBlock:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
+    OPTLYFMDBRetain(self);
     dispatch_sync(_queue, ^() { 
         
         BOOL shouldRollback = NO;
@@ -240,22 +240,22 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
         }
     });
     
-    OPDBRelease(self);
+    OPTLYFMDBRelease(self);
 }
 
-- (void)inDeferredTransaction:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
+- (void)inDeferredTransaction:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:YES withBlock:block];
 }
 
-- (void)inTransaction:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
+- (void)inTransaction:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:NO withBlock:block];
 }
 
-- (NSError*)inSavePoint:(void (^)(OPDBDatabase *db, BOOL *rollback))block {
+- (NSError*)inSavePoint:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
 #if SQLITE_VERSION_NUMBER >= 3007000
     static unsigned long savePointIdx = 0;
     __block NSError *err = 0x00;
-    OPDBRetain(self);
+    OPTLYFMDBRetain(self);
     dispatch_sync(_queue, ^() { 
         
         NSString *name = [NSString stringWithFormat:@"savePoint%ld", savePointIdx++];
@@ -274,12 +274,12 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
             
         }
     });
-    OPDBRelease(self);
+    OPTLYFMDBRelease(self);
     return err;
 #else
     NSString *errorMessage = NSLocalizedString(@"Save point functions require SQLite 3.7", nil);
     if (self.logsErrors) NSLog(@"%@", errorMessage);
-    return [NSError errorWithDomain:@"OPDBDatabase" code:0 userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
+    return [NSError errorWithDomain:@"OPTLYFMDBDatabase" code:0 userInfo:@{NSLocalizedDescriptionKey : errorMessage}];
 #endif
 }
 

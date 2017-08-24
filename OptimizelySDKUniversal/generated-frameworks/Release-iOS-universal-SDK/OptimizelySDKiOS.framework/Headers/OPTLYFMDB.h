@@ -1,10 +1,3 @@
-//
-//  OPDBTempDBTests.h
-//  opdb
-//
-//  Created by Graham Dennis on 24/11/2013.
-//
-//
 /****************************************************************************
  * Modifications to FMDB by Optimizely, Inc.                                *
  * Copyright 2017, Optimizely, Inc. and contributors                        *
@@ -22,19 +15,11 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <XCTest/XCTest.h>
-#import "OPDBDatabase.h"
+#import <Foundation/Foundation.h>
 
-@protocol OPDBTempDBTests <NSObject>
+FOUNDATION_EXPORT double OPTLYFMDBVersionNumber;
+FOUNDATION_EXPORT const unsigned char OPTLYFMDBVersionString[];
 
-@optional
-+ (void)populateDatabase:(OPDBDatabase *)database;
-
-@end
-
-@interface OPDBTempDBTests : XCTestCase <OPDBTempDBTests>
-
-@property OPDBDatabase *db;
-@property (readonly) NSString *databasePath;
-
-@end
+#import "OPTLYFMDBDatabase.h"
+#import "OPTLYFMDBResultSet.h"
+#import "OPTLYFMDBDatabaseQueue.h"

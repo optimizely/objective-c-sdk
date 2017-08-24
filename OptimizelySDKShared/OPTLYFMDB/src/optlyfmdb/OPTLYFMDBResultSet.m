@@ -15,30 +15,30 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPDBResultSet.h"
-#import "OPDBDatabase.h"
+#import "OPTLYFMDBResultSet.h"
+#import "OPTLYFMDBDatabase.h"
 #import "unistd.h"
 
-#if OPDB_SQLITE_STANDALONE
+#if OPTLYFMDB_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
 #endif
 
-@interface OPDBDatabase ()
-- (void)resultSetDidClose:(OPDBResultSet *)resultSet;
+@interface OPTLYFMDBDatabase ()
+- (void)resultSetDidClose:(OPTLYFMDBResultSet *)resultSet;
 @end
 
-@interface OPDBResultSet () {
+@interface OPTLYFMDBResultSet () {
     NSMutableDictionary *_columnNameToIndexMap;
 }
 @end
 
-@implementation OPDBResultSet
+@implementation OPTLYFMDBResultSet
 
-+ (instancetype)resultSetWithStatement:(OPDBStatement *)statement usingParentDatabase:(OPDBDatabase*)aDB {
++ (instancetype)resultSetWithStatement:(OPTLYFMDBStatement *)statement usingParentDatabase:(OPTLYFMDBDatabase*)aDB {
     
-    OPDBResultSet *rs = [[OPDBResultSet alloc] init];
+    OPTLYFMDBResultSet *rs = [[OPTLYFMDBResultSet alloc] init];
     
     [rs setStatement:statement];
     [rs setParentDB:aDB];
@@ -46,7 +46,7 @@
     NSParameterAssert(![statement inUse]);
     [statement setInUse:YES]; // weak reference
     
-    return OPDBReturnAutoreleased(rs);
+    return OPTLYFMDBReturnAutoreleased(rs);
 }
 
 #if ! __has_feature(objc_arc)
@@ -59,10 +59,10 @@
 - (void)dealloc {
     [self close];
     
-    OPDBRelease(_query);
+    OPTLYFMDBRelease(_query);
     _query = nil;
     
-    OPDBRelease(_columnNameToIndexMap);
+    OPTLYFMDBRelease(_columnNameToIndexMap);
     _columnNameToIndexMap = nil;
     
 #if ! __has_feature(objc_arc)
@@ -72,7 +72,7 @@
 
 - (void)close {
     [_statement reset];
-    OPDBRelease(_statement);
+    OPTLYFMDBRelease(_statement);
     _statement = nil;
     
     // we don't need this anymore... (i think)
@@ -133,7 +133,7 @@
             [dict setObject:objectValue forKey:columnName];
         }
         
-        return OPDBReturnAutoreleased([dict copy]);
+        return OPTLYFMDBReturnAutoreleased([dict copy]);
     }
     else {
         NSLog(@"Warning: There seem to be no columns in this set.");
@@ -208,7 +208,7 @@
                 // If 'next' or 'nextWithError' is called after the result set is closed,
                 // we need to return the appropriate error.
                 NSDictionary* errorMessage = [NSDictionary dictionaryWithObject:@"parentDB does not exist" forKey:NSLocalizedDescriptionKey];
-                *outErr = [NSError errorWithDomain:@"OPDBDatabase" code:SQLITE_MISUSE userInfo:errorMessage];
+                *outErr = [NSError errorWithDomain:@"OPTLYFMDBDatabase" code:SQLITE_MISUSE userInfo:errorMessage];
             }
             
         }

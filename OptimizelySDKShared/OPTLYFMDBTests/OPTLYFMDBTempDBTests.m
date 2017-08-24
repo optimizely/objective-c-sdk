@@ -1,6 +1,6 @@
 //
-//  OPDBTempDBTests.m
-//  opdb
+//  OPTLYFMDBTempDBTests.m
+//  optlyfmdb
 //
 //  Created by Graham Dennis on 24/11/2013.
 //
@@ -23,12 +23,12 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "OPDBTempDBTests.h"
+#import "OPTLYFMDBTempDBTests.h"
 
 static NSString *const testDatabasePath = @"/tmp/tmp.db";
 static NSString *const populatedDatabasePath = @"/tmp/tmp-populated.db";
 
-@implementation OPDBTempDBTests
+@implementation OPTLYFMDBTempDBTests
 
 + (void)setUp
 {
@@ -39,7 +39,7 @@ static NSString *const populatedDatabasePath = @"/tmp/tmp-populated.db";
     [fileManager removeItemAtPath:populatedDatabasePath error:NULL];
     
     if ([self respondsToSelector:@selector(populateDatabase:)]) {
-        OPDBDatabase *db = [OPDBDatabase databaseWithPath:populatedDatabasePath];
+        OPTLYFMDBDatabase *db = [OPTLYFMDBDatabase databaseWithPath:populatedDatabasePath];
         
         [db open];
         [self populateDatabase:db];
@@ -59,7 +59,7 @@ static NSString *const populatedDatabasePath = @"/tmp/tmp-populated.db";
         [fileManager copyItemAtPath:populatedDatabasePath toPath:testDatabasePath error:NULL];
     }
     
-    self.db = [OPDBDatabase databaseWithPath:testDatabasePath];
+    self.db = [OPTLYFMDBDatabase databaseWithPath:testDatabasePath];
     
     XCTAssertTrue([self.db open], @"Wasn't able to open database");
     [self.db setShouldCacheStatements:YES];
