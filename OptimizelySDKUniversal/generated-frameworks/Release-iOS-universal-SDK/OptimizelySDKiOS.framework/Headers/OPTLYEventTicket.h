@@ -15,9 +15,9 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 // Model object representing an Event Ticket sent when an event triggers in the client.
@@ -25,7 +25,7 @@
 @class OPTLYEventHeader;
 @protocol OPTLYEventFeature, OPTLYEventMetric, OPTLYEventRelatedEvent, OPTLYEventLayerState, OPTLYEventView;
 
-@interface OPTLYEventTicket : OPJMModel
+@interface OPTLYEventTicket : OPTLYJSONModel
 
 // The time the event triggered
 @property (nonatomic, assign) long long timestamp;

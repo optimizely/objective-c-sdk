@@ -31,9 +31,9 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 
 @implementation OPTLYExperiment
 
-+ (OPJMKeyMapper*)keyMapper
++ (OPTLYJSONKeyMapper*)keyMapper
 {
-    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysExperimentId   : @"experimentId",
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysExperimentId   : @"experimentId",
                                                         OPTLYDatafileKeysExperimentKey  : @"experimentKey",
                                                         OPTLYDatafileKeysExperimentTrafficAllocation : @"trafficAllocations"
                                                         }];

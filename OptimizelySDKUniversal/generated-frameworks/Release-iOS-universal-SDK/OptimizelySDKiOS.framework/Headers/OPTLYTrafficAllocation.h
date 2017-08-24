@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 /**
@@ -28,7 +28,7 @@
 @protocol OPTLYTrafficAllocation
 @end
 
-@interface OPTLYTrafficAllocation : OPJMModel
+@interface OPTLYTrafficAllocation : OPTLYJSONModel
 
 /// The corresponding entity Id.
 @property (nonatomic, strong) NSString *entityId;

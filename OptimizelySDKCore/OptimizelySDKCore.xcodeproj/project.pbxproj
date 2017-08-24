@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */; };
-		3E0347A71F4B612A001F13E3 /* OPJMModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */; };
+		3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
 		3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
 		3E35DC481F47ACFE00018732 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
 		3E35DC491F47ACFE00018732 /* ConcurrentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC341F47ACFE00018732 /* ConcurrentTests.m */; };
@@ -49,7 +49,7 @@
 		3E35DCA11F47AD2800018732 /* JSONTypesModelWithValidation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */; };
 		3E35DCA21F47AD2800018732 /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */; };
 		3E35DCA31F47AD2800018732 /* NestedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC891F47AD2800018732 /* NestedModel.m */; };
-		3E35DCA41F47AD2800018732 /* OPJMValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPJMValueTransformer+UIColor.m */; };
+		3E35DCA41F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */; };
 		3E35DCA51F47AD2800018732 /* OptionalPropModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */; };
 		3E35DCA61F47AD2800018732 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8C1F47AD2800018732 /* PostModel.m */; };
 		3E35DCA71F47AD2800018732 /* PostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8D1F47AD2800018732 /* PostsModel.m */; };
@@ -76,28 +76,28 @@
 		3E35DCE61F47B42E00018732 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE51F47B42E00018732 /* UIKit.framework */; };
 		3E35DCE81F47B44900018732 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE71F47B44900018732 /* CoreGraphics.framework */; };
 		3E858C601F42277B00D53856 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3E858C5E1F42277B00D53856 /* LICENSE */; };
-		3E858C661F4227BA00D53856 /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C6D1F4227CD00D53856 /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C6E1F4227CD00D53856 /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPJMModel.m */; };
-		3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C701F4227CD00D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
-		3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C721F4227CD00D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
-		3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
-		3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C861F4227E300D53856 /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPJMValueTransformer.m */; };
-		3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C881F4227F100D53856 /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPJMModel.m */; };
-		3E858C891F4227F400D53856 /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8A1F4227F900D53856 /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */; };
-		3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C8C1F4227F900D53856 /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPJMModelError.m */; };
-		3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C951F42280900D53856 /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPJMKeyMapper.m */; };
-		3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E858C971F42280900D53856 /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPJMValueTransformer.m */; };
+		3E858C661F4227BA00D53856 /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6D1F4227CD00D53856 /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6E1F4227CD00D53856 /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */; };
+		3E858C6F1F4227CD00D53856 /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C701F4227CD00D53856 /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */; };
+		3E858C711F4227CD00D53856 /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C721F4227CD00D53856 /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */; };
+		3E858C831F4227E300D53856 /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C841F4227E300D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
+		3E858C851F4227E300D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C861F4227E300D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
+		3E858C871F4227ED00D53856 /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */; };
+		3E858C891F4227F400D53856 /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8A1F4227F900D53856 /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */; };
+		3E858C8B1F4227F900D53856 /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8C1F4227F900D53856 /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */; };
+		3E858C931F42280500D53856 /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C941F42280900D53856 /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
+		3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
@@ -139,7 +139,7 @@
 		3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */; };
 		3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */; };
 		3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC891F47AD2800018732 /* NestedModel.m */; };
-		3E99AA271F4BB1E2009F8805 /* OPJMValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPJMValueTransformer+UIColor.m */; };
+		3E99AA271F4BB1E2009F8805 /* OPTLYJSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */; };
 		3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */; };
 		3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8C1F47AD2800018732 /* PostModel.m */; };
 		3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8D1F47AD2800018732 /* PostsModel.m */; };
@@ -148,7 +148,7 @@
 		3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC901F47AD2800018732 /* ReposModel.m */; };
 		3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC911F47AD2800018732 /* RpcRequestModel.m */; };
 		3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */; };
-		3E99AA301F4BB1E2009F8805 /* OPJMModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */; };
+		3E99AA301F4BB1E2009F8805 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
 		3E99AA321F4BB1FE009F8805 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */; };
 		3E99AA341F4BB206009F8805 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA331F4BB206009F8805 /* UIKit.framework */; };
 		3E99AA351F4BB21A009F8805 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAD1F47AD3D00018732 /* colors.json */; };
@@ -437,8 +437,8 @@
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
-		3E0347A51F4B612A001F13E3 /* OPJMModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPJMModelTestHelper.h; sourceTree = "<group>"; };
-		3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPJMModelTestHelper.m; sourceTree = "<group>"; };
+		3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYJSONModelTestHelper.h; sourceTree = "<group>"; };
+		3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYJSONModelTestHelper.m; sourceTree = "<group>"; };
 		3E35DC321F47ACFE00018732 /* ArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTests.m; sourceTree = "<group>"; };
 		3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuiltInConversionsTests.m; sourceTree = "<group>"; };
 		3E35DC341F47ACFE00018732 /* ConcurrentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcurrentTests.m; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 		3E35DC6C1F47AD1500018732 /* JSONTypesModelWithValidation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONTypesModelWithValidation2.h; path = Models/Headers/JSONTypesModelWithValidation2.h; sourceTree = "<group>"; };
 		3E35DC6D1F47AD1500018732 /* ModelForUpperCaseMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelForUpperCaseMapper.h; path = Models/Headers/ModelForUpperCaseMapper.h; sourceTree = "<group>"; };
 		3E35DC6E1F47AD1500018732 /* NestedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NestedModel.h; path = Models/Headers/NestedModel.h; sourceTree = "<group>"; };
-		3E35DC6F1F47AD1500018732 /* OPJMValueTransformer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPJMValueTransformer+UIColor.h"; path = "Models/Headers/OPJMValueTransformer+UIColor.h"; sourceTree = "<group>"; };
+		3E35DC6F1F47AD1500018732 /* OPTLYJSONValueTransformer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPTLYJSONValueTransformer+UIColor.h"; path = "Models/Headers/OPTLYJSONValueTransformer+UIColor.h"; sourceTree = "<group>"; };
 		3E35DC701F47AD1500018732 /* OptionalPropModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalPropModel.h; path = Models/Headers/OptionalPropModel.h; sourceTree = "<group>"; };
 		3E35DC711F47AD1500018732 /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = Models/Headers/PostModel.h; sourceTree = "<group>"; };
 		3E35DC721F47AD1500018732 /* PostsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsModel.h; path = Models/Headers/PostsModel.h; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 		3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONTypesModelWithValidation2.m; path = Models/Implementations/JSONTypesModelWithValidation2.m; sourceTree = "<group>"; };
 		3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelForUpperCaseMapper.m; path = Models/Implementations/ModelForUpperCaseMapper.m; sourceTree = "<group>"; };
 		3E35DC891F47AD2800018732 /* NestedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NestedModel.m; path = Models/Implementations/NestedModel.m; sourceTree = "<group>"; };
-		3E35DC8A1F47AD2800018732 /* OPJMValueTransformer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPJMValueTransformer+UIColor.m"; path = "Models/Implementations/OPJMValueTransformer+UIColor.m"; sourceTree = "<group>"; };
+		3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPTLYJSONValueTransformer+UIColor.m"; path = "Models/Implementations/OPTLYJSONValueTransformer+UIColor.m"; sourceTree = "<group>"; };
 		3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalPropModel.m; path = Models/Implementations/OptionalPropModel.m; sourceTree = "<group>"; };
 		3E35DC8C1F47AD2800018732 /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = Models/Implementations/PostModel.m; sourceTree = "<group>"; };
 		3E35DC8D1F47AD2800018732 /* PostsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsModel.m; path = Models/Implementations/PostsModel.m; sourceTree = "<group>"; };
@@ -531,25 +531,25 @@
 		3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = withoutOptProp.json; path = Data/withoutOptProp.json; sourceTree = "<group>"; };
 		3E35DCE51F47B42E00018732 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3E35DCE71F47B44900018732 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OPJMModel/LICENSE; sourceTree = "<group>"; };
-		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPJMModel/README.md; sourceTree = "<group>"; };
-		3E858C651F4227BA00D53856 /* OPJMModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelLib.h; path = OPJMModel/OPJMModel/OPJMModelLib.h; sourceTree = "<group>"; };
-		3E858C671F4227CD00D53856 /* OPJMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModel.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModel.h; sourceTree = "<group>"; };
-		3E858C681F4227CD00D53856 /* OPJMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModel.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModel.m; sourceTree = "<group>"; };
-		3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelClassProperty.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.h; sourceTree = "<group>"; };
-		3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelClassProperty.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.m; sourceTree = "<group>"; };
-		3E858C6B1F4227CD00D53856 /* OPJMModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelError.h; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.h; sourceTree = "<group>"; };
-		3E858C6C1F4227CD00D53856 /* OPJMModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelError.m; path = OPJMModel/OPJMModel/OPJMModel/OPJMModelError.m; sourceTree = "<group>"; };
-		3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMKeyMapper.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.h; sourceTree = "<group>"; };
-		3E858C801F4227E300D53856 /* OPJMKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMKeyMapper.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.m; sourceTree = "<group>"; };
-		3E858C811F4227E300D53856 /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
-		3E858C821F4227E300D53856 /* OPJMValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMValueTransformer.m; path = OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.m; sourceTree = "<group>"; };
+		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OPTLYJSONModel/LICENSE; sourceTree = "<group>"; };
+		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPTLYJSONModel/README.md; sourceTree = "<group>"; };
+		3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelLib.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelLib.h; sourceTree = "<group>"; };
+		3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModel.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.h; sourceTree = "<group>"; };
+		3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModel.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.m; sourceTree = "<group>"; };
+		3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelClassProperty.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.h; sourceTree = "<group>"; };
+		3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelClassProperty.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.m; sourceTree = "<group>"; };
+		3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelError.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.h; sourceTree = "<group>"; };
+		3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelError.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.m; sourceTree = "<group>"; };
+		3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONKeyMapper.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.h; sourceTree = "<group>"; };
+		3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONKeyMapper.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.m; sourceTree = "<group>"; };
+		3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONValueTransformer.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.h; sourceTree = "<group>"; };
+		3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONValueTransformer.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
-		3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPJMModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		3E99AA331F4BB206009F8805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		3EA27B071F47AB0D00C0208F /* OPJMModeliOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPJMModeliOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EA27B0B1F47AB0D00C0208F /* OPJMModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPJMModelTests-Info.plist"; sourceTree = "<group>"; };
+		3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModeliOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA27B0B1F47AB0D00C0208F /* OPTLYJSONModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYJSONModelTests-Info.plist"; sourceTree = "<group>"; };
 		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
 		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -751,51 +751,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E858C5C1F42275700D53856 /* OPJMModel */ = {
+		3E858C5C1F42275700D53856 /* OPTLYJSONModel */ = {
 			isa = PBXGroup;
 			children = (
 				3E858C5E1F42277B00D53856 /* LICENSE */,
 				3E858C5F1F42277B00D53856 /* README.md */,
-				3E858C5D1F42276400D53856 /* OPJMModel */,
+				3E858C5D1F42276400D53856 /* OPTLYJSONModel */,
 			);
-			name = OPJMModel;
+			name = OPTLYJSONModel;
 			sourceTree = "<group>";
 		};
-		3E858C5D1F42276400D53856 /* OPJMModel */ = {
+		3E858C5D1F42276400D53856 /* OPTLYJSONModel */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C621F42279000D53856 /* OPJMModel */,
-				3E858C651F4227BA00D53856 /* OPJMModelLib.h */,
-				3E858C641F4227A600D53856 /* OPJMModelTransformations */,
+				3E858C621F42279000D53856 /* OPTLYJSONModel */,
+				3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */,
+				3E858C641F4227A600D53856 /* OPTLYJSONModelTransformations */,
 			);
-			name = OPJMModel;
+			name = OPTLYJSONModel;
 			sourceTree = "<group>";
 		};
-		3E858C621F42279000D53856 /* OPJMModel */ = {
+		3E858C621F42279000D53856 /* OPTLYJSONModel */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C671F4227CD00D53856 /* OPJMModel.h */,
-				3E858C681F4227CD00D53856 /* OPJMModel.m */,
-				3E858C691F4227CD00D53856 /* OPJMModelClassProperty.h */,
-				3E858C6A1F4227CD00D53856 /* OPJMModelClassProperty.m */,
-				3E858C6B1F4227CD00D53856 /* OPJMModelError.h */,
-				3E858C6C1F4227CD00D53856 /* OPJMModelError.m */,
+				3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */,
+				3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */,
+				3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */,
+				3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */,
+				3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */,
+				3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */,
 			);
-			name = OPJMModel;
+			name = OPTLYJSONModel;
 			sourceTree = "<group>";
 		};
-		3E858C641F4227A600D53856 /* OPJMModelTransformations */ = {
+		3E858C641F4227A600D53856 /* OPTLYJSONModelTransformations */ = {
 			isa = PBXGroup;
 			children = (
-				3E858C7F1F4227E300D53856 /* OPJMKeyMapper.h */,
-				3E858C801F4227E300D53856 /* OPJMKeyMapper.m */,
-				3E858C811F4227E300D53856 /* OPJMValueTransformer.h */,
-				3E858C821F4227E300D53856 /* OPJMValueTransformer.m */,
+				3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */,
+				3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */,
+				3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */,
+				3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */,
 			);
-			name = OPJMModelTransformations;
+			name = OPTLYJSONModelTransformations;
 			sourceTree = "<group>";
 		};
-		3EA27B081F47AB0D00C0208F /* OPJMModelTests */ = {
+		3EA27B081F47AB0D00C0208F /* OPTLYJSONModelTests */ = {
 			isa = PBXGroup;
 			children = (
 				3E35DC321F47ACFE00018732 /* ArrayTests.m */,
@@ -821,11 +821,11 @@
 				3E35DC461F47ACFE00018732 /* ValidationTests.m */,
 				3EA27B151F47AB8200C0208F /* Model */,
 				3EA27B141F47AB7800C0208F /* Data */,
-				3EA27B0B1F47AB0D00C0208F /* OPJMModelTests-Info.plist */,
-				3E0347A51F4B612A001F13E3 /* OPJMModelTestHelper.h */,
-				3E0347A61F4B612A001F13E3 /* OPJMModelTestHelper.m */,
+				3EA27B0B1F47AB0D00C0208F /* OPTLYJSONModelTests-Info.plist */,
+				3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */,
+				3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */,
 			);
-			path = OPJMModelTests;
+			path = OPTLYJSONModelTests;
 			sourceTree = "<group>";
 		};
 		3EA27B141F47AB7800C0208F /* Data */ = {
@@ -880,7 +880,7 @@
 				3E35DC6C1F47AD1500018732 /* JSONTypesModelWithValidation2.h */,
 				3E35DC6D1F47AD1500018732 /* ModelForUpperCaseMapper.h */,
 				3E35DC6E1F47AD1500018732 /* NestedModel.h */,
-				3E35DC6F1F47AD1500018732 /* OPJMValueTransformer+UIColor.h */,
+				3E35DC6F1F47AD1500018732 /* OPTLYJSONValueTransformer+UIColor.h */,
 				3E35DC701F47AD1500018732 /* OptionalPropModel.h */,
 				3E35DC711F47AD1500018732 /* PostModel.h */,
 				3E35DC721F47AD1500018732 /* PostsModel.h */,
@@ -914,7 +914,7 @@
 				3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */,
 				3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */,
 				3E35DC891F47AD2800018732 /* NestedModel.m */,
-				3E35DC8A1F47AD2800018732 /* OPJMValueTransformer+UIColor.m */,
+				3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */,
 				3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */,
 				3E35DC8C1F47AD2800018732 /* PostModel.m */,
 				3E35DC8D1F47AD2800018732 /* PostsModel.m */,
@@ -1120,8 +1120,8 @@
 		EA3C67FB1DC1E66C00C578CA = {
 			isa = PBXGroup;
 			children = (
-				3E858C5C1F42275700D53856 /* OPJMModel */,
-				3EA27B081F47AB0D00C0208F /* OPJMModelTests */,
+				3E858C5C1F42275700D53856 /* OPTLYJSONModel */,
+				3EA27B081F47AB0D00C0208F /* OPTLYJSONModelTests */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
 				EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */,
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
@@ -1137,8 +1137,8 @@
 				EA2FA8061DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests.xctest */,
 				EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */,
 				EA2FA8261DC5DBB100B1D81B /* OptimizelySDKCoreTVOSTests.xctest */,
-				3EA27B071F47AB0D00C0208F /* OPJMModeliOSTests.xctest */,
-				3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */,
+				3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */,
+				3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1231,12 +1231,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
-				3E858C6F1F4227CD00D53856 /* OPJMModelClassProperty.h in Headers */,
-				3E858C851F4227E300D53856 /* OPJMValueTransformer.h in Headers */,
-				3E858C831F4227E300D53856 /* OPJMKeyMapper.h in Headers */,
-				3E858C711F4227CD00D53856 /* OPJMModelError.h in Headers */,
-				3E858C6D1F4227CD00D53856 /* OPJMModel.h in Headers */,
-				3E858C661F4227BA00D53856 /* OPJMModelLib.h in Headers */,
+				3E858C6F1F4227CD00D53856 /* OPTLYJSONModelClassProperty.h in Headers */,
+				3E858C851F4227E300D53856 /* OPTLYJSONValueTransformer.h in Headers */,
+				3E858C831F4227E300D53856 /* OPTLYJSONKeyMapper.h in Headers */,
+				3E858C711F4227CD00D53856 /* OPTLYJSONModelError.h in Headers */,
+				3E858C6D1F4227CD00D53856 /* OPTLYJSONModel.h in Headers */,
+				3E858C661F4227BA00D53856 /* OPTLYJSONModelLib.h in Headers */,
 				EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAC5F3431E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
@@ -1290,12 +1290,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
-				3E858C871F4227ED00D53856 /* OPJMModel.h in Headers */,
-				3E858C8B1F4227F900D53856 /* OPJMModelError.h in Headers */,
-				3E858C931F42280500D53856 /* OPJMModelLib.h in Headers */,
-				3E858C961F42280900D53856 /* OPJMValueTransformer.h in Headers */,
-				3E858C941F42280900D53856 /* OPJMKeyMapper.h in Headers */,
-				3E858C891F4227F400D53856 /* OPJMModelClassProperty.h in Headers */,
+				3E858C871F4227ED00D53856 /* OPTLYJSONModel.h in Headers */,
+				3E858C8B1F4227F900D53856 /* OPTLYJSONModelError.h in Headers */,
+				3E858C931F42280500D53856 /* OPTLYJSONModelLib.h in Headers */,
+				3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */,
+				3E858C941F42280900D53856 /* OPTLYJSONKeyMapper.h in Headers */,
+				3E858C891F4227F400D53856 /* OPTLYJSONModelClassProperty.h in Headers */,
 				EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB291DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */,
@@ -1347,9 +1347,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3E99A9F21F4BAF9A009F8805 /* OPJMModelTVOSTests */ = {
+		3E99A9F21F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPJMModelTVOSTests" */;
+			buildConfigurationList = 3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPTLYJSONModelTVOSTests" */;
 			buildPhases = (
 				3E99A9EF1F4BAF9A009F8805 /* Sources */,
 				3E99A9F01F4BAF9A009F8805 /* Frameworks */,
@@ -1360,14 +1360,14 @@
 			dependencies = (
 				3E99A9FA1F4BAF9A009F8805 /* PBXTargetDependency */,
 			);
-			name = OPJMModelTVOSTests;
-			productName = OPJMModelTVOSTests;
-			productReference = 3E99A9F31F4BAF9A009F8805 /* OPJMModelTVOSTests.xctest */;
+			name = OPTLYJSONModelTVOSTests;
+			productName = OPTLYJSONModelTVOSTests;
+			productReference = 3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3EA27B061F47AB0D00C0208F /* OPJMModeliOSTests */ = {
+		3EA27B061F47AB0D00C0208F /* OPTLYJSONModeliOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPJMModeliOSTests" */;
+			buildConfigurationList = 3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPTLYJSONModeliOSTests" */;
 			buildPhases = (
 				3EA27B031F47AB0D00C0208F /* Sources */,
 				3EA27B041F47AB0D00C0208F /* Frameworks */,
@@ -1378,9 +1378,9 @@
 			dependencies = (
 				3EA27B0E1F47AB0D00C0208F /* PBXTargetDependency */,
 			);
-			name = OPJMModeliOSTests;
-			productName = OPJMModeliOSTests;
-			productReference = 3EA27B071F47AB0D00C0208F /* OPJMModeliOSTests.xctest */;
+			name = OPTLYJSONModeliOSTests;
+			productName = OPTLYJSONModeliOSTests;
+			productReference = 3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */ = {
@@ -1512,8 +1512,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3EA27B061F47AB0D00C0208F /* OPJMModeliOSTests */,
-				3E99A9F21F4BAF9A009F8805 /* OPJMModelTVOSTests */,
+				3EA27B061F47AB0D00C0208F /* OPTLYJSONModeliOSTests */,
+				3E99A9F21F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests */,
 				EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */,
 				EA2FA8051DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests */,
 				EA2FA81D1DC5DBB100B1D81B /* OptimizelySDKCoreTVOS */,
@@ -1789,7 +1789,7 @@
 				3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */,
 				3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */,
 				3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */,
-				3E99AA271F4BB1E2009F8805 /* OPJMValueTransformer+UIColor.m in Sources */,
+				3E99AA271F4BB1E2009F8805 /* OPTLYJSONValueTransformer+UIColor.m in Sources */,
 				3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */,
 				3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */,
 				3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */,
@@ -1798,7 +1798,7 @@
 				3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */,
 				3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */,
 				3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */,
-				3E99AA301F4BB1E2009F8805 /* OPJMModelTestHelper.m in Sources */,
+				3E99AA301F4BB1E2009F8805 /* OPTLYJSONModelTestHelper.m in Sources */,
 				3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */,
 				3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */,
 				3E99AA021F4BB1BA009F8805 /* ConcurrentTests.m in Sources */,
@@ -1848,7 +1848,7 @@
 				3E35DC4D1F47ACFE00018732 /* InitWithDataTests.m in Sources */,
 				3E35DCAA1F47AD2800018732 /* ReposModel.m in Sources */,
 				3E35DC531F47ACFE00018732 /* PersistTests.m in Sources */,
-				3E0347A71F4B612A001F13E3 /* OPJMModelTestHelper.m in Sources */,
+				3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */,
 				3E35DC491F47ACFE00018732 /* ConcurrentTests.m in Sources */,
 				3E35DC561F47ACFE00018732 /* SimpleDataErrorTests.m in Sources */,
 				3E35DC591F47ACFE00018732 /* SpecialValuesTests.m in Sources */,
@@ -1872,7 +1872,7 @@
 				3E35DC4A1F47ACFE00018732 /* CustomPropsTests.m in Sources */,
 				3E35DC5A1F47ACFE00018732 /* TransformerExceptionTests.m in Sources */,
 				3E35DC4B1F47ACFE00018732 /* ExtremeNestingTests.m in Sources */,
-				3E35DCA41F47AD2800018732 /* OPJMValueTransformer+UIColor.m in Sources */,
+				3E35DCA41F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m in Sources */,
 				3E35DC9E1F47AD2800018732 /* InteractionModel.m in Sources */,
 				3E35DC951F47AD2800018732 /* CustomPropertyModel.m in Sources */,
 				3E35DC9F1F47AD2800018732 /* JSONTypesModel.m in Sources */,
@@ -1884,7 +1884,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E858C721F4227CD00D53856 /* OPJMModelError.m in Sources */,
+				3E858C721F4227CD00D53856 /* OPTLYJSONModelError.m in Sources */,
 				EA2FAC2B1DC6FFCF00B1D81B /* murmur3.c in Sources */,
 				EA16D9381ECBA9B200C4C998 /* OPTLYUserProfile.m in Sources */,
 				EA2FAC071DC6FFC600B1D81B /* Optimizely.m in Sources */,
@@ -1902,7 +1902,7 @@
 				EA2FAC111DC6FFC600B1D81B /* OPTLYEventAudience.m in Sources */,
 				EA2FAC121DC6FFC600B1D81B /* OPTLYEventDecision.m in Sources */,
 				EA2FAC131DC6FFC600B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
-				3E858C841F4227E300D53856 /* OPJMKeyMapper.m in Sources */,
+				3E858C841F4227E300D53856 /* OPTLYJSONKeyMapper.m in Sources */,
 				EA2FAC141DC6FFC600B1D81B /* OPTLYEventFeature.m in Sources */,
 				EA2FAC151DC6FFC600B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
@@ -1926,10 +1926,10 @@
 				EA8FD0DD1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA2FAC251DC6FFC600B1D81B /* OPTLYLogger.m in Sources */,
 				5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */,
-				3E858C861F4227E300D53856 /* OPJMValueTransformer.m in Sources */,
-				3E858C701F4227CD00D53856 /* OPJMModelClassProperty.m in Sources */,
+				3E858C861F4227E300D53856 /* OPTLYJSONValueTransformer.m in Sources */,
+				3E858C701F4227CD00D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
-				3E858C6E1F4227CD00D53856 /* OPJMModel.m in Sources */,
+				3E858C6E1F4227CD00D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
 				EAC5F3451E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
@@ -1982,13 +1982,13 @@
 				EA2FABEF1DC6FFA100B1D81B /* OPTLYEventFeature.m in Sources */,
 				EA2FABF01DC6FFA100B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FABF11DC6FFA100B1D81B /* OPTLYEventLayerState.m in Sources */,
-				3E858C8C1F4227F900D53856 /* OPJMModelError.m in Sources */,
+				3E858C8C1F4227F900D53856 /* OPTLYJSONModelError.m in Sources */,
 				EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
-				3E858C881F4227F100D53856 /* OPJMModel.m in Sources */,
+				3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FABF51DC6FFA100B1D81B /* OPTLYEventTicket.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,
@@ -2003,10 +2003,10 @@
 				EAC5F3561E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA2FABFF1DC6FFA100B1D81B /* OPTLYEventBuilder.m in Sources */,
 				EA8FD0DE1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
-				3E858C971F42280900D53856 /* OPJMValueTransformer.m in Sources */,
-				3E858C8A1F4227F900D53856 /* OPJMModelClassProperty.m in Sources */,
+				3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */,
+				3E858C8A1F4227F900D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC001DC6FFA100B1D81B /* OPTLYLogger.m in Sources */,
-				3E858C951F42280900D53856 /* OPJMKeyMapper.m in Sources */,
+				3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */,
 				5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,
@@ -2074,9 +2074,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -2089,9 +2089,9 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -2104,9 +2104,9 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -2119,9 +2119,9 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModelTVOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
@@ -2139,12 +2139,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModeliOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2156,12 +2156,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModeliOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = RC;
@@ -2173,12 +2173,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModeliOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
@@ -2190,12 +2190,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "OPJMModelTests/OPJMModelTests-Info.plist";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPJMModeliOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2817,7 +2817,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPJMModelTVOSTests" */ = {
+		3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPTLYJSONModelTVOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E99A9FB1F4BAF9A009F8805 /* Debug */,
@@ -2828,7 +2828,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPJMModeliOSTests" */ = {
+		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPTLYJSONModeliOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EA27B0F1F47AB0D00C0208F /* Debug */,

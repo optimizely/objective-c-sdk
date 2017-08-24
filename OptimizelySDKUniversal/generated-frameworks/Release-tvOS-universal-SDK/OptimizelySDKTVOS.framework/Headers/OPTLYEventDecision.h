@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 @protocol OPTLYEventDecision
 @end
 
-@interface OPTLYEventDecision : OPJMModel
+@interface OPTLYEventDecision : OPTLYJSONModel
 
 // ID of chosen experiment, null if visitor is not targeted for any experiments
 @property (nonatomic, strong, nullable) NSString<Optional> *experimentId;

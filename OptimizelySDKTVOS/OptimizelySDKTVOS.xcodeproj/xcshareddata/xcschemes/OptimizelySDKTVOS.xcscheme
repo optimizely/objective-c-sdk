@@ -93,8 +93,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E99A9F21F4BAF9A009F8805"
-               BuildableName = "OPJMModelTVOSTests.xctest"
-               BlueprintName = "OPJMModelTVOSTests"
+               BuildableName = "OPTLYJSONModelTVOSTests.xctest"
+               BlueprintName = "OPTLYJSONModelTVOSTests"
                ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>

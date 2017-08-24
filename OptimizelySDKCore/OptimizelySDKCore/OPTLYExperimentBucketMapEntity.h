@@ -31,12 +31,12 @@
  */
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-@interface OPTLYExperimentBucketMapEntity : OPJMModel
+@interface OPTLYExperimentBucketMapEntity : OPTLYJSONModel
 
 /// variation id
 @property (nonatomic, strong) NSString *variation_id;

@@ -19,9 +19,9 @@
 
 @implementation OPTLYAttribute
 
-+ (OPJMKeyMapper*)keyMapper
++ (OPTLYJSONKeyMapper*)keyMapper
 {
-    return [[OPJMKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysAttributeId    : @"attributeId",
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysAttributeId    : @"attributeId",
                                                         OPTLYDatafileKeysAttributeKey   : @"attributeKey"
                                                        }];
 }

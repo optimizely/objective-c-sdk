@@ -301,28 +301,28 @@
 		EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1551E7B604C00C087B8 /* OPTLYUserProfileServiceBasic.m */; };
 		EAE8C42A1EC4E61E00A76A2D /* OPTLYManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F1AA1E7B623200C087B8 /* OPTLYManager.m */; };
 		EAE8C42B1EC4E62800A76A2D /* OPTLYManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC5F7771E809F0F00C087B8 /* OPTLYManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPJMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B21EF1D40200143F7C /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPJMModel.m */; };
-		EAF880B31EF1D40200143F7C /* OPJMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPJMModel.m */; };
-		EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B61EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */; };
-		EAF880B71EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */; };
-		EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPJMModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880BA1EF1D40200143F7C /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPJMModelError.m */; };
-		EAF880BB1EF1D40200143F7C /* OPJMModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPJMModelError.m */; };
-		EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880D71EF1D42500143F7C /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */; };
-		EAF880D81EF1D42500143F7C /* OPJMKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */; };
-		EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF880DB1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
-		EAF880DC1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */; };
+		EAF880B01EF1D40200143F7C /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B11EF1D40200143F7C /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AA1EF1D40200143F7C /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B21EF1D40200143F7C /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPTLYJSONModel.m */; };
+		EAF880B31EF1D40200143F7C /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AB1EF1D40200143F7C /* OPTLYJSONModel.m */; };
+		EAF880B41EF1D40200143F7C /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B51EF1D40200143F7C /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AC1EF1D40200143F7C /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B61EF1D40200143F7C /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPTLYJSONModelClassProperty.m */; };
+		EAF880B71EF1D40200143F7C /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AD1EF1D40200143F7C /* OPTLYJSONModelClassProperty.m */; };
+		EAF880B81EF1D40200143F7C /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880B91EF1D40200143F7C /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880AE1EF1D40200143F7C /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880BA1EF1D40200143F7C /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPTLYJSONModelError.m */; };
+		EAF880BB1EF1D40200143F7C /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880AF1EF1D40200143F7C /* OPTLYJSONModelError.m */; };
+		EAF880BD1EF1D40A00143F7C /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880BE1EF1D40A00143F7C /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880BC1EF1D40A00143F7C /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880D51EF1D42500143F7C /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880D61EF1D42500143F7C /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D11EF1D42500143F7C /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880D71EF1D42500143F7C /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPTLYJSONKeyMapper.m */; };
+		EAF880D81EF1D42500143F7C /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D21EF1D42500143F7C /* OPTLYJSONKeyMapper.m */; };
+		EAF880D91EF1D42500143F7C /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880DA1EF1D42500143F7C /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880D31EF1D42500143F7C /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF880DB1EF1D42500143F7C /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPTLYJSONValueTransformer.m */; };
+		EAF880DC1EF1D42500143F7C /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880D41EF1D42500143F7C /* OPTLYJSONValueTransformer.m */; };
 		EAF880E81EF1D46300143F7C /* OPTLYFMDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880DD1EF1D46300143F7C /* OPTLYFMDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF880EA1EF1D46300143F7C /* OPTLYFMDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF880DE1EF1D46300143F7C /* OPTLYFMDBDatabase.m */; };
 		EAF880F41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF880E31EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -512,23 +512,23 @@
 		EAC5F82F1E81BC5E00C087B8 /* OPTLYManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OPTLYManager.m; path = ../OptimizelySDKTVOS/OptimizelySDKTVOS/OPTLYManager.m; sourceTree = SOURCE_ROOT; };
 		EAC5F85D1E81C84500C087B8 /* OPTLYEventDispatcherBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OPTLYEventDispatcherBasic.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYEventDispatcherBasic.h; sourceTree = SOURCE_ROOT; };
 		EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; name = OptimizelySDKCore.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OptimizelySDKCore.h; sourceTree = SOURCE_ROOT; };
-		EAF880AA1EF1D40200143F7C /* OPJMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModel.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModel.h; sourceTree = "<group>"; };
-		EAF880AB1EF1D40200143F7C /* OPJMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModel.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModel.m; sourceTree = "<group>"; };
-		EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelClassProperty.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.h; sourceTree = "<group>"; };
-		EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelClassProperty.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModelClassProperty.m; sourceTree = "<group>"; };
-		EAF880AE1EF1D40200143F7C /* OPJMModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelError.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModelError.h; sourceTree = "<group>"; };
-		EAF880AF1EF1D40200143F7C /* OPJMModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMModelError.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModel/OPJMModelError.m; sourceTree = "<group>"; };
-		EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMModelLib.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelLib.h; sourceTree = "<group>"; };
-		EAF880BF1EF1D41400143F7C /* OPJMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMAPI.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.h; sourceTree = "<group>"; };
-		EAF880C01EF1D41400143F7C /* OPJMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMAPI.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMAPI.m; sourceTree = "<group>"; };
-		EAF880C11EF1D41400143F7C /* OPJMHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMHTTPClient.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.h; sourceTree = "<group>"; };
-		EAF880C21EF1D41400143F7C /* OPJMHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMHTTPClient.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMHTTPClient.m; sourceTree = "<group>"; };
-		EAF880C31EF1D41400143F7C /* OPJMModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPJMModel+networking.h"; path = "../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.h"; sourceTree = "<group>"; };
-		EAF880C41EF1D41400143F7C /* OPJMModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPJMModel+networking.m"; path = "../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelNetworking/OPJMModel+networking.m"; sourceTree = "<group>"; };
-		EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMKeyMapper.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.h; sourceTree = "<group>"; };
-		EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMKeyMapper.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMKeyMapper.m; sourceTree = "<group>"; };
-		EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPJMValueTransformer.h; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.h; sourceTree = "<group>"; };
-		EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPJMValueTransformer.m; path = ../OptimizelySDKCore/OPJMModel/OPJMModel/OPJMModelTransformations/OPJMValueTransformer.m; sourceTree = "<group>"; };
+		EAF880AA1EF1D40200143F7C /* OPTLYJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModel.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.h; sourceTree = "<group>"; };
+		EAF880AB1EF1D40200143F7C /* OPTLYJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModel.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.m; sourceTree = "<group>"; };
+		EAF880AC1EF1D40200143F7C /* OPTLYJSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelClassProperty.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.h; sourceTree = "<group>"; };
+		EAF880AD1EF1D40200143F7C /* OPTLYJSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelClassProperty.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.m; sourceTree = "<group>"; };
+		EAF880AE1EF1D40200143F7C /* OPTLYJSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelError.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.h; sourceTree = "<group>"; };
+		EAF880AF1EF1D40200143F7C /* OPTLYJSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelError.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.m; sourceTree = "<group>"; };
+		EAF880BC1EF1D40A00143F7C /* OPTLYJSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelLib.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelLib.h; sourceTree = "<group>"; };
+		EAF880BF1EF1D41400143F7C /* OPTLYJSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONAPI.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONAPI.h; sourceTree = "<group>"; };
+		EAF880C01EF1D41400143F7C /* OPTLYJSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONAPI.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONAPI.m; sourceTree = "<group>"; };
+		EAF880C11EF1D41400143F7C /* OPTLYJSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONHTTPClient.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONHTTPClient.h; sourceTree = "<group>"; };
+		EAF880C21EF1D41400143F7C /* OPTLYJSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONHTTPClient.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONHTTPClient.m; sourceTree = "<group>"; };
+		EAF880C31EF1D41400143F7C /* OPTLYJSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPTLYJSONModel+networking.h"; path = "../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONModel+networking.h"; sourceTree = "<group>"; };
+		EAF880C41EF1D41400143F7C /* OPTLYJSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPTLYJSONModel+networking.m"; path = "../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelNetworking/OPTLYJSONModel+networking.m"; sourceTree = "<group>"; };
+		EAF880D11EF1D42500143F7C /* OPTLYJSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONKeyMapper.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.h; sourceTree = "<group>"; };
+		EAF880D21EF1D42500143F7C /* OPTLYJSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONKeyMapper.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.m; sourceTree = "<group>"; };
+		EAF880D31EF1D42500143F7C /* OPTLYJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONValueTransformer.h; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.h; sourceTree = "<group>"; };
+		EAF880D41EF1D42500143F7C /* OPTLYJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONValueTransformer.m; path = ../OptimizelySDKCore/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.m; sourceTree = "<group>"; };
 		EAF880DD1EF1D46300143F7C /* OPTLYFMDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabase.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.h; sourceTree = "<group>"; };
 		EAF880DE1EF1D46300143F7C /* OPTLYFMDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFMDBDatabase.m; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabase.m; sourceTree = "<group>"; };
 		EAF880DF1EF1D46300143F7C /* OPTLYFMDBDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFMDBDatabaseAdditions.h; path = ../OptimizelySDKShared/OPTLYFMDB/src/optlyfmdb/OPTLYFMDBDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -636,28 +636,28 @@
 			name = optlyfmdb;
 			sourceTree = "<group>";
 		};
-		EA52CD3D1E85E10300D4FCA0 /* OPJMModel */ = {
+		EA52CD3D1E85E10300D4FCA0 /* OPTLYJSONModel */ = {
 			isa = PBXGroup;
 			children = (
-				EAF880BC1EF1D40A00143F7C /* OPJMModelLib.h */,
-				EAF880AA1EF1D40200143F7C /* OPJMModel.h */,
-				EAF880AB1EF1D40200143F7C /* OPJMModel.m */,
-				EAF880AC1EF1D40200143F7C /* OPJMModelClassProperty.h */,
-				EAF880AD1EF1D40200143F7C /* OPJMModelClassProperty.m */,
-				EAF880AE1EF1D40200143F7C /* OPJMModelError.h */,
-				EAF880AF1EF1D40200143F7C /* OPJMModelError.m */,
-				EAF880BF1EF1D41400143F7C /* OPJMAPI.h */,
-				EAF880C01EF1D41400143F7C /* OPJMAPI.m */,
-				EAF880C11EF1D41400143F7C /* OPJMHTTPClient.h */,
-				EAF880C21EF1D41400143F7C /* OPJMHTTPClient.m */,
-				EAF880C31EF1D41400143F7C /* OPJMModel+networking.h */,
-				EAF880C41EF1D41400143F7C /* OPJMModel+networking.m */,
-				EAF880D11EF1D42500143F7C /* OPJMKeyMapper.h */,
-				EAF880D21EF1D42500143F7C /* OPJMKeyMapper.m */,
-				EAF880D31EF1D42500143F7C /* OPJMValueTransformer.h */,
-				EAF880D41EF1D42500143F7C /* OPJMValueTransformer.m */,
+				EAF880BC1EF1D40A00143F7C /* OPTLYJSONModelLib.h */,
+				EAF880AA1EF1D40200143F7C /* OPTLYJSONModel.h */,
+				EAF880AB1EF1D40200143F7C /* OPTLYJSONModel.m */,
+				EAF880AC1EF1D40200143F7C /* OPTLYJSONModelClassProperty.h */,
+				EAF880AD1EF1D40200143F7C /* OPTLYJSONModelClassProperty.m */,
+				EAF880AE1EF1D40200143F7C /* OPTLYJSONModelError.h */,
+				EAF880AF1EF1D40200143F7C /* OPTLYJSONModelError.m */,
+				EAF880BF1EF1D41400143F7C /* OPTLYJSONAPI.h */,
+				EAF880C01EF1D41400143F7C /* OPTLYJSONAPI.m */,
+				EAF880C11EF1D41400143F7C /* OPTLYJSONHTTPClient.h */,
+				EAF880C21EF1D41400143F7C /* OPTLYJSONHTTPClient.m */,
+				EAF880C31EF1D41400143F7C /* OPTLYJSONModel+networking.h */,
+				EAF880C41EF1D41400143F7C /* OPTLYJSONModel+networking.m */,
+				EAF880D11EF1D42500143F7C /* OPTLYJSONKeyMapper.h */,
+				EAF880D21EF1D42500143F7C /* OPTLYJSONKeyMapper.m */,
+				EAF880D31EF1D42500143F7C /* OPTLYJSONValueTransformer.h */,
+				EAF880D41EF1D42500143F7C /* OPTLYJSONValueTransformer.m */,
 			);
-			name = OPJMModel;
+			name = OPTLYJSONModel;
 			sourceTree = "<group>";
 		};
 		EA52CDE91E8649B800D4FCA0 /* OptimizelySDKTVOSUniversalTests */ = {
@@ -902,7 +902,7 @@
 				EAF881281EF20CC400143F7C /* Pods_OptimizelySDKiOSUniversalTests.framework */,
 				EAF881261EF20CB800143F7C /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
 				EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */,
-				EA52CD3D1E85E10300D4FCA0 /* OPJMModel */,
+				EA52CD3D1E85E10300D4FCA0 /* OPTLYJSONModel */,
 				EA4D95CC1E83AE0A00E40C14 /* optlyfmdb */,
 				EAC5F29B1E7B65EF00C087B8 /* murmur */,
 				AB5B18573E1770FC43BE1EF9 /* Pods_OptimizelySDKTVOSUniversalTests.framework */,
@@ -939,17 +939,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF880B01EF1D40200143F7C /* OPJMModel.h in Headers */,
-				EAF880B41EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
+				EAF880B01EF1D40200143F7C /* OPTLYJSONModel.h in Headers */,
+				EAF880B41EF1D40200143F7C /* OPTLYJSONModelClassProperty.h in Headers */,
 				EAF880F81EF1D46300143F7C /* OPTLYFMDB.h in Headers */,
-				EAF880B81EF1D40200143F7C /* OPJMModelError.h in Headers */,
-				EAF880D51EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
+				EAF880B81EF1D40200143F7C /* OPTLYJSONModelError.h in Headers */,
+				EAF880D51EF1D42500143F7C /* OPTLYJSONKeyMapper.h in Headers */,
 				EAF880E81EF1D46300143F7C /* OPTLYFMDBDatabase.h in Headers */,
 				EAF880FA1EF1D46300143F7C /* OPTLYFMDBResultSet.h in Headers */,
 				EAF880F41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h in Headers */,
-				EAF880D91EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
+				EAF880D91EF1D42500143F7C /* OPTLYJSONValueTransformer.h in Headers */,
 				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
-				EAF880BD1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
+				EAF880BD1EF1D40A00143F7C /* OPTLYJSONModelLib.h in Headers */,
 				EA61126F1EC286D7001967ED /* OptimizelySDKUserProfileService.h in Headers */,
 				EA52CA321E851CC100D4FCA0 /* OptimizelySDKCore.h in Headers */,
 				EA52CA331E851CC100D4FCA0 /* OPTLYAttribute.h in Headers */,
@@ -1025,13 +1025,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF880DA1EF1D42500143F7C /* OPJMValueTransformer.h in Headers */,
-				EAF880D61EF1D42500143F7C /* OPJMKeyMapper.h in Headers */,
-				EAF880B51EF1D40200143F7C /* OPJMModelClassProperty.h in Headers */,
-				EAF880B11EF1D40200143F7C /* OPJMModel.h in Headers */,
-				EAF880B91EF1D40200143F7C /* OPJMModelError.h in Headers */,
+				EAF880DA1EF1D42500143F7C /* OPTLYJSONValueTransformer.h in Headers */,
+				EAF880D61EF1D42500143F7C /* OPTLYJSONKeyMapper.h in Headers */,
+				EAF880B51EF1D40200143F7C /* OPTLYJSONModelClassProperty.h in Headers */,
+				EAF880B11EF1D40200143F7C /* OPTLYJSONModel.h in Headers */,
+				EAF880B91EF1D40200143F7C /* OPTLYJSONModelError.h in Headers */,
 				EA3144EF1ED7A22300A8E555 /* OPTLYDecisionService.h in Headers */,
-				EAF880BE1EF1D40A00143F7C /* OPJMModelLib.h in Headers */,
+				EAF880BE1EF1D40A00143F7C /* OPTLYJSONModelLib.h in Headers */,
 				EA52CAD41E851CEE00D4FCA0 /* OPTLYAttribute.h in Headers */,
 				EA52CAD51E851CEE00D4FCA0 /* OPTLYAudience.h in Headers */,
 				EA52CAD61E851CEE00D4FCA0 /* OPTLYBaseCondition.h in Headers */,
@@ -1403,7 +1403,7 @@
 				EAE8C4171EC4E4E500A76A2D /* OPTLYUserProfileService.m in Sources */,
 				EA52C9E61E851CC100D4FCA0 /* OPTLYLogger.m in Sources */,
 				EA52C9E71E851CC100D4FCA0 /* OPTLYBucketer.m in Sources */,
-				EAF880BA1EF1D40200143F7C /* OPJMModelError.m in Sources */,
+				EAF880BA1EF1D40200143F7C /* OPTLYJSONModelError.m in Sources */,
 				EA52C9E81E851CC100D4FCA0 /* murmur3.c in Sources */,
 				EA52C9EB1E851CC100D4FCA0 /* OPTLYClient.m in Sources */,
 				EA52C9ED1E851CC100D4FCA0 /* OPTLYClientBuilder.m in Sources */,
@@ -1420,13 +1420,13 @@
 				EA52C9FB1E851CC100D4FCA0 /* OPTLYEventDispatcherBuilder.m in Sources */,
 				EA52C9FC1E851CC100D4FCA0 /* OPTLYDatafileManager.m in Sources */,
 				EA52C9FD1E851CC100D4FCA0 /* OPTLYDatafileManagerBuilder.m in Sources */,
-				EAF880D71EF1D42500143F7C /* OPJMKeyMapper.m in Sources */,
+				EAF880D71EF1D42500143F7C /* OPTLYJSONKeyMapper.m in Sources */,
 				EA52C9FF1E851CC100D4FCA0 /* Optimizely.m in Sources */,
 				EA52CA021E851CC100D4FCA0 /* OPTLYAttribute.m in Sources */,
 				EA52CA031E851CC100D4FCA0 /* OPTLYAudience.m in Sources */,
 				EA52CA041E851CC100D4FCA0 /* OPTLYBaseCondition.m in Sources */,
 				EA52CA051E851CC100D4FCA0 /* OPTLYBuilder.m in Sources */,
-				EAF880B21EF1D40200143F7C /* OPJMModel.m in Sources */,
+				EAF880B21EF1D40200143F7C /* OPTLYJSONModel.m in Sources */,
 				EA52CA061E851CC100D4FCA0 /* OPTLYCondition.m in Sources */,
 				EA52CA071E851CC100D4FCA0 /* OPTLYDatafileKeys.m in Sources */,
 				EA52CA081E851CC100D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */,
@@ -1456,9 +1456,9 @@
 				EA52CA221E851CC100D4FCA0 /* OPTLYNetworkService.m in Sources */,
 				EA52CA231E851CC100D4FCA0 /* OPTLYProjectConfig.m in Sources */,
 				EA52CA241E851CC100D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
-				EAF880B61EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */,
+				EAF880B61EF1D40200143F7C /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA52CA271E851CC100D4FCA0 /* OPTLYQueue.m in Sources */,
-				EAF880DB1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */,
+				EAF880DB1EF1D42500143F7C /* OPTLYJSONValueTransformer.m in Sources */,
 				EA52CA281E851CC100D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
 				EAF880FC1EF1D46300143F7C /* OPTLYFMDBResultSet.m in Sources */,
 				EA52CA2C1E851CC100D4FCA0 /* OPTLYVariable.m in Sources */,
@@ -1476,7 +1476,7 @@
 				EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
 				EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
-				EAF880B31EF1D40200143F7C /* OPJMModel.m in Sources */,
+				EAF880B31EF1D40200143F7C /* OPTLYJSONModel.m in Sources */,
 				EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */,
 				EA52CA911E851CEE00D4FCA0 /* OPTLYClientBuilder.m in Sources */,
 				EA52CA921E851CEE00D4FCA0 /* OPTLYLogger.m in Sources */,
@@ -1500,7 +1500,7 @@
 				EA52CAAA1E851CEE00D4FCA0 /* OPTLYAudience.m in Sources */,
 				EA52CAAB1E851CEE00D4FCA0 /* OPTLYBaseCondition.m in Sources */,
 				EA52CAAC1E851CEE00D4FCA0 /* OPTLYBuilder.m in Sources */,
-				EAF880D81EF1D42500143F7C /* OPJMKeyMapper.m in Sources */,
+				EAF880D81EF1D42500143F7C /* OPTLYJSONKeyMapper.m in Sources */,
 				EA52CAAD1E851CEE00D4FCA0 /* OPTLYCondition.m in Sources */,
 				EA52CAAE1E851CEE00D4FCA0 /* OPTLYDatafileKeys.m in Sources */,
 				EA52CAAF1E851CEE00D4FCA0 /* OPTLYDecisionEventTicket.m in Sources */,
@@ -1514,7 +1514,7 @@
 				EA52CAB91E851CEE00D4FCA0 /* OPTLYEventFeature.m in Sources */,
 				EAE8C4091EC4E25600A76A2D /* OPTLYUserProfileServiceBuilder.m in Sources */,
 				EA52CABB1E851CEE00D4FCA0 /* OPTLYEventHeader.m in Sources */,
-				EAF880B71EF1D40200143F7C /* OPJMModelClassProperty.m in Sources */,
+				EAF880B71EF1D40200143F7C /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA52CABC1E851CEE00D4FCA0 /* OPTLYEventLayerState.m in Sources */,
 				EA52CABD1E851CEE00D4FCA0 /* OPTLYEventMetric.m in Sources */,
 				EA52CABE1E851CEE00D4FCA0 /* OPTLYEventParameterKeys.m in Sources */,
@@ -1522,7 +1522,7 @@
 				EA52CAC01E851CEE00D4FCA0 /* OPTLYEventTicket.m in Sources */,
 				EA52CAC11E851CEE00D4FCA0 /* OPTLYEventView.m in Sources */,
 				EA52CAC21E851CEE00D4FCA0 /* OPTLYExperiment.m in Sources */,
-				EAF880DC1EF1D42500143F7C /* OPJMValueTransformer.m in Sources */,
+				EAF880DC1EF1D42500143F7C /* OPTLYJSONValueTransformer.m in Sources */,
 				EA52CAC31E851CEE00D4FCA0 /* OPTLYGroup.m in Sources */,
 				EA52CAC41E851CEE00D4FCA0 /* OPTLYHTTPRequestManager.m in Sources */,
 				EA52CAC51E851CEE00D4FCA0 /* OPTLYLog.m in Sources */,
@@ -1531,7 +1531,7 @@
 				EA52CAC91E851CEE00D4FCA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA52CACA1E851CEE00D4FCA0 /* OPTLYQueue.m in Sources */,
 				EA52CACB1E851CEE00D4FCA0 /* OPTLYTrafficAllocation.m in Sources */,
-				EAF880BB1EF1D40200143F7C /* OPJMModelError.m in Sources */,
+				EAF880BB1EF1D40200143F7C /* OPTLYJSONModelError.m in Sources */,
 				EA52CACE1E851CEE00D4FCA0 /* OPTLYVariable.m in Sources */,
 				EA52CACF1E851CEE00D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52CAD01E851CEE00D4FCA0 /* OPTLYVariation.m in Sources */,
@@ -1594,7 +1594,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1615,7 +1615,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Debug;
@@ -1640,7 +1640,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1661,7 +1661,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Beta;
@@ -1686,7 +1686,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1707,7 +1707,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = RC;
@@ -1732,7 +1732,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1752,7 +1752,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/** $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKiOS/OptimizelySDKiOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 armv7s i386 x86_64 armv7";
 			};
 			name = Release;
@@ -1777,7 +1777,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1799,7 +1799,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
@@ -1824,7 +1824,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1846,7 +1846,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Beta;
@@ -1871,7 +1871,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1893,7 +1893,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = RC;
@@ -1918,7 +1918,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/**",
 					"$(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS",
 					"$(SRCROOT)/../OptimizelySDKCore/Frameworks",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore",
@@ -1939,7 +1939,7 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols.txt;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/OPJMModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/OPTLYJSONModel/** $(SRCROOT)/../OptimizelySDKTVOS/OptimizelySDKTVOS $(SRCROOT)/../OptimizelySDKCore/Frameworks $(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore $(SRCROOT)/../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager $(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher $(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
@@ -2366,7 +2366,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2389,7 +2389,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2412,7 +2412,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2435,7 +2435,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyfmdb/**",
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2456,7 +2456,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2479,7 +2479,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2502,7 +2502,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",
@@ -2525,7 +2525,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/opjmmodel/**",
+					"$(SRCROOT)/$(PROJECT_NAME)/Frameworks/optlyjsonmodel/**",
 					"$(SRCROOT)/../OptimizelySDKCore/OptimizelySDKCore/**",
 					"$(SRCROOT)/../OptimizelySDKShared/OptimizelySDKShared/**",
 					"$(SRCROOT)/../OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/**",

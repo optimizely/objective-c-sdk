@@ -29,7 +29,7 @@ static const NSInteger kMaxTrafficAllocationValue = 10000;
         (self.endOfRange < kMinTrafficAllocationValue))
     {
         if (*error != nil) {
-            *error = [OPJMModelError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+            *error = [OPTLYJSONModelError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                 code:OPTLYErrorTypesDatafileInvalid
                                             userInfo:@{NSLocalizedDescriptionKey :
                                                            [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesTrafficAllocationNotInRange, nil), self.endOfRange]}];

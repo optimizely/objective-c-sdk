@@ -58,12 +58,12 @@
 #import "OPTLYVariation.h"
 #import "OPTLYVariationVariable.h"
 
-#import "OPJMModel.h"
-#import "OPJMModelClassProperty.h"
-#import "OPJMModelError.h"
-#import "OPJMModelLib.h"
-#import "OPJMKeyMapper.h"
-#import "OPJMValueTransformer.h"
+#import "OPTLYJSONModel.h"
+#import "OPTLYJSONModelClassProperty.h"
+#import "OPTLYJSONModelError.h"
+#import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONKeyMapper.h"
+#import "OPTLYJSONValueTransformer.h"
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];

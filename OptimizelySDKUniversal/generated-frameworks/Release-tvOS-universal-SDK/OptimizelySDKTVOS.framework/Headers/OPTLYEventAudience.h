@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 @protocol OPTLYEventAudience
 @end
 
-@interface OPTLYEventAudience : OPJMModel
+@interface OPTLYEventAudience : OPTLYJSONModel
 
 // The ID of the audience
 @property (nonatomic, strong, nullable) NSString<Optional> *audienceId;

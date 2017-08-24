@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPJMModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPJMModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 @protocol OPTLYExperiment, OPTLYTrafficAllocation;
@@ -29,7 +29,7 @@
 @protocol OPTLYGroup
 @end
 
-@interface OPTLYGroup : OPJMModel
+@interface OPTLYGroup : OPTLYJSONModel
 
 /// The Group's ID.
 @property (nonatomic, strong) NSString *groupId;
