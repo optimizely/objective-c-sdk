@@ -261,6 +261,59 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithInvalidStringRevenue
+{
+    NSString *stringRevenue = @"8.234";
+    long long int castStringRevenue = [stringRevenue longLongValue];
+    
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : stringRevenue,
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    
+    // the revenue value should be cast to an int
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:castStringRevenue],
+                              kAttributeKeyBrowserType : kAttributeValueChrome}
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
+- (void)testBuildEventTicketWithInvalidObjectRevenue
+{
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : attributes,
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    
+    // no revenue value should be included
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
+
 - (void)testBuildEventTicketWithEventTags
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
