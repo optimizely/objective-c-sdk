@@ -145,7 +145,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         } else if ([revenueValue isKindOfClass:[NSString class]]) {
             NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
             long long revenueValueCast = [revenueValue longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesReveneuValueString, revenueValueCast] withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, revenueValueCast] withLevel:OptimizelyLogLevelWarning];
             mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueCast];
         // all other objects can't be cast to an integer
         } else {

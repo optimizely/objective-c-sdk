@@ -102,7 +102,7 @@ extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;
 extern NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation;
 extern NSString *const OPTLYLoggerMessagesReveneuValueInvalidInteger;
-extern NSString *const OPTLYLoggerMessagesReveneuValueString;
+extern NSString *const OPTLYLoggerMessagesRevenueValueString;
 extern NSString *const OPTLYLoggerMessagesRevenueValueInvalid;
 extern NSString *const OPTLYLoggerMessagesEventTagValueInvalid;
 
