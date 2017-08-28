@@ -1,4 +1,39 @@
 # Optimizely Objective-C SDK Changelog
+## 1.1.10
+August 28, 2017
+
+### New Features
+* Added the forced bucketing feature, which allows customers to force users into variations in real time for QA purposes without requiring datafile downloads from the network. The following APIs are introduced:
+
+```
+/**
+* Force a user into a variation for a given experiment.
+*
+* @param $experimentKey string Key identifying the experiment.
+* @param $userId string The user ID to be used for bucketing. 
+* @param $variationKey string The variation key specifies the variation which the user  
+* will be forced into. If null, then clear the existing experiment-to-variation mapping.
+*
+* @return boolean A boolean value that indicates if the set completed successfully. 
+*/
+```
+```
+public function setForcedVariation($experimentKey, $userId, $variationKey);
+
+/**
+* Gets the forced variation for a given user and experiment.
+*
+* @param $experimentKey string Key identifying the experiment.
+* @param $userId string The user ID to be used for bucketing. 
+*
+* @return string|null The forced variation key.
+*/
+public function getForcedVariation($experimentKey, $userId);
+``` 
+
+### Bug Fixes
+* Fixed crash with string revenues in event tags. 
+
 ## 1.1.9
 August 7, 2017
 
