@@ -1,6 +1,0 @@
-framework module Pods_OptimizelySDKiOS {
-  umbrella header "Pods-OptimizelySDKiOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
