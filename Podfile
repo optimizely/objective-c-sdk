@@ -15,16 +15,6 @@ end
 use_frameworks!
   
 # OptimizelySDKCore targets
-target 'OptimizelySDKCoreiOS' do
-  project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
-  platform :ios, '8.0'
-end
- 
-target 'OptimizelySDKCoreTVOS' do
-  project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKCoreiOSTests' do
   project 'OptimizelySDKCore/OptimizelySDKCore.xcodeproj/'
   platform :ios, '8.0'
@@ -38,11 +28,6 @@ target 'OptimizelySDKCoreTVOSTests' do
 end
 
 # OptimizelySDKiOS targets
-target 'OptimizelySDKiOS' do
-  project 'OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj/'
-  platform :ios, '8.0'
-end
-
 target 'OptimizelySDKiOSTests' do
   project 'OptimizelySDKiOS/OptimizelySDKiOS.xcodeproj/'
   platform :ios, '8.0'
@@ -50,11 +35,6 @@ target 'OptimizelySDKiOSTests' do
 end
 
 # OptimizelySDKTVOS targets
-target 'OptimizelySDKTVOS' do
-  project 'OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKTVOSTests' do
   project 'OptimizelySDKTVOS/OptimizelySDKTVOS.xcodeproj/'
   platform :tvos, '9.0'
@@ -62,16 +42,6 @@ target 'OptimizelySDKTVOSTests' do
 end
 
 # OptimizelySDKShared targets
-target 'OptimizelySDKSharediOS' do
-  project 'OptimizelySDKShared/OptimizelySDKShared.xcodeproj/'
-  platform :ios, '8.0'
-end
- 
-target 'OptimizelySDKSharedTVOS' do
-  project 'OptimizelySDKShared/OptimizelySDKShared.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKSharediOSTests' do
   project 'OptimizelySDKShared/OptimizelySDKShared.xcodeproj/'
   platform :ios, '8.0'
@@ -85,16 +55,6 @@ target 'OptimizelySDKSharedTVOSTests' do
 end
 
 # OptimizelySDKDatafileManager targets
-target 'OptimizelySDKDatafileManageriOS' do
-  project 'OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj/'
-  platform :ios, '8.0'
-end
- 
-target 'OptimizelySDKDatafileManagerTVOS' do
-  project 'OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKDatafileManageriOSTests' do
   project 'OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj/'
   platform :ios, '8.0'
@@ -108,16 +68,6 @@ target 'OptimizelySDKDatafileManagerTVOSTests' do
 end
 
 # OptimizelySDKEventDispatcher targets
-target 'OptimizelySDKEventDispatcheriOS' do
-  project 'OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj/'
-  platform :ios, '8.0'
-end
- 
-target 'OptimizelySDKEventDispatcherTVOS' do
-  project 'OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKEventDispatcheriOSTests' do
   project 'OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher.xcodeproj/'
   platform :ios, '8.0'
@@ -131,16 +81,6 @@ target 'OptimizelySDKEventDispatcherTVOSTests' do
 end
 
 # OptimizelySDKUserProfileService targets
-target 'OptimizelySDKUserProfileServiceiOS' do
-  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
-  platform :ios, '8.0'
-end
- 
-target 'OptimizelySDKUserProfileServiceTVOS' do
-  project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
-  platform :tvos, '9.0'
-end
-
 target 'OptimizelySDKUserProfileServiceiOSTests' do
   project 'OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj/'
   platform :ios, '8.0'
@@ -161,7 +101,7 @@ target 'OptimizelyiOSDemoApp' do
   analytics_pods
 end
 
-# OptimizelyTVOSDemoApp targets
+# OptimizelyTVOSDemoApp target
 target 'OptimizelyTVOSDemoApp' do
   project 'OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj/'
   platform :tvos, '9.0'
