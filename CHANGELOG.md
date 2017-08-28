@@ -1,4 +1,104 @@
 # Optimizely Objective-C SDK Changelog
+## 1.3.0
+August 28, 2017
+
+### New Features
+* Added the forced bucketing feature, which allows customers to force users into variations in real time for QA purposes without requiring datafile downloads from the network. The following APIs have been introduced:
+
+```
+/**
+* Force a user into a variation for a given experiment.
+* The forced variation value does not persist across application launches.
+*
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
+* @param variationKey The variation key to force the user into.
+*
+* @return boolean A boolean value that indicates if the set completed successfully. 
+*/
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nonnull NSString *)variationKey;
+```
+
+```
+/**
+* Gets the forced variation for a given user and experiment.
+*
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
+*
+* @return The variation the user was bucketed into. This value can be nil if the 
+* forced variation fails. 
+*/
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
+``` 
+- Added the bucketing ID feature, which allows decoupling bucketing from user identification so that a group of users that have the same bucketing ID are put into the same variation. 
+
+- User Profile refactor, which includes a class rename to `User Profile Service`, along with the following API additions:
+
+```
+/**
+ * Returns a user entity corresponding to the user ID.
+ *
+ * @param userId The user id to get the user entity of.
+ * @returns A dictionary of the user profile details.
+ **/
+- (nullable NSDictionary *)lookup:(nonnull NSString *)userId;
+```
+```
+/**
+ * Saves the user profile.
+ *
+ * @param userProfile The user profile.
+ **/
+- (void)save:(nonnull NSDictionary *)userProfile;
+```
+- Added default attributes.
+
+### Bug Fixes
+* Fixed crash with string revenues in event tags. 
+
+## 1.1.9
+August 7, 2017
+
+### New Features
+* Added Apple App Extension support by adding `APPLICATION_EXTENSION_API_ONLY = YES` to Build Settings of all Optimizely frameworks.
+
+### Bug Fixes
+* Fixed potential bugs identified by Apple's Xcode static analyzer Analyze.
+
+## 1.1.8
+July 28, 2017
+
+### Bug Fixes
+* Fixed a `dispatchEvent` crash by changing a concurrent queue to a serial queue -- this was causing one of the properties we were accessing not thread-safe.
+
+## 1.1.7
+July 20, 2017
+
+### Bug Fixes
+* Fixed a crash caused by a dangling pointer when `dispatchEvent` is called. `strongSelf` captures the state of self (which can be an `eventDispatcher` object or `nil`) at the time the block is called. `strongSelf` will hold onto whatever it is referencing for the duration of the block execution. Therefore, `strongSelf` is still pointing to `pendingDispatchEvents` even when it gets deallocated at the time the `eventDispatcher` is deallocated. This issue was resolved by not capturing `self` using `strongSelf` and keeping the `self` reference to `self` or `weakSelf`.
+
+## 1.1.3
+July 7, 2017
+
+### Bug Fixes
+* Added `NS_SWIFT_NOTHROW` to make 4 `variableXxx:...:error:` Swift method signatures more consistent in appearance.
+
+### Breaking Changes
+* Signatures for 2 existing `variableXxx:...:error:` Swift methods changed.
+
+## 1.1.1
+May 23, 2017
+
+### New Features
+* Added unexported_symbols.sh to create unexported_symbols.txt which hides all third-party dependency symbols in the Universal frameworks.
+
+### Breaking Changes
+* Supply your own FMDB or JSONModel if you previously counted on Universal frameworks exposing these third-party dependencies.
+
 ## 1.1.0
 May 2, 2017
 
