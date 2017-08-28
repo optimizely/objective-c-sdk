@@ -55,7 +55,7 @@ on JSONModel master branch unnecessary.
       OptimizelySDKDatafileManager.framework
       OptimizelySDKEventDispatcher.framework
       OptimizelySDKShared.framework
-      OptimizelySDKUserProfile.framework<
+      OptimizelySDKUserProfileService.framework<
       OptimizelySDK\<platform\>.framework</pre>
 
 4. To ensure that proper bitcode-related files and dSYMs are copied when archiving your app, you will need to install a Carthage build script:
@@ -69,7 +69,7 @@ on JSONModel master branch unnecessary.
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKDatafileManager.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKEventDispatcher.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKShared.framework```
-            ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfile.framework```
+            ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfileService.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDK<platform>.framework```</pre>
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
@@ -81,7 +81,7 @@ The universal framework can be used in an application without the need for a thi
 	```OptimizelySDKShared```
 	```OptimizelySDKDatafileManager```
 	```OptimizelySDKEventDispatcher```
-	```OptimzielySDKUserProfile```</pre>
+	```OptimzielySDKUserProfileService```</pre>
 
 The framework also embeds its third-party dependencies:<pre>
 	```FMDB```
