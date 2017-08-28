@@ -8,27 +8,31 @@ August 28, 2017
 ```
 /**
 * Force a user into a variation for a given experiment.
+* The forced variation value does not persist across application launches.
 *
-* @param $experimentKey string Key identifying the experiment.
-* @param $userId string The user ID to be used for bucketing. 
-* @param $variationKey string The variation key specifies the variation which the user  
-* will be forced into. If null, then clear the existing experiment-to-variation mapping.
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
+* @param variationKey The variation key to force the user into.
 *
 * @return boolean A boolean value that indicates if the set completed successfully. 
 */
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nonnull NSString *)variationKey;
 ```
-```
-public function setForcedVariation($experimentKey, $userId, $variationKey);
 
+```
 /**
 * Gets the forced variation for a given user and experiment.
 *
-* @param $experimentKey string Key identifying the experiment.
-* @param $userId string The user ID to be used for bucketing. 
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
 *
-* @return string|null The forced variation key.
+* @return The variation the user was bucketed into. This value can be nil if the 
+* forced variation fails. 
 */
-public function getForcedVariation($experimentKey, $userId);
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
 ``` 
 
 ### Bug Fixes
