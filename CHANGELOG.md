@@ -3,7 +3,7 @@
 August 28, 2017
 
 ### New Features
-* Added the forced bucketing feature, which allows customers to force users into variations in real time for QA purposes without requiring datafile downloads from the network. The following APIs have been introduced:
+* Added the forced bucketing feature, which allows you to force users into variations in real time for QA purposes without requiring datafile downloads from the network. The following APIs have been introduced:
 
 ```
 /**
@@ -34,7 +34,7 @@ August 28, 2017
 - (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                          userId:(nonnull NSString *)userId;
 ``` 
-- Added the bucketing ID feature, which allows decoupling bucketing from user identification so that a group of users that have the same bucketing ID are put into the same variation. 
+- Added the bucketing ID feature, which allows you to decouple bucketing from user identification so that a group of users who have the same bucketing ID are put into the same variation. 
 
 - User Profile refactor, which includes a class rename to `User Profile Service`, along with the following API additions:
 
