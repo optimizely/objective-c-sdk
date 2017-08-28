@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
 {
     OPTLYDataStoreEventTypeImpression,
     OPTLYDataStoreEventTypeConversion,
+    OPTLYDataStoreEventTypeCOUNT
 };
 
 @class OPTLYFileManager;
@@ -67,7 +68,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * Wipes all Optimizely data
  *
  **/
-- (void)removeAll:(NSError * _Nullable * _Nullable)error;
+- (BOOL)removeAll:(NSError * _Nullable * _Nullable)error;
 
 // -------- File Storage --------
 // Persists data in a file format using NSFileManager.
@@ -86,7 +87,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *  If error is nil, than the file save was successful.
  *
  **/
-- (void)saveFile:(nonnull NSString *)fileName
+- (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
            error:(NSError * _Nullable * _Nullable)error;
@@ -134,7 +135,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *  If error is nil, than the file deletion was successful.
  *
  **/
-- (void)removeFile:(nonnull NSString *)fileName
+- (BOOL)removeFile:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType
              error:(NSError * _Nullable * _Nullable)error;
 
@@ -144,7 +145,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (void)removeAllFiles:(NSError * _Nullable * _Nullable)error;
+- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Removes a particular data type.
@@ -153,7 +154,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param error An error object which will store any errors if the directory removal fails.
  *
  **/
-- (void)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
+- (BOOL)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
                          error:(NSError * _Nullable * _Nullable)error;
 
 
@@ -171,7 +172,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be saved.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable * _Nullable)error;
 
@@ -211,7 +212,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeOldestEvent:(OPTLYDataStoreEventType)eventType
+- (BOOL)removeOldestEvent:(OPTLYDataStoreEventType)eventType
                     error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -221,7 +222,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeFirstNEvents:(NSInteger)numberOfEvents
+- (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
                      error:(NSError * _Nullable * _Nullable)error;
 
@@ -232,7 +233,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeEvent:(nonnull NSDictionary *)event
+- (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(OPTLYDataStoreEventType)eventType
               error:(NSError * _Nullable * _Nullable)error;
 
@@ -242,7 +243,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  * @param eventType The event type of the data that needs to be removed.
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeAllEvents:(OPTLYDataStoreEventType)eventType
+- (BOOL)removeAllEvents:(OPTLYDataStoreEventType)eventType
                   error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -260,7 +261,7 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
  *
  * @param error An error object is returned if an error occurs.
  */
-- (void)removeAllEvents:(NSError * _Nullable * _Nullable)error;
+- (BOOL)removeAllEvents:(NSError * _Nullable * _Nullable)error;
 
 
 // -------- User Data Storage --------

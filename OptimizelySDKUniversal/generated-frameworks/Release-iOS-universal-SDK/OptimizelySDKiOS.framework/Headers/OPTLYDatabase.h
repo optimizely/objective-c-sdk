@@ -41,7 +41,7 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  **/
-- (void)createTable:(nonnull NSString *)tableName
+- (BOOL)createTable:(nonnull NSString *)tableName
               error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -51,7 +51,7 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
-- (void)saveEvent:(nonnull NSDictionary *)data
+- (BOOL)saveEvent:(nonnull NSDictionary *)data
             table:(nonnull NSString *)tableName
             error:(NSError * _Nullable * _Nullable)error;
 
@@ -62,7 +62,7 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteEntity:(nonnull NSString *)entityId
+- (BOOL)deleteEntity:(nonnull NSString *)entityId
                table:(nonnull NSString *)tableName
                error:(NSError * _Nullable * _Nullable)error;
 
@@ -73,7 +73,7 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteEntityWithJSON:(nonnull NSString *)json
+- (BOOL)deleteEntityWithJSON:(nonnull NSString *)json
                        table:(nonnull NSString *)tableName
                        error:(NSError * _Nullable * _Nullable)error;
 /**
@@ -83,7 +83,7 @@
  * @param tableName The database table name.
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteEntities:(nonnull NSArray *)entityIds
+- (BOOL)deleteEntities:(nonnull NSArray *)entityIds
                  table:(nonnull NSString *)tableName
                  error:(NSError * _Nullable * _Nullable)error;
 
@@ -124,6 +124,6 @@
  *
  * @param error An error object is returned if an error occurs.
  */
-- (void)deleteDatabase:(NSError * _Nullable * _Nullable)error;
+- (BOOL)deleteDatabase:(NSError * _Nullable * _Nullable)error;
 @end
 
