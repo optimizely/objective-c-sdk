@@ -1,4 +1,65 @@
 # Optimizely Objective-C SDK Changelog
+## 1.3.0
+August 28, 2017
+
+### New Features
+* Added the forced bucketing feature, which allows you to force users into variations in real time for QA purposes without requiring datafile downloads from the network. The following APIs have been introduced:
+
+```
+/**
+* Force a user into a variation for a given experiment.
+* The forced variation value does not persist across application launches.
+*
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
+* @param variationKey The variation key to force the user into.
+*
+* @return boolean A boolean value that indicates if the set completed successfully. 
+*/
+- (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
+                    userId:(nonnull NSString *)userId
+              variationKey:(nonnull NSString *)variationKey;
+```
+
+```
+/**
+* Gets the forced variation for a given user and experiment.
+*
+* @param experimentKey The key for the experiment.
+* @param userId The user ID to be used for bucketing.
+*
+* @return The variation the user was bucketed into. This value can be nil if the 
+* forced variation fails. 
+*/
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+                                         userId:(nonnull NSString *)userId;
+``` 
+- Added the bucketing ID feature, which allows you to decouple bucketing from user identification so that a group of users who have the same bucketing ID are put into the same variation. 
+
+- User Profile refactor, which includes a class rename to `User Profile Service`, along with the following API additions:
+
+```
+/**
+ * Returns a user entity corresponding to the user ID.
+ *
+ * @param userId The user id to get the user entity of.
+ * @returns A dictionary of the user profile details.
+ **/
+- (nullable NSDictionary *)lookup:(nonnull NSString *)userId;
+```
+```
+/**
+ * Saves the user profile.
+ *
+ * @param userProfile The user profile.
+ **/
+- (void)save:(nonnull NSDictionary *)userProfile;
+```
+- Added default attributes.
+
+### Bug Fixes
+* Fixed crash with string revenues in event tags. 
+
 ## 1.1.9
 August 7, 2017
 
