@@ -25,7 +25,10 @@ up an Optimizely X project and start using the SDK.
 Please note below that _\<platform\>_ is used to represent the platform on which you are building your app. Currently, we support ```iOS``` and ```tvOS``` platforms.
 
 #### Cocoapod 
-1. Add the following line to the _Podfile_:<pre>pod 'OptimizelySDK\<platform\>'</pre>
+1. Add the following lines to the _Podfile_:<pre>
+    ```use_frameworks!```
+    ```pod 'OptimizelySDK<platform>'```
+</pre>
 
 2. Run the following command: <pre>``` pod install ```</pre>
 
