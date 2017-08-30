@@ -101,6 +101,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E0EF9351F57408B00E0ACD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3EA27B071F47AB0D00C0208F;
+			remoteInfo = OPTLYJSONModeliOSTests;
+		};
+		3E0EF9371F57408B00E0ACD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5246EF1DC718D300AF6685 /* OptimizelySDKCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E99A9F31F4BAF9A009F8805;
+			remoteInfo = OPTLYJSONModelTVOSTests;
+		};
 		3ECBCC1C1F43983400160937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA3C68201DC1E68E00C578CA /* Project object */;
@@ -472,6 +486,8 @@
 		EA5246F01DC718D300AF6685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				3E0EF9361F57408B00E0ACD6 /* OPTLYJSONModeliOSTests.xctest */,
+				3E0EF9381F57408B00E0ACD6 /* OPTLYJSONModelTVOSTests.xctest */,
 				EA5246F71DC718D300AF6685 /* OptimizelySDKCore.framework */,
 				EA5246F91DC718D300AF6685 /* OptimizelySDKCoreiOSTests.xctest */,
 				EA5246FB1DC718D300AF6685 /* OptimizelySDKCore.framework */,
@@ -713,6 +729,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		3E0EF9361F57408B00E0ACD6 /* OPTLYJSONModeliOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OPTLYJSONModeliOSTests.xctest;
+			remoteRef = 3E0EF9351F57408B00E0ACD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E0EF9381F57408B00E0ACD6 /* OPTLYJSONModelTVOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OPTLYJSONModelTVOSTests.xctest;
+			remoteRef = 3E0EF9371F57408B00E0ACD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		EA5246F71DC718D300AF6685 /* OptimizelySDKCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1009,7 +1039,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1024,7 +1054,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1039,7 +1069,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1054,7 +1084,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "OPTLYFMDBTests/OPTLYFMDBTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYFMDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
