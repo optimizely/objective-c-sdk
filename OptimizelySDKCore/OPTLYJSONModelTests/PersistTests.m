@@ -88,44 +88,50 @@
 
 -(void)testBoolExport
 {
-    //---------------------------------------
-    // load JSON file
-    //---------------------------------------
-    
-    NSString* jsonContents = [OPTLYJSONModelTestHelper stringForResource:@"converts" ofType:@"json"];
-    
-    XCTAssertNotNil(jsonContents, @"Can't fetch test data file contents.");
-    
-    NSError* err;
-    BuiltInConversionsModel* b = [[BuiltInConversionsModel alloc] initWithString: jsonContents error:&err];
-    
-    //---------------------------------------
-    // export model to NSDictionary
-    //---------------------------------------
-    
-    NSDictionary* d = [b toDictionary];
-    XCTAssertNotNil(d, @"toDictionary returned nil");
-    XCTAssertTrue([d isKindOfClass:[NSDictionary class]], @"toDictionary didn't return NSDictionary object");
-    
-    XCTAssertTrue( [@(1) isEqualToNumber:d[@"boolFromString"]], @"boolFromString key is not equal to YES");
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
+        // Require iOS 9.0 or later for testBoolExport .
+        //---------------------------------------
+        // load JSON file
+        //---------------------------------------
+        
+        NSString* jsonContents = [OPTLYJSONModelTestHelper stringForResource:@"converts" ofType:@"json"];
+        
+        XCTAssertNotNil(jsonContents, @"Can't fetch test data file contents.");
+        
+        NSError* err;
+        BuiltInConversionsModel* b = [[BuiltInConversionsModel alloc] initWithString: jsonContents error:&err];
+        
+        //---------------------------------------
+        // export model to NSDictionary
+        //---------------------------------------
+        
+        NSDictionary* d = [b toDictionary];
+        XCTAssertNotNil(d, @"toDictionary returned nil");
+        XCTAssertTrue([d isKindOfClass:[NSDictionary class]], @"toDictionary didn't return NSDictionary object");
+        
+        XCTAssertTrue( [@(1) isEqualToNumber:d[@"boolFromString"]], @"boolFromString key is not equal to YES");
+    }
 }
 
 -(void)testCopy
 {
-	//load json
-    NSString* jsonContents = [OPTLYJSONModelTestHelper stringForResource:@"converts" ofType:@"json"];
-
-	XCTAssertNotNil(jsonContents, @"Can't fetch test data file contents.");
-
-	NSError* err;
-	BuiltInConversionsModel* b = [[BuiltInConversionsModel alloc] initWithString: jsonContents error:&err];
-	XCTAssertNotNil(b.importantEvent, @"Did not initialize model with data");
-
-	//test copying and coding at the same time
-	BuiltInConversionsModel* b1 = [b copy];
-
-	XCTAssertNotNil(b1, @"model copy did not succeed");
-	XCTAssertTrue([b.importantEvent isEqualToDate: b1.importantEvent], @"date copy were not equal to original");
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
+        // Require iOS 9.0 or later for testCopy .
+        //load json
+        NSString* jsonContents = [OPTLYJSONModelTestHelper stringForResource:@"converts" ofType:@"json"];
+        
+        XCTAssertNotNil(jsonContents, @"Can't fetch test data file contents.");
+        
+        NSError* err;
+        BuiltInConversionsModel* b = [[BuiltInConversionsModel alloc] initWithString: jsonContents error:&err];
+        XCTAssertNotNil(b.importantEvent, @"Did not initialize model with data");
+        
+        //test copying and coding at the same time
+        BuiltInConversionsModel* b1 = [b copy];
+        
+        XCTAssertNotNil(b1, @"model copy did not succeed");
+        XCTAssertTrue([b.importantEvent isEqualToDate: b1.importantEvent], @"date copy were not equal to original");
+    }
 }
 
 @end

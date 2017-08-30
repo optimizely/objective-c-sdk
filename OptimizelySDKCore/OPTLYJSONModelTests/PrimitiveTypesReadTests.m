@@ -78,9 +78,12 @@
 
 -(void)testBoolExport
 {
-	NSString* exportedJSON = [p toJSONString];
-	XCTAssertTrue([exportedJSON rangeOfString:@"\"boolNO\":false"].location != NSNotFound, @"boolNO should export to 'false'");
-	XCTAssertTrue([exportedJSON rangeOfString:@"\"boolYES\":true"].location != NSNotFound, @"boolYES should export to 'true'");
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
+        // Require iOS 9.0 or later for testBoolExport .
+        NSString* exportedJSON = [p toJSONString];
+        XCTAssertTrue([exportedJSON rangeOfString:@"\"boolNO\":false"].location != NSNotFound, @"boolNO should export to 'false'");
+        XCTAssertTrue([exportedJSON rangeOfString:@"\"boolYES\":true"].location != NSNotFound, @"boolYES should export to 'true'");
+    }
 }
 
 -(void)testEnumerationTypes
