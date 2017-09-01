@@ -19,6 +19,7 @@
 #ifdef UNIVERSAL
     #import "OptimizelySDKShared.h"
     #import "OptimizelySDKCore.h"
+    #import "OPTLYEventDataStore.h"
 #else
     #import <OptimizelySDKShared/OptimizelySDKShared.h>
     #import <OptimizelySDKCore/OptimizelySDKCore.h>

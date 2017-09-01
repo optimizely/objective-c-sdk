@@ -31,4 +31,64 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:CHANGELOG.md">
+   </FileRef>
+   <FileRef
+      location = "group:CONTRIBUTING.md">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:Podfile">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Scripts">
+      <FileRef
+         location = "group:Scripts/build_all.sh">
+      </FileRef>
+      <Group
+         location = "container:"
+         name = "change_header">
+         <FileRef
+            location = "group:Scripts/change_header/header.template">
+         </FileRef>
+         <FileRef
+            location = "group:Scripts/change_header/LICENSE">
+         </FileRef>
+         <FileRef
+            location = "group:Scripts/change_header/README">
+         </FileRef>
+         <FileRef
+            location = "group:Scripts/change_header/remove_header.awk">
+         </FileRef>
+         <FileRef
+            location = "group:Scripts/change_header/replace_header.sh">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:Scripts/check_all.sh">
+      </FileRef>
+      <FileRef
+         location = "group:Scripts/local_travis.sh">
+      </FileRef>
+      <FileRef
+         location = "group:Scripts/release.sh">
+      </FileRef>
+      <Group
+         location = "container:"
+         name = "unexported_symbols">
+         <FileRef
+            location = "group:Scripts/unexported_symbols/unexported_symbols.awk">
+         </FileRef>
+         <FileRef
+            location = "group:Scripts/unexported_symbols/unexported_symbols.sh">
+         </FileRef>
+      </Group>
+   </Group>
 </Workspace>

@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 @protocol OPTLYEventRelatedEvent
 @end
 
-@interface OPTLYEventRelatedEvent : JSONModel
+@interface OPTLYEventRelatedEvent : OPTLYJSONModel
 
 // The id of the related event
 @property (nonatomic, strong, nullable) NSString<Optional> *eventId;

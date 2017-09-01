@@ -19,9 +19,9 @@
 
 @implementation OPTLYVariation
 
-+ (JSONKeyMapper*)keyMapper
++ (OPTLYJSONKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId    : @"variationId",
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId    : @"variationId",
                                                         OPTLYDatafileKeysVariationKey   : @"variationKey"
                                                        }];
 }

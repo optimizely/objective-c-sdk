@@ -22,6 +22,7 @@
 #import "OPTLYBuilder.h"
 #import "OPTLYCondition.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYDecisionService.h"
 #import "OPTLYDecisionEventTicket.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYErrorHandlerMessages.h"
@@ -57,6 +58,12 @@
 #import "OPTLYVariation.h"
 #import "OPTLYVariationVariable.h"
 
+#import "OPTLYJSONModel.h"
+#import "OPTLYJSONModelClassProperty.h"
+#import "OPTLYJSONModelError.h"
+#import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONKeyMapper.h"
+#import "OPTLYJSONValueTransformer.h"
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];

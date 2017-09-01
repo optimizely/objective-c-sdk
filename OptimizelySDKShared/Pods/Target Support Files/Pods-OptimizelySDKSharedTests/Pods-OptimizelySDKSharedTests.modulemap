@@ -1,6 +1,0 @@
-framework module Pods_OptimizelySDKSharedTests {
-  umbrella header "Pods-OptimizelySDKSharedTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

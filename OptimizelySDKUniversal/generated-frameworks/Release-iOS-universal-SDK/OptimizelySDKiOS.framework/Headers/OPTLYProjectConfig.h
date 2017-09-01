@@ -16,9 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 #import "OPTLYProjectConfigBuilder.h"
 
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_END
     and includes helper methods to efficiently access its data.
  */
 
-@interface OPTLYProjectConfig : JSONModel
+@interface OPTLYProjectConfig : OPTLYJSONModel
 
 /// Account Id
 @property (nonatomic, strong, nonnull) NSString *accountId;

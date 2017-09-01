@@ -19,7 +19,5 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_SHARED_VERSION=@\\\"#{s.version}\\\"" }
-  s.dependency 'JSONModel', '1.3.0'
   s.dependency 'OptimizelySDKCore', '1.3.0'
-  s.ios.dependency 'FMDB', '2.6.2'
 end

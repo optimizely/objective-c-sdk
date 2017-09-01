@@ -244,7 +244,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         self.name = name
         flushInstance = Flush(basePathIdentifier: name)
         #if DECIDE
-        decideInstance = Decide(basePathIdentifier: name)
+            decideInstance = Decide(basePathIdentifier: name)
         #endif // DECIDE
         trackInstance = Track(apiToken: self.apiToken)
         let label = "com.mixpanel.\(self.apiToken)"
@@ -259,15 +259,16 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         unarchive()
 
         #if DECIDE
-            automaticEvents.delegate = self
-            automaticEvents.initializeEvents()
-            decideInstance.inAppDelegate = self
-            executeCachedVariants()
-            executeCachedCodelessBindings()
-
-            if let notification =
-            launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
-                trackPushNotification(notification, event: "$app_open")
+            if !MixpanelInstance.isiOSAppExtension() {
+                automaticEvents.delegate = self
+                automaticEvents.initializeEvents()
+                decideInstance.inAppDelegate = self
+                executeCachedVariants()
+                executeCachedCodelessBindings()
+                if let notification =
+                    launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
+                    trackPushNotification(notification, event: "$app_open")
+                }
             }
         #endif // DECIDE
     }
@@ -301,36 +302,40 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
                                            selector: #selector(setCurrentRadio),
                                            name: .CTRadioAccessTechnologyDidChange,
                                            object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(executeTweaks),
+                                           name: Notification.Name("MPExecuteTweaks"),
+                                           object: nil)
         #endif // os(iOS)
-        #if !APP_EXTENSION
-        notificationCenter.addObserver(self,
-                                       selector: #selector(applicationWillTerminate(_:)),
-                                       name: .UIApplicationWillTerminate,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(applicationWillResignActive(_:)),
-                                       name: .UIApplicationWillResignActive,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(applicationDidBecomeActive(_:)),
-                                       name: .UIApplicationDidBecomeActive,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(applicationDidEnterBackground(_:)),
-                                       name: .UIApplicationDidEnterBackground,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(applicationWillEnterForeground(_:)),
-                                       name: .UIApplicationWillEnterForeground,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(appLinksNotificationRaised(_:)),
-                                       name: NSNotification.Name("com.parse.bolts.measurement_event"),
-                                       object: nil)
-        #if DECIDE && os(iOS)
-        initializeGestureRecognizer()
-        #endif // DECIDE && os(iOS)
-        #endif // !APP_EXTENSION
+        if !MixpanelInstance.isiOSAppExtension() {
+            notificationCenter.addObserver(self,
+                                           selector: #selector(applicationWillTerminate(_:)),
+                                           name: .UIApplicationWillTerminate,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(applicationWillResignActive(_:)),
+                                           name: .UIApplicationWillResignActive,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(applicationDidBecomeActive(_:)),
+                                           name: .UIApplicationDidBecomeActive,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(applicationDidEnterBackground(_:)),
+                                           name: .UIApplicationDidEnterBackground,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(applicationWillEnterForeground(_:)),
+                                           name: .UIApplicationWillEnterForeground,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(appLinksNotificationRaised(_:)),
+                                           name: NSNotification.Name("com.parse.bolts.measurement_event"),
+                                           object: nil)
+            #if os(iOS) && DECIDE
+                initializeGestureRecognizer()
+            #endif // os(iOS) && DECIDE
+        }
     }
     #else
     private func setupListeners() {
@@ -354,8 +359,23 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         NotificationCenter.default.removeObserver(self)
     }
 
+    static func isiOSAppExtension() -> Bool {
+        #if os(iOS)
+            return Bundle.main.bundlePath.hasSuffix(".appex")
+        #else
+            return false
+        #endif
+    }
 
-    #if !APP_EXTENSION
+    #if !os(OSX)
+    static func sharedUIApplication() -> UIApplication? {
+        guard let sharedApplication = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue() as? UIApplication else {
+            return nil
+        }
+        return sharedApplication
+    }
+    #endif // !os(OSX)
+
     @objc private func applicationDidBecomeActive(_ notification: Notification) {
         flushInstance.applicationDidBecomeActive()
         #if DECIDE
@@ -403,8 +423,9 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
 
     #if !os(OSX)
     @objc private func applicationDidEnterBackground(_ notification: Notification) {
-        let sharedApplication = UIApplication.shared
-
+        guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
+            return
+        }
         taskId = sharedApplication.beginBackgroundTask() {
             self.taskId = UIBackgroundTaskInvalid
         }
@@ -426,9 +447,12 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
     }
 
     @objc private func applicationWillEnterForeground(_ notification: Notification) {
+        guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
+            return
+        }
         serialQueue.async() {
             if self.taskId != UIBackgroundTaskInvalid {
-                UIApplication.shared.endBackgroundTask(self.taskId)
+                sharedApplication.endBackgroundTask(self.taskId)
                 self.taskId = UIBackgroundTaskInvalid
                 #if os(iOS)
                     self.updateNetworkActivityIndicator(false)
@@ -456,8 +480,6 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
             self.archive()
         }
     }
-
-    #endif // !APP_EXTENSION
 
     func defaultDistinctId() -> String {
         #if !os(OSX)
@@ -512,13 +534,13 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
     #endif // os(OSX)
 
     #if os(iOS)
-    #if !APP_EXTENSION
     func updateNetworkActivityIndicator(_ on: Bool) {
         if showNetworkActivityIndicator {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = on
+            DispatchQueue.main.async {
+                MixpanelInstance.sharedUIApplication()?.isNetworkActivityIndicatorVisible = on
+            }
         }
     }
-    #endif // !APP_EXTENSION
 
     @objc func setCurrentRadio() {
         let currentRadio = AutomaticProperties.getCurrentRadio()
@@ -527,7 +549,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         }
     }
 
-    #if DECIDE && !APP_EXTENSION
+    #if DECIDE
     func initializeGestureRecognizer() {
         DispatchQueue.main.async {
             self.decideInstance.gestureRecognizer = UILongPressGestureRecognizer(target: self,
@@ -540,7 +562,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
                 self.decideInstance.gestureRecognizer?.numberOfTouchesRequired = 4
             #endif // (arch(i386) || arch(x86_64)) && DECIDE
             self.decideInstance.gestureRecognizer?.isEnabled = self.enableVisualEditorForCodeless
-            UIApplication.shared.keyWindow?.addGestureRecognizer(self.decideInstance.gestureRecognizer!)
+            MixpanelInstance.sharedUIApplication()?.keyWindow?.addGestureRecognizer(self.decideInstance.gestureRecognizer!)
         }
     }
 
@@ -549,7 +571,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
             connectToWebSocket()
         }
     }
-    #endif // DECIDE && !APP_EXTENSION
+    #endif // DECIDE
     #endif // os(iOS)
 
 }
@@ -579,8 +601,10 @@ extension MixpanelInstance {
      `mixpanelInstance.identify(mixpanelInstance.distinctId)`.
 
      - parameter distinctId: string that uniquely identifies the current user
+     - parameter usePeople: boolean that controls whether or not to set the people distinctId to the event distinctId.
+                            This should only be set to false if you wish to prevent people profile updates for that user.
      */
-    open func identify(distinctId: String) {
+    open func identify(distinctId: String, usePeople: Bool = true) {
         if distinctId.isEmpty {
             Logger.error(message: "\(self) cannot identify blank distinct id")
             return
@@ -594,22 +618,32 @@ extension MixpanelInstance {
                     self.alias = nil
                     self.distinctId = distinctId
                 }
+            }
+
+            if usePeople {
                 self.people.distinctId = distinctId
-            }
-            if !self.people.unidentifiedQueue.isEmpty {
-                for var r in self.people.unidentifiedQueue {
-                    r["$distinct_id"] = self.distinctId
-                    self.people.peopleQueue.append(r)
+                if !self.people.unidentifiedQueue.isEmpty {
+                    for var r in self.people.unidentifiedQueue {
+                        r["$distinct_id"] = self.distinctId
+                        self.people.peopleQueue.append(r)
+                    }
+                    self.people.unidentifiedQueue.removeAll()
+                    Persistence.archivePeople(self.people.peopleQueue, token: self.apiToken)
                 }
-                self.people.unidentifiedQueue.removeAll()
-                Persistence.archivePeople(self.people.peopleQueue, token: self.apiToken)
+            } else {
+                self.people.distinctId = nil
             }
+
             self.archiveProperties()
+            Persistence.storeIdentity(token: self.apiToken,
+                                      distinctID: self.distinctId,
+                                      peopleDistinctID: self.people.distinctId,
+                                      alias: self.alias)
         }
 
-        #if APP_EXTENSION
-        self.flush()
-        #endif // APP_EXTENSION
+        if MixpanelInstance.isiOSAppExtension() {
+            self.flush()
+        }
     }
 
     /**
@@ -647,6 +681,10 @@ extension MixpanelInstance {
             serialQueue.async() {
                 self.alias = alias
                 self.archiveProperties()
+                Persistence.storeIdentity(token: self.apiToken,
+                                          distinctID: self.distinctId,
+                                          peopleDistinctID: self.people.distinctId,
+                                          alias: self.alias)
             }
             let properties = ["distinct_id": distinctId, "alias": alias]
             track(event: "$create_alias", properties: properties)
@@ -662,6 +700,7 @@ extension MixpanelInstance {
      */
     open func reset() {
         serialQueue.async() {
+            Persistence.deleteMPUserDefaultsData(token: self.apiToken)
             self.distinctId = self.defaultDistinctId()
             self.superProperties = InternalProperties()
             self.eventsQueue = Queue()
@@ -875,27 +914,26 @@ extension MixpanelInstance {
             Persistence.archiveEvents(self.eventsQueue, token: self.apiToken)
         }
 
-        #if APP_EXTENSION
-        self.flush()
-        #endif // APP_EXTENSION
+        if MixpanelInstance.isiOSAppExtension() {
+            self.flush()
+        }
     }
 
-    /**
-     Track a push notification using its payload sent from Mixpanel.
 
-     To simplify user interaction tracking, Mixpanel
-     automatically sends IDs for the relevant notification of each push.
-     This method parses the standard payload and queues a track call using this information.
-
-     - parameter userInfo: remote notification payload dictionary
-     - parameter event:    optional, and usually shouldn't be used,
-     unless the results is needed to be tracked elsewhere.
-     */
-    open func trackPushNotification(_ userInfo: [AnyHashable: Any],
+    #if DECIDE
+    func trackPushNotification(_ userInfo: [AnyHashable: Any],
                                       event: String = "$campaign_received") {
         if let mpPayload = userInfo["mp"] as? InternalProperties {
             if let m = mpPayload["m"], let c = mpPayload["c"] {
                 var properties = Properties()
+                for (key, value) in mpPayload {
+                    if key != "m" && key != "c" {
+                        // Check Int first, since a number in the push payload is parsed as __NCSFNumber
+                        // which fails to convert to MixpanelType.
+                        if let typedValue = value as? Int { properties[key] = typedValue }
+                        if let typedValue = value as? MixpanelType { properties[key] = typedValue }
+                    }
+                }
                 properties["campaign_id"]  = c as? Int
                 properties["message_id"]   = m as? Int
                 properties["message_type"] = "push"
@@ -906,6 +944,7 @@ extension MixpanelInstance {
             }
         }
     }
+    #endif
 
     /**
      Starts a timer that will be stopped and added as a property when a
@@ -934,6 +973,18 @@ extension MixpanelInstance {
         serialQueue.async() {
             self.trackInstance.time(event: event, timedEvents: &self.timedEvents, startTime: startTime)
         }
+    }
+
+    /**
+     Retrieves the time elapsed for the named event since time(event:) was called.
+
+     - parameter event: the name of the event to be tracked that was passed to time(event:)
+     */
+    open func eventElapsedTime(event: String) -> Double {
+        if let startTime = self.timedEvents[event] as? TimeInterval {
+            return Date().timeIntervalSince1970 - startTime
+        }
+        return 0
     }
 
     /**
@@ -1057,9 +1108,8 @@ extension MixpanelInstance: InAppNotificationsDelegate {
     func markVariantRun(_ variant: Variant) {
         Logger.info(message: "Marking variant \(variant.ID) shown for experiment \(variant.experimentID)")
         let shownVariant = ["\(variant.experimentID)": variant.ID]
-        if people.distinctId != nil {
-            people.merge(properties: ["$experiments": shownVariant])
-        }
+        people.merge(properties: ["$experiments": shownVariant])
+        
         serialQueue.async {
             var superPropertiesCopy = self.superProperties
             var shownVariants = superPropertiesCopy["$experiments"] as? [String: Any] ?? [:]
@@ -1076,6 +1126,12 @@ extension MixpanelInstance: InAppNotificationsDelegate {
     func executeCachedVariants() {
         for variant in decideInstance.ABTestingInstance.variants {
             variant.execute()
+        }
+    }
+
+    @objc func executeTweaks() {
+        for variant in decideInstance.ABTestingInstance.variants {
+            variant.executeTweaks()
         }
     }
 
@@ -1102,9 +1158,12 @@ extension MixpanelInstance: InAppNotificationsDelegate {
             guard let newVariants = newVariants else {
                 return
             }
-            for variant in newVariants {
-                variant.execute()
-                self.markVariantRun(variant)
+
+            DispatchQueue.main.sync {
+                for variant in newVariants {
+                    variant.execute()
+                    self.markVariantRun(variant)
+                }
             }
 
             DispatchQueue.main.async {

@@ -62,16 +62,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA52486B1DC72B6500AF6685"
-               BuildableName = "OptimizelySDKUserProfileTVOSTests.xctest"
-               BlueprintName = "OptimizelySDKUserProfileTVOSTests"
-               ReferencedContainer = "container:../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA5249AE1DC7DCD900AF6685"
                BuildableName = "OptimizelySDKEventDispatcherTVOSTests.xctest"
                BlueprintName = "OptimizelySDKEventDispatcherTVOSTests"
@@ -86,6 +76,26 @@
                BuildableName = "OptimizelySDKDatafileManagerTVOSTests.xctest"
                BlueprintName = "OptimizelySDKDatafileManagerTVOSTests"
                ReferencedContainer = "container:../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52486B1DC72B6500AF6685"
+               BuildableName = "OptimizelySDKUserProfileServiceTVOSTests.xctest"
+               BlueprintName = "OptimizelySDKUserProfileServiceTVOSTests"
+               ReferencedContainer = "container:../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E99A9F21F4BAF9A009F8805"
+               BuildableName = "OPTLYJSONModelTVOSTests.xctest"
+               BlueprintName = "OPTLYJSONModelTVOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

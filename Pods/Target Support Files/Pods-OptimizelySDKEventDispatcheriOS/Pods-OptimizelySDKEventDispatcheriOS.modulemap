@@ -1,6 +1,0 @@
-framework module Pods_OptimizelySDKEventDispatcheriOS {
-  umbrella header "Pods-OptimizelySDKEventDispatcheriOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

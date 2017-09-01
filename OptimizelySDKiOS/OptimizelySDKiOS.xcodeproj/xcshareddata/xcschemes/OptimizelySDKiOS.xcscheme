@@ -83,9 +83,29 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA52484B1DC72B5500AF6685"
-               BuildableName = "OptimizelySDKUserProfileiOSTests.xctest"
-               BlueprintName = "OptimizelySDKUserProfileiOSTests"
-               ReferencedContainer = "container:../OptimizelySDKUserProfile/OptimizelySDKUserProfile.xcodeproj">
+               BuildableName = "OptimizelySDKUserProfileServiceiOSTests.xctest"
+               BlueprintName = "OptimizelySDKUserProfileServiceiOSTests"
+               ReferencedContainer = "container:../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3ECBCC151F43983400160937"
+               BuildableName = "OPTLYFMDBTests.xctest"
+               BlueprintName = "OPTLYFMDBTests"
+               ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3EA27B061F47AB0D00C0208F"
+               BuildableName = "OPTLYJSONModeliOSTests.xctest"
+               BlueprintName = "OPTLYJSONModeliOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

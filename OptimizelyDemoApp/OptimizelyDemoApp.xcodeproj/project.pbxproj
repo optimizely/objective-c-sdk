@@ -42,7 +42,6 @@
 		EA299EEC1E55313B00931399 /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA299EE51E55313B00931399 /* OPTLYVariationViewController.swift */; };
 		EA299EED1E55313B00931399 /* OPTLYVariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA299EE51E55313B00931399 /* OPTLYVariationViewController.swift */; };
 		EA299EEF1E55316300931399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA299EEE1E55316300931399 /* Assets.xcassets */; };
-		EA299F081E55335300931399 /* Pods_OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA299F071E55335300931399 /* Pods_OptimizelySDKiOS.framework */; };
 		EA299F0A1E55336700931399 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; };
 		EA299F0B1E55336700931399 /* OptimizelySDKTVOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA70FFBD1E550EAC00590BEF /* OptimizelySDKTVOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA299F0F1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA299F0E1E55336D00931399 /* Pods_OptimizelyTVOSDemoApp.framework */; };
@@ -213,7 +212,6 @@
 				EA1E4B661E65074E00BDDABD /* OptimizelySDKiOS.framework in Frameworks */,
 				EA1E4B591E65065500BDDABD /* OptimizelySDKShared.framework in Frameworks */,
 				EA1E4B5B1E65065500BDDABD /* OptimizelySDKCore.framework in Frameworks */,
-				EA299F081E55335300931399 /* Pods_OptimizelySDKiOS.framework in Frameworks */,
 				7AAAE45EFBB4C7742E4D93B7 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 				EA1E4B5D1E65065500BDDABD /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 				EA1E4B5F1E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Frameworks */,
@@ -501,7 +499,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EA7000131E552EBD00590BEF /* [CP] Embed Pods Frameworks */ = {
@@ -546,7 +544,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EA70FFF61E552E9E00590BEF /* [CP] Embed Pods Frameworks */ = {
@@ -811,14 +809,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Amplitude-iOS\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/FMDB\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/JSONModel-iOS\"",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
 					"\"${PODS_ROOT}/Google/Frameworks\"",
-					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.3.2\"",
+					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/OptimizelyiOSDemoApp/OptimizelyiOSDemoApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

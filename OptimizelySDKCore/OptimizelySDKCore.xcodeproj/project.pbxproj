@@ -8,8 +8,164 @@
 
 /* Begin PBXBuildFile section */
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
-		2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */; };
+		3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
+		3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
+		3E35DC481F47ACFE00018732 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
+		3E35DC491F47ACFE00018732 /* ConcurrentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC341F47ACFE00018732 /* ConcurrentTests.m */; };
+		3E35DC4A1F47ACFE00018732 /* CustomPropsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC351F47ACFE00018732 /* CustomPropsTests.m */; };
+		3E35DC4B1F47ACFE00018732 /* ExtremeNestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC361F47ACFE00018732 /* ExtremeNestingTests.m */; };
+		3E35DC4C1F47ACFE00018732 /* IdPropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC371F47ACFE00018732 /* IdPropertyTests.m */; };
+		3E35DC4D1F47ACFE00018732 /* InitWithDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC381F47ACFE00018732 /* InitWithDataTests.m */; };
+		3E35DC4E1F47ACFE00018732 /* JSONTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC391F47ACFE00018732 /* JSONTypesReadTests.m */; };
+		3E35DC4F1F47ACFE00018732 /* KeyMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3A1F47ACFE00018732 /* KeyMappingTests.m */; };
+		3E35DC501F47ACFE00018732 /* NestedModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3B1F47ACFE00018732 /* NestedModelsTests.m */; };
+		3E35DC511F47ACFE00018732 /* NullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3C1F47ACFE00018732 /* NullTests.m */; };
+		3E35DC521F47ACFE00018732 /* OptionalPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3D1F47ACFE00018732 /* OptionalPropertiesTests.m */; };
+		3E35DC531F47ACFE00018732 /* PersistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3E1F47ACFE00018732 /* PersistTests.m */; };
+		3E35DC541F47ACFE00018732 /* PrimitiveTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3F1F47ACFE00018732 /* PrimitiveTypesReadTests.m */; };
+		3E35DC551F47ACFE00018732 /* SanityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC401F47ACFE00018732 /* SanityTests.m */; };
+		3E35DC561F47ACFE00018732 /* SimpleDataErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC411F47ACFE00018732 /* SimpleDataErrorTests.m */; };
+		3E35DC571F47ACFE00018732 /* SpecialPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC421F47ACFE00018732 /* SpecialPropertiesTests.m */; };
+		3E35DC581F47ACFE00018732 /* SpecialPropertyNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC431F47ACFE00018732 /* SpecialPropertyNameTests.m */; };
+		3E35DC591F47ACFE00018732 /* SpecialValuesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC441F47ACFE00018732 /* SpecialValuesTests.m */; };
+		3E35DC5A1F47ACFE00018732 /* TransformerExceptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC451F47ACFE00018732 /* TransformerExceptionTests.m */; };
+		3E35DC5B1F47ACFE00018732 /* ValidationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC461F47ACFE00018732 /* ValidationTests.m */; };
+		3E35DC781F47AD1500018732 /* ConcurrentReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */; };
+		3E35DC931F47AD2800018732 /* BuiltInConversionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */; };
+		3E35DC941F47AD2800018732 /* CopyrightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7A1F47AD2800018732 /* CopyrightModel.m */; };
+		3E35DC951F47AD2800018732 /* CustomPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */; };
+		3E35DC961F47AD2800018732 /* DrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7C1F47AD2800018732 /* DrugModel.m */; };
+		3E35DC971F47AD2800018732 /* EnumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7D1F47AD2800018732 /* EnumModel.m */; };
+		3E35DC981F47AD2800018732 /* ExtremeNestingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7E1F47AD2800018732 /* ExtremeNestingModel.m */; };
+		3E35DC991F47AD2800018732 /* GitHubKeyMapRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7F1F47AD2800018732 /* GitHubKeyMapRepoModel.m */; };
+		3E35DC9A1F47AD2800018732 /* GitHubKeyMapRepoModelDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC801F47AD2800018732 /* GitHubKeyMapRepoModelDict.m */; };
+		3E35DC9B1F47AD2800018732 /* GitHubRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC811F47AD2800018732 /* GitHubRepoModel.m */; };
+		3E35DC9C1F47AD2800018732 /* GitHubRepoModelForUSMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC821F47AD2800018732 /* GitHubRepoModelForUSMapper.m */; };
+		3E35DC9D1F47AD2800018732 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC831F47AD2800018732 /* ImageModel.m */; };
+		3E35DC9E1F47AD2800018732 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC841F47AD2800018732 /* InteractionModel.m */; };
+		3E35DC9F1F47AD2800018732 /* JSONTypesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC851F47AD2800018732 /* JSONTypesModel.m */; };
+		3E35DCA01F47AD2800018732 /* JSONTypesModelWithValidation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC861F47AD2800018732 /* JSONTypesModelWithValidation1.m */; };
+		3E35DCA11F47AD2800018732 /* JSONTypesModelWithValidation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */; };
+		3E35DCA21F47AD2800018732 /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */; };
+		3E35DCA31F47AD2800018732 /* NestedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC891F47AD2800018732 /* NestedModel.m */; };
+		3E35DCA41F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */; };
+		3E35DCA51F47AD2800018732 /* OptionalPropModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */; };
+		3E35DCA61F47AD2800018732 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8C1F47AD2800018732 /* PostModel.m */; };
+		3E35DCA71F47AD2800018732 /* PostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8D1F47AD2800018732 /* PostsModel.m */; };
+		3E35DCA81F47AD2800018732 /* PrimitivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8E1F47AD2800018732 /* PrimitivesModel.m */; };
+		3E35DCA91F47AD2800018732 /* RenamedPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8F1F47AD2800018732 /* RenamedPropertyModel.m */; };
+		3E35DCAA1F47AD2800018732 /* ReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC901F47AD2800018732 /* ReposModel.m */; };
+		3E35DCAB1F47AD2800018732 /* RpcRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC911F47AD2800018732 /* RpcRequestModel.m */; };
+		3E35DCAC1F47AD2800018732 /* SpecialPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */; };
+		3E35DCBC1F47AD3D00018732 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAD1F47AD3D00018732 /* colors.json */; };
+		3E35DCBD1F47AD3D00018732 /* converts.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAE1F47AD3D00018732 /* converts.json */; };
+		3E35DCBE1F47AD3D00018732 /* github-iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAF1F47AD3D00018732 /* github-iphone.json */; };
+		3E35DCBF1F47AD3D00018732 /* jsonTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB01F47AD3D00018732 /* jsonTypes.json */; };
+		3E35DCC01F47AD3D00018732 /* nestedData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB11F47AD3D00018732 /* nestedData.json */; };
+		3E35DCC11F47AD3D00018732 /* nestedDataWithArrayError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB21F47AD3D00018732 /* nestedDataWithArrayError.json */; };
+		3E35DCC21F47AD3D00018732 /* nestedDataWithDictionaryError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB31F47AD3D00018732 /* nestedDataWithDictionaryError.json */; };
+		3E35DCC31F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json */; };
+		3E35DCC41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB51F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json */; };
+		3E35DCC51F47AD3D00018732 /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB61F47AD3D00018732 /* post.json */; };
+		3E35DCC61F47AD3D00018732 /* primitives.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB71F47AD3D00018732 /* primitives.json */; };
+		3E35DCC71F47AD3D00018732 /* primitivesWithErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB81F47AD3D00018732 /* primitivesWithErrors.json */; };
+		3E35DCC81F47AD3D00018732 /* specialPropertyName.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB91F47AD3D00018732 /* specialPropertyName.json */; };
+		3E35DCC91F47AD3D00018732 /* withOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBA1F47AD3D00018732 /* withOptProp.json */; };
+		3E35DCCA1F47AD3D00018732 /* withoutOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */; };
+		3E35DCE61F47B42E00018732 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE51F47B42E00018732 /* UIKit.framework */; };
+		3E35DCE81F47B44900018732 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE71F47B44900018732 /* CoreGraphics.framework */; };
+		3E858C601F42277B00D53856 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3E858C5E1F42277B00D53856 /* LICENSE */; };
+		3E858C661F4227BA00D53856 /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6D1F4227CD00D53856 /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C6E1F4227CD00D53856 /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */; };
+		3E858C6F1F4227CD00D53856 /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C701F4227CD00D53856 /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */; };
+		3E858C711F4227CD00D53856 /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C721F4227CD00D53856 /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */; };
+		3E858C831F4227E300D53856 /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C841F4227E300D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
+		3E858C851F4227E300D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C861F4227E300D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
+		3E858C871F4227ED00D53856 /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */; };
+		3E858C891F4227F400D53856 /* OPTLYJSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8A1F4227F900D53856 /* OPTLYJSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */; };
+		3E858C8B1F4227F900D53856 /* OPTLYJSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C8C1F4227F900D53856 /* OPTLYJSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */; };
+		3E858C931F42280500D53856 /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C941F42280900D53856 /* OPTLYJSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
+		3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
+		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
+		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
+		3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
+		3E99AA021F4BB1BA009F8805 /* ConcurrentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC341F47ACFE00018732 /* ConcurrentTests.m */; };
+		3E99AA031F4BB1BA009F8805 /* CustomPropsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC351F47ACFE00018732 /* CustomPropsTests.m */; };
+		3E99AA041F4BB1BA009F8805 /* ExtremeNestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC361F47ACFE00018732 /* ExtremeNestingTests.m */; };
+		3E99AA051F4BB1BA009F8805 /* IdPropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC371F47ACFE00018732 /* IdPropertyTests.m */; };
+		3E99AA061F4BB1BA009F8805 /* InitWithDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC381F47ACFE00018732 /* InitWithDataTests.m */; };
+		3E99AA071F4BB1BA009F8805 /* JSONTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC391F47ACFE00018732 /* JSONTypesReadTests.m */; };
+		3E99AA081F4BB1BA009F8805 /* KeyMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3A1F47ACFE00018732 /* KeyMappingTests.m */; };
+		3E99AA091F4BB1BA009F8805 /* NestedModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3B1F47ACFE00018732 /* NestedModelsTests.m */; };
+		3E99AA0A1F4BB1BA009F8805 /* NullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3C1F47ACFE00018732 /* NullTests.m */; };
+		3E99AA0B1F4BB1BA009F8805 /* OptionalPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3D1F47ACFE00018732 /* OptionalPropertiesTests.m */; };
+		3E99AA0C1F4BB1BA009F8805 /* PersistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3E1F47ACFE00018732 /* PersistTests.m */; };
+		3E99AA0D1F4BB1BA009F8805 /* PrimitiveTypesReadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC3F1F47ACFE00018732 /* PrimitiveTypesReadTests.m */; };
+		3E99AA0E1F4BB1BA009F8805 /* SanityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC401F47ACFE00018732 /* SanityTests.m */; };
+		3E99AA0F1F4BB1BA009F8805 /* SimpleDataErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC411F47ACFE00018732 /* SimpleDataErrorTests.m */; };
+		3E99AA101F4BB1BA009F8805 /* SpecialPropertiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC421F47ACFE00018732 /* SpecialPropertiesTests.m */; };
+		3E99AA111F4BB1BA009F8805 /* SpecialPropertyNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC431F47ACFE00018732 /* SpecialPropertyNameTests.m */; };
+		3E99AA121F4BB1BA009F8805 /* SpecialValuesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC441F47ACFE00018732 /* SpecialValuesTests.m */; };
+		3E99AA131F4BB1BA009F8805 /* TransformerExceptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC451F47ACFE00018732 /* TransformerExceptionTests.m */; };
+		3E99AA141F4BB1BA009F8805 /* ValidationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC461F47ACFE00018732 /* ValidationTests.m */; };
+		3E99AA151F4BB1BA009F8805 /* ConcurrentReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */; };
+		3E99AA161F4BB1E2009F8805 /* BuiltInConversionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */; };
+		3E99AA171F4BB1E2009F8805 /* CopyrightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7A1F47AD2800018732 /* CopyrightModel.m */; };
+		3E99AA181F4BB1E2009F8805 /* CustomPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */; };
+		3E99AA191F4BB1E2009F8805 /* DrugModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7C1F47AD2800018732 /* DrugModel.m */; };
+		3E99AA1A1F4BB1E2009F8805 /* EnumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7D1F47AD2800018732 /* EnumModel.m */; };
+		3E99AA1B1F4BB1E2009F8805 /* ExtremeNestingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7E1F47AD2800018732 /* ExtremeNestingModel.m */; };
+		3E99AA1C1F4BB1E2009F8805 /* GitHubKeyMapRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC7F1F47AD2800018732 /* GitHubKeyMapRepoModel.m */; };
+		3E99AA1D1F4BB1E2009F8805 /* GitHubKeyMapRepoModelDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC801F47AD2800018732 /* GitHubKeyMapRepoModelDict.m */; };
+		3E99AA1E1F4BB1E2009F8805 /* GitHubRepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC811F47AD2800018732 /* GitHubRepoModel.m */; };
+		3E99AA1F1F4BB1E2009F8805 /* GitHubRepoModelForUSMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC821F47AD2800018732 /* GitHubRepoModelForUSMapper.m */; };
+		3E99AA201F4BB1E2009F8805 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC831F47AD2800018732 /* ImageModel.m */; };
+		3E99AA211F4BB1E2009F8805 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC841F47AD2800018732 /* InteractionModel.m */; };
+		3E99AA221F4BB1E2009F8805 /* JSONTypesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC851F47AD2800018732 /* JSONTypesModel.m */; };
+		3E99AA231F4BB1E2009F8805 /* JSONTypesModelWithValidation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC861F47AD2800018732 /* JSONTypesModelWithValidation1.m */; };
+		3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */; };
+		3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */; };
+		3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC891F47AD2800018732 /* NestedModel.m */; };
+		3E99AA271F4BB1E2009F8805 /* OPTLYJSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */; };
+		3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */; };
+		3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8C1F47AD2800018732 /* PostModel.m */; };
+		3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8D1F47AD2800018732 /* PostsModel.m */; };
+		3E99AA2B1F4BB1E2009F8805 /* PrimitivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8E1F47AD2800018732 /* PrimitivesModel.m */; };
+		3E99AA2C1F4BB1E2009F8805 /* RenamedPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC8F1F47AD2800018732 /* RenamedPropertyModel.m */; };
+		3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC901F47AD2800018732 /* ReposModel.m */; };
+		3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC911F47AD2800018732 /* RpcRequestModel.m */; };
+		3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */; };
+		3E99AA301F4BB1E2009F8805 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
+		3E99AA321F4BB1FE009F8805 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */; };
+		3E99AA341F4BB206009F8805 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E99AA331F4BB206009F8805 /* UIKit.framework */; };
+		3E99AA351F4BB21A009F8805 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAD1F47AD3D00018732 /* colors.json */; };
+		3E99AA361F4BB21A009F8805 /* converts.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAE1F47AD3D00018732 /* converts.json */; };
+		3E99AA371F4BB21A009F8805 /* github-iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCAF1F47AD3D00018732 /* github-iphone.json */; };
+		3E99AA381F4BB21A009F8805 /* jsonTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB01F47AD3D00018732 /* jsonTypes.json */; };
+		3E99AA391F4BB21A009F8805 /* nestedData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB11F47AD3D00018732 /* nestedData.json */; };
+		3E99AA3A1F4BB21A009F8805 /* nestedDataWithArrayError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB21F47AD3D00018732 /* nestedDataWithArrayError.json */; };
+		3E99AA3B1F4BB21A009F8805 /* nestedDataWithDictionaryError.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB31F47AD3D00018732 /* nestedDataWithDictionaryError.json */; };
+		3E99AA3C1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json */; };
+		3E99AA3D1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB51F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json */; };
+		3E99AA3E1F4BB21A009F8805 /* post.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB61F47AD3D00018732 /* post.json */; };
+		3E99AA3F1F4BB21A009F8805 /* primitives.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB71F47AD3D00018732 /* primitives.json */; };
+		3E99AA401F4BB21A009F8805 /* primitivesWithErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB81F47AD3D00018732 /* primitivesWithErrors.json */; };
+		3E99AA411F4BB21A009F8805 /* specialPropertyName.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCB91F47AD3D00018732 /* specialPropertyName.json */; };
+		3E99AA421F4BB21A009F8805 /* withOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBA1F47AD3D00018732 /* withOptProp.json */; };
+		3E99AA431F4BB21A009F8805 /* withoutOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */; };
+		3EA27B0C1F47AB0D00C0208F /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
 		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
 		5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
@@ -20,8 +176,6 @@
 		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
-		701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */; };
-		73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -36,8 +190,8 @@
 		EA16D93D1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA16D93E1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA16D93F1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */; };
-		EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; };
-		EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; };
+		EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */ = {isa = PBXBuildFile; fileRef = EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA16D9441ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D9411ECCC5C600C4C998 /* OPTLYDecisionService.m */; };
 		EA16D9451ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16D9411ECCC5C600C4C998 /* OPTLYDecisionService.m */; };
 		EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C242B1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -245,6 +399,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E99A9F91F4BAF9A009F8805 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C67FC1DC1E66C00C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA81D1DC5DBB100B1D81B;
+			remoteInfo = OptimizelySDKCoreTVOS;
+		};
+		3EA27B0D1F47AB0D00C0208F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA3C67FC1DC1E66C00C578CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2FA7FD1DC5DBA000B1D81B;
+			remoteInfo = OptimizelySDKCoreiOS;
+		};
 		EA2FA8081DC5DBA000B1D81B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA3C67FC1DC1E66C00C578CA /* Project object */;
@@ -262,15 +430,123 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01386A41636DEDC5D8938455 /* Pods-OptimizelySDKCoreiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.release.xcconfig"; sourceTree = "<group>"; };
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
+		3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYJSONModelTestHelper.h; sourceTree = "<group>"; };
+		3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYJSONModelTestHelper.m; sourceTree = "<group>"; };
+		3E35DC321F47ACFE00018732 /* ArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTests.m; sourceTree = "<group>"; };
+		3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuiltInConversionsTests.m; sourceTree = "<group>"; };
+		3E35DC341F47ACFE00018732 /* ConcurrentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcurrentTests.m; sourceTree = "<group>"; };
+		3E35DC351F47ACFE00018732 /* CustomPropsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPropsTests.m; sourceTree = "<group>"; };
+		3E35DC361F47ACFE00018732 /* ExtremeNestingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtremeNestingTests.m; sourceTree = "<group>"; };
+		3E35DC371F47ACFE00018732 /* IdPropertyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdPropertyTests.m; sourceTree = "<group>"; };
+		3E35DC381F47ACFE00018732 /* InitWithDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitWithDataTests.m; sourceTree = "<group>"; };
+		3E35DC391F47ACFE00018732 /* JSONTypesReadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTypesReadTests.m; sourceTree = "<group>"; };
+		3E35DC3A1F47ACFE00018732 /* KeyMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyMappingTests.m; sourceTree = "<group>"; };
+		3E35DC3B1F47ACFE00018732 /* NestedModelsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NestedModelsTests.m; sourceTree = "<group>"; };
+		3E35DC3C1F47ACFE00018732 /* NullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTests.m; sourceTree = "<group>"; };
+		3E35DC3D1F47ACFE00018732 /* OptionalPropertiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalPropertiesTests.m; sourceTree = "<group>"; };
+		3E35DC3E1F47ACFE00018732 /* PersistTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistTests.m; sourceTree = "<group>"; };
+		3E35DC3F1F47ACFE00018732 /* PrimitiveTypesReadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimitiveTypesReadTests.m; sourceTree = "<group>"; };
+		3E35DC401F47ACFE00018732 /* SanityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SanityTests.m; sourceTree = "<group>"; };
+		3E35DC411F47ACFE00018732 /* SimpleDataErrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDataErrorTests.m; sourceTree = "<group>"; };
+		3E35DC421F47ACFE00018732 /* SpecialPropertiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialPropertiesTests.m; sourceTree = "<group>"; };
+		3E35DC431F47ACFE00018732 /* SpecialPropertyNameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialPropertyNameTests.m; sourceTree = "<group>"; };
+		3E35DC441F47ACFE00018732 /* SpecialValuesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialValuesTests.m; sourceTree = "<group>"; };
+		3E35DC451F47ACFE00018732 /* TransformerExceptionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformerExceptionTests.m; sourceTree = "<group>"; };
+		3E35DC461F47ACFE00018732 /* ValidationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationTests.m; sourceTree = "<group>"; };
+		3E35DC5C1F47AD1500018732 /* BuiltInConversionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuiltInConversionsModel.h; path = Models/Headers/BuiltInConversionsModel.h; sourceTree = "<group>"; };
+		3E35DC5D1F47AD1500018732 /* ConcurrentReposModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConcurrentReposModel.h; path = Models/Headers/ConcurrentReposModel.h; sourceTree = "<group>"; };
+		3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConcurrentReposModel.m; path = Models/Implementations/ConcurrentReposModel.m; sourceTree = "<group>"; };
+		3E35DC5F1F47AD1500018732 /* CopyrightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CopyrightModel.h; path = Models/Headers/CopyrightModel.h; sourceTree = "<group>"; };
+		3E35DC601F47AD1500018732 /* CustomPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPropertyModel.h; path = Models/Headers/CustomPropertyModel.h; sourceTree = "<group>"; };
+		3E35DC611F47AD1500018732 /* DrugModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrugModel.h; path = Models/Headers/DrugModel.h; sourceTree = "<group>"; };
+		3E35DC621F47AD1500018732 /* EnumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnumModel.h; path = Models/Headers/EnumModel.h; sourceTree = "<group>"; };
+		3E35DC631F47AD1500018732 /* ExtremeNestingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtremeNestingModel.h; path = Models/Headers/ExtremeNestingModel.h; sourceTree = "<group>"; };
+		3E35DC641F47AD1500018732 /* GitHubKeyMapRepoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubKeyMapRepoModel.h; path = Models/Headers/GitHubKeyMapRepoModel.h; sourceTree = "<group>"; };
+		3E35DC651F47AD1500018732 /* GitHubKeyMapRepoModelDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubKeyMapRepoModelDict.h; path = Models/Headers/GitHubKeyMapRepoModelDict.h; sourceTree = "<group>"; };
+		3E35DC661F47AD1500018732 /* GitHubRepoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubRepoModel.h; path = Models/Headers/GitHubRepoModel.h; sourceTree = "<group>"; };
+		3E35DC671F47AD1500018732 /* GitHubRepoModelForUSMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubRepoModelForUSMapper.h; path = Models/Headers/GitHubRepoModelForUSMapper.h; sourceTree = "<group>"; };
+		3E35DC681F47AD1500018732 /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageModel.h; path = Models/Headers/ImageModel.h; sourceTree = "<group>"; };
+		3E35DC691F47AD1500018732 /* InteractionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InteractionModel.h; path = Models/Headers/InteractionModel.h; sourceTree = "<group>"; };
+		3E35DC6A1F47AD1500018732 /* JSONTypesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONTypesModel.h; path = Models/Headers/JSONTypesModel.h; sourceTree = "<group>"; };
+		3E35DC6B1F47AD1500018732 /* JSONTypesModelWithValidation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONTypesModelWithValidation1.h; path = Models/Headers/JSONTypesModelWithValidation1.h; sourceTree = "<group>"; };
+		3E35DC6C1F47AD1500018732 /* JSONTypesModelWithValidation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONTypesModelWithValidation2.h; path = Models/Headers/JSONTypesModelWithValidation2.h; sourceTree = "<group>"; };
+		3E35DC6D1F47AD1500018732 /* ModelForUpperCaseMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelForUpperCaseMapper.h; path = Models/Headers/ModelForUpperCaseMapper.h; sourceTree = "<group>"; };
+		3E35DC6E1F47AD1500018732 /* NestedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NestedModel.h; path = Models/Headers/NestedModel.h; sourceTree = "<group>"; };
+		3E35DC6F1F47AD1500018732 /* OPTLYJSONValueTransformer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPTLYJSONValueTransformer+UIColor.h"; path = "Models/Headers/OPTLYJSONValueTransformer+UIColor.h"; sourceTree = "<group>"; };
+		3E35DC701F47AD1500018732 /* OptionalPropModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalPropModel.h; path = Models/Headers/OptionalPropModel.h; sourceTree = "<group>"; };
+		3E35DC711F47AD1500018732 /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = Models/Headers/PostModel.h; sourceTree = "<group>"; };
+		3E35DC721F47AD1500018732 /* PostsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsModel.h; path = Models/Headers/PostsModel.h; sourceTree = "<group>"; };
+		3E35DC731F47AD1500018732 /* PrimitivesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrimitivesModel.h; path = Models/Headers/PrimitivesModel.h; sourceTree = "<group>"; };
+		3E35DC741F47AD1500018732 /* RenamedPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenamedPropertyModel.h; path = Models/Headers/RenamedPropertyModel.h; sourceTree = "<group>"; };
+		3E35DC751F47AD1500018732 /* ReposModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReposModel.h; path = Models/Headers/ReposModel.h; sourceTree = "<group>"; };
+		3E35DC761F47AD1500018732 /* RpcRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RpcRequestModel.h; path = Models/Headers/RpcRequestModel.h; sourceTree = "<group>"; };
+		3E35DC771F47AD1500018732 /* SpecialPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpecialPropertyModel.h; path = Models/Headers/SpecialPropertyModel.h; sourceTree = "<group>"; };
+		3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuiltInConversionsModel.m; path = Models/Implementations/BuiltInConversionsModel.m; sourceTree = "<group>"; };
+		3E35DC7A1F47AD2800018732 /* CopyrightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CopyrightModel.m; path = Models/Implementations/CopyrightModel.m; sourceTree = "<group>"; };
+		3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPropertyModel.m; path = Models/Implementations/CustomPropertyModel.m; sourceTree = "<group>"; };
+		3E35DC7C1F47AD2800018732 /* DrugModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrugModel.m; path = Models/Implementations/DrugModel.m; sourceTree = "<group>"; };
+		3E35DC7D1F47AD2800018732 /* EnumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnumModel.m; path = Models/Implementations/EnumModel.m; sourceTree = "<group>"; };
+		3E35DC7E1F47AD2800018732 /* ExtremeNestingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtremeNestingModel.m; path = Models/Implementations/ExtremeNestingModel.m; sourceTree = "<group>"; };
+		3E35DC7F1F47AD2800018732 /* GitHubKeyMapRepoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubKeyMapRepoModel.m; path = Models/Implementations/GitHubKeyMapRepoModel.m; sourceTree = "<group>"; };
+		3E35DC801F47AD2800018732 /* GitHubKeyMapRepoModelDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubKeyMapRepoModelDict.m; path = Models/Implementations/GitHubKeyMapRepoModelDict.m; sourceTree = "<group>"; };
+		3E35DC811F47AD2800018732 /* GitHubRepoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubRepoModel.m; path = Models/Implementations/GitHubRepoModel.m; sourceTree = "<group>"; };
+		3E35DC821F47AD2800018732 /* GitHubRepoModelForUSMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubRepoModelForUSMapper.m; path = Models/Implementations/GitHubRepoModelForUSMapper.m; sourceTree = "<group>"; };
+		3E35DC831F47AD2800018732 /* ImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageModel.m; path = Models/Implementations/ImageModel.m; sourceTree = "<group>"; };
+		3E35DC841F47AD2800018732 /* InteractionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InteractionModel.m; path = Models/Implementations/InteractionModel.m; sourceTree = "<group>"; };
+		3E35DC851F47AD2800018732 /* JSONTypesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONTypesModel.m; path = Models/Implementations/JSONTypesModel.m; sourceTree = "<group>"; };
+		3E35DC861F47AD2800018732 /* JSONTypesModelWithValidation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONTypesModelWithValidation1.m; path = Models/Implementations/JSONTypesModelWithValidation1.m; sourceTree = "<group>"; };
+		3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONTypesModelWithValidation2.m; path = Models/Implementations/JSONTypesModelWithValidation2.m; sourceTree = "<group>"; };
+		3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelForUpperCaseMapper.m; path = Models/Implementations/ModelForUpperCaseMapper.m; sourceTree = "<group>"; };
+		3E35DC891F47AD2800018732 /* NestedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NestedModel.m; path = Models/Implementations/NestedModel.m; sourceTree = "<group>"; };
+		3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPTLYJSONValueTransformer+UIColor.m"; path = "Models/Implementations/OPTLYJSONValueTransformer+UIColor.m"; sourceTree = "<group>"; };
+		3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalPropModel.m; path = Models/Implementations/OptionalPropModel.m; sourceTree = "<group>"; };
+		3E35DC8C1F47AD2800018732 /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = Models/Implementations/PostModel.m; sourceTree = "<group>"; };
+		3E35DC8D1F47AD2800018732 /* PostsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsModel.m; path = Models/Implementations/PostsModel.m; sourceTree = "<group>"; };
+		3E35DC8E1F47AD2800018732 /* PrimitivesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrimitivesModel.m; path = Models/Implementations/PrimitivesModel.m; sourceTree = "<group>"; };
+		3E35DC8F1F47AD2800018732 /* RenamedPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenamedPropertyModel.m; path = Models/Implementations/RenamedPropertyModel.m; sourceTree = "<group>"; };
+		3E35DC901F47AD2800018732 /* ReposModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReposModel.m; path = Models/Implementations/ReposModel.m; sourceTree = "<group>"; };
+		3E35DC911F47AD2800018732 /* RpcRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RpcRequestModel.m; path = Models/Implementations/RpcRequestModel.m; sourceTree = "<group>"; };
+		3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpecialPropertyModel.m; path = Models/Implementations/SpecialPropertyModel.m; sourceTree = "<group>"; };
+		3E35DCAD1F47AD3D00018732 /* colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = colors.json; path = Data/colors.json; sourceTree = "<group>"; };
+		3E35DCAE1F47AD3D00018732 /* converts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = converts.json; path = Data/converts.json; sourceTree = "<group>"; };
+		3E35DCAF1F47AD3D00018732 /* github-iphone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "github-iphone.json"; path = "Data/github-iphone.json"; sourceTree = "<group>"; };
+		3E35DCB01F47AD3D00018732 /* jsonTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = jsonTypes.json; path = Data/jsonTypes.json; sourceTree = "<group>"; };
+		3E35DCB11F47AD3D00018732 /* nestedData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = nestedData.json; path = Data/nestedData.json; sourceTree = "<group>"; };
+		3E35DCB21F47AD3D00018732 /* nestedDataWithArrayError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = nestedDataWithArrayError.json; path = Data/nestedDataWithArrayError.json; sourceTree = "<group>"; };
+		3E35DCB31F47AD3D00018732 /* nestedDataWithDictionaryError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = nestedDataWithDictionaryError.json; path = Data/nestedDataWithDictionaryError.json; sourceTree = "<group>"; };
+		3E35DCB41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = nestedDataWithTypeMismatchOnImages.json; path = Data/nestedDataWithTypeMismatchOnImages.json; sourceTree = "<group>"; };
+		3E35DCB51F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = nestedDataWithTypeMismatchOnImagesObject.json; path = Data/nestedDataWithTypeMismatchOnImagesObject.json; sourceTree = "<group>"; };
+		3E35DCB61F47AD3D00018732 /* post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = post.json; path = Data/post.json; sourceTree = "<group>"; };
+		3E35DCB71F47AD3D00018732 /* primitives.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = primitives.json; path = Data/primitives.json; sourceTree = "<group>"; };
+		3E35DCB81F47AD3D00018732 /* primitivesWithErrors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = primitivesWithErrors.json; path = Data/primitivesWithErrors.json; sourceTree = "<group>"; };
+		3E35DCB91F47AD3D00018732 /* specialPropertyName.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = specialPropertyName.json; path = Data/specialPropertyName.json; sourceTree = "<group>"; };
+		3E35DCBA1F47AD3D00018732 /* withOptProp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = withOptProp.json; path = Data/withOptProp.json; sourceTree = "<group>"; };
+		3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = withoutOptProp.json; path = Data/withoutOptProp.json; sourceTree = "<group>"; };
+		3E35DCE51F47B42E00018732 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3E35DCE71F47B44900018732 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OPTLYJSONModel/LICENSE; sourceTree = "<group>"; };
+		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPTLYJSONModel/README.md; sourceTree = "<group>"; };
+		3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelLib.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelLib.h; sourceTree = "<group>"; };
+		3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModel.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.h; sourceTree = "<group>"; };
+		3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModel.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel.m; sourceTree = "<group>"; };
+		3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelClassProperty.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.h; sourceTree = "<group>"; };
+		3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelClassProperty.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelClassProperty.m; sourceTree = "<group>"; };
+		3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelError.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.h; sourceTree = "<group>"; };
+		3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONModelError.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelError.m; sourceTree = "<group>"; };
+		3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONKeyMapper.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.h; sourceTree = "<group>"; };
+		3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONKeyMapper.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONKeyMapper.m; sourceTree = "<group>"; };
+		3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONValueTransformer.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.h; sourceTree = "<group>"; };
+		3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONValueTransformer.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
-		3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.rc.xcconfig"; sourceTree = "<group>"; };
-		4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.beta.xcconfig"; sourceTree = "<group>"; };
+		3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		3E99AA331F4BB206009F8805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModeliOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA27B0B1F47AB0D00C0208F /* OPTLYJSONModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYJSONModelTests-Info.plist"; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
-		535C603DDFD996B277A0E064 /* Pods-OptimizelySDKCoreiOS.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.rc.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
 		5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariable.h; sourceTree = "<group>"; };
@@ -279,14 +555,11 @@
 		8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		924C83E5511EF3E43FC015AF /* Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		93AEC5364770062DEE863663 /* Pods-OptimizelySDKCoreTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		944729689803E993C9DC6D54 /* Pods-OptimizelySDKCoreiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B04EB311BD4CC2CD0A30D32 /* Pods_OptimizelySDKCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B0B2C5870F0F8E1FDD2E1FCD /* Pods-OptimizelySDKCoreTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4195831840B6A255A7E0EB9 /* Pods-OptimizelySDKCoreiOS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOS.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS.beta.xcconfig"; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -406,16 +679,33 @@
 		EAC5F3511E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYUserProfileServiceBasic.h; path = OptimizelySDKCore/OPTLYUserProfileServiceBasic.h; sourceTree = "<group>"; };
 		EAC5F3521E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYUserProfileServiceBasic.m; path = OptimizelySDKCore/OPTLYUserProfileServiceBasic.m; sourceTree = "<group>"; };
 		F5B1C4BBC7682A657C92ABD3 /* Pods_OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3E99A9F01F4BAF9A009F8805 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA341F4BB206009F8805 /* UIKit.framework in Frameworks */,
+				3E99AA321F4BB1FE009F8805 /* CoreGraphics.framework in Frameworks */,
+				3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA27B041F47AB0D00C0208F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E35DCE81F47B44900018732 /* CoreGraphics.framework in Frameworks */,
+				3E35DCE61F47B42E00018732 /* UIKit.framework in Frameworks */,
+				3EA27B0C1F47AB0D00C0208F /* OptimizelySDKCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA2FA7FA1DC5DBA000B1D81B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D5457521DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
-				73A56DE44E21EDBF3369AA44 /* Pods_OptimizelySDKCoreiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +722,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				701BE1AAFCB6528297D6BCC4 /* Pods_OptimizelySDKCoreTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,21 +737,189 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E858C5C1F42275700D53856 /* OPTLYJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				3E858C5E1F42277B00D53856 /* LICENSE */,
+				3E858C5F1F42277B00D53856 /* README.md */,
+				3E858C5D1F42276400D53856 /* OPTLYJSONModel */,
+			);
+			name = OPTLYJSONModel;
+			sourceTree = "<group>";
+		};
+		3E858C5D1F42276400D53856 /* OPTLYJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				3E858C621F42279000D53856 /* OPTLYJSONModel */,
+				3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */,
+				3E858C641F4227A600D53856 /* OPTLYJSONModelTransformations */,
+			);
+			name = OPTLYJSONModel;
+			sourceTree = "<group>";
+		};
+		3E858C621F42279000D53856 /* OPTLYJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */,
+				3E858C681F4227CD00D53856 /* OPTLYJSONModel.m */,
+				3E858C691F4227CD00D53856 /* OPTLYJSONModelClassProperty.h */,
+				3E858C6A1F4227CD00D53856 /* OPTLYJSONModelClassProperty.m */,
+				3E858C6B1F4227CD00D53856 /* OPTLYJSONModelError.h */,
+				3E858C6C1F4227CD00D53856 /* OPTLYJSONModelError.m */,
+			);
+			name = OPTLYJSONModel;
+			sourceTree = "<group>";
+		};
+		3E858C641F4227A600D53856 /* OPTLYJSONModelTransformations */ = {
+			isa = PBXGroup;
+			children = (
+				3E858C7F1F4227E300D53856 /* OPTLYJSONKeyMapper.h */,
+				3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */,
+				3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */,
+				3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */,
+			);
+			name = OPTLYJSONModelTransformations;
+			sourceTree = "<group>";
+		};
+		3EA27B081F47AB0D00C0208F /* OPTLYJSONModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E35DC321F47ACFE00018732 /* ArrayTests.m */,
+				3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */,
+				3E35DC341F47ACFE00018732 /* ConcurrentTests.m */,
+				3E35DC351F47ACFE00018732 /* CustomPropsTests.m */,
+				3E35DC361F47ACFE00018732 /* ExtremeNestingTests.m */,
+				3E35DC371F47ACFE00018732 /* IdPropertyTests.m */,
+				3E35DC381F47ACFE00018732 /* InitWithDataTests.m */,
+				3E35DC391F47ACFE00018732 /* JSONTypesReadTests.m */,
+				3E35DC3A1F47ACFE00018732 /* KeyMappingTests.m */,
+				3E35DC3B1F47ACFE00018732 /* NestedModelsTests.m */,
+				3E35DC3C1F47ACFE00018732 /* NullTests.m */,
+				3E35DC3D1F47ACFE00018732 /* OptionalPropertiesTests.m */,
+				3E35DC3E1F47ACFE00018732 /* PersistTests.m */,
+				3E35DC3F1F47ACFE00018732 /* PrimitiveTypesReadTests.m */,
+				3E35DC401F47ACFE00018732 /* SanityTests.m */,
+				3E35DC411F47ACFE00018732 /* SimpleDataErrorTests.m */,
+				3E35DC421F47ACFE00018732 /* SpecialPropertiesTests.m */,
+				3E35DC431F47ACFE00018732 /* SpecialPropertyNameTests.m */,
+				3E35DC441F47ACFE00018732 /* SpecialValuesTests.m */,
+				3E35DC451F47ACFE00018732 /* TransformerExceptionTests.m */,
+				3E35DC461F47ACFE00018732 /* ValidationTests.m */,
+				3EA27B151F47AB8200C0208F /* Model */,
+				3EA27B141F47AB7800C0208F /* Data */,
+				3EA27B0B1F47AB0D00C0208F /* OPTLYJSONModelTests-Info.plist */,
+				3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */,
+				3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */,
+			);
+			path = OPTLYJSONModelTests;
+			sourceTree = "<group>";
+		};
+		3EA27B141F47AB7800C0208F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3E35DCAD1F47AD3D00018732 /* colors.json */,
+				3E35DCAE1F47AD3D00018732 /* converts.json */,
+				3E35DCAF1F47AD3D00018732 /* github-iphone.json */,
+				3E35DCB01F47AD3D00018732 /* jsonTypes.json */,
+				3E35DCB11F47AD3D00018732 /* nestedData.json */,
+				3E35DCB21F47AD3D00018732 /* nestedDataWithArrayError.json */,
+				3E35DCB31F47AD3D00018732 /* nestedDataWithDictionaryError.json */,
+				3E35DCB41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json */,
+				3E35DCB51F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json */,
+				3E35DCB61F47AD3D00018732 /* post.json */,
+				3E35DCB71F47AD3D00018732 /* primitives.json */,
+				3E35DCB81F47AD3D00018732 /* primitivesWithErrors.json */,
+				3E35DCB91F47AD3D00018732 /* specialPropertyName.json */,
+				3E35DCBA1F47AD3D00018732 /* withOptProp.json */,
+				3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		3EA27B151F47AB8200C0208F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3EA27B161F47AB8E00C0208F /* Headers */,
+				3EA27B171F47ABA900C0208F /* Implementations */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3EA27B161F47AB8E00C0208F /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3E35DC5C1F47AD1500018732 /* BuiltInConversionsModel.h */,
+				3E35DC5D1F47AD1500018732 /* ConcurrentReposModel.h */,
+				3E35DC5F1F47AD1500018732 /* CopyrightModel.h */,
+				3E35DC601F47AD1500018732 /* CustomPropertyModel.h */,
+				3E35DC611F47AD1500018732 /* DrugModel.h */,
+				3E35DC621F47AD1500018732 /* EnumModel.h */,
+				3E35DC631F47AD1500018732 /* ExtremeNestingModel.h */,
+				3E35DC641F47AD1500018732 /* GitHubKeyMapRepoModel.h */,
+				3E35DC651F47AD1500018732 /* GitHubKeyMapRepoModelDict.h */,
+				3E35DC661F47AD1500018732 /* GitHubRepoModel.h */,
+				3E35DC671F47AD1500018732 /* GitHubRepoModelForUSMapper.h */,
+				3E35DC681F47AD1500018732 /* ImageModel.h */,
+				3E35DC691F47AD1500018732 /* InteractionModel.h */,
+				3E35DC6A1F47AD1500018732 /* JSONTypesModel.h */,
+				3E35DC6B1F47AD1500018732 /* JSONTypesModelWithValidation1.h */,
+				3E35DC6C1F47AD1500018732 /* JSONTypesModelWithValidation2.h */,
+				3E35DC6D1F47AD1500018732 /* ModelForUpperCaseMapper.h */,
+				3E35DC6E1F47AD1500018732 /* NestedModel.h */,
+				3E35DC6F1F47AD1500018732 /* OPTLYJSONValueTransformer+UIColor.h */,
+				3E35DC701F47AD1500018732 /* OptionalPropModel.h */,
+				3E35DC711F47AD1500018732 /* PostModel.h */,
+				3E35DC721F47AD1500018732 /* PostsModel.h */,
+				3E35DC731F47AD1500018732 /* PrimitivesModel.h */,
+				3E35DC741F47AD1500018732 /* RenamedPropertyModel.h */,
+				3E35DC751F47AD1500018732 /* ReposModel.h */,
+				3E35DC761F47AD1500018732 /* RpcRequestModel.h */,
+				3E35DC771F47AD1500018732 /* SpecialPropertyModel.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		3EA27B171F47ABA900C0208F /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				3E35DC791F47AD2800018732 /* BuiltInConversionsModel.m */,
+				3E35DC5E1F47AD1500018732 /* ConcurrentReposModel.m */,
+				3E35DC7A1F47AD2800018732 /* CopyrightModel.m */,
+				3E35DC7B1F47AD2800018732 /* CustomPropertyModel.m */,
+				3E35DC7C1F47AD2800018732 /* DrugModel.m */,
+				3E35DC7D1F47AD2800018732 /* EnumModel.m */,
+				3E35DC7E1F47AD2800018732 /* ExtremeNestingModel.m */,
+				3E35DC7F1F47AD2800018732 /* GitHubKeyMapRepoModel.m */,
+				3E35DC801F47AD2800018732 /* GitHubKeyMapRepoModelDict.m */,
+				3E35DC811F47AD2800018732 /* GitHubRepoModel.m */,
+				3E35DC821F47AD2800018732 /* GitHubRepoModelForUSMapper.m */,
+				3E35DC831F47AD2800018732 /* ImageModel.m */,
+				3E35DC841F47AD2800018732 /* InteractionModel.m */,
+				3E35DC851F47AD2800018732 /* JSONTypesModel.m */,
+				3E35DC861F47AD2800018732 /* JSONTypesModelWithValidation1.m */,
+				3E35DC871F47AD2800018732 /* JSONTypesModelWithValidation2.m */,
+				3E35DC881F47AD2800018732 /* ModelForUpperCaseMapper.m */,
+				3E35DC891F47AD2800018732 /* NestedModel.m */,
+				3E35DC8A1F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m */,
+				3E35DC8B1F47AD2800018732 /* OptionalPropModel.m */,
+				3E35DC8C1F47AD2800018732 /* PostModel.m */,
+				3E35DC8D1F47AD2800018732 /* PostsModel.m */,
+				3E35DC8E1F47AD2800018732 /* PrimitivesModel.m */,
+				3E35DC8F1F47AD2800018732 /* RenamedPropertyModel.m */,
+				3E35DC901F47AD2800018732 /* ReposModel.m */,
+				3E35DC911F47AD2800018732 /* RpcRequestModel.m */,
+				3E35DC921F47AD2800018732 /* SpecialPropertyModel.m */,
+			);
+			name = Implementations;
+			sourceTree = "<group>";
+		};
 		93BE4E5119FD429B5D9A3435 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */,
-				3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */,
-				4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */,
-				B0B2C5870F0F8E1FDD2E1FCD /* Pods-OptimizelySDKCoreTVOS.release.xcconfig */,
 				E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */,
 				924C83E5511EF3E43FC015AF /* Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig */,
 				2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */,
 				93AEC5364770062DEE863663 /* Pods-OptimizelySDKCoreTVOSTests.release.xcconfig */,
-				944729689803E993C9DC6D54 /* Pods-OptimizelySDKCoreiOS.debug.xcconfig */,
-				535C603DDFD996B277A0E064 /* Pods-OptimizelySDKCoreiOS.rc.xcconfig */,
-				D4195831840B6A255A7E0EB9 /* Pods-OptimizelySDKCoreiOS.beta.xcconfig */,
-				01386A41636DEDC5D8938455 /* Pods-OptimizelySDKCoreiOS.release.xcconfig */,
 				A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */,
 				51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */,
 				0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */,
@@ -607,6 +1064,10 @@
 		EA2FA9721DC6F3CF00B1D81B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E99AA331F4BB206009F8805 /* UIKit.framework */,
+				3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */,
+				3E35DCE71F47B44900018732 /* CoreGraphics.framework */,
+				3E35DCE51F47B42E00018732 /* UIKit.framework */,
 				2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */,
 				EA2FA9711DC6F3CF00B1D81B /* murmur */,
 				BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */,
@@ -637,6 +1098,8 @@
 		EA3C67FB1DC1E66C00C578CA = {
 			isa = PBXGroup;
 			children = (
+				3E858C5C1F42275700D53856 /* OPTLYJSONModel */,
+				3EA27B081F47AB0D00C0208F /* OPTLYJSONModelTests */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
 				EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */,
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
@@ -652,6 +1115,8 @@
 				EA2FA8061DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests.xctest */,
 				EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */,
 				EA2FA8261DC5DBB100B1D81B /* OptimizelySDKCoreTVOSTests.xctest */,
+				3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */,
+				3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -743,6 +1208,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
+				3E858C6F1F4227CD00D53856 /* OPTLYJSONModelClassProperty.h in Headers */,
+				3E858C851F4227E300D53856 /* OPTLYJSONValueTransformer.h in Headers */,
+				3E858C831F4227E300D53856 /* OPTLYJSONKeyMapper.h in Headers */,
+				3E858C711F4227CD00D53856 /* OPTLYJSONModelError.h in Headers */,
+				3E858C6D1F4227CD00D53856 /* OPTLYJSONModel.h in Headers */,
+				3E858C661F4227BA00D53856 /* OPTLYJSONModelLib.h in Headers */,
 				EAC5F3531E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EAC5F3431E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA2FAB821DC6FA7D00B1D81B /* OptimizelySDKCore.h in Headers */,
@@ -759,7 +1231,6 @@
 				EA2FAB521DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */,
 				EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */,
 				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
-				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA2FAB121DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
 				EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
@@ -796,6 +1267,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
+				3E858C871F4227ED00D53856 /* OPTLYJSONModel.h in Headers */,
+				3E858C8B1F4227F900D53856 /* OPTLYJSONModelError.h in Headers */,
+				3E858C931F42280500D53856 /* OPTLYJSONModelLib.h in Headers */,
+				3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */,
+				3E858C941F42280900D53856 /* OPTLYJSONKeyMapper.h in Headers */,
+				3E858C891F4227F400D53856 /* OPTLYJSONModelClassProperty.h in Headers */,
 				EA2FAB011DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB291DC6F59100B1D81B /* OPTLYBucketer.h in Headers */,
 				EA2FAA4D1DC6F53E00B1D81B /* Optimizely.h in Headers */,
@@ -812,7 +1290,6 @@
 				EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
-				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
 				EA8FD0E01DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
 				EA2FAA951DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
@@ -848,16 +1325,50 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3E99A9F21F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPTLYJSONModelTVOSTests" */;
+			buildPhases = (
+				3E99A9EF1F4BAF9A009F8805 /* Sources */,
+				3E99A9F01F4BAF9A009F8805 /* Frameworks */,
+				3E99A9F11F4BAF9A009F8805 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E99A9FA1F4BAF9A009F8805 /* PBXTargetDependency */,
+			);
+			name = OPTLYJSONModelTVOSTests;
+			productName = OPTLYJSONModelTVOSTests;
+			productReference = 3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3EA27B061F47AB0D00C0208F /* OPTLYJSONModeliOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPTLYJSONModeliOSTests" */;
+			buildPhases = (
+				3EA27B031F47AB0D00C0208F /* Sources */,
+				3EA27B041F47AB0D00C0208F /* Frameworks */,
+				3EA27B051F47AB0D00C0208F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EA27B0E1F47AB0D00C0208F /* PBXTargetDependency */,
+			);
+			name = OPTLYJSONModeliOSTests;
+			productName = OPTLYJSONModeliOSTests;
+			productReference = 3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA2FA80F1DC5DBA000B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreiOS" */;
 			buildPhases = (
-				336F719F20CFDC93EC747F72 /* [CP] Check Pods Manifest.lock */,
 				EA2FA7F91DC5DBA000B1D81B /* Sources */,
 				EA2FA7FA1DC5DBA000B1D81B /* Frameworks */,
 				EA2FA7FB1DC5DBA000B1D81B /* Headers */,
 				EA2FA7FC1DC5DBA000B1D81B /* Resources */,
-				9745B5632209355078D8AE85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -893,12 +1404,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA2FA82F1DC5DBB100B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreTVOS" */;
 			buildPhases = (
-				896044CC9A207A5E6EDF88AF /* [CP] Check Pods Manifest.lock */,
 				EA2FA8191DC5DBB100B1D81B /* Sources */,
 				EA2FA81A1DC5DBB100B1D81B /* Frameworks */,
 				EA2FA81B1DC5DBB100B1D81B /* Headers */,
 				EA2FA81C1DC5DBB100B1D81B /* Resources */,
-				BD34B74BDAEA912D5D24FD13 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -939,6 +1448,14 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
+					3E99A9F21F4BAF9A009F8805 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					3EA27B061F47AB0D00C0208F = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					EA2FA7FD1DC5DBA000B1D81B = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
@@ -969,6 +1486,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				3EA27B061F47AB0D00C0208F /* OPTLYJSONModeliOSTests */,
+				3E99A9F21F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests */,
 				EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */,
 				EA2FA8051DC5DBA000B1D81B /* OptimizelySDKCoreiOSTests */,
 				EA2FA81D1DC5DBB100B1D81B /* OptimizelySDKCoreTVOS */,
@@ -978,10 +1497,55 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3E99A9F11F4BAF9A009F8805 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA351F4BB21A009F8805 /* colors.json in Resources */,
+				3E99AA361F4BB21A009F8805 /* converts.json in Resources */,
+				3E99AA371F4BB21A009F8805 /* github-iphone.json in Resources */,
+				3E99AA381F4BB21A009F8805 /* jsonTypes.json in Resources */,
+				3E99AA391F4BB21A009F8805 /* nestedData.json in Resources */,
+				3E99AA3A1F4BB21A009F8805 /* nestedDataWithArrayError.json in Resources */,
+				3E99AA3B1F4BB21A009F8805 /* nestedDataWithDictionaryError.json in Resources */,
+				3E99AA3C1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImages.json in Resources */,
+				3E99AA3D1F4BB21A009F8805 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */,
+				3E99AA3E1F4BB21A009F8805 /* post.json in Resources */,
+				3E99AA3F1F4BB21A009F8805 /* primitives.json in Resources */,
+				3E99AA401F4BB21A009F8805 /* primitivesWithErrors.json in Resources */,
+				3E99AA411F4BB21A009F8805 /* specialPropertyName.json in Resources */,
+				3E99AA421F4BB21A009F8805 /* withOptProp.json in Resources */,
+				3E99AA431F4BB21A009F8805 /* withoutOptProp.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA27B051F47AB0D00C0208F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E35DCC61F47AD3D00018732 /* primitives.json in Resources */,
+				3E35DCC41F47AD3D00018732 /* nestedDataWithTypeMismatchOnImagesObject.json in Resources */,
+				3E35DCC01F47AD3D00018732 /* nestedData.json in Resources */,
+				3E35DCBE1F47AD3D00018732 /* github-iphone.json in Resources */,
+				3E35DCBF1F47AD3D00018732 /* jsonTypes.json in Resources */,
+				3E35DCC31F47AD3D00018732 /* nestedDataWithTypeMismatchOnImages.json in Resources */,
+				3E35DCC71F47AD3D00018732 /* primitivesWithErrors.json in Resources */,
+				3E35DCC51F47AD3D00018732 /* post.json in Resources */,
+				3E35DCC91F47AD3D00018732 /* withOptProp.json in Resources */,
+				3E35DCC11F47AD3D00018732 /* nestedDataWithArrayError.json in Resources */,
+				3E35DCBC1F47AD3D00018732 /* colors.json in Resources */,
+				3E35DCCA1F47AD3D00018732 /* withoutOptProp.json in Resources */,
+				3E35DCBD1F47AD3D00018732 /* converts.json in Resources */,
+				3E35DCC21F47AD3D00018732 /* nestedDataWithDictionaryError.json in Resources */,
+				3E35DCC81F47AD3D00018732 /* specialPropertyName.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA2FA7FC1DC5DBA000B1D81B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E858C601F42277B00D53856 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,22 +1616,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		336F719F20CFDC93EC747F72 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		38A610DE7FA3981A6C09C0B1 /* [CP] Copy Pods Resources */ = {
@@ -1097,7 +1646,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8857BE90A44CFBEDA6B9CD96 /* [CP] Copy Pods Resources */ = {
@@ -1115,36 +1664,6 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		896044CC9A207A5E6EDF88AF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9745B5632209355078D8AE85 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreiOS/Pods-OptimizelySDKCoreiOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AFBD9685AB3F81623C9C815B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1160,28 +1679,126 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BD34B74BDAEA912D5D24FD13 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOS/Pods-OptimizelySDKCoreTVOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3E99A9EF1F4BAF9A009F8805 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E99AA161F4BB1E2009F8805 /* BuiltInConversionsModel.m in Sources */,
+				3E99AA171F4BB1E2009F8805 /* CopyrightModel.m in Sources */,
+				3E99AA181F4BB1E2009F8805 /* CustomPropertyModel.m in Sources */,
+				3E99AA191F4BB1E2009F8805 /* DrugModel.m in Sources */,
+				3E99AA1A1F4BB1E2009F8805 /* EnumModel.m in Sources */,
+				3E99AA1B1F4BB1E2009F8805 /* ExtremeNestingModel.m in Sources */,
+				3E99AA1C1F4BB1E2009F8805 /* GitHubKeyMapRepoModel.m in Sources */,
+				3E99AA1D1F4BB1E2009F8805 /* GitHubKeyMapRepoModelDict.m in Sources */,
+				3E99AA1E1F4BB1E2009F8805 /* GitHubRepoModel.m in Sources */,
+				3E99AA1F1F4BB1E2009F8805 /* GitHubRepoModelForUSMapper.m in Sources */,
+				3E99AA201F4BB1E2009F8805 /* ImageModel.m in Sources */,
+				3E99AA211F4BB1E2009F8805 /* InteractionModel.m in Sources */,
+				3E99AA221F4BB1E2009F8805 /* JSONTypesModel.m in Sources */,
+				3E99AA231F4BB1E2009F8805 /* JSONTypesModelWithValidation1.m in Sources */,
+				3E99AA241F4BB1E2009F8805 /* JSONTypesModelWithValidation2.m in Sources */,
+				3E99AA251F4BB1E2009F8805 /* ModelForUpperCaseMapper.m in Sources */,
+				3E99AA261F4BB1E2009F8805 /* NestedModel.m in Sources */,
+				3E99AA271F4BB1E2009F8805 /* OPTLYJSONValueTransformer+UIColor.m in Sources */,
+				3E99AA281F4BB1E2009F8805 /* OptionalPropModel.m in Sources */,
+				3E99AA291F4BB1E2009F8805 /* PostModel.m in Sources */,
+				3E99AA2A1F4BB1E2009F8805 /* PostsModel.m in Sources */,
+				3E99AA2B1F4BB1E2009F8805 /* PrimitivesModel.m in Sources */,
+				3E99AA2C1F4BB1E2009F8805 /* RenamedPropertyModel.m in Sources */,
+				3E99AA2D1F4BB1E2009F8805 /* ReposModel.m in Sources */,
+				3E99AA2E1F4BB1E2009F8805 /* RpcRequestModel.m in Sources */,
+				3E99AA2F1F4BB1E2009F8805 /* SpecialPropertyModel.m in Sources */,
+				3E99AA301F4BB1E2009F8805 /* OPTLYJSONModelTestHelper.m in Sources */,
+				3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */,
+				3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */,
+				3E99AA021F4BB1BA009F8805 /* ConcurrentTests.m in Sources */,
+				3E99AA031F4BB1BA009F8805 /* CustomPropsTests.m in Sources */,
+				3E99AA041F4BB1BA009F8805 /* ExtremeNestingTests.m in Sources */,
+				3E99AA051F4BB1BA009F8805 /* IdPropertyTests.m in Sources */,
+				3E99AA061F4BB1BA009F8805 /* InitWithDataTests.m in Sources */,
+				3E99AA071F4BB1BA009F8805 /* JSONTypesReadTests.m in Sources */,
+				3E99AA081F4BB1BA009F8805 /* KeyMappingTests.m in Sources */,
+				3E99AA091F4BB1BA009F8805 /* NestedModelsTests.m in Sources */,
+				3E99AA0A1F4BB1BA009F8805 /* NullTests.m in Sources */,
+				3E99AA0B1F4BB1BA009F8805 /* OptionalPropertiesTests.m in Sources */,
+				3E99AA0C1F4BB1BA009F8805 /* PersistTests.m in Sources */,
+				3E99AA0D1F4BB1BA009F8805 /* PrimitiveTypesReadTests.m in Sources */,
+				3E99AA0E1F4BB1BA009F8805 /* SanityTests.m in Sources */,
+				3E99AA0F1F4BB1BA009F8805 /* SimpleDataErrorTests.m in Sources */,
+				3E99AA101F4BB1BA009F8805 /* SpecialPropertiesTests.m in Sources */,
+				3E99AA111F4BB1BA009F8805 /* SpecialPropertyNameTests.m in Sources */,
+				3E99AA121F4BB1BA009F8805 /* SpecialValuesTests.m in Sources */,
+				3E99AA131F4BB1BA009F8805 /* TransformerExceptionTests.m in Sources */,
+				3E99AA141F4BB1BA009F8805 /* ValidationTests.m in Sources */,
+				3E99AA151F4BB1BA009F8805 /* ConcurrentReposModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA27B031F47AB0D00C0208F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E35DC971F47AD2800018732 /* EnumModel.m in Sources */,
+				3E35DC941F47AD2800018732 /* CopyrightModel.m in Sources */,
+				3E35DC511F47ACFE00018732 /* NullTests.m in Sources */,
+				3E35DC9D1F47AD2800018732 /* ImageModel.m in Sources */,
+				3E35DCA31F47AD2800018732 /* NestedModel.m in Sources */,
+				3E35DC981F47AD2800018732 /* ExtremeNestingModel.m in Sources */,
+				3E35DC9C1F47AD2800018732 /* GitHubRepoModelForUSMapper.m in Sources */,
+				3E35DC9A1F47AD2800018732 /* GitHubKeyMapRepoModelDict.m in Sources */,
+				3E35DC4C1F47ACFE00018732 /* IdPropertyTests.m in Sources */,
+				3E35DC781F47AD1500018732 /* ConcurrentReposModel.m in Sources */,
+				3E35DCA61F47AD2800018732 /* PostModel.m in Sources */,
+				3E35DCA01F47AD2800018732 /* JSONTypesModelWithValidation1.m in Sources */,
+				3E35DCA71F47AD2800018732 /* PostsModel.m in Sources */,
+				3E35DC551F47ACFE00018732 /* SanityTests.m in Sources */,
+				3E35DC541F47ACFE00018732 /* PrimitiveTypesReadTests.m in Sources */,
+				3E35DC521F47ACFE00018732 /* OptionalPropertiesTests.m in Sources */,
+				3E35DC481F47ACFE00018732 /* BuiltInConversionsTests.m in Sources */,
+				3E35DC4D1F47ACFE00018732 /* InitWithDataTests.m in Sources */,
+				3E35DCAA1F47AD2800018732 /* ReposModel.m in Sources */,
+				3E35DC531F47ACFE00018732 /* PersistTests.m in Sources */,
+				3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */,
+				3E35DC491F47ACFE00018732 /* ConcurrentTests.m in Sources */,
+				3E35DC561F47ACFE00018732 /* SimpleDataErrorTests.m in Sources */,
+				3E35DC591F47ACFE00018732 /* SpecialValuesTests.m in Sources */,
+				3E35DC931F47AD2800018732 /* BuiltInConversionsModel.m in Sources */,
+				3E35DC4E1F47ACFE00018732 /* JSONTypesReadTests.m in Sources */,
+				3E35DCAC1F47AD2800018732 /* SpecialPropertyModel.m in Sources */,
+				3E35DCA81F47AD2800018732 /* PrimitivesModel.m in Sources */,
+				3E35DCAB1F47AD2800018732 /* RpcRequestModel.m in Sources */,
+				3E35DCA21F47AD2800018732 /* ModelForUpperCaseMapper.m in Sources */,
+				3E35DC571F47ACFE00018732 /* SpecialPropertiesTests.m in Sources */,
+				3E35DC5B1F47ACFE00018732 /* ValidationTests.m in Sources */,
+				3E35DC4F1F47ACFE00018732 /* KeyMappingTests.m in Sources */,
+				3E35DCA11F47AD2800018732 /* JSONTypesModelWithValidation2.m in Sources */,
+				3E35DC9B1F47AD2800018732 /* GitHubRepoModel.m in Sources */,
+				3E35DC581F47ACFE00018732 /* SpecialPropertyNameTests.m in Sources */,
+				3E35DC501F47ACFE00018732 /* NestedModelsTests.m in Sources */,
+				3E35DC961F47AD2800018732 /* DrugModel.m in Sources */,
+				3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */,
+				3E35DC991F47AD2800018732 /* GitHubKeyMapRepoModel.m in Sources */,
+				3E35DCA51F47AD2800018732 /* OptionalPropModel.m in Sources */,
+				3E35DC4A1F47ACFE00018732 /* CustomPropsTests.m in Sources */,
+				3E35DC5A1F47ACFE00018732 /* TransformerExceptionTests.m in Sources */,
+				3E35DC4B1F47ACFE00018732 /* ExtremeNestingTests.m in Sources */,
+				3E35DCA41F47AD2800018732 /* OPTLYJSONValueTransformer+UIColor.m in Sources */,
+				3E35DC9E1F47AD2800018732 /* InteractionModel.m in Sources */,
+				3E35DC951F47AD2800018732 /* CustomPropertyModel.m in Sources */,
+				3E35DC9F1F47AD2800018732 /* JSONTypesModel.m in Sources */,
+				3E35DCA91F47AD2800018732 /* RenamedPropertyModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA2FA7F91DC5DBA000B1D81B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E858C721F4227CD00D53856 /* OPTLYJSONModelError.m in Sources */,
 				EA2FAC2B1DC6FFCF00B1D81B /* murmur3.c in Sources */,
 				EA16D9381ECBA9B200C4C998 /* OPTLYUserProfile.m in Sources */,
 				EA2FAC071DC6FFC600B1D81B /* Optimizely.m in Sources */,
@@ -1199,6 +1816,7 @@
 				EA2FAC111DC6FFC600B1D81B /* OPTLYEventAudience.m in Sources */,
 				EA2FAC121DC6FFC600B1D81B /* OPTLYEventDecision.m in Sources */,
 				EA2FAC131DC6FFC600B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
+				3E858C841F4227E300D53856 /* OPTLYJSONKeyMapper.m in Sources */,
 				EA2FAC141DC6FFC600B1D81B /* OPTLYEventFeature.m in Sources */,
 				EA2FAC151DC6FFC600B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FAC161DC6FFC600B1D81B /* OPTLYEventLayerState.m in Sources */,
@@ -1222,7 +1840,10 @@
 				EA8FD0DD1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
 				EA2FAC251DC6FFC600B1D81B /* OPTLYLogger.m in Sources */,
 				5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */,
+				3E858C861F4227E300D53856 /* OPTLYJSONValueTransformer.m in Sources */,
+				3E858C701F4227CD00D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
+				3E858C6E1F4227CD00D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
 				EA2C24351DE7887C0063ADA0 /* OPTLYVariationVariable.m in Sources */,
 				EAC5F3451E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.m in Sources */,
@@ -1275,11 +1896,13 @@
 				EA2FABEF1DC6FFA100B1D81B /* OPTLYEventFeature.m in Sources */,
 				EA2FABF01DC6FFA100B1D81B /* OPTLYEventHeader.m in Sources */,
 				EA2FABF11DC6FFA100B1D81B /* OPTLYEventLayerState.m in Sources */,
+				3E858C8C1F4227F900D53856 /* OPTLYJSONModelError.m in Sources */,
 				EA2C24301DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E21DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
+				3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FABF51DC6FFA100B1D81B /* OPTLYEventTicket.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,
@@ -1294,7 +1917,10 @@
 				EAC5F3561E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA2FABFF1DC6FFA100B1D81B /* OPTLYEventBuilder.m in Sources */,
 				EA8FD0DE1DE9798E00D950AD /* OPTLYHTTPRequestManager.m in Sources */,
+				3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */,
+				3E858C8A1F4227F900D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC001DC6FFA100B1D81B /* OPTLYLogger.m in Sources */,
+				3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */,
 				5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,
@@ -1329,6 +1955,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3E99A9FA1F4BAF9A009F8805 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA2FA81D1DC5DBB100B1D81B /* OptimizelySDKCoreTVOS */;
+			targetProxy = 3E99A9F91F4BAF9A009F8805 /* PBXContainerItemProxy */;
+		};
+		3EA27B0E1F47AB0D00C0208F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */;
+			targetProxy = 3EA27B0D1F47AB0D00C0208F /* PBXContainerItemProxy */;
+		};
 		EA2FA8091DC5DBA000B1D81B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA2FA7FD1DC5DBA000B1D81B /* OptimizelySDKCoreiOS */;
@@ -1342,6 +1978,142 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3E99A9FB1F4BAF9A009F8805 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3E99A9FC1F4BAF9A009F8805 /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = RC;
+		};
+		3E99A9FD1F4BAF9A009F8805 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Beta;
+		};
+		3E99A9FE1F4BAF9A009F8805 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModelTVOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		3EA27B0F1F47AB0D00C0208F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3EA27B101F47AB0D00C0208F /* RC */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = RC;
+		};
+		3EA27B111F47AB0D00C0208F /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Beta;
+		};
+		3EA27B121F47AB0D00C0208F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "OPTLYJSONModelTests/OPTLYJSONModelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimizely.OPTLYJSONModeliOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EA2FA7571DC40BDF00B1D81B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1462,7 +2234,6 @@
 		};
 		EA2FA8101DC5DBA000B1D81B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 944729689803E993C9DC6D54 /* Pods-OptimizelySDKCoreiOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1474,6 +2245,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../**",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1482,6 +2257,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1492,7 +2268,6 @@
 		};
 		EA2FA8111DC5DBA000B1D81B /* RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 535C603DDFD996B277A0E064 /* Pods-OptimizelySDKCoreiOS.rc.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1504,10 +2279,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../**",
+				);
 				INFOPLIST_FILE = "OptimizelySDKCore/OptimizelySDKCore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1518,7 +2298,6 @@
 		};
 		EA2FA8121DC5DBA000B1D81B /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4195831840B6A255A7E0EB9 /* Pods-OptimizelySDKCoreiOS.beta.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1530,10 +2309,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../**",
+				);
 				INFOPLIST_FILE = "OptimizelySDKCore/OptimizelySDKCore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1544,7 +2328,6 @@
 		};
 		EA2FA8131DC5DBA000B1D81B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01386A41636DEDC5D8938455 /* Pods-OptimizelySDKCoreiOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1556,10 +2339,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../**",
+				);
 				INFOPLIST_FILE = "OptimizelySDKCore/OptimizelySDKCore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCore;
 				PRODUCT_MODULE_NAME = OptimizelySDKCore;
 				PRODUCT_NAME = OptimizelySDKCore;
@@ -1634,7 +2422,6 @@
 		};
 		EA2FA8301DC5DBB100B1D81B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6CC17F155793CF43AB7A3D9 /* Pods-OptimizelySDKCoreTVOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1665,7 +2452,6 @@
 		};
 		EA2FA8311DC5DBB100B1D81B /* RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBA850033BBEC39D85B617B /* Pods-OptimizelySDKCoreTVOS.rc.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1692,7 +2478,6 @@
 		};
 		EA2FA8321DC5DBB100B1D81B /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AD98EC23436656DED35EBED /* Pods-OptimizelySDKCoreTVOS.beta.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1719,7 +2504,6 @@
 		};
 		EA2FA8331DC5DBB100B1D81B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0B2C5870F0F8E1FDD2E1FCD /* Pods-OptimizelySDKCoreTVOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1939,6 +2723,28 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E99A9FF1F4BAF9A009F8805 /* Build configuration list for PBXNativeTarget "OPTLYJSONModelTVOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E99A9FB1F4BAF9A009F8805 /* Debug */,
+				3E99A9FC1F4BAF9A009F8805 /* RC */,
+				3E99A9FD1F4BAF9A009F8805 /* Beta */,
+				3E99A9FE1F4BAF9A009F8805 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPTLYJSONModeliOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA27B0F1F47AB0D00C0208F /* Debug */,
+				3EA27B101F47AB0D00C0208F /* RC */,
+				3EA27B111F47AB0D00C0208F /* Beta */,
+				3EA27B121F47AB0D00C0208F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA2FA80F1DC5DBA000B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

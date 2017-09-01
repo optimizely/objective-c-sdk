@@ -30,17 +30,18 @@
  */
 
 #import <Foundation/Foundation.h>
+
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 #import "OPTLYExperimentBucketMapEntity.h"
 
 @protocol OPTLYUserProfile
 @end
 
-@interface OPTLYUserProfile : JSONModel
+@interface OPTLYUserProfile : OPTLYJSONModel
 
 /// ID identifying the user
 @property (nonatomic, strong) NSString *user_id;

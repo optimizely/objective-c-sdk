@@ -38,6 +38,36 @@
                ReferencedContainer = "container:OptimizelySDKDatafileManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA52472A1DC7193B00AF6685"
+               BuildableName = "OptimizelySDKSharedTVOSTests.xctest"
+               BlueprintName = "OptimizelySDKSharedTVOSTests"
+               ReferencedContainer = "container:../OptimizelySDKShared/OptimizelySDKShared.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA2FA8251DC5DBB100B1D81B"
+               BuildableName = "OptimizelySDKCoreTVOSTests.xctest"
+               BlueprintName = "OptimizelySDKCoreTVOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E99A9F21F4BAF9A009F8805"
+               BuildableName = "OPTLYJSONModelTVOSTests.xctest"
+               BlueprintName = "OPTLYJSONModelTVOSTests"
+               ReferencedContainer = "container:../OptimizelySDKCore/OptimizelySDKCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

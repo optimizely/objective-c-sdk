@@ -16,10 +16,6 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_TVOS_VERSION=@\\\"#{s.version}\\\"" }
-  s.subspec "JSONModel" do |ss|
-      ss.dependency 'JSONModel', '= 1.3.0'
-      ss.xcconfig = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/JSONModel" }
-  end
   s.dependency 'OptimizelySDKEventDispatcher', '1.3.0'
   s.dependency 'OptimizelySDKUserProfileService', '1.3.0'
   s.dependency 'OptimizelySDKDatafileManager', '1.3.0'

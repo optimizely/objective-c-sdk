@@ -18,9 +18,9 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "JSONModelLib.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <JSONModel/JSONModelLib.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
 @class OPTLYEventDecisionTicket, OPTLYEventDecision;
@@ -28,7 +28,7 @@
 @protocol OPTLYEventLayerState
 @end
 
-@interface OPTLYEventLayerState : JSONModel
+@interface OPTLYEventLayerState : OPTLYJSONModel
 
 // The id of the layer state
 @property (nonatomic, strong, nonnull) NSString *layerId;
