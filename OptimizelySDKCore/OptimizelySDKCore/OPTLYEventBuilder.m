@@ -137,7 +137,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     // if the object is an NSNumber, then char, floats, and boolean values will be cast to a double int
     if ([value isKindOfClass:[NSNumber class]]) {
         // Require real numbers (not infinite or NaN).
-        double doubleValue = [answer doubleValue];
+        double doubleValue = [(NSNumber*)value doubleValue];
         if (isfinite(doubleValue)) {
             answer = (NSNumber*)value;
         } else {
@@ -145,7 +145,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to double
-        double doubleValue = [(NSNumber*)value doubleValue];
+        double doubleValue = [(NSString*)value doubleValue];
         if (isfinite(doubleValue)) {
             answer = [NSNumber numberWithDouble:doubleValue];
         } else {

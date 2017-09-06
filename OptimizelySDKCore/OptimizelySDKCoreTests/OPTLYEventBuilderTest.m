@@ -266,6 +266,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSArray *eventMetrics = params[@"eventMetrics"];
     XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
     XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{}
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 - (void)testBuildEventTicketWithBooleanRevenue
@@ -414,6 +422,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSArray *eventMetrics = params[@"eventMetrics"];
     XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
     XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 - (void)testBuildEventTicketWithINFINITYValue
@@ -435,6 +451,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSArray *eventMetrics = params[@"eventMetrics"];
     XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
     XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 - (void)testBuildEventTicketWithInvalidObjectValue
