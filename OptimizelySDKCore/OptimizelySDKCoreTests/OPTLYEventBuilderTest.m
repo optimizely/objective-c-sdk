@@ -37,6 +37,7 @@ static NSString * const kProjectId = @"6377970066";
 static NSString * const kRevision = @"83";
 static NSString * const kLayerId = @"1234";
 static NSInteger kEventRevenue = 88;
+static double kEventValue = 123.456;
 static NSString * const kTotalRevenueId = @"6316734272";
 static NSString * const kAttributeId = @"6359881003";
 static NSString * const kAttributeKeyBrowserType = @"browser_type";
@@ -107,7 +108,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.bucketer = nil;
 }
 
-#pragma mark - Test buildEventTicket:...
+#pragma mark - Test buildEventTicket:... Audiences
 
 - (void)testBuildEventTicketWithNoAudience
 {
@@ -162,6 +163,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+#pragma mark - Test buildEventTicket:... Invalid Args
+
 - (void)testBuildEventTicketWithInvalidAudience
 {
     // check without attributes that satisfy audience requirement
@@ -197,6 +200,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                          attributes:nil];
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
+
+#pragma mark - Test buildEventTicket:... OPTLYEventMetricNameRevenue
 
 - (void)testBuildEventTicketWithRevenue
 {
@@ -313,6 +318,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+#pragma mark - Test buildEventTicket:... eventTags
 
 - (void)testBuildEventTicketWithEventTags
 {
@@ -365,6 +371,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+#pragma mark - Test buildEventTicket:... Multiple Args
+
 - (void)testBuildEventTicketWithAllArguments
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
@@ -410,6 +418,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
 }
 
+#pragma mark - Test buildEventTicket:... OPTLYEventParameterKeysAnonymizeIP
+
 - (void)testBuildEventTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
     OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
@@ -425,6 +435,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
+
+#pragma mark - Test buildEventTicket:... OptimizelyBucketId
 
 - (void)testCreateImpressionEventWithBucketingIDAttribute
 {
