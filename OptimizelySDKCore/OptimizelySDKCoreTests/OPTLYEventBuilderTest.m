@@ -36,7 +36,7 @@ static NSString * const kAccountId = @"6365361536";
 static NSString * const kProjectId = @"6377970066";
 static NSString * const kRevision = @"83";
 static NSString * const kLayerId = @"1234";
-static NSInteger kEventValue = 88;
+static NSInteger kEventRevenue = 88;
 static NSString * const kTotalRevenueId = @"6316734272";
 static NSString * const kAttributeId = @"6359881003";
 static NSString * const kAttributeKeyBrowserType = @"browser_type";
@@ -206,14 +206,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -350,7 +350,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue],
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue],
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
@@ -358,7 +358,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue],
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue],
                               kAttributeKeyBrowserType : kAttributeValueChrome}
                 attributes:attributes
                     userId:kUserId
@@ -373,14 +373,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
                  eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
+                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
@@ -394,7 +394,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithMultipleExperimentsName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     
