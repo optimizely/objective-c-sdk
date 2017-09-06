@@ -93,6 +93,38 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     return [params copy];
 }
 
+- (NSNumber *)revenueValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
+    // Convert value to NSNumber of type "long long" or nil (failure) if impossible.
+    NSNumber *answer = nil;
+    // if the object is an NSNumber, then char, floats, and boolean values will be cast to a long long int
+    if ([value isKindOfClass:[NSNumber class]]) {
+        answer = (NSNumber*)value;
+        const char *objCType = [answer objCType];
+        if (!(strcmp(objCType, @encode(short)) == 0 ||
+              strcmp(objCType, @encode(int)) == 0 ||
+              strcmp(objCType, @encode(long)) == 0 ||
+              strcmp(objCType, @encode(long long)) == 0 ||
+              strcmp(objCType, @encode(unsigned short)) == 0 ||
+              strcmp(objCType, @encode(unsigned int)) == 0 ||
+              strcmp(objCType, @encode(unsigned long)) == 0 ||
+              strcmp(objCType, @encode(unsigned long long)) == 0)) {
+            // cast floats etc. to long long
+            long long longLongValue = [answer longLongValue];
+            answer = [NSNumber numberWithLongLong:longLongValue];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesReveneuValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+        }
+    } else if ([value isKindOfClass:[NSString class]]) {
+        // cast strings to long long
+        long long longLongValue = [(NSNumber*)value longLongValue];
+        answer = [NSNumber numberWithLongLong:longLongValue];
+        [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, longLongValue] withLevel:OptimizelyLogLevelWarning];
+    } else {
+        // all other objects can't be cast to long long
+        [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+    };
+    return answer;
+}
+
 - (NSDictionary *)buildEventTicket:(OPTLYProjectConfig *)config
                           bucketer:(id<OPTLYBucketer>)bucketer
                             userId:(NSString *)userId
@@ -123,33 +155,10 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
-        
-        id revenueValue = eventTags[OPTLYEventMetricNameRevenue];
-            
-        // if the object is an NSNumber, then char, floats, and boolean values will be cast to a long long int
-        if ([revenueValue isKindOfClass:[NSNumber class]]) {
-            if (!(strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(short)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(int)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(long long)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned short)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned int)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned long)) == 0 ||
-                  strcmp([eventTags[OPTLYEventMetricNameRevenue] objCType], @encode(unsigned long long)) == 0)) {
-                NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
-                long long revenueValueCast = [revenueValue longLongValue];
-                mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueCast];
-                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesReveneuValueInvalidInteger, revenueValueCast] withLevel:OptimizelyLogLevelWarning];
-            }
-        // cast strings to int
-        } else if ([revenueValue isKindOfClass:[NSString class]]) {
-            NSNumber *revenueValue = eventTags[OPTLYEventMetricNameRevenue];
-            long long revenueValueCast = [revenueValue longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, revenueValueCast] withLevel:OptimizelyLogLevelWarning];
-            mutableEventTags[OPTLYEventMetricNameRevenue] = [NSNumber numberWithLongLong:revenueValueCast];
-        // all other objects can't be cast to an integer
+        NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
+        if (revenueValue != nil) {
+            mutableEventTags[OPTLYEventMetricNameRevenue] = revenueValue;
         } else {
-            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
             [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
         }
     }
