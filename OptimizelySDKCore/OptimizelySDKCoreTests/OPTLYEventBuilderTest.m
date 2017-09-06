@@ -248,6 +248,26 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithTooLargeDoubleRevenue
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    double doubleRevenueValue = 1.0e100;
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    // no numeric value will be sent
+    NSArray *eventMetrics = params[@"eventMetrics"];
+    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+}
+
 - (void)testBuildEventTicketWithBooleanRevenue
 {
     // The SDK issues a console warning about casting BOOL to "long long",

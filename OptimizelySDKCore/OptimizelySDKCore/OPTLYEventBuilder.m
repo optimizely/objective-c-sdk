@@ -108,10 +108,16 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
               strcmp(objCType, @encode(unsigned int)) == 0 ||
               strcmp(objCType, @encode(unsigned long)) == 0 ||
               strcmp(objCType, @encode(unsigned long long)) == 0)) {
-            // cast floats etc. to long long
-            long long longLongValue = [answer longLongValue];
-            answer = [NSNumber numberWithLongLong:longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
+                // cast in range floats etc. to long long, rounding or trunctating fraction parts
+                long long longLongValue = [answer longLongValue];
+                answer = [NSNumber numberWithLongLong:longLongValue];
+                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            } else {
+                // all other NSNumber's can't be reasonably cast to long long
+                answer = nil;
+                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+            }
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
