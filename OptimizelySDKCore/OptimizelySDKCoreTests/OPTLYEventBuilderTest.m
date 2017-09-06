@@ -375,6 +375,48 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithNANValue
+{
+    // The SDK does not allow NAN partly because this value
+    // doesn't serialize into JSON .  SDK issues a console warning
+    // and omits the proposed "value" key-value pair which will not
+    // appear in the transmitted event.  IOW, invalid value suppressed.
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:NAN],
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    // no numeric value will be sent
+    NSArray *eventMetrics = params[@"eventMetrics"];
+    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+}
+
+- (void)testBuildEventTicketWithINFINITYValue
+{
+    // The SDK does not allow INFINITY partly because this value
+    // doesn't serialize into JSON .  SDK issues a console warning
+    // and omits the proposed "value" key-value pair which will not
+    // appear in the transmitted event.  IOW, invalid value suppressed.
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:INFINITY],
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    // no numeric value will be sent
+    NSArray *eventMetrics = params[@"eventMetrics"];
+    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+}
+
 #pragma mark - Test buildEventTicket:... eventTags
 
 - (void)testBuildEventTicketWithEventTags
