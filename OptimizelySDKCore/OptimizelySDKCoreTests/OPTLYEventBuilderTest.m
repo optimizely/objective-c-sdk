@@ -348,6 +348,33 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithStringValue
+{
+    // The SDK issues a console warning about casting NSString to "double",
+    // but a "value" key-value pair will appear in the transmitted event.
+    NSString *stringValue = [NSString stringWithFormat:@"%g", kEventValue];
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameValue : stringValue,
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    
+    // the numeric value should be cast to a double
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:kEventValue],
+                              kAttributeKeyBrowserType : kAttributeValueChrome}
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
 #pragma mark - Test buildEventTicket:... eventTags
 
 - (void)testBuildEventTicketWithEventTags

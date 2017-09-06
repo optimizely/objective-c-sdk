@@ -141,7 +141,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         // cast strings to double
         double doubleValue = [(NSNumber*)value doubleValue];
         if (isfinite(doubleValue)) {
-            answer = [NSNumber numberWithLongLong:doubleValue];
+            answer = [NSNumber numberWithDouble:doubleValue];
         } else {
             [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueString, doubleValue] withLevel:OptimizelyLogLevelWarning];
         }
