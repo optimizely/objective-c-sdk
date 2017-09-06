@@ -248,7 +248,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
-- (void)testBuildEventTicketWithTooLargeDoubleRevenue
+- (void)testBuildEventTicketWithHugeDoubleRevenue
 {
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -435,6 +435,28 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSArray *eventMetrics = params[@"eventMetrics"];
     XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
     XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+}
+
+- (void)testBuildEventTicketWithInvalidObjectValue
+{
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameValue : @[@"BAD",@"DATA"],
+                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    // no numeric value should be included
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
 }
 
 #pragma mark - Test buildEventTicket:... eventTags
