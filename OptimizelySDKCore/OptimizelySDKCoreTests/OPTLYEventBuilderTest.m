@@ -224,8 +224,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
-- (void)testBuildEventTicketWithInvalidDoubleRevenue
+- (void)testBuildEventTicketWithDoubleRevenue
 {
+    // The SDK issues a console warning about casting double to "long long",
+    // but a "revenue" key-value pair will appear in the transmitted event.
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     double doubleRevenueValue = 888.88;
     long long doubleRevenueValueCast = doubleRevenueValue;
@@ -246,8 +248,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
-- (void)testBuildEventTicketWithInvalidBooleanRevenue
+- (void)testBuildEventTicketWithBooleanRevenue
 {
+    // The SDK issues a console warning about casting BOOL to "long long",
+    // but a "revenue" key-value pair will appear in the transmitted event.
     NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
@@ -266,10 +270,13 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
-- (void)testBuildEventTicketWithInvalidStringRevenue
+- (void)testBuildEventTicketWithStringRevenue
 {
+    // The SDK issues a console warning about casting NSString to "long long",
+    // but a "revenue" key-value pair will appear in the transmitted event.
     NSString *stringRevenue = @"8.234";
-    long long int castStringRevenue = [stringRevenue longLongValue];
+    long long castStringRevenue = [stringRevenue longLongValue];
+    XCTAssert(castStringRevenue == 8LL);
     
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
     
@@ -282,7 +289,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
     
-    // the revenue value should be cast to an int
+    // the revenue value should be cast to a long long
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
