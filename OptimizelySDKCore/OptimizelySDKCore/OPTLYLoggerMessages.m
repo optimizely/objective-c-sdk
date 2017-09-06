@@ -97,11 +97,13 @@ NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket = @"[EVENT BUI
 NSString *const OPTLYLoggerMessagesUserIdInvalid = @"[EVENT BUILDER] User ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesVariationIdInvalid = @"[EVENT BUILDER] Variation ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation = @"[EVENT BUILDER] None of the experiments of %@ pass audience evaluation.";
-NSString *const OPTLYLoggerMessagesReveneuValueInvalidInteger = @"[EVENT BUILDER] Provided revenue value is an invalid integer type and will be cast to the integer: %llu.";
-NSString *const OPTLYLoggerMessagesRevenueValueString = @"[EVENT BUILDER] Provided revenue value is a string and will be cast to the integer: %llu.";
+NSString *const OPTLYLoggerMessagesRevenueValueInvalidInteger = @"[EVENT BUILDER] Provided revenue value is an invalid integer type and will be cast to the integer: %lld.";
+NSString *const OPTLYLoggerMessagesRevenueValueString = @"[EVENT BUILDER] Provided revenue value is a string and will be cast to the integer: %lld.";
 NSString *const OPTLYLoggerMessagesRevenueValueInvalid = @"[EVENT BUILDER] Provided revenue value is in an invalid format and will not be sent to results.";
+NSString *const OPTLYLoggerMessagesNumericValueInvalidDouble = @"[EVENT BUILDER] Provided numeric value is an invalid double type and will be cast to the double: %g.";
+NSString *const OPTLYLoggerMessagesNumericValueString = @"[EVENT BUILDER] Provided numeric value is a string and will be cast to the double: %g.";
+NSString *const OPTLYLoggerMessagesNumericValueInvalid = @"[EVENT BUILDER] Provided numeric value is in an invalid format and will not be sent to results.";
 NSString *const OPTLYLoggerMessagesEventTagValueInvalid = @"[EVENT BUILDER] Provided event tag %@ is neither an integer nor a string; skipping.";
-
 
 // ---- Event Dispatcher ----
 // info

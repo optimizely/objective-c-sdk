@@ -96,7 +96,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 - (NSNumber *)revenueValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
     // Convert value to NSNumber of type "long long" or nil (failure) if impossible.
     NSNumber *answer = nil;
-    // if the object is an NSNumber, then char, floats, and boolean values will be cast to a long long int
+    // if the object is an NSNumber, then char, floats, and boolean values will be cast to a long long
     if ([value isKindOfClass:[NSNumber class]]) {
         answer = (NSNumber*)value;
         const char *objCType = [answer objCType];
@@ -111,7 +111,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             // cast floats etc. to long long
             long long longLongValue = [answer longLongValue];
             answer = [NSNumber numberWithLongLong:longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesReveneuValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
@@ -121,6 +121,33 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     } else {
         // all other objects can't be cast to long long
         [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+    };
+    return answer;
+}
+
+- (NSNumber *)numericValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
+    // Convert value to NSNumber of type "double" or nil (failure) if impossible.
+    NSNumber *answer = nil;
+    // if the object is an NSNumber, then char, floats, and boolean values will be cast to a double int
+    if ([value isKindOfClass:[NSNumber class]]) {
+        // Require real numbers (not infinite or NaN).
+        double doubleValue = [answer doubleValue];
+        if (isfinite(doubleValue)) {
+            answer = (NSNumber*)value;
+        } else {
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidDouble, doubleValue] withLevel:OptimizelyLogLevelWarning];
+        }
+    } else if ([value isKindOfClass:[NSString class]]) {
+        // cast strings to double
+        double doubleValue = [(NSNumber*)value doubleValue];
+        if (isfinite(doubleValue)) {
+            answer = [NSNumber numberWithLongLong:doubleValue];
+        } else {
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueString, doubleValue] withLevel:OptimizelyLogLevelWarning];
+        }
+    } else {
+        // all other objects can't be cast to double
+        [config.logger logMessage:OPTLYLoggerMessagesNumericValueInvalid withLevel:OptimizelyLogLevelWarning];
     };
     return answer;
 }
@@ -151,15 +178,25 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         return nil;
     }
     
-    // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
+        // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
         NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
         if (revenueValue != nil) {
             mutableEventTags[OPTLYEventMetricNameRevenue] = revenueValue;
         } else {
             [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+        }
+    }
+    
+    if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameValue]) {
+        // Allow only 'value' eventTags with double values; otherwise the value will be cast to an double
+        NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
+        if (numericValue != nil) {
+            mutableEventTags[OPTLYEventMetricNameValue] = numericValue;
+        } else {
+            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
         }
     }
     
