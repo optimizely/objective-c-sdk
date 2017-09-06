@@ -222,6 +222,19 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    {
+        // Check eventMatrics details.
+        NSArray *eventMetrics = params[@"eventMetrics"];
+        XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+        XCTAssertEqual(eventMetrics.count, 1, @"One event metric should be sent.");
+        NSDictionary *eventMetric = eventMetrics[0];
+        XCTAssert([eventMetric isKindOfClass:[NSDictionary class]], @"eventMetric should be an NSDictionary .");
+        XCTAssertEqual(eventMetric.count, 2, @"Two key-value pairs in eventMetric expected.");
+        XCTAssertEqualObjects(eventMetric[@"name"], OPTLYEventMetricNameRevenue, @"eventMetric name should be %@", OPTLYEventMetricNameRevenue);
+        NSNumber *revenueValue = eventMetric[@"value"];
+        XCTAssert([revenueValue isKindOfClass:[NSNumber class]], @"eventMetric value should be an NSNumber .");
+        XCTAssertEqual([revenueValue longLongValue], kEventRevenue, @"eventMetric value should equal %@ .", @(kEventRevenue));
+    }
 }
 
 - (void)testBuildEventTicketWithDoubleRevenue
@@ -374,6 +387,19 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    {
+        // Check eventMatrics details.
+        NSArray *eventMetrics = params[@"eventMetrics"];
+        XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+        XCTAssertEqual(eventMetrics.count, 1, @"One event metric should be sent.");
+        NSDictionary *eventMetric = eventMetrics[0];
+        XCTAssert([eventMetric isKindOfClass:[NSDictionary class]], @"eventMetric should be an NSDictionary .");
+        XCTAssertEqual(eventMetric.count, 2, @"Two key-value pairs in eventMetric expected.");
+        XCTAssertEqualObjects(eventMetric[@"name"], OPTLYEventMetricNameValue, @"eventMetric name should be %@", OPTLYEventMetricNameValue);
+        NSNumber *numericValue = eventMetric[@"value"];
+        XCTAssert([numericValue isKindOfClass:[NSNumber class]], @"eventMetric value should be an NSNumber .");
+        XCTAssertEqual([numericValue doubleValue], kEventValue, @"eventMetric value should equal %@ .", @(kEventValue));
+    }
 }
 
 - (void)testBuildEventTicketWithStringValue
@@ -922,8 +948,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)checkEventMetric:(NSDictionary *)params
                eventTags:(NSDictionary *)eventTags
 {
-    NSAssert([params[OPTLYEventParameterKeysMetricName] isEqualToString:OPTLYEventMetricNameRevenue], @"Invalid event metric name: %@.", params[OPTLYEventParameterKeysMetricName]);
-    NSAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToNumber:eventTags[OPTLYEventMetricNameRevenue]], @"Invalid event metric value: %@.", params[OPTLYEventParameterKeysMetricValue]);
+    NSArray *metricNames = @[OPTLYEventMetricNameRevenue, OPTLYEventMetricNameValue];
+    NSString *name = params[OPTLYEventParameterKeysMetricName];
+    XCTAssert([metricNames containsObject:name], @"Invalid event metric name: %@.", name);
+    XCTAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToNumber:eventTags[name]], @"Invalid event metric value: %@.", params[OPTLYEventParameterKeysMetricValue]);
 }
 
 - (void)checkEventFeatures:(NSArray *)eventFeatures

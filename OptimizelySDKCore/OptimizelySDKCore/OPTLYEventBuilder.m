@@ -227,7 +227,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     params[OPTLYEventParameterKeysEventEntityId] = StringOrEmpty([config getEventIdForKey:eventName]);
     params[OPTLYEventParameterKeysEventName] = StringOrEmpty(eventName);
     params[OPTLYEventParameterKeysEventFeatures] = [self createEventFeatures:config eventTags:mutableEventTags];
-    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetric:config eventTags:mutableEventTags];
+    params[OPTLYEventParameterKeysEventMetrics] = [self createEventMetrics:config eventTags:mutableEventTags];
     params[OPTLYEventParameterKeysLayerStates] = layerStates;
    
     return [params copy];
@@ -243,14 +243,20 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     return decisionParams;
 }
 
-- (NSArray *)createEventMetric:(OPTLYProjectConfig *)config
-                     eventTags:(NSDictionary *)eventTags
+- (NSArray *)createEventMetrics:(OPTLYProjectConfig *)config
+                      eventTags:(NSDictionary *)eventTags
 {
     NSMutableArray *metrics = [NSMutableArray new];
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
         NSDictionary *metricParam = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameRevenue,
                                        OPTLYEventParameterKeysMetricValue : eventTags[OPTLYEventMetricNameRevenue] };
+        [metrics addObject:metricParam];
+    }
+    
+    if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameValue]) {
+        NSDictionary *metricParam = @{ OPTLYEventParameterKeysMetricName  : OPTLYEventMetricNameValue,
+                                       OPTLYEventParameterKeysMetricValue : eventTags[OPTLYEventMetricNameValue] };
         [metrics addObject:metricParam];
     }
     
