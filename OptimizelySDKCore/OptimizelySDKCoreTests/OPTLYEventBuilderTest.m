@@ -265,10 +265,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                      eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    // no numeric value will be sent
-    NSArray *eventMetrics = params[@"eventMetrics"];
-    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
-    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -277,6 +273,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no numeric value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 - (void)testBuildEventTicketWithHugeUnsignedLongLongRevenue
@@ -294,10 +293,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                      eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithUnsignedLongLong:hugeRevenueValue]}
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    // no numeric value will be sent
-    NSArray *eventMetrics = params[@"eventMetrics"];
-    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
-    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -306,6 +301,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no numeric value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 - (void)testBuildEventTicketWithBooleanRevenue
@@ -365,7 +363,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithInvalidObjectRevenue
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -374,8 +371,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    
-    // no revenue value should be included
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -384,6 +379,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no revenue value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 #pragma mark - Test buildEventTicket:... OPTLYEventMetricNameValue
@@ -453,10 +451,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    // no numeric value will be sent
-    NSArray *eventMetrics = params[@"eventMetrics"];
-    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
-    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -465,6 +459,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no numeric value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 - (void)testBuildEventTicketWithINFINITYValue
@@ -482,10 +479,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    // no numeric value will be sent
-    NSArray *eventMetrics = params[@"eventMetrics"];
-    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
-    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -494,6 +487,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no numeric value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 - (void)testBuildEventTicketWithInvalidObjectValue
@@ -507,7 +503,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    // no numeric value should be included
     [self checkEventTicket:params
                     config:self.config
                    eventId:kEventWithAudienceId
@@ -516,6 +511,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    // no numeric value will be sent
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{}];
 }
 
 #pragma mark - Test buildEventTicket:... eventTags
