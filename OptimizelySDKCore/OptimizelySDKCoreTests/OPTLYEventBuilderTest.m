@@ -549,7 +549,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithRevenueAndEventTags
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -567,6 +566,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
 }
 
 #pragma mark - Test buildEventTicket:... Multiple Args
@@ -574,7 +575,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 - (void)testBuildEventTicketWithAllArguments
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -590,12 +590,13 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
 }
 
 - (void)testBuildEventTicketWithEventMultipleExperiments
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueChrome};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -603,13 +604,12 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                      eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    
+    [self checkEventMetricsDetails:params
+                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
     NSArray *experimentIds = @[@"6364835526", @"6450630664", @"6367863211", @"6376870125", @"6383811281", @"6358043286", @"6370392407", @"6367444440", @"6370821515", @"6447021179"];
     NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    
     NSUInteger numberOfLayers = [layerStates count];
     NSUInteger numberOfExperiments = [experimentIds count];
-    
     // 6383811281 (testExperimentWithFirefoxAudience) is excluded because the attributes do not match
     // 6367444440 (testExperimentNotRunning) is excluded because the experiment is not running
     // 6450630664 should be exlucded becuase it is mutually excluded.
