@@ -394,6 +394,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
+#pragma mark - Test buildEventTicket:... OPTLYEventMetricNameRevenue and OPTLYEventMetricNameValue
+
+- (void)testBuildEventTicketWithRevenueAndValue
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                                       OPTLYEventMetricNameValue:@(kEventValue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                                       OPTLYEventMetricNameValue:@(kEventValue)}];
+}
+
 #pragma mark - Test buildEventTicket:... eventTags
 
 - (void)testBuildEventTicketWithEventTags
