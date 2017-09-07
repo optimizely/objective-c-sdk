@@ -438,7 +438,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // 6383811281 (testExperimentWithFirefoxAudience) is excluded because the attributes do not match
     // 6367444440 (testExperimentNotRunning) is excluded because the experiment is not running
     // 6450630664 should be exlucded becuase it is mutually excluded.
-    NSAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
+    XCTAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
 }
 
 #pragma mark - Test buildEventTicket:... OPTLYEventParameterKeysAnonymizeIP
@@ -456,7 +456,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                attributes:nil];
     
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 #pragma mark - Test buildEventTicket:... OptimizelyBucketId
@@ -560,7 +560,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                             experimentKey:invalidExperimentKey
                                                                               variationId:invalidVariationId
                                                                                attributes:attributes];
-    NSAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
+    XCTAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
 }
 
 - (void)testBuildDecisionTicketWithAnonymizeIPFalse {
@@ -573,7 +573,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                          variationId:kVariationWithoutAudienceId
                                                                           attributes:nil];
     NSNumber *anonymizeIP = decisionEventTicketParams[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 #pragma mark - Helper Methods
@@ -609,7 +609,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                            userId:(NSString *)userId
 {
     // check layer id
-    NSAssert([params[OPTLYEventParameterKeysLayerId] isEqualToString:kLayerId], @"Layer id is invalid.");
+    XCTAssert([params[OPTLYEventParameterKeysLayerId] isEqualToString:kLayerId], @"Layer id is invalid.");
     
     // check decision
     NSDictionary *decision = params[OPTLYEventParameterKeysDecision];
@@ -630,19 +630,21 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                   userId:(NSString *)userId
            experimentIds:(NSArray *)experimentIds
 {
-    NSAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
-    NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
-    NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
-    [self checkEventFeatures:eventFeatures eventTags:eventTags];
-    [self checkEventMetrics:params eventTags:eventTags];
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    [self checkLayerStates:config
-               layerStates:layerStates
-             experimentIds:experimentIds
-                    userId:userId
-                attributes:attributes];
+    XCTAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
+    XCTAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
+    if ([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId]
+        && [params[OPTLYEventParameterKeysEventName] isEqualToString:eventName]) {
+        NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
+        [self checkEventFeatures:eventFeatures eventTags:eventTags];
+        [self checkEventMetrics:params eventTags:eventTags];
+        NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
+        [self checkLayerStates:config
+                   layerStates:layerStates
+                 experimentIds:experimentIds
+                        userId:userId
+                    attributes:attributes];
+    }
 }
-
 
 - (void)checkCommonParams:(NSDictionary *)params
            withAttributes:(NSDictionary *)attributes
@@ -653,39 +655,39 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSNumber *timestamp = params[OPTLYEventParameterKeysTimestamp];
     double time = [timestamp doubleValue]/1000;
     NSDate *eventTimestamp = [NSDate dateWithTimeIntervalSince1970:time];
-    NSAssert([self date:eventTimestamp isBetweenDate:self.begTimestamp andDate:currentTimestamp], @"Invalid timestamp: %@.", eventTimestamp);
+    XCTAssert([self date:eventTimestamp isBetweenDate:self.begTimestamp andDate:currentTimestamp], @"Invalid timestamp: %@.", eventTimestamp);
     
     // check revision
     NSString *revision = params[OPTLYEventParameterKeysRevision];
-    NSAssert([revision isEqualToString:kRevision], @"Incorrect revision number.");
+    XCTAssert([revision isEqualToString:kRevision], @"Incorrect revision number.");
     
     // check visitor id
     NSString *visitorId = params[OPTLYEventParameterKeysVisitorId];
-    NSAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");
+    XCTAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");
     
     // check project id
     NSString *projectId = params[OPTLYEventParameterKeysProjectId];
-    NSAssert([projectId isEqualToString:kProjectId], @"Incorrect project id.");
+    XCTAssert([projectId isEqualToString:kProjectId], @"Incorrect project id.");
     
     // check account id
     NSString *accountId = params[OPTLYEventParameterKeysAccountId];
-    NSAssert([accountId isEqualToString:kAccountId], @"Incorrect accound id");
+    XCTAssert([accountId isEqualToString:kAccountId], @"Incorrect accound id");
     
     // check clientEngine
     NSString *clientEngine = params[OPTLYEventParameterKeysClientEngine];
-    NSAssert([clientEngine isEqualToString:[self.config clientEngine]], @"Incorrect client engine.");
+    XCTAssert([clientEngine isEqualToString:[self.config clientEngine]], @"Incorrect client engine.");
     
     // check clientVersion
     NSString *clientVersion = params[OPTLYEventParameterKeysClientVersion];
-    NSAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
+    XCTAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
     
     // check anonymizeIP
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
     
     // check global holdback
     NSNumber *isGlobalHoldback = params[OPTLYEventParameterKeysIsGlobalHoldback];
-    NSAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");
+    XCTAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");
     
     NSArray *userFeatures = params[OPTLYEventParameterKeysUserFeatures];
     [self checkUserFeatures:userFeatures
@@ -698,44 +700,46 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSUInteger numberOfFeatures = [userFeatures count];
     NSUInteger numberOfAttributes = [attributes count];
     
-    NSAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
+    XCTAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
     
-    NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesName ascending:YES];
-    NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
-    
-    NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
-    
-    for (NSUInteger i = 0; i < numberOfAttributes; i++)
-    {
-        NSDictionary *params = sortedUserFeaturesByName[i];
+    if (numberOfFeatures == numberOfAttributes) {
+        NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesName ascending:YES];
+        NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
         
-        NSString *anAttributeKey = sortedAttributeKeys[i];
-        NSString *anAttributeValue = [attributes objectForKey:anAttributeKey];
+        NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         
-        NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
-        NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
-        if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
-            // check id
-            XCTAssertNil(featureID, @"There should be no id here.");
-        } else {
-            // check name
-            XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
-            // check id
-            XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+        for (NSUInteger i = 0; i < numberOfAttributes; i++)
+        {
+            NSDictionary *params = sortedUserFeaturesByName[i];
+            
+            NSString *anAttributeKey = sortedAttributeKeys[i];
+            NSString *anAttributeValue = [attributes objectForKey:anAttributeKey];
+            
+            NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
+            NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
+            if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
+                // check id
+                XCTAssertNil(featureID, @"There should be no id here.");
+            } else {
+                // check name
+                XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+                // check id
+                XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+            }
+            
+            // check type
+            NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
+            XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
+            
+            // check value
+            NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
+            XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
+            
+            // check should index
+            BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
+            XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
         }
-        
-        // check type
-        NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
-        XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
-        
-        // check value
-        NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
-        XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
-        
-        // check should index
-        BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
-        XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
     }
 }
 
@@ -748,41 +752,45 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSUInteger numberOfLayers = [layerStates count];
     NSUInteger numberOfExperiments = [experimentIds count];
     
-    NSAssert(numberOfLayers == numberOfExperiments, @"Incorrect number of layers.");
+    XCTAssert(numberOfLayers == numberOfExperiments, @"Incorrect number of layers.");
     
-    // sort layer states
-    NSSortDescriptor *layerStatesDecisionExperimentIdDescriptor = [[NSSortDescriptor alloc] initWithKey:@"decision.experimentId" ascending:YES];
-    NSArray *sortedLayerStatesByDecisionExperimentId = [layerStates sortedArrayUsingDescriptors:@[layerStatesDecisionExperimentIdDescriptor]];
-    
-    // sort experiment ids
-    NSSortDescriptor *experimentIdDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedExperimentIds = [experimentIds sortedArrayUsingDescriptors:@[experimentIdDescriptor]];
-    
-    for (NSUInteger i = 0; i < numberOfLayers; i++)
-    {
-        NSString *experimentId = sortedExperimentIds[i];
-        NSDictionary *layerState = sortedLayerStatesByDecisionExperimentId[i];
+    if (numberOfLayers == numberOfExperiments) {
+        // sort layer states
+        NSSortDescriptor *layerStatesDecisionExperimentIdDescriptor = [[NSSortDescriptor alloc] initWithKey:@"decision.experimentId" ascending:YES];
+        NSArray *sortedLayerStatesByDecisionExperimentId = [layerStates sortedArrayUsingDescriptors:@[layerStatesDecisionExperimentIdDescriptor]];
         
-        OPTLYExperiment *experiment = [config getExperimentForId:experimentId];
-        NSAssert(experiment != nil, @"Experiment should be part of the datafile.");
-        OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
-                                                                       userId:userId
-                                                                   attributes:attributes
-                                                                     bucketer:self.bucketer];
+        // sort experiment ids
+        NSSortDescriptor *experimentIdDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedExperimentIds = [experimentIds sortedArrayUsingDescriptors:@[experimentIdDescriptor]];
         
-        NSDictionary *decisionParams = layerState[OPTLYEventParameterKeysLayerStateDecision];
-        if ([decisionParams count] > 0) {
-            [self checkDecision:decisionParams
-                   experimentId:experimentId
-            bucketedVariationId:bucketedVariation.variationId];
+        for (NSUInteger i = 0; i < numberOfLayers; i++)
+        {
+            NSString *experimentId = sortedExperimentIds[i];
+            NSDictionary *layerState = sortedLayerStatesByDecisionExperimentId[i];
+            
+            OPTLYExperiment *experiment = [config getExperimentForId:experimentId];
+            XCTAssert(experiment != nil, @"Experiment should be part of the datafile.");
+            if (experiment != nil) {
+                OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
+                                                                               userId:userId
+                                                                           attributes:attributes
+                                                                             bucketer:self.bucketer];
+                
+                NSDictionary *decisionParams = layerState[OPTLYEventParameterKeysLayerStateDecision];
+                if ([decisionParams count] > 0) {
+                    [self checkDecision:decisionParams
+                           experimentId:experimentId
+                    bucketedVariationId:bucketedVariation.variationId];
+                }
+                
+                NSNumber *actionTriggered = layerState[OPTLYEventParameterKeysLayerStateActionTriggered];
+                XCTAssert([actionTriggered boolValue] == false, @"Invalid actionTriggered value.");
+                NSString *layerId = layerState[OPTLYEventParameterKeysLayerStateLayerId];
+                XCTAssert([layerId isEqualToString:kLayerId], @"Invalid layerId value.");
+                NSString *revision = layerState[OPTLYEventParameterKeysLayerStateRevision];
+                XCTAssert([revision isEqualToString:kRevision], @"Invalid revision.");
+            }
         }
-        
-        NSNumber *actionTriggered = layerState[OPTLYEventParameterKeysLayerStateActionTriggered];
-        NSAssert([actionTriggered boolValue] == false, @"Invalid actionTriggered value.");
-        NSString *layerId = layerState[OPTLYEventParameterKeysLayerStateLayerId];
-        NSAssert([layerId isEqualToString:kLayerId], @"Invalid layerId value.");
-        NSString *revision = layerState[OPTLYEventParameterKeysLayerStateRevision];
-        NSAssert([revision isEqualToString:kRevision], @"Invalid revision.");
     }
 }
 
@@ -860,10 +868,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
          experimentId:(NSString *)experimentId
   bucketedVariationId:(NSString *)variationId
 {
-    NSAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
-    NSAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
+    XCTAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
+    XCTAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
     NSNumber *isLayerHoldback = params[OPTLYEventParameterKeysDecisionIsLayerHoldback];
-    NSAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
+    XCTAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
 }
 
 - (OPTLYProjectConfig *)setUpForAnonymizeIPFalse
