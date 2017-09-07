@@ -205,50 +205,16 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 - (void)testBuildEventTicketWithRevenue
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
 }
 
 - (void)testBuildEventTicketWithDoubleRevenue
 {
     // The SDK issues a console warning about casting double to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    double doubleRevenueValue = 888.88;
-    long long doubleRevenueValueCast = doubleRevenueValue;
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithLongLong:doubleRevenueValueCast]}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(doubleRevenueValueCast)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(888.88)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(888LL)}];
 }
 
 - (void)testBuildEventTicketWithHugeDoubleRevenue
@@ -256,26 +222,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
     // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    double doubleRevenueValue = 1.0e100;
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no numeric value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(1.0e100)}
+                       sentEventTags:@{}];
 }
 
 - (void)testBuildEventTicketWithHugeUnsignedLongLongRevenue
@@ -284,156 +232,48 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // from being cast into nonsense and sent.  Instead a console warning
     // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
     // NOTE: ULLONG_MAX > LLONG_MAX is such an example.
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    unsigned long long hugeRevenueValue = ULLONG_MAX;
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithUnsignedLongLong:hugeRevenueValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no numeric value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(ULLONG_MAX)}
+                       sentEventTags:@{}];
 }
 
 - (void)testBuildEventTicketWithBooleanRevenue
 {
     // The SDK issues a console warning about casting BOOL to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
-    NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : @YES }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithBool:YES] }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@YES}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@YES}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@YES}];
 }
 
 - (void)testBuildEventTicketWithStringRevenue
 {
     // The SDK issues a console warning about casting NSString to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
-    NSString *stringRevenue = @"8.234";
-    long long castStringRevenue = [stringRevenue longLongValue];
-    XCTAssert(castStringRevenue == 8LL);
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : stringRevenue,
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    // the revenue value should be cast to a long long
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:castStringRevenue],
-                              kAttributeKeyBrowserType : kAttributeValueChrome}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(castStringRevenue)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@"8.234"}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(8LL)}];
 }
 
 - (void)testBuildEventTicketWithInvalidObjectRevenue
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : attributes,
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no revenue value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@[@"BAD",@"DATA"]}
+                       sentEventTags:@{}];
 }
 
 #pragma mark - Test buildEventTicket:... OPTLYEventMetricNameValue
 
 - (void)testBuildEventTicketWithValue
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:kEventValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:kEventValue]}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameValue:@(kEventValue)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventValue)}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue)}];
 }
 
 - (void)testBuildEventTicketWithStringValue
 {
     // The SDK issues a console warning about casting NSString to "double",
     // but a "value" key-value pair will appear in the transmitted event.
-    NSString *stringValue = [NSString stringWithFormat:@"%g", kEventValue];
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameValue : stringValue,
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    // the numeric value should be cast to a double
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:kEventValue],
-                              kAttributeKeyBrowserType : kAttributeValueChrome}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameValue:@(kEventValue)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:[NSString stringWithFormat:@"%g", kEventValue],
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testBuildEventTicketWithNANValue
@@ -442,26 +282,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // doesn't serialize into JSON .  SDK issues a console warning
     // and omits the proposed "value" key-value pair which will not
     // appear in the transmitted event.  IOW, invalid value suppressed.
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:NAN],
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no numeric value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(NAN),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testBuildEventTicketWithINFINITYValue
@@ -470,129 +293,42 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // doesn't serialize into JSON .  SDK issues a console warning
     // and omits the proposed "value" key-value pair which will not
     // appear in the transmitted event.  IOW, invalid value suppressed.
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameValue : [NSNumber numberWithDouble:INFINITY],
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no numeric value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(INFINITY),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testBuildEventTicketWithInvalidObjectValue
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameValue : @[@"BAD",@"DATA"],
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    // no numeric value will be sent
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@[@"BAD",@"DATA"],
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 #pragma mark - Test buildEventTicket:... eventTags
 
 - (void)testBuildEventTicketWithEventTags
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
-                                                                  @"IntegerTag" : [NSNumber numberWithInteger:15],
-                                                                  @"BooleanTag" : @YES,
-                                                                  @"FloatTag" : [NSNumber numberWithFloat:1.23],
-                                                                  @"InvalidArrayTag" : [NSArray new]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
-                              @"IntegerTag" : [NSNumber numberWithInteger:15],
-                              @"FloatTag" : [NSNumber numberWithFloat:1.23],
-                              @"BooleanTag" : @YES}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    [self commonBuildEventTicketTest:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"BooleanTag":@YES,
+                                       @"FloatTag":@1.23,
+                                       @"InvalidArrayTag":[NSArray new]}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"FloatTag":@1.23,
+                                       @"BooleanTag":@YES}];
 }
 
 - (void)testBuildEventTicketWithRevenueAndEventTags
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue],
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue],
-                              kAttributeKeyBrowserType : kAttributeValueChrome}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventRevenue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventRevenue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-#pragma mark - Test buildEventTicket:... Multiple Args
-
-- (void)testBuildEventTicketWithAllArguments
-{
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
-}
+#pragma mark - Test buildEventTicket:... Multiple Experiments
 
 - (void)testBuildEventTicketWithEventMultipleExperiments
 {
@@ -604,8 +340,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                      eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventMetricsDetails:params
-                   expectedDetails:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
+    [self checkEventMetrics:params
+                  eventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
     NSArray *experimentIds = @[@"6364835526", @"6450630664", @"6367863211", @"6376870125", @"6383811281", @"6358043286", @"6370392407", @"6367444440", @"6370821515", @"6447021179"];
     NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
     NSUInteger numberOfLayers = [layerStates count];
@@ -753,6 +489,29 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 #pragma mark - Helper Methods
 
+- (void)commonBuildEventTicketTest:(NSDictionary*)eventTags sentEventTags:(NSDictionary*)sentEventTags
+{
+    // Common subroutine for many of the testBuildEventXxx test methods.
+    // Generally, a testBuildEventXxx should make at most one call
+    // to commonBuildEventTicketTest:sentEventTags: .
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:eventTags
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:sentEventTags
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
 - (void)checkDecisionTicketParams:(NSDictionary *)params
                            config:(OPTLYProjectConfig *)config
                          bucketer:(OPTLYBucketer *)bucketer
@@ -786,12 +545,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
     NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
     [self checkEventFeatures:eventFeatures eventTags:eventTags];
-    
-    NSArray *eventMetrics = params[OPTLYEventParameterKeysEventMetrics];
-    for (NSDictionary *eventMetric in eventMetrics) {
-        [self checkEventMetric:eventMetric
-                     eventTags:eventTags];
-    }
+    [self checkEventMetrics:params eventTags:eventTags];
     NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
     [self checkLayerStates:config
                layerStates:layerStates
@@ -943,29 +697,20 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     }
 }
 
-- (void)checkEventMetric:(NSDictionary *)params
-               eventTags:(NSDictionary *)eventTags
-{
-    NSArray *metricNames = @[OPTLYEventMetricNameRevenue, OPTLYEventMetricNameValue];
-    NSString *name = params[OPTLYEventParameterKeysMetricName];
-    XCTAssert([metricNames containsObject:name], @"Invalid event metric name: %@.", name);
-    XCTAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToNumber:eventTags[name]], @"Invalid event metric value: %@.", params[OPTLYEventParameterKeysMetricValue]);
-}
-
-- (void)checkEventMetricsDetails:(NSDictionary*)params
-                 expectedDetails:(NSDictionary*)details {
-    // Check eventMetrics details.
+- (void)checkEventMetrics:(NSDictionary*)params
+                eventTags:(NSDictionary*)eventTags {
+    // Check eventMetrics eventTags.
     NSArray *eventMetrics = params[@"eventMetrics"];
     XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
     if ([eventMetrics isKindOfClass:[NSArray class]]) {
-        XCTAssertEqual(eventMetrics.count, details.count, @"%@ event metrics should be sent.", @(details.count));
+        // Confirm every eventMetric in eventMetrics is predicted by eventTags .
         for (NSDictionary *eventMetric in eventMetrics) {
             XCTAssert([eventMetric isKindOfClass:[NSDictionary class]], @"eventMetric should be an NSDictionary .");
             if ([eventMetric isKindOfClass:[NSDictionary class]]) {
                 XCTAssertEqual(eventMetric.count, 2, @"Two key-value pairs in eventMetric expected.");
                 NSString *name = eventMetric[@"name"];
                 XCTAssert([name isKindOfClass:[NSString class]], @"eventMetric name '%@' should be an NSString .", name);
-                NSNumber *expectedValue = details[name];
+                NSNumber *expectedValue = eventTags[name];
                 XCTAssertNotNil(expectedValue, @"Not expecting to send eventMetric name '%@'.", name);
                 if (expectedValue != nil) {
                     NSNumber *value = eventMetric[@"value"];
@@ -973,6 +718,26 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                     if ([value isKindOfClass:[NSNumber class]]) {
                         XCTAssertEqualObjects(value, expectedValue, @"eventMetric value should equal %@ .", expectedValue);
                     }
+                }
+            }
+        }
+        // Confirm every key-value pair in eventTags which is an eventMetric appears in eventMetrics .
+        // Since eventMetrics arrays is always small size (generally 0-1 and at most 2 elements),
+        // and this code is in test, not our SDK, we can afford a small brute force search.
+        {
+            NSArray *metricNames = @[OPTLYEventMetricNameRevenue, OPTLYEventMetricNameValue];
+            for (NSString* name in eventTags) {
+                if ([metricNames containsObject:name]) {
+                    NSObject *value = eventTags[name];
+                    BOOL found = NO;
+                    for (NSDictionary *eventMetric in eventMetrics) {
+                        if ([eventMetric[@"name"] isEqual:name]
+                            && [eventMetric[@"value"] isEqual:value]) {
+                            found = YES;
+                            break;
+                        }
+                    }
+                    XCTAssert(found, @"Didn't find predicted key-value pair %@:%@ in eventMetrics", name, value);
                 }
             }
         }
