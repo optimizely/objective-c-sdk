@@ -803,32 +803,23 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
               attributes:(NSDictionary *)attributes
                   userId:(NSString *)userId
            experimentIds:(NSArray *)experimentIds
-
 {
     NSAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
-    
     NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
-    
     NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
-    if ([eventTags count] > 0)
-    {
-        [self checkEventFeatures:eventFeatures eventTags:eventTags];
-    }
+    [self checkEventFeatures:eventFeatures eventTags:eventTags];
     
     NSArray *eventMetrics = params[OPTLYEventParameterKeysEventMetrics];
-    if ([eventMetrics count] > 0)
-    {
-        [self checkEventMetric:eventMetrics[0]
+    for (NSDictionary *eventMetric in eventMetrics) {
+        [self checkEventMetric:eventMetric
                      eventTags:eventTags];
     }
-    
     NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
     [self checkLayerStates:config
                layerStates:layerStates
              experimentIds:experimentIds
                     userId:userId
                 attributes:attributes];
-    
 }
 
 
