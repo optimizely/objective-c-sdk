@@ -289,6 +289,35 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+- (void)testBuildEventTicketWithHugeUnsignedLongLongRevenue
+{
+    // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // NOTE: ULLONG_MAX > LLONG_MAX is such an example.
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    unsigned long long hugeRevenueValue = ULLONG_MAX;
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithUnsignedLongLong:hugeRevenueValue]}
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    // no numeric value will be sent
+    NSArray *eventMetrics = params[@"eventMetrics"];
+    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+    XCTAssertEqual(eventMetrics.count, 0, @"No event metrics should be sent.");
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:@{}
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
+
 - (void)testBuildEventTicketWithBooleanRevenue
 {
     // The SDK issues a console warning about casting BOOL to "long long",

@@ -96,28 +96,47 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
 - (NSNumber *)revenueValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
     // Convert value to NSNumber of type "long long" or nil (failure) if impossible.
     NSNumber *answer = nil;
-    // if the object is an NSNumber, then char, floats, and boolean values will be cast to a long long
+    // If the object is an in range NSNumber, then char, floats, and boolean values will be cast to a "long long".
     if ([value isKindOfClass:[NSNumber class]]) {
         answer = (NSNumber*)value;
         const char *objCType = [answer objCType];
-        if (!(strcmp(objCType, @encode(short)) == 0 ||
-              strcmp(objCType, @encode(int)) == 0 ||
-              strcmp(objCType, @encode(long)) == 0 ||
-              strcmp(objCType, @encode(long long)) == 0 ||
-              strcmp(objCType, @encode(unsigned short)) == 0 ||
-              strcmp(objCType, @encode(unsigned int)) == 0 ||
-              strcmp(objCType, @encode(unsigned long)) == 0 ||
-              strcmp(objCType, @encode(unsigned long long)) == 0)) {
-            if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
-                // cast in range floats etc. to long long, rounding or trunctating fraction parts
-                long long longLongValue = [answer longLongValue];
-                answer = [NSNumber numberWithLongLong:longLongValue];
-                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
-            } else {
-                // all other NSNumber's can't be reasonably cast to long long
-                answer = nil;
-                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
-            }
+        if ((strcmp(objCType, @encode(short)) == 0)
+            || (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(long)) == 0)
+            || (strcmp(objCType, @encode(long long)) == 0)
+            || (strcmp(objCType, @encode(unsigned short)) == 0)
+            || (strcmp(objCType, @encode(unsigned int)) == 0)) {
+            // These objCType's all fit inside "long long"
+        } else if (((strcmp(objCType, @encode(unsigned long)) == 0)
+                    || (strcmp(objCType, @encode(unsigned long long)) == 0))
+                   &&([answer unsignedLongLongValue]<=((unsigned long long)LLONG_MAX))) {
+            // Cast in range "unsigned long" and "unsigned long long" to "long long".
+            // NOTE: Above uses all 64 bits of precision available and that "unsigned long"
+            // and "unsigned long long" are same size on 64 bit Apple platforms.
+            // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+            long long longLongValue = [answer longLongValue];
+            answer = [NSNumber numberWithLongLong:longLongValue];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+        } else if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
+            // Cast in range floats etc. to long long, rounding or trunctating fraction parts.
+            // NOTE: Mantissas of Objective-C doubles have 53 bits of precision which is
+            // less than the 64 bits of precision of a "long long" or "unsigned long".
+            // OTOH, floats have expts which can put the value of float outside the range
+            // of a "long long" or "unsigned long".  Therefore, we test doubleValue
+            // -- the highest precision floating format made available by NSNumber --
+            // against [LLONG_MIN,LLONG_MAX] only after we're guaranteed we've already
+            // considered all possible NSNumber integer formats (the previous two "if"
+            // conditions).
+            // https://en.wikipedia.org/wiki/IEEE_754
+            // Intel "Floating-point Formats"
+            // https://software.intel.com/en-us/node/523338
+            long long longLongValue = [answer longLongValue];
+            answer = [NSNumber numberWithLongLong:longLongValue];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+        } else {
+            // all other NSNumber's can't be reasonably cast to long long
+            answer = nil;
+            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
