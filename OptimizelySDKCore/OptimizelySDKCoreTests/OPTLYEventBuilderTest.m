@@ -248,6 +248,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                      expectedName:OPTLYEventMetricNameRevenue
+                     expectedValue:@(doubleRevenueValueCast)];
 }
 
 - (void)testBuildEventTicketWithHugeDoubleRevenue
@@ -327,6 +330,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                      expectedName:OPTLYEventMetricNameRevenue
+                     expectedValue:@YES];
 }
 
 - (void)testBuildEventTicketWithStringRevenue
@@ -336,9 +342,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSString *stringRevenue = @"8.234";
     long long castStringRevenue = [stringRevenue longLongValue];
     XCTAssert(castStringRevenue == 8LL);
-    
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
@@ -347,7 +351,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    
     // the revenue value should be cast to a long long
     [self checkEventTicket:params
                     config:self.config
@@ -358,6 +361,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                      expectedName:OPTLYEventMetricNameRevenue
+                     expectedValue:@(castStringRevenue)];
 }
 
 - (void)testBuildEventTicketWithInvalidObjectRevenue
@@ -423,7 +429,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                   kAttributeKeyBrowserType : kAttributeValueChrome }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    
     // the numeric value should be cast to a double
     [self checkEventTicket:params
                     config:self.config
@@ -434,6 +439,9 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                 attributes:attributes
                     userId:kUserId
              experimentIds:@[kExperimentWithAudienceId]];
+    [self checkEventMetricsDetails:params
+                      expectedName:OPTLYEventMetricNameValue
+                     expectedValue:@(kEventValue)];
 }
 
 - (void)testBuildEventTicketWithNANValue
