@@ -108,15 +108,21 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             || (strcmp(objCType, @encode(unsigned int)) == 0)) {
             // These objCType's all fit inside "long long"
         } else if (((strcmp(objCType, @encode(unsigned long)) == 0)
-                    || (strcmp(objCType, @encode(unsigned long long)) == 0))
-                   &&([answer unsignedLongLongValue]<=((unsigned long long)LLONG_MAX))) {
+                    || (strcmp(objCType, @encode(unsigned long long)) == 0))) {
             // Cast in range "unsigned long" and "unsigned long long" to "long long".
             // NOTE: Above uses all 64 bits of precision available and that "unsigned long"
             // and "unsigned long long" are same size on 64 bit Apple platforms.
             // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
-            long long longLongValue = [answer longLongValue];
-            answer = [NSNumber numberWithLongLong:longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            if ([answer unsignedLongLongValue]<=((unsigned long long)LLONG_MAX)) {
+                long long longLongValue = [answer longLongValue];
+                answer = [NSNumber numberWithLongLong:longLongValue];
+                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            } else {
+                // The unsignedLongLongValue is outside of [LLONG_MIN,LLONG_MAX], so
+                // can't be properly cast to "long long" nor will be sent.
+                answer = nil;
+                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+            }
         } else if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
             // Cast in range floats etc. to long long, rounding or trunctating fraction parts.
             // NOTE: Mantissas of Objective-C doubles have 53 bits of precision which is

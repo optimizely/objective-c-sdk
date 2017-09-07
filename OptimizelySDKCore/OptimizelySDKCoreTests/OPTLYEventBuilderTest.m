@@ -226,6 +226,83 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
+- (void)testBuildEventTicketWithBoundaryDouble1Revenue
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly less than 1.0 to assure we stay inside.
+    const double stayInside = 0.99999;
+    double doubleRevenue = stayInside*(double)LLONG_MIN;
+    long long longLongRevenue = (long long)doubleRevenue;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+}
+
+- (void)testBuildEventTicketWithBoundaryDouble2Revenue
+{
+    // Like previous test but using LLONG_MAX instead of LLONG_MIN .
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly less than 1.0 to assure we stay inside.
+    const double stayInside = 0.99999;
+    double doubleRevenue = stayInside*(double)LLONG_MAX;
+    long long longLongRevenue = (long long)doubleRevenue;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+}
+
+- (void)testBuildEventTicketWithBoundaryDouble3Revenue
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly more than 1.0 to assure we stay outside.
+    const double stayOutside = 1.00001;
+    double doubleRevenue = stayOutside*(double)LLONG_MIN;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{}];
+}
+
+- (void)testBuildEventTicketWithBoundaryDouble4Revenue
+{
+    // Like previous test but using LLONG_MAX instead of LLONG_MIN .
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly more than 1.0 to assure we stay outside.
+    const double stayOutside = 1.00001;
+    double doubleRevenue = stayOutside*(double)LLONG_MAX;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{}];
+}
+
+- (void)testBuildEventTicketWithCastUnsignedLongLongRevenue
+{
+    // "unsigned long long" which is barely in range.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@((unsigned long long)LLONG_MAX)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+}
+
+- (void)testBuildEventTicketWithBoundaryUnsignedLongLongRevenue
+{
+    // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // A Bridge Too Far
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(1ULL+(unsigned long long)LLONG_MAX)}
+                       sentEventTags:@{}];
+}
+
 - (void)testBuildEventTicketWithHugeUnsignedLongLongRevenue
 {
     // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
@@ -234,6 +311,18 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // NOTE: ULLONG_MAX > LLONG_MAX is such an example.
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(ULLONG_MAX)}
                        sentEventTags:@{}];
+}
+
+- (void)testBuildEventTicketWithLongLongMaxRevenue
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+}
+
+- (void)testBuildEventTicketWithLongLongMinRevenue
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}];
 }
 
 - (void)testBuildEventTicketWithBooleanRevenue
