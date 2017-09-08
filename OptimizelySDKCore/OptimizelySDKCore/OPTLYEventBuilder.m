@@ -136,6 +136,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             // https://en.wikipedia.org/wiki/IEEE_754
             // Intel "Floating-point Formats"
             // https://software.intel.com/en-us/node/523338
+            // ARM "IEEE 754 arithmetic"
+            // https://developer.arm.com/docs/dui0808/g/floating-point-support/ieee-754-arithmetic
             long long longLongValue = [answer longLongValue];
             answer = [NSNumber numberWithLongLong:longLongValue];
             [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
