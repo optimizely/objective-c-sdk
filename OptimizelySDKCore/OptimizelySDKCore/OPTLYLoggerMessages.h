@@ -106,6 +106,7 @@ extern NSString *const OPTLYLoggerMessagesRevenueValueString;
 extern NSString *const OPTLYLoggerMessagesRevenueValueIntegerOverflow;
 extern NSString *const OPTLYLoggerMessagesRevenueValueFloatOverflow;
 extern NSString *const OPTLYLoggerMessagesRevenueValueInvalid;
+extern NSString *const OPTLYLoggerMessagesNumericValueString;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalidFloat;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalidString;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalid;

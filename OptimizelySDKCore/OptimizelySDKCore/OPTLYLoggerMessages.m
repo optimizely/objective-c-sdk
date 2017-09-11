@@ -102,6 +102,7 @@ NSString *const OPTLYLoggerMessagesRevenueValueString = @"[EVENT BUILDER] Provid
 NSString *const OPTLYLoggerMessagesRevenueValueIntegerOverflow = @"[EVENT BUILDER] Provided unsigned long long revenue value %@ overflows long long type and will not be sent to results.";
 NSString *const OPTLYLoggerMessagesRevenueValueFloatOverflow = @"[EVENT BUILDER] Provided float revenue value %@ overflows long long type and will not be sent to results.";
 NSString *const OPTLYLoggerMessagesRevenueValueInvalid = @"[EVENT BUILDER] Provided revenue value is in an invalid format and will not be sent to results.";
+NSString *const OPTLYLoggerMessagesNumericValueString = @"[EVENT BUILDER] Provided string numeric value will be cast to float %@.";
 NSString *const OPTLYLoggerMessagesNumericValueInvalidFloat = @"[EVENT BUILDER] Provided numeric value %@ is an invalid float type.";
 NSString *const OPTLYLoggerMessagesNumericValueInvalidString = @"[EVENT BUILDER] Provided numeric value is a string %@ that could not be cast to a valid float.";
 NSString *const OPTLYLoggerMessagesNumericValueInvalid = @"[EVENT BUILDER] Provided numeric value is in an invalid format and will not be sent to results.";
