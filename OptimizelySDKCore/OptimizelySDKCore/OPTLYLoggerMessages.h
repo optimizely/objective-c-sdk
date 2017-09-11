@@ -101,11 +101,13 @@ extern NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;
 extern NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation;
-extern NSString *const OPTLYLoggerMessagesRevenueValueInvalidInteger;
+extern NSString *const OPTLYLoggerMessagesRevenueValueFloat;
 extern NSString *const OPTLYLoggerMessagesRevenueValueString;
+extern NSString *const OPTLYLoggerMessagesRevenueValueIntegerOverflow;
+extern NSString *const OPTLYLoggerMessagesRevenueValueFloatOverflow;
 extern NSString *const OPTLYLoggerMessagesRevenueValueInvalid;
-extern NSString *const OPTLYLoggerMessagesNumericValueInvalidDouble;
-extern NSString *const OPTLYLoggerMessagesNumericValueString;
+extern NSString *const OPTLYLoggerMessagesNumericValueInvalidFloat;
+extern NSString *const OPTLYLoggerMessagesNumericValueInvalidString;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalid;
 extern NSString *const OPTLYLoggerMessagesEventTagValueInvalid;
 

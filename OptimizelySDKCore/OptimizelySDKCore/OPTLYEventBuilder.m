@@ -118,12 +118,11 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             if ([answer unsignedLongLongValue]<=((unsigned long long)LLONG_MAX)) {
                 long long longLongValue = [answer longLongValue];
                 answer = [NSNumber numberWithLongLong:longLongValue];
-                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
             } else {
                 // The unsignedLongLongValue is outside of [LLONG_MIN,LLONG_MAX], so
                 // can't be properly cast to "long long" nor will be sent.
                 answer = nil;
-                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueIntegerOverflow withLevel:OptimizelyLogLevelWarning];
             }
         } else if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
             // Cast in range floats etc. to long long, rounding or trunctating fraction parts.
@@ -140,9 +139,11 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
             // https://software.intel.com/en-us/node/523338
             // ARM "IEEE 754 arithmetic"
             // https://developer.arm.com/docs/dui0808/g/floating-point-support/ieee-754-arithmetic
-            long long longLongValue = [answer longLongValue];
-            answer = [NSNumber numberWithLongLong:longLongValue];
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueInvalidInteger, longLongValue] withLevel:OptimizelyLogLevelWarning];
+            answer = @([answer longLongValue]);
+            // Appropriate warning since conversion to integer generally will lose
+            // some non-zero fraction after the decimal point.  Even if the fraction is zero,
+            // the warning could alert user of SDK to a coding issue that should be remedied.
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueFloatOverflow, value, answer] withLevel:OptimizelyLogLevelWarning];
         } else {
             // all other NSNumber's can't be reasonably cast to long long
             answer = nil;
@@ -150,9 +151,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
-        long long longLongValue = [(NSNumber*)value longLongValue];
-        answer = [NSNumber numberWithLongLong:longLongValue];
-        [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, longLongValue] withLevel:OptimizelyLogLevelWarning];
+        answer = @([(NSNumber*)value longLongValue]);
+        [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, value] withLevel:OptimizelyLogLevelWarning];
     } else {
         // all other objects can't be cast to long long
         [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
@@ -170,7 +170,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         if (isfinite(doubleValue)) {
             answer = (NSNumber*)value;
         } else {
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidDouble, doubleValue] withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidFloat, value] withLevel:OptimizelyLogLevelWarning];
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to double
@@ -178,7 +178,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         if (isfinite(doubleValue)) {
             answer = [NSNumber numberWithDouble:doubleValue];
         } else {
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueString, doubleValue] withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidString, value] withLevel:OptimizelyLogLevelWarning];
         }
     } else {
         // all other objects can't be cast to double
