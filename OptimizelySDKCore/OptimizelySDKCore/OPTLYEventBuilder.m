@@ -153,7 +153,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
-        answer = @([(NSNumber*)value longLongValue]);
+        answer = @([(NSString*)value longLongValue]);
         [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, value] withLevel:OptimizelyLogLevelWarning];
     } else {
         // all other objects can't be cast to long long
