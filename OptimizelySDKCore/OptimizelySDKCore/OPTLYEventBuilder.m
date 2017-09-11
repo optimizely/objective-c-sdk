@@ -100,12 +100,14 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     if ([value isKindOfClass:[NSNumber class]]) {
         answer = (NSNumber*)value;
         const char *objCType = [answer objCType];
-        if ((strcmp(objCType, @encode(short)) == 0)
-            || (strcmp(objCType, @encode(int)) == 0)
-            || (strcmp(objCType, @encode(long)) == 0)
-            || (strcmp(objCType, @encode(long long)) == 0)
+        if ((strcmp(objCType, @encode(char)) == 0)
+            || (strcmp(objCType, @encode(unsigned char)) == 0)
+            || (strcmp(objCType, @encode(short)) == 0)
             || (strcmp(objCType, @encode(unsigned short)) == 0)
-            || (strcmp(objCType, @encode(unsigned int)) == 0)) {
+            || (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(unsigned int)) == 0)
+            || (strcmp(objCType, @encode(long)) == 0)
+            || (strcmp(objCType, @encode(long long)) == 0)) {
             // These objCType's all fit inside "long long"
         } else if (((strcmp(objCType, @encode(unsigned long)) == 0)
                     || (strcmp(objCType, @encode(unsigned long long)) == 0))) {
