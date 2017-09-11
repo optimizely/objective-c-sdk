@@ -100,6 +100,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     if ([value isKindOfClass:[NSNumber class]]) {
         answer = (NSNumber*)value;
         const char *objCType = [answer objCType];
+        // Dispatch objCType according to one of "Type Encodings" listed here:
+        // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
         if ((strcmp(objCType, @encode(char)) == 0)
             || (strcmp(objCType, @encode(unsigned char)) == 0)
             || (strcmp(objCType, @encode(short)) == 0)
@@ -226,7 +228,7 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
     }
     
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameValue]) {
-        // Allow only 'value' eventTags with double values; otherwise the value will be cast to an double
+        // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
         NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
         if (numericValue != nil) {
             mutableEventTags[OPTLYEventMetricNameValue] = numericValue;
