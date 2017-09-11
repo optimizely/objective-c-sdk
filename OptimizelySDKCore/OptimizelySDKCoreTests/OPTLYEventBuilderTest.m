@@ -201,15 +201,15 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
-#pragma mark - Test buildEventTicket:... OPTLYEventMetricNameRevenue
+#pragma mark - Test revenue Metric
 
-- (void)testBuildEventTicketWithRevenue
+- (void)testRevenueMetric
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
 }
 
-- (void)testBuildEventTicketWithDoubleRevenue
+- (void)testRevenueMetricWithDouble
 {
     // The SDK issues a console warning about casting double to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
@@ -217,7 +217,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(888LL)}];
 }
 
-- (void)testBuildEventTicketWithHugeDoubleRevenue
+- (void)testRevenueMetricWithHugeDouble
 {
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -226,7 +226,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
-- (void)testBuildEventTicketWithBoundaryDouble1Revenue
+- (void)testRevenueMetricWithBoundaryDouble1
 {
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -241,7 +241,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
 }
 
-- (void)testBuildEventTicketWithBoundaryDouble2Revenue
+- (void)testRevenueMetricWithBoundaryDouble2
 {
     // Like previous test but using LLONG_MAX instead of LLONG_MIN .
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
@@ -257,7 +257,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
 }
 
-- (void)testBuildEventTicketWithBoundaryDouble3Revenue
+- (void)testRevenueMetricWithBoundaryDouble3
 {
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -271,7 +271,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
-- (void)testBuildEventTicketWithBoundaryDouble4Revenue
+- (void)testRevenueMetricWithBoundaryDouble4
 {
     // Like previous test but using LLONG_MAX instead of LLONG_MIN .
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
@@ -286,14 +286,14 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
-- (void)testBuildEventTicketWithCastUnsignedLongLongRevenue
+- (void)testRevenueMetricWithCastUnsignedLongLong
 {
     // "unsigned long long" which is barely in range.
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@((unsigned long long)LLONG_MAX)}
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
 }
 
-- (void)testBuildEventTicketWithBoundaryUnsignedLongLongRevenue
+- (void)testRevenueMetricWithBoundaryUnsignedLongLong
 {
     // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -303,7 +303,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
-- (void)testBuildEventTicketWithHugeUnsignedLongLongRevenue
+- (void)testRevenueMetricWithHugeUnsignedLongLong
 {
     // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
@@ -313,19 +313,19 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{}];
 }
 
-- (void)testBuildEventTicketWithLongLongMaxRevenue
+- (void)testRevenueMetricWithLongLongMax
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
 }
 
-- (void)testBuildEventTicketWithLongLongMinRevenue
+- (void)testRevenueMetricWithLongLongMin
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}];
 }
 
-- (void)testBuildEventTicketWithBooleanRevenue
+- (void)testRevenueMetricWithBoolean
 {
     // The SDK issues a console warning about casting BOOL to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
@@ -333,7 +333,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@YES}];
 }
 
-- (void)testBuildEventTicketWithStringRevenue
+- (void)testRevenueMetricWithString
 {
     // The SDK issues a console warning about casting NSString to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
@@ -341,21 +341,21 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{OPTLYEventMetricNameRevenue:@(8LL)}];
 }
 
-- (void)testBuildEventTicketWithInvalidObjectRevenue
+- (void)testRevenueMetricWithInvalidObject
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@[@"BAD",@"DATA"]}
                        sentEventTags:@{}];
 }
 
-#pragma mark - Test buildEventTicket:... OPTLYEventMetricNameValue
+#pragma mark - Test value Metric
 
-- (void)testBuildEventTicketWithValue
+- (void)testValueMetric
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventValue)}
                        sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue)}];
 }
 
-- (void)testBuildEventTicketWithStringValue
+- (void)testValueMetricWithString
 {
     // The SDK issues a console warning about casting NSString to "double",
     // but a "value" key-value pair will appear in the transmitted event.
@@ -365,7 +365,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                        kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-- (void)testBuildEventTicketWithNANValue
+- (void)testValueMetricWithNAN
 {
     // The SDK does not allow NAN partly because this value
     // doesn't serialize into JSON .  SDK issues a console warning
@@ -376,7 +376,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-- (void)testBuildEventTicketWithINFINITYValue
+- (void)testValueMetricWithINFINITY
 {
     // The SDK does not allow INFINITY partly because this value
     // doesn't serialize into JSON .  SDK issues a console warning
@@ -387,16 +387,16 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                        sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-- (void)testBuildEventTicketWithInvalidObjectValue
+- (void)testValueMetricWithInvalidObject
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@[@"BAD",@"DATA"],
                                        kAttributeKeyBrowserType:kAttributeValueChrome}
                        sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-#pragma mark - Test buildEventTicket:... OPTLYEventMetricNameRevenue and OPTLYEventMetricNameValue
+#pragma mark - Test revenue Metric and value Metric
 
-- (void)testBuildEventTicketWithRevenueAndValue
+- (void)testRevenueMetricAndValueMetric
 {
     // Test creating event containing both "revenue" and "value".  Imagine
     //     "revenue" == money received
@@ -408,7 +408,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                        OPTLYEventMetricNameValue:@(kEventValue)}];
 }
 
-#pragma mark - Test buildEventTicket:... eventTags
+#pragma mark - Test buildEventTicket:... with Multiple eventTags
 
 - (void)testBuildEventTicketWithEventTags
 {
@@ -431,7 +431,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                        kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-#pragma mark - Test buildEventTicket:... Multiple Experiments
+#pragma mark - Test buildEventTicket:... with Multiple Experiments
 
 - (void)testBuildEventTicketWithEventMultipleExperiments
 {
@@ -455,7 +455,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
 }
 
-#pragma mark - Test buildEventTicket:... OPTLYEventParameterKeysAnonymizeIP
+#pragma mark - Test anonymizeIP
 
 - (void)testBuildEventTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
@@ -473,7 +473,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
-#pragma mark - Test buildEventTicket:... OptimizelyBucketId
+#pragma mark - Test Bucketing ID
 
 - (void)testCreateImpressionEventWithBucketingIDAttribute
 {
