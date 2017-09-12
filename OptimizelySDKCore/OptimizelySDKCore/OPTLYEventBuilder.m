@@ -102,7 +102,8 @@ NSString * const OPTLYEventBuilderEventTicketURL           = @"https://p13nlog.d
         const char *objCType = [answer objCType];
         // Dispatch objCType according to one of "Type Encodings" listed here:
         // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
-        if ((strcmp(objCType, @encode(char)) == 0)
+        if ((strcmp(objCType, @encode(bool)) == 0)
+            || (strcmp(objCType, @encode(char)) == 0)
             || (strcmp(objCType, @encode(unsigned char)) == 0)
             || (strcmp(objCType, @encode(short)) == 0)
             || (strcmp(objCType, @encode(unsigned short)) == 0)
