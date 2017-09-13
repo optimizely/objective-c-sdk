@@ -201,6 +201,99 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
+#pragma mark - Test Objective-C Booleans
+
+- (void)testObjectiveCBooleans
+{
+    // Test facts we need to know about "boolean" NSNumber's in order
+    // to implement Optimizely event metrics correctly.  The short story
+    // is Optimizely event metrics need to be numbers but "boolean"
+    // NSNumber's serialize as JSON booleans not JSON numbers, so must
+    // be disallowed.
+    // Confirm behavior of Apple NSJSONSerialization wrt NSNumber's
+    // created via "+ (NSNumber *)numberWithBool:(BOOL)value;"
+    // NOTE: We pass a small a test dictionary to NSJSONSerialization's
+    // method instead of mere NSNumber by itself because Apple's
+    // NSJSONSerialization is sadly incomplete wrt RFC 7159 .
+    {
+        XCTAssertEqualObjects(@(@encode(bool)),@"B",@"Expected @encode(bool) == B");
+        XCTAssertEqualObjects(@(@encode(char)),@"c",@"Expected @encode(char) == c");
+        XCTAssertEqualObjects(@(@encode(unsigned char)),@"C",@"Expected @encode(unsigned char) == C");
+        XCTAssertEqualObjects(@(@encode(short)),@"s",@"Expected @encode(short) == s");
+        XCTAssertEqualObjects(@(@encode(unsigned short)),@"S",@"Expected @encode(unsigned short) == S");
+        XCTAssertEqualObjects(@(@encode(int)),@"i",@"Expected @encode(int) == i");
+        XCTAssertEqualObjects(@(@encode(unsigned int)),@"I",@"Expected @encode(unsigned int) == I");
+#if __LP64__
+        NSLog(@"64 bit platform");
+        // Objective-C "long" == "long long" == 8 bytes (LP64 size)
+        // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+        XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(long long)));
+        XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned long) == %@",@(@encode(unsigned long long)));
+#else
+        NSLog(@"32 bit platform");
+        // Objective-C "long" == "int" == 4 bytes (LP32 size)
+        // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+        XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(int)));
+        XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned int) == %@",@(@encode(unsigned int)));
+#endif
+        XCTAssertEqualObjects(@(@encode(long long)),@"q",@"Expected @encode(long long) == q");
+        XCTAssertEqualObjects(@(@encode(unsigned long long)),@"Q",@"Expected @encode(unsigned long long) == Q");
+        XCTAssertEqualObjects(@(@encode(float)),@"f",@"Expected @encode(float) == f");
+        XCTAssertEqualObjects(@(@encode(double)),@"d",@"Expected @encode(double) == d");
+    }
+    {
+        // "NSCFBoolean is a private class in the NSNumber class cluster."
+        // http://nshipster.com/bool/
+        // Some Objective-C quirkiness goes on here as one might
+        // have reasonably predicted that @YES and @NO would have
+        // objCType == "B" , but it is not so.
+        NSLog(@"[@YES objCType] == %@", @([@YES objCType]));
+        NSLog(@"[@NO objCType] == %@", @([@NO objCType]));
+        XCTAssertEqualObjects(@([@YES objCType]),@"c",@"Expected [@YES objCType] == c");
+        XCTAssertEqualObjects(@([@NO objCType]),@"c",@"Expected [@NO objCType] == c");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithBool:YES]};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":true}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithBool:NO]};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":false}");
+    }
+    {
+        XCTAssertEqualObjects(@YES,[NSNumber numberWithBool:YES],@"Expected @YES == [NSNumber numberWithBool:YES]");
+        XCTAssertEqualObjects(@NO,[NSNumber numberWithBool:NO],@"Expected @NO == [NSNumber numberWithBool:NO]");
+    }
+    {
+        NSObject *object = @{@"key":@YES};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":true}");
+    }
+    {
+        NSObject *object = @{@"key":@NO};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":false}");
+    }
+    // CONCLUDE: Optimizely event metric 'value' is specified to be
+    // a number, so we'll need a JSON number transmitted to server.
+    // However, we see above that NSNumber's created via
+    // "+ (NSNumber *)numberWithBool:(BOOL)value;" do not qualify.
+}
+
 #pragma mark - Test revenue Metric
 
 - (void)testRevenueMetric
@@ -327,10 +420,11 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
 - (void)testRevenueMetricWithBoolean
 {
-    // The SDK issues a console warning about casting BOOL to "long long",
-    // but a "revenue" key-value pair will appear in the transmitted event.
+    // NOTE: As discussed in code comments in test testObjectiveCBooleans ,
+    // @YES won't be sent to Optimizely server, since it will serialize
+    // as "true" instead of a JSON number.
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@YES}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@YES}];
+                       sentEventTags:@{}];
 }
 
 - (void)testRevenueMetricWithString
@@ -353,6 +447,15 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 {
     [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventValue)}
                        sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue)}];
+}
+
+- (void)testValueMetricWithBoolean
+{
+    // NOTE: As discussed in code comments in test testObjectiveCBooleans ,
+    // @YES won't be sent to Optimizely server, since it will serialize
+    // as "true" instead of a JSON number.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@YES}
+                       sentEventTags:@{}];
 }
 
 - (void)testValueMetricWithString
