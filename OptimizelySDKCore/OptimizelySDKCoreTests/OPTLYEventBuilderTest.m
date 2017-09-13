@@ -201,9 +201,42 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
-#pragma mark - Test Objective-C Booleans
+#pragma mark - Test Objective-C NSNumber's
 
-- (void)testObjectiveCBooleans
+- (void)testObjectiveCAtEncode
+{
+    // Test facts we need to know about @encode and NSNumber objCType's in order
+    // to implement Optimizely event metrics correctly.  The short story
+    // is Optimizely event metrics need to be numbers but "boolean"
+    // NSNumber's serialize as JSON booleans not JSON numbers, so must
+    // be disallowed.
+    XCTAssertEqualObjects(@(@encode(bool)),@"B",@"Expected @encode(bool) == B");
+    XCTAssertEqualObjects(@(@encode(char)),@"c",@"Expected @encode(char) == c");
+    XCTAssertEqualObjects(@(@encode(unsigned char)),@"C",@"Expected @encode(unsigned char) == C");
+    XCTAssertEqualObjects(@(@encode(short)),@"s",@"Expected @encode(short) == s");
+    XCTAssertEqualObjects(@(@encode(unsigned short)),@"S",@"Expected @encode(unsigned short) == S");
+    XCTAssertEqualObjects(@(@encode(int)),@"i",@"Expected @encode(int) == i");
+    XCTAssertEqualObjects(@(@encode(unsigned int)),@"I",@"Expected @encode(unsigned int) == I");
+#if __LP64__
+    NSLog(@"64 bit platform");
+    // Objective-C "long" == "long long" == 8 bytes (LP64 size)
+    // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+    XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(long long)));
+    XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned long) == %@",@(@encode(unsigned long long)));
+#else
+    NSLog(@"32 bit platform");
+    // Objective-C "long" == "int" == 4 bytes (LP32 size)
+    // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+    XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(int)));
+    XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned int) == %@",@(@encode(unsigned int)));
+#endif
+    XCTAssertEqualObjects(@(@encode(long long)),@"q",@"Expected @encode(long long) == q");
+    XCTAssertEqualObjects(@(@encode(unsigned long long)),@"Q",@"Expected @encode(unsigned long long) == Q");
+    XCTAssertEqualObjects(@(@encode(float)),@"f",@"Expected @encode(float) == f");
+    XCTAssertEqualObjects(@(@encode(double)),@"d",@"Expected @encode(double) == d");
+}
+
+- (void)testObjectiveCBooleanNSNumbers
 {
     // Test facts we need to know about "boolean" NSNumber's in order
     // to implement Optimizely event metrics correctly.  The short story
@@ -215,32 +248,6 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // NOTE: We pass a small a test dictionary to NSJSONSerialization's
     // method instead of mere NSNumber by itself because Apple's
     // NSJSONSerialization is sadly incomplete wrt RFC 7159 .
-    {
-        XCTAssertEqualObjects(@(@encode(bool)),@"B",@"Expected @encode(bool) == B");
-        XCTAssertEqualObjects(@(@encode(char)),@"c",@"Expected @encode(char) == c");
-        XCTAssertEqualObjects(@(@encode(unsigned char)),@"C",@"Expected @encode(unsigned char) == C");
-        XCTAssertEqualObjects(@(@encode(short)),@"s",@"Expected @encode(short) == s");
-        XCTAssertEqualObjects(@(@encode(unsigned short)),@"S",@"Expected @encode(unsigned short) == S");
-        XCTAssertEqualObjects(@(@encode(int)),@"i",@"Expected @encode(int) == i");
-        XCTAssertEqualObjects(@(@encode(unsigned int)),@"I",@"Expected @encode(unsigned int) == I");
-#if __LP64__
-        NSLog(@"64 bit platform");
-        // Objective-C "long" == "long long" == 8 bytes (LP64 size)
-        // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
-        XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(long long)));
-        XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned long) == %@",@(@encode(unsigned long long)));
-#else
-        NSLog(@"32 bit platform");
-        // Objective-C "long" == "int" == 4 bytes (LP32 size)
-        // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
-        XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(int)));
-        XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned int) == %@",@(@encode(unsigned int)));
-#endif
-        XCTAssertEqualObjects(@(@encode(long long)),@"q",@"Expected @encode(long long) == q");
-        XCTAssertEqualObjects(@(@encode(unsigned long long)),@"Q",@"Expected @encode(unsigned long long) == Q");
-        XCTAssertEqualObjects(@(@encode(float)),@"f",@"Expected @encode(float) == f");
-        XCTAssertEqualObjects(@(@encode(double)),@"d",@"Expected @encode(double) == d");
-    }
     {
         // "NSCFBoolean is a private class in the NSNumber class cluster."
         // http://nshipster.com/bool/
@@ -292,6 +299,57 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     // a number, so we'll need a JSON number transmitted to server.
     // However, we see above that NSNumber's created via
     // "+ (NSNumber *)numberWithBool:(BOOL)value;" do not qualify.
+}
+
+- (void)testObjectiveCCharNSNumbers
+{
+    // Test facts we need to know about "char" and "unsigned char" NSNumber's .
+    // It turns out that "char" NSNumber's do serialize as JSON numbers
+    // which are acceptable.
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithChar:'A']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:(unsigned char)'A']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:'\xFF']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        // Oddly, signed chars serialize just like unsigned chars, even if negative.
+        // This possibly says something about the benefits and drawbacks of using
+        // signed "char" NSNumber's in code, but the litmus test for Optimizely server
+        // is that it receives a number, and this qualifies.
+        XCTAssertEqualObjects(string,@"{\"key\":255}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:(unsigned char)'\xFF']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":255}");
+    }
+    {
+        NSObject *object = @{@"key":@'A'};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
 }
 
 #pragma mark - Test revenue Metric
