@@ -36,7 +36,8 @@ static NSString * const kAccountId = @"6365361536";
 static NSString * const kProjectId = @"6377970066";
 static NSString * const kRevision = @"83";
 static NSString * const kLayerId = @"1234";
-static NSInteger kEventValue = 88;
+static NSInteger kEventRevenue = 88;
+static double kEventValue = 123.456;
 static NSString * const kTotalRevenueId = @"6316734272";
 static NSString * const kAttributeId = @"6359881003";
 static NSString * const kAttributeKeyBrowserType = @"browser_type";
@@ -107,7 +108,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     self.bucketer = nil;
 }
 
-#pragma mark - Test buildEventTicket:...
+#pragma mark - Test buildEventTicket:... Audiences
 
 - (void)testBuildEventTicketWithNoAudience
 {
@@ -162,6 +163,8 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
              experimentIds:@[kExperimentWithAudienceId]];
 }
 
+#pragma mark - Test buildEventTicket:... Invalid Args
+
 - (void)testBuildEventTicketWithInvalidAudience
 {
     // check without attributes that satisfy audience requirement
@@ -198,217 +201,422 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     XCTAssertNil(eventTicket, @"Event ticket should be nil.");
 }
 
-- (void)testBuildEventTicketWithRevenue
+#pragma mark - Test Objective-C NSNumber's
+
+- (void)testObjectiveCAtEncode
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    // Test facts we need to know about @encode and NSNumber objCType's in order
+    // to implement Optimizely event metrics correctly.  The short story
+    // is Optimizely event metrics need to be numbers but "boolean"
+    // NSNumber's serialize as JSON booleans not JSON numbers, so must
+    // be disallowed.
+    XCTAssertEqualObjects(@(@encode(bool)),@"B",@"Expected @encode(bool) == B");
+    XCTAssertEqualObjects(@(@encode(char)),@"c",@"Expected @encode(char) == c");
+    XCTAssertEqualObjects(@(@encode(unsigned char)),@"C",@"Expected @encode(unsigned char) == C");
+    XCTAssertEqualObjects(@(@encode(short)),@"s",@"Expected @encode(short) == s");
+    XCTAssertEqualObjects(@(@encode(unsigned short)),@"S",@"Expected @encode(unsigned short) == S");
+    XCTAssertEqualObjects(@(@encode(int)),@"i",@"Expected @encode(int) == i");
+    XCTAssertEqualObjects(@(@encode(unsigned int)),@"I",@"Expected @encode(unsigned int) == I");
+#if __LP64__
+    NSLog(@"64 bit platform");
+    // Objective-C "long" == "long long" == 8 bytes (LP64 size)
+    // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+    XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(long long)));
+    XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned long) == %@",@(@encode(unsigned long long)));
+#else
+    NSLog(@"32 bit platform");
+    // Objective-C "long" == "int" == 4 bytes (LP32 size)
+    // https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html
+    XCTAssertEqualObjects(@(@encode(long)),@(@encode(long long)),@"Expected @encode(long) == %@",@(@encode(int)));
+    XCTAssertEqualObjects(@(@encode(unsigned long)),@(@encode(unsigned long long)),@"Expected @encode(unsigned int) == %@",@(@encode(unsigned int)));
+#endif
+    XCTAssertEqualObjects(@(@encode(long long)),@"q",@"Expected @encode(long long) == q");
+    XCTAssertEqualObjects(@(@encode(unsigned long long)),@"Q",@"Expected @encode(unsigned long long) == Q");
+    XCTAssertEqualObjects(@(@encode(float)),@"f",@"Expected @encode(float) == f");
+    XCTAssertEqualObjects(@(@encode(double)),@"d",@"Expected @encode(double) == d");
 }
 
-- (void)testBuildEventTicketWithInvalidDoubleRevenue
+- (void)testObjectiveCBooleanNSNumbers
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    double doubleRevenueValue = 888.88;
-    long long doubleRevenueValueCast = doubleRevenueValue;
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithDouble:doubleRevenueValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithLongLong:doubleRevenueValueCast]}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    // Test facts we need to know about "boolean" NSNumber's in order
+    // to implement Optimizely event metrics correctly.  The short story
+    // is Optimizely event metrics need to be numbers but "boolean"
+    // NSNumber's serialize as JSON booleans not JSON numbers, so must
+    // be disallowed.
+    // Confirm behavior of Apple NSJSONSerialization wrt NSNumber's
+    // created via "+ (NSNumber *)numberWithBool:(BOOL)value;"
+    // NOTE: We pass a small a test dictionary to NSJSONSerialization's
+    // method instead of mere NSNumber by itself because Apple's
+    // NSJSONSerialization is sadly incomplete wrt RFC 7159 .
+    {
+        // "NSCFBoolean is a private class in the NSNumber class cluster."
+        // http://nshipster.com/bool/
+        // Some Objective-C quirkiness goes on here as one might
+        // have reasonably predicted that @YES and @NO would have
+        // objCType == "B" , but it is not so.
+        NSLog(@"[@YES objCType] == %@", @([@YES objCType]));
+        NSLog(@"[@NO objCType] == %@", @([@NO objCType]));
+        XCTAssertEqualObjects(@([@YES objCType]),@"c",@"Expected [@YES objCType] == c");
+        XCTAssertEqualObjects(@([@NO objCType]),@"c",@"Expected [@NO objCType] == c");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithBool:YES]};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":true}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithBool:NO]};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":false}");
+    }
+    {
+        XCTAssertEqualObjects(@YES,[NSNumber numberWithBool:YES],@"Expected @YES == [NSNumber numberWithBool:YES]");
+        XCTAssertEqualObjects(@NO,[NSNumber numberWithBool:NO],@"Expected @NO == [NSNumber numberWithBool:NO]");
+    }
+    {
+        NSObject *object = @{@"key":@YES};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":true}");
+    }
+    {
+        NSObject *object = @{@"key":@NO};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":false}");
+    }
+    // CONCLUDE: Optimizely event metric 'value' is specified to be
+    // a number, so we'll need a JSON number transmitted to server.
+    // However, we see above that NSNumber's created via
+    // "+ (NSNumber *)numberWithBool:(BOOL)value;" do not qualify.
 }
 
-- (void)testBuildEventTicketWithInvalidBooleanRevenue
+- (void)testObjectiveCCharNSNumbers
 {
-    NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : @YES }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithBool:YES] }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    // Test facts we need to know about "char" and "unsigned char" NSNumber's .
+    // It turns out that "char" NSNumber's do serialize as JSON numbers
+    // which are acceptable.
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithChar:'A']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:(unsigned char)'A']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:'\xFF']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        // Oddly, signed chars serialize just like unsigned chars, even if negative.
+        // This possibly says something about the benefits and drawbacks of using
+        // signed "char" NSNumber's in code, but the litmus test for Optimizely server
+        // is that it receives a number, and this qualifies.
+        XCTAssertEqualObjects(string,@"{\"key\":255}");
+    }
+    {
+        NSObject *object = @{@"key":[NSNumber numberWithUnsignedChar:(unsigned char)'\xFF']};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":255}");
+    }
+    {
+        NSObject *object = @{@"key":@'A'};
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:object options:kNilOptions error:&error];
+        XCTAssertNil(error, @"Not expecting NSJSONSerialization error");
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssertEqualObjects(string,@"{\"key\":65}");
+    }
 }
 
-- (void)testBuildEventTicketWithInvalidStringRevenue
+#pragma mark - Test revenue Metric
+
+- (void)testRevenueMetric
 {
-    NSString *stringRevenue = @"8.234";
-    long long int castStringRevenue = [stringRevenue longLongValue];
-    
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : stringRevenue,
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    
-    // the revenue value should be cast to an int
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:castStringRevenue],
-                              kAttributeKeyBrowserType : kAttributeValueChrome}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
 }
 
-- (void)testBuildEventTicketWithInvalidObjectRevenue
+- (void)testRevenueMetricWithDouble
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : attributes,
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    
-    // no revenue value should be included
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    // The SDK issues a console warning about casting double to "long long",
+    // but a "revenue" key-value pair will appear in the transmitted event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(888.88)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(888LL)}];
 }
 
+- (void)testRevenueMetricWithHugeDouble
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(1.0e100)}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithBoundaryDouble1
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly less than 1.0 to assure we stay inside.
+    const double stayInside = 0.99999;
+    double doubleRevenue = stayInside*(double)LLONG_MIN;
+    long long longLongRevenue = (long long)doubleRevenue;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+}
+
+- (void)testRevenueMetricWithBoundaryDouble2
+{
+    // Like previous test but using LLONG_MAX instead of LLONG_MIN .
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly less than 1.0 to assure we stay inside.
+    const double stayInside = 0.99999;
+    double doubleRevenue = stayInside*(double)LLONG_MAX;
+    long long longLongRevenue = (long long)doubleRevenue;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+}
+
+- (void)testRevenueMetricWithBoundaryDouble3
+{
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly more than 1.0 to assure we stay outside.
+    const double stayOutside = 1.00001;
+    double doubleRevenue = stayOutside*(double)LLONG_MIN;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithBoundaryDouble4
+{
+    // Like previous test but using LLONG_MAX instead of LLONG_MIN .
+    // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // This is a little tricky since casting LLONG_MIN to double loses some bits
+    // of precision and then casting back to "long long" can't restore the lost bits.
+    // Multiply by a value slightly more than 1.0 to assure we stay outside.
+    const double stayOutside = 1.00001;
+    double doubleRevenue = stayOutside*(double)LLONG_MAX;
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithCastUnsignedLongLong
+{
+    // "unsigned long long" which is barely in range.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@((unsigned long long)LLONG_MAX)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+}
+
+- (void)testRevenueMetricWithBoundaryUnsignedLongLong
+{
+    // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // A Bridge Too Far
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(1ULL+(unsigned long long)LLONG_MAX)}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithHugeUnsignedLongLong
+{
+    // The SDK prevents "unsigned long long"'s outside the range [LLONG_MIN, LLONG_MAX]
+    // from being cast into nonsense and sent.  Instead a console warning
+    // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
+    // NOTE: ULLONG_MAX > LLONG_MAX is such an example.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(ULLONG_MAX)}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithLongLongMax
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+}
+
+- (void)testRevenueMetricWithLongLongMin
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}];
+}
+
+- (void)testRevenueMetricWithBoolean
+{
+    // NOTE: As discussed in code comments in test testObjectiveCBooleans ,
+    // @YES won't be sent to Optimizely server, since it will serialize
+    // as "true" instead of a JSON number.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@YES}
+                       sentEventTags:@{}];
+}
+
+- (void)testRevenueMetricWithString
+{
+    // The SDK issues a console warning about casting NSString to "long long",
+    // but a "revenue" key-value pair will appear in the transmitted event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@"8.234"}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(8LL)}];
+}
+
+- (void)testRevenueMetricWithInvalidObject
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@[@"BAD",@"DATA"]}
+                       sentEventTags:@{}];
+}
+
+#pragma mark - Test value Metric
+
+- (void)testValueMetric
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventValue)}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue)}];
+}
+
+- (void)testValueMetricWithBoolean
+{
+    // NOTE: As discussed in code comments in test testObjectiveCBooleans ,
+    // @YES won't be sent to Optimizely server, since it will serialize
+    // as "true" instead of a JSON number.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@YES}
+                       sentEventTags:@{}];
+}
+
+- (void)testValueMetricWithString
+{
+    // The SDK issues a console warning about casting NSString to "double",
+    // but a "value" key-value pair will appear in the transmitted event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:[NSString stringWithFormat:@"%g", kEventValue],
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
+}
+
+- (void)testValueMetricWithNAN
+{
+    // The SDK does not allow NAN partly because this value
+    // doesn't serialize into JSON .  SDK issues a console warning
+    // and omits the proposed "value" key-value pair which will not
+    // appear in the transmitted event.  IOW, invalid value suppressed.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(NAN),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+}
+
+- (void)testValueMetricWithINFINITY
+{
+    // The SDK does not allow INFINITY partly because this value
+    // doesn't serialize into JSON .  SDK issues a console warning
+    // and omits the proposed "value" key-value pair which will not
+    // appear in the transmitted event.  IOW, invalid value suppressed.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(INFINITY),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+}
+
+- (void)testValueMetricWithInvalidObject
+{
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@[@"BAD",@"DATA"],
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+}
+
+#pragma mark - Test revenue Metric and value Metric
+
+- (void)testRevenueMetricAndValueMetric
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                                       OPTLYEventMetricNameValue:@(kEventValue)}
+                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                                       OPTLYEventMetricNameValue:@(kEventValue)}];
+}
+
+#pragma mark - Test buildEventTicket:... with Multiple eventTags
 
 - (void)testBuildEventTicketWithEventTags
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
-                                                                  @"IntegerTag" : [NSNumber numberWithInteger:15],
-                                                                  @"BooleanTag" : @YES,
-                                                                  @"FloatTag" : [NSNumber numberWithFloat:1.23],
-                                                                  @"InvalidArrayTag" : [NSArray new]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ kAttributeKeyBrowserType : kAttributeValueChrome,
-                              @"IntegerTag" : [NSNumber numberWithInteger:15],
-                              @"FloatTag" : [NSNumber numberWithFloat:1.23],
-                              @"BooleanTag" : @YES}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    [self commonBuildEventTicketTest:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"BooleanTag":@YES,
+                                       @"FloatTag":@1.23,
+                                       @"InvalidArrayTag":[NSArray new]}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"FloatTag":@1.23,
+                                       @"BooleanTag":@YES}];
 }
 
 - (void)testBuildEventTicketWithRevenueAndEventTags
 {
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue],
-                                                                  kAttributeKeyBrowserType : kAttributeValueChrome }
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue],
-                              kAttributeKeyBrowserType : kAttributeValueChrome}
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
+    [self commonBuildEventTicketTest:@{OPTLYEventMetricNameValue:@(kEventRevenue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}
+                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventRevenue),
+                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
-- (void)testBuildEventTicketWithAllArguments
-{
-    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
-    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue]}
-                                                    attributes:attributes];
-    [self checkCommonParams:params withAttributes:attributes];
-    [self checkEventTicket:params
-                    config:self.config
-                   eventId:kEventWithAudienceId
-                 eventName:kEventWithAudienceName
-                 eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
-                attributes:attributes
-                    userId:kUserId
-             experimentIds:@[kExperimentWithAudienceId]];
-}
+#pragma mark - Test buildEventTicket:... with Multiple Experiments
 
 - (void)testBuildEventTicketWithEventMultipleExperiments
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueChrome};
-    
     NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
                                                       bucketer:self.bucketer
                                                         userId:kUserId
                                                      eventName:kEventWithMultipleExperimentsName
-                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventValue] }
+                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
                                                     attributes:attributes];
     [self checkCommonParams:params withAttributes:attributes];
-    
+    [self checkEventMetrics:params
+                  eventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
     NSArray *experimentIds = @[@"6364835526", @"6450630664", @"6367863211", @"6376870125", @"6383811281", @"6358043286", @"6370392407", @"6367444440", @"6370821515", @"6447021179"];
     NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    
     NSUInteger numberOfLayers = [layerStates count];
     NSUInteger numberOfExperiments = [experimentIds count];
-    
     // 6383811281 (testExperimentWithFirefoxAudience) is excluded because the attributes do not match
     // 6367444440 (testExperimentNotRunning) is excluded because the experiment is not running
     // 6450630664 should be exlucded becuase it is mutually excluded.
-    NSAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
+    XCTAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
 }
+
+#pragma mark - Test anonymizeIP
 
 - (void)testBuildEventTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
@@ -423,8 +631,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                attributes:nil];
     
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
+
+#pragma mark - Test Bucketing ID
 
 - (void)testCreateImpressionEventWithBucketingIDAttribute
 {
@@ -525,7 +735,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                             experimentKey:invalidExperimentKey
                                                                               variationId:invalidVariationId
                                                                                attributes:attributes];
-    NSAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
+    XCTAssert([decisionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
 }
 
 - (void)testBuildDecisionTicketWithAnonymizeIPFalse {
@@ -538,10 +748,33 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                                                                          variationId:kVariationWithoutAudienceId
                                                                           attributes:nil];
     NSNumber *anonymizeIP = decisionEventTicketParams[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
 #pragma mark - Helper Methods
+
+- (void)commonBuildEventTicketTest:(NSDictionary*)eventTags sentEventTags:(NSDictionary*)sentEventTags
+{
+    // Common subroutine for many of the testBuildEventXxx test methods.
+    // Generally, a testBuildEventXxx should make at most one call
+    // to commonBuildEventTicketTest:sentEventTags: .
+    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
+    NSDictionary *params = [self.eventBuilder buildEventTicket:self.config
+                                                      bucketer:self.bucketer
+                                                        userId:kUserId
+                                                     eventName:kEventWithAudienceName
+                                                     eventTags:eventTags
+                                                    attributes:attributes];
+    [self checkCommonParams:params withAttributes:attributes];
+    [self checkEventTicket:params
+                    config:self.config
+                   eventId:kEventWithAudienceId
+                 eventName:kEventWithAudienceName
+                 eventTags:sentEventTags
+                attributes:attributes
+                    userId:kUserId
+             experimentIds:@[kExperimentWithAudienceId]];
+}
 
 - (void)checkDecisionTicketParams:(NSDictionary *)params
                            config:(OPTLYProjectConfig *)config
@@ -551,7 +784,7 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
                            userId:(NSString *)userId
 {
     // check layer id
-    NSAssert([params[OPTLYEventParameterKeysLayerId] isEqualToString:kLayerId], @"Layer id is invalid.");
+    XCTAssert([params[OPTLYEventParameterKeysLayerId] isEqualToString:kLayerId], @"Layer id is invalid.");
     
     // check decision
     NSDictionary *decision = params[OPTLYEventParameterKeysDecision];
@@ -571,34 +804,22 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
               attributes:(NSDictionary *)attributes
                   userId:(NSString *)userId
            experimentIds:(NSArray *)experimentIds
-
 {
-    NSAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
-    
-    NSAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
-    
-    NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
-    if ([eventTags count] > 0)
-    {
+    XCTAssert([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId], @"Invalid entityId.");
+    XCTAssert([params[OPTLYEventParameterKeysEventName] isEqualToString:eventName], @"Invalid event name: %@. Should be: %@.", params[OPTLYEventParameterKeysEventName], eventName);
+    if ([params[OPTLYEventParameterKeysEventEntityId] isEqualToString:eventId]
+        && [params[OPTLYEventParameterKeysEventName] isEqualToString:eventName]) {
+        NSArray *eventFeatures = params[OPTLYEventParameterKeysEventFeatures];
         [self checkEventFeatures:eventFeatures eventTags:eventTags];
+        [self checkEventMetrics:params eventTags:eventTags];
+        NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
+        [self checkLayerStates:config
+                   layerStates:layerStates
+                 experimentIds:experimentIds
+                        userId:userId
+                    attributes:attributes];
     }
-    
-    NSArray *eventMetrics = params[OPTLYEventParameterKeysEventMetrics];
-    if ([eventMetrics count] > 0)
-    {
-        [self checkEventMetric:eventMetrics[0]
-                     eventTags:eventTags];
-    }
-    
-    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-    [self checkLayerStates:config
-               layerStates:layerStates
-             experimentIds:experimentIds
-                    userId:userId
-                attributes:attributes];
-    
 }
-
 
 - (void)checkCommonParams:(NSDictionary *)params
            withAttributes:(NSDictionary *)attributes
@@ -609,39 +830,39 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSNumber *timestamp = params[OPTLYEventParameterKeysTimestamp];
     double time = [timestamp doubleValue]/1000;
     NSDate *eventTimestamp = [NSDate dateWithTimeIntervalSince1970:time];
-    NSAssert([self date:eventTimestamp isBetweenDate:self.begTimestamp andDate:currentTimestamp], @"Invalid timestamp: %@.", eventTimestamp);
+    XCTAssert([self date:eventTimestamp isBetweenDate:self.begTimestamp andDate:currentTimestamp], @"Invalid timestamp: %@.", eventTimestamp);
     
     // check revision
     NSString *revision = params[OPTLYEventParameterKeysRevision];
-    NSAssert([revision isEqualToString:kRevision], @"Incorrect revision number.");
+    XCTAssert([revision isEqualToString:kRevision], @"Incorrect revision number.");
     
     // check visitor id
     NSString *visitorId = params[OPTLYEventParameterKeysVisitorId];
-    NSAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");
+    XCTAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");
     
     // check project id
     NSString *projectId = params[OPTLYEventParameterKeysProjectId];
-    NSAssert([projectId isEqualToString:kProjectId], @"Incorrect project id.");
+    XCTAssert([projectId isEqualToString:kProjectId], @"Incorrect project id.");
     
     // check account id
     NSString *accountId = params[OPTLYEventParameterKeysAccountId];
-    NSAssert([accountId isEqualToString:kAccountId], @"Incorrect accound id");
+    XCTAssert([accountId isEqualToString:kAccountId], @"Incorrect accound id");
     
     // check clientEngine
     NSString *clientEngine = params[OPTLYEventParameterKeysClientEngine];
-    NSAssert([clientEngine isEqualToString:[self.config clientEngine]], @"Incorrect client engine.");
+    XCTAssert([clientEngine isEqualToString:[self.config clientEngine]], @"Incorrect client engine.");
     
     // check clientVersion
     NSString *clientVersion = params[OPTLYEventParameterKeysClientVersion];
-    NSAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
+    XCTAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
     
     // check anonymizeIP
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
-    NSAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
+    XCTAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
     
     // check global holdback
     NSNumber *isGlobalHoldback = params[OPTLYEventParameterKeysIsGlobalHoldback];
-    NSAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");
+    XCTAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");
     
     NSArray *userFeatures = params[OPTLYEventParameterKeysUserFeatures];
     [self checkUserFeatures:userFeatures
@@ -654,44 +875,46 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSUInteger numberOfFeatures = [userFeatures count];
     NSUInteger numberOfAttributes = [attributes count];
     
-    NSAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
+    XCTAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
     
-    NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesName ascending:YES];
-    NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
-    
-    NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
-    
-    for (NSUInteger i = 0; i < numberOfAttributes; i++)
-    {
-        NSDictionary *params = sortedUserFeaturesByName[i];
+    if (numberOfFeatures == numberOfAttributes) {
+        NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesName ascending:YES];
+        NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
         
-        NSString *anAttributeKey = sortedAttributeKeys[i];
-        NSString *anAttributeValue = [attributes objectForKey:anAttributeKey];
+        NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         
-        NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
-        NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
-        if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
-            // check id
-            XCTAssertNil(featureID, @"There should be no id here.");
-        } else {
-            // check name
-            XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
-            // check id
-            XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+        for (NSUInteger i = 0; i < numberOfAttributes; i++)
+        {
+            NSDictionary *params = sortedUserFeaturesByName[i];
+            
+            NSString *anAttributeKey = sortedAttributeKeys[i];
+            NSString *anAttributeValue = [attributes objectForKey:anAttributeKey];
+            
+            NSString *featureName = params[OPTLYEventParameterKeysFeaturesName];
+            NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
+            if ([featureName isEqualToString:OptimizelyBucketIdEventParam]) {
+                // check id
+                XCTAssertNil(featureID, @"There should be no id here.");
+            } else {
+                // check name
+                XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
+                // check id
+                XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+            }
+            
+            // check type
+            NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
+            XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
+            
+            // check value
+            NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
+            XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
+            
+            // check should index
+            BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
+            XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
         }
-        
-        // check type
-        NSString *featureType = params[OPTLYEventParameterKeysFeaturesType];
-        XCTAssert([featureType isEqualToString:OPTLYEventFeatureFeatureTypeCustomAttribute], @"Incorrect feature type.");
-        
-        // check value
-        NSString *featureValue = params[OPTLYEventParameterKeysFeaturesValue];
-        XCTAssert([featureValue isEqualToString:anAttributeValue], @"Incorrect feature value.");
-        
-        // check should index
-        BOOL shouldIndex = [params[OPTLYEventParameterKeysFeaturesShouldIndex] boolValue];
-        XCTAssert(shouldIndex == true, @"Incorrect shouldIndex value.");
     }
 }
 
@@ -704,49 +927,93 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
     NSUInteger numberOfLayers = [layerStates count];
     NSUInteger numberOfExperiments = [experimentIds count];
     
-    NSAssert(numberOfLayers == numberOfExperiments, @"Incorrect number of layers.");
+    XCTAssert(numberOfLayers == numberOfExperiments, @"Incorrect number of layers.");
     
-    // sort layer states
-    NSSortDescriptor *layerStatesDecisionExperimentIdDescriptor = [[NSSortDescriptor alloc] initWithKey:@"decision.experimentId" ascending:YES];
-    NSArray *sortedLayerStatesByDecisionExperimentId = [layerStates sortedArrayUsingDescriptors:@[layerStatesDecisionExperimentIdDescriptor]];
-    
-    // sort experiment ids
-    NSSortDescriptor *experimentIdDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedExperimentIds = [experimentIds sortedArrayUsingDescriptors:@[experimentIdDescriptor]];
-    
-    for (NSUInteger i = 0; i < numberOfLayers; i++)
-    {
-        NSString *experimentId = sortedExperimentIds[i];
-        NSDictionary *layerState = sortedLayerStatesByDecisionExperimentId[i];
+    if (numberOfLayers == numberOfExperiments) {
+        // sort layer states
+        NSSortDescriptor *layerStatesDecisionExperimentIdDescriptor = [[NSSortDescriptor alloc] initWithKey:@"decision.experimentId" ascending:YES];
+        NSArray *sortedLayerStatesByDecisionExperimentId = [layerStates sortedArrayUsingDescriptors:@[layerStatesDecisionExperimentIdDescriptor]];
         
-        OPTLYExperiment *experiment = [config getExperimentForId:experimentId];
-        NSAssert(experiment != nil, @"Experiment should be part of the datafile.");
-        OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
-                                                                       userId:userId
-                                                                   attributes:attributes
-                                                                     bucketer:self.bucketer];
+        // sort experiment ids
+        NSSortDescriptor *experimentIdDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedExperimentIds = [experimentIds sortedArrayUsingDescriptors:@[experimentIdDescriptor]];
         
-        NSDictionary *decisionParams = layerState[OPTLYEventParameterKeysLayerStateDecision];
-        if ([decisionParams count] > 0) {
-            [self checkDecision:decisionParams
-                   experimentId:experimentId
-            bucketedVariationId:bucketedVariation.variationId];
+        for (NSUInteger i = 0; i < numberOfLayers; i++)
+        {
+            NSString *experimentId = sortedExperimentIds[i];
+            NSDictionary *layerState = sortedLayerStatesByDecisionExperimentId[i];
+            
+            OPTLYExperiment *experiment = [config getExperimentForId:experimentId];
+            XCTAssert(experiment != nil, @"Experiment should be part of the datafile.");
+            if (experiment != nil) {
+                OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
+                                                                               userId:userId
+                                                                           attributes:attributes
+                                                                             bucketer:self.bucketer];
+                
+                NSDictionary *decisionParams = layerState[OPTLYEventParameterKeysLayerStateDecision];
+                if ([decisionParams count] > 0) {
+                    [self checkDecision:decisionParams
+                           experimentId:experimentId
+                    bucketedVariationId:bucketedVariation.variationId];
+                }
+                
+                NSNumber *actionTriggered = layerState[OPTLYEventParameterKeysLayerStateActionTriggered];
+                XCTAssert([actionTriggered boolValue] == false, @"Invalid actionTriggered value.");
+                NSString *layerId = layerState[OPTLYEventParameterKeysLayerStateLayerId];
+                XCTAssert([layerId isEqualToString:kLayerId], @"Invalid layerId value.");
+                NSString *revision = layerState[OPTLYEventParameterKeysLayerStateRevision];
+                XCTAssert([revision isEqualToString:kRevision], @"Invalid revision.");
+            }
         }
-        
-        NSNumber *actionTriggered = layerState[OPTLYEventParameterKeysLayerStateActionTriggered];
-        NSAssert([actionTriggered boolValue] == false, @"Invalid actionTriggered value.");
-        NSString *layerId = layerState[OPTLYEventParameterKeysLayerStateLayerId];
-        NSAssert([layerId isEqualToString:kLayerId], @"Invalid layerId value.");
-        NSString *revision = layerState[OPTLYEventParameterKeysLayerStateRevision];
-        NSAssert([revision isEqualToString:kRevision], @"Invalid revision.");
     }
 }
 
-- (void)checkEventMetric:(NSDictionary *)params
-               eventTags:(NSDictionary *)eventTags
-{
-    NSAssert([params[OPTLYEventParameterKeysMetricName] isEqualToString:OPTLYEventMetricNameRevenue], @"Invalid event metric name: %@.", params[OPTLYEventParameterKeysMetricName]);
-    NSAssert([params[OPTLYEventParameterKeysMetricValue] isEqualToNumber:eventTags[OPTLYEventMetricNameRevenue]], @"Invalid event metric value: %@.", params[OPTLYEventParameterKeysMetricValue]);
+- (void)checkEventMetrics:(NSDictionary*)params
+                eventTags:(NSDictionary*)eventTags {
+    // Check eventMetrics eventTags.
+    NSArray *eventMetrics = params[@"eventMetrics"];
+    XCTAssert([eventMetrics isKindOfClass:[NSArray class]], @"eventMetrics should be an NSArray .");
+    if ([eventMetrics isKindOfClass:[NSArray class]]) {
+        // Confirm every eventMetric in eventMetrics is predicted by eventTags .
+        for (NSDictionary *eventMetric in eventMetrics) {
+            XCTAssert([eventMetric isKindOfClass:[NSDictionary class]], @"eventMetric should be an NSDictionary .");
+            if ([eventMetric isKindOfClass:[NSDictionary class]]) {
+                XCTAssertEqual(eventMetric.count, 2, @"Two key-value pairs in eventMetric expected.");
+                NSString *name = eventMetric[@"name"];
+                XCTAssert([name isKindOfClass:[NSString class]], @"eventMetric name '%@' should be an NSString .", name);
+                NSNumber *expectedValue = eventTags[name];
+                XCTAssertNotNil(expectedValue, @"Not expecting to send eventMetric name '%@'.", name);
+                if (expectedValue != nil) {
+                    NSNumber *value = eventMetric[@"value"];
+                    XCTAssert([value isKindOfClass:[NSNumber class]], @"eventMetric value should be an NSNumber .");
+                    if ([value isKindOfClass:[NSNumber class]]) {
+                        XCTAssertEqualObjects(value, expectedValue, @"eventMetric value should equal %@ .", expectedValue);
+                    }
+                }
+            }
+        }
+        // Confirm every key-value pair in eventTags which is an eventMetric appears in eventMetrics .
+        // Since eventMetrics arrays is always small size (generally 0-1 and at most 2 elements),
+        // and this code is in test, not our SDK, we can afford a small brute force search.
+        {
+            NSArray *metricNames = @[OPTLYEventMetricNameRevenue, OPTLYEventMetricNameValue];
+            for (NSString* name in eventTags) {
+                if ([metricNames containsObject:name]) {
+                    NSObject *value = eventTags[name];
+                    BOOL found = NO;
+                    for (NSDictionary *eventMetric in eventMetrics) {
+                        if ([eventMetric[@"name"] isEqual:name]
+                            && [eventMetric[@"value"] isEqual:value]) {
+                            found = YES;
+                            break;
+                        }
+                    }
+                    XCTAssert(found, @"Didn't find predicted key-value pair %@:%@ in eventMetrics", name, value);
+                }
+            }
+        }
+    }
 }
 
 - (void)checkEventFeatures:(NSArray *)eventFeatures
@@ -776,10 +1043,10 @@ static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
          experimentId:(NSString *)experimentId
   bucketedVariationId:(NSString *)variationId
 {
-    NSAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
-    NSAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
+    XCTAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
+    XCTAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
     NSNumber *isLayerHoldback = params[OPTLYEventParameterKeysDecisionIsLayerHoldback];
-    NSAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
+    XCTAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
 }
 
 - (OPTLYProjectConfig *)setUpForAnonymizeIPFalse

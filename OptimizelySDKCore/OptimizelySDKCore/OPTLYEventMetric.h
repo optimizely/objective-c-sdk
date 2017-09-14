@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYEventMetricNameRevenue;
+extern NSString * const OPTLYEventMetricNameValue;
 NS_ASSUME_NONNULL_END
 
 @protocol OPTLYEventMetric
@@ -32,9 +33,9 @@ NS_ASSUME_NONNULL_END
 
 @interface OPTLYEventMetric : OPTLYJSONModel
 
-// The name of the metric, e.g. 'revenue'
+// The name of the metric, e.g. 'revenue' or 'value'
 @property (nonatomic, strong, nonnull) NSString *name;
 // The value of the metric
-@property (nonatomic, assign) long value;
+@property (nonatomic, strong, nonnull) NSNumber *value;
 
 @end

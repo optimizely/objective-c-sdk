@@ -17,6 +17,7 @@
 #import "OPTLYEventMetric.h"
 
 NSString * const OPTLYEventMetricNameRevenue = @"revenue";
+NSString * const OPTLYEventMetricNameValue = @"value";
 
 @implementation OPTLYEventMetric
 
