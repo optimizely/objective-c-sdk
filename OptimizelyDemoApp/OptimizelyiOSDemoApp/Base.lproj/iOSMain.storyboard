@@ -28,8 +28,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KSO-Tl-shb">
-                                <rect key="frame" x="96" y="212" width="183" height="178"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KSO-Tl-shb">
+                                <rect key="frame" x="96" y="244" width="183" height="178"/>
                                 <color key="backgroundColor" red="0.015686274509803921" green="0.16862745098039217" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.015686274509803921" green="0.16862745098039217" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -157,13 +157,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ConversionSuccessImageView" image="background_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-Bf-Es2">
-                                <rect key="frame" x="1" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qje-MN-IfM">
-                                <rect key="frame" x="152" y="493" width="70" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Conversion event recorded to Optimizely." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRh-TJ-NCw">
+                                <rect key="frame" x="94" y="139.5" width="188" height="166.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.019607843137254902" green="0.16862745098039217" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qje-MN-IfM">
+                                <rect key="frame" x="148.5" y="426.5" width="79" height="37"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.039215686270000001" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
                                 <state key="normal" title="BACK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -171,21 +178,19 @@
                                     <segue destination="fdp-bn-DAy" kind="unwind" unwindAction="unwindToVariationActionWithUnwindSegue:" id="fDm-ON-hDc"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Conversion event recorded to Optimizely." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRh-TJ-NCw">
-                                <rect key="frame" x="97" y="295" width="181" height="156"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.019607843137254902" green="0.16862745098039217" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ARR-Gc-cn2" firstAttribute="top" secondItem="GEt-Bf-Es2" secondAttribute="bottom" id="0UL-qA-2xF"/>
-                            <constraint firstItem="GEt-Bf-Es2" firstAttribute="leading" secondItem="yBM-xo-e29" secondAttribute="leading" constant="1" id="LaK-Tw-IR6"/>
+                            <constraint firstItem="Qje-MN-IfM" firstAttribute="centerX" secondItem="yBM-xo-e29" secondAttribute="centerX" id="5Im-Eg-MeQ"/>
+                            <constraint firstItem="CRh-TJ-NCw" firstAttribute="width" secondItem="yBM-xo-e29" secondAttribute="width" multiplier="1/2" id="HqC-Io-z1u"/>
+                            <constraint firstItem="GEt-Bf-Es2" firstAttribute="leading" secondItem="yBM-xo-e29" secondAttribute="leading" id="LaK-Tw-IR6"/>
+                            <constraint firstItem="CRh-TJ-NCw" firstAttribute="height" secondItem="yBM-xo-e29" secondAttribute="height" multiplier="1/4" id="MHA-GU-h2X"/>
+                            <constraint firstItem="CRh-TJ-NCw" firstAttribute="centerX" secondItem="yBM-xo-e29" secondAttribute="centerX" id="Vit-ho-CHR"/>
+                            <constraint firstItem="Qje-MN-IfM" firstAttribute="centerY" secondItem="yBM-xo-e29" secondAttribute="baseline" multiplier="2/3" id="bmX-Nq-olQ"/>
                             <constraint firstItem="GEt-Bf-Es2" firstAttribute="top" secondItem="yBM-xo-e29" secondAttribute="top" id="fPh-kg-My1"/>
-                            <constraint firstAttribute="trailing" secondItem="GEt-Bf-Es2" secondAttribute="trailing" constant="-1" id="ljx-MT-TD7"/>
+                            <constraint firstItem="CRh-TJ-NCw" firstAttribute="centerY" secondItem="yBM-xo-e29" secondAttribute="baseline" multiplier="1/3" id="gAA-bS-sGZ"/>
+                            <constraint firstAttribute="trailing" secondItem="GEt-Bf-Es2" secondAttribute="trailing" id="ljx-MT-TD7"/>
                         </constraints>
                     </view>
                 </viewController>
