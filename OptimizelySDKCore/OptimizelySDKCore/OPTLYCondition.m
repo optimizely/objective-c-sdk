@@ -22,6 +22,25 @@
 @implementation OPTLYCondition
 
 + (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
+    return [OPTLYCondition deserializeJSONArray:jsonArray error:nil];
+}
+
+// example jsonArray:
+//  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
++ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
+                                            error:(NSError **)error {
+    
+    // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
+    if (![jsonArray isKindOfClass:[NSArray class]]) {
+        NSError *err = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                           code:OPTLYErrorTypesDatafileInvalid
+                                       userInfo:@{NSLocalizedDescriptionKey : OPTLYErrorHandlerMessagesProjectConfigInvalidAudienceCondition}];
+        if (error && err) {
+            *error = err;
+        }
+        return nil;
+    }
+    
     if (jsonArray.count > 1 && [OPTLYBaseCondition isBaseConditionJSON:jsonArray[1]]) { //base case condition
         
         // generate all base conditions
@@ -31,24 +50,38 @@
             NSError *err = nil;
             OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:info
                                                                                      error:&err];
-            if (err != nil) {
-                NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
-                @throw exception;
+            if (error && err) {
+                *error = err;
             } else {
-                [conditions addObject:condition];
+                if (condition != nil) {
+                    [conditions addObject:condition];
+                }
             }
         }
         
         // return an (And/Or/Not) Condition handling the base conditions
-        return (NSArray<OPTLYCondition> *)@[[OPTLYCondition createConditionInstanceOfClass:jsonArray[0] withConditions:conditions]];
+        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
+                                                                              withConditions:conditions];
+        return (NSArray<OPTLYCondition> *)@[condition];
     }
     else { // further condition arrays to deserialize
         NSMutableArray<OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
         for (int i = 1; i < jsonArray.count; i++) {
-            [subConditions addObjectsFromArray:[OPTLYCondition deserializeJSONArray:jsonArray[i]]];
+            NSError *err = nil;
+            NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSONArray:jsonArray[i] error:&err];
+            
+            if (err) {
+                *error = err;
+                return nil;
+            }
+
+            if (deserializedJsonObject != nil) {
+                [subConditions addObjectsFromArray:deserializedJsonObject];
+            }
         }
-        return (NSArray<OPTLYCondition> *)@[[OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
-                                                                            withConditions:subConditions]];
+        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
+                                                                              withConditions:subConditions];
+        return (NSArray<OPTLYCondition> *)@[condition];
     }
 }
 

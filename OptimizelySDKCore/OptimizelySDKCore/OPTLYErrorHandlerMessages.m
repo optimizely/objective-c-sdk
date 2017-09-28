@@ -59,5 +59,8 @@ NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure = @"
 NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure = @"[HTTP] The max backoff retry has been exceeded. GET failed with error: %@.";
 NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure = @"[HTTP] The max backoff retry has been exceeded. GET if modified failed with error: %@.";
 
+// ---- Project Config ----
+NSString *const OPTLYErrorHandlerMessagesProjectConfigInvalidAudienceCondition = @"[CONFIG] Invalid audience condition.";
+
 @implementation OPTLYErrorHandlerMessages
 @end

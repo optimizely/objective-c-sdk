@@ -179,6 +179,17 @@
     XCTAssertTrue([conditionsArray[0] evaluateConditionsWithAttributes:self.testUserAttributes]);
 }
 
+- (void)testDeserializeConditionsNoValue {
+    NSString *conditionString = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\"}]]]";
+    NSData *conditionData = [conditionString dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
+                                                                        options:NSJSONReadingAllowFragments
+                                                                          error:nil];
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
+    XCTAssertNil(conditionsArray);
+}
+
 - (OPTLYBaseCondition *)mockBaseConditionAlwaysFalse {
     id falseBaseCondition = OCMClassMock([OPTLYBaseCondition class]);
     OCMStub([falseBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]]]).andReturn(false);
