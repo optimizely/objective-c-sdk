@@ -26,9 +26,9 @@
     else {
         NSDictionary *dict = (NSDictionary *)jsonData;
         
-        if ([dict objectForKey:OPTLYDatafileKeysConditionName] != nil &&
-            [dict objectForKey:OPTLYDatafileKeysConditionType] != nil &&
-            [dict objectForKey:OPTLYDatafileKeysConditionValue] != nil) {
+        if (dict[OPTLYDatafileKeysConditionName] != nil &&
+            dict[OPTLYDatafileKeysConditionType] != nil &&
+            dict[OPTLYDatafileKeysConditionValue] != nil) {
             return true;
         }
         return false;
