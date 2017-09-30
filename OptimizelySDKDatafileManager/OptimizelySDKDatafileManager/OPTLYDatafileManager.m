@@ -90,6 +90,8 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                                  NSString *logMessage = @"";
                                  if (error != nil) {
                                      [self.errorHandler handleError:error];
+                                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError, projectId, error];
+                                     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
                                  }
                                  else if (statusCode == 200) { // got datafile OK
                                      [self saveDatafile:data];
@@ -106,14 +108,11 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
                                      logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges, projectId];
                                      [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
                                  }
-                                 else {
-                                     // TODO: Josh W. handle bad response
-                                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError, projectId, error];
+                                 else { // no error, but invalid status code
+                                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedInvalidStatusCode, projectId, statusCode];
                                      [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
                                  }
-                                 
-                                 
-                                 
+                     
                                  // call the completion handler
                                  if (completion != nil) {
                                      completion(data, response, error);
