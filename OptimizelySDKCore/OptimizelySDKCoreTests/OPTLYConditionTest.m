@@ -190,6 +190,23 @@
     XCTAssertNil(conditionsArray);
 }
 
+- (void)testDeserializeConditionsEmptyConditions {
+    NSString *conditionString = @"";
+    NSData *conditionData = [conditionString dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
+                                                                        options:NSJSONReadingAllowFragments
+                                                                          error:nil];
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
+    XCTAssertNil(conditionsArray);
+}
+
+- (void)testDeserializeConditionsNilConditions {
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:nil error:&error];
+    XCTAssertNil(conditionsArray);
+}
+
 - (OPTLYBaseCondition *)mockBaseConditionAlwaysFalse {
     id falseBaseCondition = OCMClassMock([OPTLYBaseCondition class]);
     OCMStub([falseBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]]]).andReturn(false);
