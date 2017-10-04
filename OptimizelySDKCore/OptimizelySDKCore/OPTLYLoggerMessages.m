@@ -63,6 +63,7 @@ NSString *const OPTLYLoggerMessagesDataStoreFileManagerSaveFile = @"[FILE MANAGE
 
 // ---- Datafile Manager ----
 // debug
+NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedInvalidStatusCode = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. Invalid status code %d.";
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedError = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. Error received: %@.";
 NSString *const OPTLYLoggerMessagesDatafileManagerDatafileNotDownloadedNoChanges = @"[DATAFILE MANAGER] Datafile for project %@ NOT downloaded. No datafile changes have been made.";
 NSString *const OPTLYLoggerMessagesDatafileManagerLastModifiedDateFound = @"[DATAFILE MANAGER] Last modified date %@ found for project %@.";
