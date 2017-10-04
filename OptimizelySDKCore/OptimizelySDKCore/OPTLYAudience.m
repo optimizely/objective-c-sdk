@@ -22,7 +22,7 @@
 + (OPTLYJSONKeyMapper*)keyMapper
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysAudienceId   : @"audienceId",
-                                                        OPTLYDatafileKeysAudienceName : @"audienceName"
+                                                             OPTLYDatafileKeysAudienceName : @"audienceName"
                                                         }];
 }
 
@@ -38,7 +38,12 @@
         @throw exception;
     }
     
-    self.conditions = [OPTLYCondition deserializeJSONArray:array];
+    self.conditions = [OPTLYCondition deserializeJSONArray:array error:&err];
+    
+    if (err != nil) {
+        NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
+        @throw exception;
+    }
 }
 
 - (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
