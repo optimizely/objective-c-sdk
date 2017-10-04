@@ -225,7 +225,9 @@ dispatch_queue_t networkTasksQueue()
     
     __weak typeof(self) weakSelf = self;
     [self GETIfModifiedSince:lastModifiedDate completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSInteger statusCode = (long)[httpResponse statusCode];
+        if (statusCode >= 400 || error) {
             dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
                                           backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
