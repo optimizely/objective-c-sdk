@@ -68,6 +68,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     self.eventDispatcher.dataStore = nil;
     self.eventDispatcher = nil;
     [super tearDown];
+    [OHHTTPStubs removeAllStubs];
 }
 
 - (void)testEventDispatcherInitWithBuilderBlock
@@ -298,6 +299,42 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
+- (void)testDispatchNewEventFailureBackoffRetryInternalError
+{
+    [self stubFailureResponse];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventFailureBackoffRetryInternalError failure."];
+    [self.eventDispatcher dispatchNewEvent:self.parameters backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                      error:nil];
+        XCTAssert([savedEvents count] == 1, @"An event should have been saved.");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testDispatchNewEventFailureBackoffRetryInternalError: %@", error);
+        }
+    }];
+}
+
+- (void)testDispatchNewEventFailureBackoffRetryInvalidStatusCode
+{
+    [self stub400Response];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventFailureBackoffRetryInvalidStatusCode failure."];
+    [self.eventDispatcher dispatchNewEvent:self.parameters backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
+                                                                      error:nil];
+        XCTAssert([savedEvents count] == 1, @"An event should have been saved.");
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testDispatchNewEventFailureBackoffRetryInvalidStatusCode: %@", error);
+        }
+    }];
+}
+
 // make sure that if flush events is called more than the max allowed time
 // [OPTLYEventDispatcherMaxFlushEventAttempts], then flush event attempts will stop
 - (void)testFlushEventAttempts {
@@ -390,6 +427,17 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         NSData* stubData = [@"Data sent!" dataUsingEncoding:NSUTF8StringEncoding];
         return [OHHTTPStubsResponse responseWithData:stubData statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+    }];
+    
+}
+
+- (void)stub400Response
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return YES; // Stub ALL requests without any condition
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSData* stubData = [@"Data sent!" dataUsingEncoding:NSUTF8StringEncoding];
+        return [OHHTTPStubsResponse responseWithData:stubData statusCode:400 headers:@{@"Content-Type":@"application/json"}];
     }];
     
 }
