@@ -310,27 +310,9 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
         if (error) {
             NSLog(@"Timeout error for testDispatchNewEventFailureBackoffRetryInternalError: %@", error);
-        }
-    }];
-}
-
-- (void)testDispatchNewEventFailureBackoffRetryInvalidStatusCode
-{
-    [self stub400Response];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testDispatchNewEventFailureBackoffRetryInvalidStatusCode failure."];
-    [self.eventDispatcher dispatchNewEvent:self.parameters backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSArray *savedEvents = [self.eventDispatcher.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion
-                                                                      error:nil];
-        XCTAssert([savedEvents count] == 1, @"An event should have been saved.");
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Timeout error for testDispatchNewEventFailureBackoffRetryInvalidStatusCode: %@", error);
         }
     }];
 }
