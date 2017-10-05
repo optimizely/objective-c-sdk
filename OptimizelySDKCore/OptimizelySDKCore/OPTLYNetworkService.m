@@ -23,10 +23,10 @@ NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.c
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 // ---- The total backoff and retry interval is: pow(2, attempts) * interval ----
-const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 3; // retries after first failed attempt
+const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryAttempts = 2; // retries after first failed attempt
 const NSInteger OPTLYNetworkServiceEventDispatchMaxBackoffRetryTimeInterval_ms = 1000;
 
-const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts = 3; // retries after first failed attempt
+const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts = 2; // retries after first failed attempt
 const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms = 1000;
 
 @implementation OPTLYNetworkService
