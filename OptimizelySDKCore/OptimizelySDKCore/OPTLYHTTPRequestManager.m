@@ -142,12 +142,13 @@ dispatch_queue_t networkTasksQueue()
     
     __weak typeof(self) weakSelf = self;
     [self GETWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong typeof(self) strongSelf = weakSelf;
         if (error) {
-            dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
+            dispatch_time_t delayTime = [strongSelf backoffDelay:backoffRetryAttempt
                                           backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
                 
-                [weakSelf GETWithParameters:parameters
+                [strongSelf GETWithParameters:parameters
                        backoffRetryInterval:backoffRetryInterval
                                     retries:retries
                           completionHandler:completion
@@ -225,13 +226,14 @@ dispatch_queue_t networkTasksQueue()
     
     __weak typeof(self) weakSelf = self;
     [self GETIfModifiedSince:lastModifiedDate completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong typeof(self) strongSelf = weakSelf;
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSInteger statusCode = (long)[httpResponse statusCode];
         if (statusCode >= 400 || error) {
-            dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
+            dispatch_time_t delayTime = [strongSelf backoffDelay:backoffRetryAttempt
                                           backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
-                [weakSelf GETIfModifiedSince:lastModifiedDate
+                [strongSelf GETIfModifiedSince:lastModifiedDate
                         backoffRetryInterval:backoffRetryInterval
                                      retries:retries
                            completionHandler:completion
@@ -324,11 +326,12 @@ dispatch_queue_t networkTasksQueue()
     
     __weak typeof(self) weakSelf = self;
     [self POSTWithParameters:parameters completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong typeof(self) strongSelf = weakSelf;
         if (error) {
-            dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
+            dispatch_time_t delayTime = [strongSelf backoffDelay:backoffRetryAttempt
                                           backoffRetryInterval:backoffRetryInterval];
             dispatch_after(delayTime, networkTasksQueue(), ^(void){
-                [weakSelf POSTWithParameters:parameters
+                [strongSelf POSTWithParameters:parameters
                         backoffRetryInterval:backoffRetryInterval
                                      retries:retries
                            completionHandler:completion
