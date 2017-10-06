@@ -5,7 +5,6 @@ Pod::Spec.new do |s|
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.author                  = "Optimizely"
-  s.platform                = :ios, '10.1'
   s.ios.deployment_target   = "8.0"
   s.source                  = {
     :git => "https://github.com/optimizely/objective-c-sdk.git",
