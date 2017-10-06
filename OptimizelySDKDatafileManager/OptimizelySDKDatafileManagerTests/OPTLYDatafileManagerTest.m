@@ -49,17 +49,6 @@ static NSDictionary *kCDNResponseHeaders = nil;
     kCDNResponseHeaders = @{@"Content-Type":@"application/json",
                             @"Last-Modified":kLastModifiedDate};
     kDatafileData = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    
-    // stub all requests
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
-        // every requests passes this test
-        return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
-        // return bad request
-        return [OHHTTPStubsResponse responseWithData:[[NSData alloc] init]
-                                          statusCode:400
-                                             headers:@{@"Content-Type":@"application/json"}];
-    }];
 }
 
 + (void)tearDown {
@@ -72,7 +61,6 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
-    [self stub400Response];
     self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
     }];
@@ -85,12 +73,15 @@ static NSDictionary *kCDNResponseHeaders = nil;
     self.datafileManager = nil;
 }
 
-- (void)testRequestDatafileHandlesCompletionEvenWithBadRequest {
-
+// Test datafile handler with backoff retry and internal error
+// backoff retry occurs when status code >= 400 or there is an internal error
+// make sure that the backoff retry completes (i.e., the completion block is called)
+- (void)testRequestDatafileHandlesCompletionEvenWithBackoffRetryInternalError {
+    
     XCTAssertNotNil(self.datafileManager);
     
     // stub network call
-    id<OHHTTPStubsDescriptor> stub = [self stub400Response];
+    [self stubReponseError];
     
     // setup async expectation
     __block Boolean completionWasCalled = false;
@@ -98,18 +89,14 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     // request datafile
     [self.datafileManager downloadDatafile:self.datafileManager.projectId
-                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        completionWasCalled = true;
-                        XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
-                        [expectation fulfill];
-    }];
+                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                             completionWasCalled = true;
+                             [expectation fulfill];
+                         }];
     
     // wait for async start to finish
-    [self waitForExpectationsWithTimeout:2 handler:nil];
+    [self waitForExpectationsWithTimeout:10 handler:nil];
     XCTAssertTrue(completionWasCalled);
-
-    // clean up stub
-    [OHHTTPStubs removeStub:stub];
 }
 
 - (void)testSaveDatafileMethod {
@@ -137,19 +124,19 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     XCTAssertNotNil(self.datafileManager);
     XCTAssertFalse([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"no datafile sould exist yet.");
-
+    
     // setup stubbing and listener expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     id<OHHTTPStubsDescriptor> stub = [self stub200Response];
     
     // Call download datafile
     [self.datafileManager downloadDatafile:self.datafileManager.projectId
-                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
-                        NSString *savedLastModifiedDate = [self.datafileManager getLastModifiedDate:kProjectId];
-                        XCTAssert([savedLastModifiedDate isEqualToString:kLastModifiedDate], @"Modified date saved is invalid: %@.", savedLastModifiedDate);
-                        [expectation fulfill];
-    }];
+                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                             XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
+                             NSString *savedLastModifiedDate = [self.datafileManager getLastModifiedDate:kProjectId];
+                             XCTAssert([savedLastModifiedDate isEqualToString:kLastModifiedDate], @"Modified date saved is invalid: %@.", savedLastModifiedDate);
+                             [expectation fulfill];
+                         }];
     
     // make sure we were able to save the datafile
     [self waitForExpectationsWithTimeout:2 handler:nil];
@@ -233,7 +220,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
         XCTAssertEqual([data length], 0);
         [expect304 fulfill];
     }];
-
+    
     [self waitForExpectationsWithTimeout:2 handler:nil];
     
     // test datafile manager works in optly manager class
@@ -300,7 +287,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
             return [OHHTTPStubsResponse responseWithData:kDatafileData
                                               statusCode:200
                                                  headers:kCDNResponseHeaders];
-
+            
         }
     }];
 }
@@ -316,6 +303,19 @@ static NSDictionary *kCDNResponseHeaders = nil;
         return [OHHTTPStubsResponse responseWithData:nil
                                           statusCode:400
                                              headers:kCDNResponseHeaders];
+    }];
+}
+
+// stub a response with error
+- (void)stubReponseError
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
+        return YES; // Stub ALL requests without any condition
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSError *error = [NSError errorWithDomain:NSURLErrorDomain
+                                             code:NSURLErrorTimedOut
+                                         userInfo:nil];
+        return [OHHTTPStubsResponse responseWithError:error];
     }];
 }
 
