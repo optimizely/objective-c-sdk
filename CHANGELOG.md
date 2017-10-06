@@ -1,4 +1,18 @@
 # Optimizely Objective-C SDK Changelog
+## 1.4.0
+October 6, 2017
+
+### New Features
+ * Numeric metrics, which allows the user to create an event tag that is tracked using numeric values
+ 
+### Bug Fixes
+*  Fixed crash when audience has no value.
+*  Fixed datafile and event dispatcher backoff retry failure.
+*  Fixed crash caused by missing value in attributes.
+*  Removed obsolete segmentID as a key for attributes.
+*  Pulled in JSONModel and FMDB to local source and renamed the class and libraries so that they are not pod dependencies.
+
+
 ## 1.3.0
 August 28, 2017
 
