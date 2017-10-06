@@ -73,33 +73,6 @@ static NSDictionary *kCDNResponseHeaders = nil;
     self.datafileManager = nil;
 }
 
-- (void)testRequestDatafileHandlesCompletionEvenWithBadRequest {
-    
-    XCTAssertNotNil(self.datafileManager);
-    
-    // stub network call
-    id<OHHTTPStubsDescriptor> stub = [self stub400Response];
-    
-    // setup async expectation
-    __block Boolean completionWasCalled = false;
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
-    
-    // request datafile
-    [self.datafileManager downloadDatafile:self.datafileManager.projectId
-                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                             completionWasCalled = true;
-                             XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 400);
-                             [expectation fulfill];
-                         }];
-    
-    // wait for async start to finish
-    [self waitForExpectationsWithTimeout:2 handler:nil];
-    XCTAssertTrue(completionWasCalled);
-    
-    // clean up stub
-    [OHHTTPStubs removeStub:stub];
-}
-
 // Test datafile handler with backoff retry and internal error
 // backoff retry occurs when status code >= 400 or there is an internal error
 // make sure that the backoff retry completes (i.e., the completion block is called)
@@ -108,7 +81,6 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertNotNil(self.datafileManager);
     
     // stub network call
-    //id<OHHTTPStubsDescriptor> stub = [self stubErrorResponse];
     [self stubReponseError];
     
     // setup async expectation
