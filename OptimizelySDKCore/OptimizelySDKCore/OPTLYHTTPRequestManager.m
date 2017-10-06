@@ -233,9 +233,12 @@ dispatch_queue_t networkTasksQueue()
     [self GETIfModifiedSince:lastModifiedDate
                          url:url
            completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-               NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-               NSInteger statusCode = (long)[httpResponse statusCode];
-               if (statusCode >= 400 || error) {
+               NSInteger statusCode = 503;
+               if (response != nil && error == nil) {
+                   NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                   statusCode = (long)[httpResponse statusCode];
+               }
+               if (error != nil || statusCode >= 400) {
                    dispatch_time_t delayTime = [weakSelf backoffDelay:backoffRetryAttempt
                                                  backoffRetryInterval:backoffRetryInterval];
                    dispatch_after(delayTime, networkTasksQueue(), ^(void){
