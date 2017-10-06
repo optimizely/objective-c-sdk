@@ -54,6 +54,7 @@ extern NSString *const OPTLYErrorHandlerMessagesDataStoreInvalidDataStoreEntityV
 extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerPOSTRetryFailure;
 extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETRetryFailure;
 extern NSString *const OPTLYErrorHandlerMessagesHTTPRequestManagerGETIfModifiedFailure;
+extern NSString *const OPTLYErrorHandlerMessagesProjectConfigInvalidAudienceCondition;
 
 
 typedef NS_ENUM(NSUInteger, OPTLYErrorTypes) {
