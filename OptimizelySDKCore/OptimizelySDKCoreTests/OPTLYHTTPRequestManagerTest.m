@@ -59,19 +59,12 @@ static NSInteger const kBackoffRetryInterval = 1;
     [super tearDown];
 }
 
-// Test the initialization method to ensure that the url property is getting set properly
-- (void)testInitWithURL
-{
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
-    NSAssert([requestManager.url isEqual:self.testURL], @"Network service initialization produces invalid url.");
-}
-
 - (void)testGETSuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GET success."];
-    [requestManager GETWithCompletion:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithURL:self.testURL completion:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(data != nil, @"Network service GET does not return data as expected.");
     }];
@@ -86,9 +79,9 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GET failure."];
-    [requestManager GETWithCompletion:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithURL:self.testURL completion:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(error != nil, @"Network service GET does not return error as expected.");
     }];
@@ -103,9 +96,9 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETWithParametersSuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters success."];
-    [requestManager GETWithParameters:self.parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithParameters:self.parameters url:self.testURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(data != nil, @"Network service GETWithParameters does not return data as expected.");
     }];
@@ -120,9 +113,9 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETWithParametersFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters failure."];
-    [requestManager GETWithParameters:self.parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager GETWithParameters:self.parameters url:self.testURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(error != nil, @"Network service GETWithParameters does not return error as expected.");
     }];
@@ -137,9 +130,9 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testPOSTWithParametersSuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters success."];
-    [requestManager POSTWithParameters:self.parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager POSTWithParameters:self.parameters url:self.testURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(data != nil, @"Network service POSTWithParameters does not return data as expected.");
     }];
@@ -154,9 +147,9 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testPOSTWithParametersFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
-    [requestManager POSTWithParameters:self.parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [requestManager POSTWithParameters:self.parameters url:self.testURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [expectation fulfill];
         NSAssert(error != nil, @"Network service POSTWithParameters does not return error as expected.");
     }];
@@ -174,9 +167,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testPOSTWithParametersBackoffRetryFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
     [requestManager POSTWithParameters:self.parameters
+                                   url:self.testURL
                   backoffRetryInterval:kBackoffRetryInterval
                                retries:kRetryAttempts
                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -197,9 +191,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testPOSTWithParametersBackoffRetrySuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters failure."];
     [requestManager POSTWithParameters:self.parameters
+                                   url:self.testURL
                   backoffRetryInterval:kBackoffRetryInterval
                                retries:kRetryAttempts
                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -217,9 +212,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETRetryFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithBackoffRetry failure."];
     [requestManager GETWithBackoffRetryInterval:kBackoffRetryInterval
+                                            url:self.testURL
                                         retries:kRetryAttempts
                               completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [self checkMaxRetries:requestManager];
@@ -237,9 +233,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETBackoffRetrySuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithBackoffRetry failure."];
     [requestManager GETWithBackoffRetryInterval:kBackoffRetryInterval
+                                            url:self.testURL
                                         retries:kRetryAttempts
                               completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [self checkNoRetries:requestManager];
@@ -257,9 +254,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETWithParametersBackoffRetryFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters failure."];
     [requestManager GETWithParameters:self.parameters
+                                  url:self.testURL
                  backoffRetryInterval:kBackoffRetryInterval
                               retries:kRetryAttempts
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -278,9 +276,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETWithParametersBackoffRetrySuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETWithParameters failure."];
     [requestManager GETWithParameters:self.parameters
+                                  url:self.testURL
                  backoffRetryInterval:kBackoffRetryInterval
                               retries:kRetryAttempts
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -299,9 +298,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETIfModifiedBackoffRetryFailure
 {
     [OPTLYTestHelper stubFailureResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETIfModifiedSince failure."];
     [requestManager GETIfModifiedSince:kLastModifiedDate
+                                   url:self.testURL
                   backoffRetryInterval:kBackoffRetryInterval
                                retries:kRetryAttempts
                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -320,9 +320,10 @@ static NSInteger const kBackoffRetryInterval = 1;
 - (void)testGETIfModifiedBackoffRetrySuccess
 {
     [OPTLYTestHelper stubSuccessResponse];
-    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithURL:self.testURL];
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for GETIfModifiedSince failure."];
     [requestManager GETIfModifiedSince:kLastModifiedDate
+                                   url:self.testURL
                   backoffRetryInterval:kBackoffRetryInterval
                                retries:kRetryAttempts
                      completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
