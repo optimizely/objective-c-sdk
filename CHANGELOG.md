@@ -12,6 +12,8 @@ October 6, 2017
 *  Removed obsolete segmentID as a key for attributes.
 *  Pulled in JSONModel and FMDB to local source and renamed the class and libraries so that they are not pod dependencies.
 
+### Breaking Changes
+* Supply your own FMDB or JSONModel or use OPTLYFMDB or OPTLYJSONModel if you previously counted on third party FMDB or JSONModel being present.
 
 ## 1.3.0
 August 28, 2017
