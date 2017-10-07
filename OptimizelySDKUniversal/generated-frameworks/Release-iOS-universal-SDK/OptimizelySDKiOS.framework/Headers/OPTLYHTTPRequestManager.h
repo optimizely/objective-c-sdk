@@ -26,46 +26,49 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 
 @interface OPTLYHTTPRequestManager : NSObject
 
-@property (nonatomic, strong, nonnull) NSURL *url;
-
-/// Network service must be initialized with a URL
-- (nullable id)initWithURL:(nonnull NSURL *)url;
-
 /**
  * GET data from the URL inititialized
  *
+ * @param url The url to make the GET request.
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)GETWithCompletion:(nullable OPTLYHTTPRequestManagerResponse)completion;
+- (void)GETWithURL:(nonnull  NSURL *)url
+        completion:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * GET data from the URL inititialized with the option of doing an exponential backoff and retry
  *
+ * @param url The url to make the GET request.
  * @param backoffRetryInterval The backoff retry time interval for the exponential backoff (in ms)
  * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithBackoffRetryInterval:(NSInteger)backoffRetryInterval
+                                url:(nonnull NSURL *)url
                             retries:(NSInteger)retries
                   completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 /**
  * GET data with parameters
  *
+ * @param url The url to make the GET request.
  * @param parameters Dictionary of GET request parameter values
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithParameters:(nullable NSDictionary *)parameters
+                      url:(nonnull NSURL *)url
         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * GET data with parameters with the option of doing an exponential backoff and retry
  *
+ * @param url The url to make the GET request.
  * @param parameters Dictionary of GET request parameter values
  * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
  * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETWithParameters:(nullable NSDictionary *)parameters
+                      url:(nonnull NSURL *)url
      backoffRetryInterval:(NSInteger)backoffRetryInterval
                   retries:(NSInteger)retries
         completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
@@ -76,10 +79,12 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
  * "If-Modified-Since" field, an entity will not be returned from the server; instead,
  * a 304 (not modified) response will be returned without any message-body.
  *
+ * @param url The url to make the GET request.
  * @param lastModifiedDate - The date since the URL request was last modified
  * @param completion - The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
+                       url:(nonnull NSURL *)url
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
@@ -88,12 +93,14 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
  * "If-Modified-Since" field, an entity will not be returned from the server; instead,
  * a 304 (not modified) response will be returned without any message-body.
  *
+ * @param url The url to make the GET request.
  * @param lastModifiedDate The date since the URL request was last modified
  * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
  * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)GETIfModifiedSince:(nonnull NSString *)lastModifiedDate
+                       url:(nonnull NSURL *)url
       backoffRetryInterval:(NSInteger)backoffRetryInterval
                    retries:(NSInteger)retries
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
@@ -101,21 +108,25 @@ typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLRe
 /**
  * POST data with parameters
  *
+ * @param url The url to make the POST request.
  * @param parameters Dictionary of POST request parameter values
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)POSTWithParameters:(nonnull NSDictionary *)parameters
+                       url:(nonnull NSURL *)url
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
 /**
  * POST data with parameters with an exponential backoff and retry attempt
  *
+ * @param url The url to make the POST request.
  * @param parameters Dictionary of POST request parameter values
  * @param backoffRetryInterval The backoff retry time interval the exponential backoff (in ms)
  * @param retries The total number of backoff retry attempts
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
 - (void)POSTWithParameters:(nonnull NSDictionary *)parameters
+                       url:(nonnull NSURL *)url
       backoffRetryInterval:(NSInteger)backoffRetryInterval
                    retries:(NSInteger)retries
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;

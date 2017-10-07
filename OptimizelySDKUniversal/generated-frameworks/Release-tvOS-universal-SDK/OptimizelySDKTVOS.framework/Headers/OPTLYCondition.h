@@ -27,6 +27,8 @@
 
 @interface OPTLYCondition : NSObject
 
++ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
+                                            error:(NSError **)error;
 + (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
 
 @end
