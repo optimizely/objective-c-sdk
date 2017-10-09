@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
 ## 1.4.0
-October 6, 2017
+October 9, 2017
 
 ### New Features
  * Numeric metrics, which allows the user to create an event tag that is tracked using numeric values
