@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     :git => "https://github.com/optimizely/objective-c-sdk.git",
     :tag => "shared-"+s.version.to_s
   }
-  s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}", "OptimizelySDKShared/OPTLYFMDB/*.{h,m}"
+  s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}", "OptimizelySDKShared/OPTLYFMDB/**/*.{h,m}"
   s.tvos.exclude_files      = "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabase.{h,m}",\
                               "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}",\
                               "OptimizelySDKShared/OPTLYFMDB/**/*.{h,m}"
