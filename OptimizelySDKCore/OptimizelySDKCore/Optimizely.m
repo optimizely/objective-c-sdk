@@ -410,7 +410,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(out NSError * _Nullable * _Nullable)error {
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     return [self variableString:variableKey
                          userId:userId
                      attributes:attributes
@@ -536,7 +536,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-                  error:(out NSError * _Nullable * _Nullable)error {
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     BOOL variableValue = false;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
@@ -585,7 +585,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-                       error:(out NSError * _Nullable * _Nullable)error {
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     NSInteger variableValue = 0;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
@@ -634,7 +634,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-                   error:(out NSError * _Nullable * _Nullable)error {
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     double variableValue = 0.0;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId

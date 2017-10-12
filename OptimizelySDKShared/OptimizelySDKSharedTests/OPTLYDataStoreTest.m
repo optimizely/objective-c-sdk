@@ -31,7 +31,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
 @property (nonatomic, strong) NSDictionary *eventsCache;
 - (void)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
-            error:(NSError * _Nullable * _Nullable)error
+            error:(NSError * _Nullable __autoreleasing * _Nullable)error
        completion:(void(^)())completion
 ;
 @end

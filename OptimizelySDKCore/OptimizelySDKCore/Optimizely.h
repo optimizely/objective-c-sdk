@@ -259,7 +259,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
 
 /**
  * Gets the boolean value of the live variable.
@@ -327,7 +327,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-                  error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
 
 
 /**
@@ -396,7 +396,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-                       error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
 
 /**
  * Gets the double value of the live variable.
@@ -464,7 +464,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-                   error:(out NSError * _Nullable * _Nullable)error NS_SWIFT_NOTHROW;
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
 
 @end
 

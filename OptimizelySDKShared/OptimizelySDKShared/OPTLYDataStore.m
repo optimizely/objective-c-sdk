@@ -100,7 +100,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     return _fileManager;
 }
 
-- (BOOL)removeAll:(NSError * _Nullable * _Nullable)error {
+- (BOOL)removeAll:(NSError * _Nullable __autoreleasing * _Nullable)error {
     BOOL ok = YES;
     [self removeAllUserData];
     if (![self removeEventsStorage:error]) {
@@ -155,7 +155,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 - (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
-           error:(NSError * _Nullable * _Nullable)error
+           error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = [self.fileManager saveFile:fileName data:data subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
@@ -167,7 +167,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
                         type:(OPTLYDataStoreDataType)dataType
-                       error:(NSError * _Nullable * _Nullable)error
+                       error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSData *fileData = [self.fileManager getFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
@@ -190,7 +190,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 - (BOOL)removeFile:(nonnull NSString *)fileName
               type:(OPTLYDataStoreDataType)dataType
-             error:(NSError * _Nullable * _Nullable)error
+             error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = [self.fileManager removeFile:fileName subDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
@@ -201,7 +201,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 - (BOOL)removeFilesForDataType:(OPTLYDataStoreDataType)dataType
-                         error:(NSError * _Nullable * _Nullable)error
+                         error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = [self.fileManager removeDataSubDir:[OPTLYDataStore stringForDataTypeEnum:dataType] error:error];
     if (error && *error) {
@@ -211,7 +211,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     return ok;
 }
 
-- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeAllFiles:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = [self.fileManager removeAllFiles:error];
     self.fileManager = nil;
@@ -256,14 +256,14 @@ dispatch_queue_t eventsStorageQueue()
 
 - (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
-            error:(NSError * _Nullable * _Nullable)error
+            error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     return [self saveEvent:data eventType:eventType error:error completion:nil];
 }
 
 - (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
-            error:(NSError * _Nullable * _Nullable)error
+            error:(NSError * _Nullable __autoreleasing * _Nullable)error
        completion:(void(^)())completion
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
@@ -280,7 +280,7 @@ dispatch_queue_t eventsStorageQueue()
 
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(OPTLYDataStoreEventType)eventType
-                                error:(NSError * _Nullable * _Nullable)error
+                                error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSArray *firstNEvents = [self.eventDataStore getFirstNEvents:numberOfEvents eventType:eventTypeName error:error];
@@ -294,7 +294,7 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 - (nullable NSDictionary *)getOldestEvent:(OPTLYDataStoreEventType)eventType
-                                    error:(NSError * _Nullable * _Nullable)error
+                                    error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSDictionary *oldestEvent = nil;
     NSArray *oldestEvents = [self getFirstNEvents:1 eventType:eventType error:error];
@@ -311,7 +311,7 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 - (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
-                             error:(NSError * _Nullable * _Nullable)error
+                             error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSInteger numberOfEvents = [self numberOfEvents:eventType error:error];
     NSArray *allEvents = [self getFirstNEvents:numberOfEvents eventType:eventType error:error];
@@ -320,7 +320,7 @@ dispatch_queue_t eventsStorageQueue()
 
 - (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(OPTLYDataStoreEventType)eventType
-                     error:(NSError * _Nullable * _Nullable)error
+                     error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = YES;
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
@@ -333,13 +333,13 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 - (BOOL)removeOldestEvent:(OPTLYDataStoreEventType)eventType
-                    error:(NSError * _Nullable * _Nullable)error
+                    error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     return [self removeFirstNEvents:1 eventType:eventType error:error];
 }
 
 - (BOOL)removeAllEvents:(OPTLYDataStoreEventType)eventType
-                  error:(NSError * _Nullable * _Nullable)error
+                  error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSInteger numberOfEvents = [self numberOfEvents:eventType error:error];
     return [self removeFirstNEvents:numberOfEvents eventType:eventType error:error];
@@ -347,7 +347,7 @@ dispatch_queue_t eventsStorageQueue()
 
 - (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(OPTLYDataStoreEventType)eventType
-              error:(NSError * _Nullable * _Nullable)error
+              error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = YES;
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
@@ -360,7 +360,7 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 - (NSInteger)numberOfEvents:(OPTLYDataStoreEventType)eventType
-                      error:(NSError * _Nullable * _Nullable)error
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSInteger numberOfEvents = [self.eventDataStore numberOfEvents:eventTypeName error:error];
@@ -373,7 +373,7 @@ dispatch_queue_t eventsStorageQueue()
     return numberOfEvents;
 }
 
-- (BOOL)removeAllEvents:(NSError * _Nullable * _Nullable)error {
+- (BOOL)removeAllEvents:(NSError * _Nullable __autoreleasing * _Nullable)error {
     BOOL ok = YES;
     for (NSInteger i = 0; i < OPTLYDataStoreEventTypeCOUNT; ++i ) {
         ok = ok && [self removeAllEvents:i error:error];
@@ -383,7 +383,7 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 // removes all events, including the data structures that store the events
-- (BOOL)removeEventsStorage:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeEventsStorage:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = [self removeAllEvents:error];
     self.eventDataStore = nil;

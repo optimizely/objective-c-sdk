@@ -1075,7 +1075,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
     return [self arrayOfModelsFromDictionaries:array error:nil];
 }
 
-+ (NSMutableArray *)arrayOfModelsFromData:(NSData *)data error:(NSError **)err
++ (NSMutableArray *)arrayOfModelsFromData:(NSData *)data error:(NSError * __autoreleasing *)err
 {
     id json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:err];
     if (!json || ![json isKindOfClass:[NSArray class]]) return nil;
@@ -1083,7 +1083,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
     return [self arrayOfModelsFromDictionaries:json error:err];
 }
 
-+ (NSMutableArray *)arrayOfModelsFromString:(NSString *)string error:(NSError **)err
++ (NSMutableArray *)arrayOfModelsFromString:(NSString *)string error:(NSError * __autoreleasing *)err
 {
     return [self arrayOfModelsFromData:[string dataUsingEncoding:NSUTF8StringEncoding] error:err];
 }
@@ -1128,12 +1128,12 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
     return list;
 }
 
-+ (NSMutableDictionary *)dictionaryOfModelsFromString:(NSString *)string error:(NSError **)err
++ (NSMutableDictionary *)dictionaryOfModelsFromString:(NSString *)string error:(NSError * __autoreleasing *)err
 {
     return [self dictionaryOfModelsFromData:[string dataUsingEncoding:NSUTF8StringEncoding] error:err];
 }
 
-+ (NSMutableDictionary *)dictionaryOfModelsFromData:(NSData *)data error:(NSError **)err
++ (NSMutableDictionary *)dictionaryOfModelsFromData:(NSData *)data error:(NSError * __autoreleasing *)err
 {
     id json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:err];
     if (!json || ![json isKindOfClass:[NSDictionary class]]) return nil;
@@ -1141,7 +1141,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
     return [self dictionaryOfModelsFromDictionary:json error:err];
 }
 
-+ (NSMutableDictionary *)dictionaryOfModelsFromDictionary:(NSDictionary *)dictionary error:(NSError **)err
++ (NSMutableDictionary *)dictionaryOfModelsFromDictionary:(NSDictionary *)dictionary error:(NSError * __autoreleasing *)err
 {
     NSMutableDictionary *output = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
 
@@ -1359,7 +1359,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
     [self mergeFromDictionary:dict useKeyMapping:useKeyMapping error:nil];
 }
 
-- (BOOL)mergeFromDictionary:(NSDictionary *)dict useKeyMapping:(BOOL)useKeyMapping error:(NSError **)error
+- (BOOL)mergeFromDictionary:(NSDictionary *)dict useKeyMapping:(BOOL)useKeyMapping error:(NSError * __autoreleasing *)error
 {
     return [self __importDictionary:dict withKeyMapper:(useKeyMapping)? self.__keyMapper:nil validation:NO error:error];
 }

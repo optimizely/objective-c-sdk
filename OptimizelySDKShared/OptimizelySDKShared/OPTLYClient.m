@@ -232,7 +232,7 @@
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(out NSError * _Nullable * _Nullable)error {
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -288,7 +288,7 @@
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-                  error:(out NSError * _Nullable * _Nullable)error {
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -344,7 +344,7 @@
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-                       error:(out NSError * _Nullable * _Nullable)error {
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -400,7 +400,7 @@
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-                   error:(out NSError * _Nullable * _Nullable)error {
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
