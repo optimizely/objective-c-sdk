@@ -28,7 +28,7 @@
 #pragma mark - model with block property
 @interface BModel: OPTLYJSONModel
 @property (assign, nonatomic) int id;
-@property (nonatomic, copy) void(^userLocationCompleted)();
+@property (nonatomic, copy) void(^userLocationCompleted)(void);
 @end
 
 @implementation BModel
