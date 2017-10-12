@@ -234,7 +234,7 @@ dispatch_queue_t eventsStorageQueue()
 }
 
 // removes a batch of the oldest events from the events table if the table exceeds the max allowed size
-- (void)trimEvents:(OPTLYDataStoreEventType)eventType completion:(void(^)())completion
+- (void)trimEvents:(OPTLYDataStoreEventType)eventType completion:(void(^)(void))completion
 {
     dispatch_async(eventsStorageQueue(), ^{
         NSInteger numberOfEvents = [self numberOfEvents:eventType error:nil];
@@ -264,7 +264,7 @@ dispatch_queue_t eventsStorageQueue()
 - (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable __autoreleasing * _Nullable)error
-       completion:(void(^)())completion
+       completion:(void(^)(void))completion
 {
     NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
     BOOL ok = [self.eventDataStore saveEvent:data eventType:eventTypeName error:error];

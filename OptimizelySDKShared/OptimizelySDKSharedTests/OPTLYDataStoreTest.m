@@ -32,7 +32,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
 - (void)saveEvent:(nonnull NSDictionary *)data
         eventType:(OPTLYDataStoreEventType)eventType
             error:(NSError * _Nullable __autoreleasing * _Nullable)error
-       completion:(void(^)())completion
+       completion:(void(^)(void))completion
 ;
 @end
 
