@@ -341,7 +341,7 @@ NSString *string = [pm toJSONString];
 
 @implementation ProductModel
 
-- (BOOL)validate:(NSError **)error
+- (BOOL)validate:(NSError * __autoreleasing *)error
 {
 	if (![super validate:error])
 		return NO;

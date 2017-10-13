@@ -81,7 +81,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 - (BOOL)createTable:(NSString *)tableName
-              error:(NSError **)error
+              error:(NSError * __autoreleasing *)error
 {
     __block BOOL ok = YES;
     [self.fmDatabaseQueue inDatabase:^(OPTLYFMDBDatabase *db) {
@@ -101,7 +101,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 
 - (BOOL)saveEvent:(NSDictionary *)data
             table:(NSString *)tableName
-            error:(NSError **)error
+            error:(NSError * __autoreleasing *)error
 {
     __block BOOL ok = YES;
     if ([data count] == 0) {
@@ -138,14 +138,14 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 
 - (BOOL)deleteEntity:(NSString *)entityId
                table:(NSString *)tableName
-               error:(NSError **)error
+               error:(NSError * __autoreleasing *)error
 {
     return [self deleteEntities:@[entityId] table:tableName error:error];
 }
 
 - (BOOL)deleteEntities:(NSArray *)entityIds
                  table:(NSString *)tableName
-                 error:(NSError **)error
+                 error:(NSError * __autoreleasing *)error
 {
     __block BOOL ok = YES;
     [self.fmDatabaseQueue inDatabase:^(OPTLYFMDBDatabase *db){
@@ -167,7 +167,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 
 - (BOOL)deleteEntityWithJSON:(nonnull NSString *)json
                        table:(nonnull NSString *)tableName
-                       error:(NSError * _Nullable * _Nullable)error
+                       error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     __block BOOL ok = YES;
     [self.fmDatabaseQueue inDatabase:^(OPTLYFMDBDatabase *db){
@@ -187,7 +187,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 - (NSArray *)retrieveAllEntries:(NSString *)tableName
-                          error:(NSError **)error
+                          error:(NSError * __autoreleasing *)error
 {
     NSArray *allEntries = [self retrieveFirstNEntries:0 table:tableName error:error];
     return allEntries;
@@ -195,7 +195,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 
 - (NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
                              table:(NSString *)tableName
-                             error:(NSError **)error
+                             error:(NSError * __autoreleasing *)error
 {
     NSMutableArray *results = [NSMutableArray new];
     
@@ -229,7 +229,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
 }
 
 - (NSInteger)numberOfRows:(NSString *)tableName
-                    error:(NSError **)error
+                    error:(NSError * __autoreleasing *)error
 {
     __block NSInteger rows = 0;
     
@@ -255,7 +255,7 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     return rows;
 }
 
-- (BOOL)deleteDatabase:(NSError **)error {
+- (BOOL)deleteDatabase:(NSError * __autoreleasing *)error {
     NSFileManager *fm = [NSFileManager defaultManager];
     self.fmDatabaseQueue = nil;
     return [fm removeItemAtPath:self.databaseFilePath error:error];
