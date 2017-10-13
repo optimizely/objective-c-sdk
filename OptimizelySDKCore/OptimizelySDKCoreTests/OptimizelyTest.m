@@ -486,7 +486,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                                                           XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryEventValueKey], eventValue);
                                                                                           XCTAssertNotNil(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey]);
                                                                                           [note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                                                                                              XCTAssertTrue([key isKindOfClass:[OPTLYExperiment class]]);
+                                                                                              XCTAssertTrue([key isKindOfClass:[NSString class]]);
                                                                                               XCTAssertTrue([obj isKindOfClass:[OPTLYVariation class]]);
                                                                                           }];
                                                                                           [expectation fulfill];

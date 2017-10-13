@@ -97,15 +97,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if let userAttributes = userInfo["attributes"] as! Dictionary<String, AnyObject>? {
                         attributes.addEntries(from: userAttributes)
                     }
-                    #if false
-                        // NOTE: TEMPORARILY TURNING OFF ExperimentVariationMapping CODE THAT CRASHES
-                        if let userExperimentVariationMapping = userInfo["ExperimentVariationMapping"] as? Dictionary<String, AnyObject>? {
-                            for (key,value) in userExperimentVariationMapping! {
-                                let variation : OPTLYVariation = value as! OPTLYVariation
-                                attributes.setValue(key, forKey:variation.variationKey)
-                            }
+                    if let userExperimentVariationMapping = userInfo["ExperimentVariationMapping"] as? Dictionary<String, OPTLYVariation>? {
+                        for (key,variation) in userExperimentVariationMapping! {
+                            attributes.setValue(key, forKey:variation.variationKey)
                         }
-                    #endif
+                    }
                     // Tag custom event with attributes
                     let event : String = userInfo["eventKey"] as! String
                     let localyticsEventIdentifier : String = "[Optimizely] " + event
