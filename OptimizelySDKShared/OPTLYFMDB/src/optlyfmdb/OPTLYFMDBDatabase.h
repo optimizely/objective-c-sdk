@@ -561,7 +561,7 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 /** Execute select statement
 
- Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError * __autoreleasing *` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
  In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPTLYFMDBResultSet next]>`) from one record to the other.
  
@@ -584,7 +584,7 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 /** Execute select statement
 
- Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError * __autoreleasing *` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
  In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPTLYFMDBResultSet next]>`) from one record to the other.
  
@@ -614,7 +614,7 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 /** Execute select statement
 
- Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError * __autoreleasing *` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
  In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPTLYFMDBResultSet next]>`) from one record to the other.
  
@@ -633,7 +633,7 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 /** Execute select statement
  
- Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError * __autoreleasing *` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
  In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPTLYFMDBResultSet next]>`) from one record to the other.
  
@@ -662,7 +662,7 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 /** Execute select statement
 
- Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError **` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
+ Executing queries returns an `<OPTLYFMDBResultSet>` object if successful, and `nil` upon failure.  Like executing updates, there is a variant that accepts an `NSError * __autoreleasing *` parameter.  Otherwise you should use the `<lastErrorMessage>` and `<lastErrorMessage>` methods to determine why a query failed.
  
  In order to iterate through the results of your query, you use a `while()` loop.  You also need to "step" (via `<[OPTLYFMDBResultSet next]>`) from one record to the other.
  

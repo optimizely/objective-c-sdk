@@ -22,7 +22,7 @@ static const NSInteger kMaxTrafficAllocationValue = 10000;
 
 @implementation OPTLYTrafficAllocation
 
-- (BOOL)validate:(NSError **)error {
+- (BOOL)validate:(NSError * __autoreleasing *)error {
     BOOL valid = [super validate:error];
     
     if ((self.endOfRange > kMaxTrafficAllocationValue) ||

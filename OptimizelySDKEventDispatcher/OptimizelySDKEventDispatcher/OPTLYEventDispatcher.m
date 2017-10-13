@@ -123,7 +123,7 @@ dispatch_queue_t dispatchEventQueue()
 # pragma mark - Network Timer
 // Set up the network timer when saved events are detected
 // The timer must be dispatched on the main thread.
-- (void)setupNetworkTimer:(void(^)())completion
+- (void)setupNetworkTimer:(void(^)(void))completion
 {
     dispatch_block_t block = ^{
         if (self.eventDispatcherDispatchInterval > 0) {
@@ -252,7 +252,7 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 // flushed saved events
-- (void)flushEvents:(void(^)())callback
+- (void)flushEvents:(void(^)(void))callback
 {
     [self.logger logMessage:OPTLYLoggerMessagesEventDispatcherFlushingEvents withLevel:OptimizelyLogLevelDebug];
     
@@ -316,7 +316,7 @@ dispatch_queue_t dispatchEventQueue()
 }
 
 // The completion block is called when all dispatch event complete
-- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback
+- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)(void))callback
 {
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSError *error = nil;

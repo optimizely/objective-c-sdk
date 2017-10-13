@@ -28,7 +28,7 @@
 // example jsonArray:
 //  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
 + (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
-                                            error:(NSError **)error {
+                                            error:(NSError * __autoreleasing *)error {
     
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
     if (![jsonArray isKindOfClass:[NSArray class]]) {

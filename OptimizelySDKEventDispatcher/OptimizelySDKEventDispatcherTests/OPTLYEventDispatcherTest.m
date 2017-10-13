@@ -30,8 +30,8 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger flushEventAttempts;
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType;
-- (void)flushEvents:(void(^)())callback;
-- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)())callback;
+- (void)flushEvents:(void(^)(void))callback;
+- (void)flushSavedEvents:(OPTLYDataStoreEventType)eventType callback:(void(^)(void))callback;
 - (void)dispatchEvent:(nonnull NSDictionary *)params
          backoffRetry:(BOOL)backoffRetry
             eventType:(OPTLYDataStoreEventType)eventType
@@ -41,7 +41,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
                eventType:(OPTLYDataStoreEventType)eventType
                 callback:(nullable OPTLYEventDispatcherResponse)callback;
 - (BOOL)isTimerEnabled;
-- (void)setupNetworkTimer:(void(^)())completion;
+- (void)setupNetworkTimer:(void(^)(void))completion;
 - (void)disableNetworkTimer;
 - (NSInteger )numberOfEvents:(OPTLYDataStoreEventType)eventType;
 @end
@@ -336,7 +336,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     
     // recursively call flushEvents
     __block NSInteger attempts = 0;
-    typedef void (^FlushEventsBlock)();
+    typedef void (^FlushEventsBlock)(void);
     __block __weak FlushEventsBlock weakFlushEvents = nil;
     __weak typeof(self) weakSelf = self;
     __block void (^flushEvents)() = ^(){

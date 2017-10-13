@@ -50,7 +50,7 @@
 - (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
           subDir:(nullable NSString *)subDir
-           error:(NSError * _Nullable * _Nullable)error;
+           error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Gets a file.
@@ -64,7 +64,7 @@
  **/
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
                       subDir:(nullable NSString *)subDir
-                       error:(NSError * _Nullable * _Nullable)error;
+                       error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Determines if a file exists.
@@ -98,7 +98,7 @@
  **/
 - (BOOL)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
-             error:(NSError * _Nullable * _Nullable)error;
+             error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Removes all data persisted.
@@ -106,7 +106,7 @@
  * @param error An error object which will store any errors if the file removal fails.
  *
  **/
-- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error;
+- (BOOL)removeAllFiles:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Removes a particular data type.
@@ -116,6 +116,6 @@
  *
  **/
 - (BOOL)removeDataSubDir:(nullable NSString *)subDir
-                   error:(NSError * _Nullable * _Nullable)error;
+                   error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 @end

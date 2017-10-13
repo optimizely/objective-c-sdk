@@ -39,7 +39,7 @@
 - (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
           subDir:(nullable NSString *)subDir
-           error:(NSError * _Nullable * _Nullable)error
+           error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     BOOL ok = YES;
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
@@ -68,7 +68,7 @@
 
 - (nullable NSData *)getFile:(nonnull NSString *)fileName
                       subDir:(nullable NSString *)subDir
-                       error:(NSError * _Nullable * _Nullable)error
+                       error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSString *filePath = [self filePathFor:fileName subDir:subDir];
     NSData *fileData = [NSData dataWithContentsOfFile:filePath options:0 error:error];
@@ -96,7 +96,7 @@
 
 - (BOOL)removeFile:(nonnull NSString *)fileName
             subDir:(nullable NSString *)subDir
-             error:(NSError * _Nullable * _Nullable)error
+             error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSString *filePath = [self filePathFor:fileName subDir:subDir];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -104,14 +104,14 @@
 }
 
 - (BOOL)removeDataSubDir:(nullable NSString *)subDir
-                   error:(NSError * _Nullable * _Nullable)error
+                   error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *fileDir = [self.baseDir stringByAppendingPathComponent:subDir];
     return [fileManager removeItemAtPath:fileDir error:error];
 }
 
-- (BOOL)removeAllFiles:(NSError * _Nullable * _Nullable)error
+- (BOOL)removeAllFiles:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager removeItemAtPath:self.baseDir error:error];
