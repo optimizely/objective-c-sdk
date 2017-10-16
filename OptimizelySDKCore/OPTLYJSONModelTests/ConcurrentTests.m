@@ -46,7 +46,7 @@
 	self.jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&err];
 }
 
-#if true
+#if false
 // TODO: This test removed from line up by Optimizely OASIS Team until unreliability
 // issues are resolved.
 - (void)testConcurrentMapping
