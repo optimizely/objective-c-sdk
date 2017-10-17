@@ -49,6 +49,7 @@
 - (void)testConcurrentMapping
 {
 	// Because the uncertainty of concurrency. Need multiple run to confirm the result.
+    __block NSObject *lockObject = [[NSObject alloc] init];
 	NSOperationQueue *queue = [NSOperationQueue new];
 	queue.maxConcurrentOperationCount = 50;
 	queue.suspended = YES;
@@ -60,10 +61,13 @@
 		{
 			ConcurrentReposModel *model = [[ConcurrentReposModel alloc] initWithDictionary:self.jsonDict error:nil];
 #pragma unused(model)
-			count++;
-			if (count == 100)
-				[expectation fulfill];
-		}];
+            @synchronized (lockObject) {
+                count++;
+                if (count == 100) {
+                    [expectation fulfill];
+                }
+            }
+        }];
 	}
 	queue.suspended = NO;
 	[self waitForExpectationsWithTimeout:30 handler:nil];
