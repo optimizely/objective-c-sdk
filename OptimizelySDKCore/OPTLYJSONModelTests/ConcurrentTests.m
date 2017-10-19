@@ -46,39 +46,31 @@
 	self.jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&err];
 }
 
-#if false
-// TODO: This test removed from line up by Optimizely OASIS Team until unreliability
-// issues are resolved.
 - (void)testConcurrentMapping
 {
 	// Because the uncertainty of concurrency. Need multiple run to confirm the result.
+    __block NSObject *lockObject = [[NSObject alloc] init];
 	NSOperationQueue *queue = [NSOperationQueue new];
 	queue.maxConcurrentOperationCount = 50;
 	queue.suspended = YES;
-
 	XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for queue...."];
-
 	__block int count = 0;
-
 	for (int i = 0; i < 100; i++)
 	{
 		[queue addOperationWithBlock:^
 		{
 			ConcurrentReposModel *model = [[ConcurrentReposModel alloc] initWithDictionary:self.jsonDict error:nil];
 #pragma unused(model)
-
-			count++;
-
-			if (count == 100)
-				[expectation fulfill];
-		}];
+            @synchronized (lockObject) {
+                count++;
+                if (count == 100) {
+                    [expectation fulfill];
+                }
+            }
+        }];
 	}
-
 	queue.suspended = NO;
-
 	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
-#endif
-
 
 @end
