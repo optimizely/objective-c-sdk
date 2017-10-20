@@ -61,65 +61,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let defaultNotificationCenter = NotificationCenter.default
             defaultNotificationCenter.addObserver(forName: NSNotification.Name("OptimizelyExperimentActivated"), object: nil, queue: nil) { (note) in
-                
                 print("Received an activation notification: \n", note)
-                
-                let userInfo : Dictionary<String, AnyObject>? = note.userInfo as! Dictionary<String, AnyObject>?
-                if let experiment = userInfo?["experiment"] as! OPTLYExperiment? {
-                    if let variation = userInfo?["variation"] as! OPTLYVariation? {
-                        
-                        // ---- Amplitude ----
-                        let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
-                        let identify : AMPIdentify = AMPIdentify()
-                        identify.set(propertyKey, value:variation.variationKey as NSObject!)
-                        
-                        // Track impression event (optional)
-                        let eventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " - " + variation.variationKey
-                        Amplitude.instance().logEvent(eventIdentifier)
-                        
-                        // ---- Google Analytics ----
-                        let tracker : GAITracker? = GAI.sharedInstance().defaultTracker
-                        
-                        let action : String = "Experiment - " + experiment.experimentKey
-                        let label : String = "Variation - " + variation.variationKey
-                        
-                        // Build and send a non-interaction Event
-                        let builder = GAIDictionaryBuilder.createEvent(withCategory: "Optimizely", action: action, label: label, value: nil).build()
-                        tracker?.send(builder as [NSObject : AnyObject]!)
-                        
-                        // ---- Mixpanel ----
-                        let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
-                        mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
-                        mixpanel.people.set(property: propertyKey, to: variation.variationKey)
-                        mixpanel.track(event:eventIdentifier)
+                if let userInfo : Dictionary<String, AnyObject> = note.userInfo as! Dictionary<String, AnyObject>? {
+                    if let experiment = userInfo["experiment"] as! OPTLYExperiment? {
+                        if let variation = userInfo["variation"] as! OPTLYVariation? {
+                            // ---- Amplitude ----
+                            let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
+                            let identify : AMPIdentify = AMPIdentify()
+                            identify.set(propertyKey, value:variation.variationKey as NSObject!)
+                            // Track impression event (optional)
+                            let eventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " - " + variation.variationKey
+                            Amplitude.instance().logEvent(eventIdentifier)
+                            // ---- Google Analytics ----
+                            let tracker : GAITracker? = GAI.sharedInstance().defaultTracker
+                            let action : String = "Experiment - " + experiment.experimentKey
+                            let label : String = "Variation - " + variation.variationKey
+                            // Build and send a non-interaction Event
+                            let builder = GAIDictionaryBuilder.createEvent(withCategory: "Optimizely", action: action, label: label, value: nil).build()
+                            tracker?.send(builder as [NSObject : AnyObject]!)
+                            // ---- Mixpanel ----
+                            let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
+                            mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
+                            mixpanel.people.set(property: propertyKey, to: variation.variationKey)
+                            mixpanel.track(event:eventIdentifier)
+                        }
                     }
                 }
             }
-            
+
             defaultNotificationCenter.addObserver(forName: NSNotification.Name("OptimizelyEventTracked"), object: nil, queue: nil) { (note) in
-                
                 print("Received a tracking notification: \n", note)
-                
-                let userInfo : Dictionary<String, AnyObject>? = note.userInfo as! Dictionary<String, AnyObject>?
-                
-                // ---- Localytics ----
-                let attributes : NSMutableDictionary = [:]
-                
-                if let userAttributes = userInfo?["attributes"] as! Dictionary<String, AnyObject>? {
-                    attributes.addEntries(from: userAttributes)
-                }
-                
-                if let userExperimentVariationMapping = userInfo?["ExperimentVariationMapping"] as? Dictionary<String, AnyObject>? {
-                    for (key,value) in userExperimentVariationMapping! {
-                        let variation : OPTLYVariation = value as! OPTLYVariation
-                        attributes.setValue(key, forKey:variation.variationKey)
+                if let userInfo : Dictionary<String, AnyObject> = note.userInfo as! Dictionary<String, AnyObject>? {
+                    // ---- Localytics ----
+                    let attributes : NSMutableDictionary = [:]
+                    if let userAttributes = userInfo["attributes"] as! Dictionary<String, AnyObject>? {
+                        attributes.addEntries(from: userAttributes)
                     }
+                    if let userExperimentVariationMapping = userInfo["ExperimentVariationMapping"] as? Dictionary<String, OPTLYVariation>? {
+                        for (key,variation) in userExperimentVariationMapping! {
+                            attributes.setValue(key, forKey:variation.variationKey)
+                        }
+                    }
+                    // Tag custom event with attributes
+                    let event : String = userInfo["eventKey"] as! String
+                    let localyticsEventIdentifier : String = "[Optimizely] " + event
+                    Localytics.tagEvent(localyticsEventIdentifier)
                 }
-                
-                // Tag custom event with attributes
-                let event : String = userInfo!["eventKey"] as! String
-                let localyticsEventIdentifier : String = "[Optimizely] " + event
-                Localytics.tagEvent(localyticsEventIdentifier)
             }
         #endif
         // **************************************************

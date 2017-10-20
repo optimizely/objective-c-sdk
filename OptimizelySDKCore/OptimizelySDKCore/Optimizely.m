@@ -314,7 +314,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision[OPTLYEventParameterKeysDecisionExperimentId]];
         OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision[OPTLYEventParameterKeysDecisionVariationId]];
         if (experiment != nil && variation != nil) {
-            experimentVariationMapping[experiment] = variation;
+            experimentVariationMapping[experiment.experimentId] = variation;
         }
     }
     if ([experimentVariationMapping count] > 0) {
