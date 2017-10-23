@@ -71,6 +71,11 @@
     self.savedDatafile = datafile;
 }
 
+- (BOOL)isDatafileCached {
+    BOOL isCached = self.savedDatafile != nil;
+    return isCached;
+}
+
 @end
 
 @implementation OPTLYDatafileManagerNoOp
@@ -88,6 +93,10 @@
 
 - (void)saveDatafile:(NSData *)datafile {
     return;
+}
+
+- (BOOL)isDatafileCached {
+    return false;
 }
 
 @end

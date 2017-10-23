@@ -45,6 +45,12 @@
  */
 - (NSData * _Nullable)getSavedDatafile;
 
+/**
+ * Determines if the datafile has been cached.
+ * @return BOOL Boolean flag that indicates if the datafile has been cached.
+ */
+- (BOOL)isDatafileCached;
+
 @end
 
 @interface OPTLYDatafileManagerUtility : NSObject
