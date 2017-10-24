@@ -90,21 +90,21 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 
 /**
  * Synchronously initializes the client using the latest
- * cached datafile with fallback.
+ * cached datafile with a bundled datafile as fallback.
  *
  * If the cached datafile fails to load, the bundled datafile is used.
  *
  * In order for the bundled datafile to be properly loaded, the
  *  name should follow this format: optimizely_<projectID>.json
  *
- * @param projectId The project ID of the project you want
+ * @param projectId The ID of the project you want
  *   to initialize your client with.
  */
 - (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId;
 
 /**
  * Asynchronously initializes the client using the latest
- * downloaded datafile with fallback.
+ * downloaded datafile with a bundled datafile as fallback.
  *
  * In the case that there is an error in the datafile download,
  *  the latest cached datafile (if one exists) is used.
@@ -118,7 +118,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * In order for the bundled datafile to be properly loaded, the
  *  name should follow this format: optimizely_<projectID>.json
  *
- * @param projectId The project ID of the project you want
+ * @param projectId The ID of the project you want
  *   to initialize your client with.
  * @param callback The block called following the initialization
  *   of the client.
