@@ -19,12 +19,14 @@
     #import "OPTLYLogger.h"
     #import "OPTLYLoggerMessages.h"
     #import "OPTLYNetworkService.h"
+    #import "OPTLYUserProfileServiceBasic.h"
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
     #import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
     #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
     #import <OptimizelySDKCore/OPTLYNetworkService.h>
+    #import <OptimizelySDKCore/OPTLYUserProfileServiceBasic.h>
 #endif
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManagerBasic.h"
@@ -101,7 +103,9 @@
         }
         
         // --- user profile ---
-        if (builder.userProfileService) {
+        if (!builder.userProfileService) {
+            self.userProfileService = [[OPTLYUserProfileServiceNoOp alloc] init];
+        } else {
             self.userProfileService = builder.userProfileService;
         }
         
