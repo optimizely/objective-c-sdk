@@ -148,15 +148,6 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     return client;
 }
 
-NSString *const OPTLYLoggerMessagesManagerSyncInit = @"[MANAGER] Synchronously initializing client with project ID %@.";
-NSString *const OPTLYLoggerMessagesManagerAsyncInit = @"[MANAGER] Asynchronously initializing client with project ID %@.";
-NSString *const OPTLYLoggerMessagesManagerAsyncInitErrorDatafileDownload = @"[MANAGER] Error downloading datafile: %@.";
-NSString *const OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates = @"[MANAGER] Not downloading new datafile — no updates have been made.";
-NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad = @"[MANAGER] Attempting to load the bundled datafile.";
-NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError = @"[MANAGER] Unabled to load the bundled datafile because of the following error: %@";
-NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile %@ was loaded.";
-
-
 - (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId
 {
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerSyncInit, projectId]
@@ -205,6 +196,8 @@ NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bu
         }
     }];
 }
+
+#pragma mark - Helper Methods
 
 - (NSData *)loadBundleDatafile:(NSString *)projectId error:(NSError * __autoreleasing *)error {
     
