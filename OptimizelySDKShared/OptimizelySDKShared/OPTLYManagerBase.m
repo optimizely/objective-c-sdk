@@ -179,6 +179,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
         } else {
             [self.logger logMessage:OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates
                           withLevel:OptimizelyLogLevelError];
+            // 304 response code means there is not datafile udates
             if ([(NSHTTPURLResponse *)response statusCode] == 304) {
                 data = [self.datafileManager getSavedDatafile:&error];
             }
