@@ -15,15 +15,15 @@
  ***************************************************************************/
 
 #ifdef UNIVERSAL
-    #import "OPTLYErrorHandler.h"
-    #import "OPTLYEventDispatcher.h"
-    #import "OPTLYLogger.h"
-    #import "OPTLYLoggerMessages.h"
+#import "OPTLYErrorHandler.h"
+#import "OPTLYEventDispatcher.h"
+#import "OPTLYLogger.h"
+#import "OPTLYLoggerMessages.h"
 #else
-    #import <OptimizelySDKCore/OPTLYErrorHandler.h>
-    #import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
-    #import <OptimizelySDKCore/OPTLYLogger.h>
-    #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
+#import <OptimizelySDKCore/OPTLYErrorHandler.h>
+#import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
+#import <OptimizelySDKCore/OPTLYLogger.h>
+#import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 #endif
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManagerBasic.h"
@@ -48,6 +48,9 @@ NSString * _Nonnull const OptimizelyDeviceModelKey = @"optimizely_ios_device_mod
 NSString * _Nonnull const OptimizelyOSVersionKey = @"optimizely_ios_os_version";
 NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version";
 #endif
+
+NSString * _Nonnull const OptimizelyBundleDatafilePrefix = @"optimizely";
+NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 
 @interface OPTLYManagerBase()
 @property (strong, readwrite, nonatomic, nullable) OPTLYClient *optimizelyClient;
@@ -95,7 +98,7 @@ NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version
 - (OPTLYClient *)initialize {
     // the datafile could have been set in the builder (this should take precedence over the saved datafile)
     if (!self.datafile) {
-        self.datafile = [self.datafileManager getSavedDatafile];
+        self.datafile = [self.datafileManager getSavedDatafile:nil];
     }
     self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:self.datafile];
     return self.optimizelyClient;
@@ -107,16 +110,17 @@ NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version
 }
 
 - (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
-    [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if ([(NSHTTPURLResponse *)response statusCode] == 304) {
-            data = [self.datafileManager getSavedDatafile];
-        }
-        self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:data];
-        
-        if (callback) {
-            callback(error, self.optimizelyClient);
-        }
-    }];
+    [self.datafileManager downloadDatafile:self.projectId
+                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                             if ([(NSHTTPURLResponse *)response statusCode] == 304) {
+                                 data = [self.datafileManager getSavedDatafile:&error];
+                             }
+                             self.optimizelyClient = [self initializeClientWithManagerSettingsAndDatafile:data];
+                             
+                             if (callback) {
+                                 callback(error, self.optimizelyClient);
+                             }
+                         }];
 }
 
 - (OPTLYClient *)getOptimizely {
@@ -142,6 +146,85 @@ NSString * _Nonnull const OptimizelySDKVersionKey = @"optimizely_ios_sdk_version
     }];
     client.defaultAttributes = [self newDefaultAttributes];
     return client;
+}
+
+NSString *const OPTLYLoggerMessagesManagerSyncInit = @"[MANAGER] Synchronously initializing client with project ID %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInit = @"[MANAGER] Asynchronously initializing client with project ID %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInitErrorDatafileDownload = @"[MANAGER] Error downloading datafile: %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates = @"[MANAGER] Not downloading new datafile — no updates have been made.";
+NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad = @"[MANAGER] Attempting to load the bundled datafile.";
+NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError = @"[MANAGER] Unabled to load the bundled datafile because of the following error: %@";
+NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile %@ was loaded.";
+
+
+- (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId
+{
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerSyncInit, projectId]
+                  withLevel:OptimizelyLogLevelInfo];
+    
+    NSData *data = [self.datafileManager getSavedDatafile:nil];
+    
+    // fall back to the bundled datafile if we can't get the saved datafile
+    if (data == nil) {
+        data = [self loadBundleDatafile:projectId error:nil];
+    }
+    
+    OPTLYClient *client = [self initializeWithDatafile:data];
+    
+    return client;
+}
+
+- (void)initializeAsync:(nonnull NSString *)projectId
+               callback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback
+{
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerAsyncInit, projectId]
+                  withLevel:OptimizelyLogLevelInfo];
+    
+    [self.datafileManager downloadDatafile:projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerAsyncInitErrorDatafileDownload, error.localizedDescription]
+                          withLevel:OptimizelyLogLevelError];
+            data = [self.datafileManager getSavedDatafile:&error];
+        } else {
+            [self.logger logMessage:OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates
+                          withLevel:OptimizelyLogLevelError];
+            if ([(NSHTTPURLResponse *)response statusCode] == 304) {
+                data = [self.datafileManager getSavedDatafile:&error];
+            }
+        }
+        
+        // fall back to the bundled datafile if we can't get the saved datafile
+        if (data == nil) {
+            data = [self loadBundleDatafile:projectId error:&error];
+        }
+        
+        OPTLYClient *client = [self initializeWithDatafile:data];
+        
+        if (callback) {
+            callback(error, client);
+        }
+    }];
+}
+
+- (NSData *)loadBundleDatafile:(NSString *)projectId error:(NSError * __autoreleasing *)error {
+    
+    [self.logger logMessage:OPTLYLoggerMessagesManagerAttemptingBundleDataLoad
+                  withLevel:OptimizelyLogLevelInfo];
+    
+    NSString *datafileName = [NSString stringWithFormat:@"%@_%@", OptimizelyBundleDatafilePrefix, projectId];
+    NSString *filePath =[[NSBundle bundleForClass:[self class]] pathForResource:datafileName ofType:OptimizelyBundleDatafileFileTypeExtension];
+    NSString *fileContents =[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:error];
+    
+    if (error && *error) {
+        NSError *fileError = (NSError *)*error;
+        NSString *errorDescription = fileError.localizedDescription;
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerBundleDataLoadError, errorDescription]         withLevel:OptimizelyLogLevelError];
+    } else {
+        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerBundledDataLoaded, datafileName] withLevel:OptimizelyLogLevelInfo];
+    }
+    
+    NSData *jsonData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
+    return jsonData;
 }
 
 - (NSString *)description {
