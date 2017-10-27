@@ -55,7 +55,7 @@
     
     if (error)
     {
-        NSLog(@"Error reading file: %@", error.localizedDescription);
+        NSLog(@"Error reading file %@: %@", datafileName, error.localizedDescription);
     }
     
     NSData *jsonData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];

@@ -46,8 +46,8 @@
 		EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
-		EA3144FA1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */; };
-		EA3144FB1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */; };
+		EA3144FA1ED7AC1900A8E555 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* optimizely_6372300739.json */; };
+		EA3144FB1ED7AC1900A8E555 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = EA3144F91ED7AC1900A8E555 /* optimizely_6372300739.json */; };
 		EA31450C1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */; };
 		EA31450D1ED7AE5500A8E555 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */; };
 		EA52C9E61E851CC100D4FCA0 /* OPTLYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5F14E1E7B604C00C087B8 /* OPTLYLogger.m */; };
@@ -368,7 +368,7 @@
 		EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYExperimentBucketMapEntity.m; sourceTree = "<group>"; };
 		EA3144E71ED7A19700A8E555 /* OPTLYUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYUserProfile.h; sourceTree = "<group>"; };
 		EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYUserProfile.m; sourceTree = "<group>"; };
-		EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = datafile_6372300739.json; path = TestData/datafile_6372300739.json; sourceTree = SOURCE_ROOT; };
+		EA3144F91ED7AC1900A8E555 /* optimizely_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = optimizely_6372300739.json; path = TestData/optimizely_6372300739.json; sourceTree = SOURCE_ROOT; };
 		EA31450A1ED7AE5500A8E555 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYTestHelper.h; path = ../OptimizelySDKCore/OptimizelySDKCoreTests/OPTLYTestHelper.h; sourceTree = "<group>"; };
 		EA31450B1ED7AE5500A8E555 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYTestHelper.m; path = ../OptimizelySDKCore/OptimizelySDKCoreTests/OPTLYTestHelper.m; sourceTree = "<group>"; };
 		EA4D96051E83B0A800E40C14 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -602,7 +602,7 @@
 		EA3144F51ED7A8FE00A8E555 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
-				EA3144F91ED7AC1900A8E555 /* datafile_6372300739.json */,
+				EA3144F91ED7AC1900A8E555 /* optimizely_6372300739.json */,
 			);
 			name = TestData;
 			path = OptimizelySDKTVOSUniversalTests;
@@ -1256,7 +1256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3144FA1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */,
+				EA3144FA1ED7AC1900A8E555 /* optimizely_6372300739.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,7 +1264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3144FB1ED7AC1900A8E555 /* datafile_6372300739.json in Resources */,
+				EA3144FB1ED7AC1900A8E555 /* optimizely_6372300739.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
