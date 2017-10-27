@@ -55,7 +55,9 @@
     [networkService downloadProjectConfig:projectId
                              backoffRetry:NO
                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                            self.savedDatafile = data;
+                            if ([data length] > 0) {
+                                self.savedDatafile = data;
+                            }
                             // call the completion handler
                             if (completion != nil) {
                                 completion(data, response, error);

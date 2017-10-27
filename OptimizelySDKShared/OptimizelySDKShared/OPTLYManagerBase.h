@@ -124,7 +124,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  *   of the client.
  */
 - (void)initializeAsync:(nonnull NSString *)projectId
-               callback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
+               callback:(void(^ _Nullable)(NSError * _Nullable error,
+                                           OPTLYClient * _Nullable client))callback;
 
 
 /*

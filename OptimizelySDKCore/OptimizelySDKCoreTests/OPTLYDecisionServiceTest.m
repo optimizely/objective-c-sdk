@@ -33,7 +33,7 @@ static NSString * const kUserId = @"6369992312";
 static NSString * const kUserNotInExperimentId = @"6358043286";
 
 // whitelisting test constants
-static NSString * const kWhitelistingTestDatafileName = @"validator_whitelisting_test_datafile";
+static NSString * const kWhitelistingTestDatafileName = @"optimizely_7519590183";
 static NSString * const kWhitelistedUserId = @"whitelisted_user";
 static NSString * const kWhitelistedExperiment = @"whitelist_testing_experiment";
 static NSString * const kWhitelistedVariation = @"a";

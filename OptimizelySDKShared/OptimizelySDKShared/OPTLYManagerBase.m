@@ -177,10 +177,10 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                           withLevel:OptimizelyLogLevelError];
             data = [self.datafileManager getSavedDatafile:&error];
         } else {
-            [self.logger logMessage:OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates
-                          withLevel:OptimizelyLogLevelError];
-            // 304 response code means there is not datafile udates
+            // 304 response code means there is not datafile updates
             if ([(NSHTTPURLResponse *)response statusCode] == 304) {
+                [self.logger logMessage:OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates
+                              withLevel:OptimizelyLogLevelError];
                 data = [self.datafileManager getSavedDatafile:&error];
             }
         }
@@ -206,7 +206,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                   withLevel:OptimizelyLogLevelInfo];
     
     NSString *datafileName = [NSString stringWithFormat:@"%@_%@", OptimizelyBundleDatafilePrefix, projectId];
-    NSString *filePath =[[NSBundle bundleForClass:[self class]] pathForResource:datafileName ofType:OptimizelyBundleDatafileFileTypeExtension];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:datafileName ofType:OptimizelyBundleDatafileFileTypeExtension];
     NSString *fileContents =[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:error];
     
     if (error && *error) {

@@ -56,6 +56,7 @@
 		EA70FFF11E552E9E00590BEF /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA70FFC31E552D0B00590BEF /* Roboto-Medium.ttf */; };
 		EA70FFF41E552E9E00590BEF /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EA70FFC41E552D0B00590BEF /* SF-UI-Text-Regular.otf */; };
 		EA70FFF51E552E9E00590BEF /* ProximaNovaCond-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EA70FFC21E552D0B00590BEF /* ProximaNovaCond-Regular.otf */; };
+		EAF6953E1FA08DD900C73CC2 /* optimizely_8182362857.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF6953D1FA08DD900C73CC2 /* optimizely_8182362857.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,8 @@
 		EA70FFC31E552D0B00590BEF /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "Resources/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		EA70FFC41E552D0B00590BEF /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Regular.otf"; path = "Resources/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		EA70FFFE1E552E9E00590BEF /* OptimizelyiOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimizelyiOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAF6953A1FA07BF800C73CC2 /* optimizely_6372300739.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = optimizely_6372300739.json; path = ../OptimizelySDKShared/OptimizelySDKSharedTests/TestData/optimizely_6372300739.json; sourceTree = "<group>"; };
+		EAF6953D1FA08DD900C73CC2 /* optimizely_8182362857.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = optimizely_8182362857.json; path = Resources/optimizely_8182362857.json; sourceTree = "<group>"; };
 		FB253CD2AFE817883A1832B5 /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +253,8 @@
 				EA70FFC31E552D0B00590BEF /* Roboto-Medium.ttf */,
 				EA70FFC41E552D0B00590BEF /* SF-UI-Text-Regular.otf */,
 				EA4A62BA1E566F3500F1C3CE /* demoTestDatafile.json */,
+				EAF6953A1FA07BF800C73CC2 /* optimizely_6372300739.json */,
+				EAF6953D1FA08DD900C73CC2 /* optimizely_8182362857.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				EA70FFF41E552E9E00590BEF /* SF-UI-Text-Regular.otf in Resources */,
 				EA299EEF1E55316300931399 /* Assets.xcassets in Resources */,
 				EA70FFF51E552E9E00590BEF /* ProximaNovaCond-Regular.otf in Resources */,
+				EAF6953E1FA08DD900C73CC2 /* optimizely_8182362857.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

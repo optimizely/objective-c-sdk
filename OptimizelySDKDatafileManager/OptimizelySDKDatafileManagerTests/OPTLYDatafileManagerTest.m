@@ -23,7 +23,7 @@
 #import "OPTLYTestHelper.h"
 
 static NSString *const kProjectId = @"6372300739";
-static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
+static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 static NSTimeInterval kDatafileDownloadInteval = 5; // in seconds
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSData *kDatafileData;
