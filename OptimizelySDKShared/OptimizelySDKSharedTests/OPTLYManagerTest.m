@@ -392,7 +392,6 @@ static NSString * const kClientEngine = @"tvos-sdk";
     
     // mock a failed cached datafile load
     id partialDatafileManagerMock = OCMPartialMock(datafileManager);
-    NSError *error = nil;
     OCMStub([partialDatafileManagerMock getSavedDatafile:((NSError __autoreleasing **)[OCMArg anyPointer])]).andReturn(nil);
     
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
