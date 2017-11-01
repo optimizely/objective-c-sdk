@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		2D3504161DFA78D600B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */; };
 		2D3504171DFA78D600B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */; };
-		2D3504181DFA78D600B0A822 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504111DFA78D600B0A822 /* datafile_6372300739.json */; };
+		2D3504181DFA78D600B0A822 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504111DFA78D600B0A822 /* optimizely_6372300739.json */; };
 		2D3504191DFA78D600B0A822 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504121DFA78D600B0A822 /* test_data_10_experiments.json */; };
 		2D35041A1DFA78D600B0A822 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504131DFA78D600B0A822 /* test_data_25_experiments.json */; };
 		2D35041B1DFA78D600B0A822 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504141DFA78D600B0A822 /* test_data_50_experiments.json */; };
-		2D35041C1DFA78D600B0A822 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504151DFA78D600B0A822 /* validator_whitelisting_test_datafile.json */; };
+		2D35041C1DFA78D600B0A822 /* optimizely_7519590183.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3504151DFA78D600B0A822 /* optimizely_7519590183.json */; };
 		5D77CDB078EEE875A8E7E166 /* Pods_OptimizelySDKTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EFA4250F9002309C272F47 /* Pods_OptimizelySDKTVOSTests.framework */; };
 		EA2FA72E1DC1FAA000B1D81B /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7241DC1FA9F00B1D81B /* OptimizelySDKTVOS.framework */; };
 		EA2FA7331DC1FAA000B1D81B /* OptimizelySDKTVOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FA7321DC1FAA000B1D81B /* OptimizelySDKTVOSTests.m */; };
@@ -144,11 +144,11 @@
 		2D35040D1DFA78D600B0A822 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
 		2D35040E1DFA78D600B0A822 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BucketerTestsDatafile.json; sourceTree = "<group>"; };
-		2D3504111DFA78D600B0A822 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = datafile_6372300739.json; sourceTree = "<group>"; };
+		2D3504111DFA78D600B0A822 /* optimizely_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = optimizely_6372300739.json; sourceTree = "<group>"; };
 		2D3504121DFA78D600B0A822 /* test_data_10_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_10_experiments.json; sourceTree = "<group>"; };
 		2D3504131DFA78D600B0A822 /* test_data_25_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_25_experiments.json; sourceTree = "<group>"; };
 		2D3504141DFA78D600B0A822 /* test_data_50_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_50_experiments.json; sourceTree = "<group>"; };
-		2D3504151DFA78D600B0A822 /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = validator_whitelisting_test_datafile.json; sourceTree = "<group>"; };
+		2D3504151DFA78D600B0A822 /* optimizely_7519590183.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = optimizely_7519590183.json; sourceTree = "<group>"; };
 		3E00275E1ECBC0100072DDAD /* OptimizelySDKUserProfileService.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKUserProfileService.xcodeproj; path = ../OptimizelySDKUserProfileService/OptimizelySDKUserProfileService.xcodeproj; sourceTree = "<group>"; };
 		44272C99FC51668DCAEC9448 /* Pods-OptimizelySDKTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5560C95BC4006BAFF4D74368 /* Pods-OptimizelySDKTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
@@ -194,11 +194,11 @@
 			isa = PBXGroup;
 			children = (
 				2D3504101DFA78D600B0A822 /* BucketerTestsDatafile.json */,
-				2D3504111DFA78D600B0A822 /* datafile_6372300739.json */,
+				2D3504111DFA78D600B0A822 /* optimizely_6372300739.json */,
 				2D3504121DFA78D600B0A822 /* test_data_10_experiments.json */,
 				2D3504131DFA78D600B0A822 /* test_data_25_experiments.json */,
 				2D3504141DFA78D600B0A822 /* test_data_50_experiments.json */,
-				2D3504151DFA78D600B0A822 /* validator_whitelisting_test_datafile.json */,
+				2D3504151DFA78D600B0A822 /* optimizely_7519590183.json */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -513,9 +513,9 @@
 				2D35041B1DFA78D600B0A822 /* test_data_50_experiments.json in Resources */,
 				2D3504191DFA78D600B0A822 /* test_data_10_experiments.json in Resources */,
 				2D3504171DFA78D600B0A822 /* BucketerTestsDatafile.json in Resources */,
-				2D3504181DFA78D600B0A822 /* datafile_6372300739.json in Resources */,
+				2D3504181DFA78D600B0A822 /* optimizely_6372300739.json in Resources */,
 				2D35041A1DFA78D600B0A822 /* test_data_25_experiments.json in Resources */,
-				2D35041C1DFA78D600B0A822 /* validator_whitelisting_test_datafile.json in Resources */,
+				2D35041C1DFA78D600B0A822 /* optimizely_7519590183.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@
 #import "OPTLYTestHelper.h"
 
 // static datafile name
-static NSString *const kDatamodelDatafileName = @"datafile_6372300739";
+static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 
 @interface OPTLYClientTest : XCTestCase
 

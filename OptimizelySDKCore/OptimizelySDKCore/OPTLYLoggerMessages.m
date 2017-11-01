@@ -154,6 +154,13 @@ NSString *const OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEv
 NSString *const OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol = @"[MANAGER] Logger does not conform to the OPTLYLogger protocol.";
 NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID.";
 NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"[MANAGER] The project ID for the Optimizely Manager instance cannot be an empty string";
+NSString *const OPTLYLoggerMessagesManagerSyncInit = @"[MANAGER] Synchronously initializing client with project ID %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInit = @"[MANAGER] Asynchronously initializing client with project ID %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInitErrorDatafileDownload = @"[MANAGER] Error downloading datafile: %@.";
+NSString *const OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates = @"[MANAGER] Not downloading new datafile — no updates have been made.";
+NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad = @"[MANAGER] Attempting to load the bundled datafile.";
+NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError = @"[MANAGER] Unabled to load the bundled datafile because of the following error: %@";
+NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile %@ was loaded.";
 
 // ---- Project Config Getters ----
 // warning

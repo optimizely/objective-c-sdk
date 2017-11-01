@@ -13,18 +13,18 @@
 		2D08FB6F1DCA5B3D006CA063 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */; };
 		2D08FB711DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */; };
 		2D08FB721DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */; };
-		2D08FB921DCA5E6D006CA063 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB801DCA5E66006CA063 /* datafile_6372300739.json */; };
+		2D08FB921DCA5E6D006CA063 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB801DCA5E66006CA063 /* optimizely_6372300739.json */; };
 		2D08FB931DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB811DCA5E66006CA063 /* test_data_10_experiments.json */; };
 		2D08FB941DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB821DCA5E66006CA063 /* test_data_25_experiments.json */; };
 		2D08FB951DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB831DCA5E66006CA063 /* test_data_50_experiments.json */; };
 		2D08FB961DCA5E6D006CA063 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB841DCA5E66006CA063 /* BucketerTestsDatafile.json */; };
-		2D08FB971DCA5E6D006CA063 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB851DCA5E66006CA063 /* validator_whitelisting_test_datafile.json */; };
-		2D08FB981DCA5E6D006CA063 /* datafile_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB801DCA5E66006CA063 /* datafile_6372300739.json */; };
+		2D08FB971DCA5E6D006CA063 /* optimizely_7519590183.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB851DCA5E66006CA063 /* optimizely_7519590183.json */; };
+		2D08FB981DCA5E6D006CA063 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB801DCA5E66006CA063 /* optimizely_6372300739.json */; };
 		2D08FB991DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB811DCA5E66006CA063 /* test_data_10_experiments.json */; };
 		2D08FB9A1DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB821DCA5E66006CA063 /* test_data_25_experiments.json */; };
 		2D08FB9B1DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB831DCA5E66006CA063 /* test_data_50_experiments.json */; };
 		2D08FB9C1DCA5E6E006CA063 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB841DCA5E66006CA063 /* BucketerTestsDatafile.json */; };
-		2D08FB9D1DCA5E6E006CA063 /* validator_whitelisting_test_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB851DCA5E66006CA063 /* validator_whitelisting_test_datafile.json */; };
+		2D08FB9D1DCA5E6E006CA063 /* optimizely_7519590183.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D08FB851DCA5E66006CA063 /* optimizely_7519590183.json */; };
 		2D08FB9F1DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB9E1DCA5FA8006CA063 /* OPTLYClientBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FBA01DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB9E1DCA5FA8006CA063 /* OPTLYClientBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FBA11DCA5FB3006CA063 /* OPTLYClientBuilder.m */; };
@@ -186,12 +186,12 @@
 		2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYClient.h; sourceTree = "<group>"; };
 		2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClient.m; sourceTree = "<group>"; };
 		2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClientTest.m; sourceTree = "<group>"; };
-		2D08FB801DCA5E66006CA063 /* datafile_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = datafile_6372300739.json; path = TestData/datafile_6372300739.json; sourceTree = "<group>"; };
+		2D08FB801DCA5E66006CA063 /* optimizely_6372300739.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = optimizely_6372300739.json; path = TestData/optimizely_6372300739.json; sourceTree = "<group>"; };
 		2D08FB811DCA5E66006CA063 /* test_data_10_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_10_experiments.json; path = TestData/test_data_10_experiments.json; sourceTree = "<group>"; };
 		2D08FB821DCA5E66006CA063 /* test_data_25_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_25_experiments.json; path = TestData/test_data_25_experiments.json; sourceTree = "<group>"; };
 		2D08FB831DCA5E66006CA063 /* test_data_50_experiments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test_data_50_experiments.json; path = TestData/test_data_50_experiments.json; sourceTree = "<group>"; };
 		2D08FB841DCA5E66006CA063 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BucketerTestsDatafile.json; path = TestData/BucketerTestsDatafile.json; sourceTree = "<group>"; };
-		2D08FB851DCA5E66006CA063 /* validator_whitelisting_test_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = validator_whitelisting_test_datafile.json; path = TestData/validator_whitelisting_test_datafile.json; sourceTree = "<group>"; };
+		2D08FB851DCA5E66006CA063 /* optimizely_7519590183.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = optimizely_7519590183.json; path = TestData/optimizely_7519590183.json; sourceTree = "<group>"; };
 		2D08FB9E1DCA5FA8006CA063 /* OPTLYClientBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYClientBuilder.h; sourceTree = "<group>"; };
 		2D08FBA11DCA5FB3006CA063 /* OPTLYClientBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClientBuilder.m; sourceTree = "<group>"; };
 		2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYManagerBuilderTest.m; sourceTree = "<group>"; };
@@ -323,12 +323,12 @@
 		2D08FB7F1DCA5E59006CA063 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
-				2D08FB801DCA5E66006CA063 /* datafile_6372300739.json */,
+				2D08FB801DCA5E66006CA063 /* optimizely_6372300739.json */,
 				2D08FB811DCA5E66006CA063 /* test_data_10_experiments.json */,
 				2D08FB821DCA5E66006CA063 /* test_data_25_experiments.json */,
 				2D08FB831DCA5E66006CA063 /* test_data_50_experiments.json */,
 				2D08FB841DCA5E66006CA063 /* BucketerTestsDatafile.json */,
-				2D08FB851DCA5E66006CA063 /* validator_whitelisting_test_datafile.json */,
+				2D08FB851DCA5E66006CA063 /* optimizely_7519590183.json */,
 				5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 			);
 			name = TestData;
@@ -793,12 +793,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FB961DCA5E6D006CA063 /* BucketerTestsDatafile.json in Resources */,
-				2D08FB921DCA5E6D006CA063 /* datafile_6372300739.json in Resources */,
+				2D08FB921DCA5E6D006CA063 /* optimizely_6372300739.json in Resources */,
 				2D08FB951DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */,
 				2D08FB931DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */,
 				5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				2D08FB941DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */,
-				2D08FB971DCA5E6D006CA063 /* validator_whitelisting_test_datafile.json in Resources */,
+				2D08FB971DCA5E6D006CA063 /* optimizely_7519590183.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,12 +814,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FB9C1DCA5E6E006CA063 /* BucketerTestsDatafile.json in Resources */,
-				2D08FB981DCA5E6D006CA063 /* datafile_6372300739.json in Resources */,
+				2D08FB981DCA5E6D006CA063 /* optimizely_6372300739.json in Resources */,
 				2D08FB9B1DCA5E6D006CA063 /* test_data_50_experiments.json in Resources */,
 				2D08FB991DCA5E6D006CA063 /* test_data_10_experiments.json in Resources */,
 				5E4C07F71DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				2D08FB9A1DCA5E6D006CA063 /* test_data_25_experiments.json in Resources */,
-				2D08FB9D1DCA5E6E006CA063 /* validator_whitelisting_test_datafile.json in Resources */,
+				2D08FB9D1DCA5E6E006CA063 /* optimizely_7519590183.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

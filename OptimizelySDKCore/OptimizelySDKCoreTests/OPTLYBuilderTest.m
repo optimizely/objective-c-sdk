@@ -24,7 +24,7 @@
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
-static NSString * const kDataModelDatafileName = @"datafile_6372300739";
+static NSString * const kDataModelDatafileName = @"optimizely_6372300739";
 static NSData *datafile;
 
 @interface OPTLYBuilderTest : XCTestCase

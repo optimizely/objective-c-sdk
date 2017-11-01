@@ -138,13 +138,12 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
     }
 }
 
-- (NSData *)getSavedDatafile {
-    NSError *error;
+- (NSData * _Nullable)getSavedDatafile:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW {
     NSData *datafile = [self.dataStore getFile:self.projectId
-                       type:OPTLYDataStoreDataTypeDatafile
-                      error:&error];
-    if (error != nil) {
-        [self.errorHandler handleError:error];
+                                          type:OPTLYDataStoreDataTypeDatafile
+                                         error:error];
+    if (error && *error) {
+        [self.errorHandler handleError:*error];
     }
     return datafile;
 }

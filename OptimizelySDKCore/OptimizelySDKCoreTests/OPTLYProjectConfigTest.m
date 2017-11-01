@@ -32,7 +32,7 @@
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
-static NSString * const kDataModelDatafileName = @"datafile_6372300739";
+static NSString * const kDataModelDatafileName = @"optimizely_6372300739";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";

@@ -30,7 +30,7 @@
     // runtime check
     BOOL implementsDownloadDatafileMethod = [instanceClass instancesRespondToSelector:@selector(downloadDatafile:completionHandler:)];
     BOOL implementsSaveDatafileMethod = [instanceClass instancesRespondToSelector:@selector(saveDatafile:)];
-    BOOL implementsGetDatafileMethod = [instanceClass instancesRespondToSelector:@selector(getSavedDatafile)];
+    BOOL implementsGetDatafileMethod = [instanceClass instancesRespondToSelector:@selector(getSavedDatafile:)];
     
     return validProtocolDeclaration && implementsDownloadDatafileMethod && implementsSaveDatafileMethod && implementsGetDatafileMethod;
 }
@@ -55,7 +55,9 @@
     [networkService downloadProjectConfig:projectId
                              backoffRetry:NO
                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                            self.savedDatafile = data;
+                            if ([data length] > 0) {
+                                self.savedDatafile = data;
+                            }
                             // call the completion handler
                             if (completion != nil) {
                                 completion(data, response, error);
@@ -63,12 +65,17 @@
                         }];
 }
 
-- (NSData *)getSavedDatafile {
+- (NSData * _Nullable)getSavedDatafile:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW {
     return self.savedDatafile;
 }
 
 - (void)saveDatafile:(NSData *)datafile {
     self.savedDatafile = datafile;
+}
+
+- (BOOL)isDatafileCached {
+    BOOL isCached = self.savedDatafile != nil;
+    return isCached;
 }
 
 @end
@@ -82,12 +89,16 @@
     }
 }
 
-- (NSData *)getSavedDatafile {
+- (NSData * _Nullable)getSavedDatafile:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW{
     return nil;
 }
 
 - (void)saveDatafile:(NSData *)datafile {
     return;
+}
+
+- (BOOL)isDatafileCached {
+    return false;
 }
 
 @end
