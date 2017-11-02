@@ -28,8 +28,6 @@
 
 /// The time interval to regularly fetch the datafile.
 @property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
-/// This flag specifies if the datafile has been cached or not.
-@property (nonatomic, assign) BOOL isDatafileCached;
 /// The project ID of the datafile this datafile manager will monitor
 @property (nonatomic, readonly, strong, nonnull) NSString *projectId;
 /// The error handler to be used for the manager, client, and all subcomponents

@@ -87,7 +87,7 @@ DEPRECATED_ATTRIBUTE
  * @param dict a dictionary holding JSON objects, to be imported in the model.
  * @param err an error or NULL
  */
-- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError **)err;
+- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError * __autoreleasing *)err;
 
 
 /**
@@ -99,7 +99,7 @@ DEPRECATED_ATTRIBUTE
  * @param data representing a JSON response (usually fetched from web), to be imported in the model.
  * @param error an error or NULL
  */
-- (instancetype)initWithData:(NSData *)data error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data error:(NSError * __autoreleasing *)error;
 
 /**
  * All OPTLYJSONModel classes should be able to export themselves as a dictionary of
@@ -207,12 +207,12 @@ DEPRECATED_ATTRIBUTE
  * @exception OPTLYJSONModelInvalidDataException thrown when the input data does not include all required keys
  * @see arrayOfDictionariesFromModels:
  */
-+ (NSMutableArray *)arrayOfModelsFromDictionaries:(NSArray *)array error:(NSError **)err;
-+ (NSMutableArray *)arrayOfModelsFromData:(NSData *)data error:(NSError **)err;
-+ (NSMutableArray *)arrayOfModelsFromString:(NSString *)string error:(NSError **)err;
-+ (NSMutableDictionary *)dictionaryOfModelsFromDictionary:(NSDictionary *)dictionary error:(NSError **)err;
-+ (NSMutableDictionary *)dictionaryOfModelsFromData:(NSData *)data error:(NSError **)err;
-+ (NSMutableDictionary *)dictionaryOfModelsFromString:(NSString *)string error:(NSError **)err;
++ (NSMutableArray *)arrayOfModelsFromDictionaries:(NSArray *)array error:(NSError * __autoreleasing *)err;
++ (NSMutableArray *)arrayOfModelsFromData:(NSData *)data error:(NSError * __autoreleasing *)err;
++ (NSMutableArray *)arrayOfModelsFromString:(NSString *)string error:(NSError * __autoreleasing *)err;
++ (NSMutableDictionary *)dictionaryOfModelsFromDictionary:(NSDictionary *)dictionary error:(NSError * __autoreleasing *)err;
++ (NSMutableDictionary *)dictionaryOfModelsFromData:(NSData *)data error:(NSError * __autoreleasing *)err;
++ (NSMutableDictionary *)dictionaryOfModelsFromString:(NSString *)string error:(NSError * __autoreleasing *)err;
 
 /**
  * If you have an NSArray of data model objects, this method takes it in and outputs a list of the
@@ -240,7 +240,7 @@ DEPRECATED_ATTRIBUTE
  * @return a BOOL result, showing whether the model data validates or not. You can use the convenience method
  * [OPTLYJSONModelError errorModelIsInvalid] to set the NSError param if the data fails your custom validation
  */
-- (BOOL)validate:(NSError **)error;
+- (BOOL)validate:(NSError * __autoreleasing *)error;
 
 /** @name Key mapping */
 /**
@@ -295,6 +295,6 @@ DEPRECATED_ATTRIBUTE
  * @param useKeyMapping if YES the method will use the model's key mapper and the global key mapper, if NO
  * it'll just try to match the dictionary keys to the model's properties
  */
-- (BOOL)mergeFromDictionary:(NSDictionary *)dict useKeyMapping:(BOOL)useKeyMapping error:(NSError **)error;
+- (BOOL)mergeFromDictionary:(NSDictionary *)dict useKeyMapping:(BOOL)useKeyMapping error:(NSError * __autoreleasing *)error;
 
 @end

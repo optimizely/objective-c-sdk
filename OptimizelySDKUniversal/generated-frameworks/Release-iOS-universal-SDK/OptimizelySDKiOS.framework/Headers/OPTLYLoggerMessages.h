@@ -160,6 +160,13 @@ extern NSString *const OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformTo
 extern NSString *const OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol;
 extern NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId;
 extern NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString;
+extern NSString *const OPTLYLoggerMessagesManagerSyncInit;
+extern NSString *const OPTLYLoggerMessagesManagerAsyncInit;
+extern NSString *const OPTLYLoggerMessagesManagerAsyncInitErrorDatafileDownload;
+extern NSString *const OPTLYLoggerMessagesManagerAsyncInitNoDatafileUpdates;
+extern NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad;
+extern NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError;
+extern NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded;
 
 // ---- Project Config Getters ----
 // debug

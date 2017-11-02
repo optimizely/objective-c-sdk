@@ -40,10 +40,17 @@
 
 /**
  * Retrieve the datafile that is currently saved on the device.
+ * @param error An error value if getting the datafile was unsuccessful.
  * @return NSData object that should be the most recently downloaded datafile.
  *      Will be nil if no datafile has been successfully downloaded.
  */
-- (NSData * _Nullable)getSavedDatafile;
+- (NSData * _Nullable)getSavedDatafile:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
+
+/**
+ * Determines if the datafile has been cached.
+ * @return BOOL Boolean flag that indicates if the datafile has been cached.
+ */
+- (BOOL)isDatafileCached;
 
 @end
 

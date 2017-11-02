@@ -42,7 +42,7 @@
  * @param error An error object is returned if an error occurs.
  **/
 - (BOOL)createTable:(nonnull NSString *)tableName
-              error:(NSError * _Nullable * _Nullable)error;
+              error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Inserts data into a database table.
@@ -53,7 +53,7 @@
  */
 - (BOOL)saveEvent:(nonnull NSDictionary *)data
             table:(nonnull NSString *)tableName
-            error:(NSError * _Nullable * _Nullable)error;
+            error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Deletes a row from a database table given an ID.
@@ -64,7 +64,7 @@
  */
 - (BOOL)deleteEntity:(nonnull NSString *)entityId
                table:(nonnull NSString *)tableName
-               error:(NSError * _Nullable * _Nullable)error;
+               error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Deletes a row from a database table given a json string.
@@ -75,7 +75,7 @@
  */
 - (BOOL)deleteEntityWithJSON:(nonnull NSString *)json
                        table:(nonnull NSString *)tableName
-                       error:(NSError * _Nullable * _Nullable)error;
+                       error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 /**
  * Deletes data from a database table.
  *
@@ -85,7 +85,7 @@
  */
 - (BOOL)deleteEntities:(nonnull NSArray *)entityIds
                  table:(nonnull NSString *)tableName
-                 error:(NSError * _Nullable * _Nullable)error;
+                 error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Retrieve all entries from the table.
@@ -95,7 +95,7 @@
  * @return The return value is an array of OPTLYDatabaseEntity.
  */
 - (nullable NSArray *)retrieveAllEntries:(nonnull NSString *)tableName
-                                   error:(NSError * _Nullable * _Nullable)error;
+                                   error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Retrieves a set of N entries from the table.
@@ -107,7 +107,7 @@
  */
 - (nullable NSArray *)retrieveFirstNEntries:(NSInteger)numberOfEntries
                                       table:(nonnull NSString *)tableName
-                                      error:(NSError * _Nullable * _Nullable)error;
+                                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Returns the number of rows of a table.
@@ -117,13 +117,13 @@
  * @return The number of rows in a table.
  */
 - (NSInteger)numberOfRows:(nonnull NSString *)tableName
-                    error:(NSError * _Nullable * _Nullable)error;
+                    error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Deletes the database.
  *
  * @param error An error object is returned if an error occurs.
  */
-- (BOOL)deleteDatabase:(NSError * _Nullable * _Nullable)error;
+- (BOOL)deleteDatabase:(NSError * _Nullable __autoreleasing * _Nullable)error;
 @end
 

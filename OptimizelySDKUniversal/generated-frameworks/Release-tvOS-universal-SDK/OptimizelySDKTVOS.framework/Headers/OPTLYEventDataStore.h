@@ -31,7 +31,7 @@
  * @param error An error object is returned if an error occurs.
  */
 - (nullable instancetype)initWithBaseDir:(nonnull NSString *)baseDir
-                                   error:(NSError * _Nullable * _Nullable)error;
+                                   error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Saves Data
@@ -41,7 +41,7 @@
  */
 - (BOOL)saveEvent:(nonnull NSDictionary *)data
         eventType:(nonnull NSString *)eventTypeName
-            error:(NSError * _Nullable * _Nullable)error;
+            error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Gets the first N entries (i.e., the N oldest events).
@@ -52,7 +52,7 @@
  */
 - (nullable NSArray *)getFirstNEvents:(NSInteger)numberOfEvents
                             eventType:(nonnull NSString *)eventTypeName
-                                error:(NSError * _Nullable * _Nullable)error;
+                                error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Deletes the first N events (i.e., the N oldest events).
@@ -63,7 +63,7 @@
  */
 - (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(nonnull NSString *)eventTypeName
-                     error:(NSError * _Nullable * _Nullable)error;
+                     error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Removes an event
@@ -74,7 +74,7 @@
  */
 - (BOOL)removeEvent:(nonnull NSDictionary *)event
           eventType:(nonnull NSString *)eventTypeName
-              error:(NSError * _Nullable * _Nullable)error;
+              error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  * Returns the number of saved events.
@@ -84,7 +84,7 @@
  * @return The number of events saved.
  */
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName
-                      error:(NSError * _Nullable * _Nullable)error;
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 @end
 
 #if TARGET_OS_IOS
