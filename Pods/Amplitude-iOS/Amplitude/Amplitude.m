@@ -32,6 +32,7 @@
 #import "AMPConstants.h"
 #import "AMPDeviceInfo.h"
 #import "AMPURLConnection.h"
+#import "AMPURLSession.h"
 #import "AMPDatabaseHelper.h"
 #import "AMPUtils.h"
 #import "AMPIdentify.h"
@@ -474,15 +475,24 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
             }
         }];
 
-        UIApplication *app = [self getSharedApplication];
-        if (app != nil) {
-            UIApplicationState state = app.applicationState;
-            if (state != UIApplicationStateBackground) {
-                // If this is called while the app is running in the background, for example
-                // via a push notification, don't call enterForeground
-                [self enterForeground];
+        // Normally _inForeground is set by the enterForeground callback, but initializeWithApiKey will be called after the app's enterForeground
+        // notification is already triggered, so we need to manually check and set it now.
+        // UIApplication methods are only allowed on the main thread so need to dispatch this synchronously to the main thread.
+        void (^checkInForeground)(void) = ^{
+            UIApplication *app = [self getSharedApplication];
+            if (app != nil) {
+                UIApplicationState state = app.applicationState;
+                if (state != UIApplicationStateBackground) {
+                    [self runOnBackgroundQueue:^{
+                        NSNumber* now = [NSNumber numberWithLongLong:[[self currentTime] timeIntervalSince1970] * 1000];
+                        [self startOrContinueSession:now];
+                        _inForeground = YES;
+                    }];
+
+                }
             }
-        }
+        };
+        [self runSynchronouslyOnMainQueue:checkInForeground];
         _initialized = YES;
     }
 }
@@ -510,10 +520,21 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
         AMPLITUDE_LOG(@"Already running in the background.");
         block();
         return NO;
-    }
-    else {
+    } else {
         [_backgroundQueue addOperationWithBlock:block];
         return YES;
+    }
+}
+
+/**
+ * Run a block on the main thread. If already on the main thread, run immediately.
+ */
+- (void)runSynchronouslyOnMainQueue:(void (^)(void))block
+{
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
     }
 }
 
@@ -964,13 +985,13 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
 
     SAFE_ARC_RELEASE(postData);
 
-    // If pinning is enabled, use the AMPURLConnection that handles it.
+    // If pinning is enabled, use the AMPURLSession that handles it.
 #if AMPLITUDE_SSL_PINNING
-    id Connection = (self.sslPinningEnabled ? [AMPURLConnection class] : [NSURLConnection class]);
+    id session = (self.sslPinningEnabled ? [AMPURLSession class] : [NSURLSession class]);
 #else
-    id Connection = [NSURLConnection class];
+    id session = [NSURLSession class];
 #endif
-    [Connection sendAsynchronousRequest:request queue:_backgroundQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [[[session sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         BOOL uploadSuccessful = NO;
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
         if (response != nil) {
@@ -1051,7 +1072,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
                 _uploadTaskID = UIBackgroundTaskInvalid;
             }
         }
-    }];
+    }] resume];
 }
 
 #pragma mark - application lifecycle methods
@@ -1534,26 +1555,8 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
 
 - (NSString*)urlEncodeString:(NSString*) string
 {
-    NSString *newString;
-#if __has_feature(objc_arc)
-    newString = (__bridge_transfer NSString*)
-    CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                            (__bridge CFStringRef)string,
-                                            NULL,
-                                            CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"),
-                                            CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-#else
-    newString = NSMakeCollectable(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                          (CFStringRef)string,
-                                                                          NULL,
-                                                                          CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"),
-                                                                          CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)));
-    SAFE_ARC_AUTORELEASE(newString);
-#endif
-    if (newString) {
-        return newString;
-    }
-    return @"";
+    NSCharacterSet * allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"] invertedSet];
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 }
 
 - (NSDate*) currentTime
