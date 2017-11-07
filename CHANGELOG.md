@@ -3,9 +3,9 @@
 November 6, 2017
 
 ### New Features
-Simplified initialization APIs:
+* Simplified initialization APIs:
 
-* **Synchronous initialization** maximizes for speed by allowing the user to initialize the client immediately with the latest cached datafile. If no datafile is saved or there is an error retrieving the saved datafile (this case is highly unlikely), then the bundled datafile is used. If no bundled datafile is provided by the developer, than the SDK will not be able to initialize the client.
+**Synchronous initialization** maximizes for speed by allowing the user to initialize the client immediately with the latest cached datafile. If no datafile is saved or there is an error retrieving the saved datafile (this case is highly unlikely), then the bundled datafile is used. If no bundled datafile is provided by the developer, than the SDK will not be able to initialize the client.
     
 ```
 /**
@@ -23,7 +23,7 @@ Simplified initialization APIs:
 - (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId;
 ```
 
-* **Asynchronous initialization** allows the user to maximize having the most up-to-date datafile. The SDK attempts to download the datafile asynchronously. In the case that there is an error in the datafile download, the latest cached datafile (if one exists) is used. If there are no updates in the datafile, then the datafile is not downloaded and the latest cached datafile is used. If the cached datafile fails to load, then the bundled datafile is used. The datafile should sit in the main app bundle. In order for the bundled datafile to be properly loaded, the name should follow this format:
+**Asynchronous initialization** allows the user to maximize having the most up-to-date datafile. The SDK attempts to download the datafile asynchronously. In the case that there is an error in the datafile download, the latest cached datafile (if one exists) is used. If there are no updates in the datafile, then the datafile is not downloaded and the latest cached datafile is used. If the cached datafile fails to load, then the bundled datafile is used. The datafile should sit in the main app bundle. In order for the bundled datafile to be properly loaded, the name should follow this format:
     `optimizely_<projectID>.json`
     
 ```
