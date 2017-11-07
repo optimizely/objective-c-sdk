@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKTVOS"
-  s.version                 = "1.4.0"
+  s.version                 = "1.5.0"
   s.summary                 = "Optimizely server-side testing framework for tvOS."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_TVOS_VERSION=@\\\"#{s.version}\\\"" }
-  s.dependency 'OptimizelySDKEventDispatcher', '1.4.0'
-  s.dependency 'OptimizelySDKUserProfileService', '1.4.0'
-  s.dependency 'OptimizelySDKDatafileManager', '1.4.0'
+  s.dependency 'OptimizelySDKEventDispatcher', '1.5.0'
+  s.dependency 'OptimizelySDKUserProfileService', '1.5.0'
+  s.dependency 'OptimizelySDKDatafileManager', '1.5.0'
 end
