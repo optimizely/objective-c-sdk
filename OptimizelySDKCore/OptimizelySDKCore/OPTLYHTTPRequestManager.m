@@ -24,8 +24,11 @@ static NSString * const kHTTPRequestMethodPost = @"POST";
 static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
 static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
 
-// TODO: Wrap this in a TEST preprocessor definition
 @interface OPTLYHTTPRequestManager()
+
+// Use this flag to deterine if we are running a unit test
+// The flag is needed to track some values for unit test
+@property (nonatomic, assign) BOOL isRunningTest;
 @property (nonatomic, assign) NSInteger retryAttemptTest;
 @property (nonatomic, strong) NSMutableArray *delaysTest;
 @end
@@ -37,7 +40,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 - (id)init
 {
     NSAssert(YES, @"Use initWithURL initialization method.");
-    
+    _isRunningTest = [self runningUnitTests];
     self = [super init];
     return self;
 }
@@ -64,8 +67,9 @@ dispatch_queue_t networkTasksQueue()
                             retries:(NSInteger)retries
                   completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.delaysTest = [NSMutableArray new];
+    if (self.isRunningTest == YES) {
+        self.delaysTest = [NSMutableArray new];
+    }
     
     [self GETWithParameters:nil
                         url:url
@@ -97,8 +101,9 @@ dispatch_queue_t networkTasksQueue()
                   retries:(NSInteger)retries
         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.delaysTest = [NSMutableArray new];
+    if (self.isRunningTest == YES) {
+        self.delaysTest = [NSMutableArray new];
+    }
     
     [self GETWithParameters:parameters
                         url:url
@@ -120,8 +125,9 @@ dispatch_queue_t networkTasksQueue()
     
     OPTLYLogDebug(OPTLYHTTPRequestManagerGETWithParametersAttempt, backoffRetryAttempt);
     
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.retryAttemptTest = backoffRetryAttempt;
+    if (self.isRunningTest == YES) {
+        self.retryAttemptTest = backoffRetryAttempt;
+    }
     
     if (backoffRetryAttempt > retries) {
         if (completion) {
@@ -133,9 +139,9 @@ dispatch_queue_t networkTasksQueue()
             completion(nil, nil, error);
         }
         
-        // TODO: Wrap this in a TEST preprocessor definition
-        self.delaysTest = nil;
-        
+        if (self.isRunningTest == YES) {
+            self.delaysTest = nil;
+        }
         return;
     }
     
@@ -188,8 +194,9 @@ dispatch_queue_t networkTasksQueue()
                    retries:(NSInteger)retries
          completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.delaysTest = [NSMutableArray new];
+    if (self.isRunningTest == YES) {
+        self.delaysTest = [NSMutableArray new];
+    }
     
     [self GETIfModifiedSince:lastModifiedDate
                          url:url
@@ -210,8 +217,9 @@ dispatch_queue_t networkTasksQueue()
 {
     OPTLYLogDebug(OPTLYHTTPRequestManagerGETIfModifiedSince, backoffRetryAttempt);
     
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.retryAttemptTest = backoffRetryAttempt;
+    if (self.isRunningTest == YES) {
+        self.retryAttemptTest = backoffRetryAttempt;
+    }
     
     if (backoffRetryAttempt > retries) {
         if (completion) {
@@ -223,9 +231,9 @@ dispatch_queue_t networkTasksQueue()
             completion(nil, nil, error);
         }
         
-        // TODO: Wrap this in a TEST preprocessor definition
-        self.delaysTest = nil;
-        
+        if (self.isRunningTest == YES) {
+            self.delaysTest = nil;
+        }
         return;
     }
     
@@ -297,8 +305,9 @@ dispatch_queue_t networkTasksQueue()
                    retries:(NSInteger)retries
          completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.delaysTest = [NSMutableArray new];
+    if (self.isRunningTest == YES) {
+        self.delaysTest = [NSMutableArray new];
+    }
     
     [self POSTWithParameters:parameters
                          url:url
@@ -319,8 +328,9 @@ dispatch_queue_t networkTasksQueue()
 {
     OPTLYLogDebug(OPTLYHTTPRequestManagerPOSTWithParameters, backoffRetryAttempt);
     
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.retryAttemptTest = backoffRetryAttempt;
+    if (self.isRunningTest == YES) {
+        self.retryAttemptTest = backoffRetryAttempt;
+    }
     
     if (backoffRetryAttempt > retries) {
         if (completion) {
@@ -332,8 +342,9 @@ dispatch_queue_t networkTasksQueue()
             completion(nil, nil, error);
         }
         
-        // TODO: Wrap this in a TEST preprocessor definition
-        self.delaysTest = nil;
+        if (self.isRunningTest == YES) {
+            self.delaysTest = nil;
+        }
         
         return;
     }
@@ -364,6 +375,11 @@ dispatch_queue_t networkTasksQueue()
 
 # pragma mark - Helper Methods
 
+- (BOOL)runningUnitTests {
+    BOOL isRunningTest = NSClassFromString(@"XCTestCase") != nil;
+    return isRunningTest;
+}
+
 // calculates the exponential backoff time based on the retry attempt number
 - (dispatch_time_t)backoffDelay:(NSInteger)backoffRetryAttempt
            backoffRetryInterval:(NSInteger)backoffRetryInterval
@@ -374,8 +390,9 @@ dispatch_queue_t networkTasksQueue()
     
     OPTLYLogDebug(OPTLYHTTPRequestManagerBackoffRetryStates, backoffRetryAttempt, exponentialMultiplier, delay_ns, delayTime);
     
-    // TODO: Wrap this in a TEST preprocessor definition
-    self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
+    if (self.isRunningTest == YES) {
+        self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
+    }
     
     return delayTime;
 }
