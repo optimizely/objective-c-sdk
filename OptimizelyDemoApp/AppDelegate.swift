@@ -134,25 +134,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // After creating the client, there are three different ways to intialize the manager:
         
-        // --- 1. Synchronous Initialization with fallback ----
-        let optimizelyClient = optimizelyManager?.initialize(projectId)
-        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
-        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-        
-        // --- 2. Asynchronous Initialization with fallback ----
-        //        optimizelyManager?.initialize(projectId, callback: { [weak self] (error, optimizelyClient) in
-        //            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId:(self?.userId)!, attributes:(self?.attributes))
-        //            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-        //        })
-        
-        // ---- 3. Asynchronous Initialization -----
+        // ---- 1. Asynchronous Initialization -----
         // initialize Optimizely Client from a datafile download
-        //        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
-        //            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
-        //            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-        //        })
+        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
+            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        })
         
-        // ---- 4. Synchronous Initialization with Datafile ----
+        // ---- 2. Synchronous Initialization with Datafile ----
         // load the datafile from the app bundle
         //        let bundle = Bundle.init(for: self.classForCoder)
         //        let filePath = bundle.path(forResource: datafileName, ofType: "json")
@@ -169,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
         //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         
-        // --- 5. Synchronous Initialization with Saved Datafile ----
+        // --- 3. Synchronous Initialization with Saved Datafile ----
         //        let optimizelyClient = optimizelyManager?.initialize()
         //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
         //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
