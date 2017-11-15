@@ -391,7 +391,9 @@ dispatch_queue_t networkTasksQueue()
     OPTLYLogDebug(OPTLYHTTPRequestManagerBackoffRetryStates, backoffRetryAttempt, exponentialMultiplier, delay_ns, delayTime);
     
     if (self.isRunningTest == YES) {
-        self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
+        if ([self.delaysTest count] > 0) {
+            self.delaysTest[backoffRetryAttempt] = [NSNumber numberWithLongLong:delay_ns];
+        }
     }
     
     return delayTime;
