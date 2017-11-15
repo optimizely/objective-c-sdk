@@ -70,24 +70,6 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 /// iOS App Version
 @property (nonatomic, readonly, strong, nonnull) NSString *appVersion;
 
-/*
- * Synchronous call that would retrieve the datafile from local cache. If it fails to load from local cache it will return a dummy instance
- */
-- (nullable OPTLYClient *)initialize;
-
-/**
- * Synchronous call that would instantiate the client from the datafile given
- * If the datafile is bad, then the client will try to get the datafile from local cache (if it exists). If it fails to load from local cache it will return a dummy instance
- */
-- (nullable OPTLYClient *)initializeWithDatafile:(nonnull NSData *)datafile;
-
-
-/**
- * Asynchronously gets the client from a datafile downloaded from the CDN.
- * If the client could not be initialized, the error will be set in the callback.
- */
-- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error,
-                                                  OPTLYClient * _Nullable client))callback;
 
 /**
  * Synchronously initializes the client using the latest
@@ -97,11 +79,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  *
  * In order for the bundled datafile to be properly loaded, the
  *  name should follow this format: optimizely_<projectID>.json
- *
- * @param projectId The ID of the project you want
- *   to initialize your client with.
  */
-- (nullable OPTLYClient *)initialize:(nonnull NSString *)projectId;
+- (nullable OPTLYClient *)initialize;
 
 /**
  * Asynchronously initializes the client using the latest
@@ -119,15 +98,17 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * In order for the bundled datafile to be properly loaded, the
  *  name should follow this format: optimizely_<projectID>.json
  *
- * @param projectId The ID of the project you want
- *   to initialize your client with.
  * @param callback The block called following the initialization
  *   of the client.
  */
-- (void)initialize:(nonnull NSString *)projectId
-          callback:(void(^ _Nullable)(NSError * _Nullable error,
+- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error,
                                       OPTLYClient * _Nullable client))callback;
 
+/**
+ * Synchronous call that would instantiate the client from the datafile given
+ * If the datafile is bad, then the client will try to get the datafile from local cache (if it exists). If it fails to load from local cache it will return a dummy instance
+ */
+- (nullable OPTLYClient *)initializeWithDatafile:(nonnull NSData *)datafile;
 
 /*
  * Gets the cached Optimizely client.
