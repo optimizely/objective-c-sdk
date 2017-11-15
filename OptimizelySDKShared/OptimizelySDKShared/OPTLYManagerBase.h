@@ -86,7 +86,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * Asynchronously gets the client from a datafile downloaded from the CDN.
  * If the client could not be initialized, the error will be set in the callback.
  */
-- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback;
+- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error,
+                                                  OPTLYClient * _Nullable client))callback;
 
 /**
  * Synchronously initializes the client using the latest
@@ -100,7 +101,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * @param projectId The ID of the project you want
  *   to initialize your client with.
  */
-- (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId;
+- (nullable OPTLYClient *)initialize:(nonnull NSString *)projectId;
 
 /**
  * Asynchronously initializes the client using the latest
@@ -123,9 +124,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * @param callback The block called following the initialization
  *   of the client.
  */
-- (void)initializeAsync:(nonnull NSString *)projectId
-               callback:(void(^ _Nullable)(NSError * _Nullable error,
-                                           OPTLYClient * _Nullable client))callback;
+- (void)initialize:(nonnull NSString *)projectId
+          callback:(void(^ _Nullable)(NSError * _Nullable error,
+                                      OPTLYClient * _Nullable client))callback;
 
 
 /*

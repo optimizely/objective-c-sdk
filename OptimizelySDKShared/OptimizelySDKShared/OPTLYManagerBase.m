@@ -148,7 +148,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     return client;
 }
 
-- (nullable OPTLYClient *)initializeSync:(nonnull NSString *)projectId
+- (nullable OPTLYClient *)initialize:(nonnull NSString *)projectId
 {
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerSyncInit, projectId]
                   withLevel:OptimizelyLogLevelInfo];
@@ -165,8 +165,8 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     return client;
 }
 
-- (void)initializeAsync:(nonnull NSString *)projectId
-               callback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback
+- (void)initialize:(nonnull NSString *)projectId
+          callback:(void(^ _Nullable)(NSError * _Nullable error, OPTLYClient * _Nullable client))callback
 {
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerAsyncInit, projectId]
                   withLevel:OptimizelyLogLevelInfo];
