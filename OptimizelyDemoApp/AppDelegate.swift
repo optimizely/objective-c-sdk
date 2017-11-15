@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-
+            
             defaultNotificationCenter.addObserver(forName: NSNotification.Name("OptimizelyEventTracked"), object: nil, queue: nil) { (note) in
                 print("Received a tracking notification: \n", note)
                 if let userInfo : Dictionary<String, AnyObject> = note.userInfo as! Dictionary<String, AnyObject>? {
@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // ---- Create the Datafile Manager ----
         let datafileManager = OPTLYDatafileManagerDefault.init{(builder) in
-           // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
+            // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
             builder!.projectId = self.projectId
         }
         
@@ -135,22 +135,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // After creating the client, there are three different ways to intialize the manager:
         
         // --- 1. Synchronous Initialization with fallback ----
-        //        let optimizelyClient = optimizelyManager?.initializeSync(projectId)
-        //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
-        //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        let optimizelyClient = optimizelyManager?.initialize(projectId)
+        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
+        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         
         // --- 2. Asynchronous Initialization with fallback ----
-        optimizelyManager?.initializeAsync(projectId, callback: { [weak self] (error, optimizelyClient) in
-            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId:(self?.userId)!, attributes:(self?.attributes))
-            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-        })
+        //        optimizelyManager?.initialize(projectId, callback: { [weak self] (error, optimizelyClient) in
+        //            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId:(self?.userId)!, attributes:(self?.attributes))
+        //            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        //        })
         
         // ---- 3. Asynchronous Initialization -----
         // initialize Optimizely Client from a datafile download
-//        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
-//            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
-//            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-//        })
+        //        optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
+        //            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+        //            self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
+        //        })
         
         // ---- 4. Synchronous Initialization with Datafile ----
         // load the datafile from the app bundle
