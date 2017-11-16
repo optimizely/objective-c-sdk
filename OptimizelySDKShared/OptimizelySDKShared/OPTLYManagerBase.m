@@ -99,15 +99,20 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInit, self.projectId]
                   withLevel:OptimizelyLogLevelInfo];
     
-    NSData *data = [self.datafileManager getSavedDatafile:nil];
+    NSData *data = nil;
     
-    // fall back to the bundled datafile if we can't get the saved datafile
+    // get the cached datafile if the builder does not contain a datafile
     if (data == nil) {
-        data = [self loadBundleDatafile:self.projectId error:nil];
+        data = [self.datafileManager getSavedDatafile:nil];
+    }
+    
+    // fall back to the datafile provided by the manager builder if we can't get the saved datafile
+    if (data == nil) {
+        data = self.datafile;
     }
     
     OPTLYClient *client = [self initializeWithDatafile:data];
-    
+
     return client;
 }
 
@@ -134,9 +139,9 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
             }
         }
         
-        // fall back to the bundled datafile if we can't get the saved datafile
+        // fall back to the datafile provided by the manager builder if we can't get the saved datafile
         if (data == nil) {
-            data = [self loadBundleDatafile:self.projectId error:&error];
+            data = self.datafile;
         }
         
         OPTLYClient *client = [self initializeWithDatafile:data];
@@ -173,27 +178,6 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 }
 
 #pragma mark - Helper Methods
-
-- (NSData *)loadBundleDatafile:(NSString *)projectId error:(NSError * __autoreleasing *)error {
-    
-    [self.logger logMessage:OPTLYLoggerMessagesManagerAttemptingBundleDataLoad
-                  withLevel:OptimizelyLogLevelInfo];
-    
-    NSString *datafileName = [NSString stringWithFormat:@"%@_%@", OptimizelyBundleDatafilePrefix, projectId];
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:datafileName ofType:OptimizelyBundleDatafileFileTypeExtension];
-    NSString *fileContents =[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:error];
-    
-    if (error && *error) {
-        NSError *fileError = (NSError *)*error;
-        NSString *errorDescription = fileError.localizedDescription;
-        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerBundleDataLoadError, errorDescription]         withLevel:OptimizelyLogLevelError];
-    } else {
-        [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerBundledDataLoaded, datafileName] withLevel:OptimizelyLogLevelInfo];
-    }
-    
-    NSData *jsonData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
-    return jsonData;
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfileService];

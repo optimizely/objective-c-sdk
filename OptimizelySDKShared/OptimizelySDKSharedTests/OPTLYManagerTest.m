@@ -41,10 +41,6 @@ static NSString * const kClientEngine = @"ios-sdk";
 static NSString * const kClientEngine = @"tvos-sdk";
 #endif
 
-@interface OPTLYManagerBase()
-- (NSData *)loadBundleDatafile:(NSString *)projectId error:(NSError **)error;
-@end
-
 @interface OPTLYManagerTest : XCTestCase
 @property (nonatomic, strong) NSData *defaultDatafile;
 @property (nonatomic, strong) NSData *alternateDatafile;
@@ -93,9 +89,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     // need to mock the manager bundled datafile load to read from the test bundle
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
+        builder.datafile = self.alternateDatafile;
     }];
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:kProjectId error:nil]).andReturn(self.alternateDatafile);
     
     OPTLYClient *client = [partialMockManager initialize];
     
@@ -111,12 +107,11 @@ static NSString * const kClientEngine = @"tvos-sdk";
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-        
+        builder.datafile = self.defaultDatafile;
     }];
     // save the datafile (alternate datafile)
     [manager.datafileManager saveDatafile:self.alternateDatafile];
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:[OCMArg isNotNil] error:nil]).andReturn(self.defaultDatafile);
     
     // mock a failed cached datafile load
     id partialDatafileManagerMock = OCMPartialMock(manager.datafileManager);
@@ -136,10 +131,8 @@ static NSString * const kClientEngine = @"tvos-sdk";
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-        
     }];
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:[OCMArg isNotNil] error:nil]).andReturn(nil);
     
     OPTLYClient *client = [partialMockManager initialize];
     
@@ -312,10 +305,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
+        builder.datafile = self.defaultDatafile;
     }];
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:[OCMArg any]
-                                             error:((NSError __autoreleasing **)[OCMArg anyPointer])]).andReturn(self.defaultDatafile);
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithCallbackDownloadErrorNoCachedDatafile"];
     __weak typeof(self) weakSelf = self;
@@ -349,11 +341,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
         builder.datafileManager = datafileManager;
+        builder.datafile = self.defaultDatafile;
     }];
     
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:kAlternateProjectId
-                                             error:((NSError __autoreleasing **)[OCMArg anyPointer])]).andReturn(self.defaultDatafile);
     
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithCallbackDownloadErrorCachedDatafileBadLoad"];
@@ -378,10 +369,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
     OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-        
     }];
+    
     id partialMockManager = OCMPartialMock(manager);
-    OCMStub([partialMockManager loadBundleDatafile:[OCMArg isNotNil] error:nil]).andReturn(nil);
     
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithCallbackDownloadErrorNoDatafile"];
