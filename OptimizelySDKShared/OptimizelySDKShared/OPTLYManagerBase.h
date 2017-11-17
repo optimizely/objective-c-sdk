@@ -95,8 +95,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * If there are no updates in the datafile, then the datafile is not
  *  downloaded and the latest cached datafile is used.
  *
- * If the cached datafile fails to load, then the datafile provided
- *  in the manager builder is used.
+ * If the cached datafile fails to load, the bundled datafile
+ *  is used.
  *
  * @param callback The block called following the initialization
  *   of the client.
@@ -105,11 +105,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
                                       OPTLYClient * _Nullable client))callback;
 
 /**
- * Synchronously instantiates the client from the provided datafile.
- * If the datafile is invalid, then the client will attempt to retrieve
- * the cached datafile. If getting the datafile from cache fails,
- * then a dummy client instance will be returned (i.e., all method calls on the client
- * will be NoOps).
+ * Synchronously instantiates the client from the provided datafile
+ * with no fallbacks. If the datafile is invalid, then a dummy client instance
+ * will be returned (i.e., all method calls on the client will be NoOps).
  *
  * @param datafile The datafile used to instantiate the client.
  */

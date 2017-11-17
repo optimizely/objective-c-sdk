@@ -158,9 +158,7 @@ NSString *const OPTLYLoggerMessagesManagerInit = @"[MANAGER] Initializing client
 NSString *const OPTLYLoggerMessagesManagerInitWithCallback = @"[MANAGER] Initializing client with callback for project %@.";
 NSString *const OPTLYLoggerMessagesManagerInitWithCallbackErrorDatafileDownload = @"[MANAGER] Error downloading datafile: %@.";
 NSString *const OPTLYLoggerMessagesManagerInitWithCallbackNoDatafileUpdates = @"[MANAGER] Not downloading new datafile — no updates have been made.";
-NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad = @"[MANAGER] Attempting to load the bundled datafile.";
-NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError = @"[MANAGER] Unabled to load the bundled datafile because of the following error: %@";
-NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile %@ was loaded.";
+NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile was loaded.";
 
 // ---- Project Config Getters ----
 // warning

@@ -1,4 +1,59 @@
 # Optimizely Objective-C SDK Changelog
+## 1.5.0
+November 16, 2017
+
+### New Features
+Introduced the following simplified initialization APIs:
+
+* **Synchronous initialization** maximizes for speed by allowing the user to initialize the client immediately with the latest cached datafile. If no datafile is saved or there is an error retrieving the saved datafile, then the bundled datafile is used. If no bundled datafile is provided by the developer, then the SDK will return a dummy client.
+
+```
+/**
+* Synchronously initializes the client using the latest
+* cached datafile with a fallback of the bundled datafile
+* (i.e., the datafile provided in the OPTLYManagerBuilder
+* during the manager initialization).
+*
+* If the cached datafile fails to load, the bundled datafile
+* is used.
+*
+*/
+- (nullable OPTLYClient *)initialize;
+
+```
+
+* **Asynchronous initialization** allows the user to maximize having the most up-to-date datafile. The SDK attempts to download the datafile asynchronously. In the case that there is an error in the datafile download, the latest cached datafile (if one exists) is used. If there are no updates in the datafile, then the datafile is not downloaded and the latest cached datafile is used. If the cached datafile fails to load, then the bundled datafile is used.
+
+```
+/**
+* Asynchronously initializes the client using the latest
+* downloaded datafile with a fallback of the bundled datafile
+* (i.e., the datafile provided in the OPTLYManagerBuilder
+* during the manager initialization).
+*
+* In the case that there is an error in the datafile download,
+*  the latest cached datafile (if one exists) is used.
+*
+* If there are no updates in the datafile, then the datafile is not
+*  downloaded and the latest cached datafile is used.
+*
+* If the cached datafile fails to load, the bundled datafile
+*  is used.
+*
+* @param callback The block called following the initialization
+*   of the client.
+*/
+- (void)initializeWithCallback:(void(^ _Nullable)(NSError * _Nullable error,
+OPTLYClient * _Nullable client))callback;
+```
+### Bug Fixes:
+* Crash caused by `Fatal Exception: NSRangeException` in `OPTLYHTTPRequestManager.m`. This crash occurred during a backoff retry in a datafile download or event dispatch because data strutures that were not threadsafe (used only for testing) were being modified. To resolve this, the data structures were wrapped in a flag and are only modifiable if unit tests are running.
+
+### Cleanup:
+* Fix migration to Xcode 9.0 compiler warnings regarding "NSError * __autoreleasing *" and "(^)(void) in blocks".
+* DemoApp Swift code, icons, storyboards updated to Xcode 9.1.
+* Pod updates.
+
 ## 1.4.0
 October 6, 2017
 
