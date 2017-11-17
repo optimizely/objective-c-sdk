@@ -1159,7 +1159,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 4;
+				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-beta";
 				SDKROOT = iphoneos;
@@ -1222,7 +1222,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 4;
+				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
@@ -1292,7 +1292,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 4;
+				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-debug";
 				SDKROOT = iphoneos;
@@ -1354,7 +1354,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OPTIMIZELY_SDK_SHARED_VERSION = "$(OPTIMIZELY_SDK_SHARED_VERSION_MAJOR).$(OPTIMIZELY_SDK_SHARED_VERSION_MINOR).$(OPTIMIZELY_SDK_SHARED_VERSION_PATCH)$(OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_SHARED_VERSION_MAJOR = 1;
-				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 4;
+				OPTIMIZELY_SDK_SHARED_VERSION_MINOR = 5;
 				OPTIMIZELY_SDK_SHARED_VERSION_PATCH = 0;
 				OPTIMIZELY_SDK_SHARED_VERSION_SUFFIX = "-rc";
 				SDKROOT = iphoneos;
@@ -1725,7 +1725,7 @@
 				3ECBCC211F43983400160937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 		EA3C68231DC1E68E00C578CA /* Build configuration list for PBXProject "OptimizelySDKShared" */ = {
 			isa = XCConfigurationList;
@@ -1736,7 +1736,7 @@
 				EA2FA7661DC40EAE00B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 		EA5247141DC7192200AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKSharediOS" */ = {
 			isa = XCConfigurationList;
@@ -1747,7 +1747,7 @@
 				EA5247181DC7192200AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 		EA5247191DC7192200AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKSharediOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1758,7 +1758,7 @@
 				EA52471D1DC7192200AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 		EA5247341DC7193B00AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKSharedTVOS" */ = {
 			isa = XCConfigurationList;
@@ -1769,7 +1769,7 @@
 				EA5247381DC7193B00AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 		EA5247391DC7193B00AF6685 /* Build configuration list for PBXNativeTarget "OptimizelySDKSharedTVOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1780,7 +1780,7 @@
 				EA52473D1DC7193B00AF6685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RC;
 		};
 /* End XCConfigurationList section */
 	};
