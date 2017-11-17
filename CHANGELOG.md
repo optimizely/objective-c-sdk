@@ -37,8 +37,8 @@ Introduced the following simplified initialization APIs:
 * If there are no updates in the datafile, then the datafile is not
 *  downloaded and the latest cached datafile is used.
 *
-* If the cached datafile fails to load, then the datafile provided
-*  in the manager builder is used.
+* If the cached datafile fails to load, the bundled datafile
+*  is used.
 *
 * @param callback The block called following the initialization
 *   of the client.
