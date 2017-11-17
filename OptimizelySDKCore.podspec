@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     :git => "https://github.com/optimizely/objective-c-sdk.git",
     :tag => "core-"+s.version.to_s
   }
-  s.source_files            = "OptimizelySDKCore/OptimizelySDKCore/*.{h,m}",  "OptimizelySDKCore/Frameworks/**/*.{c,h,m}", "OptimizelySDKCore/OPTLYJSONModel/**/*.{c,h,m}"
+  s.source_files            = "OptimizelySDKCore/OptimizelySDKCore/*.{h,m}", "OptimizelySDKCore/Frameworks/**/*.{c,h,m}", "OptimizelySDKCore/OPTLYJSONModel/**/*.{c,h,m}"
   s.public_header_files     = "OptimizelySDKCore/OptimizelySDKCore/*.h", "OptimizelySDKCore/OPTLYJSONModel/**/*.h"
   s.exclude_files           = "OPTLYMacros.h", "OPTLYLog.h", "OPTLYLog.m"
   s.framework               = "Foundation"

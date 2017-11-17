@@ -12,9 +12,7 @@ Pod::Spec.new do |s|
     :tag => "shared-"+s.version.to_s
   }
   s.source_files            = "OptimizelySDKShared/OptimizelySDKShared/*.{h,m}"
-  s.tvos.exclude_files      = "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabase.{h,m}",\
-                              "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}",\
-			      "OptimizelySDKShared/OPTLYFMDB/**/*.{h,m}"
+  s.tvos.exclude_files      = "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabase.{h,m}", "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}", "OptimizelySDKShared/OPTLYFMDB/**/*.{h,m}"
   s.public_header_files     = "OptimizelySDKShared/OptimizelySDKShared/*.h", "OptimizelySDKShared/OPTLYFMDB/**/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
