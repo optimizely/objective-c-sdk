@@ -164,8 +164,6 @@ extern NSString *const OPTLYLoggerMessagesManagerInit;
 extern NSString *const OPTLYLoggerMessagesManagerInitWithCallback;
 extern NSString *const OPTLYLoggerMessagesManagerInitWithCallbackErrorDatafileDownload;
 extern NSString *const OPTLYLoggerMessagesManagerInitWithCallbackNoDatafileUpdates;
-extern NSString *const OPTLYLoggerMessagesManagerAttemptingBundleDataLoad;
-extern NSString *const OPTLYLoggerMessagesManagerBundleDataLoadError;
 extern NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded;
 
 // ---- Project Config Getters ----
