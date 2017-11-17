@@ -2184,7 +2184,7 @@
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 5;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "0-RC";
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -2249,7 +2249,7 @@
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 5;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "0-RC";
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -2685,7 +2685,7 @@
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 5;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "0-RC";
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-debug";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -2749,7 +2749,7 @@
 				OPTIMIZELY_SDK_CORE_VERSION = "$(OPTIMIZELY_SDK_CORE_VERSION_MAJOR).$(OPTIMIZELY_SDK_CORE_VERSION_MINOR).$(OPTIMIZELY_SDK_CORE_VERSION_PATCH)$(OPTIMIZELY_SDK_CORE_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_CORE_VERSION_MAJOR = 1;
 				OPTIMIZELY_SDK_CORE_VERSION_MINOR = 5;
-				OPTIMIZELY_SDK_CORE_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_CORE_VERSION_PATCH = "0-RC";
 				OPTIMIZELY_SDK_CORE_VERSION_SUFFIX = "-rc";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
@@ -2772,7 +2772,7 @@
 				3E99A9FE1F4BAF9A009F8805 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		3EA27B131F47AB0D00C0208F /* Build configuration list for PBXNativeTarget "OPTLYJSONModeliOSTests" */ = {
 			isa = XCConfigurationList;
@@ -2783,7 +2783,7 @@
 				3EA27B121F47AB0D00C0208F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		EA2FA80F1DC5DBA000B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreiOS" */ = {
 			isa = XCConfigurationList;
@@ -2794,7 +2794,7 @@
 				EA2FA8131DC5DBA000B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		EA2FA8141DC5DBA000B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -2805,7 +2805,7 @@
 				EA2FA8181DC5DBA000B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		EA2FA82F1DC5DBB100B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreTVOS" */ = {
 			isa = XCConfigurationList;
@@ -2816,7 +2816,7 @@
 				EA2FA8331DC5DBB100B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		EA2FA8341DC5DBB100B1D81B /* Build configuration list for PBXNativeTarget "OptimizelySDKCoreTVOSTests" */ = {
 			isa = XCConfigurationList;
@@ -2827,7 +2827,7 @@
 				EA2FA8381DC5DBB100B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 		EA3C67FF1DC1E66C00C578CA /* Build configuration list for PBXProject "OptimizelySDKCore" */ = {
 			isa = XCConfigurationList;
@@ -2838,7 +2838,7 @@
 				EA2FA7571DC40BDF00B1D81B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = RC;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
