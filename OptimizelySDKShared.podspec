@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
                               "OptimizelySDKShared/OptimizelySDKShared/OPTLYDatabaseEntity.{h,m}"
   s.public_header_files     = "OptimizelySDKShared/OptimizelySDKShared/*.h"
   s.framework               = "Foundation"
+  s.ios.library             = "sqlite3"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_SHARED_VERSION=@\\\"#{s.version}\\\"" }
   s.dependency 'OptimizelySDKCore', '1.4.0'
