@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
 ## 1.5.0
-November 16, 2017
+December 6, 2017
 
 ### New Features
 Introduced the following simplified initialization APIs:
@@ -47,6 +47,7 @@ Introduced the following simplified initialization APIs:
 OPTLYClient * _Nullable client))callback;
 ```
 ### Bug Fixes:
+* Added `libsqlite3.tbd` to the Shared framework podspec and linked it in the build settings. 
 * Crash caused by `Fatal Exception: NSRangeException` in `OPTLYHTTPRequestManager.m`. This crash occurred during a backoff retry in a datafile download or event dispatch because data strutures that were not threadsafe (used only for testing) were being modified. To resolve this, the data structures were wrapped in a flag and are only modifiable if unit tests are running.
 
 ### Cleanup:
