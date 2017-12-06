@@ -21,16 +21,24 @@ NSString * const OPTLYEventParameterKeysTimestamp                       = @"time
 NSString * const OPTLYEventParameterKeysRevision                        = @"revision";
 NSString * const OPTLYEventParameterKeysActivationId                    = @"activationId";
 NSString * const OPTLYEventParameterKeysSessionId                       = @"sessionId";
-NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitorId";         // nonnull
-NSString * const OPTLYEventParameterKeysVisitorUUID                     = @"visitorUUID";
-NSString * const OPTLYEventParameterKeysProjectId                       = @"projectId";         // nonnull
-NSString * const OPTLYEventParameterKeysAccountId                       = @"accountId";         // nonnull
-NSString * const OPTLYEventParameterKeysClientEngine                    = @"clientEngine";
-NSString * const OPTLYEventParameterKeysClientVersion                   = @"clientVersion";
+NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull
+NSString * const OPTLYEventParameterKeysUUID                            = @"uuid";
+NSString * const OPTLYEventParameterKeysProjectId                       = @"project_id";        // nonnull
+NSString * const OPTLYEventParameterKeysAccountId                       = @"account_id";        // nonnull
+NSString * const OPTLYEventParameterKeysClientEngine                    = @"client_name";
+NSString * const OPTLYEventParameterKeysClientVersion                   = @"client_version";
 NSString * const OPTLYEventParameterKeysHeader                          = @"header";
 NSString * const OPTLYEventParameterKeysUserFeatures                    = @"userFeatures";      // nonnull
 NSString * const OPTLYEventParameterKeysIsGlobalHoldback                = @"isGlobalHoldback";  // nonnull
-NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymizeIP";
+NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymize_ip";
+NSString * const OPTLYEventParameterKeysVisitors                        = @"visitors";          // nonnull
+NSString * const OPTLYEventParameterKeysSnapshots                       = @"snapshots";         // nonnull
+NSString * const OPTLYEventParameterKeysAttributes                      = @"attributes";        // nonnull
+NSString * const OPTLYEventParameterKeysEntityId                        = @"entity_id";         // nonnull
+NSString * const OPTLYEventParameterKeysKey                             = @"key";               // nonnull
+NSString * const OPTLYEventParameterKeysType                            = @"type";              // nonnull
+NSString * const OPTLYEventParameterKeysDecisions                       = @"decisions";          // nonnull
+NSString * const OPTLYEventParameterKeysEvents                          = @"events";          // nonnull
 
 // --- Decision Ticket Event Parameters ("Impression Event") ----
 NSString * const OPTLYEventParameterKeysDecisionId                      = @"decisionId";
@@ -48,6 +56,7 @@ NSString * const OPTLYEventParameterKeysEventMetrics                    = @"even
 NSString * const OPTLYEventParameterKeysRelatedEvents                   = @"relatedEvents";
 NSString * const OPTLYEventParameterKeysLayerStates                     = @"layerStates";       // nonnull
 NSString * const OPTLYEventParameterKeysActiveViews                     = @"activeViews";
+NSString * const OPTLYEventParameterKeysTags                            = @"tags";
 
 // ---- Header Parameters ----
 NSString * const OPTLYEventParameterKeysHeaderClientIp                  = @"clientIp";
@@ -55,7 +64,8 @@ NSString * const OPTLYEventParameterKeysHeaderUserAgent                 = @"user
 NSString * const OPTLYEventParameterKeysHeaderReferer                   = @"referer";
 
 // ---- Feature Parameters ----
-NSString * const OPTLYEventParameterKeysFeaturesId                      = @"id";
+NSString * const OPTLYEventParameterKeysFeaturesId                      = @"entity_id";
+NSString * const OPTLYEventParameterKeysFeaturesKey                     = @"key";
 NSString * const OPTLYEventParameterKeysFeaturesName                    = @"name";
 NSString * const OPTLYEventParameterKeysFeaturesType                    = @"type";
 NSString * const OPTLYEventParameterKeysFeaturesValue                   = @"value";
@@ -78,9 +88,10 @@ NSString * const OPTLYEventParameterKeysDecisionTicketAudiences         = @"audi
 NSString * const OPTLYEventParameterKeysDecisionTicketBucketingId       = @"bucketingId";
 
 // ---- Decision Parameters ----
-NSString * const OPTLYEventParameterKeysDecisionExperimentId            = @"experimentId";
-NSString * const OPTLYEventParameterKeysDecisionVariationId             = @"variationId";
-NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback         = @"isLayerHoldback";
+NSString * const OPTLYEventParameterKeysDecisionCampaignId              = @"campaign_id";       // nonnull
+NSString * const OPTLYEventParameterKeysDecisionExperimentId            = @"experiment_id";
+NSString * const OPTLYEventParameterKeysDecisionVariationId             = @"variation_id";
+NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback         = @"is_campaign_holdback";
 
 // ---- Layer State Parameters ----
 NSString * const OPTLYEventParameterKeysLayerStateLayerId               = @"layerId";

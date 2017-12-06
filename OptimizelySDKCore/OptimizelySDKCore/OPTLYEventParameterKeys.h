@@ -23,7 +23,7 @@ extern NSString * const OPTLYEventParameterKeysRevision;
 extern NSString * const OPTLYEventParameterKeysActivationId;
 extern NSString * const OPTLYEventParameterKeysSessionId;
 extern NSString * const OPTLYEventParameterKeysVisitorId;
-extern NSString * const OPTLYEventParameterKeysVisitorUUID;
+extern NSString * const OPTLYEventParameterKeysUUID;
 extern NSString * const OPTLYEventParameterKeysProjectId;
 extern NSString * const OPTLYEventParameterKeysAccountId;
 extern NSString * const OPTLYEventParameterKeysClientEngine;
@@ -32,6 +32,14 @@ extern NSString * const OPTLYEventParameterKeysHeader;
 extern NSString * const OPTLYEventParameterKeysUserFeatures;
 extern NSString * const OPTLYEventParameterKeysIsGlobalHoldback;
 extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
+extern NSString * const OPTLYEventParameterKeysVisitors;
+extern NSString * const OPTLYEventParameterKeysSnapshots;
+extern NSString * const OPTLYEventParameterKeysAttributes;
+extern NSString * const OPTLYEventParameterKeysEntityId;
+extern NSString * const OPTLYEventParameterKeysKey;
+extern NSString * const OPTLYEventParameterKeysType;
+extern NSString * const OPTLYEventParameterKeysDecisions;
+extern NSString * const OPTLYEventParameterKeysEvents;
 
 // --- Decision Ticket Event Parameters ("Impression Event") ----
 extern NSString * const OPTLYEventParameterKeysDecisionId;
@@ -49,6 +57,7 @@ extern NSString * const OPTLYEventParameterKeysEventMetrics;
 extern NSString * const OPTLYEventParameterKeysRelatedEvents;
 extern NSString * const OPTLYEventParameterKeysLayerStates;
 extern NSString * const OPTLYEventParameterKeysActiveViews;
+extern NSString * const OPTLYEventParameterKeysTags;
 
 // ---- Header Parameters ----
 extern NSString * const OPTLYEventParameterKeysHeaderClientIp;
@@ -57,6 +66,7 @@ extern NSString * const OPTLYEventParameterKeysHeaderReferer;
 
 // ---- Feature Parameters ----
 extern NSString * const OPTLYEventParameterKeysFeaturesId;
+extern NSString * const OPTLYEventParameterKeysFeaturesKey;
 extern NSString * const OPTLYEventParameterKeysFeaturesName;
 extern NSString * const OPTLYEventParameterKeysFeaturesType;
 extern NSString * const OPTLYEventParameterKeysFeaturesValue;
@@ -79,6 +89,7 @@ extern NSString * const OPTLYEventParameterKeysDecisionTicketAudiences;
 extern NSString * const OPTLYEventParameterKeysDecisionTicketBucketingId;
 
 // ---- Decision Parameters ----
+extern NSString * const OPTLYEventParameterKeysDecisionCampaignId;
 extern NSString * const OPTLYEventParameterKeysDecisionExperimentId;
 extern NSString * const OPTLYEventParameterKeysDecisionVariationId;
 extern NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback;
