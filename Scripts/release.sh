@@ -261,7 +261,7 @@ git push origin datafileManager-$OPTIMIZELY_SDK_DATAFILE_MANAGER_VERSION --verbo
 printf "\n";
 git push origin eventDispatcher-$OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION --verbose;
 printf "\n";
-git push origin UserProfileService-$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION --verbose;
+git push origin userProfileService-$OPTIMIZELY_SDK_USER_PROFILE_SERVICE_VERSION --verbose;
 printf "\n";
 git push origin iOS-$OPTIMIZELY_SDK_iOS_VERSION --verbose;
 printf "\n";
