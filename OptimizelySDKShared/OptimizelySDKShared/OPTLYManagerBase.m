@@ -99,16 +99,13 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInit, self.projectId]
                   withLevel:OptimizelyLogLevelInfo];
     
-    NSData *data = nil;
-    
-    // get the cached datafile if the builder does not contain a datafile
-    if (data == nil) {
-        data = [self.datafileManager getSavedDatafile:nil];
-    }
+    // attempt to get the cached datafile
+    NSData *data = [self.datafileManager getSavedDatafile:nil];
     
     // fall back to the datafile provided by the manager builder if we can't get the saved datafile
     if (data == nil) {
         data = self.datafile;
+        [self.logger logMessage:OPTLYLoggerMessagesManagerBundledDataLoaded withLevel:OptimizelyLogLevelInfo]; 
     }
     
     OPTLYClient *client = [self initializeWithDatafile:data];
@@ -142,6 +139,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
         // fall back to the datafile provided by the manager builder if we can't get the saved datafile
         if (data == nil) {
             data = self.datafile;
+            [self.logger logMessage:OPTLYLoggerMessagesManagerBundledDataLoaded withLevel:OptimizelyLogLevelInfo];
         }
         
         OPTLYClient *client = [self initializeWithDatafile:data];
