@@ -358,26 +358,35 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             
             NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
             
-            if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
-                // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
-                NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
-                if (revenueValue != nil) {
-                    event[OPTLYEventMetricNameRevenue] = revenueValue;
+            for (NSString *key in [eventTags allKeys]) {
+                id eventTagValue = eventTags[key];
+                
+                // only string, long, int, double, float, and booleans are supported
+                if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
+                    if ([key isEqualToString:OPTLYEventMetricNameRevenue]) {
+                        // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
+                        NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
+                        if (revenueValue != nil) {
+                            event[OPTLYEventMetricNameRevenue] = revenueValue;
+                        } else {
+                            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+                        }
+                    }
+                    if ([key isEqualToString:OPTLYEventMetricNameValue]) {
+                        // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
+                        NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
+                        if (numericValue != nil) {
+                            event[OPTLYEventMetricNameValue] = numericValue;
+                        } else {
+                            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
+                        }
+                    }
                 } else {
-                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+                    [mutableEventTags removeObjectForKey:key];
+                    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
+                    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
                 }
             }
-            
-            if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameValue]) {
-                // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
-                NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
-                if (numericValue != nil) {
-                    event[OPTLYEventMetricNameValue] = numericValue;
-                } else {
-                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
-                }
-            }
-            
             event[OPTLYEventParameterKeysTags] = mutableEventTags;
 
             NSArray *events = @[event];

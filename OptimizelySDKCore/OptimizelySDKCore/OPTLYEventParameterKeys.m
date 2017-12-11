@@ -20,7 +20,6 @@
 NSString * const OPTLYEventParameterKeysTimestamp                       = @"timestamp";         // nonnull
 NSString * const OPTLYEventParameterKeysRevision                        = @"revision";
 NSString * const OPTLYEventParameterKeysActivationId                    = @"activationId";
-NSString * const OPTLYEventParameterKeysSessionId                       = @"sessionId";
 NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull
 NSString * const OPTLYEventParameterKeysUUID                            = @"uuid";
 NSString * const OPTLYEventParameterKeysProjectId                       = @"project_id";        // nonnull

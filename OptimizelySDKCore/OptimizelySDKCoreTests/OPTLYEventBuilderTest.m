@@ -615,18 +615,18 @@ typedef enum : NSUInteger {
 
 #pragma mark - Test BuildConversionTicket:... with Multiple eventTags
 
-//- (void)testBuildConversionTicketWithEventTags
-//{
-//    [self commonBuildConversionTicketTest:@{kAttributeKeyBrowserType:kAttributeValueChrome,
-//                                       @"IntegerTag":@15,
-//                                       @"BooleanTag":@YES,
-//                                       @"FloatTag":@1.23,
-//                                       @"InvalidArrayTag":[NSArray new]}
-//                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
-//                                       @"IntegerTag":@15,
-//                                       @"FloatTag":@1.23,
-//                                       @"BooleanTag":@YES}];
-//}
+- (void)testBuildConversionTicketWithEventTags
+{
+    [self commonBuildConversionTicketTest:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"BooleanTag":@YES,
+                                       @"FloatTag":@1.23,
+                                       @"InvalidArrayTag":[NSArray new]}
+                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                       @"IntegerTag":@15,
+                                       @"FloatTag":@1.23,
+                                       @"BooleanTag":@YES}];
+}
 
 - (void)testBuildConversionTicketWithRevenueAndEventTags
 {
@@ -635,30 +635,6 @@ typedef enum : NSUInteger {
                        sentEventTags:@{OPTLYEventMetricNameValue:@(kEventRevenue),
                                        kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
-
-#pragma mark - Test BuildConversionTicket:... with Multiple Experiments
-
-//- (void)testBuildConversionTicketWithEventMultipleExperiments
-//{
-//    NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueChrome};
-//    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-//                                                      bucketer:self.bucketer
-//                                                        userId:kUserId
-//                                                     eventName:kEventWithMultipleExperimentsName
-//                                                     eventTags:@{ OPTLYEventMetricNameRevenue : [NSNumber numberWithInteger:kEventRevenue] }
-//                                                    attributes:attributes];
-//    [self checkCommonParams:params withAttributes:attributes];
-//    [self checkEventMetrics:params
-//                  eventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
-//    NSArray *experimentIds = @[@"6364835526", @"6450630664", @"6367863211", @"6376870125", @"6383811281", @"6358043286", @"6370392407", @"6367444440", @"6370821515", @"6447021179"];
-//    NSArray *layerStates = params[OPTLYEventParameterKeysLayerStates];
-//    NSUInteger numberOfLayers = [layerStates count];
-//    NSUInteger numberOfExperiments = [experimentIds count];
-//    // 6383811281 (testExperimentWithFirefoxAudience) is excluded because the attributes do not match
-//    // 6367444440 (testExperimentNotRunning) is excluded because the experiment is not running
-//    // 6450630664 should be exlucded becuase it is mutually excluded.
-//    XCTAssert(numberOfLayers == (numberOfExperiments - 3), @"Incorrect number of layers.");
-//}
 
 #pragma mark - Test anonymizeIP
 

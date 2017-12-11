@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OPTLYEventParameterKeysTimestamp;
 extern NSString * const OPTLYEventParameterKeysRevision;
 extern NSString * const OPTLYEventParameterKeysActivationId;
-extern NSString * const OPTLYEventParameterKeysSessionId;
 extern NSString * const OPTLYEventParameterKeysVisitorId;
 extern NSString * const OPTLYEventParameterKeysUUID;
 extern NSString * const OPTLYEventParameterKeysProjectId;
