@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 // --- Common Event Parameters ----
 extern NSString * const OPTLYEventParameterKeysTimestamp;
 extern NSString * const OPTLYEventParameterKeysRevision;
-extern NSString * const OPTLYEventParameterKeysActivationId;
 extern NSString * const OPTLYEventParameterKeysVisitorId;
 extern NSString * const OPTLYEventParameterKeysUUID;
 extern NSString * const OPTLYEventParameterKeysProjectId;
@@ -28,8 +27,6 @@ extern NSString * const OPTLYEventParameterKeysAccountId;
 extern NSString * const OPTLYEventParameterKeysClientEngine;
 extern NSString * const OPTLYEventParameterKeysClientVersion;
 extern NSString * const OPTLYEventParameterKeysHeader;
-extern NSString * const OPTLYEventParameterKeysUserFeatures;
-extern NSString * const OPTLYEventParameterKeysIsGlobalHoldback;
 extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
 extern NSString * const OPTLYEventParameterKeysVisitors;
 extern NSString * const OPTLYEventParameterKeysSnapshots;
@@ -72,7 +69,6 @@ extern NSString * const OPTLYEventParameterKeysFeaturesValue;
 extern NSString * const OPTLYEventParameterKeysFeaturesShouldIndex;
 
 // ---- Metric Parameters ----
-extern NSString * const OPTLYEventParameterKeysMetricName;
 extern NSString * const OPTLYEventParameterKeysMetricValue;
 
 // ---- Related Event Parameters ----

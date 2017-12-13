@@ -19,7 +19,6 @@
 // --- Common Event Parameters ----
 NSString * const OPTLYEventParameterKeysTimestamp                       = @"timestamp";         // nonnull
 NSString * const OPTLYEventParameterKeysRevision                        = @"revision";
-NSString * const OPTLYEventParameterKeysActivationId                    = @"activationId";
 NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull
 NSString * const OPTLYEventParameterKeysUUID                            = @"uuid";
 NSString * const OPTLYEventParameterKeysProjectId                       = @"project_id";        // nonnull
@@ -27,8 +26,6 @@ NSString * const OPTLYEventParameterKeysAccountId                       = @"acco
 NSString * const OPTLYEventParameterKeysClientEngine                    = @"client_name";
 NSString * const OPTLYEventParameterKeysClientVersion                   = @"client_version";
 NSString * const OPTLYEventParameterKeysHeader                          = @"header";
-NSString * const OPTLYEventParameterKeysUserFeatures                    = @"userFeatures";      // nonnull
-NSString * const OPTLYEventParameterKeysIsGlobalHoldback                = @"isGlobalHoldback";  // nonnull
 NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymize_ip";
 NSString * const OPTLYEventParameterKeysVisitors                        = @"visitors";          // nonnull
 NSString * const OPTLYEventParameterKeysSnapshots                       = @"snapshots";         // nonnull
@@ -71,7 +68,6 @@ NSString * const OPTLYEventParameterKeysFeaturesValue                   = @"valu
 NSString * const OPTLYEventParameterKeysFeaturesShouldIndex             = @"shouldIndex";
 
 // ---- Metric Parameters ----
-NSString * const OPTLYEventParameterKeysMetricName                      = @"name";
 NSString * const OPTLYEventParameterKeysMetricValue                     = @"value";
 
 // ---- Related Event Parameters ----

@@ -1106,10 +1106,6 @@ typedef enum : NSUInteger {
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     XCTAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
     
-    // check global holdback
-    NSNumber *isGlobalHoldback = params[OPTLYEventParameterKeysIsGlobalHoldback];
-    XCTAssert([isGlobalHoldback boolValue] == false, @"Incorrect value for global holdback.");
-    
     NSArray *visitors = params[OPTLYEventParameterKeysVisitors];
     [self checkVisitors:visitors withAttributes:attributes];
 }
