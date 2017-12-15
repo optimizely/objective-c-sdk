@@ -14,38 +14,16 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
+#import "OPTLYVariableUsage.h"
+#import "OPTLYDatafileKeys.h"
 
-/**
- * This class is a representation of an Optimizely live variable scoped within a project:
- *   "variables": [
- *    {
- *      "id": "6384881128",
- *      "key": "someString",
- *      "type": "string",
- *      "defaultValue": "defaultStringValue"
- *    },
- *     ...
- *    ]
- */
+@implementation OPTLYVariableUsage
 
-@protocol OPTLYVariable
-@end
-
-@interface OPTLYVariable : OPTLYJSONModel
-
-/// The variable's ID.
-@property (nonatomic, strong) NSString *variableId;
-/// The variable's Key.
-@property (nonatomic, strong) NSString *variableKey;
-/// The variable's type.
-@property (nonatomic, strong) NSString *type;
-/// The variable's default value.
-@property (nonatomic, strong) NSString *defaultValue;
++ (OPTLYJSONKeyMapper*)keyMapper
+{
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableUsageId       : @"variableId",
+                                                             OPTLYDatafileKeysVariableUsageValue    : @"value"
+                                                             }];
+}
 
 @end

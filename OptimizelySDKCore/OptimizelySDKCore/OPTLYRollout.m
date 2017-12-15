@@ -14,16 +14,16 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYVariable.h"
+#import "OPTLYRollout.h"
 #import "OPTLYDatafileKeys.h"
 
-@implementation OPTLYVariable
+@implementation OPTLYRollout
 
 + (OPTLYJSONKeyMapper*)keyMapper
 {
-    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariableId     : @"variableId",
-                                                        OPTLYDatafileKeysVariableKey    : @"variableKey"
-                                                        }];
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysRolloutId             : @"rolloutId",
+                                                             OPTLYDatafileKeysRolloutExperiments    : @"experiments"
+                                                             }];
 }
 
 @end
