@@ -14,14 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYVariationVariable.h"
-#import "OPTLYDatafileKeys.h"
+#import <Foundation/Foundation.h>
+#ifdef UNIVERSAL
+#import "OPTLYJSONModelLib.h"
+#else
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#endif
 
-@implementation OPTLYVariationVariable
-+ (OPTLYJSONKeyMapper*)keyMapper
-{
-    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationVariableId     : @"variableId",
-                                                        }];
-}
+@protocol OPTLYExperiment;
+@protocol OPTLYRollout
+@end
+
+@interface OPTLYRollout : OPTLYJSONModel
+
+/// an NSString to hold the rollout Id
+@property (nonatomic, strong) NSString *rolloutId;
+/// an NSArray to hold the experiments representing the different rules of the rollout
+@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
 
 @end

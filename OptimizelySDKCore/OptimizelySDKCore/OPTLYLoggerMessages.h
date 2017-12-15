@@ -143,14 +143,6 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
-// ---- Live Variables ----
-// info
-extern NSString *const OPTLYLoggerMessagesVariableValue;
-extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
-// warning
-extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
-extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
-
 // ---- Manager ----
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
@@ -175,6 +167,9 @@ extern NSString *const OPTLYLoggerMessagesEventUnknownForEventKey;
 extern NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey;
+extern NSString *const OPTLYLoggerMessagesFeatureFlagUnknownForFeatureFlagKey;
+extern NSString *const OPTLYLoggerMessagesVariableUsageUnknownForVariableId;
+extern NSString *const OPTLYLoggerMessagesRolloutUnknownForRolloutId;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
 extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;

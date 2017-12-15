@@ -137,14 +137,6 @@ NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DIS
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent = @"[EVENT DISPATCHER] Invalid event.";
 
-// ---- Live Variables ----
-// info
-NSString *const OPTLYLoggerMessagesVariableValue = @"[LIVE VARIABLES] Variable %@ has value: %@.";
-NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"[LIVE VARIABLES] Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
-// warning
-NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"[LIVE VARIABLES] No experiment was found to contain variable key: %@.";
-NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIABLES] Live variable not found for variable key: %@."; // live variable key
-
 // ---- Manager ----
 // error
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"[MANAGER] An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid.";
@@ -169,6 +161,9 @@ NSString *const OPTLYLoggerMessagesEventUnknownForEventKey = @"[PROJECT CONFIG] 
 NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment ID not found for experiment key: %@. Experiment key is not in the datafile."; // experiment key
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId = @"[PROJECT CONFIG] Experiment not found for experiment ID: %@. Experiment ID is not in the datafile."; // experiment id
 NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey = @"[PROJECT CONFIG] Experiment key not found for experiment: %@. Experiment key is not in the datafile.";  // experiment key
+NSString *const OPTLYLoggerMessagesFeatureFlagUnknownForFeatureFlagKey = @"[PROJECT CONFIG] Feature Flag key not found for feature flag: %@. Feature Flag key is not in the datafile.";  // feature flag key
+NSString *const OPTLYLoggerMessagesVariableUsageUnknownForVariableId = @"[PROJECT CONFIG] Rollout not found for rollout ID: %@. Rollout ID is not in the datafile."; // feature variable id
+NSString *const OPTLYLoggerMessagesRolloutUnknownForRolloutId = @"[PROJECT CONFIG] Rollout not found for rollout ID: %@. Rollout ID is not in the datafile."; // rollout id
 NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@. Group ID is not in the datafile."; // group id
 NSString *const OPTLYLoggerMessagesGetVariationNilVariation = @"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experiment %@";
 NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey = @"[PROJECT CONFIG] Variation key %@ not found for experiment key %@.";

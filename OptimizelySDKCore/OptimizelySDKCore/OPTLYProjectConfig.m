@@ -27,8 +27,9 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
-#import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYRollout.h"
 
 NSString * const kExpectedDatafileVersion  = @"3";
 
@@ -39,10 +40,11 @@ NSString * const kExpectedDatafileVersion  = @"3";
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *eventKeyToEventIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentIdToExperimentMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentKeyToExperimentMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureFlag *><Ignore> *featureFlagKeyToFeatureFlagMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYRollout *><Ignore> *rolloutIdToRolloutMap;
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 //@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><Ignore> *forcedVariationMap;
 //    userId --> experimentId --> variationId
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *forcedVariationMap;
@@ -224,13 +226,22 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return group;
 }
 
-- (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
-    OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
-    if (!variable) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+- (OPTLYFeatureFlag *)getFeatureFlagForKey:(NSString *)featureFlagKey {
+    OPTLYFeatureFlag *featureFlag = self.featureFlagKeyToFeatureFlagMap[featureFlagKey];
+    if (!featureFlag) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureFlagUnknownForFeatureFlagKey, featureFlagKey];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
-    return variable;
+    return featureFlag;
+}
+
+- (OPTLYRollout *)getRolloutForId:(NSString *)rolloutId {
+    OPTLYRollout *rollout = self.rolloutIdToRolloutMap[rolloutId];
+    if (!rollout) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesRolloutUnknownForRolloutId, rolloutId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
+    return rollout;
 }
 
 #pragma mark -- Forced Variation Methods --
@@ -385,13 +396,6 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return _groupIdToGroupMap;
 }
 
-- (NSDictionary<NSString *, OPTLYVariable *> *)variableKeyToVariableMap {
-    if (!_variableKeyToVariableMap) {
-        _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
-    }
-    return _variableKeyToVariableMap;
-}
-
 //- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>> *)forcedVariationMap {
 - (NSMutableDictionary<NSString *, NSMutableDictionary *> *)forcedVariationMap {
     @synchronized (self) {
@@ -400,6 +404,20 @@ NSString * const kExpectedDatafileVersion  = @"3";
         }
     }
     return _forcedVariationMap;
+}
+
+- (NSDictionary<NSString *, OPTLYFeatureFlag *> *)featureFlagKeyToFeatureFlagMap {
+    if (!_featureFlagKeyToFeatureFlagMap) {
+        _featureFlagKeyToFeatureFlagMap = [self generateFeatureFlagKeyToFeatureFlagMap];
+    }
+    return  _featureFlagKeyToFeatureFlagMap;
+}
+
+- (NSDictionary<NSString *, OPTLYRollout *> *)rolloutIdToRolloutMap {
+    if (!_rolloutIdToRolloutMap) {
+        _rolloutIdToRolloutMap = [self generateRolloutIdToRolloutMap];
+    }
+    return _rolloutIdToRolloutMap;
 }
 
 #pragma mark -- Generate Mappings --
@@ -483,11 +501,20 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return [NSDictionary dictionaryWithDictionary:map];
 }
 
-- (NSDictionary<NSString *, OPTLYVariable *> *)generateVariableKeyToVariableMap {
+- (NSDictionary<NSString *, OPTLYFeatureFlag *> *)generateFeatureFlagKeyToFeatureFlagMap {
     NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
-    for (OPTLYVariable *variable in self.variables) {
-        map[variable.variableKey] = variable;
+    for (OPTLYFeatureFlag *featureFlag in self.featureFlags) {
+        map[featureFlag.Key] = featureFlag;
     }
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
+- (NSDictionary<NSString *, OPTLYRollout *> *)generateRolloutIdToRolloutMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYRollout *rollout in self.rollouts) {
+        map[rollout.rolloutId] = rollout;
+    }
+    
     return [NSDictionary dictionaryWithDictionary:map];
 }
 

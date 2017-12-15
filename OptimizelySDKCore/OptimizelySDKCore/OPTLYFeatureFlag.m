@@ -14,37 +14,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYDatafileKeys.h"
 
-/**
- * This class is a representation of an Optimizely live variable scoped within a variation:
- * "variations": [
- *           {
- *             "id": "6451680205",
- *             "key": "a",
- *             "variables": [
- *               {
- *                 "id": "73483201090",
- *                 "value": "testValue"
- *               },
- *               ...
- *               ]
- *           }
- */
+@implementation OPTLYFeatureFlag
 
-@protocol OPTLYVariationVariable
-@end
-
-@interface OPTLYVariationVariable : OPTLYJSONModel
-
-/// The variable's ID.
-@property (nonatomic, strong) NSString *variableId;
-/// The variable's assigned value within that variation
-@property (nonatomic, strong) NSString *value;
++ (OPTLYJSONKeyMapper*)keyMapper
+{
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysFeatureFlagId             : @"flagId",
+                                                             OPTLYDatafileKeysFeatureFlagKey            : @"Key",
+                                                             OPTLYDatafileKeysFeatureFlagRolloutId      : @"rolloutId",
+                                                             OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
+                                                             OPTLYDatafileKeysFeatureFlagVariables      : @"variables"
+                                                             }];
+}
 
 @end

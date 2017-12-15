@@ -28,11 +28,12 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYTestHelper.h"
 #import "OPTLYVariation.h"
-#import "OPTLYVariable.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYRollout.h"
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
-static NSString * const kDataModelDatafileName = @"optimizely_6372300739";
+static NSString * const kDataModelDatafileName = @"optimizely_6372300739_v4";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
@@ -164,6 +165,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     OPTLYExperiment *experiment = [self.projectConfig getExperimentForKey:experimentKey];
     XCTAssertNil(experiment, @"Shouldn't find experiment for key: %@", experimentKey);
 }
+
 #pragma mark - Test getExperimentForId:
 
 - (void)testGetExperimentForId
@@ -297,25 +299,6 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
 }
 
-#pragma mark - Test getVariableForVariableKey:
-
-- (void)testGetVariableForVariableKey
-{
-    NSString* variableKey = @"someString";
-    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
-    XCTAssertNotNil(variable, @"Should find variable for key: %@", variableKey);
-    XCTAssert([variable isKindOfClass:[OPTLYVariable class]], @"Expected to be an OPTLYVariable: %@", variable);
-    XCTAssertEqualObjects(variable.variableKey, variableKey,
-                          @"Expecting variable's variableKey %@ to be: %@", variable.variableKey, variableKey);
-}
-
-- (void)testGetVariableForVariableNonexistentKey
-{
-    NSString* variableKey = @"someBlob";
-    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
-    XCTAssertNil(variable, @"Shouldn't find variable for key: %@", variableKey);
-}
-
 #pragma mark - Test setForcedVariation:userId:variationKey: and getForcedVariation:userId:
 
 - (void)testSetForcedVariationAndGetForcedVariation
@@ -388,6 +371,46 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNil(variationExpNotRunning, @"Variation should be nil for experiment that is paused: %@", variationExpNotRunning.variationKey);
 }
 
+#pragma mark - Test v4 projectConfig:
+
+#pragma mark - Test getFeatureFlagForKey:
+
+- (void)testGetFeatureFlagForKey
+{
+    NSString* featureFlagKey = @"boolean_feature";
+    OPTLYFeatureFlag *featureFlag = [self.projectConfig getFeatureFlagForKey:featureFlagKey];
+    XCTAssertNotNil(featureFlag, @"Should find feature flag for key: %@", featureFlagKey);
+    XCTAssert([featureFlag isKindOfClass:[OPTLYFeatureFlag class]], @"Expected to be an OPTLYFeatureFlag: %@", featureFlag);
+    XCTAssertEqualObjects(featureFlag.Key, featureFlagKey,
+                          @"Expecting feature flag's key %@ to be: %@", featureFlag.Key, featureFlagKey);
+}
+
+- (void)testGetFeatureFlagForNonexistentKey
+{
+    NSString* featureFlagKey = @"testFeatureFlagDoesntExist";
+    OPTLYFeatureFlag *featureFlag = [self.projectConfig getFeatureFlagForKey:featureFlagKey];
+    XCTAssertNil(featureFlag, @"Shouldn't find feature flag for key: %@", featureFlagKey);
+}
+
+#pragma mark - Test getRolloutForId:
+
+- (void)testGetRolloutForId
+{
+    NSString* rolloutId = @"1058508303";
+    OPTLYRollout *rollout = [self.projectConfig getRolloutForId:rolloutId];
+    XCTAssertNotNil(rollout, @"Should find rollout for id: %@", rolloutId);
+    XCTAssert([rollout isKindOfClass:[OPTLYRollout class]], @"Expected to be an OPTLYRollout: %@", rollout);
+    XCTAssertEqualObjects(rollout.rolloutId, rolloutId,
+                          @"Expecting rollout's rolloutId %@ to be: %@", rollout.rolloutId, rolloutId);
+}
+
+- (void)testGetRolloutForNonexistentId
+{
+    NSString* rolloutId = @"66666666666";
+    OPTLYRollout *rollout = [self.projectConfig getRolloutForId:rolloutId];
+    XCTAssertNil(rollout, @"Shouldn't find rollout for id: %@", rolloutId);
+}
+
 #pragma mark - Helper Methods
 
 // Check all properties in an ProjectConfig object
@@ -402,7 +425,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSAssert([projectConfig.accountId isEqualToString:kAccountId], @"Invalid account id.");
     
     // validate version number
-    NSAssert([projectConfig.version isEqualToString:kExpectedDatafileVersion], @"Invalid version number.");
+    NSAssert([projectConfig.version isEqualToString:@"4"], @"Invalid version number.");
     
     // validate revision number
     NSAssert([projectConfig.revision isEqualToString:kRevision], @"Invalid revision number.");
@@ -438,6 +461,18 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSAssert([projectConfig.events count] == 7, @"deserializeJSONArray failed to deserialize the right number of event objects in project config.");
     for (id event in projectConfig.events) {
         NSAssert([event isKindOfClass:[OPTLYEvent class]], @"deserializeJSONArray failed to deserialize the event object in project config.");
+    }
+    
+    // check feature flags
+    NSAssert([projectConfig.featureFlags count] == 7, @"deserializeJSONArray failed to deserialize the right number of feature flags objects in project config.");
+    for (id featureFlags in projectConfig.featureFlags) {
+        NSAssert([featureFlags isKindOfClass:[OPTLYFeatureFlag class]], @"deserializeJSONArray failed to deserialize the feature flag object in project config.");
+    }
+    
+    // check rollouts
+    NSAssert([projectConfig.rollouts count] == 3, @"deserializeJSONArray failed to deserialize the right number of rollouts objects in project config.");
+    for (id rollout in projectConfig.rollouts) {
+        NSAssert([rollout isKindOfClass:[OPTLYRollout class]], @"deserializeJSONArray failed to deserialize the rollout object in project config.");
     }
 }
 

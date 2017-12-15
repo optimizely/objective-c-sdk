@@ -16,30 +16,23 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-/**
- * This class is a representation of an Optimizely variation.
- */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
-
-@protocol OPTLYVariation
+@protocol OPTLYFeatureVariable
 @end
 
-@interface OPTLYVariation : OPTLYJSONModel
+@interface OPTLYFeatureVariable : OPTLYJSONModel
 
-/// The variation's ID.
-@property (nonatomic, strong) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
+/// an NSString to hold the feature variable's ID
+@property (nonatomic, strong) NSString *variableId;
+/// an NSString to hold the feature variable's key
+@property (nonatomic, strong) NSString *key;
+/// an NSString to hold the feature variable's primitive type. Will be one of 4 possible values: a.	boolean b.	string c.	integer d.	double
+@property (nonatomic, strong) NSString *type;
+/// an NSString to hold the feature variable's default value in string representation.
+@property (nonatomic, strong) NSString *defaultValue;
 
 @end

@@ -54,9 +54,7 @@
 #import "OPTLYTrafficAllocation.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileServiceBasic.h"
-#import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
-#import "OPTLYVariationVariable.h"
 
 #import "OPTLYJSONModel.h"
 #import "OPTLYJSONModelClassProperty.h"
