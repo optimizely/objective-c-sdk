@@ -27,27 +27,6 @@
 
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
-
-static NSString *const kVariableKeyForString = @"someString";
-static NSString *const kVariableKeyForBool = @"someBoolean";
-static NSString *const kVariableKeyForInt = @"someInteger";
-static NSString *const kVariableKeyForDouble = @"someDouble";
-
-static NSString *const kVariableKeyForStringGroupedExperiment = @"someStringForGroupedExperiment";
-static NSString *const kVariableKeyForBoolGroupedExperiment = @"someBooleanForGroupedExperiment";
-static NSString *const kVariableKeyForIntegerGroupedExperiment = @"someIntegerForGroupedExperiment";
-static NSString *const kVariableKeyForDoubleGroupedExperiment = @"someDoubleForGroupedExperiment";
-
-static NSString *const kVariableKeyForStringNotInExperimentVariation = @"stringNotInVariation";
-static NSString *const kVariableKeyForBoolNotInExperimentVariation = @"boolNotInVariation";
-static NSString *const kVariableKeyForIntegerNotInExperimentVariation = @"integerNotInVariation";
-static NSString *const kVariableKeyForDoubleNotInExperimentVariation = @"doubleNotInVariation";
-
-static NSString *const kVariableStringValue = @"Hello";
-static NSString *const kVariableStringValueGroupedExperiment = @"Ciao";
-static NSString *const kVariableStringDefaultValue = @"defaultStringValue";
-static NSString *const kVariableStringNotInExperimentVariation = @"default string value";
-
 static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultipleExperiments";
 
 // datafiles
@@ -67,11 +46,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 
 @interface Optimizely(test)
-- (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId
-                           attributes:(nullable NSDictionary *)attributes
-                   activateExperiment:(BOOL)activateExperiment
-                             callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
                   attributes:(NSDictionary<NSString *,NSString *> *)attributes
