@@ -17,96 +17,49 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-// --- Common Event Parameters ----
-extern NSString * const OPTLYEventParameterKeysTimestamp;
-extern NSString * const OPTLYEventParameterKeysRevision;
-extern NSString * const OPTLYEventParameterKeysVisitorId;
-extern NSString * const OPTLYEventParameterKeysUUID;
-extern NSString * const OPTLYEventParameterKeysProjectId;
+
+// --- Base Parameters ----
 extern NSString * const OPTLYEventParameterKeysAccountId;
+extern NSString * const OPTLYEventParameterKeysProjectId;
+extern NSString * const OPTLYEventParameterKeysVisitors;
+extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
 extern NSString * const OPTLYEventParameterKeysClientEngine;
 extern NSString * const OPTLYEventParameterKeysClientVersion;
-extern NSString * const OPTLYEventParameterKeysHeader;
-extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
-extern NSString * const OPTLYEventParameterKeysVisitors;
+extern NSString * const OPTLYEventParameterKeysRevision;
+
+// --- Visitor Parameters ----
 extern NSString * const OPTLYEventParameterKeysSnapshots;
+extern NSString * const OPTLYEventParameterKeysVisitorId;
 extern NSString * const OPTLYEventParameterKeysAttributes;
-extern NSString * const OPTLYEventParameterKeysEntityId;
-extern NSString * const OPTLYEventParameterKeysKey;
-extern NSString * const OPTLYEventParameterKeysType;
+
+// --- Snapshot Parameters ----
 extern NSString * const OPTLYEventParameterKeysDecisions;
 extern NSString * const OPTLYEventParameterKeysEvents;
 
-// --- Decision Ticket Event Parameters ("Impression Event") ----
-extern NSString * const OPTLYEventParameterKeysDecisionId;
-extern NSString * const OPTLYEventParameterKeysLayerId;
-extern NSString * const OPTLYEventParameterKeysDecisionTicket;
-extern NSString * const OPTLYEventParameterKeysDecision;
-
-// --- Event Ticket Parameters ("Conversion Event") ----
-extern NSString * const OPTLYEventParameterKeysEventId;
-extern NSString * const OPTLYEventParameterKeysEventEntityId;
-extern NSString * const OPTLYEventParameterKeysEventType;
-extern NSString * const OPTLYEventParameterKeysEventName;
-extern NSString * const OPTLYEventParameterKeysEventFeatures;
-extern NSString * const OPTLYEventParameterKeysEventMetrics;
-extern NSString * const OPTLYEventParameterKeysRelatedEvents;
-extern NSString * const OPTLYEventParameterKeysLayerStates;
-extern NSString * const OPTLYEventParameterKeysActiveViews;
-extern NSString * const OPTLYEventParameterKeysTags;
-
-// ---- Header Parameters ----
-extern NSString * const OPTLYEventParameterKeysHeaderClientIp;
-extern NSString * const OPTLYEventParameterKeysHeaderUserAgent;
-extern NSString * const OPTLYEventParameterKeysHeaderReferer;
-
-// ---- Feature Parameters ----
-extern NSString * const OPTLYEventParameterKeysFeaturesId;
-extern NSString * const OPTLYEventParameterKeysFeaturesKey;
-extern NSString * const OPTLYEventParameterKeysFeaturesName;
+// --- Attribute Parameters ----
 extern NSString * const OPTLYEventParameterKeysFeaturesType;
 extern NSString * const OPTLYEventParameterKeysFeaturesValue;
+extern NSString * const OPTLYEventParameterKeysFeaturesId;
+extern NSString * const OPTLYEventParameterKeysFeaturesKey;
 extern NSString * const OPTLYEventParameterKeysFeaturesShouldIndex;
+extern NSString * const OPTLYEventParameterKeysFeaturesName;
 
-// ---- Metric Parameters ----
-extern NSString * const OPTLYEventParameterKeysMetricValue;
-
-// ---- Related Event Parameters ----
-extern NSString * const OPTLYEventParameterKeysRelatedEventsEventId;
-extern NSString * const OPTLYEventParameterKeysRelatedEventsRelationship;
-
-// ---- Audience Parameters ----
-extern NSString * const OPTLYEventParameterKeysAudienceId;
-extern NSString * const OPTLYEventParameterKeysAudienceName;
-
-// ---- Decision Ticket Parameters ----
-extern NSString * const OPTLYEventParameterKeysDecisionTicketAudiences;
-extern NSString * const OPTLYEventParameterKeysDecisionTicketBucketingId;
-
-// ---- Decision Parameters ----
+// --- Decision Parameters ----
 extern NSString * const OPTLYEventParameterKeysDecisionCampaignId;
 extern NSString * const OPTLYEventParameterKeysDecisionExperimentId;
 extern NSString * const OPTLYEventParameterKeysDecisionVariationId;
 extern NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback;
 
-// ---- Layer State Parameters ----
-extern NSString * const OPTLYEventParameterKeysLayerStateLayerId;
-extern NSString * const OPTLYEventParameterKeysLayerStateDecisionTicket;
-extern NSString * const OPTLYEventParameterKeysLayerStateDecision;
-extern NSString * const OPTLYEventParameterKeysLayerStateActivationId;
-extern NSString * const OPTLYEventParameterKeysLayerStateDecisionSessionId;
-extern NSString * const OPTLYEventParameterKeysLayerStateDecisionTimestamp;
-extern NSString * const OPTLYEventParameterKeysLayerStateDecisionEventId;
-extern NSString * const OPTLYEventParameterKeysLayerStateActionTriggered;
-extern NSString * const OPTLYEventParameterKeysLayerStateActionActivationId;
-extern NSString * const OPTLYEventParameterKeysLayerStateActionSessionId;
-extern NSString * const OPTLYEventParameterKeysLayerStateActionTimestamp;
-extern NSString * const OPTLYEventParameterKeysLayerStateRevision;
+// --- Common Event Parameters ----
+extern NSString * const OPTLYEventParameterKeysTimestamp;
+extern NSString * const OPTLYEventParameterKeysUUID;
+extern NSString * const OPTLYEventParameterKeysEntityId;
+extern NSString * const OPTLYEventParameterKeysKey;
 
-// ----View Parameters ----
-extern NSString * const OPTLYEventParameterKeysViewViewId;
-extern NSString * const OPTLYEventParameterKeysViewViewActivatedTimestamp;
-extern NSString * const OPTLYEventParameterKeysViewViewFeatures;
+// --- Impression Event Parameters ----
+
+// --- Conversion Event Parameters ----
+extern NSString * const OPTLYEventParameterKeysTags;
 extern NS_ASSUME_NONNULL_END
 
 @interface OPTLYEventParameterKeys : NSObject
