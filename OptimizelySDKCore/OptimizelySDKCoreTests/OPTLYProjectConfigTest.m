@@ -28,7 +28,6 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYTestHelper.h"
 #import "OPTLYVariation.h"
-#import "OPTLYVariable.h"
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
@@ -295,25 +294,6 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString* audienceId = @"66666666666";
     OPTLYAudience *audience = [self.projectConfig getAudienceForId:audienceId];
     XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
-}
-
-#pragma mark - Test getVariableForVariableKey:
-
-- (void)testGetVariableForVariableKey
-{
-    NSString* variableKey = @"someString";
-    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
-    XCTAssertNotNil(variable, @"Should find variable for key: %@", variableKey);
-    XCTAssert([variable isKindOfClass:[OPTLYVariable class]], @"Expected to be an OPTLYVariable: %@", variable);
-    XCTAssertEqualObjects(variable.variableKey, variableKey,
-                          @"Expecting variable's variableKey %@ to be: %@", variable.variableKey, variableKey);
-}
-
-- (void)testGetVariableForVariableNonexistentKey
-{
-    NSString* variableKey = @"someBlob";
-    OPTLYVariable *variable = [self.projectConfig getVariableForVariableKey:variableKey];
-    XCTAssertNil(variable, @"Shouldn't find variable for key: %@", variableKey);
 }
 
 #pragma mark - Test setForcedVariation:userId:variationKey: and getForcedVariation:userId:

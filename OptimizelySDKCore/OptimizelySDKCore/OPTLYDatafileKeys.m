@@ -58,7 +58,6 @@ NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange = @"endOfRange";
 // Variations
 NSString * const OPTLYDatafileKeysVariationId = @"id";
 NSString * const OPTLYDatafileKeysVariationKey = @"key";
-NSString * const OPTLYDatafileKeysVariationVariables = @"variables";
 // Conditions
 NSString * const OPTLYDatafileKeysConditionName = @"name";
 NSString * const OPTLYDatafileKeysConditionType = @"type";
@@ -66,14 +65,6 @@ NSString * const OPTLYDatafileKeysConditionValue = @"value";
 NSString * const OPTLYDatafileKeysAndCondition = @"and";
 NSString * const OPTLYDatafileKeysNotCondition = @"not";
 NSString * const OPTLYDatafileKeysOrCondition = @"or";
-// Live Variables
-NSString * const OPTLYDatafileKeysVariableId = @"id";
-NSString * const OPTLYDatafileKeysVariableKey = @"key";
-NSString * const OPTLYDatafileKeysVariableType = @"type";
-NSString * const OPTLYDatafileKeysVariableValue = @"defaultValue";
-// Variation Live Variable
-NSString * const OPTLYDatafileKeysVariationVariableId = @"id";
-NSString * const OPTLYDatafileKeysVariationVariableValue = @"value";
 // User Profile Service (not in datafile yet)
 NSString * const OPTLYDatafileKeysUserProfileServiceUserId = @"user_id";
 NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap = @"experiment_bucket_map";

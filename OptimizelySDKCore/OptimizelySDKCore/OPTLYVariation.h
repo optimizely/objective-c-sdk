@@ -24,7 +24,6 @@
 /**
  * This class is a representation of an Optimizely variation.
  */
-@protocol OPTLYVariationVariable;
 @protocol OPTLYVariation
 @end
 
@@ -34,8 +33,5 @@
 @property (nonatomic, strong) NSString *variationId;
 /// The variation's Key.
 @property (nonatomic, strong) NSString *variationKey;
-/// The array containing the variation's live variable information -- variable ID and variable value.
-/// TODO: Make variables required and add in NSDictionary * back into NSArray
-@property (nonatomic, strong) NSArray<OPTLYVariationVariable, Optional> *variables;
 
 @end
