@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYProjectConfig, OPTLYDecisionEventTicket, OPTLYEventTicket;
+@class OPTLYProjectConfig, OPTLYDecisionEventTicket;
 @protocol OPTLYBucketer;
 
 // --- Event URLs ----

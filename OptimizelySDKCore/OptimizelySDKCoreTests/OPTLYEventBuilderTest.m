@@ -18,7 +18,6 @@
 #import "OPTLYTestHelper.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYEventBuilder.h"
-#import "OPTLYEventTicket.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYDecisionEventTicket.h"
 #import "OPTLYDecisionService.h"

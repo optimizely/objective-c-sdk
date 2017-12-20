@@ -26,7 +26,6 @@
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEvent.h"
-#import "OPTLYEventTicket.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"

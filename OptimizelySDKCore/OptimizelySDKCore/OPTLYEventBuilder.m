@@ -28,7 +28,6 @@
 #import "OPTLYEventLayerState.h"
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
-#import "OPTLYEventTicket.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYMacros.h"
