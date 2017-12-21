@@ -58,6 +58,7 @@ NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange = @"endOfRange";
 // Variations
 NSString * const OPTLYDatafileKeysVariationId = @"id";
 NSString * const OPTLYDatafileKeysVariationKey = @"key";
+NSString * const OPTLYDatafileKeysVariationVariableUsageInstances = @"variables";
 // Conditions
 NSString * const OPTLYDatafileKeysConditionName = @"name";
 NSString * const OPTLYDatafileKeysConditionType = @"type";
@@ -69,6 +70,23 @@ NSString * const OPTLYDatafileKeysOrCondition = @"or";
 NSString * const OPTLYDatafileKeysUserProfileServiceUserId = @"user_id";
 NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap = @"experiment_bucket_map";
 NSString * const OPTLYDatafileKeysUserProfileServiceVariationId = @"variation_id";
+// Feature Flag
+NSString * const OPTLYDatafileKeysFeatureFlagId             = @"id";
+NSString * const OPTLYDatafileKeysFeatureFlagKey            = @"key";
+NSString * const OPTLYDatafileKeysFeatureFlagRolloutId      = @"rolloutId";
+NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds  = @"experimentIds";
+NSString * const OPTLYDatafileKeysFeatureFlagVariables      = @"variables";
+// Feature Variable
+NSString * const OPTLYDatafileKeysFeatureVariableId             = @"id";
+NSString * const OPTLYDatafileKeysFeatureVariableKey            = @"key";
+NSString * const OPTLYDatafileKeysFeatureVariableType           = @"type";
+NSString * const OPTLYDatafileKeysFeatureVariableDefaultValue   = @"defaultValue";
+// Variable Usage
+NSString * const OPTLYDatafileKeysVariableUsageId       = @"id";
+NSString * const OPTLYDatafileKeysVariableUsageValue    = @"value";
+// Rollout
+NSString * const OPTLYDatafileKeysRolloutId             = @"id";
+NSString * const OPTLYDatafileKeysRolloutExperiments    = @"experiments";
 
 @implementation OPTLYDatafileKeys
 @end

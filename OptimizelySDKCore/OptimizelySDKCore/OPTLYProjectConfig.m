@@ -28,6 +28,8 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYRollout.h"
 
 NSString * const kExpectedDatafileVersion  = @"3";
 
@@ -38,6 +40,8 @@ NSString * const kExpectedDatafileVersion  = @"3";
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *eventKeyToEventIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentIdToExperimentMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentKeyToExperimentMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureFlag *><Ignore> *featureFlagKeyToFeatureFlagMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYRollout *><Ignore> *rolloutIdToRolloutMap;
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
@@ -222,6 +226,24 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return group;
 }
 
+- (OPTLYFeatureFlag *)getFeatureFlagForKey:(NSString *)featureFlagKey {
+    OPTLYFeatureFlag *featureFlag = self.featureFlagKeyToFeatureFlagMap[featureFlagKey];
+    if (!featureFlag) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureFlagUnknownForFeatureFlagKey, featureFlagKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
+    return featureFlag;
+}
+
+- (OPTLYRollout *)getRolloutForId:(NSString *)rolloutId {
+    OPTLYRollout *rollout = self.rolloutIdToRolloutMap[rolloutId];
+    if (!rollout) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesRolloutUnknownForRolloutId, rolloutId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
+    return rollout;
+}
+
 #pragma mark -- Forced Variation Methods --
 
 - (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
@@ -384,6 +406,20 @@ NSString * const kExpectedDatafileVersion  = @"3";
     return _forcedVariationMap;
 }
 
+- (NSDictionary<NSString *, OPTLYFeatureFlag *> *)featureFlagKeyToFeatureFlagMap {
+    if (!_featureFlagKeyToFeatureFlagMap) {
+        _featureFlagKeyToFeatureFlagMap = [self generateFeatureFlagKeyToFeatureFlagMap];
+    }
+    return  _featureFlagKeyToFeatureFlagMap;
+}
+
+- (NSDictionary<NSString *, OPTLYRollout *> *)rolloutIdToRolloutMap {
+    if (!_rolloutIdToRolloutMap) {
+        _rolloutIdToRolloutMap = [self generateRolloutIdToRolloutMap];
+    }
+    return _rolloutIdToRolloutMap;
+}
+
 #pragma mark -- Generate Mappings --
 
 - (NSDictionary *)generateAudienceIdToAudienceMap
@@ -462,6 +498,23 @@ NSString * const kExpectedDatafileVersion  = @"3";
     for (OPTLYGroup *group in groups) {
         map[group.groupId] = group;
     }
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
+- (NSDictionary<NSString *, OPTLYFeatureFlag *> *)generateFeatureFlagKeyToFeatureFlagMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYFeatureFlag *featureFlag in self.featureFlags) {
+        map[featureFlag.Key] = featureFlag;
+    }
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
+- (NSDictionary<NSString *, OPTLYRollout *> *)generateRolloutIdToRolloutMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYRollout *rollout in self.rollouts) {
+        map[rollout.rolloutId] = rollout;
+    }
+    
     return [NSDictionary dictionaryWithDictionary:map];
 }
 
