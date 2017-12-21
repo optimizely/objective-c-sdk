@@ -231,8 +231,6 @@
 		EA2FAAE91DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA721DC6F57100B1D81B /* OPTLYEventParameterKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA2FAAF51DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAAFA1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAAFB1DC6F57200B1D81B /* OPTLYEventView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -320,7 +318,6 @@
 		EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA711DC6F57100B1D81B /* OPTLYEventMetric.m */; };
 		EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA731DC6F57100B1D81B /* OPTLYEventParameterKeys.m */; };
 		EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA751DC6F57100B1D81B /* OPTLYEventRelatedEvent.m */; };
-		EA2FABF51DC6FFA100B1D81B /* OPTLYEventTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA771DC6F57100B1D81B /* OPTLYEventTicket.m */; };
 		EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */; };
 		EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA7B1DC6F57100B1D81B /* OPTLYExperiment.m */; };
 		EA2FABF81DC6FFA100B1D81B /* OPTLYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA7D1DC6F57100B1D81B /* OPTLYGroup.m */; };
@@ -353,7 +350,6 @@
 		EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA711DC6F57100B1D81B /* OPTLYEventMetric.m */; };
 		EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA731DC6F57100B1D81B /* OPTLYEventParameterKeys.m */; };
 		EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA751DC6F57100B1D81B /* OPTLYEventRelatedEvent.m */; };
-		EA2FAC1A1DC6FFC600B1D81B /* OPTLYEventTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA771DC6F57100B1D81B /* OPTLYEventTicket.m */; };
 		EA2FAC1B1DC6FFC600B1D81B /* OPTLYEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */; };
 		EA2FAC1C1DC6FFC600B1D81B /* OPTLYExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA7B1DC6F57100B1D81B /* OPTLYExperiment.m */; };
 		EA2FAC1D1DC6FFC600B1D81B /* OPTLYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FAA7D1DC6F57100B1D81B /* OPTLYGroup.m */; };
@@ -603,8 +599,6 @@
 		EA2FAA731DC6F57100B1D81B /* OPTLYEventParameterKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventParameterKeys.m; sourceTree = "<group>"; };
 		EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventRelatedEvent.h; sourceTree = "<group>"; };
 		EA2FAA751DC6F57100B1D81B /* OPTLYEventRelatedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventRelatedEvent.m; sourceTree = "<group>"; };
-		EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventTicket.h; sourceTree = "<group>"; };
-		EA2FAA771DC6F57100B1D81B /* OPTLYEventTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventTicket.m; sourceTree = "<group>"; };
 		EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventView.h; sourceTree = "<group>"; };
 		EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventView.m; sourceTree = "<group>"; };
 		EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYExperiment.h; sourceTree = "<group>"; };
@@ -972,8 +966,6 @@
 				EA2FAA731DC6F57100B1D81B /* OPTLYEventParameterKeys.m */,
 				EA2FAA741DC6F57100B1D81B /* OPTLYEventRelatedEvent.h */,
 				EA2FAA751DC6F57100B1D81B /* OPTLYEventRelatedEvent.m */,
-				EA2FAA761DC6F57100B1D81B /* OPTLYEventTicket.h */,
-				EA2FAA771DC6F57100B1D81B /* OPTLYEventTicket.m */,
 				EA2FAA781DC6F57100B1D81B /* OPTLYEventView.h */,
 				EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */,
 				EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */,
@@ -1207,7 +1199,6 @@
 				EA2FAB201DC6F58800B1D81B /* OPTLYBuilder.h in Headers */,
 				EA2FAB381DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA2FAB481DC6F5B100B1D81B /* OPTLYEventBuilder.h in Headers */,
-				EA2FAAF41DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA2FAB001DC6F57200B1D81B /* OPTLYExperiment.h in Headers */,
 				EA2FAB321DC6F59D00B1D81B /* OPTLYErrorHandler.h in Headers */,
 				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
@@ -1292,7 +1283,6 @@
 				EA2FAAA11DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
 				EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F3441E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
-				EA2FAAF51DC6F57200B1D81B /* OPTLYEventTicket.h in Headers */,
 				EA16D9371ECBA9B200C4C998 /* OPTLYUserProfile.h in Headers */,
 				EA16D93D1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAC5F3541E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
@@ -1821,7 +1811,6 @@
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
-				EA2FAC1A1DC6FFC600B1D81B /* OPTLYEventTicket.m in Sources */,
 				EA2FAC1B1DC6FFC600B1D81B /* OPTLYEventView.m in Sources */,
 				EA16D93E1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */,
 				EA2FAC1C1DC6FFC600B1D81B /* OPTLYExperiment.m in Sources */,
@@ -1897,7 +1886,6 @@
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
 				3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */,
-				EA2FABF51DC6FFA100B1D81B /* OPTLYEventTicket.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,
 				EA16D93F1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m in Sources */,

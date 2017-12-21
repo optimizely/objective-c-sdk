@@ -93,20 +93,12 @@ static NSString * const kClientEngine = @"objective-c-sdk";
                              }],
       @"timestamp": @1478510071576,
       @"clientVersion": @"0.2.0-debug",
-      @"eventEntityId": @"7723870635",
       @"revision": @"7",
       @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
-      @"layerStates": @[],
       @"projectId": @"7738070017",
-      @"eventMetrics": @[@{
-                             @"name": @"revenue",
-                             @"value": @88
-                             }],
       @"visitorId": @"1",
-      @"eventName": @"people",
-      @"clientEngine": kClientEngine,
-      @"eventFeatures": @[]
+      @"clientEngine": kClientEngine
       };
     
     NSDictionary *testEventData2 =
@@ -119,20 +111,12 @@ static NSString * const kClientEngine = @"objective-c-sdk";
                              }],
       @"timestamp": @1478510071576,
       @"clientVersion": @"0.2.0-debug",
-      @"eventEntityId": @"7723870635",
       @"revision": @"7",
       @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
-      @"layerStates": @[],
       @"projectId": @"7738070017",
-      @"eventMetrics": @[@{
-                             @"name": @"revenue",
-                             @"value": @88
-                             }],
       @"visitorId": @"2",
-      @"eventName": @"people",
-      @"clientEngine": kClientEngine,
-      @"eventFeatures": @[]
+      @"clientEngine": kClientEngine
       };
     
     NSDictionary *testEventData3 =
@@ -145,20 +129,12 @@ static NSString * const kClientEngine = @"objective-c-sdk";
                              }],
       @"timestamp": @1478510071576,
       @"clientVersion": @"0.2.0-debug",
-      @"eventEntityId": @"7723870635",
       @"revision": @"7",
       @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
-      @"layerStates": @[],
       @"projectId": @"7738070017",
-      @"eventMetrics": @[@{
-                             @"name": @"revenue",
-                             @"value": @88
-                             }],
       @"visitorId": @"3",
-      @"eventName": @"people",
-      @"clientEngine": kClientEngine,
-      @"eventFeatures": @[]
+      @"clientEngine": kClientEngine
       };
     
     NSDictionary *testEventData4 =
@@ -171,20 +147,12 @@ static NSString * const kClientEngine = @"objective-c-sdk";
                              }],
       @"timestamp": @1478510071576,
       @"clientVersion": @"0.2.0-debug",
-      @"eventEntityId": @"7723870635",
       @"revision": @"7",
       @"isGlobalHoldback": @NO,
       @"accountId": @"4902200114",
-      @"layerStates": @[],
       @"projectId": @"7738070017",
-      @"eventMetrics": @[@{
-                             @"name": @"revenue",
-                             @"value": @88
-                             }],
       @"visitorId": @"4",
-      @"eventName": @"people",
-      @"clientEngine": kClientEngine,
-      @"eventFeatures": @[]
+      @"clientEngine": kClientEngine
       };
     
     NSInteger totalEntity = 4;

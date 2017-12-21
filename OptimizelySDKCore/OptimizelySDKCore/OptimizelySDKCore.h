@@ -38,7 +38,6 @@
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEventRelatedEvent.h"
-#import "OPTLYEventTicket.h"
 #import "OPTLYEventView.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYExperimentBucketMapEntity.h"
