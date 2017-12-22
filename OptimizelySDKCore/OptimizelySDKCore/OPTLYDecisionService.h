@@ -31,7 +31,7 @@
 // of user IDs that all map to the same experiment variation.
 extern NSString * _Nonnull const OptimizelyBucketId;
 
-@class OPTLYExperiment, OPTLYVariation;
+@class OPTLYExperiment, OPTLYVariation, OPTLYFeatureFlag, OPTLYFeatureDecision;
 
 @interface OPTLYDecisionService : OPTLYJSONModel
 
@@ -66,5 +66,16 @@ extern NSString * _Nonnull const OptimizelyBucketId;
 - (nullable OPTLYVariation *)getVariation:(nonnull NSString *)userId
                                experiment:(nonnull OPTLYExperiment *)experiment
                                attributes:(nullable NSDictionary *)attributes;
-    
+
+/**
+ * Get a variation the user is bucketed into for the given FeatureFlag
+ * @param featureFlag The feature flag the user wants to access.
+ * @param userId The ID of the user.
+ * @param attributes User attributes
+ * @return The variation assigned to the specified user ID for a feature flag.
+ */
+- (nullable OPTLYFeatureDecision *)getVariationForFeature:(nonnull OPTLYFeatureFlag *)featureFlag
+                                             userId:(nonnull NSString *)userId
+                                         attributes:(nullable NSDictionary *)attributes;
+
 @end

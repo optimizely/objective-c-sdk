@@ -14,8 +14,33 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#define StringOrEmpty(A)  ({ __typeof__(A) __a = (A); __a ? __a : @""; })
+#import <Foundation/Foundation.h>
 
-#define isEmptyString(A)  ({ !(A && [A respondsToSelector:@selector(isEqualToString:)] && ![(NSString *)A isEqualToString:@""]); })
+@class OPTLYExperiment, OPTLYVariation;
 
-#define isEmptyArray(A)  ({ !(A && [A respondsToSelector:@selector(count)] && [(NSArray *)A count] > 0); })
+extern NSString * const DecisionSourceExperiment;
+extern NSString * const DecisionSourceRollout;
+
+/**
+ * This class determines how the Optimizely SDK will handle exceptions and errors.
+ */
+@interface OPTLYFeatureDecision : NSObject
+
+/// an OPTLYExperiment associated with the decision.
+@property (nonatomic, strong) OPTLYExperiment *experiment;
+/// an OPTLYVariation associated with the decision.
+@property (nonatomic, strong) OPTLYVariation *variation;
+/// an NSString to hold the source of the decision. Either experiment or rollout
+@property (nonatomic, strong) NSString *source;
+
+/*
+ * Initializes the FeatureDecision with an experiment id, variation id & source.
+ *
+ * @param experimentId The id of experiment.
+ * @param variationId The id of variation.
+ * @param source The source for which the decision made.
+ * @return An instance of the FeatureDecision.
+ */
+- (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source;
+
+@end

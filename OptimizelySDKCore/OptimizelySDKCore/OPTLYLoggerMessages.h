@@ -201,6 +201,17 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseErro
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID;
+// FF = Feature Flag
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserNotBucketed;
+// FF = Feature Rollout
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRBucketing;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

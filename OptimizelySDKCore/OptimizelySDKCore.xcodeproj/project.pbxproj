@@ -74,6 +74,10 @@
 		3E35DCCA1F47AD3D00018732 /* withoutOptProp.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */; };
 		3E35DCE61F47B42E00018732 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE51F47B42E00018732 /* UIKit.framework */; };
 		3E35DCE81F47B44900018732 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35DCE71F47B44900018732 /* CoreGraphics.framework */; };
+		3E44F64A1FEAA2340044C005 /* OPTLYFeatureDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E44F6471FEAA22F0044C005 /* OPTLYFeatureDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E44F64B1FEAA2340044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F6481FEAA22F0044C005 /* OPTLYFeatureDecision.m */; };
+		3E44F64C1FEAA2340044C005 /* OPTLYFeatureDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E44F6471FEAA22F0044C005 /* OPTLYFeatureDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E44F64D1FEAA2340044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F6481FEAA22F0044C005 /* OPTLYFeatureDecision.m */; };
 		3E858C601F42277B00D53856 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3E858C5E1F42277B00D53856 /* LICENSE */; };
 		3E858C661F4227BA00D53856 /* OPTLYJSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C6D1F4227CD00D53856 /* OPTLYJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C671F4227CD00D53856 /* OPTLYJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -533,6 +537,8 @@
 		3E35DCBB1F47AD3D00018732 /* withoutOptProp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = withoutOptProp.json; path = Data/withoutOptProp.json; sourceTree = "<group>"; };
 		3E35DCE51F47B42E00018732 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3E35DCE71F47B44900018732 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3E44F6471FEAA22F0044C005 /* OPTLYFeatureDecision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFeatureDecision.h; path = OptimizelySDKCore/OPTLYFeatureDecision.h; sourceTree = "<group>"; };
+		3E44F6481FEAA22F0044C005 /* OPTLYFeatureDecision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFeatureDecision.m; path = OptimizelySDKCore/OPTLYFeatureDecision.m; sourceTree = "<group>"; };
 		3E858C5E1F42277B00D53856 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = OPTLYJSONModel/LICENSE; sourceTree = "<group>"; };
 		3E858C5F1F42277B00D53856 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = OPTLYJSONModel/README.md; sourceTree = "<group>"; };
 		3E858C651F4227BA00D53856 /* OPTLYJSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONModelLib.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelLib.h; sourceTree = "<group>"; };
@@ -1193,6 +1199,8 @@
 		EA87A0271DE3142A002E9EF7 /* UserProfileService */ = {
 			isa = PBXGroup;
 			children = (
+				3E44F6471FEAA22F0044C005 /* OPTLYFeatureDecision.h */,
+				3E44F6481FEAA22F0044C005 /* OPTLYFeatureDecision.m */,
 				EA16D9401ECCC5C600C4C998 /* OPTLYDecisionService.h */,
 				EA16D9411ECCC5C600C4C998 /* OPTLYDecisionService.m */,
 				EAC5F3511E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h */,
@@ -1223,6 +1231,7 @@
 				EA16D9421ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				3E858C6F1F4227CD00D53856 /* OPTLYJSONModelClassProperty.h in Headers */,
 				3E858C851F4227E300D53856 /* OPTLYJSONValueTransformer.h in Headers */,
+				3E44F64A1FEAA2340044C005 /* OPTLYFeatureDecision.h in Headers */,
 				3E858C831F4227E300D53856 /* OPTLYJSONKeyMapper.h in Headers */,
 				3E858C711F4227CD00D53856 /* OPTLYJSONModelError.h in Headers */,
 				3ECB81FE1FD926FE006505E6 /* OPTLYVariableUsage.h in Headers */,
@@ -1283,6 +1292,7 @@
 				EA16D9431ECCC5C600C4C998 /* OPTLYDecisionService.h in Headers */,
 				3E858C871F4227ED00D53856 /* OPTLYJSONModel.h in Headers */,
 				3E858C8B1F4227F900D53856 /* OPTLYJSONModelError.h in Headers */,
+				3E44F64C1FEAA2340044C005 /* OPTLYFeatureDecision.h in Headers */,
 				3E858C931F42280500D53856 /* OPTLYJSONModelLib.h in Headers */,
 				3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */,
 				3ECB81FF1FD926FE006505E6 /* OPTLYVariableUsage.h in Headers */,
@@ -1876,6 +1886,7 @@
 				3E858C861F4227E300D53856 /* OPTLYJSONValueTransformer.m in Sources */,
 				3E858C701F4227CD00D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC261DC6FFC600B1D81B /* OPTLYLoggerMessages.m in Sources */,
+				3E44F64B1FEAA2340044C005 /* OPTLYFeatureDecision.m in Sources */,
 				3E9CADFF1FD90E6200EBC49A /* OPTLYFeatureFlag.m in Sources */,
 				3E858C6E1F4227CD00D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FAC291DC6FFC600B1D81B /* OPTLYLog.m in Sources */,
@@ -1956,6 +1967,7 @@
 				3E858C8A1F4227F900D53856 /* OPTLYJSONModelClassProperty.m in Sources */,
 				EA2FAC001DC6FFA100B1D81B /* OPTLYLogger.m in Sources */,
 				3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */,
+				3E44F64D1FEAA2340044C005 /* OPTLYFeatureDecision.m in Sources */,
 				3E9CAE011FD90E6200EBC49A /* OPTLYFeatureFlag.m in Sources */,
 				EA2FAC011DC6FFA100B1D81B /* OPTLYLoggerMessages.m in Sources */,
 				EA2FAC041DC6FFA100B1D81B /* OPTLYLog.m in Sources */,

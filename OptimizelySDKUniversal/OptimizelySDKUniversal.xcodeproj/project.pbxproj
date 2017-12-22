@@ -33,6 +33,10 @@
 
 /* Begin PBXBuildFile section */
 		17ED9742D6509AEDF036B3A5 /* Pods_OptimizelySDKTVOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5B18573E1770FC43BE1EF9 /* Pods_OptimizelySDKTVOSUniversalTests.framework */; };
+		3E44F6501FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E44F6511FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */; };
+		3E44F6521FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E44F6531FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */; };
 		B9BC2CF7D9A5F20910ADE484 /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821ECAB08BA28A73A7D94EAC /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
 		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
@@ -344,6 +348,8 @@
 		35F5BAC1A9A52290AED1688C /* Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3ADF7261EAD24B3E49FB6031 /* Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3BF812707C2B1BF4FC2F69E6 /* Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
+		3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFeatureDecision.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYFeatureDecision.h; sourceTree = SOURCE_ROOT; };
+		3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFeatureDecision.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYFeatureDecision.m; sourceTree = SOURCE_ROOT; };
 		3EF8AFB71EC63DBF008D4F5F /* unexported_symbols.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unexported_symbols.txt; sourceTree = "<group>"; };
 		3F6E90F761F4B4023BCD8886 /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
 		4255C48815E69CE80CA972F1 /* Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -703,6 +709,8 @@
 		EAC5F1871E7B60D700C087B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */,
+				3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */,
 				EAC5F2921E7B651700C087B8 /* Optimizely.h */,
 				EAC5F1311E7B604C00C087B8 /* Optimizely.m */,
 				EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */,
@@ -984,6 +992,7 @@
 				EA52CA751E851CC100D4FCA0 /* OPTLYEventDataStore.h in Headers */,
 				EA52CA821E851CC100D4FCA0 /* OPTLYLogger.h in Headers */,
 				EAE8C4191EC4E4FA00A76A2D /* OPTLYUserProfileServiceBasic.h in Headers */,
+				3E44F6501FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */,
 				EAE8C41A1EC4E4FA00A76A2D /* OPTLYUserProfileService.h in Headers */,
 				EAE8C41B1EC4E4FA00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EA3144ED1ED7A1CD00A8E555 /* OPTLYExperimentBucketMapEntity.h in Headers */,
@@ -1067,6 +1076,7 @@
 				EAE8C41F1EC4E51D00A76A2D /* OPTLYUserProfileServiceBuilder.h in Headers */,
 				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CB1C1E851CEE00D4FCA0 /* OPTLYMacros.h in Headers */,
+				3E44F6521FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1431,6 +1441,7 @@
 				EA52CA161E851CC100D4FCA0 /* OPTLYEventMetric.m in Sources */,
 				EA52CA171E851CC100D4FCA0 /* OPTLYEventParameterKeys.m in Sources */,
 				EA52CA181E851CC100D4FCA0 /* OPTLYEventRelatedEvent.m in Sources */,
+				3E44F6511FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */,
 				EAF880EA1EF1D46300143F7C /* OPTLYFMDBDatabase.m in Sources */,
 				EA52CA1A1E851CC100D4FCA0 /* OPTLYEventView.m in Sources */,
 				EA52CA1B1E851CC100D4FCA0 /* OPTLYExperiment.m in Sources */,
@@ -1458,6 +1469,7 @@
 				EA3144F21ED7A23400A8E555 /* OPTLYDecisionService.m in Sources */,
 				EA3144F31ED7A23400A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
 				EA3144F41ED7A23400A8E555 /* OPTLYUserProfile.m in Sources */,
+				3E44F6531FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */,
 				EAE8C4271EC4E53800A76A2D /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EAF880B31EF1D40200143F7C /* OPTLYJSONModel.m in Sources */,
 				EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */,
