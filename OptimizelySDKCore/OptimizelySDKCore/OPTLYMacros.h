@@ -19,3 +19,5 @@
 #define isEmptyString(A)  ({ !(A && [A respondsToSelector:@selector(isEqualToString:)] && ![(NSString *)A isEqualToString:@""]); })
 
 #define isEmptyArray(A)  ({ !(A && [A respondsToSelector:@selector(count)] && [(NSArray *)A count] > 0); })
+
+#define isEmptyDictionary(A)  ({ !(A && [A respondsToSelector:@selector(count)] && [(NSDictionary *)A count] > 0); })

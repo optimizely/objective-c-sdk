@@ -21,6 +21,7 @@
 #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
+@class OPTLYProjectConfig;
 @protocol OPTLYFeatureVariable;
 @protocol OPTLYFeatureFlag
 @end
@@ -37,5 +38,12 @@
 @property (nonatomic, strong) NSArray<NSString *> *experimentIds;
 /// an NSArray of the feature variables that are part of this feature
 @property (nonatomic, strong) NSArray<OPTLYFeatureVariable> *variables;
+
+/**
+ * Determines whether all the experiments in the feature flag belongs to the same mutex group
+ * @param config The project config object.
+ * @return YES if feature belongs to the same mutex group.
+ */
+- (BOOL)isValid:(OPTLYProjectConfig *)config;
 
 @end

@@ -16,6 +16,9 @@
 
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYProjectConfig.h"
+#import "OPTLYExperiment.h"
+#import "OPTLYMacros.h"
 
 @implementation OPTLYFeatureFlag
 
@@ -27,6 +30,25 @@
                                                              OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
                                                              OPTLYDatafileKeysFeatureFlagVariables      : @"variables"
                                                              }];
+}
+
+- (BOOL)isValid:(OPTLYProjectConfig *)config {
+    if (isEmptyArray(self.experimentIds)) {
+        return true;
+    }
+    if (self.experimentIds.count == 1) {
+        return true;
+    }
+    
+    NSString *groupId = [config getExperimentForId:[self.experimentIds firstObject]].groupId;
+    
+    for (int i = 1; i < self.experimentIds.count; i++)
+    {
+        // Every experiment should have the same group Id.
+        if ([config getExperimentForId:self.experimentIds[i]].groupId != groupId)
+            return false;
+    }
+    return true;
 }
 
 @end

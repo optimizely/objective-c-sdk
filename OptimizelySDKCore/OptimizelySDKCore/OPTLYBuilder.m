@@ -21,6 +21,7 @@
 #import "OPTLYEventDispatcherBasic.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
+#import "OPTLYDecisionService.h"
 
 @implementation OPTLYBuilder
 
@@ -71,6 +72,7 @@
     }
     
     _bucketer = [[OPTLYBucketer alloc] initWithConfig:_config];
+    _decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:_config bucketer:_bucketer];
     _eventBuilder = [[OPTLYEventBuilderDefault alloc] init];
     
     return self;

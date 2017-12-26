@@ -27,7 +27,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameK
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventValueKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
-@class OPTLYProjectConfig, OPTLYVariation;
+@class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
 @protocol Optimizely <NSObject>
@@ -121,6 +121,18 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
                     userId:(nonnull NSString *)userId
               variationKey:(nullable NSString *)variationKey;
 
+#pragma mark - Feature Flag Methods
+
+/**
+ * Determine whether a feature is enabled.
+ * Send an impression event if the user is bucketed into an experiment using the feature.
+ * @param featureKey The key for the feature flag.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return YES if feature is enabled, false otherwise.
+ */
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
 #pragma mark - trackEvent methods
 /**
  * Track an event
@@ -193,6 +205,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 @interface Optimizely : NSObject <Optimizely>
 
 @property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
+@property (nonatomic, strong, readonly, nullable) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;

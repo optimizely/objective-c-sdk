@@ -31,6 +31,10 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
+#import "OPTLYMacros.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYFeatureDecision.h"
+#import "OPTLYDecisionService.h"
 
 NSString *const OptimizelyDidActivateExperimentNotification = @"OptimizelyExperimentActivated";
 NSString *const OptimizelyDidTrackEventNotification = @"OptimizelyEventTracked";
@@ -57,6 +61,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if (self != nil) {
         if (builder != nil) {
             _bucketer = builder.bucketer;
+            _decisionService = builder.decisionService;
             _config = builder.config;
             _eventBuilder = builder.eventBuilder;
             _eventDispatcher = builder.eventDispatcher;
@@ -104,10 +109,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                     callback:(void (^)(NSError *))callback {
     
     // get variation
-    OPTLYVariation *variation = [self variation:experimentKey
-                                         userId:userId
-                                     attributes:attributes];
+    OPTLYVariation *variation = [self variation:experimentKey userId:userId attributes:attributes];
     
+    // get experiment
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+
     if (!variation) {
         NSError *error = [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
         if (callback) {
@@ -117,37 +123,21 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     // send impression event
-    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                 userId:userId
-                                                                          experimentKey:experimentKey
-                                                                            variationId:variation.variationId
-                                                                             attributes:attributes];
+    __weak typeof(self) weakSelf = self;
+    OPTLYVariation *sentVariation = [self sendImpressionEventFor:experiment variation:variation userId:userId attributes:attributes callback:^(NSError *error) {
+        if (error) {
+            [weakSelf handleErrorLogsForActivateUser:userId experiment:experimentKey];
+        }
+        callback(error);
+    }];
     
-    if ([impressionEventParams count] == 0) {
+    if (!sentVariation) {
         NSError *error = [self handleErrorLogsForActivateUser:userId experiment:experimentKey];
         if (callback) {
             callback(error);
         }
         return nil;
     }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experimentKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    
-    __weak typeof(self) weakSelf = self;
-    [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
-                                         callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                                             if (error) {
-                                                 [weakSelf handleErrorLogsForActivateUser:userId experiment:experimentKey];
-                                             } else {
-                                                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experimentKey];
-                                                 [weakSelf.logger logMessage:logMessage
-                                                                   withLevel:OptimizelyLogLevelInfo];
-                                             }
-                                             if (callback) {
-                                                 callback(error);
-                                             }
-                                         }];
     
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                     OptimizelyNotificationsUserDictionaryVariationKey: variation
@@ -201,6 +191,48 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return [self.config setForcedVariation:experimentKey
                                     userId:userId
                               variationKey:variationKey];
+}
+
+#pragma mark - Feature Flag Methods
+
+- (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    if (isEmptyString(userId)) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid withLevel:OptimizelyLogLevelError];
+        return false;
+    }
+    if (isEmptyString(featureKey)) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
+        return false;
+    }
+    
+    OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:featureKey];
+    if (isEmptyString(featureFlag.Key)) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
+        return false;
+    }
+    if (![featureFlag isValid:self.config]) {
+        return false;
+    }
+    
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    
+    if (!decision) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        return false;
+    }
+    
+    if ([decision.source isEqualToString:DecisionSourceExperiment]) {
+        [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
+    } else {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    }
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    
+    return true;
 }
 
 #pragma mark trackEvent methods
@@ -357,4 +389,40 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSString *)description {
     return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfileService];
 }
+
+- (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
+                                 variation:(OPTLYVariation *)variation
+                                    userId:(NSString *)userId
+                                attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                                  callback:(void (^)(NSError *))callback {
+    
+    // send impression event
+    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventTicket:self.config
+                                                                                 userId:userId
+                                                                          experimentKey:experiment.experimentKey
+                                                                            variationId:variation.variationId
+                                                                             attributes:attributes];
+    
+    if (isEmptyDictionary(impressionEventParams)) {
+        return nil;
+    }
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experiment.experimentKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
+                                         callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                             if (!error) {
+                                                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experiment.experimentKey];
+                                                 [weakSelf.logger logMessage:logMessage
+                                                                   withLevel:OptimizelyLogLevelInfo];
+                                             }
+                                             if (callback) {
+                                                 callback(error);
+                                             }
+                                         }];
+    return variation;
+}
+
 @end
