@@ -128,7 +128,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         if (error) {
             [weakSelf handleErrorLogsForActivateUser:userId experiment:experimentKey];
         }
-        callback(error);
+        if (callback) {
+            callback(error);
+        }
     }];
     
     if (!sentVariation) {
