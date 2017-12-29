@@ -19,6 +19,13 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYMacros.h"
+#import "OPTLYFeatureVariable.h"
+
+@interface OPTLYFeatureFlag()
+
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureVariable *><Ignore> *featureVariableKeyToFeatureVariableMap;
+
+@end
 
 @implementation OPTLYFeatureFlag
 
@@ -49,6 +56,28 @@
             return false;
     }
     return true;
+}
+
+- (OPTLYFeatureVariable *)getFeatureVariableForKey:(NSString *)variableKey {
+    OPTLYFeatureVariable *featureVariable = self.featureVariableKeyToFeatureVariableMap[variableKey];
+    return featureVariable;
+}
+
+# pragma mark - Helper methods
+
+- (NSDictionary<NSString *, OPTLYFeatureVariable *> *)featureVariableKeyToFeatureVariableMap {
+    if (!_featureVariableKeyToFeatureVariableMap) {
+        _featureVariableKeyToFeatureVariableMap = [self generateFeatureVariableKeyToFeatureVariableMap];
+    }
+    return  _featureVariableKeyToFeatureVariableMap;
+}
+
+- (NSDictionary<NSString *, OPTLYFeatureVariable *> *)generateFeatureVariableKeyToFeatureVariableMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYFeatureVariable *variable in self.variables) {
+        map[variable.key] = variable;
+    }
+    return [NSDictionary dictionaryWithDictionary:map];
 }
 
 @end

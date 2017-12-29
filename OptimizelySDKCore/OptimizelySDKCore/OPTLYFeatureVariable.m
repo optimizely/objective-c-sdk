@@ -17,6 +17,11 @@
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYDatafileKeys.h"
 
+NSString * const FeatureVariableTypeBoolean = @"boolean";
+NSString * const FeatureVariableTypeString  = @"string";
+NSString * const FeatureVariableTypeInteger = @"integer";
+NSString * const FeatureVariableTypeDouble  = @"double";
+
 @implementation OPTLYFeatureVariable
 
 + (OPTLYJSONKeyMapper*)keyMapper

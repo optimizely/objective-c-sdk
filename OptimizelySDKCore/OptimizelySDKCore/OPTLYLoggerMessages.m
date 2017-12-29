@@ -28,6 +28,14 @@ NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid = @"[OPTIMIZELY
 NSString *const OPTLYLoggerMessagesFeatureDisabled = @"[OPTIMIZELY] Feature flag %@ is not enabled for user %@.";
 NSString *const OPTLYLoggerMessagesFeatureEnabledNotExperimented = @"[OPTIMIZELY] The user %@ is not being experimented on feature %@.";
 NSString *const OPTLYLoggerMessagesFeatureEnabled = @"[OPTIMIZELY] Feature flag %@ is enabled for user %@.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid = @"[OPTIMIZELY] Feature flag key must not be empty for feature variable value.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid = @"[OPTIMIZELY] Variable key must not be empty for feature variable value.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid = @"[OPTIMIZELY] User ID must not be empty for feature variable value.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableInvalid = @"[OPTIMIZELY] No feature variable was found for key %@ in feature flag %@.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvalid = @"[OPTIMIZELY] Variable is of type %@, but you requested it as type %@.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableType = @"[OPTIMIZELY] Returning variable value %@ for variation %@ of feature flag %@";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueNotUsed = @"[OPTIMIZELY] Variable %@ is not used in variation %@, returning default value %@.";
+NSString *const OPTLYLoggerMessagesFeatureVariableValueNotBucketed = @"[OPTIMIZELY] User %@ is not in any variation for feature flag %@, returning default value %@.";
 
 // ---- Bucketer ----
 // debug

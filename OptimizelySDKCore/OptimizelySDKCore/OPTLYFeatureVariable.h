@@ -21,6 +21,11 @@
 #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
+extern NSString * const FeatureVariableTypeBoolean;
+extern NSString * const FeatureVariableTypeString;
+extern NSString * const FeatureVariableTypeInteger;
+extern NSString * const FeatureVariableTypeDouble;
+
 @protocol OPTLYFeatureVariable
 @end
 

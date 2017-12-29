@@ -32,6 +32,14 @@ extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
 extern NSString *const OPTLYLoggerMessagesFeatureEnabledNotExperimented;
 extern NSString *const OPTLYLoggerMessagesFeatureEnabled;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableType;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotUsed;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotBucketed;
 
 // ---- Bucketer ----
 // debug
