@@ -30,6 +30,8 @@
 #import "OPTLYVariation.h"
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
+#import "OPTLYFeatureVariable.h"
+#import "OPTLYVariableUsage.h"
 
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
@@ -39,13 +41,13 @@ static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
 static NSString * const kAccountId = @"6365361536";
 static NSString * const kDatafileVersion4 = @"4";
-static NSUInteger * const kNumberOfRolloutsObjects = 3;
-static NSUInteger * const kNumberOfFeatureFlagsObjects = 7;
-static NSUInteger * const kNumberOfEventObjects = 7;
-static NSUInteger * const kNumberOfGroupObjects = 1;
-static NSUInteger * const kNumberOfAttributeObjects = 1;
-static NSUInteger * const kNumberOfAudienceObjects = 8;
-static NSUInteger * const kNumberOfExperimentObjects = 48;
+static NSUInteger const kNumberOfRolloutsObjects = 3;
+static NSUInteger const kNumberOfFeatureFlagsObjects = 7;
+static NSUInteger const kNumberOfEventObjects = 7;
+static NSUInteger const kNumberOfGroupObjects = 1;
+static NSUInteger const kNumberOfAttributeObjects = 1;
+static NSUInteger const kNumberOfAudienceObjects = 8;
+static NSUInteger const kNumberOfExperimentObjects = 48;
 
 static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
 
@@ -417,6 +419,33 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString* rolloutId = @"66666666666";
     OPTLYRollout *rollout = [self.projectConfig getRolloutForId:rolloutId];
     XCTAssertNil(rollout, @"Shouldn't find rollout for id: %@", rolloutId);
+}
+
+#pragma mark - Test [OPTLYVariation getVariableUsageForVariableId]:
+
+- (void)testGetVariableUsageForVariableId {
+    NSString *featureKey = @"double_single_variable_feature";
+    OPTLYFeatureFlag *featureFlag = [self.projectConfig getFeatureFlagForKey:featureKey];
+    OPTLYFeatureVariable *featureVariable = featureFlag.variables[0];
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForId:featureFlag.experimentIds[0]];
+    OPTLYVariation *variation = [experiment getVariationForVariationId:@"6363413697"];
+    OPTLYVariableUsage *variableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
+    
+    XCTAssertNotNil(variableUsage, @"Should find variable usage for id: %@", featureVariable.variableId);
+    XCTAssert([variableUsage isKindOfClass:[OPTLYVariableUsage class]], @"Expected to be an OPTLYVariableUsage: %@", variableUsage);
+    XCTAssertEqualObjects(featureVariable.variableId, variableUsage.variableId,
+                          @"Expecting feature variable's id %@ to be: %@", featureVariable.variableId, variableUsage.variableId);
+}
+
+- (void)testGetVariableUsageForVariableIdInvalid {
+    NSString *featureKey = @"multi_variate_feature";
+    OPTLYFeatureFlag *featureFlag = [self.projectConfig getFeatureFlagForKey:featureKey];
+    OPTLYFeatureVariable *featureVariable = featureFlag.variables[0];
+    OPTLYExperiment *experiment = [self.projectConfig getExperimentForId:featureFlag.experimentIds[0]];
+    OPTLYVariation *variation = [experiment getVariationForVariationId:@"6383523065"];
+    OPTLYVariableUsage *variableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
+    
+    XCTAssertNil(variableUsage, @"Should not find variable usage for id: %@", featureVariable.variableId);
 }
 
 #pragma mark - Helper Methods

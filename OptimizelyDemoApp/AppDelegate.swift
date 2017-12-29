@@ -186,7 +186,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     variationViewController.eventKey = self.eventKey
                     variationViewController.optimizelyClient = optimizelyClient
                     variationViewController.userId = self.userId
-                    variationViewController.variationKey = (bucketedVariation!.variationKey)!
+                    variationViewController.variationKey = bucketedVariation!.variationKey
                     rootViewController = variationViewController
                 }
             }

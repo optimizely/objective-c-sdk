@@ -961,14 +961,6 @@
 		EA2FA8401DC5E13A00B1D81B /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				3E9CADF91FD90E6200EBC49A /* OPTLYFeatureFlag.h */,
-				3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */,
-				3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */,
-				3ECB81F11FD9267D006505E6 /* OPTLYFeatureVariable.m */,
-				3ECB81FC1FD926FE006505E6 /* OPTLYVariableUsage.h */,
-				3ECB81FD1FD926FE006505E6 /* OPTLYVariableUsage.m */,
-				3ECB82021FD92736006505E6 /* OPTLYRollout.h */,
-				3ECB82031FD92736006505E6 /* OPTLYRollout.m */,
 				EA2FAA521DC6F57100B1D81B /* OPTLYAttribute.h */,
 				EA2FAA531DC6F57100B1D81B /* OPTLYAttribute.m */,
 				EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */,
@@ -1005,18 +997,26 @@
 				EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */,
 				EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */,
 				EA2FAA7B1DC6F57100B1D81B /* OPTLYExperiment.m */,
+				EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */,
+				EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */,
+				3E9CADF91FD90E6200EBC49A /* OPTLYFeatureFlag.h */,
+				3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */,
+				3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */,
+				3ECB81F11FD9267D006505E6 /* OPTLYFeatureVariable.m */,
 				EA2FAA7C1DC6F57100B1D81B /* OPTLYGroup.h */,
 				EA2FAA7D1DC6F57100B1D81B /* OPTLYGroup.m */,
 				EA2FAA7E1DC6F57100B1D81B /* OPTLYProjectConfig.h */,
 				EA2FAA7F1DC6F57100B1D81B /* OPTLYProjectConfig.m */,
+				3ECB82021FD92736006505E6 /* OPTLYRollout.h */,
+				3ECB82031FD92736006505E6 /* OPTLYRollout.m */,
 				EA2FAA801DC6F57100B1D81B /* OPTLYTrafficAllocation.h */,
 				EA2FAA811DC6F57100B1D81B /* OPTLYTrafficAllocation.m */,
-				EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */,
-				EA2FAA831DC6F57100B1D81B /* OPTLYVariation.m */,
-				EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */,
-				EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */,
 				EA16D9341ECBA9B200C4C998 /* OPTLYUserProfile.h */,
 				EA16D9351ECBA9B200C4C998 /* OPTLYUserProfile.m */,
+				3ECB81FC1FD926FE006505E6 /* OPTLYVariableUsage.h */,
+				3ECB81FD1FD926FE006505E6 /* OPTLYVariableUsage.m */,
+				EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */,
+				EA2FAA831DC6F57100B1D81B /* OPTLYVariation.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1096,13 +1096,13 @@
 			children = (
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
-				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
+				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 				3E99CF7D1FE02C1C00B16B97 /* optimizely_6372300739_v4.json */,
+				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
+				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
 				EA2FAB971DC6FDFA00B1D81B /* test_data_10_experiments.json */,
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
 				EA2FAB991DC6FDFA00B1D81B /* test_data_50_experiments.json */,
-				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
-				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
