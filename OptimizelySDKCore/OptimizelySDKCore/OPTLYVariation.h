@@ -33,11 +33,11 @@
 @interface OPTLYVariation : OPTLYJSONModel
 
 /// The variation's ID.
-@property (nonatomic, strong) NSString *variationId;
+@property (nonatomic, strong, nonnull) NSString *variationId;
 /// The variation's Key.
-@property (nonatomic, strong) NSString *variationKey;
+@property (nonatomic, strong, nonnull) NSString *variationKey;
 /// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
 
 /// Gets the variable usage instance for a given variable id
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;

@@ -127,6 +127,19 @@
     }
 }
 
+#pragma mark Forced Variation Methods
+
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    else {
+        return [self.optimizely isFeatureEnabled:featureKey userId:userId attributes:attributes];
+    }
+}
+
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId
 {
