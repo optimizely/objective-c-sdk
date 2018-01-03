@@ -16,30 +16,26 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-/**
- * This class is a representation of an Optimizely variation.
- */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
-
-@protocol OPTLYVariation
+@protocol OPTLYFeatureVariable;
+@protocol OPTLYFeatureFlag
 @end
 
-@interface OPTLYVariation : OPTLYJSONModel
+@interface OPTLYFeatureFlag : OPTLYJSONModel
 
-/// The variation's ID.
-@property (nonatomic, strong, nonnull) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong, nonnull) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
+/// an NSString to hold feature flag ID
+@property (nonatomic, strong) NSString *flagId;
+/// an NSString to hold feature flag Key
+@property (nonatomic, strong) NSString *Key;
+/// an NSString to hold the ID of the rollout that is attached to this feature flag
+@property (nonatomic, strong) NSString *rolloutId;
+/// an NSArray of the IDs of the experiments the feature flag is attached to.
+@property (nonatomic, strong) NSArray<NSString *> *experimentIds;
+/// an NSArray of the feature variables that are part of this feature
+@property (nonatomic, strong) NSArray<OPTLYFeatureVariable> *variables;
 
 @end

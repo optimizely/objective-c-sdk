@@ -16,30 +16,20 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-/**
- * This class is a representation of an Optimizely variation.
- */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
-
-@protocol OPTLYVariation
+@protocol OPTLYExperiment;
+@protocol OPTLYRollout
 @end
 
-@interface OPTLYVariation : OPTLYJSONModel
+@interface OPTLYRollout : OPTLYJSONModel
 
-/// The variation's ID.
-@property (nonatomic, strong, nonnull) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong, nonnull) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
+/// an NSString to hold the rollout Id
+@property (nonatomic, strong) NSString *rolloutId;
+/// an NSArray to hold the experiments representing the different rules of the rollout
+@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
 
 @end

@@ -14,32 +14,19 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYDatafileKeys.h"
 
-/**
- * This class is a representation of an Optimizely variation.
- */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
+@implementation OPTLYFeatureFlag
 
-@protocol OPTLYVariation
-@end
-
-@interface OPTLYVariation : OPTLYJSONModel
-
-/// The variation's ID.
-@property (nonatomic, strong, nonnull) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong, nonnull) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
++ (OPTLYJSONKeyMapper*)keyMapper
+{
+    return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysFeatureFlagId             : @"flagId",
+                                                             OPTLYDatafileKeysFeatureFlagKey            : @"Key",
+                                                             OPTLYDatafileKeysFeatureFlagRolloutId      : @"rolloutId",
+                                                             OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
+                                                             OPTLYDatafileKeysFeatureFlagVariables      : @"variables"
+                                                             }];
+}
 
 @end

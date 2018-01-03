@@ -62,6 +62,7 @@ extern NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange;
 // Variations
 extern NSString * const OPTLYDatafileKeysVariationId;
 extern NSString * const OPTLYDatafileKeysVariationKey;
+extern NSString * const OPTLYDatafileKeysVariationVariableUsageInstances;
 // Conditions
 extern NSString * const OPTLYDatafileKeysConditionName;
 extern NSString * const OPTLYDatafileKeysConditionType;
@@ -73,6 +74,23 @@ extern NSString * const OPTLYDatafileKeysOrCondition;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceUserId;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceVariationId;
+// Feature Flag
+extern NSString * const OPTLYDatafileKeysFeatureFlagId;
+extern NSString * const OPTLYDatafileKeysFeatureFlagKey;
+extern NSString * const OPTLYDatafileKeysFeatureFlagRolloutId;
+extern NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds;
+extern NSString * const OPTLYDatafileKeysFeatureFlagVariables;
+// Feature Variable
+extern NSString * const OPTLYDatafileKeysFeatureVariableId;
+extern NSString * const OPTLYDatafileKeysFeatureVariableKey;
+extern NSString * const OPTLYDatafileKeysFeatureVariableType;
+extern NSString * const OPTLYDatafileKeysFeatureVariableDefaultValue;
+// Variable Usage
+extern NSString * const OPTLYDatafileKeysVariableUsageId;
+extern NSString * const OPTLYDatafileKeysVariableUsageValue;
+// Rollout
+extern NSString * const OPTLYDatafileKeysRolloutId;
+extern NSString * const OPTLYDatafileKeysRolloutExperiments;
 
 @interface OPTLYDatafileKeys : NSObject
 
