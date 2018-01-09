@@ -212,6 +212,11 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserInVariation;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

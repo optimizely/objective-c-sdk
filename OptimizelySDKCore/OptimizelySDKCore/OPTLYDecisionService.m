@@ -1,18 +1,18 @@
 /****************************************************************************
-* Copyright 2017-2018, Optimizely, Inc. and contributors                        *
-*                                                                          *
-* Licensed under the Apache License, Version 2.0 (the "License");          *
-* you may not use this file except in compliance with the License.         *
-* You may obtain a copy of the License at                                  *
-*                                                                          *
-*    http://www.apache.org/licenses/LICENSE-2.0                            *
-*                                                                          *
-* Unless required by applicable law or agreed to in writing, software      *
-* distributed under the License is distributed on an "AS IS" BASIS,        *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
-* See the License for the specific language governing permissions and      *
-* limitations under the License.                                           *
-***************************************************************************/
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ *                                                                          *
+ * Licensed under the Apache License, Version 2.0 (the "License");          *
+ * you may not use this file except in compliance with the License.         *
+ * You may obtain a copy of the License at                                  *
+ *                                                                          *
+ *    http://www.apache.org/licenses/LICENSE-2.0                            *
+ *                                                                          *
+ * Unless required by applicable law or agreed to in writing, software      *
+ * distributed under the License is distributed on an "AS IS" BASIS,        *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
+ * See the License for the specific language governing permissions and      *
+ * limitations under the License.                                           *
+ ***************************************************************************/
 
 #import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
@@ -27,9 +27,11 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
 #import "OPTLYFeatureFlag.h"
-#import "OPTLYMacros.h"
+#import "NSString+NSString_OPTLY.h"
+#import "NSArray+NSArray_OPTLY.h"
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
+#import "OPTLYGroup.h"
 
 NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
 
@@ -128,9 +130,15 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     
     //Evaluate in this order:
     
-    //1. Attempt to bucket user into experiment using feature flag.
+    //1. Attempt to check if the feature is in a mutex group.
+    OPTLYFeatureDecision *decision = [self getVariationForFeature:featureFlag inGroup:featureFlag.groupId userId:userId attributes:attributes];
+    if (decision) {
+        return decision;
+    }
+    
+    //2. Attempt to bucket user into experiment using feature flag.
     // Check if the feature flag is under an experiment and the the user is bucketed into one of these experiments
-    OPTLYFeatureDecision *decision = [self getVariationForFeatureExperiment:featureFlag userId:userId attributes:attributes];
+    decision = [self getVariationForFeatureExperiment:featureFlag userId:userId attributes:attributes];
     if (decision) {
         return decision;
     }
@@ -156,13 +164,64 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     NSString *bucketingId = userId;
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
-    if (!isEmptyString(attributes[OptimizelyBucketId])) {
+    if ( attributes[OptimizelyBucketId] && ![attributes[OptimizelyBucketId] isEmpty] ) {
         bucketingId = attributes[OptimizelyBucketId];
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
                                         bucketingId]
                              withLevel:OptimizelyLogLevelDebug];
     }
     return bucketingId;
+}
+
+- (OPTLYExperiment *)getExperimentInGroup:(OPTLYGroup *)group bucketingId:(NSString *)bucketingId {
+    OPTLYBucketer *bucketer = (OPTLYBucketer *)_bucketer;
+    OPTLYExperiment *experiment = nil;
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserNotBucketed, bucketingId, group.groupId];
+    if (bucketer)
+    experiment = [bucketer bucketToExperiment:group withBucketingId:bucketingId];
+    if (experiment)
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserBucketed, bucketingId, experiment.experimentKey, group.groupId];
+    
+    [self.config.logger logMessage:logMessage
+                         withLevel:OptimizelyLogLevelDebug];
+    return experiment;
+}
+
+- (OPTLYFeatureDecision *)getVariationForFeature:(OPTLYFeatureFlag *)featureFlag
+                                         inGroup:(NSString *)groupId
+                                          userId:(NSString *)userId
+                                      attributes:(NSDictionary *)attributes {
+    
+    OPTLYFeatureDecision *decision = nil;
+    NSString *logMessage = nil;
+    
+    if (!groupId || [groupId isEmpty]) {
+        logMessage = OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
+    }
+    
+    NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
+    OPTLYGroup *group = [self.config getGroupForGroupId:groupId];
+    if (group) {
+        OPTLYExperiment *experiment = [self getExperimentInGroup:group bucketingId:bucketing_id];
+        if (experiment && [featureFlag.experimentIds containsObject:experiment.experimentId]) {
+            OPTLYVariation *variation = [self getVariation:userId experiment:experiment attributes:attributes];
+            if (variation) {
+                logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserInVariation, userId, variation.variationKey, experiment.experimentKey];
+                decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
+                                                                  variation:variation
+                                                                     source:DecisionSourceExperiment];
+            }
+        }
+    } else {
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId, groupId];
+    }
+    
+    if (logMessage) {
+        [self.config.logger logMessage:logMessage
+                          withLevel:OptimizelyLogLevelDebug];
+        
+    }
+    return decision;
 }
 
 - (OPTLYFeatureDecision *)getVariationForFeatureExperiment:(OPTLYFeatureFlag *)featureFlag
@@ -172,7 +231,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     NSString *featureFlagKey = featureFlag.Key;
     NSArray *experimentIds = featureFlag.experimentIds;
     // Check if there are any experiment IDs inside feature flag
-    if (isEmptyArray(experimentIds)) {
+    if (!experimentIds || [experimentIds isEmpty]) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -208,7 +267,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
     NSString *featureFlagKey = featureFlag.Key;
     NSString *rolloutId = featureFlag.rolloutId;
-    if (isEmptyString(rolloutId)) {
+    if (!rolloutId || [rolloutId isEmpty]) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -219,7 +278,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
         return nil;
     }
     NSArray *rolloutRules = rollout.experiments;
-    if (isEmptyArray(rolloutRules)) {
+    if (!rolloutRules || [rolloutRules isEmpty]) {
         return nil;
     }
     // Evaluate all rollout rules except for last one

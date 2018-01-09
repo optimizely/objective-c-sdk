@@ -22,7 +22,6 @@
 #import "OPTLYDecisionEventTicket.h"
 #import "OPTLYDecisionService.h"
 #import "OPTLYBucketer.h"
-#import "OPTLYMacros.h"
 #import "OPTLYEventFeature.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYEventMetric.h"

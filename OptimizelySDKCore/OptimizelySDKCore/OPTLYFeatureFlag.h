@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -28,14 +28,16 @@
 @interface OPTLYFeatureFlag : OPTLYJSONModel
 
 /// an NSString to hold feature flag ID
-@property (nonatomic, strong) NSString *flagId;
+@property (nonatomic, strong, nonnull) NSString *flagId;
 /// an NSString to hold feature flag Key
-@property (nonatomic, strong) NSString *Key;
+@property (nonatomic, strong, nonnull) NSString *Key;
 /// an NSString to hold the ID of the rollout that is attached to this feature flag
-@property (nonatomic, strong) NSString *rolloutId;
+@property (nonatomic, strong, nonnull) NSString *rolloutId;
 /// an NSArray of the IDs of the experiments the feature flag is attached to.
-@property (nonatomic, strong) NSArray<NSString *> *experimentIds;
+@property (nonatomic, strong, nonnull) NSArray<NSString *> *experimentIds;
 /// an NSArray of the feature variables that are part of this feature
-@property (nonatomic, strong) NSArray<OPTLYFeatureVariable> *variables;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable> *variables;
+/// an NSString to hold the group Id the feature belongs to.
+@property (nonatomic, strong, nullable) NSString<Optional> *groupId;
 
 @end

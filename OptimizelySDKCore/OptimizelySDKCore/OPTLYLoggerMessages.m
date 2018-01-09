@@ -206,6 +206,11 @@ NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed = @"[DECISION S
 NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded = @"[DECISION SERVICE] User %@ was excluded due to traffic allocation. Checking 'Everyone Else' rule now.";
 NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse = @"[DECISION SERVICE] User %@ was excluded from the 'Everyone Else' rule for feature flag.";
 NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed = @"[DECISION SERVICE] User %@ is not bucketed into rollout for feature flag %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed = @"[DECISION SERVICE] User with bucketing ID %@ is in experiment %@ of group %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed = @"[DECISION SERVICE] User with bucketing ID %@ is not in any experiments of group %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserInVariation = @"[DECISION SERVICE] User %@ is in variation %@ of experiment %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceGroupIdNotFound = @"[PROJECT CONFIG] Group Id not found.";
+NSString *const OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@.";
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)
