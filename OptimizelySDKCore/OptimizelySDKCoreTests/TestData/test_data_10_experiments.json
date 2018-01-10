@@ -645,6 +645,14 @@
                      "variables": []
                      },
                      {
+                     "id": "166566",
+                     "key": "invalidGroupIdFeature",
+                     "groupId": "12341234",
+                     "rolloutId": "",
+                     "experimentIds": [],
+                     "variables": []
+                     },
+                     {
                      "id": "155566",
                      "key": "invalidExperimentIdFeature",
                      "groupId": "",

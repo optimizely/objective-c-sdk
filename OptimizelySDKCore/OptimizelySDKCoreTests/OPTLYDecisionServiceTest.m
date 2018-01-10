@@ -78,6 +78,7 @@ static NSString * const kFeatureFlagMutexGroupKey = @"booleanFeature";
 static NSString * const kFeatureFlagEmptyKey = @"emptyFeature";
 
 // feature flag with invalid experiment and rollout
+static NSString * const kFeatureFlagInvalidGroupKey = @"invalidGroupIdFeature";
 static NSString * const kFeatureFlagInvalidExperimentKey = @"invalidExperimentIdFeature";
 static NSString * const kFeatureFlagInvalidRolloutKey = @"invalidRolloutIdFeature";
 
@@ -486,6 +487,13 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYFeatureFlag *emptyFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagEmptyKey];
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:emptyFeatureFlag userId:kUserId attributes:nil];
     XCTAssertNil(decision, @"Get variation for feature with no experiment should return nil: %@", decision);
+}
+
+// should return nil when the feature flag's group id is invalid
+- (void)testGetVariationForFeatureWithInvalidGroupId {
+    OPTLYFeatureFlag *invalidFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagInvalidGroupKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:invalidFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with invalid group should return nil: %@", decision);
 }
 
 // should return nil when the feature flag's experiment id is invalid

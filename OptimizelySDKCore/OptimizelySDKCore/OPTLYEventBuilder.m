@@ -30,7 +30,6 @@
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
-#import "NSString+NSString_OPTLY.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 
