@@ -18,7 +18,7 @@
 
 @class OPTLYVariation;
 @class OPTLYExperiment;
-@class OPTLYProjectConfig;
+@class OPTLYProjectConfig, OPTLYGroup;
 
 NS_ASSUME_NONNULL_BEGIN
 extern NSString *const OPTLYBucketerMutexPolicy;
@@ -53,6 +53,14 @@ NS_ASSUME_NONNULL_END
  * @return The bucketer that has been created.
  */
 - (nullable instancetype)initWithConfig:(nonnull OPTLYProjectConfig *)config;
+
+/**
+ * Bucket experiment based on bucket value and traffic allocations.
+ * @param group representing OPTLYGroup from which experiment belongs to.
+ * @param bucketingId Id to be used for bucketing the user.
+ * @return experiment which represent OPTLYExperiment.
+ */
+- (nullable OPTLYExperiment *)bucketToExperiment:(nonnull OPTLYGroup *)group withBucketingId:(nonnull NSString *)bucketingId;
 
 /**
  * Hash the bucketing ID and map it to the range [0, 10000).

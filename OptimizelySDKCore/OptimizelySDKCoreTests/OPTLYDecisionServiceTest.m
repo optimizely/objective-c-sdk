@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -27,6 +27,9 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 #import "OPTLYTestHelper.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYRollout.h"
+#import "OPTLYFeatureDecision.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kUserId = @"6369992312";
@@ -52,9 +55,9 @@ static NSString * const kExperimentWithAudienceVariationKey = @"control";
 static NSString * const kExperimentNotRunningKey = @"testExperimentNotRunning";
 static NSString * const kExperimentNotRunningId = @"6367444440";
 
-
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeValue = @"firefox";
+static NSString * const kAttributeValueChrome = @"chrome";
 
 // experiment with no audience
 static NSString * const kExperimentNoAudienceKey = @"testExperiment4";
@@ -62,18 +65,41 @@ static NSString * const kExperimentNoAudienceId = @"6358043286";
 static NSString * const kExperimentNoAudienceVariationId = @"6373141147";
 static NSString * const kExperimentNoAudienceVariationKey = @"control";
 
+// experiment & feature flag with multiple variables
+static NSString * const kExperimentMultiVariateKey = @"testExperimentMultivariate";
+static NSString * const kExperimentMultiVariateVariationId = @"6373141147";
+static NSString * const kFeatureFlagMultiVariateKey = @"multiVariateFeature";
+
+// experiment & feature flag with mutex group
+static NSString * const kExperimentMutexGroupKey = @"mutex_exp1";
+static NSString * const kFeatureFlagMutexGroupKey = @"booleanFeature";
+
+// feature flag with no experiment and rollout
+static NSString * const kFeatureFlagEmptyKey = @"emptyFeature";
+
+// feature flag with invalid experiment and rollout
+static NSString * const kFeatureFlagInvalidGroupKey = @"invalidGroupIdFeature";
+static NSString * const kFeatureFlagInvalidExperimentKey = @"invalidExperimentIdFeature";
+static NSString * const kFeatureFlagInvalidRolloutKey = @"invalidRolloutIdFeature";
+
+// feature flag with rollout id having no rule
+static NSString * const kFeatureFlagEmptyRuleRolloutKey = @"stringSingleVariableFeature";
+
+// feature flag with rollout id having no bucketed rule
+static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVariableFeature";
 
 @interface OPTLYDecisionServiceTest : XCTestCase
 @property (nonatomic, strong) Optimizely *optimizely;
 @property (nonatomic, strong) OPTLYProjectConfig *config;
 @property (nonatomic, strong) OPTLYDecisionService *decisionService;
+@property (nonatomic, strong) OPTLYBucketer *bucketer;
 @property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) OPTLYUserProfile *userProfileWithFirefoxAudience;
 @end
 
 @interface OPTLYDecisionService()
 - (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
-              experimentKey:(NSString *)experimentKey
+              experiment:(OPTLYExperiment *)experiment
                      userId:(NSString *)userId
                  attributes:(NSDictionary *)attributes;
     
@@ -102,8 +128,8 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
         builder.userProfileService = profileService;
     }];
     self.config = self.optimizely.config;
-    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketer];
+    self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:self.bucketer];
     self.attributes = @{ kAttributeKey : kAttributeValue };
     
     self.userProfileWithFirefoxAudience = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
@@ -121,8 +147,9 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
 // experiment is running, user is in experiment
 - (void)testValidatePreconditions
 {
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
     BOOL isValid = [self.decisionService userPassesTargeting:self.config
-                                               experimentKey:kExperimentWithAudienceKey
+                                               experiment:experiment
                                                       userId:kUserId
                                                   attributes:self.attributes];
     NSAssert(isValid == true, @"Experiment running with user in experiment should pass validation.");
@@ -140,8 +167,9 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
 - (void)testValidatePreconditionsBadAttributes
 {
     NSDictionary *badAttributes = @{@"badAttributeKey":@"12345"};
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
     BOOL isValid = [self.decisionService userPassesTargeting:self.config
-                                               experimentKey:kExperimentWithAudienceKey
+                                               experiment:experiment
                                                       userId:kUserId
                                                   attributes:badAttributes];
     NSAssert(isValid == false, @"Experiment running with user in experiment, but with bad attributes should fail validation.");
@@ -218,8 +246,6 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     id decisionServiceMock = OCMPartialMock(self.decisionService);
     id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
     
-    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
-    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
 
     [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
@@ -451,4 +477,223 @@ static NSString * const kExperimentNoAudienceVariationKey = @"control";
     [decisionServiceMock stopMocking];
     [userProfileServiceMock stopMocking];
 }
+
+#pragma mark - GetVariationForFeatureExperiment
+
+// should return nil when the feature flag's experiment ids array is empty
+- (void)testGetVariationForFeatureWithNoExperimentId {
+    OPTLYFeatureFlag *emptyFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagEmptyKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:emptyFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with no experiment should return nil: %@", decision);
+}
+
+// should return nil when the feature flag's group id is invalid
+- (void)testGetVariationForFeatureWithInvalidGroupId {
+    OPTLYFeatureFlag *invalidFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagInvalidGroupKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:invalidFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with invalid group should return nil: %@", decision);
+}
+
+// should return nil when the feature flag's experiment id is invalid
+- (void)testGetVariationForFeatureWithInvalidExperimentId {
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagInvalidExperimentKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with invalid experiment should return nil: %@", decision);
+}
+
+// should return nil when the user is not bucketed into the feature flag's experiments
+- (void)testGetVariationForFeatureWithNonMutexGroupAndUserNotBucketed {
+    
+    OPTLYExperiment *multiVariateExp = [self.config getExperimentForKey:kExperimentMultiVariateKey];
+
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    OCMStub([decisionServiceMock getVariation:kUserId experiment:multiVariateExp attributes:nil]).andReturn(nil);
+    
+    OPTLYFeatureFlag *multiVariateFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagMultiVariateKey];
+    
+    OPTLYFeatureDecision *decision = [decisionServiceMock getVariationForFeature:multiVariateFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with no bucketed experiment should return nil: %@", decision);
+    
+    OCMVerify([decisionServiceMock getVariation:kUserId experiment:multiVariateExp attributes:nil]);
+    [decisionServiceMock stopMocking];
+}
+
+// should return nil when the user is not bucketed into any of the mutex experiments
+- (void)testGetVariationForFeatureWithMutexGroupAndUserNotBucketed {
+    OPTLYExperiment *mutexExperiment = [self.config getExperimentForKey:kExperimentMutexGroupKey];
+    
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    OCMStub([decisionServiceMock getVariation:[OCMArg any] experiment:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagMutexGroupKey];
+    OPTLYFeatureDecision *decision = [decisionServiceMock getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:@{}];
+    
+    XCTAssertNil(decision, @"Get variation for feature with no bucketed mutex experiment should return nil: %@", decision);
+    
+    OCMVerify([decisionServiceMock getVariation:kUserId experiment:mutexExperiment attributes:@{}]);
+    [decisionServiceMock stopMocking];
+}
+
+// should return variation when the user is bucketed into a variation for the experiment on the feature flag
+- (void)testGetVariationForFeatureWithNonMutexGroupAndUserIsBucketed {
+    
+    OPTLYExperiment *multiVariateExp = [self.config getExperimentForKey:kExperimentMultiVariateKey];
+    OPTLYVariation *expectedVariation = [multiVariateExp getVariationForVariationId:kExperimentMultiVariateVariationId];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:multiVariateExp
+                                                                                    variation:expectedVariation
+                                                                                         source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    OCMStub([decisionServiceMock getVariation:kUserId experiment:multiVariateExp attributes:@{}]).andReturn(expectedVariation);
+    
+    OPTLYFeatureFlag *multiVariateFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagMultiVariateKey];
+    OPTLYFeatureDecision *decision = [decisionServiceMock getVariationForFeature:multiVariateFeatureFlag userId:kUserId attributes:@{}];
+    
+    XCTAssertNotNil(decision, @"Get variation for feature with bucketed experiment should return variation: %@", decision);
+    XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
+    
+    OCMVerify([decisionServiceMock getVariation:kUserId experiment:multiVariateExp attributes:@{}]);
+    [decisionServiceMock stopMocking];
+}
+
+// should return variation when the user is bucketed into one of the experiments on the feature flag
+- (void)testGetVariationForFeatureWithMutexGroupAndUserIsBucketed {
+    OPTLYExperiment *mutexExperiment = [self.config getExperimentForKey:kExperimentMutexGroupKey];
+    OPTLYVariation *expectedVariation = mutexExperiment.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:mutexExperiment
+                                                                                    variation:expectedVariation
+                                                                                         source:DecisionSourceExperiment];
+    id decisionServiceMock = OCMPartialMock(self.decisionService);
+    OCMStub([decisionServiceMock getVariation:kUserId experiment:mutexExperiment attributes:@{}]).andReturn(expectedVariation);
+
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagMutexGroupKey];
+    OPTLYFeatureDecision *decision = [decisionServiceMock getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:@{}];
+    
+    XCTAssertNotNil(decision, @"Get variation for feature with one of the bucketed experiment should return variation: %@", decision);
+    XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
+    
+    OCMVerify([decisionServiceMock getVariation:kUserId experiment:mutexExperiment attributes:@{}]);
+    [decisionServiceMock stopMocking];
+}
+
+#pragma mark - GetVariationForFeatureRollout
+
+// should return nil when rollout doesn't exist for the feature.
+- (void)testGetVariationForFeatureWithInvalidRolloutId {
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagInvalidRolloutKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with invalid rollout should return nil: %@", decision);
+}
+
+// should return nil when rollout doesn't contain any rule.
+- (void)testGetVariationForFeatureWithNoRule {
+    OPTLYFeatureFlag *stringFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagEmptyRuleRolloutKey];
+    NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
+    
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:stringFeatureFlag userId:kUserId attributes:userAttributes];
+    
+    XCTAssertNil(decision, @"Get variation for feature with rollout having no rule should return nil: %@", decision);
+}
+
+// should return nil when the user is not bucketed into targeting rule as well as "Everyone Else" rule.
+- (void)testGetVariationForFeatureWithNoBucketing {
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    NSString *rolloutId = booleanFeatureFlag.rolloutId;
+    OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
+    OPTLYExperiment *experiment = rollout.experiments[0];
+    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
+    NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:[OCMArg any] withBucketingId:[OCMArg any]]).andReturn(nil);
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
+    
+    OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
+    
+    XCTAssertNil(decision, @"Get variation for feature with rollout having no bucketing rule should return nil: %@", decision);
+    
+    OCMVerify([bucketerMock bucketExperiment:experiment withBucketingId:kUserId]);
+    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    [bucketerMock stopMocking];
+}
+
+// should return variation when the user is bucketed into targeting rule
+- (void)testGetVariationForFeatureWithTargetingRuleBucketing {
+    
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    NSString *rolloutId = booleanFeatureFlag.rolloutId;
+    OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
+    OPTLYExperiment *experiment = rollout.experiments[0];
+    OPTLYVariation *expectedVariation = experiment.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
+                                                                                    variation:expectedVariation
+                                                                                         source:DecisionSourceRollout];
+    NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:[OCMArg any] withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
+    
+    OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
+
+    XCTAssertNotNil(decision, @"Get variation for feature with rollout having targeting rule should return variation: %@", decision);
+    XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
+    
+    OCMVerify([bucketerMock bucketExperiment:experiment withBucketingId:kUserId]);
+    [bucketerMock stopMocking];
+}
+
+// should return variation when the user is bucketed into "Everyone Else" rule instead of targeting rule
+- (void)testGetVariationForFeatureWithEveryoneElseRuleBucketing {
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    NSString *rolloutId = booleanFeatureFlag.rolloutId;
+    OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
+    OPTLYExperiment *experiment = rollout.experiments[0];
+    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *expectedVariation = everyoneElseRule.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:everyoneElseRule
+                                                                                    variation:expectedVariation
+                                                                                         source:DecisionSourceRollout];
+    NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:experiment withBucketingId:[OCMArg any]]).andReturn(nil);
+    OCMStub([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
+
+    OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
+    
+    XCTAssertNotNil(decision, @"Get variation for feature with rollout having everyone else rule should return variation: %@", decision);
+    XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
+    
+    OCMVerify([bucketerMock bucketExperiment:experiment withBucketingId:kUserId]);
+    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    [bucketerMock stopMocking];
+}
+
+// should return variation when the user is bucketed into "Everyone Else" after attempting to bucket into all targeting rules
+- (void)testGetVariationForFeatureWithEveryoneElseRuleBucketingButNoTargetingRule {
+    OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    NSString *rolloutId = booleanFeatureFlag.rolloutId;
+    OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
+    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *expectedVariation = everyoneElseRule.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:everyoneElseRule
+                                                                                    variation:expectedVariation
+                                                                                         source:DecisionSourceRollout];
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
+    
+    // Provide null attributes so that user does not qualify for audience.
+    OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:nil];
+    
+    XCTAssertNotNil(decision, @"Get variation for feature with rollout having everyone else rule after failing all targeting rules should return variation: %@", decision);
+    XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
+    
+    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    [bucketerMock stopMocking];
+}
+
 @end

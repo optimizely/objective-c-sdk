@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,4 +14,23 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#define StringOrEmpty(A)  ({ __typeof__(A) __a = (A); __a ? __a : @""; })
+#import "OPTLYFeatureDecision.h"
+#import "OPTLYExperiment.h"
+#import "OPTLYVariation.h"
+
+NSString * const DecisionSourceExperiment = @"experiment";
+NSString * const DecisionSourceRollout = @"rollout";
+
+@implementation OPTLYFeatureDecision
+
+- (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source {
+    self = [super init];
+    if (self) {
+        _experiment = experiment;
+        _variation = variation;
+        _source = source;
+    }
+    return self;
+}
+
+@end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -201,6 +201,22 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseErro
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID;
+// FF = Feature Flag
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserNotBucketed;
+// FF = Feature Rollout
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRBucketing;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserInVariation;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

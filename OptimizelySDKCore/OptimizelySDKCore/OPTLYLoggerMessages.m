@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -197,7 +197,20 @@ NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseError = @"[
 NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError = @"[DECISION SERVICE] User profile parse error: %@. Unable to get user bucket information for: %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity = @"[DECISION SERVICE] Replacing user %@ experiment bucket map entity %@ with %@.";
 NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID = @"[DECISION SERVICE] Setting the bucketing ID to %@.";
-
+NSString *const OPTLYLoggerMessagesDecisionServiceFFNotUsed = @"[DECISION SERVICE] Feature flag %@ is not used in any experiments.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFFUserBucketed = @"[DECISION SERVICE] User %@ is bucketed into experiment %@ of feature %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFFUserNotBucketed = @"[DECISION SERVICE] User %@ is not bucketed into any of the experiments using the feature %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRNotUsed = @"[DECISION SERVICE] Feature flag %@ is not used in a rollout.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRBucketing = @"[DECISION SERVICE] Attempting to bucket user %@ into rollout rule %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed = @"[DECISION SERVICE] User %@ is bucketed into rollout for feature flag %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded = @"[DECISION SERVICE] User %@ was excluded due to traffic allocation. Checking 'Everyone Else' rule now.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse = @"[DECISION SERVICE] User %@ was excluded from the 'Everyone Else' rule for feature flag.";
+NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed = @"[DECISION SERVICE] User %@ is not bucketed into rollout for feature flag %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed = @"[DECISION SERVICE] User with bucketing ID %@ is in experiment %@ of group %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed = @"[DECISION SERVICE] User with bucketing ID %@ is not in any experiments of group %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceUserInVariation = @"[DECISION SERVICE] User %@ is in variation %@ of experiment %@.";
+NSString *const OPTLYLoggerMessagesDecisionServiceGroupIdNotFound = @"[PROJECT CONFIG] Group Id not found.";
+NSString *const OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId = @"[PROJECT CONFIG] Group not found for group ID: %@.";
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)
