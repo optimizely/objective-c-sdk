@@ -246,8 +246,6 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     id decisionServiceMock = OCMPartialMock(self.decisionService);
     id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
     
-    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
-    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
 
     [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];

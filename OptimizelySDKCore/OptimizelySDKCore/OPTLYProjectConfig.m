@@ -504,7 +504,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
 - (NSDictionary<NSString *, OPTLYFeatureFlag *> *)generateFeatureFlagKeyToFeatureFlagMap {
     NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
     for (OPTLYFeatureFlag *featureFlag in self.featureFlags) {
-        map[featureFlag.Key] = featureFlag;
+        map[featureFlag.key] = featureFlag;
     }
     return [NSDictionary dictionaryWithDictionary:map];
 }

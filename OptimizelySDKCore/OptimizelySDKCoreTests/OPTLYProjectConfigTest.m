@@ -127,7 +127,6 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlockInvalidModulesFails {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     
-    id<OPTLYUserProfileService> userProfileService = [NSObject new];
     id<OPTLYLogger> logger = [NSObject new];
     id<OPTLYErrorHandler> errorHandler = [NSObject new];
     
@@ -391,8 +390,8 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     OPTLYFeatureFlag *featureFlag = [self.projectConfig getFeatureFlagForKey:featureFlagKey];
     XCTAssertNotNil(featureFlag, @"Should find feature flag for key: %@", featureFlagKey);
     XCTAssert([featureFlag isKindOfClass:[OPTLYFeatureFlag class]], @"Expected to be an OPTLYFeatureFlag: %@", featureFlag);
-    XCTAssertEqualObjects(featureFlag.Key, featureFlagKey,
-                          @"Expecting feature flag's key %@ to be: %@", featureFlag.Key, featureFlagKey);
+    XCTAssertEqualObjects(featureFlag.key, featureFlagKey,
+                          @"Expecting feature flag's key %@ to be: %@", featureFlag.key, featureFlagKey);
 }
 
 - (void)testGetFeatureFlagForNonexistentKey

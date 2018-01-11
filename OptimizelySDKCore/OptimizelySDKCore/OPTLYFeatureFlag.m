@@ -22,7 +22,7 @@
 + (OPTLYJSONKeyMapper*)keyMapper
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysFeatureFlagId             : @"flagId",
-                                                             OPTLYDatafileKeysFeatureFlagKey            : @"Key",
+                                                             OPTLYDatafileKeysFeatureFlagKey            : @"key",
                                                              OPTLYDatafileKeysFeatureFlagRolloutId      : @"rolloutId",
                                                              OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
                                                              OPTLYDatafileKeysFeatureFlagVariables      : @"variables"

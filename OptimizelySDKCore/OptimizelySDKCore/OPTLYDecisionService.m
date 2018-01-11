@@ -129,7 +129,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     //Evaluate in this order:
     
     //1. Attempt to check if the feature is in a mutex group.
-    OPTLYFeatureDecision *decision = [self getVariationForFeature:featureFlag inGroup:featureFlag.groupId userId:userId attributes:attributes];
+    OPTLYFeatureDecision *decision = [self getVariationForFeatureGroup:featureFlag groupId:featureFlag.groupId userId:userId attributes:attributes];
     if (decision) {
         return decision;
     }
@@ -147,7 +147,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     if (decision) {
         return decision;
     }
-    [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed, userId, featureFlag.Key]
+    [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed, userId, featureFlag.key]
                          withLevel:OptimizelyLogLevelDebug];
     
     return nil;
@@ -185,10 +185,10 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     return experiment;
 }
 
-- (OPTLYFeatureDecision *)getVariationForFeature:(OPTLYFeatureFlag *)featureFlag
-                                         inGroup:(NSString *)groupId
-                                          userId:(NSString *)userId
-                                      attributes:(NSDictionary *)attributes {
+- (OPTLYFeatureDecision *)getVariationForFeatureGroup:(OPTLYFeatureFlag *)featureFlag
+                                              groupId:(NSString *)groupId
+                                               userId:(NSString *)userId
+                                           attributes:(NSDictionary *)attributes {
     
     OPTLYFeatureDecision *decision = nil;
     NSString *logMessage = nil;
@@ -226,7 +226,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
                                               userId:(NSString *)userId
                                           attributes:(NSDictionary *)attributes {
     
-    NSString *featureFlagKey = featureFlag.Key;
+    NSString *featureFlagKey = featureFlag.key;
     NSArray *experimentIds = featureFlag.experimentIds;
     // Check if there are any experiment IDs inside feature flag
     if ([OPTLYDecisionService isEmptyArray:experimentIds]) {
@@ -263,7 +263,7 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
                                        attributes:(NSDictionary *)attributes {
     
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
-    NSString *featureFlagKey = featureFlag.Key;
+    NSString *featureFlagKey = featureFlag.key;
     NSString *rolloutId = featureFlag.rolloutId;
     if ([OPTLYDecisionService isEmptyString:rolloutId]) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]

@@ -30,7 +30,7 @@
 /// an NSString to hold feature flag ID
 @property (nonatomic, strong, nonnull) NSString *flagId;
 /// an NSString to hold feature flag Key
-@property (nonatomic, strong, nonnull) NSString *Key;
+@property (nonatomic, strong, nonnull) NSString *key;
 /// an NSString to hold the ID of the rollout that is attached to this feature flag
 @property (nonatomic, strong, nonnull) NSString *rolloutId;
 /// an NSArray of the IDs of the experiments the feature flag is attached to.
