@@ -28,7 +28,7 @@
                                                              OPTLYDatafileKeysFeatureFlagRolloutId      : @"rolloutId",
                                                              OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
                                                              OPTLYDatafileKeysFeatureFlagVariables      : @"variables",
-                                                             OPTLYDatafileKeysFeatureFlagGroupId      : @"groupId"
+                                                             OPTLYDatafileKeysFeatureFlagGroupId        : @"groupId"
                                                              }];
 }
 
