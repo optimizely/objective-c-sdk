@@ -76,6 +76,7 @@ NSString * const OPTLYDatafileKeysFeatureFlagKey            = @"key";
 NSString * const OPTLYDatafileKeysFeatureFlagRolloutId      = @"rolloutId";
 NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds  = @"experimentIds";
 NSString * const OPTLYDatafileKeysFeatureFlagVariables      = @"variables";
+NSString * const OPTLYDatafileKeysFeatureFlagGroupId        = @"groupId";
 // Feature Variable
 NSString * const OPTLYDatafileKeysFeatureVariableId             = @"id";
 NSString * const OPTLYDatafileKeysFeatureVariableKey            = @"key";

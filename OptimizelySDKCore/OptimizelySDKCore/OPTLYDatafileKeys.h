@@ -80,6 +80,7 @@ extern NSString * const OPTLYDatafileKeysFeatureFlagKey;
 extern NSString * const OPTLYDatafileKeysFeatureFlagRolloutId;
 extern NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds;
 extern NSString * const OPTLYDatafileKeysFeatureFlagVariables;
+extern NSString * const OPTLYDatafileKeysFeatureFlagGroupId;
 // Feature Variable
 extern NSString * const OPTLYDatafileKeysFeatureVariableId;
 extern NSString * const OPTLYDatafileKeysFeatureVariableKey;

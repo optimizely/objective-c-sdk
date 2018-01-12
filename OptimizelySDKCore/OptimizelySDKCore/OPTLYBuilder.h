@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig;
+@class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig, OPTLYDecisionService;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 /**
@@ -36,6 +36,8 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 @property (nonatomic, readonly, strong, nullable) OPTLYProjectConfig *config;
 /// The bucketer created by the builder.
 @property (nonatomic, readonly, strong, nullable) OPTLYBucketer *bucketer;
+/// The decision service created by the builder.
+@property (nonatomic, readonly, strong, nullable) OPTLYDecisionService *decisionService;
 /// The event builder created by the builder.
 @property (nonatomic, readonly, strong, nullable) OPTLYEventBuilderDefault *eventBuilder;
 /// The error handler is by default set to one that is created by Optimizely. This default error handler can be overridden by any object that conforms to the OPTLYErrorHandler protocol.

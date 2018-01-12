@@ -26,6 +26,12 @@ extern NSString *const OPTLYLoggerMessagesVariationUserAssigned;
 // info
 extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
+// error
+extern NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
+extern NSString *const OPTLYLoggerMessagesFeatureEnabledNotExperimented;
+extern NSString *const OPTLYLoggerMessagesFeatureEnabled;
 
 // ---- Bucketer ----
 // debug
