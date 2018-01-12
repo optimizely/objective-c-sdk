@@ -31,7 +31,6 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariation.h"
-#import "OPTLYMacros.h"
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYDecisionService.h"
@@ -198,17 +197,17 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 #pragma mark - Feature Flag Methods
 
 - (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
-    if (isEmptyString(userId)) {
+    if ([Optimizely isEmptyString:userId]) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid withLevel:OptimizelyLogLevelError];
         return false;
     }
-    if (isEmptyString(featureKey)) {
+    if ([Optimizely isEmptyString:featureKey]) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
         return false;
     }
     
     OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:featureKey];
-    if (isEmptyString(featureFlag.Key)) {
+    if ([Optimizely isEmptyString:featureFlag.key]) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
         return false;
     }
@@ -405,7 +404,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                             variationId:variation.variationId
                                                                              attributes:attributes];
     
-    if (isEmptyDictionary(impressionEventParams)) {
+    if ([Optimizely isEmptyDictionary:impressionEventParams]) {
         return nil;
     }
     
@@ -427,4 +426,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return variation;
 }
 
++ (BOOL)isEmptyString:(NSObject*)string {
+    return (!string
+            || ![string isKindOfClass:[NSString class]]
+            || [(NSString *)string isEqualToString:@""]);
+}
+
++ (BOOL)isEmptyDictionary:(NSObject*)dict {
+    return (!dict
+            || ![dict isKindOfClass:[NSDictionary class]]
+            || (((NSDictionary *)dict).count == 0));
+}
 @end

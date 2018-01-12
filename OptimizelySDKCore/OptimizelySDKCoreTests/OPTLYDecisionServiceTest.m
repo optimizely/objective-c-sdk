@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -78,6 +78,7 @@ static NSString * const kFeatureFlagMutexGroupKey = @"booleanFeature";
 static NSString * const kFeatureFlagEmptyKey = @"emptyFeature";
 
 // feature flag with invalid experiment and rollout
+static NSString * const kFeatureFlagInvalidGroupKey = @"invalidGroupIdFeature";
 static NSString * const kFeatureFlagInvalidExperimentKey = @"invalidExperimentIdFeature";
 static NSString * const kFeatureFlagInvalidRolloutKey = @"invalidRolloutIdFeature";
 
@@ -245,8 +246,6 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     id decisionServiceMock = OCMPartialMock(self.decisionService);
     id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
     
-    NSDictionary *variationDict = @{ @"id" : kExperimentWithAudienceVariationId, @"key" : kExperimentWithAudienceVariationKey };
-    OPTLYVariation *variation = [[OPTLYVariation alloc] initWithDictionary:variationDict error:nil];
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
 
     [[[userProfileServiceMock stub] andReturn:self.userProfileWithFirefoxAudience] lookup:[OCMArg isNotNil]];
@@ -486,6 +485,13 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYFeatureFlag *emptyFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagEmptyKey];
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:emptyFeatureFlag userId:kUserId attributes:nil];
     XCTAssertNil(decision, @"Get variation for feature with no experiment should return nil: %@", decision);
+}
+
+// should return nil when the feature flag's group id is invalid
+- (void)testGetVariationForFeatureWithInvalidGroupId {
+    OPTLYFeatureFlag *invalidFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagInvalidGroupKey];
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:invalidFeatureFlag userId:kUserId attributes:nil];
+    XCTAssertNil(decision, @"Get variation for feature with invalid group should return nil: %@", decision);
 }
 
 // should return nil when the feature flag's experiment id is invalid

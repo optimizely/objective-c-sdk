@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -504,7 +504,7 @@ NSString * const kExpectedDatafileVersion  = @"3";
 - (NSDictionary<NSString *, OPTLYFeatureFlag *> *)generateFeatureFlagKeyToFeatureFlagMap {
     NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
     for (OPTLYFeatureFlag *featureFlag in self.featureFlags) {
-        map[featureFlag.Key] = featureFlag;
+        map[featureFlag.key] = featureFlag;
     }
     return [NSDictionary dictionaryWithDictionary:map];
 }

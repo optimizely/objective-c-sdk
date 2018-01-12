@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -80,6 +80,7 @@ extern NSString * const OPTLYDatafileKeysFeatureFlagKey;
 extern NSString * const OPTLYDatafileKeysFeatureFlagRolloutId;
 extern NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds;
 extern NSString * const OPTLYDatafileKeysFeatureFlagVariables;
+extern NSString * const OPTLYDatafileKeysFeatureFlagGroupId;
 // Feature Variable
 extern NSString * const OPTLYDatafileKeysFeatureVariableId;
 extern NSString * const OPTLYDatafileKeysFeatureVariableKey;

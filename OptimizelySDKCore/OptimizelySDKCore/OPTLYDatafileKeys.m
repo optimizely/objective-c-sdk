@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -76,6 +76,7 @@ NSString * const OPTLYDatafileKeysFeatureFlagKey            = @"key";
 NSString * const OPTLYDatafileKeysFeatureFlagRolloutId      = @"rolloutId";
 NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds  = @"experimentIds";
 NSString * const OPTLYDatafileKeysFeatureFlagVariables      = @"variables";
+NSString * const OPTLYDatafileKeysFeatureFlagGroupId        = @"groupId";
 // Feature Variable
 NSString * const OPTLYDatafileKeysFeatureVariableId             = @"id";
 NSString * const OPTLYDatafileKeysFeatureVariableKey            = @"key";
