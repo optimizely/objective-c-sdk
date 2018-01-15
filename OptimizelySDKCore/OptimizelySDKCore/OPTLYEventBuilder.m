@@ -30,7 +30,6 @@
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
-#import "OPTLYMacros.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
 
@@ -254,15 +253,15 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];
     visitor[OPTLYEventParameterKeysSnapshots] =  [NSMutableArray new];
-    visitor[OPTLYEventParameterKeysVisitorId] = StringOrEmpty(userId);
+    visitor[OPTLYEventParameterKeysVisitorId] = [OPTLYEventBuilderDefault stringOrEmpty:userId];
     visitor[OPTLYEventParameterKeysAttributes] = [self createUserFeatures:config attributes:attributes];
     
     params[OPTLYEventParameterKeysVisitors] = @[visitor];
-    params[OPTLYEventParameterKeysProjectId] = StringOrEmpty(config.projectId);
-    params[OPTLYEventParameterKeysAccountId] = StringOrEmpty(config.accountId);
-    params[OPTLYEventParameterKeysClientEngine] = StringOrEmpty([config clientEngine]);
-    params[OPTLYEventParameterKeysClientVersion] = StringOrEmpty([config clientVersion]);
-    params[OPTLYEventParameterKeysRevision] = StringOrEmpty(config.revision);
+    params[OPTLYEventParameterKeysProjectId] = [OPTLYEventBuilderDefault stringOrEmpty:config.projectId ];
+    params[OPTLYEventParameterKeysAccountId] = [OPTLYEventBuilderDefault stringOrEmpty:config.accountId];
+    params[OPTLYEventParameterKeysClientEngine] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientEngine]];
+    params[OPTLYEventParameterKeysClientVersion] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientVersion]];
+    params[OPTLYEventParameterKeysRevision] = [OPTLYEventBuilderDefault stringOrEmpty:config.revision];
     params[OPTLYEventParameterKeysAnonymizeIP] = config.anonymizeIP ? @YES : @NO;
     
     return [params copy];
@@ -273,14 +272,14 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     NSMutableDictionary *params = [NSMutableDictionary new];
     
     NSMutableDictionary *decision = [NSMutableDictionary new];
-    decision[OPTLYEventParameterKeysDecisionCampaignId]                 =StringOrEmpty(experiment.layerId);
+    decision[OPTLYEventParameterKeysDecisionCampaignId]                 =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
     decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
     decision[OPTLYEventParameterKeysDecisionVariationId]        =variationId;
     decision[OPTLYEventParameterKeysDecisionIsLayerHoldback]    = @NO;
     NSArray *decisions = @[decision];
     
     NSMutableDictionary *event = [NSMutableDictionary new];
-    event[OPTLYEventParameterKeysEntityId]      =StringOrEmpty(experiment.layerId);
+    event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
     event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
     event[OPTLYEventParameterKeysKey]           =OptimizelyActivateEventKey;
     event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
@@ -343,14 +342,14 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             NSMutableDictionary *params = [NSMutableDictionary new];
             
             NSMutableDictionary *decision = [NSMutableDictionary new];
-            decision[OPTLYEventParameterKeysDecisionCampaignId]                 =StringOrEmpty(experiment.layerId);
+            decision[OPTLYEventParameterKeysDecisionCampaignId]         =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
             decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
             decision[OPTLYEventParameterKeysDecisionVariationId]        =bucketedVariation.variationId;
             decision[OPTLYEventParameterKeysDecisionIsLayerHoldback]    = @NO;
             NSArray *decisions = @[decision];
             
             NSMutableDictionary *event = [NSMutableDictionary new];
-            event[OPTLYEventParameterKeysEntityId]      =StringOrEmpty(eventEntity.eventId);
+            event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
             event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
             event[OPTLYEventParameterKeysKey]           =eventKey;
             event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
@@ -455,4 +454,10 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
     return timestamp;
 }
+
++ (NSString *)stringOrEmpty:(NSString *)str {
+    NSString *string = str != nil ? str : @"";
+    return string;
+}
+
 @end

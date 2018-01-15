@@ -29,7 +29,7 @@
 @interface OPTLYClient : NSObject <Optimizely>
 
 /// Reference to the Optimizely Core instance
-@property (nonatomic, strong, readonly, nullable) Optimizely *optimizely;
+@property (nonatomic, strong, readonly, nullable) Optimizely<Optimizely> *optimizely;
 /// The Optimizely Core's logger, or if no logger a default logger
 @property (nonatomic, strong, readonly, nonnull) id<OPTLYLogger> logger;
 /// Optimizely X Mobile Default Attributes

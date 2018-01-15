@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -18,7 +18,6 @@
 #import "OPTLYDatafileKeys.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYExperiment.h"
-#import "OPTLYMacros.h"
 #import "OPTLYFeatureVariable.h"
 
 @interface OPTLYFeatureFlag()
@@ -32,15 +31,16 @@
 + (OPTLYJSONKeyMapper*)keyMapper
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysFeatureFlagId             : @"flagId",
-                                                             OPTLYDatafileKeysFeatureFlagKey            : @"Key",
+                                                             OPTLYDatafileKeysFeatureFlagKey            : @"key",
                                                              OPTLYDatafileKeysFeatureFlagRolloutId      : @"rolloutId",
                                                              OPTLYDatafileKeysFeatureFlagExperimentIds  : @"experimentIds",
-                                                             OPTLYDatafileKeysFeatureFlagVariables      : @"variables"
+                                                             OPTLYDatafileKeysFeatureFlagVariables      : @"variables",
+                                                             OPTLYDatafileKeysFeatureFlagGroupId        : @"groupId"
                                                              }];
 }
 
 - (BOOL)isValid:(OPTLYProjectConfig *)config {
-    if (isEmptyArray(self.experimentIds)) {
+    if ([OPTLYFeatureFlag isEmptyArray:self.experimentIds]) {
         return true;
     }
     if (self.experimentIds.count == 1) {
@@ -78,6 +78,12 @@
         map[variable.key] = variable;
     }
     return [NSDictionary dictionaryWithDictionary:map];
+}
+
++ (BOOL)isEmptyArray:(NSObject*)array {
+    return (!array
+            || ![array isKindOfClass:[NSArray class]]
+            || (((NSArray *)array).count == 0));
 }
 
 @end

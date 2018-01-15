@@ -65,11 +65,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
                                   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
-- (NSString *)getFeatureVariableValueForType:(NSString *)variableType
-                                  featureKey:(nullable NSString *)featureKey
-                                 variableKey:(nullable NSString *)variableKey
-                                      userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
 @interface OptimizelyTest : XCTestCase
@@ -166,6 +161,47 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 # pragma mark - Integration Tests
 
+- (void)testOptimizelyActivateWithInvalidExperiment {
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    NSString *invalidExperimentKey = @"invalid";
+    OPTLYVariation *expectedVariation = [self.optimizely variation:kExperimentKey userId:kUserId attributes:self.attributes];
+    
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OCMStub([optimizelyMock variation:invalidExperimentKey userId:kUserId attributes:self.attributes]).andReturn(expectedVariation);
+    
+    OPTLYVariation *variation = [optimizelyMock activate:invalidExperimentKey userId:kUserId attributes:self.attributes callback:^(NSError *error) {
+        XCTAssertNotNil(error);
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, kUserId, invalidExperimentKey];
+        XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], logMessage);
+        [expectation fulfill];
+    }];
+    
+    XCTAssertNil(variation, @"activate an invalid experiment should return nil: %@", variation);
+    
+    OCMVerify([optimizelyMock variation:invalidExperimentKey userId:kUserId attributes:self.attributes]);
+    [optimizelyMock stopMocking];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testOptimizelyActivateWithNonTargetingAudience {
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizely activate:kExperimentKey
+                                                   userId:kUserId
+                                               attributes:nil callback:^(NSError *error) {
+                                                   XCTAssertNotNil(error);
+                                                   NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, kUserId, kExperimentKey];
+                                                   XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], logMessage);
+                                                   [expectation fulfill];
+                                               }];
+    XCTAssertNil(variation);
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 - (void)testOptimizelyPostsActivateExperimentNotification {
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
@@ -175,22 +211,53 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                                                            queue:nil
                                                                                       usingBlock:^(NSNotification * _Nonnull note) {
                                                                                           XCTAssertNotNil(note);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKey]);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting]);
                                                                                           XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], self.attributes);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely variation:kExperimentKey userId:kUserId attributes:self.attributes]);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], nil);
+                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely variation:kExperimentKeyForWhitelisting userId:kUserId attributes:self.attributes]);
                                                                                           [expectation fulfill];
                                                                                       }];
     
-    OPTLYVariation *variation = [self.optimizely activate:kExperimentKey
-                                                   userId:kUserId
-                                               attributes:self.attributes];
+    OPTLYVariation *variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                   userId:kUserId];
     XCTAssertNotNil(variation);
     
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
     
     [self waitForExpectationsWithTimeout:2
                                  handler:nil];
+}
+
+- (void)testOptimizelyTrackWithInvalidEvent {
+    
+    NSString *invalidEventKey = @"invalid";
+    
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }];
+    [optimizely track:invalidEventKey userId:kUserId attributes:self.attributes];
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, invalidEventKey, kUserId];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testOptimizelyTrackWithEventOfNoExperiment {
+    NSString *eventWithNoExerimentKey = @"testEventWithoutExperiments";
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }];
+    [optimizely track:eventWithNoExerimentKey userId:kUserId attributes:self.attributes];
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventWithNoExerimentKey, kUserId];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
 }
 
 - (void)testOptimizelyPostsEventTrackedNotification {
