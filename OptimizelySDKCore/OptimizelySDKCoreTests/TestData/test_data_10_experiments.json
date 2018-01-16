@@ -333,7 +333,47 @@
       "id": "6383811281"
     },
     {
+      "key": "testExperimentDoubleFeature",
+      "status": "Running",
+      "layerId": "1234",
+      "audienceIds": [],
       "id": "6383811555",
+      "forcedVariations": {},
+      "trafficAllocation": [
+        {
+          "entityId": "122239",
+          "endOfRange": 5000
+        },
+        {
+          "entityId": "122240",
+          "endOfRange": 10000
+        }
+      ],
+      "variations": [
+        {
+          "id": "122239",
+          "key": "control",
+          "variables": [
+            {
+              "id": "155551",
+              "value": "42.42"
+            }
+          ]
+        },
+        {
+          "id": "122240",
+          "key": "variation",
+          "variables": [
+            {
+              "id": "155551",
+              "value": "13.37"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6383811666",
       "status": "Running",
       "layerId": "1234",
       "key": "whiteListExperiment",
@@ -742,6 +782,22 @@
           "key": "restOfName",
           "type": "string",
           "defaultValue": "arry"
+        }
+      ]
+    },
+    {
+      "id": "155666",
+      "key": "doubleSingleVariableFeature",
+      "rolloutId": "",
+      "experimentIds": [
+        "6383811555"
+      ],
+      "variables": [
+        {
+          "id": "155551",
+          "key": "doubleVariable",
+          "type": "double",
+          "defaultValue": "14.99"
         }
       ]
     }

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -17,8 +17,6 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYBuilder.h"
 
-extern NSString * _Nonnull const OptimizelyDidActivateExperimentNotification;
-extern NSString * _Nonnull const OptimizelyDidTrackEventNotification;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryVariationKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryUserIdKey;
@@ -27,7 +25,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameK
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventValueKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
-@class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService;
+@class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
 @protocol Optimizely <NSObject>
@@ -133,6 +131,58 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 - (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
+/**
+ * Gets boolean feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return BOOL feature variable value.
+ */
+- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets double feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return double feature variable value of type double.
+ */
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets integer feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return int feature variable value of type integer.
+ */
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+                     variableKey:(nullable NSString *)variableKey
+                          userId:(nullable NSString *)userId
+                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets string feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSString feature variable value of type string.
+ */
+- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
 #pragma mark - trackEvent methods
 /**
  * Track an event
@@ -212,6 +262,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService> userProfileService;
+@property (nonatomic, strong, readonly, nullable) OPTLYNotificationCenter *notificationCenter;
 
 /**
  * Init with builder block

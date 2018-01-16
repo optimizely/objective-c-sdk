@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -34,9 +34,10 @@
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYDecisionService.h"
+#import "OPTLYFeatureVariable.h"
+#import "OPTLYVariableUsage.h"
+#import "OPTLYNotificationCenter.h"
 
-NSString *const OptimizelyDidActivateExperimentNotification = @"OptimizelyExperimentActivated";
-NSString *const OptimizelyDidTrackEventNotification = @"OptimizelyEventTracked";
 NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
 NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
 NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
@@ -67,6 +68,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
             _userProfileService = builder.userProfileService;
+            _notificationCenter = builder.notificationCenter;
         } else {
             // Provided OPTLYBuilder object is invalid
             if (_logger == nil) {
@@ -153,10 +155,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         userInfo[OptimizelyNotificationsUserDictionaryUserIdKey] = userId;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidActivateExperimentNotification
-                                                        object:self
-                                                      userInfo:userInfo];
-    
     return variation;
 }
 
@@ -234,6 +232,126 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     return true;
+}
+
+- (NSString *)getFeatureVariableValueForType:(NSString *)variableType
+                                  featureKey:(nullable NSString *)featureKey
+                                 variableKey:(nullable NSString *)variableKey
+                                      userId:(nullable NSString *)userId
+                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    if ([Optimizely isEmptyString:featureKey]) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    if ([Optimizely isEmptyString:variableKey]) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    if ([Optimizely isEmptyString:userId]) {
+        [self.logger logMessage:OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    
+    OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:featureKey];
+    if ([Optimizely isEmptyString:featureFlag.key]) {
+        return nil;
+    }
+    
+    OPTLYFeatureVariable *featureVariable = [featureFlag getFeatureVariableForKey:variableKey];
+    if (!featureVariable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableInvalid, variableKey, featureKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return nil;
+    } else if (![featureVariable.type isEqualToString:variableType]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvalid, featureVariable.type, variableType];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    
+    NSString *variableValue = featureVariable.defaultValue;
+    OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    
+    if (decision) {
+        OPTLYVariation *variation = decision.variation;
+        OPTLYVariableUsage *featureVariableUsageInstance = [variation getVariableUsageForVariableId:featureVariable.variableId];
+        
+        if (featureVariableUsageInstance) {
+            variableValue = featureVariableUsageInstance.value;
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        } else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotUsed, variableKey, variation.variationKey, variableValue];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+    } else {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotBucketed, userId, featureFlag.key, variableValue];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    }
+    
+    return variableValue;
+}
+
+- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    
+    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeBoolean
+                                                        featureKey:featureKey
+                                                       variableKey:variableKey
+                                                            userId:userId
+                                                        attributes:attributes];
+    BOOL booleanValue = false;
+    if (variableValue) {
+        booleanValue = [variableValue boolValue];
+    }
+    return booleanValue;
+}
+
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    
+    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeDouble
+                                                        featureKey:featureKey
+                                                       variableKey:variableKey
+                                                            userId:userId
+                                                        attributes:attributes];
+    double doubleValue = 0.0;
+    if (variableValue) {
+        doubleValue = [variableValue doubleValue];
+    }
+    return doubleValue;
+}
+
+
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    
+    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeInteger
+                                                        featureKey:featureKey
+                                                       variableKey:variableKey
+                                                            userId:userId
+                                                        attributes:attributes];
+    int intValue = 0;
+    if (variableValue) {
+        intValue = [variableValue intValue];
+    }
+    return intValue;
+}
+
+- (NSString *)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+    return [self getFeatureVariableValueForType:FeatureVariableTypeString
+                                     featureKey:featureKey
+                                    variableKey:variableKey
+                                         userId:userId
+                                     attributes:attributes];
 }
 
 #pragma mark trackEvent methods
@@ -354,9 +472,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if ([experimentVariationMapping count] > 0) {
         userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification
-                                                        object:self
-                                                      userInfo:userInfo];
+    NSString *_userId = userId ? userId : @"";
+    NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
+    NSDictionary *_eventTags = eventTags ? eventTags : [NSDictionary new];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:eventKey, _userId, _attributes, _eventTags, conversionEventParams, nil];
 }
 
 # pragma mark - Helper methods
@@ -423,6 +542,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                  callback(error);
                                              }
                                          }];
+    NSString *_userId = userId ? userId : @"";
+    NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:experiment, _userId, _attributes, variation, impressionEventParams, nil];
     return variation;
 }
 

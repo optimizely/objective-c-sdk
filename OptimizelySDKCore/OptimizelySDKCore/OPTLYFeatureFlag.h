@@ -21,7 +21,7 @@
 #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-@class OPTLYProjectConfig;
+@class OPTLYProjectConfig, OPTLYFeatureVariable;
 @protocol OPTLYFeatureVariable;
 @protocol OPTLYFeatureFlag
 @end
@@ -47,5 +47,10 @@
  * @return YES if feature belongs to the same mutex group.
  */
 - (BOOL)isValid:(nonnull OPTLYProjectConfig *)config;
+
+/**
+ * Get Feature Variable object for a key.
+ */
+- (nullable OPTLYFeatureVariable *)getFeatureVariableForKey:(nonnull NSString *)variableKey;
 
 @end
