@@ -50,6 +50,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
 #import "OPTLYNetworkService.h"
+#import "OPTLYNotificationCenter.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYProjectConfigBuilder.h"
 #import "OPTLYQueue.h"
