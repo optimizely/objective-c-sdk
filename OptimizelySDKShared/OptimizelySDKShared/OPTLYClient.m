@@ -133,10 +133,56 @@
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
-        return nil;
+        return false;
     }
     else {
         return [self.optimizely isFeatureEnabled:featureKey userId:userId attributes:attributes];
+    }
+}
+
+-(BOOL)getFeatureVariableBoolean:(NSString *)featureKey variableKey:(NSString *)variableKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return false;
+    }
+    else {
+        return [self.optimizely getFeatureVariableBoolean:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    }
+}
+
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey variableKey:(nullable NSString *)variableKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return 0.0;
+    }
+    else {
+        return [self.optimizely getFeatureVariableDouble:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    }
+}
+
+
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey variableKey:(nullable NSString *)variableKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return 0;
+    }
+    else {
+        return [self.optimizely getFeatureVariableInteger:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    }
+}
+
+
+- (NSString * _Nullable)getFeatureVariableString:(nullable NSString *)featureKey variableKey:(nullable NSString *)variableKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+    else {
+        return [self.optimizely getFeatureVariableString:featureKey variableKey:variableKey userId:userId attributes:attributes];
     }
 }
 
