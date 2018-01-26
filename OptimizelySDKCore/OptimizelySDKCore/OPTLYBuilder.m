@@ -75,7 +75,7 @@
     _bucketer = [[OPTLYBucketer alloc] initWithConfig:_config];
     _decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:_config bucketer:_bucketer];
     _eventBuilder = [[OPTLYEventBuilderDefault alloc] init];
-    _notificationCenter = [[OPTLYNotificationCenter alloc] init];
+    _notificationCenter = [[OPTLYNotificationCenter alloc] initWithProjectConfig:_config];
     
     return self;
 }

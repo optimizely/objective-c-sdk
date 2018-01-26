@@ -475,7 +475,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSString *_userId = userId ? userId : @"";
     NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
     NSDictionary *_eventTags = eventTags ? eventTags : [NSDictionary new];
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:eventKey, _userId, _attributes, _eventTags, conversionEventParams, nil];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack
+                                      args:[NSArray arrayWithObjects:eventKey,
+                                            _userId,
+                                            _attributes,
+                                            _eventTags,
+                                            conversionEventParams,
+                                            nil]];
 }
 
 # pragma mark - Helper methods
@@ -544,7 +550,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                          }];
     NSString *_userId = userId ? userId : @"";
     NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:experiment, _userId, _attributes, variation, impressionEventParams, nil];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate
+                                      args:[NSArray arrayWithObjects:experiment,
+                                            _userId,
+                                            _attributes,
+                                            variation,
+                                            impressionEventParams,
+                                            nil]];
     return variation;
 }
 

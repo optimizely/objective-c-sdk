@@ -16,8 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYActivateNotification, OPTLYTrackNotification, OPTLYExperiment, OPTLYVariation;
-@protocol OPTLYNotificationListener;
+@class OPTLYProjectConfig, OPTLYExperiment, OPTLYVariation;
+@protocol OPTLYNotificationDelegate;
 
 /// Enum representing notification types.
 typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
@@ -25,19 +25,7 @@ typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeTrack
 };
 
-typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationListener> > OPTLYNotificationHolder;
-/// This is a block that takes the ActivateNotification values.
-typedef void(^OPTLYActivateNotificationListener)(OPTLYExperiment *experiment,
-                                                 NSString *userId,
-                                                 NSDictionary<NSString *,NSString *> *attributes,
-                                                 OPTLYVariation *variation,
-                                                 NSDictionary<NSString *,NSString *> *event);
-/// This is a block that takes the TrackNotification values.
-typedef void(^OPTLYTrackNotificationListener)(NSString *eventKey,
-                                              NSString *userId,
-                                              NSDictionary<NSString *,NSString *> *attributes,
-                                              NSDictionary *eventTags,
-                                              NSDictionary<NSString *,NSString *> *event);
+typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationDelegate> > OPTLYNotificationHolder;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -47,13 +35,21 @@ typedef void(^OPTLYTrackNotificationListener)(NSString *eventKey,
 @property (nonatomic, readonly) NSUInteger notificationsCount;
 
 /**
+ * Initializer for the Notification Center.
+ *
+ * @param config The project configuration.
+ * @return An instance of the notification center.
+ */
+- (nullable instancetype)initWithProjectConfig:(nonnull OPTLYProjectConfig *)config;
+
+/**
  * Add an activate notification listener to the notification center.
  *
  * @param type - enum OPTLYNotificationType to add.
  * @param activateListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type activateListener:(OPTLYActivateNotificationListener)activateListener;
+- (NSInteger)addNotification:(OPTLYNotificationType)type activateListener:(nonnull id<OPTLYNotificationDelegate>)activateListener;
 
 /**
  * Add a track notification listener to the notification center.
@@ -62,7 +58,7 @@ typedef void(^OPTLYTrackNotificationListener)(NSString *eventKey,
  * @param trackListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type trackListener:(OPTLYTrackNotificationListener)trackListener;
+- (NSInteger)addNotification:(OPTLYNotificationType)type trackListener:(nonnull id<OPTLYNotificationDelegate>)trackListener;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.
@@ -86,7 +82,7 @@ typedef void(^OPTLYTrackNotificationListener)(NSString *eventKey,
 /**
  * fire notificaitons of a certain type.
  * @param type type of OPTLYNotificationType to fire.
- * @param firstArg The arg list changes depending on the type of notification sent.
+ * @param args The arg list changes depending on the type of notification sent.
  */
-- (void)sendNotifications:(OPTLYNotificationType)type args:(id)firstArg, ...;
+- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSArray *)args;
 @end
