@@ -26,32 +26,21 @@
 #import "OPTLYVariation.h"
 #import "OPTLYNotificationDelegate.h"
 
-static NSString * const kDataModelDatafileName = @"optimizely_6372300739_v4";
+static NSString *const kDataModelDatafileName = @"optimizely_6372300739_v4";
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
 static NSString *const kVariationId = @"6362476365";
 
-@interface OPTLYActivateNotificationTest : NSObject<OPTLYNotificationDelegate>
-@end
-@implementation OPTLYActivateNotificationTest
--(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
-    
-}
+@interface OPTLYNotificationCenter()
+// notification Count represeting total number of notifications.
+@property (nonatomic, readonly) NSUInteger notificationsCount;
 @end
 
-@interface OPTLYTrackNotificationTest : NSObject<OPTLYNotificationDelegate>
-@end
-@implementation OPTLYTrackNotificationTest
--(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
-    
-}
-@end
-
-@interface OPTLYNotificationCenterTest : XCTestCase
+@interface OPTLYNotificationCenterTest : XCTestCase<OPTLYNotificationDelegate>
 @property (nonatomic, strong) OPTLYNotificationCenter *notificationCenter;
-@property (nonatomic, strong) OPTLYActivateNotificationTest *activateNotification;
-@property (nonatomic, strong) OPTLYActivateNotificationTest *anotherActivateNotification;
-@property (nonatomic, strong) OPTLYTrackNotificationTest *trackNotification;
+@property (nonatomic, strong) OPTLYNotificationCenterTest *activateNotification;
+@property (nonatomic, strong) OPTLYNotificationCenterTest *anotherActivateNotification;
+@property (nonatomic, strong) OPTLYNotificationCenterTest *trackNotification;
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
 @end
 
@@ -68,9 +57,9 @@ static NSString *const kVariationId = @"6362476365";
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
     }];
     self.notificationCenter = [[OPTLYNotificationCenter alloc] initWithProjectConfig:self.projectConfig];
-    self.activateNotification = [OPTLYActivateNotificationTest new];
-    self.anotherActivateNotification = [OPTLYActivateNotificationTest new];
-    self.trackNotification = [OPTLYTrackNotificationTest new];
+    self.activateNotification = [OPTLYNotificationCenterTest new];
+    self.anotherActivateNotification = [OPTLYNotificationCenterTest new];
+    self.trackNotification = [OPTLYNotificationCenterTest new];
 }
 
 - (void)tearDown {
@@ -210,6 +199,14 @@ static NSString *const kVariationId = @"6362476365";
     OCMReject(_trackNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
+}
+
+- (void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+    
+}
+
+- (void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event { 
+    
 }
 
 @end

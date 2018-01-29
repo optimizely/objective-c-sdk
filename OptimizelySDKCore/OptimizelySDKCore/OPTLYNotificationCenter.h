@@ -31,8 +31,6 @@ typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationDelegate> > OPTLYNot
 
 // Notification Id represeting id of notification.
 @property (nonatomic, readonly) NSUInteger notificationId;
-// notification Count represeting total number of notifications.
-@property (nonatomic, readonly) NSUInteger notificationsCount;
 
 /**
  * Initializer for the Notification Center.
