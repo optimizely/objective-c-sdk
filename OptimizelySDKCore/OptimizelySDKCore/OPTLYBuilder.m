@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -22,6 +22,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYDecisionService.h"
+#import "OPTLYNotificationCenter.h"
 
 @implementation OPTLYBuilder
 
@@ -74,6 +75,7 @@
     _bucketer = [[OPTLYBucketer alloc] initWithConfig:_config];
     _decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:_config bucketer:_bucketer];
     _eventBuilder = [[OPTLYEventBuilderDefault alloc] init];
+    _notificationCenter = [[OPTLYNotificationCenter alloc] initWithProjectConfig:_config];
     
     return self;
 }

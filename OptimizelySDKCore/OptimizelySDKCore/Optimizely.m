@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -36,9 +36,8 @@
 #import "OPTLYDecisionService.h"
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYVariableUsage.h"
+#import "OPTLYNotificationCenter.h"
 
-NSString *const OptimizelyDidActivateExperimentNotification = @"OptimizelyExperimentActivated";
-NSString *const OptimizelyDidTrackEventNotification = @"OptimizelyEventTracked";
 NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
 NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
 NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
@@ -69,6 +68,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
             _userProfileService = builder.userProfileService;
+            _notificationCenter = builder.notificationCenter;
         } else {
             // Provided OPTLYBuilder object is invalid
             if (_logger == nil) {
@@ -154,10 +154,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if (userId != nil) {
         userInfo[OptimizelyNotificationsUserDictionaryUserIdKey] = userId;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidActivateExperimentNotification
-                                                        object:self
-                                                      userInfo:userInfo];
     
     return variation;
 }
@@ -476,9 +472,16 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     if ([experimentVariationMapping count] > 0) {
         userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:OptimizelyDidTrackEventNotification
-                                                        object:self
-                                                      userInfo:userInfo];
+    NSString *_userId = userId ? userId : @"";
+    NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
+    NSDictionary *_eventTags = eventTags ? eventTags : [NSDictionary new];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack
+                                      args:[NSArray arrayWithObjects:eventKey,
+                                            _userId,
+                                            _attributes,
+                                            _eventTags,
+                                            conversionEventParams,
+                                            nil]];
 }
 
 # pragma mark - Helper methods
@@ -545,6 +548,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                  callback(error);
                                              }
                                          }];
+    NSString *_userId = userId ? userId : @"";
+    NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate
+                                      args:[NSArray arrayWithObjects:experiment,
+                                            _userId,
+                                            _attributes,
+                                            variation,
+                                            impressionEventParams,
+                                            nil]];
     return variation;
 }
 

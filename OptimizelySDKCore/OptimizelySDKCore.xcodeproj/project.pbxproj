@@ -102,6 +102,8 @@
 		3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
+		3E95999D20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E95999E20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
 		3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
@@ -176,6 +178,12 @@
 		3E9CADFF1FD90E6200EBC49A /* OPTLYFeatureFlag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */; };
 		3E9CAE011FD90E6200EBC49A /* OPTLYFeatureFlag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */; };
 		3EA27B0C1F47AB0D00C0208F /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA7FE1DC5DBA000B1D81B /* OptimizelySDKCore.framework */; };
+		3EA563A11FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5639F1FFD23FE00D0E311 /* OPTLYNotificationCenter.m */; };
+		3EA563A21FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5639F1FFD23FE00D0E311 /* OPTLYNotificationCenter.m */; };
+		3EA563A31FFD23FF00D0E311 /* OPTLYNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA563A01FFD23FF00D0E311 /* OPTLYNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EA563A41FFD23FF00D0E311 /* OPTLYNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA563A01FFD23FF00D0E311 /* OPTLYNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EA818951FFF890D00BEBD41 /* OPTLYNotificationCenterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA818931FFF88F800BEBD41 /* OPTLYNotificationCenterTest.m */; };
+		3EA818961FFF890E00BEBD41 /* OPTLYNotificationCenterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA818931FFF88F800BEBD41 /* OPTLYNotificationCenterTest.m */; };
 		3ECB81F21FD9267D006505E6 /* OPTLYFeatureVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ECB81F31FD9267D006505E6 /* OPTLYFeatureVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ECB81F41FD9267D006505E6 /* OPTLYFeatureVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB81F11FD9267D006505E6 /* OPTLYFeatureVariable.m */; };
@@ -551,6 +559,7 @@
 		3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONValueTransformer.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.h; sourceTree = "<group>"; };
 		3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONValueTransformer.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
+		3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYNotificationDelegate.h; sourceTree = "<group>"; };
 		3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		3E99AA331F4BB206009F8805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -559,6 +568,9 @@
 		3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFeatureFlag.m; sourceTree = "<group>"; };
 		3EA27B071F47AB0D00C0208F /* OPTLYJSONModeliOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModeliOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA27B0B1F47AB0D00C0208F /* OPTLYJSONModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OPTLYJSONModelTests-Info.plist"; sourceTree = "<group>"; };
+		3EA5639F1FFD23FE00D0E311 /* OPTLYNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNotificationCenter.m; sourceTree = "<group>"; };
+		3EA563A01FFD23FF00D0E311 /* OPTLYNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNotificationCenter.h; sourceTree = "<group>"; };
+		3EA818931FFF88F800BEBD41 /* OPTLYNotificationCenterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNotificationCenterTest.m; sourceTree = "<group>"; };
 		3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYFeatureVariable.h; sourceTree = "<group>"; };
 		3ECB81F11FD9267D006505E6 /* OPTLYFeatureVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFeatureVariable.m; sourceTree = "<group>"; };
 		3ECB81FC1FD926FE006505E6 /* OPTLYVariableUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariableUsage.h; sourceTree = "<group>"; };
@@ -925,6 +937,16 @@
 			name = Implementations;
 			sourceTree = "<group>";
 		};
+		3EA563831FFB621200D0E311 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				3EA563A01FFD23FF00D0E311 /* OPTLYNotificationCenter.h */,
+				3EA5639F1FFD23FE00D0E311 /* OPTLYNotificationCenter.m */,
+				3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		93BE4E5119FD429B5D9A3435 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1152,6 +1174,7 @@
 				EA87A0271DE3142A002E9EF7 /* UserProfileService */,
 				EA2FA8451DC5E1A300B1D81B /* Loggers */,
 				EA8FD0C81DE978E400D950AD /* Network */,
+				3EA563831FFB621200D0E311 /* Notification */,
 				EA2FA83D1DC5E0E900B1D81B /* Utilities */,
 			);
 			path = OptimizelySDKCore;
@@ -1174,10 +1197,11 @@
 				EA8FD0E71DE97DC000D950AD /* OPTLYHTTPRequestManagerTest.m */,
 				EA2FAB8F1DC6FDFA00B1D81B /* OPTLYLoggerTest.m */,
 				5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */,
+				3EA818931FFF88F800BEBD41 /* OPTLYNotificationCenterTest.m */,
 				EA2FAB901DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m */,
+				EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */,
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
-				EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */,
 				EA2FAB941DC6FDFA00B1D81B /* TestData */,
 			);
 			path = OptimizelySDKCoreTests;
@@ -1248,6 +1272,7 @@
 				EA8FD0DB1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
 				EA2FAB731DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
 				EA2FAB521DC6F5BE00B1D81B /* OPTLYLogger.h in Headers */,
+				3EA563A31FFD23FF00D0E311 /* OPTLYNotificationCenter.h in Headers */,
 				EA2FAB581DC6F5BE00B1D81B /* OPTLYLoggerMessages.h in Headers */,
 				EA2FAB0C1DC6F57200B1D81B /* OPTLYProjectConfig.h in Headers */,
 				EA2C242D1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
@@ -1270,6 +1295,7 @@
 				EA2FAAFA1DC6F57200B1D81B /* OPTLYEventView.h in Headers */,
 				EA2FAAD61DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */,
 				EA2FAA941DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
+				3E95999D20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 				EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */,
 				EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
@@ -1308,6 +1334,7 @@
 				EA2FAB491DC6F5B100B1D81B /* OPTLYEventBuilder.h in Headers */,
 				EA2FAB391DC6F59D00B1D81B /* OPTLYErrorHandlerMessages.h in Headers */,
 				EA2FAB741DC6F5F400B1D81B /* OPTLYLog.h in Headers */,
+				3EA563A41FFD23FF00D0E311 /* OPTLYNotificationCenter.h in Headers */,
 				EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */,
 				EA2C242E1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.h in Headers */,
 				EA8FD0DC1DE9798E00D950AD /* OPTLYHTTPRequestManager.h in Headers */,
@@ -1330,6 +1357,7 @@
 				EA2FAAC51DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */,
 				EA2FAAB31DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */,
 				EA2FAAA11DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
+				3E95999E20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 				EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F3441E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA16D9371ECBA9B200C4C998 /* OPTLYUserProfile.h in Headers */,
@@ -1850,6 +1878,7 @@
 				EA2FAC0E1DC6FFC600B1D81B /* OPTLYDatafileKeys.m in Sources */,
 				EA2FAC0F1DC6FFC600B1D81B /* OPTLYDecisionEventTicket.m in Sources */,
 				EA2FAC101DC6FFC600B1D81B /* OPTLYEvent.m in Sources */,
+				3EA563A11FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */,
 				EA16D9441ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */,
 				EAC5F3551E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA2FAC111DC6FFC600B1D81B /* OPTLYEventAudience.m in Sources */,
@@ -1901,6 +1930,7 @@
 				5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */,
 				EA2FABB41DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
 				EA8FD0EA1DE97DD700D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
+				3EA818951FFF890D00BEBD41 /* OPTLYNotificationCenterTest.m in Sources */,
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
@@ -1931,6 +1961,7 @@
 				EA2FABEA1DC6FFA100B1D81B /* OPTLYDecisionEventTicket.m in Sources */,
 				EA2FABEB1DC6FFA100B1D81B /* OPTLYEvent.m in Sources */,
 				EA16D9451ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */,
+				3EA563A21FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */,
 				EA2FABEC1DC6FFA100B1D81B /* OPTLYEventAudience.m in Sources */,
 				EA2FABED1DC6FFA100B1D81B /* OPTLYEventDecision.m in Sources */,
 				EA2FABEE1DC6FFA100B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
@@ -1982,6 +2013,7 @@
 				5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */,
 				EA2FABB51DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
 				EA8FD0EB1DE97DD900D950AD /* OPTLYHTTPRequestManagerTest.m in Sources */,
+				3EA818961FFF890E00BEBD41 /* OPTLYNotificationCenterTest.m in Sources */,
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,

@@ -29,6 +29,8 @@
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYFeatureVariable.h"
+#import "OPTLYNotificationCenter.h"
+#import "OPTLYNotificationDelegate.h"
 
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
@@ -49,6 +51,18 @@ static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
 // variation IDs
 static NSString * const kVariationIDForWhitelisting = @"variation4";
 
+@interface OPTLYNotificationTest : NSObject<OPTLYNotificationDelegate>
+@end
+
+@implementation OPTLYNotificationTest
+-(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+    
+}
+
+-(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+    
+}
+@end
 
 @interface Optimizely(test)
 - (OPTLYVariation *)activate:(NSString *)experimentKey
@@ -204,28 +218,21 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 - (void)testOptimizelyPostsActivateExperimentNotification {
     
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
+    OPTLYNotificationTest *activateNotification = [OPTLYNotificationTest new];
+    id activateNotificationMock = OCMPartialMock(activateNotification);
     
-    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:OptimizelyDidActivateExperimentNotification
-                                                                                          object:nil
-                                                                                           queue:nil
-                                                                                      usingBlock:^(NSNotification * _Nonnull note) {
-                                                                                          XCTAssertNotNil(note);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentKey], [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting]);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], nil);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryVariationKey], [self.optimizely variation:kExperimentKeyForWhitelisting userId:kUserId attributes:self.attributes]);
-                                                                                          [expectation fulfill];
-                                                                                      }];
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    OPTLYVariation *variation = [self.optimizely variation:kExperimentKeyForWhitelisting userId:kUserId attributes:self.attributes];
+    NSDictionary *attributes = [NSDictionary new];
     
-    OPTLYVariation *variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:activateNotificationMock];
+    
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                    userId:kUserId];
-    XCTAssertNotNil(variation);
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
-    
-    [self waitForExpectationsWithTimeout:2
-                                 handler:nil];
+    XCTAssertNotNil(_variation);
+    OCMVerify([activateNotificationMock onActivate:experiment userId:kUserId attributes:attributes variation:variation event:[OCMArg any]]);
+    [activateNotificationMock stopMocking];
 }
 
 - (void)testOptimizelyTrackWithInvalidEvent {
@@ -262,36 +269,16 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 - (void)testOptimizelyPostsEventTrackedNotification {
     
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getExperimentActivatedNotification"];
+    OPTLYNotificationTest *trackNotification = [OPTLYNotificationTest new];
+    id trackNotificationMock = OCMPartialMock(trackNotification);
     
-    NSNumber *eventValue = @10;
+    NSDictionary *_attributes = [NSDictionary new];
     
-    id<NSObject> notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:OptimizelyDidTrackEventNotification
-                                                                                          object:nil
-                                                                                           queue:nil
-                                                                                      usingBlock:^(NSNotification * _Nonnull note) {
-                                                                                          XCTAssertNotNil(note);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryEventNameKey], kEventNameWithMultipleExperiments);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryUserIdKey], kUserId);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryAttributesKey], self.attributes);
-                                                                                          XCTAssertEqual(note.userInfo[OptimizelyNotificationsUserDictionaryEventValueKey], eventValue);
-                                                                                          XCTAssertNotNil(note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey]);
-                                                                                          [note.userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                                                                                              XCTAssertTrue([key isKindOfClass:[NSString class]]);
-                                                                                              XCTAssertTrue([obj isKindOfClass:[OPTLYVariation class]]);
-                                                                                          }];
-                                                                                          [expectation fulfill];
-                                                                                      }];
+    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeTrack trackListener:trackNotificationMock];
     
-    [self.optimizely track:kEventNameWithMultipleExperiments
-                    userId:kUserId
-                attributes:self.attributes
-                eventValue:eventValue];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
-    
-    [self waitForExpectationsWithTimeout:2
-                                 handler:nil];
+    [self.optimizely track:kEventNameWithMultipleExperiments userId:kUserId];
+    OCMVerify([trackNotificationMock onTrack:kEventNameWithMultipleExperiments userId:kUserId attributes:_attributes eventTags:[OCMArg any] event:[OCMArg any]]);
+    [trackNotificationMock stopMocking];
 }
 
 # pragma mark - IsFeatureEnabled Tests
@@ -343,7 +330,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(nil);
     
     XCTAssertFalse([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return false for featureFlag not enabled");
-
+    
     OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
     [decisionServiceMock stopMocking];
     
@@ -358,7 +345,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
-
+    
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
     
@@ -387,7 +374,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
     
     XCTAssertTrue([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return true for enabled featureFlag");
-
+    
     // SendImpressionEvent() does not get called.
     OCMVerify([optimizelyMock sendImpressionEventFor:decision.experiment variation:decision.variation userId:kUserId attributes:nil callback:nil]);
     
