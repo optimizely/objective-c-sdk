@@ -224,14 +224,16 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     OPTLYVariation *variation = [self.optimizely variation:kExperimentKeyForWhitelisting userId:kUserId attributes:self.attributes];
     NSDictionary *attributes = [NSDictionary new];
+    __block NSString *notificationExperimentKey = nil;
     
-    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:activateNotificationMock];
-    
+    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeActivate withActivateListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        notificationExperimentKey = experiment.experimentId;
+    }];
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                    userId:kUserId];
     XCTAssertNotNil(_variation);
-    OCMVerify([activateNotificationMock onActivate:experiment userId:kUserId attributes:attributes variation:variation event:[OCMArg any]]);
+    XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
     [activateNotificationMock stopMocking];
 }
 
@@ -267,19 +269,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [loggerMock stopMocking];
 }
 
-- (void)testOptimizelyPostsEventTrackedNotification {
-    
-    OPTLYNotificationTest *trackNotification = [OPTLYNotificationTest new];
-    id trackNotificationMock = OCMPartialMock(trackNotification);
-    
-    NSDictionary *_attributes = [NSDictionary new];
-    
-    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeTrack trackListener:trackNotificationMock];
-    
-    [self.optimizely track:kEventNameWithMultipleExperiments userId:kUserId];
-    OCMVerify([trackNotificationMock onTrack:kEventNameWithMultipleExperiments userId:kUserId attributes:_attributes eventTags:[OCMArg any] event:[OCMArg any]]);
-    [trackNotificationMock stopMocking];
-}
 
 # pragma mark - IsFeatureEnabled Tests
 

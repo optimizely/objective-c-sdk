@@ -25,7 +25,18 @@ typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeTrack
 };
 
-typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationDelegate> > OPTLYNotificationHolder;
+typedef void (^ActivateCallback)(OPTLYExperiment * experiment, NSString * userId,
+                                 NSDictionary<NSString *,NSString *> * attributes,
+                                 OPTLYVariation * variation,
+                                 NSDictionary<NSString *,NSString *> * event);
+
+typedef void (^TrackCallback)(NSString * eventKey,NSString * userId, NSDictionary<NSString *,NSString *> *attributes,
+                              NSDictionary *eventTags, NSDictionary<NSString *,NSString *> *event);
+
+
+typedef void (^GenericCallback)(void);
+
+typedef NSMutableDictionary<NSNumber *, GenericCallback > OPTLYNotificationHolder;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -47,7 +58,7 @@ typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationDelegate> > OPTLYNot
  * @param activateListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type activateListener:(nonnull id<OPTLYNotificationDelegate>)activateListener;
+- (NSInteger)addNotification:(OPTLYNotificationType)type withActivateListener:(nonnull ActivateCallback) activateListener;
 
 /**
  * Add a track notification listener to the notification center.
@@ -56,7 +67,7 @@ typedef NSMutableDictionary<NSNumber *, id<OPTLYNotificationDelegate> > OPTLYNot
  * @param trackListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type trackListener:(nonnull id<OPTLYNotificationDelegate>)trackListener;
+- (NSInteger)addNotification:(OPTLYNotificationType)type withTrackListener:(TrackCallback _Nonnull )trackCallback;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.
