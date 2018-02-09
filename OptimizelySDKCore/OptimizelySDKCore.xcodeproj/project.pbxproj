@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BDF71FC202BF5E700EB9742 /* SwiftNotifyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF71FB202BF5E700EB9742 /* SwiftNotifyTest.swift */; };
+		0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */; };
+		0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */; };
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
 		3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
@@ -449,7 +450,8 @@
 /* Begin PBXFileReference section */
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		0BDF71FA202BF5E100EB9742 /* OptimizelySDKCoreiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		0BDF71FB202BF5E700EB9742 /* SwiftNotifyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNotifyTest.swift; sourceTree = "<group>"; };
+		0BDF71FD202D04EE00EB9742 /* OptimizelySDKCoreTVOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreTVOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYNotificationCenterTest2.swift; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYJSONModelTestHelper.h; sourceTree = "<group>"; };
@@ -1137,7 +1139,6 @@
 		EA3C67FB1DC1E66C00C578CA = {
 			isa = PBXGroup;
 			children = (
-				0BDF71FB202BF5E700EB9742 /* SwiftNotifyTest.swift */,
 				3E858C5C1F42275700D53856 /* OPTLYJSONModel */,
 				3EA27B081F47AB0D00C0208F /* OPTLYJSONModelTests */,
 				EA3C68071DC1E66C00C578CA /* OptimizelySDKCore */,
@@ -1208,6 +1209,8 @@
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
 				EA2FAB941DC6FDFA00B1D81B /* TestData */,
+				0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */,
+				0BDF71FD202D04EE00EB9742 /* OptimizelySDKCoreTVOSTests-Bridging-Header.h */,
 			);
 			path = OptimizelySDKCoreTests;
 			sourceTree = "<group>";
@@ -1522,6 +1525,7 @@
 					};
 					EA2FA8251DC5DBB100B1D81B = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1929,7 +1933,6 @@
 			files = (
 				EA2FABAE1DC6FDFA00B1D81B /* OPTLYConditionTest.m in Sources */,
 				EA2FAB9C1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
-				0BDF71FC202BF5E700EB9742 /* SwiftNotifyTest.swift in Sources */,
 				EA2FABA21DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
 				EA2FABC31DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
@@ -1941,6 +1944,7 @@
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC01DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA81DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A11ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
@@ -2024,6 +2028,7 @@
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
@@ -2636,6 +2641,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2648,6 +2654,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -2656,6 +2665,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 924C83E5511EF3E43FC015AF /* Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2664,6 +2674,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = RC;
@@ -2672,6 +2684,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2680,6 +2693,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Beta;
@@ -2688,6 +2703,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93AEC5364770062DEE863663 /* Pods-OptimizelySDKCoreTVOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2696,6 +2712,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;

@@ -226,7 +226,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSDictionary *attributes = [NSDictionary new];
     __block NSString *notificationExperimentKey = nil;
     
-    [self.optimizely.notificationCenter addNotification:OPTLYNotificationTypeActivate withActivateListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
     }];
     

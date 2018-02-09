@@ -25,18 +25,18 @@ typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeTrack
 };
 
-typedef void (^ActivateCallback)(OPTLYExperiment * experiment, NSString * userId,
+typedef void (^ActivateListener)(OPTLYExperiment * experiment, NSString * userId,
                                  NSDictionary<NSString *,NSString *> * attributes,
                                  OPTLYVariation * variation,
-                                 NSDictionary<NSString *,NSString *> * event);
+                                 NSDictionary<NSString *,NSObject *> * event);
 
-typedef void (^TrackCallback)(NSString * eventKey,NSString * userId, NSDictionary<NSString *,NSString *> *attributes,
-                              NSDictionary *eventTags, NSDictionary<NSString *,NSString *> *event);
+typedef void (^TrackListener)(NSString * eventKey,NSString * userId, NSDictionary<NSString *,NSString *> *attributes,
+                              NSDictionary *eventTags, NSDictionary<NSString *,NSObject *> *event);
 
 
-typedef void (^GenericCallback)(void);
+typedef void (^GenericListener)(NSArray * args);
 
-typedef NSMutableDictionary<NSNumber *, GenericCallback > OPTLYNotificationHolder;
+typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -54,20 +54,18 @@ typedef NSMutableDictionary<NSNumber *, GenericCallback > OPTLYNotificationHolde
 /**
  * Add an activate notification listener to the notification center.
  *
- * @param type - enum OPTLYNotificationType to add.
  * @param activateListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type withActivateListener:(nonnull ActivateCallback) activateListener;
+- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener) activateListener;
 
 /**
  * Add a track notification listener to the notification center.
  *
- * @param type - enum OPTLYNotificationType to add.
  * @param trackListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addNotification:(OPTLYNotificationType)type withTrackListener:(TrackCallback _Nonnull )trackCallback;
+- (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.

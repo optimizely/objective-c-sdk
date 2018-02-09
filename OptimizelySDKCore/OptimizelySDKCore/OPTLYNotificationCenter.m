@@ -56,16 +56,12 @@
     return notificationsCount;
 }
 
-- (NSInteger)addNotification:(OPTLYNotificationType)type withActivateListener:(ActivateCallback)activateCallback {
-    if (![self isNotificationTypeValid:type expectedNotificationType:OPTLYNotificationTypeActivate])
-        return 0;
-    return [self addNotification:type listener:(GenericCallback) activateCallback];
+- (NSInteger)addActivateNotificationListener:(ActivateListener)activateListener {
+    return [self addNotification:OPTLYNotificationTypeActivate listener:(GenericListener) activateListener];
 }
 
-- (NSInteger)addNotification:(OPTLYNotificationType)type withTrackListener:(TrackCallback)trackCallback {
-    if (![self isNotificationTypeValid:type expectedNotificationType:OPTLYNotificationTypeTrack])
-        return 0;
-    return [self addNotification:type listener:(GenericCallback)trackCallback];
+- (NSInteger)addTrackNotificationListener:(TrackListener)trackListener {
+    return [self addNotification:OPTLYNotificationTypeTrack listener:(GenericListener)trackListener];
 }
 
 - (BOOL)removeNotification:(NSUInteger)notificationId {
@@ -91,12 +87,12 @@
 
 - (void)sendNotifications:(OPTLYNotificationType)type args:(NSArray *)args {
     OPTLYNotificationHolder *notification = _notifications[@(type)];
-    for (GenericCallback object in notification.allValues) {
+    for (GenericListener object in notification.allValues) {
         @try {
             if (type == OPTLYNotificationTypeActivate)
-                ((ActivateCallback) object)(args[0], args[1], args[2], args[3], args[4]);
+                ((ActivateListener) object)(args[0], args[1], args[2], args[3], args[4]);
             else
-                ((TrackCallback) object)(args[0], args[1], args[2], args[3], args[4]);
+                ((TrackListener) object)(args[0], args[1], args[2], args[3], args[4]);
         } @catch (NSException *exception) {
             NSString *logMessage = [NSString stringWithFormat:@"Problem calling notify callback. Error: %@", exception.reason];
             [_config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
@@ -106,7 +102,7 @@
 
 #pragma mark - Private Methods
 
-- (NSInteger)addNotification:(OPTLYNotificationType)type listener:(GenericCallback)listener {
+- (NSInteger)addNotification:(OPTLYNotificationType)type listener:(GenericListener)listener {
     NSNumber *notificationTypeNumber = [NSNumber numberWithUnsignedInteger:type];
     NSNumber *notificationIdNumber = [NSNumber numberWithUnsignedInteger:_notificationId];
     OPTLYNotificationHolder *notificationHoldersList = _notifications[notificationTypeNumber];
@@ -114,7 +110,7 @@
     if (![_notifications.allKeys containsObject:notificationTypeNumber] || notificationHoldersList.count == 0) {
         notificationHoldersList[notificationIdNumber] = listener;
     } else {
-        for (GenericCallback notificationListener in notificationHoldersList.allValues) {
+        for (GenericListener notificationListener in notificationHoldersList.allValues) {
             if (notificationListener == listener) {
                 [_config.logger logMessage:@"The notification callback already exists." withLevel:OptimizelyLogLevelError];
                 return -1;
