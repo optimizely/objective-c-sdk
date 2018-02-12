@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */; };
+		0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */; };
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
 		3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
@@ -101,9 +103,8 @@
 		3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
 		3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
+		3E8E517E202C844600B08F83 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
-		3E95999D20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E95999E20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
 		3E99AA011F4BB1BA009F8805 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
@@ -447,6 +448,9 @@
 
 /* Begin PBXFileReference section */
 		0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.beta.xcconfig"; sourceTree = "<group>"; };
+		0BDF71FA202BF5E100EB9742 /* OptimizelySDKCoreiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0BDF71FD202D04EE00EB9742 /* OptimizelySDKCoreTVOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreTVOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYNotificationCenterTest2.swift; sourceTree = "<group>"; };
 		2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYJSONModelTestHelper.h; sourceTree = "<group>"; };
@@ -559,7 +563,6 @@
 		3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYJSONValueTransformer.h; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.h; sourceTree = "<group>"; };
 		3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYJSONValueTransformer.m; path = OPTLYJSONModel/OPTLYJSONModel/OPTLYJSONModelTransformations/OPTLYJSONValueTransformer.m; sourceTree = "<group>"; };
 		3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BucketerTestsDatafile2.json; sourceTree = "<group>"; };
-		3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYNotificationDelegate.h; sourceTree = "<group>"; };
 		3E99A9F31F4BAF9A009F8805 /* OPTLYJSONModelTVOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPTLYJSONModelTVOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E99AA311F4BB1FE009F8805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		3E99AA331F4BB206009F8805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -942,7 +945,6 @@
 			children = (
 				3EA563A01FFD23FF00D0E311 /* OPTLYNotificationCenter.h */,
 				3EA5639F1FFD23FE00D0E311 /* OPTLYNotificationCenter.m */,
-				3E95999C20187A2A006E4FD7 /* OPTLYNotificationDelegate.h */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -1141,6 +1143,7 @@
 				EA2FA9721DC6F3CF00B1D81B /* Frameworks */,
 				EA3C68061DC1E66C00C578CA /* Products */,
 				93BE4E5119FD429B5D9A3435 /* Pods */,
+				0BDF71FA202BF5E100EB9742 /* OptimizelySDKCoreiOSTests-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1203,6 +1206,8 @@
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
 				EA2FAB941DC6FDFA00B1D81B /* TestData */,
+				0BDF71FE202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift */,
+				0BDF71FD202D04EE00EB9742 /* OptimizelySDKCoreTVOSTests-Bridging-Header.h */,
 			);
 			path = OptimizelySDKCoreTests;
 			sourceTree = "<group>";
@@ -1295,7 +1300,6 @@
 				EA2FAAFA1DC6F57200B1D81B /* OPTLYEventView.h in Headers */,
 				EA2FAAD61DC6F57200B1D81B /* OPTLYEventHeader.h in Headers */,
 				EA2FAA941DC6F57100B1D81B /* OPTLYBaseCondition.h in Headers */,
-				3E95999D20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 				EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */,
 				EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
@@ -1357,7 +1361,6 @@
 				EA2FAAC51DC6F57200B1D81B /* OPTLYEventDecisionTicket.h in Headers */,
 				EA2FAAB31DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */,
 				EA2FAAA11DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
-				3E95999E20187A2A006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 				EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F3441E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA16D9371ECBA9B200C4C998 /* OPTLYUserProfile.h in Headers */,
@@ -1508,6 +1511,7 @@
 					};
 					EA2FA8051DC5DBA000B1D81B = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					EA2FA81D1DC5DBB100B1D81B = {
@@ -1516,6 +1520,7 @@
 					};
 					EA2FA8251DC5DBB100B1D81B = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1934,6 +1939,7 @@
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC01DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA81DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A11ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
@@ -2006,6 +2012,7 @@
 			files = (
 				EA2FABAF1DC6FDFA00B1D81B /* OPTLYConditionTest.m in Sources */,
 				EA2FAB9D1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
+				3E8E517E202C844600B08F83 /* (null) in Sources */,
 				EA2FABA31DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
 				EA2FABC41DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBE1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
@@ -2017,6 +2024,7 @@
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
@@ -2444,6 +2452,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2456,6 +2465,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreiOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2463,6 +2475,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2471,6 +2484,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreiOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = RC;
 		};
@@ -2478,6 +2493,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A6CB89801ECA4E57E2C4771 /* Pods-OptimizelySDKCoreiOSTests.beta.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2486,6 +2502,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreiOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Beta;
 		};
@@ -2493,6 +2511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2501,6 +2520,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreiOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -2616,6 +2637,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2628,6 +2650,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -2636,6 +2661,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 924C83E5511EF3E43FC015AF /* Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2644,6 +2670,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = RC;
@@ -2652,6 +2680,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2191B624058E423153096145 /* Pods-OptimizelySDKCoreTVOSTests.beta.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2660,6 +2689,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Beta;
@@ -2668,6 +2699,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93AEC5364770062DEE863663 /* Pods-OptimizelySDKCoreTVOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2676,6 +2708,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKCoreTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKCoreTests/OptimizelySDKCoreTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;

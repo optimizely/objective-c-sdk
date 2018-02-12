@@ -53,6 +53,10 @@
     return self;
 }
 
+-(OPTLYNotificationCenter *)notificationCenter {
+    return self.optimizely.notificationCenter;
+}
+
 #pragma mark activate methods
 - (OPTLYVariation *)activate:(nonnull NSString *)experimentKey
                       userId:(nonnull NSString *)userId {

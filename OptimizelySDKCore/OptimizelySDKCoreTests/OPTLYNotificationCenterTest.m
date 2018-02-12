@@ -24,7 +24,6 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYVariation.h"
-#import "OPTLYNotificationDelegate.h"
 
 static NSString *const kDataModelDatafileName = @"optimizely_6372300739_v4";
 static NSString *const kUserId = @"userId";
@@ -36,11 +35,11 @@ static NSString *const kVariationId = @"6362476365";
 @property (nonatomic, readonly) NSUInteger notificationsCount;
 @end
 
-@interface OPTLYNotificationCenterTest : XCTestCase<OPTLYNotificationDelegate>
+@interface OPTLYNotificationCenterTest : XCTestCase
 @property (nonatomic, strong) OPTLYNotificationCenter *notificationCenter;
-@property (nonatomic, strong) OPTLYNotificationCenterTest *activateNotification;
-@property (nonatomic, strong) OPTLYNotificationCenterTest *anotherActivateNotification;
-@property (nonatomic, strong) OPTLYNotificationCenterTest *trackNotification;
+@property (nonatomic, copy) ActivateListener activateNotification;
+@property (nonatomic, copy) ActivateListener anotherActivateNotification;
+@property (nonatomic, copy) TrackListener trackNotification;
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
 @end
 
@@ -57,9 +56,24 @@ static NSString *const kVariationId = @"6362476365";
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
     }];
     self.notificationCenter = [[OPTLYNotificationCenter alloc] initWithProjectConfig:self.projectConfig];
-    self.activateNotification = [OPTLYNotificationCenterTest new];
-    self.anotherActivateNotification = [OPTLYNotificationCenterTest new];
-    self.trackNotification = [OPTLYNotificationCenterTest new];
+    __weak typeof(self) weakSelf = self;
+    weakSelf.activateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        NSString *logMessage = @"activate notification called with %@";
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, experiment.experimentKey] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, variation.variationKey] withLevel:OptimizelyLogLevelInfo];
+    };
+    weakSelf.anotherActivateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        NSString *logMessage = @"activate notification called with %@";
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, experiment.experimentKey] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, variation.variationKey] withLevel:OptimizelyLogLevelInfo];
+    };
+    weakSelf.trackNotification = ^(NSString *eventKey, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, NSDictionary *eventTags, NSDictionary<NSString *,NSString *> *event) {
+        NSString *logMessage = @"track notification called with %@";
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, eventKey] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
+    };
 }
 
 - (void)tearDown {
@@ -73,7 +87,7 @@ static NSString *const kVariationId = @"6362476365";
 - (void)testAddAndRemoveNotificationListener {
     
     // Verify that callback added successfully.
-    NSUInteger notificationId = [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification];
+    NSUInteger notificationId = [_notificationCenter addActivateNotificationListener:_activateNotification];
     XCTAssertEqual(1, notificationId);
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
@@ -85,35 +99,26 @@ static NSString *const kVariationId = @"6362476365";
     XCTAssertEqual(NO, [_notificationCenter removeNotification:notificationId]);
     
     // Verify that callback added successfully and return right notification ID.
-    XCTAssertEqual(_notificationCenter.notificationId, [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification]);
+    XCTAssertEqual(_notificationCenter.notificationId, [_notificationCenter addActivateNotificationListener:_activateNotification]);
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
 }
 
 - (void)testAddSameNotificationListenerMultipleTimes {
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification];
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
     
     // Verify that adding same callback multiple times will gets failed.
-    XCTAssertEqual(-1, [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification]);
+    XCTAssertEqual(-1, [_notificationCenter addActivateNotificationListener:_activateNotification]);
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
 }
 
-- (void)testAddInvalidNotificationListeners {
-    // Verify that AddNotification gets failed on adding invalid notification listeners.
-    XCTAssertEqual(0, [_notificationCenter addNotification:OPTLYNotificationTypeTrack activateListener:_activateNotification]);
-    XCTAssertEqual(0, [_notificationCenter addNotification:OPTLYNotificationTypeActivate trackListener:_trackNotification]);
-    
-    // Verify that no notifion has been added.
-    XCTAssertEqual(0, _notificationCenter.notificationsCount);
-}
-
 - (void)testClearNotifications {
-
+    
     // Add activate notifications.
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification];
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_anotherActivateNotification];
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
+    [_notificationCenter addActivateNotificationListener:_anotherActivateNotification];
     
     // Add track notification.
-    [_notificationCenter addNotification:OPTLYNotificationTypeTrack trackListener:_trackNotification];
+    [_notificationCenter addTrackNotificationListener:_trackNotification];
     
     // Verify that callbacks added successfully.
     XCTAssertEqual(3, _notificationCenter.notificationsCount);
@@ -122,11 +127,11 @@ static NSString *const kVariationId = @"6362476365";
     [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
-    // Verify that clearNotifications does not break on calling twice for same type.
+    // Verify that ClearNotifications does not break on calling twice for same type.
     [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
     [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
     
-    // Verify that clearNotifications does not break after calling clearAllNotifications.
+    // Verify that ClearNotifications does not break after calling ClearAllNotifications.
     [_notificationCenter clearAllNotifications];
     [_notificationCenter clearNotifications:OPTLYNotificationTypeTrack];
 }
@@ -134,36 +139,33 @@ static NSString *const kVariationId = @"6362476365";
 - (void)testClearAllNotifications {
     
     // Add activate notifications.
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_activateNotification];
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:_anotherActivateNotification];
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
+    [_notificationCenter addActivateNotificationListener:_anotherActivateNotification];
     
     // Add track notification.
-    [_notificationCenter addNotification:OPTLYNotificationTypeTrack trackListener:_trackNotification];
+    [_notificationCenter addTrackNotificationListener:_trackNotification];
     
     // Verify that callbacks added successfully.
     XCTAssertEqual(3, _notificationCenter.notificationsCount);
     
-    // Verify that clearAllNotifications remove all the callbacks.
+    // Verify that ClearAllNotifications remove all the callbacks.
     [_notificationCenter clearAllNotifications];
     XCTAssertEqual(0, _notificationCenter.notificationsCount);
     
-    // Verify that clearAllNotifications does not break on calling twice or after clearNotifications.
+    // Verify that ClearAllNotifications does not break on calling twice or after ClearNotifications.
     [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
     [_notificationCenter clearAllNotifications];
     [_notificationCenter clearAllNotifications];
 }
 
 - (void)testSendNotifications {
-    id activateNotificationMock = OCMPartialMock(_activateNotification);
-    id anotherActivateNotificationMock = OCMPartialMock(_anotherActivateNotification);
-    id trackNotificationMock = OCMPartialMock(_trackNotification);
     
     // Add activate notifications.
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:activateNotificationMock];
-    [_notificationCenter addNotification:OPTLYNotificationTypeActivate activateListener:anotherActivateNotificationMock];
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
+    [_notificationCenter addActivateNotificationListener:_anotherActivateNotification];
     
     // Add track notification.
-    [_notificationCenter addNotification:OPTLYNotificationTypeTrack trackListener:trackNotificationMock];
+    [_notificationCenter addTrackNotificationListener:_trackNotification];
     
     // Fire decision type notifications.
     OPTLYExperiment *experiment = [_projectConfig getExperimentForKey:kExperimentKey];
@@ -173,7 +175,7 @@ static NSString *const kVariationId = @"6362476365";
     NSString *userId = [NSString stringWithFormat:@"%@", kUserId];
     
     // Verify that only the registered notifications of decision type are called.
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:[NSArray arrayWithObjects:experiment, userId, attributes, variation, event, nil]];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation, event]];
     
     OCMReject(_trackNotification);
     OCMVerify(_activateNotification);
@@ -183,17 +185,17 @@ static NSString *const kVariationId = @"6362476365";
     NSDictionary *eventTags = [NSDictionary new];
     
     // Verify that only the registered notifications of track type are called.
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:[NSArray arrayWithObjects:eventKey, userId, attributes, eventTags, event, nil]];
-
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:@[eventKey, userId, attributes, eventTags, event]];
+    
     OCMVerify(_trackNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
-
+    
     // Verify that after clearing notifications, SendNotification should not call any notification
     // which were previously registered.
     [_notificationCenter clearAllNotifications];
     
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:[NSArray arrayWithObjects:experiment, userId, attributes, variation, event, nil]];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation, event]];
     
     // Again verify notifications which were registered are not called.
     OCMReject(_trackNotification);
@@ -201,12 +203,35 @@ static NSString *const kVariationId = @"6362476365";
     OCMReject(_anotherActivateNotification);
 }
 
-- (void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+- (void)testSendNotificationsWithInvalidArgs {
     
-}
-
-- (void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event { 
+    // Add activate notifications.
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
     
+    // Add track notification.
+    [_notificationCenter addTrackNotificationListener:_trackNotification];
+    
+    // Fire decision type notifications.
+    OPTLYExperiment *experiment = [_projectConfig getExperimentForKey:kExperimentKey];
+    OPTLYVariation *variation = [experiment getVariationForVariationId:kVariationId];
+    NSDictionary *attributes = [NSDictionary new];
+    NSDictionary *event = [NSDictionary new];
+    NSString *userId = [NSString stringWithFormat:@"%@", kUserId];
+    
+    // Verify that only the registered notifications of decision type are called.
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation]];
+    
+    OCMReject(_trackNotification);
+    OCMReject(_activateNotification);
+    
+    NSString *eventKey = [NSString stringWithFormat:@"%@", kUserId];
+    NSDictionary *eventTags = [NSDictionary new];
+    
+    // Verify that only the registered notifications of track type are called.
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:@[eventKey, userId, eventTags, event]];
+    
+    OCMReject(_trackNotification);
+    OCMReject(_activateNotification);
 }
 
 @end
