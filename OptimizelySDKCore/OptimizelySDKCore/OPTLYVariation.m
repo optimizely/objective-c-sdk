@@ -29,11 +29,16 @@
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId   : @"variationId",
                                                              OPTLYDatafileKeysVariationKey  : @"variationKey",
-                                                             OPTLYDatafileKeysVariationVariableUsageInstances  : @"variableUsageInstances"
+                                                             OPTLYDatafileKeysVariationVariableUsageInstances  : @"variableUsageInstances",
+                                                             OPTLYDatafileKeysVariationFeatureEnabled : @"featureEnabled"
                                                        }];
 }
 
 # pragma mark - Feature Variable Mappings and Getters
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return [propertyName isEqualToString:@"featureEnabled"];
+}
 
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId {
     OPTLYVariableUsage *variableUsage = nil;

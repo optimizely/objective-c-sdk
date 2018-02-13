@@ -30,7 +30,8 @@
               "id": "155561",
               "value": "red"
             }
-          ]
+          ],
+          "featureEnabled": true
         },
         {
           "id": "6373141148",
@@ -511,7 +512,8 @@
                   "id": "73483201093",
                   "value": "35.5"
                 }
-              ]
+              ],
+              "featureEnabled": true
             },
             {
               "id": "6453410973",
@@ -533,7 +535,8 @@
                   "id": "73483201093",
                   "value": "75.5"
                 }
-              ]
+              ],
+              "featureEnabled": true
             }
           ],
           "forcedVariations": {
@@ -823,7 +826,8 @@
                   "id": "155556",
                   "value": "true"
                 }
-              ]
+              ],
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
