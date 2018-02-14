@@ -217,9 +217,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 
 - (void)testOptimizelyPostsActivateExperimentNotification {
     
-    OPTLYNotificationTest *activateNotification = [OPTLYNotificationTest new];
-    id activateNotificationMock = OCMPartialMock(activateNotification);
-    
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
     
@@ -231,7 +228,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                                    userId:kUserId];
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
-    [activateNotificationMock stopMocking];
 }
 
 - (void)testOptimizelyTrackWithInvalidEvent {
@@ -266,6 +262,18 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [loggerMock stopMocking];
 }
 
+- (void)testOptimizelyPostEventTrackNotification {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *notificationEventKey = nil;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        notificationEventKey = eventKey;
+    }];
+    
+    [self.optimizely track:eventKey userId:kUserId attributes:self.attributes];
+    XCTAssertEqual(eventKey, notificationEventKey);
+}
 
 # pragma mark - IsFeatureEnabled Tests
 
