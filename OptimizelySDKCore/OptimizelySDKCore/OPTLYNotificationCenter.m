@@ -86,12 +86,18 @@
 
 - (void)sendNotifications:(OPTLYNotificationType)type args:(NSArray *)args {
     OPTLYNotificationHolder *notification = _notifications[@(type)];
-    for (GenericListener object in notification.allValues) {
+    for (GenericListener listener in notification.allValues) {
         @try {
-            if (type == OPTLYNotificationTypeActivate)
-                [self notifyActivateListener:((ActivateListener) object) args:args];
-            else
-                [self notifyTrackListener:((TrackListener) object) args:args];
+            switch (type) {
+                case OPTLYNotificationTypeActivate:
+                    [self notifyActivateListener:((ActivateListener) listener) args:args];
+                    break;
+                case OPTLYNotificationTypeTrack:
+                    [self notifyTrackListener:((TrackListener) listener) args:args];
+                    break;
+                default:
+                    listener(args);
+            }
         } @catch (NSException *exception) {
             NSString *logMessage = [NSString stringWithFormat:@"Problem calling notify callback. Error: %@", exception.reason];
             [_config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
