@@ -37,4 +37,6 @@
 
 + (nonnull instancetype)init:(nonnull OPTLYClientBuilderBlock)builderBlock;
 
+- (OPTLYNotificationCenter *_Nullable)notificationCenter;
+
 @end

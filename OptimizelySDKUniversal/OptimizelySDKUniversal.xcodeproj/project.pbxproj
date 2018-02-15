@@ -37,8 +37,6 @@
 		3E44F6511FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */; };
 		3E44F6521FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E44F6531FEAA2930044C005 /* OPTLYFeatureDecision.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */; };
-		3E9599A02018BB7E006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999F2018BB74006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E9599A12018BB7E006E4FD7 /* OPTLYNotificationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E95999F2018BB74006E4FD7 /* OPTLYNotificationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ED0F1B0200F353700FCFBE0 /* OPTLYNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED0F1AF200F351E00FCFBE0 /* OPTLYNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3ED0F1B1200F353700FCFBE0 /* OPTLYNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0F1AE200F351D00FCFBE0 /* OPTLYNotificationCenter.m */; };
 		3ED0F1B2200F353700FCFBE0 /* OPTLYNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ED0F1AF200F351E00FCFBE0 /* OPTLYNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -370,7 +368,6 @@
 		3BF812707C2B1BF4FC2F69E6 /* Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
 		3E44F64E1FEAA28E0044C005 /* OPTLYFeatureDecision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYFeatureDecision.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYFeatureDecision.h; sourceTree = SOURCE_ROOT; };
 		3E44F64F1FEAA28E0044C005 /* OPTLYFeatureDecision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYFeatureDecision.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYFeatureDecision.m; sourceTree = SOURCE_ROOT; };
-		3E95999F2018BB74006E4FD7 /* OPTLYNotificationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNotificationDelegate.h; sourceTree = "<group>"; };
 		3ED0F1AE200F351D00FCFBE0 /* OPTLYNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNotificationCenter.m; sourceTree = "<group>"; };
 		3ED0F1AF200F351E00FCFBE0 /* OPTLYNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYNotificationCenter.h; sourceTree = "<group>"; };
 		3ED0F1B4200F37A600FCFBE0 /* OPTLYFeatureVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFeatureVariable.m; sourceTree = "<group>"; };
@@ -739,7 +736,6 @@
 		EAC5F1871E7B60D700C087B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E95999F2018BB74006E4FD7 /* OPTLYNotificationDelegate.h */,
 				EAC5F2921E7B651700C087B8 /* Optimizely.h */,
 				EAC5F1311E7B604C00C087B8 /* Optimizely.m */,
 				EAC5F88B1E81E2AA00C087B8 /* OptimizelySDKCore.h */,
@@ -1026,7 +1022,6 @@
 				EA52CA621E851CC100D4FCA0 /* OPTLYManagerBasic.h in Headers */,
 				EA52CA631E851CC100D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
 				EA52CA641E851CC100D4FCA0 /* OPTLYErrorHandler.h in Headers */,
-				3E9599A02018BB7E006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 				EA52CA651E851CC100D4FCA0 /* OPTLYNetworkService.h in Headers */,
 				EA52CEF41E86690500D4FCA0 /* OptimizelySDKiOS.h in Headers */,
 				EA52CA6B1E851CC100D4FCA0 /* Optimizely.h in Headers */,
@@ -1127,7 +1122,6 @@
 				EA3144F11ED7A22300A8E555 /* OPTLYUserProfile.h in Headers */,
 				3E44F6521FEAA2930044C005 /* OPTLYFeatureDecision.h in Headers */,
 				EA52CB1D1E851CEE00D4FCA0 /* murmur3.h in Headers */,
-				3E9599A12018BB7E006E4FD7 /* OPTLYNotificationDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
