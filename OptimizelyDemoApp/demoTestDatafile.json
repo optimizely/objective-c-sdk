@@ -190,7 +190,7 @@
                   "value": "lumos"
                 }
               ],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
@@ -228,7 +228,7 @@
                   "value": "odric"
                 }
               ],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
@@ -261,7 +261,7 @@
                   "value": "alazar"
                 }
               ],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
@@ -294,7 +294,7 @@
                   "value": "udley"
                 }
               ],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
@@ -325,7 +325,7 @@
                   "value": "uggle"
                 }
               ],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
@@ -352,7 +352,7 @@
               "id": "589640735",
               "key": "589640735",
               "variables": [],
-              "featureEnabled": false
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [

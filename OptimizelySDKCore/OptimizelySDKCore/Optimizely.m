@@ -215,18 +215,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     
-    if (!decision) {
+    if (!decision || !decision.variation.featureEnabled) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return false;
     }
     
     if ([decision.source isEqualToString:DecisionSourceExperiment]) {
-        if (!decision.variation.featureEnabled) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            return false;
-        }
         [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
     } else {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];

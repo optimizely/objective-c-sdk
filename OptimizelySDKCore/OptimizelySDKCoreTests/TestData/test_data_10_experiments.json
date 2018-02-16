@@ -855,7 +855,8 @@
                   "id": "155556",
                   "value": "false"
                 }
-              ]
+              ],
+              "featureEnabled": false
             }
           ],
           "trafficAllocation": [
@@ -881,7 +882,8 @@
                   "id": "155556",
                   "value": "false"
                 }
-              ]
+              ],
+              "featureEnabled": true
             }
           ],
           "trafficAllocation": [
