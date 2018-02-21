@@ -501,14 +501,33 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     
     // check feature flags
     NSAssert([projectConfig.featureFlags count] == kNumberOfFeatureFlagsObjects, @"deserializeJSONArray failed to deserialize the right number of feature flags objects in project config.");
-    for (id featureFlags in projectConfig.featureFlags) {
-        NSAssert([featureFlags isKindOfClass:[OPTLYFeatureFlag class]], @"deserializeJSONArray failed to deserialize the feature flag object in project config.");
+    for (id featureFlag in projectConfig.featureFlags) {
+        NSAssert([featureFlag isKindOfClass:[OPTLYFeatureFlag class]], @"deserializeJSONArray failed to deserialize the feature flag object in project config.");
+        for (NSString *expId in ((OPTLYFeatureFlag *)featureFlag).experimentIds) {
+            OPTLYExperiment *exp = [_projectConfig getExperimentForId:expId];
+            [self checkFeatureEnabledProperty:exp];
+        }
     }
     
     // check rollouts
     NSAssert([projectConfig.rollouts count] == kNumberOfRolloutsObjects, @"deserializeJSONArray failed to deserialize the right number of rollouts objects in project config.");
     for (id rollout in projectConfig.rollouts) {
         NSAssert([rollout isKindOfClass:[OPTLYRollout class]], @"deserializeJSONArray failed to deserialize the rollout object in project config.");
+        for (OPTLYExperiment *experiment in ((OPTLYRollout *)rollout).experiments) {
+            [self checkFeatureEnabledProperty:experiment];
+        }
+    }
+}
+
+// Check all properties in an ProjectConfig object
+- (void)checkFeatureEnabledProperty:(OPTLYExperiment *)experiment {
+    for (OPTLYVariation *variation in experiment.variations) {
+        NSString *key = @"featureEnabled";
+        NSString *setterStr = [NSString stringWithFormat:@"set%@%@:",
+                               [[key substringToIndex:1] capitalizedString],
+                               [key substringFromIndex:1]];
+        NSAssert([variation respondsToSelector:NSSelectorFromString(setterStr)],
+                 @"Experiment variations should have %@ field.", key);
     }
 }
 

@@ -38,6 +38,8 @@
 @property (nonatomic, strong, nonnull) NSString *variationKey;
 /// The array containing the variables usage instances that are part of this variation.
 @property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
+/// Flag for Feature Toggle Ability
+@property (nonatomic, assign) BOOL featureEnabled;
 
 /// Gets the variable usage instance for a given variable id
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
