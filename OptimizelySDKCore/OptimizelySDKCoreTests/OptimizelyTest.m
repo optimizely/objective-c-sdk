@@ -382,7 +382,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [decisionServiceMock stopMocking];
 }
 
-// Should return false if the feature experiment variation’s `featureEnabled` property is true
+// Should return false if the feature experiment variation’s `featureEnabled` property is false
 - (void)testIsFeatureEnabledWithVariationsFeatureEnabledFalse {
     NSString *featureFlagKey = @"booleanFeature";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
