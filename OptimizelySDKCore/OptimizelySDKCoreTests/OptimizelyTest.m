@@ -358,7 +358,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 - (void)testIsFeatureEnabledWithFeatureFlagEnabledAndUserIsBeingExperimented {
     NSString *featureFlagKey = @"multiVariateFeature";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
-    OPTLYVariation *variation = [experiment getVariationForVariationId:@"6358043287"];
+    OPTLYVariation *variation = [experiment getVariationForVariationId:@"6373141147"];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
     
@@ -373,6 +373,84 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OCMVerify([optimizelyMock sendImpressionEventFor:decision.experiment variation:decision.variation userId:kUserId attributes:nil callback:nil]);
     
     OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    [decisionServiceMock stopMocking];
+}
+
+// Should return false if the feature experiment variation’s `featureEnabled` property is false
+- (void)testIsFeatureEnabledWithVariationsFeatureEnabledFalse {
+    NSString *featureFlagKey = @"booleanFeature";
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[0]];
+    OPTLYVariation *variation = experiment.variations[0];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    XCTAssertFalse([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return false for disabled featureFlag");
+    
+    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    [decisionServiceMock stopMocking];
+}
+
+// Should return true if the feature experiment variation’s `featureEnabled` property is true
+- (void)testIsFeatureEnabledWithVariationsFeatureEnabledtrue {
+    NSString *featureFlagKey = @"booleanFeature";
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[1]];
+    OPTLYVariation *variation = experiment.variations[1];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    XCTAssertTrue([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return true for enabled featureFlag");
+    
+    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    
+    [decisionServiceMock stopMocking];
+}
+
+// Should return true if the user is bucketed into rollout experiment’s variation
+// and variation's featureEnabled is also true
+- (void)testIsFeatureEnabledWithVariationsFeatureEnabledtrueForRollout {
+    NSString *featureFlagKey = @"booleanSingleVariableFeature";
+    OPTLYRollout *rollout = [self.optimizely.config getRolloutForId:@"166660"];
+    OPTLYExperiment *experiment = rollout.experiments[0];
+    OPTLYVariation *variation = experiment.variations[0];
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    XCTAssertTrue([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return true for enabled featureFlag");
+    
+    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    [decisionServiceMock stopMocking];
+}
+
+// Should return false if the user is bucketed into rollout experiment’s variation
+// but variation's featureEnabled is false
+- (void)testIsFeatureEnabledWithVariationsFeatureEnabledForRollout {
+    NSString *featureFlagKey = @"booleanSingleVariableFeature";
+    OPTLYRollout *rollout = [self.optimizely.config getRolloutForId:@"166660"];
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
+    OPTLYExperiment *experiment = rollout.experiments[1];
+    OPTLYVariation *variation = experiment.variations[0];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    XCTAssertFalse([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return false for disabled featureFlag");
+    
+    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    
     [decisionServiceMock stopMocking];
 }
 
