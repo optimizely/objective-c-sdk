@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -182,6 +182,15 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Get the list of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> List of the feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
 #pragma mark - trackEvent methods
 /**

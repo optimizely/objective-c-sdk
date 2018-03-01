@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -352,6 +352,19 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                     variableKey:variableKey
                                          userId:userId
                                      attributes:attributes];
+}
+    
+-(NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
+                                attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    
+    NSMutableArray<NSString *> *enabledFeatures = [NSMutableArray new];
+    for (OPTLYFeatureFlag *feature in self.config.featureFlags) {
+        NSString *featureKey = feature.key;
+        if ([self isFeatureEnabled:featureKey userId:userId attributes:attributes]) {
+            [enabledFeatures addObject:featureKey];
+        }
+    }
+    return enabledFeatures;
 }
 
 #pragma mark trackEvent methods
