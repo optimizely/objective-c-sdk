@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -927,6 +927,24 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                    
    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
    [decisionServiceMock stopMocking];
+}
+    
+#pragma mark - GetEnabledFeatures Tests
+
+// should return empty feature array as no feature is enabled for user
+-(void)testGetEnabledFeaturesWithNoFeatureEnabledForUser {
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OCMStub([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]).andReturn(false);
+    XCTAssertEqual([optimizelyMock getEnabledFeatures:kUserId attributes:self.attributes].count, 0);
+    OCMVerify([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]);
+    [optimizelyMock stopMocking];
+}
+    
+// should return empty feature array as no feature is enabled for user
+-(void)testGetEnabledFeaturesWithSomeFeaturesEnabledForUser {
+    NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
+    NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:self.attributes];
+    XCTAssertEqualObjects(features, enabledFeatures);
 }
 
 #pragma mark - Helper Methods

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016, 2018, Optimizely, Inc. and contributors                  *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -195,6 +195,19 @@
                                               variableKey:variableKey
                                                    userId:userId
                                                attributes:attributes];
+    }
+}
+    
+- (NSArray<NSString *> *)getEnabledFeatures:(nullable NSString *)userId
+               attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+    if (self.optimizely == nil) {
+        [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
+                      withLevel:OptimizelyLogLevelError];
+        return [NSArray new];
+    }
+    else {
+        return [self.optimizely getEnabledFeatures:userId
+                                        attributes:attributes];
     }
 }
 

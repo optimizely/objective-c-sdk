@@ -353,6 +353,19 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                          userId:userId
                                      attributes:attributes];
 }
+    
+-(NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
+                                attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    
+    NSMutableArray<NSString *> *enabledFeatures = [NSMutableArray new];
+    for (OPTLYFeatureFlag *feature in self.config.featureFlags) {
+        NSString *featureKey = feature.key;
+        if ([self isFeatureEnabled:featureKey userId:userId attributes:attributes]) {
+            [enabledFeatures addObject:featureKey];
+        }
+    }
+    return enabledFeatures;
+}
 
 #pragma mark trackEvent methods
 - (void)track:(NSString *)eventKey userId:(NSString *)userId

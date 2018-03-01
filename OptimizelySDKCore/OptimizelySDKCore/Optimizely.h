@@ -183,6 +183,15 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
                                 userId:(nullable NSString *)userId
                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 
+/**
+ * Get the list of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> List of the feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
 #pragma mark - trackEvent methods
 /**
  * Track an event
