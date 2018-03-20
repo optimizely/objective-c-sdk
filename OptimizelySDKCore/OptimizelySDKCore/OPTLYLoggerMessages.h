@@ -221,10 +221,8 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserBucketed;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserNotBucketed;
 // FF = Feature Rollout
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRNotUsed;
-extern NSString *const OPTLYLoggerMessagesDecisionServiceFRBucketing;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded;
-extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed;
