@@ -672,7 +672,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 }
 
 // should return variation when the user is bucketed into "Fall Back" after attempting to bucket into all targeting rules
-- (void)testGetVariationForFeatureWithEveryoneElseRuleBucketingButNoTargetingRule {
+- (void)testGetVariationForFeatureWithFallBackRuleBucketingButNoTargetingRule {
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
@@ -694,6 +694,33 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
     OCMVerify([bucketerMock bucketExperiment:fallBackRule withBucketingId:kUserId]);
     [bucketerMock stopMocking];
+}
+
+- (void)testGetVariationForFeatureWithFallBackRuleBucketingId {
+    OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    OPTLYRollout *rollout = [self.config getRolloutForId:featureFlag.rolloutId];
+    OPTLYExperiment *rolloutRuleExperiment = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *rolloutVariation = rolloutRuleExperiment.variations[0];
+    NSString *bucketingId = @"user_bucketing_id";
+    NSString *userId = @"user_id";
+    NSDictionary *attributes = @{OptimizelyBucketId: bucketingId};
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:rolloutRuleExperiment withBucketingId:userId]).andReturn(nil);
+    OCMStub([bucketerMock bucketExperiment:rolloutRuleExperiment withBucketingId:bucketingId]).andReturn(rolloutVariation);
+    
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config
+                                                                                       bucketer:bucketerMock];
+    
+    OPTLYFeatureDecision *expectedFeatureDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:rolloutRuleExperiment
+                                                                                           variation:rolloutVariation
+                                                                                              source:DecisionSourceRollout];
+    
+    OPTLYFeatureDecision *featureDecision = [decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    
+    XCTAssertEqualObjects(expectedFeatureDecision.experiment, featureDecision.experiment);
+    XCTAssertEqualObjects(expectedFeatureDecision.variation, featureDecision.variation);
+    XCTAssertEqualObjects(expectedFeatureDecision.source, featureDecision.source);
 }
 
 @end
