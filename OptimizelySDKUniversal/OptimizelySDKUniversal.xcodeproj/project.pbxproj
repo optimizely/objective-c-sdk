@@ -729,8 +729,7 @@
 				EAC5F1931E7B61C800C087B8 /* Shared */,
 				EAC5F18E1E7B617A00C087B8 /* UserProfile */,
 			);
-			name = OptimizelySDKUniversal;
-			path = OptimizelySDK;
+			path = OptimizelySDKUniversal;
 			sourceTree = "<group>";
 		};
 		EAC5F1871E7B60D700C087B8 /* Core */ = {
