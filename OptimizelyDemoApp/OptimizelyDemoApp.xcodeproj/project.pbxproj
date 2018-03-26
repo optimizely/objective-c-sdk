@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3E19F86C1F0176AC001FC077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E19F86A1F0176A5001FC077 /* Assets.xcassets */; };
+		3E3AD1412061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AD1422061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework */; };
+		3E62A2602061E71500D1AC12 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */; };
 		3EB7197C1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EF452841ECA639300BA82CB /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF452831ECA639300BA82CB /* OptimizelySDKUserProfileService.framework */; };
-		7AAAE45EFBB4C7742E4D93B7 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */; };
 		EA1E4B491E65060300BDDABD /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */; };
 		EA1E4B4A1E65060300BDDABD /* OptimizelySDKEventDispatcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA1E4B4C1E65060300BDDABD /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B4B1E65060300BDDABD /* OptimizelySDKShared.framework */; };
@@ -27,7 +28,6 @@
 		EA1E4B5E1E65065500BDDABD /* OptimizelySDKEventDispatcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA1E4B5F1E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */; };
 		EA1E4B601E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B541E65060300BDDABD /* OptimizelySDKDatafileManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EA1E4B651E65072600BDDABD /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA1E4B661E65074E00BDDABD /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; };
 		EA1E4B671E65075C00BDDABD /* OptimizelySDKiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5249311DC72F3500AF6685 /* OptimizelySDKiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA28AB311E5FBA900060BF44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA28AB301E5FBA900060BF44 /* GoogleService-Info.plist */; };
@@ -127,7 +127,6 @@
 			files = (
 				3EB7197C1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework in Embed Frameworks */,
 				EA1E4B671E65075C00BDDABD /* OptimizelySDKiOS.framework in Embed Frameworks */,
-				EA1E4B651E65072600BDDABD /* Pods_OptimizelyiOSDemoApp.framework in Embed Frameworks */,
 				EA1E4B5A1E65065500BDDABD /* OptimizelySDKShared.framework in Embed Frameworks */,
 				EA1E4B601E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Embed Frameworks */,
 				EA1E4B5C1E65065500BDDABD /* OptimizelySDKCore.framework in Embed Frameworks */,
@@ -158,6 +157,7 @@
 		0AD2B4CCAE039F03823867E5 /* Pods-OptimizelyiOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 		3321336732A089FCB7E90C94 /* Pods-OptimizelyiOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyiOSDemoApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3E19F86A1F0176A5001FC077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = OptimizelyTVOSDemoApp/Assets.xcassets; sourceTree = "<group>"; };
+		3E3AD1422061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OptimizelySDKUserProfileService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF452831ECA639300BA82CB /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = "../Debug-appletvos/OptimizelySDKUserProfileService.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,12 +212,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3AD1412061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 				EA1E4B661E65074E00BDDABD /* OptimizelySDKiOS.framework in Frameworks */,
 				EA1E4B591E65065500BDDABD /* OptimizelySDKShared.framework in Frameworks */,
 				EA1E4B5B1E65065500BDDABD /* OptimizelySDKCore.framework in Frameworks */,
-				7AAAE45EFBB4C7742E4D93B7 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */,
 				EA1E4B5D1E65065500BDDABD /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 				EA1E4B5F1E65065500BDDABD /* OptimizelySDKDatafileManager.framework in Frameworks */,
+				3E62A2602061E71500D1AC12 /* OptimizelySDKUserProfileService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +300,7 @@
 		EA5248C31DC72E8300AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E3AD1422061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework */,
 				EA70FFB71E550EAC00590BEF /* OptimizelySDKTVOS.xcodeproj */,
 				EA52492B1DC72F3500AF6685 /* OptimizelySDKiOS.xcodeproj */,
 				3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */,
