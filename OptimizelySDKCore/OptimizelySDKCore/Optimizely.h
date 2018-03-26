@@ -22,7 +22,6 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryVariationK
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryUserIdKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryAttributesKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventValueKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
 @class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
@@ -201,26 +200,6 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId;
 
-/** @deprecated. Use `track:userId:eventValue`.
- * Track an event
- * @param eventKey The event name
- * @param userId The user ID associated with the event to track
- * @param eventValue The event value (e.g., revenue amount)
- */
-- (void)track:(nonnull NSString *)eventKey
-       userId:(nonnull NSString *)userId
-   eventValue:(nonnull NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
-
-/**
- * Track an event
- * @param eventKey The event name
- * @param userId The user ID associated with the event to track
- * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean)
- */
-- (void)track:(nonnull NSString *)eventKey
-       userId:(nonnull NSString *)userId
-    eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
-
 /**
  * Track an event
  * @param eventKey The event name
@@ -231,17 +210,15 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
        userId:(nonnull NSString *)userId
    attributes:(nonnull NSDictionary<NSString *, NSString *> *)attributes;
 
-/** @deprecated. Use `track:userId:attributes:eventValue`.
+/**
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
- * @param attributes A map of attribute names to current user attribute values
- * @param eventValue The event value (e.g., revenue amount)
+ * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean)
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-   eventValue:(nullable NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
+    eventTags:(nonnull NSDictionary<NSString *, id> *)eventTags;
 
 /**
  * Track an event
@@ -280,19 +257,16 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 + (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
 
-// TODO: remove when eventValue is deprecated
 /**
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
  * @param attributes A map of attribute names to current user attribute values.
  * @param eventTags A map of event tag names to event tag values (string, number, or boolean)
- * @param eventValue The event value (e.g., revenue amount)
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags
-   eventValue:(nullable NSNumber *)eventValue;
+    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 @end

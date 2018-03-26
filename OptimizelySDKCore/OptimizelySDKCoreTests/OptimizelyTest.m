@@ -30,6 +30,7 @@
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYNotificationCenter.h"
+#import "OPTLYEventMetric.h"
 
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
@@ -273,6 +274,22 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     [self.optimizely track:eventKey userId:kUserId attributes:self.attributes];
     XCTAssertEqual(eventKey, notificationEventKey);
+}
+
+- (void)testOptimizelyPostEventTrackNotificationWithEventTags {
+    
+    NSString *eventKey = @"testEvent";
+    NSDictionary *eventTags = @{ OPTLYEventMetricNameRevenue: @(2.5)};
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary *notificationEventTags = nil;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        notificationEventKey = eventKey;
+        notificationEventTags = eventTags;
+    }];
+    [self.optimizely track:eventKey userId:kUserId eventTags:eventTags];
+    XCTAssertEqual(eventKey, notificationEventKey);
+    XCTAssertEqual(eventTags, notificationEventTags);
 }
 
 # pragma mark - IsFeatureEnabled Tests
