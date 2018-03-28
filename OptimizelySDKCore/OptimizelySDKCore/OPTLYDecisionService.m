@@ -287,37 +287,33 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
             // Evaluate this user for the next rule
             continue;
         }
-        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRBucketing, userId, experiment.experimentKey]
-                             withLevel:OptimizelyLogLevelDebug];
         
         // Evaluate if user satisfies the traffic allocation for this rollout rule
         OPTLYVariation *variation = [self.bucketer bucketExperiment:experiment withBucketingId:bucketing_id];
-        if (variation && variation.variationKey) {
-            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserBucketed, userId, featureFlagKey]
-                                 withLevel:OptimizelyLogLevelDebug];
-            OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
-                                                                                    variation:variation
-                                                                                       source:DecisionSourceRollout];
-            return decision;
-        } else {
-            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed, userId, featureFlagKey]
-                                 withLevel:OptimizelyLogLevelDebug];
+        if (!variation || !variation.variationKey) {
             break;
         }
-    }
-    // Evaluate Everyone Else Rule / Last Rule now
-    OPTLYExperiment *experiment = rolloutRules[rolloutRules.count - 1];
-    OPTLYVariation *variation = [self.bucketer bucketExperiment:experiment withBucketingId:bucketing_id];
-    if (variation && variation.variationKey) {
+        
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserBucketed, userId, featureFlagKey]
+                             withLevel:OptimizelyLogLevelDebug];
         OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                 variation:variation
                                                                                    source:DecisionSourceRollout];
         return decision;
-    } else {
-        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserExcludedEveryoneElse, userId]
-                             withLevel:OptimizelyLogLevelDebug];
-        return nil;
     }
+    // Evaluate fall back rule / last rule now
+    OPTLYExperiment *experiment = rolloutRules[rolloutRules.count - 1];
+    if ([self userPassesTargeting:self.config experiment:experiment userId:userId attributes:attributes]) {
+        OPTLYVariation *variation = [self.bucketer bucketExperiment:experiment withBucketingId:bucketing_id];
+        if (variation && variation.variationKey) {
+            OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
+                                                                                    variation:variation
+                                                                                       source:DecisionSourceRollout];
+            return decision;
+        }
+    }
+    
+    return nil;
 }
 
 - (void)saveUserProfile:(NSDictionary *)userProfileDict

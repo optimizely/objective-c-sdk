@@ -595,13 +595,13 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     XCTAssertNil(decision, @"Get variation for feature with rollout having no rule should return nil: %@", decision);
 }
 
-// should return nil when the user is not bucketed into targeting rule as well as "Everyone Else" rule.
+// should return nil when the user is not bucketed into targeting rule as well as "Fall Back" rule.
 - (void)testGetVariationForFeatureWithNoBucketing {
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
     OPTLYExperiment *experiment = rollout.experiments[0];
-    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYExperiment *fallBackRule = rollout.experiments[rollout.experiments.count - 1];
     NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
     
     id bucketerMock = OCMPartialMock(self.bucketer);
@@ -613,7 +613,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     XCTAssertNil(decision, @"Get variation for feature with rollout having no bucketing rule should return nil: %@", decision);
     
     OCMVerify([bucketerMock bucketExperiment:experiment withBucketingId:kUserId]);
-    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    OCMVerify([bucketerMock bucketExperiment:fallBackRule withBucketingId:kUserId]);
     [bucketerMock stopMocking];
 }
 
@@ -643,57 +643,84 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     [bucketerMock stopMocking];
 }
 
-// should return variation when the user is bucketed into "Everyone Else" rule instead of targeting rule
-- (void)testGetVariationForFeatureWithEveryoneElseRuleBucketing {
+// should return variation when the user is bucketed into "Fall Back" rule instead of targeting rule
+- (void)testGetVariationForFeatureWithFallBackRuleBucketing {
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
     OPTLYExperiment *experiment = rollout.experiments[0];
-    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
-    OPTLYVariation *expectedVariation = everyoneElseRule.variations[0];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:everyoneElseRule
+    OPTLYExperiment *fallBackRule = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *expectedVariation = fallBackRule.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:fallBackRule
                                                                                     variation:expectedVariation
                                                                                          source:DecisionSourceRollout];
     NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
     
     id bucketerMock = OCMPartialMock(self.bucketer);
     OCMStub([bucketerMock bucketExperiment:experiment withBucketingId:[OCMArg any]]).andReturn(nil);
-    OCMStub([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
+    OCMStub([bucketerMock bucketExperiment:fallBackRule withBucketingId:kAttributeValueChrome]).andReturn(expectedVariation);
     OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
 
     OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
     
-    XCTAssertNotNil(decision, @"Get variation for feature with rollout having everyone else rule should return variation: %@", decision);
+    XCTAssertNotNil(decision, @"Get variation for feature with rollout having fall back rule should return variation: %@", decision);
     XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
     
     OCMVerify([bucketerMock bucketExperiment:experiment withBucketingId:kUserId]);
-    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    OCMVerify([bucketerMock bucketExperiment:fallBackRule withBucketingId:kUserId]);
     [bucketerMock stopMocking];
 }
 
-// should return variation when the user is bucketed into "Everyone Else" after attempting to bucket into all targeting rules
-- (void)testGetVariationForFeatureWithEveryoneElseRuleBucketingButNoTargetingRule {
+// should return variation when the user is bucketed into "Fall Back" after attempting to bucket into all targeting rules
+- (void)testGetVariationForFeatureWithFallBackRuleBucketingButNoTargetingRule {
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
-    OPTLYExperiment *everyoneElseRule = rollout.experiments[rollout.experiments.count - 1];
-    OPTLYVariation *expectedVariation = everyoneElseRule.variations[0];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:everyoneElseRule
+    OPTLYExperiment *fallBackRule = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *expectedVariation = fallBackRule.variations[0];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:fallBackRule
                                                                                     variation:expectedVariation
                                                                                          source:DecisionSourceRollout];
     
     id bucketerMock = OCMPartialMock(self.bucketer);
-    OCMStub([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
+    OCMStub([bucketerMock bucketExperiment:fallBackRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
     OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
     
     // Provide null attributes so that user does not qualify for audience.
     OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:nil];
     
-    XCTAssertNotNil(decision, @"Get variation for feature with rollout having everyone else rule after failing all targeting rules should return variation: %@", decision);
+    XCTAssertNotNil(decision, @"Get variation for feature with rollout having fall back rule after failing all targeting rules should return variation: %@", decision);
     XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
     
-    OCMVerify([bucketerMock bucketExperiment:everyoneElseRule withBucketingId:kUserId]);
+    OCMVerify([bucketerMock bucketExperiment:fallBackRule withBucketingId:kUserId]);
     [bucketerMock stopMocking];
+}
+
+- (void)testGetVariationForFeatureWithFallBackRuleBucketingId {
+    OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
+    OPTLYRollout *rollout = [self.config getRolloutForId:featureFlag.rolloutId];
+    OPTLYExperiment *rolloutRuleExperiment = rollout.experiments[rollout.experiments.count - 1];
+    OPTLYVariation *rolloutVariation = rolloutRuleExperiment.variations[0];
+    NSString *bucketingId = @"user_bucketing_id";
+    NSString *userId = @"user_id";
+    NSDictionary *attributes = @{OptimizelyBucketId: bucketingId};
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:rolloutRuleExperiment withBucketingId:userId]).andReturn(nil);
+    OCMStub([bucketerMock bucketExperiment:rolloutRuleExperiment withBucketingId:bucketingId]).andReturn(rolloutVariation);
+    
+    OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config
+                                                                                       bucketer:bucketerMock];
+    
+    OPTLYFeatureDecision *expectedFeatureDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:rolloutRuleExperiment
+                                                                                           variation:rolloutVariation
+                                                                                              source:DecisionSourceRollout];
+    
+    OPTLYFeatureDecision *featureDecision = [decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    
+    XCTAssertEqualObjects(expectedFeatureDecision.experiment, featureDecision.experiment);
+    XCTAssertEqualObjects(expectedFeatureDecision.variation, featureDecision.variation);
+    XCTAssertEqualObjects(expectedFeatureDecision.source, featureDecision.source);
 }
 
 @end
