@@ -230,53 +230,26 @@
 }
 
 #pragma mark trackEvent methods
-- (void)track:(NSString *)eventKey userId:(NSString *)userId
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:nil];
+- (void)track:(NSString *)eventKey userId:(NSString *)userId {
+    [self track:eventKey userId:userId attributes:nil eventTags:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSString *> * )attributes
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
+   attributes:(NSDictionary<NSString *, NSString *> * )attributes {
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil];
 }
 
 - (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   eventValue:(NSNumber *)eventValue
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
+      userId:(NSString *)userId
+   eventTags:(NSDictionary<NSString *,id> *)eventTags {
+    [self track:eventKey userId:userId attributes:nil eventTags:eventTags];
 }
 
 - (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-    eventTags:(NSDictionary *)eventTags
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-   eventValue:(NSNumber *)eventValue
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-    eventTags:(NSDictionary *)eventTags
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:eventTags eventValue:nil];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-    eventTags:(NSDictionary *)eventTags
-   eventValue:(NSNumber *)eventValue {
+      userId:(NSString *)userId
+  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+   eventTags:(NSDictionary<NSString *,id> *)eventTags {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -285,8 +258,7 @@
     [self.optimizely track:eventKey
                     userId:userId
                 attributes:attributes
-                 eventTags:eventTags
-                eventValue:eventValue];
+                 eventTags:eventTags];
 }
 
 - (NSString *)description {

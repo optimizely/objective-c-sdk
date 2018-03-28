@@ -43,7 +43,6 @@ NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation"
 NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
 NSString *const OptimizelyNotificationsUserDictionaryAttributesKey = @"attributes";
 NSString *const OptimizelyNotificationsUserDictionaryEventNameKey = @"eventKey";
-NSString *const OptimizelyNotificationsUserDictionaryEventValueKey = @"eventValue";
 NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey = @"ExperimentVariationMapping";
 
 @implementation Optimizely
@@ -369,64 +368,33 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 #pragma mark trackEvent methods
-- (void)track:(NSString *)eventKey userId:(NSString *)userId
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:nil];
+
+- (void)track:(NSString *)eventKey userId:(NSString *)userId {
+    [self track:eventKey userId:userId attributes:nil eventTags:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSString *> * )attributes
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
+   attributes:(NSDictionary<NSString *, NSString *> * )attributes {
+    [self track:eventKey userId:userId attributes:attributes eventTags:nil];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   eventValue:(NSNumber *)eventValue
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
+    eventTags:(NSDictionary<NSString *,id> *)eventTags {
+    [self track:eventKey userId:userId attributes:nil eventTags:eventTags];
 }
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-    eventTags:(NSDictionary *)eventTags
-{
-    [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-   eventValue:(NSNumber *)eventValue
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-    eventTags:(NSDictionary *)eventTags
-{
-    [self track:eventKey userId:userId attributes:attributes eventTags:eventTags eventValue:nil];
-}
-
-- (void)track:(NSString *)eventKey
-       userId:(NSString *)userId
-   attributes:(NSDictionary *)attributes
-    eventTags:(NSDictionary *)eventTags
-   eventValue:(NSNumber *)eventValue
-{
+   attributes:(NSDictionary<NSString *,NSString *> *)attributes
+    eventTags:(NSDictionary<NSString *,id> *)eventTags {
+    
     OPTLYEvent *event = [self.config getEventForKey:eventKey];
     
     if (!event) {
         [self handleErrorLogsForTrackEvent:eventKey userId:userId];
         return;
-    }
-    
-    // eventValue and eventTags are mutually exclusive
-    if (eventValue) {
-        eventTags = @{ OPTLYEventMetricNameRevenue: eventValue };
     }
     
     NSDictionary *conversionEventParams = [self.eventBuilder buildConversionTicket:self.config
@@ -462,9 +430,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                                     }];
     if (attributes != nil) {
         userInfo[OptimizelyNotificationsUserDictionaryAttributesKey] = attributes;
-    }
-    if (eventValue != nil) {
-        userInfo[OptimizelyNotificationsUserDictionaryEventValueKey] = eventValue;
     }
     NSMutableDictionary *experimentVariationMapping = [NSMutableDictionary new];
     
