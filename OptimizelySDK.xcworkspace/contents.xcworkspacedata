@@ -41,6 +41,27 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
+      location = "group:OptimizelySDKCore.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKDatafileManager.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKEventDispatcher.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKiOS.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKShared.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKTVOS.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:OptimizelySDKUserProfileService.podspec">
+   </FileRef>
+   <FileRef
       location = "group:README.md">
    </FileRef>
    <FileRef
