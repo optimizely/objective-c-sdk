@@ -70,13 +70,13 @@ echo "OPTIMIZELY_SDK_iOS_VERSION = $OPTIMIZELY_SDK_iOS_VERSION";
 OPTIMIZELY_SDK_TVOS_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_VERSION = \(.*\)/\1/p' | sed 's/ //g');
 echo "OPTIMIZELY_SDK_TVOS_VERSION = $OPTIMIZELY_SDK_TVOS_VERSION";
 
-# OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION
-OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
-echo "OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION";
+# OPTIMIZELY_SDK_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_UNIVERSAL_VERSION";
 
-# OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION
-OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
-echo "OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION";
+# OPTIMIZELY_SDK_UNIVERSAL_VERSION
+OPTIMIZELY_SDK_UNIVERSAL_VERSION=$(xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOSUniversal -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_UNIVERSAL_VERSION = \(.*\)/\1/p' | sed 's/ //g');
+echo "OPTIMIZELY_SDK_UNIVERSAL_VERSION = $OPTIMIZELY_SDK_UNIVERSAL_VERSION";
 
 # make sure that all the version numbers are as expected!
 printf "\n"
@@ -238,10 +238,10 @@ printf "Tagging iOS-$OPTIMIZELY_SDK_iOS_VERSION\n";
 git tag -a iOS-$OPTIMIZELY_SDK_iOS_VERSION -m "Release $OPTIMIZELY_SDK_iOS_VERSION";
 printf "Tagging tvOS-$OPTIMIZELY_SDK_TVOS_VERSION\n";
 git tag -a tvOS-$OPTIMIZELY_SDK_TVOS_VERSION -m "Release $OPTIMIZELY_SDK_TVOS_VERSION"
-printf "Tagging iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION\n";
-git tag -a iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION"
-printf "Tagging tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION\n";
-git tag -a tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION"
+printf "Tagging iOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION\n";
+git tag -a iOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_UNIVERSAL_VERSION"
+printf "Tagging tvOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION\n";
+git tag -a tvOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION -m "Release $OPTIMIZELY_SDK_UNIVERSAL_VERSION"
 
 printf "\nListing all tags...\n";
 git for-each-ref --count=9 --sort=-taggerdate --format '%(refname)' refs/tags;
@@ -267,9 +267,9 @@ git push origin iOS-$OPTIMIZELY_SDK_iOS_VERSION --verbose;
 printf "\n";
 git push origin tvOS-$OPTIMIZELY_SDK_TVOS_VERSION --verbose;
 printf "\n";
-git push origin iOSUniversal-$OPTIMIZELY_SDK_iOS_UNIVERSAL_VERSION --verbose;
+git push origin iOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION --verbose;
 printf "\n";
-git push origin tvOSUniversal-$OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION --verbose;
+git push origin tvOSUniversal-$OPTIMIZELY_SDK_UNIVERSAL_VERSION --verbose;
 
 # ---- Make sure you have a Cocoapod session running ----
 printf "\n\n10. Verify Cocoapod trunk session...\n";

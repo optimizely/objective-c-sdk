@@ -122,7 +122,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
 
 #ifdef UNIVERSAL
         // --- client version ---
-        _clientVersion = OPTIMIZELY_SDK_TVOS_UNIVERSAL_VERSION;
+        _clientVersion = OPTIMIZELY_SDK_UNIVERSAL_VERSION;
 #else
         _clientVersion = OPTIMIZELY_SDK_TVOS_VERSION;
 #endif
