@@ -714,29 +714,6 @@
       "variables": []
     },
     {
-      "id": "155559",
-      "key": "multiVariateFeature",
-      "groupId": "",
-      "rolloutId": "",
-      "experimentIds": [
-        "6358043287"
-      ],
-      "variables": [
-        {
-          "id": "155560",
-          "key": "firstLetter",
-          "type": "string",
-          "defaultValue": "H"
-        },
-        {
-          "id": "155561",
-          "key": "restOfName",
-          "type": "string",
-          "defaultValue": "arry"
-        }
-      ]
-    },
-    {
       "id": "155549",
       "key": "booleanFeature",
       "groupId": "6436903041",
@@ -785,6 +762,29 @@
           "key": "stringVariable",
           "type": "string",
           "defaultValue": "wingardium leviosa"
+        }
+      ]
+    },
+    {
+      "id": "155559",
+      "key": "multiVariateFeature",
+      "groupId": "",
+      "rolloutId": "",
+      "experimentIds": [
+        "6358043287"
+      ],
+      "variables": [
+        {
+          "id": "155560",
+          "key": "firstLetter",
+          "type": "string",
+          "defaultValue": "H"
+        },
+        {
+          "id": "155561",
+          "key": "restOfName",
+          "type": "string",
+          "defaultValue": "arry"
         }
       ]
     },

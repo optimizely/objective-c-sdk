@@ -964,15 +964,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqualObjects(features, enabledFeatures);
 }
 
-// should return sorted feature array as some feature is enabled for user
--(void)testGetEnabledFeaturesSortedWithSomeFeaturesEnabledForUser {
-    NSArray<NSString *> *sortedEnabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
-    NSArray<NSString *> *unSortedEnabledFeatures = @[ @"multiVariateFeature", @"booleanFeature", @"booleanSingleVariableFeature"];
-    NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:self.attributes];
-    XCTAssertEqualObjects(features, sortedEnabledFeatures);
-    XCTAssertNotEqualObjects(features, unSortedEnabledFeatures);
-}
-
 #pragma mark - Helper Methods
 
 - (id)getOptimizelyMockForFeatureVariableType:(NSString *)featureVariableType variableKey:(NSString *)variableKey expectedReturn:(NSString *)expectedReturn {
