@@ -20,14 +20,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYProjectConfig, OPTLYDecisionEventTicket, OPTLYEventTicket;
+@class OPTLYProjectConfig, OPTLYDecisionEventTicket;
 @protocol OPTLYBucketer;
 
 // --- Event URLs ----
 NS_ASSUME_NONNULL_BEGIN
 extern NSString * const OptimizelyBucketIdEventParam;
-extern NSString * const OPTLYEventBuilderDecisionTicketEventURL;
-extern NSString * const OPTLYEventBuilderEventTicketURL;
+extern NSString * const OptimizelyActivateEventKey;
+extern NSString * const OPTLYEventBuilderEventsTicketURL;
 NS_ASSUME_NONNULL_END
 
 @protocol OPTLYEventBuilder <NSObject>
@@ -43,12 +43,12 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for an impression event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildDecisionEventTicket:(nonnull OPTLYProjectConfig *)config
-                                             userId:(nonnull NSString *)userId
-                                      experimentKey:(nonnull NSString *)experimentKey
-                                        variationId:(nonnull NSString *)variationId
-                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
-
+- (nullable NSDictionary *)buildImpressionEventTicket:(nonnull OPTLYProjectConfig *)config
+                                         userId:(nonnull NSString *)userId
+                                  experimentKey:(nonnull NSString *)experimentKey
+                                    variationId:(nonnull NSString *)variationId
+                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+   
 /**
  * Create the parameters for a conversion event.
  *
@@ -60,12 +60,12 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for a conversion event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildEventTicket:(nonnull OPTLYProjectConfig *)config
-                                   bucketer:(nonnull id<OPTLYBucketer>)bucketer
-                                     userId:(nonnull NSString *)userId
-                                  eventName:(nonnull NSString *)eventName
-                                  eventTags:(nullable NSDictionary *)eventTags
-                                 attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildConversionTicket:(nonnull OPTLYProjectConfig *)config
+                               bucketer:(nonnull id<OPTLYBucketer>)bucketer
+                                 userId:(nonnull NSString *)userId
+                              eventName:(nonnull NSString *)eventName
+                              eventTags:(nullable NSDictionary *)eventTags
+                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -16,35 +16,20 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-/**
- * This class is a representation of an Optimizely live variable scoped within a variation:
- * "variations": [
- *           {
- *             "id": "6451680205",
- *             "key": "a",
- *             "variables": [
- *               {
- *                 "id": "73483201090",
- *                 "value": "testValue"
- *               },
- *               ...
- *               ]
- *           }
- */
 
-@protocol OPTLYVariationVariable
+@protocol OPTLYVariableUsage
 @end
 
-@interface OPTLYVariationVariable : OPTLYJSONModel
+@interface OPTLYVariableUsage : OPTLYJSONModel
 
-/// The variable's ID.
+/// an NSString to hold the variable ID which is being modified by this usage
 @property (nonatomic, strong) NSString *variableId;
-/// The variable's assigned value within that variation
+/// an NSString to hold the variable value for users in this particular variation
 @property (nonatomic, strong) NSString *value;
 
 @end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,33 +15,32 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
+
+@class OPTLYExperiment, OPTLYVariation;
+
+extern NSString * const DecisionSourceExperiment;
+extern NSString * const DecisionSourceRollout;
 
 /**
- * This class is a representation of an Optimizely variation.
+ * This class determines how the Optimizely SDK will handle exceptions and errors.
  */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
+@interface OPTLYFeatureDecision : NSObject
 
-@protocol OPTLYVariation
-@end
+/// an OPTLYExperiment associated with the decision.
+@property (nonatomic, strong) OPTLYExperiment *experiment;
+/// an OPTLYVariation associated with the decision.
+@property (nonatomic, strong) OPTLYVariation *variation;
+/// an NSString to hold the source of the decision. Either experiment or rollout
+@property (nonatomic, strong) NSString *source;
 
-@interface OPTLYVariation : OPTLYJSONModel
-
-/// The variation's ID.
-@property (nonatomic, strong, nonnull) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong, nonnull) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-/// Flag for Feature Toggle Ability
-@property (nonatomic, assign) BOOL featureEnabled;
-
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
+/*
+ * Initializes the FeatureDecision with an experiment id, variation id & source.
+ *
+ * @param experimentId The id of experiment.
+ * @param variationId The id of variation.
+ * @param source The source for which the decision made.
+ * @return An instance of the FeatureDecision.
+ */
+- (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source;
 
 @end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -38,25 +38,28 @@
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYEventRelatedEvent.h"
-#import "OPTLYEventTicket.h"
 #import "OPTLYEventView.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYExperimentBucketMapEntity.h"
+#import "OPTLYFeatureDecision.h"
+#import "OPTLYFeatureFlag.h"
+#import "OPTLYFeatureVariable.h"
 #import "OPTLYGroup.h"
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYLog.h"
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
 #import "OPTLYNetworkService.h"
+#import "OPTLYNotificationCenter.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYProjectConfigBuilder.h"
 #import "OPTLYQueue.h"
+#import "OPTLYRollout.h"
 #import "OPTLYTrafficAllocation.h"
 #import "OPTLYUserProfile.h"
 #import "OPTLYUserProfileServiceBasic.h"
-#import "OPTLYVariable.h"
+#import "OPTLYVariableUsage.h"
 #import "OPTLYVariation.h"
-#import "OPTLYVariationVariable.h"
 
 #import "OPTLYJSONModel.h"
 #import "OPTLYJSONModelClassProperty.h"
@@ -67,3 +70,4 @@
 
 FOUNDATION_EXPORT double OptimizelySDKCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char OptimizelySDKCoreVersionString[];
+
