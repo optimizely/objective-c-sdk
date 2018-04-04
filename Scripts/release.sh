@@ -288,20 +288,5 @@ for (( i = 0; i < ${number_pods}; i++ ));
 do
     echo "Pushing the ${pods[i]} pod to Cocoapods"
     pod trunk push ${pods[i]}.podspec
-
-
-# ---- Prompt to determine what kind of release ----
-# patch releases require cherry-picking changes onto the release branch
-read  -n 1 -p "12. Is this a patch release? [y/n] $cr " patch_release;
-if [ "$patch_release" == "y" ]; then
-printf "\n\nMoving to the release branch $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x.\n";
-git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
-printf "\n\nCherry-pick last commit from master.\n";
-git cherry-pick master
-exit 1
-fi;
-# if not a patch release, than a release branch needs to be created
-printf "\n\nCreating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
-git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
-git push
+    pod update ${pods[i]}
 done)
