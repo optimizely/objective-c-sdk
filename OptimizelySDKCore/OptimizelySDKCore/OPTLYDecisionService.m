@@ -457,6 +457,15 @@ NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
     
     return isUserInExperiment;
 }
+
+- (BOOL)newMethodWithNoTests {
+    if (1==1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
     
 - (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
              experimentKey:(NSString *)experimentKey
