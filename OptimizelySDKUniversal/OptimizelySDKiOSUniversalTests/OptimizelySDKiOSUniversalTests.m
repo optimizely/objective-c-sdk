@@ -97,7 +97,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     // test client engine and version were set correctly
     XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
     // TODO - The preprocessor definition for the client version is not getting picked up in the test. Still debugging why...
-    //XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_UNIVERSAL_VERSION);
+    //XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
 }
 
 @end

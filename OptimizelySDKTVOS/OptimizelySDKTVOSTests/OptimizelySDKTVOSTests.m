@@ -95,7 +95,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     
     // test client engine and version were set correctly
     XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
-    XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_TVOS_VERSION);
+    XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
 }
 
 - (void)testDefaultAttributesKeysAreCorrect {

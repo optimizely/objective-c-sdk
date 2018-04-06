@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.exclude_files           = "OPTLYMacros.h", "OPTLYLog.h", "OPTLYLog.m"
   s.framework               = "Foundation"
   s.requires_arc            = true
-  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_CORE_VERSION=@\\\"#{s.version}\\\"" }
+  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
 end

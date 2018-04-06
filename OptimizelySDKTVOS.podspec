@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.public_header_files     = "OptimizelySDKTVOS/OptimizelySDKTVOS/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
-  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_TVOS_VERSION=@\\\"#{s.version}\\\"" }
+  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
   s.dependency 'OptimizelySDKEventDispatcher', '2.0.0-beta1'
   s.dependency 'OptimizelySDKUserProfileService', '2.0.0-beta1'
   s.dependency 'OptimizelySDKDatafileManager', '2.0.0-beta1'

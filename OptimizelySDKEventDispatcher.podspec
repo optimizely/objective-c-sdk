@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.public_header_files     = "OptimizelySDKEventDispatcher/OptimizelySDKEventDispatcher/*.h"
   s.framework               = "Foundation"
   s.requires_arc            = true
-  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_EVENT_DISPATCHER_VERSION=@\\\"#{s.version}\\\"" }
+  s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
   s.dependency 'OptimizelySDKShared', '2.0.0-beta1'
 end
