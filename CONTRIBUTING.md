@@ -20,7 +20,7 @@ We welcome contributions and feedback! All contributors must sign our [Contribut
 
 ## Style
 
-TBD
+We follow the [Ray Wenderlich style guide](https://github.com/raywenderlich/objective-c-style-guide) since they have put a lot of thought into making their code more legible. While we aim for our Optimizely SDK to be performant and bug free, we also want all customers and third party developers read and understand our code easily.
 
 ## License
 
