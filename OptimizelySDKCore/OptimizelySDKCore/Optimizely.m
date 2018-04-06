@@ -363,8 +363,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
             [enabledFeatures addObject:featureKey];
         }
     }
-    NSArray *enabledFeaturesSorted = [enabledFeatures sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    return enabledFeaturesSorted;
+    return enabledFeatures;
 }
 
 #pragma mark trackEvent methods
