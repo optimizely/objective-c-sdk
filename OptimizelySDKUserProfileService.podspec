@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target  = "9.0"
   s.source                  = {
     :git => "https://github.com/optimizely/objective-c-sdk.git",
-    :tag => "userProfileService-"+s.version.to_s
+    :tag => s.version.to_s
   }
   s.source_files            = "OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/*.{h,m}"
   s.public_header_files     = "OptimizelySDKUserProfileService/OptimizelySDKUserProfileService/*.h"
