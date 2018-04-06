@@ -1,4 +1,63 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.0-beta1
+April 5, 2018
+
+This major release of the Optimizely SDK introduces APIs for Feature Management.
+
+### New Features
+* Introduces the `isFeatureEnabled:userId:attributes:` API to determine whether to show a feature to a user or not.
+```
+/**
+ * Determine whether a feature is enabled.
+ * Send an impression event if the user is bucketed into an experiment using the feature.
+ * @param featureKey The key for the feature flag.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return YES if feature is enabled, false otherwise.
+ */
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* You can get all the enabled features for the user by calling the `getEnabledFeatures:attributes:` API which returns an array of strings representing the feature keys:
+```
+/**
+ * Get array of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> Array of feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* Introduces Feature Variables to configure or parameterize your feature. There are four variable types: `BOOL`, `double`, `int`, `NSString*`.
+```
+/**
+ * API's that get feature variable values.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return feature variable value.
+ */
+- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+                     variableKey:(nullable NSString *)variableKey
+                          userId:(nullable NSString *)userId
+                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
 ## 1.5.0
 December 6, 2017
 

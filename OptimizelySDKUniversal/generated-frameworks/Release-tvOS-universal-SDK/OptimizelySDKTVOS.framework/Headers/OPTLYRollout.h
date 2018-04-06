@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,4 +14,22 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#define StringOrEmpty(A)  ({ __typeof__(A) __a = (A); __a ? __a : @""; })
+#import <Foundation/Foundation.h>
+#ifdef UNIVERSAL
+#import "OPTLYJSONModelLib.h"
+#else
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#endif
+
+@protocol OPTLYExperiment;
+@protocol OPTLYRollout
+@end
+
+@interface OPTLYRollout : OPTLYJSONModel
+
+/// an NSString to hold the rollout Id
+@property (nonatomic, strong) NSString *rolloutId;
+/// an NSArray to hold the experiments representing the different rules of the rollout
+@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
+
+@end
