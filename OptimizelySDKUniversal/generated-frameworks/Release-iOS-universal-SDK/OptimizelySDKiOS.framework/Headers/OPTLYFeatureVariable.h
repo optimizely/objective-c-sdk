@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -16,36 +16,28 @@
 
 #import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
+#import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
+#import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-/**
- * This class is a representation of an Optimizely live variable scoped within a project:
- *   "variables": [
- *    {
- *      "id": "6384881128",
- *      "key": "someString",
- *      "type": "string",
- *      "defaultValue": "defaultStringValue"
- *    },
- *     ...
- *    ]
- */
+extern NSString * const FeatureVariableTypeBoolean;
+extern NSString * const FeatureVariableTypeString;
+extern NSString * const FeatureVariableTypeInteger;
+extern NSString * const FeatureVariableTypeDouble;
 
-@protocol OPTLYVariable
+@protocol OPTLYFeatureVariable
 @end
 
-@interface OPTLYVariable : OPTLYJSONModel
+@interface OPTLYFeatureVariable : OPTLYJSONModel
 
-/// The variable's ID.
+/// an NSString to hold the feature variable's ID
 @property (nonatomic, strong) NSString *variableId;
-/// The variable's Key.
-@property (nonatomic, strong) NSString *variableKey;
-/// The variable's type.
+/// an NSString to hold the feature variable's key
+@property (nonatomic, strong) NSString *key;
+/// an NSString to hold the feature variable's primitive type. Will be one of 4 possible values: a.	boolean b.	string c.	integer d.	double
 @property (nonatomic, strong) NSString *type;
-/// The variable's default value.
+/// an NSString to hold the feature variable's default value in string representation.
 @property (nonatomic, strong) NSString *defaultValue;
 
 @end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -17,25 +17,15 @@
 #import <Foundation/Foundation.h>
 #import "OPTLYBuilder.h"
 
-extern NSString * _Nonnull const OptimizelyDidActivateExperimentNotification;
-extern NSString * _Nonnull const OptimizelyDidTrackEventNotification;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryVariationKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryUserIdKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryAttributesKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventValueKey;
 extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
-@class OPTLYProjectConfig, OPTLYVariation;
+@class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
-
-// ---- Live Variable Getter Errors ----
-
-typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
-    OPTLYLiveVariableErrorNone = 0,
-    OPTLYLiveVariableErrorKeyUnknown
-};
 
 @protocol Optimizely <NSObject>
 
@@ -128,6 +118,79 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                     userId:(nonnull NSString *)userId
               variationKey:(nullable NSString *)variationKey;
 
+#pragma mark - Feature Flag Methods
+
+/**
+ * Determine whether a feature is enabled.
+ * Send an impression event if the user is bucketed into an experiment using the feature.
+ * @param featureKey The key for the feature flag.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return YES if feature is enabled, false otherwise.
+ */
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets boolean feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return BOOL feature variable value.
+ */
+- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets double feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return double feature variable value of type double.
+ */
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets integer feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return int feature variable value of type integer.
+ */
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+                     variableKey:(nullable NSString *)variableKey
+                          userId:(nullable NSString *)userId
+                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Gets string feature variable value.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSString feature variable value of type string.
+ */
+- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
+/**
+ * Get array of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> Array of feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+
 #pragma mark - trackEvent methods
 /**
  * Track an event
@@ -137,15 +200,15 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId;
 
-/** @deprecated. Use `track:userId:eventValue`.
+/**
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
- * @param eventValue The event value (e.g., revenue amount)
+ * @param attributes A map of attribute names to current user attribute values.
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   eventValue:(nonnull NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
+   attributes:(nonnull NSDictionary<NSString *, NSString *> *)attributes;
 
 /**
  * Track an event
@@ -161,28 +224,6 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
- * @param attributes A map of attribute names to current user attribute values.
- */
-- (void)track:(nonnull NSString *)eventKey
-       userId:(nonnull NSString *)userId
-   attributes:(nonnull NSDictionary<NSString *, NSString *> *)attributes;
-
-/** @deprecated. Use `track:userId:attributes:eventValue`.
- * Track an event
- * @param eventKey The event name
- * @param userId The user ID associated with the event to track
- * @param attributes A map of attribute names to current user attribute values
- * @param eventValue The event value (e.g., revenue amount)
- */
-- (void)track:(nonnull NSString *)eventKey
-       userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-   eventValue:(nullable NSNumber *)eventValue __attribute((deprecated("eventValue is deprecated in track call. Use eventTags to pass in revenue value instead.")));
-
-/**
- * Track an event
- * @param eventKey The event name
- * @param userId The user ID associated with the event to track
  * @param attributes A map of attribute names to current user attribute values
  * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean)
  */
@@ -190,281 +231,6 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
        userId:(nonnull NSString *)userId
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
-
-#pragma mark - Live Variable Getters
-
-/**
- * Gets the string value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable
- * @param userId The user ID
- * @return The string value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId;
-
-/**
- * Gets the string value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable
- * @param userId The user ID
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The string value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId
-                   activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the string value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The string value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId
-                           attributes:(nullable NSDictionary *)attributes
-                   activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the string value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @param error An error value if the value is not valid
- * @return The string value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the user.
- */
-- (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId
-                           attributes:(nullable NSDictionary *)attributes
-                   activateExperiment:(BOOL)activateExperiment
-                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
-
-/**
- * Gets the boolean value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable boolean
- * @param userId The user ID
- * @return The boolean value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (BOOL)variableBoolean:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId;
-
-/**
- * Gets the boolean value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable boolean
- * @param userId The user ID
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The boolean value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (BOOL)variableBoolean:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-     activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the boolean value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable boolean
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The boolean value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (BOOL)variableBoolean:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-             attributes:(nullable NSDictionary *)attributes
-     activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the boolean value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable boolean
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @param error An error value if the value is not valid
- * @return The boolean value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the user.
- */
-- (BOOL)variableBoolean:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId
-             attributes:(nullable NSDictionary *)attributes
-     activateExperiment:(BOOL)activateExperiment
-                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
-
-
-/**
- * Gets the integer value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable integer
- * @param userId The user ID
- * @return The integer value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (NSInteger)variableInteger:(nonnull NSString *)variableKey
-                      userId:(nonnull NSString *)userId;
-
-/**
- * Gets the integer value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable integer
- * @param userId The user ID
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The integer value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (NSInteger)variableInteger:(nonnull NSString *)variableKey
-                      userId:(nonnull NSString *)userId
-          activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the integer value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable integer
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The integer value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (NSInteger)variableInteger:(nonnull NSString *)variableKey
-                      userId:(nonnull NSString *)userId
-                  attributes:(nullable NSDictionary *)attributes
-          activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the integer value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable integer
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @param error An error value if the value is not valid
- * @return The integer value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the user.
- */
-- (NSInteger)variableInteger:(nonnull NSString *)variableKey
-                      userId:(nonnull NSString *)userId
-                  attributes:(nullable NSDictionary *)attributes
-          activateExperiment:(BOOL)activateExperiment
-                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
-
-/**
- * Gets the double value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable double
- * @param userId The user ID
- * @return The double value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (double)variableDouble:(nonnull NSString *)variableKey
-                  userId:(nonnull NSString *)userId;
-
-/**
- * Gets the double value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable double
- * @param userId The user ID
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The double value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (double)variableDouble:(nonnull NSString *)variableKey
-                  userId:(nonnull NSString *)userId
-      activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the double value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable double
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @return The double value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
- */
-- (double)variableDouble:(nonnull NSString *)variableKey
-                  userId:(nonnull NSString *)userId
-              attributes:(nullable NSDictionary *)attributes
-      activateExperiment:(BOOL)activateExperiment;
-
-/**
- * Gets the double value of the live variable.
- * The value is cached when the client is initialized
- * and is not refreshed until re-initialization.
- *
- * @param variableKey The name of the live variable double
- * @param userId The user ID
- * @param attributes A map of attribute names to current user attribute values
- * @param activateExperiment Indicates if the experiment should be activated
- * @param error An error value if the value is not valid
- * @return The double value for the live variable.
- *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
- *  If an error is found, a warning message is logged, and an error will be propagated to the user.
- */
-- (double)variableDouble:(nonnull NSString *)variableKey
-                  userId:(nonnull NSString *)userId
-              attributes:(nullable NSDictionary *)attributes
-      activateExperiment:(BOOL)activateExperiment
-                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
 
 @end
 
@@ -475,12 +241,14 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 @interface Optimizely : NSObject <Optimizely>
 
 @property (nonatomic, strong, readonly, nullable) id<OPTLYBucketer> bucketer;
+@property (nonatomic, strong, readonly, nullable) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong, readonly, nullable) OPTLYProjectConfig *config;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYErrorHandler> errorHandler;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventBuilder> eventBuilder;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYEventDispatcher> eventDispatcher;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYLogger> logger;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService> userProfileService;
+@property (nonatomic, strong, readonly, nullable) OPTLYNotificationCenter *notificationCenter;
 
 /**
  * Init with builder block
@@ -489,19 +257,16 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 + (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
 
-// TODO: remove when eventValue is deprecated
 /**
  * Track an event
  * @param eventKey The event name
  * @param userId The user ID associated with the event to track
  * @param attributes A map of attribute names to current user attribute values.
  * @param eventTags A map of event tag names to event tag values (string, number, or boolean)
- * @param eventValue The event value (e.g., revenue amount)
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
-    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags
-   eventValue:(nullable NSNumber *)eventValue;
+    eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 @end

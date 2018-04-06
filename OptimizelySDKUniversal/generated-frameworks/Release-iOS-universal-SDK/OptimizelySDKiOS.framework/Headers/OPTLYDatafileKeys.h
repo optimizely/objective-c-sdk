@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -62,7 +62,8 @@ extern NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange;
 // Variations
 extern NSString * const OPTLYDatafileKeysVariationId;
 extern NSString * const OPTLYDatafileKeysVariationKey;
-extern NSString * const OPTLYDatafileKeysVariationVariables;
+extern NSString * const OPTLYDatafileKeysVariationVariableUsageInstances;
+extern NSString * const OPTLYDatafileKeysVariationFeatureEnabled;
 // Conditions
 extern NSString * const OPTLYDatafileKeysConditionName;
 extern NSString * const OPTLYDatafileKeysConditionType;
@@ -70,18 +71,28 @@ extern NSString * const OPTLYDatafileKeysConditionValue;
 extern NSString * const OPTLYDatafileKeysAndCondition;
 extern NSString * const OPTLYDatafileKeysNotCondition;
 extern NSString * const OPTLYDatafileKeysOrCondition;
-// Live Variables
-extern NSString * const OPTLYDatafileKeysVariableId;
-extern NSString * const OPTLYDatafileKeysVariableKey;
-extern NSString * const OPTLYDatafileKeysVariableType;
-extern NSString * const OPTLYDatafileKeysVariableValue;
-// Variation Live Variable
-extern NSString * const OPTLYDatafileKeysVariationVariableId;
-extern NSString * const OPTLYDatafileKeysVariationVariableValue;
 // User Profile Service (not in datafile yet)
 extern NSString * const OPTLYDatafileKeysUserProfileServiceUserId;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceVariationId;
+// Feature Flag
+extern NSString * const OPTLYDatafileKeysFeatureFlagId;
+extern NSString * const OPTLYDatafileKeysFeatureFlagKey;
+extern NSString * const OPTLYDatafileKeysFeatureFlagRolloutId;
+extern NSString * const OPTLYDatafileKeysFeatureFlagExperimentIds;
+extern NSString * const OPTLYDatafileKeysFeatureFlagVariables;
+extern NSString * const OPTLYDatafileKeysFeatureFlagGroupId;
+// Feature Variable
+extern NSString * const OPTLYDatafileKeysFeatureVariableId;
+extern NSString * const OPTLYDatafileKeysFeatureVariableKey;
+extern NSString * const OPTLYDatafileKeysFeatureVariableType;
+extern NSString * const OPTLYDatafileKeysFeatureVariableDefaultValue;
+// Variable Usage
+extern NSString * const OPTLYDatafileKeysVariableUsageId;
+extern NSString * const OPTLYDatafileKeysVariableUsageValue;
+// Rollout
+extern NSString * const OPTLYDatafileKeysRolloutId;
+extern NSString * const OPTLYDatafileKeysRolloutExperiments;
 
 @interface OPTLYDatafileKeys : NSObject
 

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig;
+@class OPTLYBucketer, OPTLYEventBuilder, OPTLYEventBuilderDefault, OPTLYProjectConfig, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 /**
@@ -36,8 +36,12 @@ typedef void (^OPTLYBuilderBlock)(OPTLYBuilder * _Nullable builder);
 @property (nonatomic, readonly, strong, nullable) OPTLYProjectConfig *config;
 /// The bucketer created by the builder.
 @property (nonatomic, readonly, strong, nullable) OPTLYBucketer *bucketer;
+/// The decision service created by the builder.
+@property (nonatomic, readonly, strong, nullable) OPTLYDecisionService *decisionService;
 /// The event builder created by the builder.
 @property (nonatomic, readonly, strong, nullable) OPTLYEventBuilderDefault *eventBuilder;
+/// The notification center created by the builder.
+@property (nonatomic, readonly, strong, nullable) OPTLYNotificationCenter *notificationCenter;
 /// The error handler is by default set to one that is created by Optimizely. This default error handler can be overridden by any object that conforms to the OPTLYErrorHandler protocol.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYErrorHandler> errorHandler;
 /// The event dispatcher is by default set to one that is created by Optimizely. This default event dispatcher can be overridden by any object that conforms to the OPTLYEventDispatcher protocol.
