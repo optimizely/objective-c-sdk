@@ -21,7 +21,7 @@
 
 static NSString *const kDatafileVersion = @"3";
 
-static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/public/%@/datafile_v%@.json";
+static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/json/%@.json";
 static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSString *const kProjectId = @"6372300739";
@@ -97,7 +97,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testProjectConfigURLPathReturnsExpectedUrl {
-    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId, kDatafileVersion];
+    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId];
     NSURL *expectedURL = [NSURL URLWithString:expectedURLString];
     
     NSURL *cdnURL = [OPTLYNetworkService projectConfigURLPath:kProjectId];

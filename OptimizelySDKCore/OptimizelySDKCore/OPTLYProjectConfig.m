@@ -31,7 +31,7 @@
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
 
-NSString * const kExpectedDatafileVersion  = @"3";
+NSString * const kExpectedDatafileVersion  = @"4";
 
 @interface OPTLYProjectConfig()
 
