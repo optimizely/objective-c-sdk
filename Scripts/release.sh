@@ -53,7 +53,7 @@ fi;
 ## ---- Extract OPTIMIZELY_SDK_VERSION from Xcode Build Settings. ----
 printf "\n\n3. Extracting OPTIMIZELY_SDK_VERSION from Xcode Build Settings.\n\n";
 OPTIMIZELY_SDK_VERSION=$(Xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCoreiOS -showBuildSettings | sed -n 's/OPTIMIZELY_SDK_VERSION = \(.*\)/\1/p' | sed 's/ //g');
-echo "OPTIMIZELY_SDK_VERSION = $OPTIMIZELY_SDK_VERSION";
+echo "OPTIMIZELY_SDK_VERSION = ${OPTIMIZELY_SDK_VERSION}";
 
 # Make sure that OPTIMIZELY_SDK_VERSION looks correct!
 printf "\n"
@@ -143,11 +143,20 @@ printf "the correct 'Target' branch.  We expect you are tagging a commit\n"
 printf "on a #.#.x branch.)\n"
 read  -n 1 -p "[y/n] $cr? " tag_release;
 if [ "$tag_release" == "y" ]; then
-    printf "Tagging $OPTIMIZELY_SDK_VERSION\n";
-    git tag -a $OPTIMIZELY_SDK_VERSION -m "Release $OPTIMIZELY_SDK_VERSION";
+    printf "Tagging ${OPTIMIZELY_SDK_VERSION}\n";
+    git tag -a ${OPTIMIZELY_SDK_VERSION} -m "Release ${OPTIMIZELY_SDK_VERSION}";
     printf "\n\n9. Pushing git tag.\n"
-    git push origin $OPTIMIZELY_SDK_VERSION --verbose;
+    git push origin ${OPTIMIZELY_SDK_VERSION} --verbose;
 fi;
+
+if git tag -l | grep -q "${OPTIMIZELY_SDK_VERSION}"
+then
+    printf "Release is tagged ${OPTIMIZELY_SDK_VERSION}\n";
+else
+    printf "Release must be tagged ${OPTIMIZELY_SDK_VERSION}\n";
+    printf "(If release isn't tagged, then 'pod trunk push ...' to COCOAPODS.ORG will fail.)"
+    exit 1
+fi
 
 # ---- Make sure you have a Cocoapod session running ----
 printf "\n\n10. Verify Cocoapod trunk session.\n";
@@ -169,6 +178,6 @@ for (( i = 0; i < ${number_pods}; i++ ));
 do
     podname=${pods[i]};
     printf "Pushing the ${podname} pod to COCOAPODS.ORG .\n"
-    pod trunk push ${podname}.podspec
-    pod update ${podname}
+    pod trunk push --allow-warnings ${podname}.podspec
+    pod update
 done
