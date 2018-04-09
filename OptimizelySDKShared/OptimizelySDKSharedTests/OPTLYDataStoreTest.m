@@ -262,6 +262,46 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     XCTAssert([results count] == 0, @"Invalid conversion event count when removeSavedEvents was called.");
 }
 
+- (void)testSingleQuoteStringSaveAndRemove {
+    NSDictionary *testEventData1 =
+    @{
+      @"userFeatures": @[@{
+                             @"value": @"alda'`s",
+                             @"shouldIndex": @YES,
+                             @"name": @"nameOfPerson",
+                             @"type": @"custom"
+                             }],
+      @"timestamp": @1478510071576,
+      @"clientVersion": @"0.2.0-debug",
+      @"eventEntityId": @"7723870635",
+      @"revision": @"7",
+      @"isGlobalHoldback": @NO,
+      @"accountId": @"4902200114",
+      @"layerStates": @[],
+      @"projectId": @"7738070017",
+      @"eventMetrics": @[@{
+                             @"name": @"revenue",
+                             @"value": @88
+                             }],
+      @"visitorId": @"1",
+      @"eventName": @"people",
+      @"clientEngine": kClientEngine,
+      @"eventFeatures": @[]
+      };
+
+    NSError *error = nil;
+    
+    XCTAssertTrue([self.dataStore saveEvent:testEventData1
+                    eventType:OPTLYDataStoreEventTypeConversion
+                        error:&error]);
+    XCTAssertNil(error);
+    
+    XCTAssertTrue([self.dataStore removeEvent:testEventData1
+                                    eventType:OPTLYDataStoreEventTypeConversion
+                                        error:&error]);
+    XCTAssertNil(error);
+}
+
 # pragma mark - File Manager Tests
 
 - (void)testSaveFile {
