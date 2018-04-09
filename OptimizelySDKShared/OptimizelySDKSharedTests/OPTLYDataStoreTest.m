@@ -86,7 +86,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     NSDictionary *testEventData1 =
     @{
       @"userFeatures": @[@{
-                             @"value": @"alda'`s",
+                             @"value": @"alda",
                              @"shouldIndex": @YES,
                              @"name": @"nameOfPerson",
                              @"type": @"custom"
