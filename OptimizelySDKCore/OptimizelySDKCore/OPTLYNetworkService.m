@@ -19,7 +19,7 @@
 
 // ---- Datafile Download URLs ----
 // TODO: Move this to the Datafile manager and parameterize the URL for the datafile download
-NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/public/";
+NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/json/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 // ---- The total backoff and retry interval is: pow(2, attempts) * interval ----
@@ -103,7 +103,7 @@ const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_m
 + (NSURL *)projectConfigURLPath:(NSString *)projectId
 {
     NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@/datafile_v%@.json", cdnURL.absoluteString, projectId, kExpectedDatafileVersion];
+    NSString *filePath = [NSString stringWithFormat:@"%@%@.json", cdnURL.absoluteString, projectId];
     return [NSURL URLWithString:filePath];
 }
 
