@@ -118,8 +118,8 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }
     
     [self.fmDatabaseQueue inDatabase:^(OPTLYFMDBDatabase *db){
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:error];
-        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSData *jsonData = [NSKeyedArchiver archivedDataWithRootObject:data];
+        NSString *json = [jsonData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
         
         NSNumber *timeStamp = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
         NSMutableString *query = [NSMutableString stringWithFormat:kInsertEntityQuery, tableName];

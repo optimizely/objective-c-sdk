@@ -73,7 +73,8 @@
     NSArray *firstNEntities = [self.database retrieveFirstNEntries:numberOfEvents table:eventTypeName error:error];
     for (OPTLYDatabaseEntity *entity in firstNEntities) {
         NSString *entityValue = entity.entityValue;
-        NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
+        NSData *data = [[NSData alloc] initWithBase64EncodedString:entityValue options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        NSDictionary *event = (NSDictionary*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
         
         if ([event count] > 0) {
             if (error != nil) {
@@ -131,8 +132,8 @@
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:event options:NSJSONWritingPrettyPrinted error:error];
-    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSData *jsonData = [NSKeyedArchiver archivedDataWithRootObject:event];
+    NSString *json = [jsonData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     return [self.database deleteEntityWithJSON:json table:eventTypeName error:error];
 }
 
