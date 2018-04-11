@@ -223,8 +223,9 @@ dispatch_queue_t dispatchEventQueue()
         
         NSURL *url = [self URLForEvent:eventType];
 
+        NSDictionary *eventToSend = event[@"json"] == nil ? event : event[@"json"];
         __weak typeof(self) weakSelf = self;
-        [self.networkService dispatchEvent:event
+        [self.networkService dispatchEvent:eventToSend
                               backoffRetry:backoffRetry
                                      toURL:url
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

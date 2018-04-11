@@ -177,17 +177,17 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     NSInteger n = 3;
     results = [self.dataStore getFirstNEvents:n eventType:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == n, @"Data insertion failed or invalid number of results retrieved from getFirstNEvents.");
-    XCTAssert([results[0] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getFirstNEvents.");
-    XCTAssert([results[1] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getFirstNEvents.");
-    XCTAssert([results[2] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getFirstNEvents.");
+    XCTAssert([results[0][@"json"] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getFirstNEvents.");
+    XCTAssert([results[1][@"json"] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getFirstNEvents.");
+    XCTAssert([results[2][@"json"] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getFirstNEvents.");
     
     // ---- test getAllEntries ----
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == totalEntity, @"Data insertion failed or invalid number of results retrieved from getAllEvents");
-    XCTAssert([results[0] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getAllEvents.");
-    XCTAssert([results[1] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getAllEvents.");
-    XCTAssert([results[2] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getAllEvents.");
-    XCTAssert([results[3] isEqualToDictionary:testEventData4], @"Invalid result data 4 retrieved for getAllEvents.");
+    XCTAssert([results[0][@"json"] isEqualToDictionary:testEventData1], @"Invalid result data 1 retrieved for getAllEvents.");
+    XCTAssert([results[1][@"json"] isEqualToDictionary:testEventData2], @"Invalid result data 2 retrieved for getAllEvents.");
+    XCTAssert([results[2][@"json"] isEqualToDictionary:testEventData3], @"Invalid result data 3 retrieved for getAllEvents.");
+    XCTAssert([results[3][@"json"] isEqualToDictionary:testEventData4], @"Invalid result data 4 retrieved for getAllEvents.");
     
     // ---- test numberOfEvents ----
     NSInteger numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
@@ -198,16 +198,16 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     numberOfEvents = [self.dataStore numberOfEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert(numberOfEvents == totalEntity-1, @"Invalid event count after removeOldestEvent was called.");
-    XCTAssert([results[0] isEqualToDictionary:testEventData2], @"Invalid result data 1 retrieved after removeOldestEvent was called.");
-    XCTAssert([results[1] isEqualToDictionary:testEventData3], @"Invalid result data 2 retrieved after removeOldestEvent was called.");
-    XCTAssert([results[2] isEqualToDictionary:testEventData4], @"Invalid result data 3 retrieved after removeOldestEvent was called.");
+    XCTAssert([results[0][@"json"] isEqualToDictionary:testEventData2], @"Invalid result data 1 retrieved after removeOldestEvent was called.");
+    XCTAssert([results[1][@"json"] isEqualToDictionary:testEventData3], @"Invalid result data 2 retrieved after removeOldestEvent was called.");
+    XCTAssert([results[2][@"json"] isEqualToDictionary:testEventData4], @"Invalid result data 3 retrieved after removeOldestEvent was called.");
     
     // ---- test removeFirstNEvents ----
     NSInteger nEventsToDelete = 2;
     [self.dataStore removeFirstNEvents:nEventsToDelete eventType:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == totalEntity-1-nEventsToDelete, @"Invalid event count when removeFirstNEvents was called.");
-    XCTAssert([results[0] isEqualToDictionary:testEventData4], @"Invalid result data 1 retrieved after removeFirstNEvents was called.");
+    XCTAssert([results[0][@"json"] isEqualToDictionary:testEventData4], @"Invalid result data 1 retrieved after removeFirstNEvents was called.");
     
     // ---- test removeAllEvents of an event type ----
     [self.dataStore removeAllEvents:OPTLYDataStoreEventTypeImpression error:&error];

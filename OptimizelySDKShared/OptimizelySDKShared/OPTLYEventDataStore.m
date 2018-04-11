@@ -76,12 +76,8 @@
         NSDictionary *event = [NSJSONSerialization JSONObjectWithData:[entityValue dataUsingEncoding:NSUTF8StringEncoding] options:0 error:error];
         
         if ([event count] > 0) {
-            if (error != nil) {
-                if (*error == nil) {
-                    [firstNEvents addObject:event];
-                }
-            } else {
-                [firstNEvents addObject:event];
+            if ((error != nil && *error == nil) || error == nil) {
+                [firstNEvents addObject:@{@"entityId": entity.entityId, @"json": event}];
             }
         }
     }
@@ -131,9 +127,12 @@
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:event options:NSJSONWritingPrettyPrinted error:error];
-    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return [self.database deleteEntityWithJSON:json table:eventTypeName error:error];
+    BOOL retval = false;
+    
+    if (event[@"entityId"] != nil) {
+    retval = [self.database deleteEntity:event[@"entityId"] table:eventTypeName error:error];
+    }
+    return retval;
 }
 
 - (NSInteger)numberOfEvents:(NSString *)eventTypeName
