@@ -171,7 +171,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     // ---- test getOldestEvent ----
     NSDictionary *result = [self.dataStore getOldestEvent:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssertNotNil(result, @"Data insertion failed or invalid number of results retrieved from getOldestEvent.");
-    XCTAssert([result isEqualToDictionary:testEventData1], @"Invalid result data retrieved for getOldestEvent.");
+    XCTAssert([result[@"json"] isEqualToDictionary:testEventData1], @"Invalid result data retrieved for getOldestEvent.");
     
     // ---- test getFirstNEvents ----
     NSInteger n = 3;
@@ -216,7 +216,8 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     
     // ---- test removeEvent ----
     [self.dataStore saveEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
-    [self.dataStore removeEvent:testEventData1 eventType:OPTLYDataStoreEventTypeImpression error:&error];
+    NSDictionary *event = [self.dataStore getOldestEvent:OPTLYDataStoreEventTypeImpression error:&error];
+    [self.dataStore removeEvent:event eventType:OPTLYDataStoreEventTypeImpression error:&error];
     results = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeImpression error:&error];
     XCTAssert([results count] == 0, @"Invalid impression event count when removeEvent was called.");
     
@@ -263,8 +264,13 @@ static NSString * const kClientEngine = @"objective-c-sdk";
                                   eventType:OPTLYDataStoreEventTypeConversion
                                       error:&error]);
     XCTAssertNil(error);
+    NSArray *events = [self.dataStore getAllEvents:OPTLYDataStoreEventTypeConversion error:&error];
     
-    XCTAssertTrue([self.dataStore removeEvent:testEventData1
+    XCTAssertNil(error);
+    
+    NSDictionary *event = [events lastObject][@"json"];
+    XCTAssertTrue([event isEqual:testEventData1]);
+    XCTAssertTrue([self.dataStore removeEvent:[events lastObject]
                                     eventType:OPTLYDataStoreEventTypeConversion
                                         error:&error]);
     XCTAssertNil(error);
