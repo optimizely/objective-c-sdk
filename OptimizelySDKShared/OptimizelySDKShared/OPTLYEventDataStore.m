@@ -85,6 +85,13 @@
     return [firstNEvents copy];
 }
 
+- (NSInteger)getLastEventId:(nonnull NSString *)eventTypeName
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error
+{
+    NSInteger lastRowId = [self.database retrieveLastEntryId:eventTypeName error:error];
+    return lastRowId;
+}
+
 - (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
                  eventType:(nonnull NSString *)eventTypeName
                      error:(NSError * _Nullable __autoreleasing * _Nullable)error
@@ -130,7 +137,7 @@
     BOOL retval = false;
     
     if (event[@"entityId"] != nil) {
-    retval = [self.database deleteEntity:event[@"entityId"] table:eventTypeName error:error];
+        retval = [self.database deleteEntity:event[@"entityId"] table:eventTypeName error:error];
     }
     return retval;
 }

@@ -187,12 +187,19 @@ dispatch_queue_t dispatchEventQueue()
     NSString *eventName = [OPTLYDataStore stringForDataEventEnum:eventType];
     NSError *saveError = nil;
     [self.dataStore saveEvent:params eventType:eventType error:&saveError];
+    NSDictionary *savedEvent = params;
     if (!saveError) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventSaved, eventName, params];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        NSError *getError = nil;
+        NSInteger entityId = [self.dataStore getLastEventId:eventType error:&getError];
+        if (!getError) {
+            NSDictionary *event = @{ @"entityId": @(entityId), @"json": params };
+            savedEvent = event == nil ? savedEvent : event;
+        }
     }
     
-    [self dispatchEvent:params backoffRetry:backoffRetry eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self dispatchEvent:savedEvent backoffRetry:backoffRetry eventType:eventType callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         [self flushEvents];
         if (callback) {
             callback(data, response, error);
