@@ -212,8 +212,26 @@ dispatch_queue_t eventsStorageCacheQueue()
         queue = [weakSelf.eventsCache objectForKey:eventTypeName];
     });
     
-    NSArray *firstNEvents = [queue firstNItems:numberOfEvents];
+    NSArray *firstNEntities = [queue firstNItems:numberOfEvents];
+    NSMutableArray *firstNEvents = [NSMutableArray new];
+    for (NSDictionary *entity in firstNEntities) {
+        if ([entity count] > 0) {
+            [firstNEvents addObject:@{@"entityId": @([firstNEntities indexOfObject:entity]) , @"json": entity}];
+        }
+    }
     return firstNEvents;
+}
+
+- (NSInteger)getLastEventId:(nonnull NSString *)eventTypeName
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error
+{
+    __block OPTLYQueue *queue = nil;
+    dispatch_sync(eventsStorageCacheQueue(), ^{
+        __weak typeof(self) weakSelf = self;
+        queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+    });
+    
+    return [queue lastItemIndex];
 }
 
 - (BOOL)removeFirstNEvents:(NSInteger)numberOfEvents
@@ -232,12 +250,18 @@ dispatch_queue_t eventsStorageCacheQueue()
           eventType:(nonnull NSString *)eventTypeName
               error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
-    dispatch_async(eventsStorageCacheQueue(), ^{
-        __weak typeof(self) weakSelf = self;
-        OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
-        [queue removeItem:event];
-    });
-    return YES;
+    BOOL retval = NO;
+    
+    if (event[@"entityId"] != nil) {
+        dispatch_async(eventsStorageCacheQueue(), ^{
+            __weak typeof(self) weakSelf = self;
+            OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
+            NSDictionary *eventJSON = [queue.queue objectAtIndex:[event[@"entityId"] integerValue]];
+            [queue removeItem:eventJSON];
+        });
+        retval = YES;
+    }
+    return retval;
 }
 
 - (NSInteger)numberOfEvents:(nonnull NSString *)eventTypeName
