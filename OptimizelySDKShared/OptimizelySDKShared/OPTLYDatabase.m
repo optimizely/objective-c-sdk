@@ -34,6 +34,7 @@ static NSString * const kInsertEntityQuery = @"INSERT INTO %@ (json,timestamp) V
 static NSString * const kDeleteEntityIDQuery = @"DELETE FROM %@ where id IN %@";
 static NSString * const kDeleteEntityQuery = @"DELETE FROM %@ where json='%@'";
 static NSString * const kRetrieveEntityQuery = @"SELECT * from %@";
+static NSString * const kRetrieveLastEntityIdQuery = @"select last_insert_rowid()";
 static NSString * const kRetrieveEntityQueryLimit = @" LIMIT %ld";
 static NSString * const kEntitiesCountQuery = @"SELECT count(*) FROM %@";
 
@@ -226,6 +227,33 @@ static NSString * const kColumnKeyTimestamp = @"timestamp";
     }];
     
     return results;
+}
+
+- (NSInteger)retrieveLastEntryId:(NSString *)tableName
+                           error:(NSError * __autoreleasing *)error
+{
+    __block NSInteger rowId;
+    [self.fmDatabaseQueue inDatabase:^(OPTLYFMDBDatabase *db){
+        NSMutableString *query = [NSMutableString stringWithFormat:kRetrieveLastEntityIdQuery];
+        
+        OPTLYFMDBResultSet *resultSet = [db executeQuery:query];
+        if (!resultSet) {
+            if (error) {
+                *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                             code:OPTLYErrorTypesDatabase
+                                         userInfo:@{NSLocalizedDescriptionKey :
+                                                        NSLocalizedString([db lastErrorMessage], nil)}];
+            }
+            OPTLYLogError(@"Unable to retrieve rows of Optimizely table: %@ %@", tableName, [db lastErrorMessage]);
+        }
+        
+        if ([resultSet next]) {
+            rowId = [resultSet intForColumnIndex:0];
+        }
+        [resultSet close];
+    }];
+    
+    return rowId;
 }
 
 - (NSInteger)numberOfRows:(NSString *)tableName

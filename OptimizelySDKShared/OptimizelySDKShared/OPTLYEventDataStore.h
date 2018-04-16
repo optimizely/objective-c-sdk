@@ -55,6 +55,15 @@
                                 error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
+ * Gets the last entry id.
+ *
+ * @param eventTypeName The name of the event type of the data that needs to be removed.
+ * @param error An error object is returned if an error occurs.
+ */
+- (NSInteger)getLastEventId:(nonnull NSString *)eventTypeName
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
+
+/**
  * Deletes the first N events (i.e., the N oldest events).
  *
  * @param numberOfEvents The number of events to retrieve.
