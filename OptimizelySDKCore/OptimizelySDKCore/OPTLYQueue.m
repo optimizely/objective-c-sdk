@@ -60,6 +60,10 @@ const NSInteger OPTLYQueueDefaultMaxSize = 1000;
     return item;
 }
 
+- (NSInteger)lastItemIndex {
+    return [self.mutableQueue count]-1;
+}
+
 - (NSArray *)firstNItems:(NSInteger)numberOfItems {
     NSArray *items;
     if (!self.isEmpty) {

@@ -310,6 +310,15 @@ dispatch_queue_t eventsStorageQueue()
     return oldestEvent;
 }
 
+- (NSInteger)getLastEventId:(OPTLYDataStoreEventType)eventType
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error
+{
+    NSString *eventTypeName = [OPTLYDataStore stringForDataEventEnum:eventType];
+    NSInteger lastRowId = [self.eventDataStore getLastEventId:eventTypeName error:error];
+    return lastRowId;
+}
+
+
 - (nullable NSArray *)getAllEvents:(OPTLYDataStoreEventType)eventType
                              error:(NSError * _Nullable __autoreleasing * _Nullable)error
 {
