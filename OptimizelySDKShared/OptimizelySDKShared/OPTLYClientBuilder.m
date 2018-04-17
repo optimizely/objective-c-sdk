@@ -40,13 +40,13 @@
             block(self);
         }
         _optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
-            builder.datafile = _datafile;
-            builder.errorHandler = _errorHandler;
-            builder.eventDispatcher = _eventDispatcher;
-            builder.logger = _logger;
-            builder.userProfileService = _userProfileService;
-            builder.clientEngine = _clientEngine;
-            builder.clientVersion = _clientVersion;
+            builder.datafile = self.datafile;
+            builder.errorHandler = self.errorHandler;
+            builder.eventDispatcher = self.eventDispatcher;
+            builder.logger = self.logger;
+            builder.userProfileService = self.userProfileService;
+            builder.clientEngine = self.clientEngine;
+            builder.clientVersion = self.clientVersion;
         }];
         _logger = _optimizely.logger;
         if (!_logger) {
