@@ -85,10 +85,17 @@ if [ "$versions_valid" != "y" ]; then
     exit 1
 fi;
 
-# ---- Build the universal frameworks ----
-printf "\n\n4. Building the universal frameworks...\n\n"
-xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release
-xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS-Universal -configuration Release
+# ---- Build universal frameworks ----
+printf "\n\n4. Building universal frameworks.\n\n"
+printf "Build universal frameworks? (We recommend no, not here.)\n"
+printf "(You should have done this earlier in the #.#.# branch that P.R.'s on a #.#.x branch.)"
+read  -n 1 -p "[y/n] $cr? " build_universal;
+if [ "$build_universal" == "y" ]; then
+    Xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS-Universal -configuration Release
+    Xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS-Universal -configuration Release
+    printf "\nPlease commit your change.\n"
+    exit 1
+fi
 
 # ---- Update podspec files ----
 printf "\n\n5. Updating podspec files with the new version numbers...\n\n"
@@ -209,16 +216,6 @@ read  -n 1 -p "Are all podspecs valid? (If none of the pods have been pushed to 
 if [ "$podspec_valid" != "y" ]; then
 printf "\nCorrect the podspec(s) before proceeding. Delete tag and retag the fixed podspec.\n"
 exit 1
-fi;
-
-# ---- commit podspec changes ----
-printf "\n"
-read  -n 1 -p "7. Commit and push version bump changes to master? Skip this step if it has already been done. [y/n] $cr? " podspec_valid;
-if [ "$podspec_valid" == "y" ]; then
-    printf "\nCommitting and pushing master with version bump changes...\n";
-    git add -u
-    git commit -m "Bumped version for new release."
-    git push origin devel
 fi;
 
 # ---- git tag all modules----
