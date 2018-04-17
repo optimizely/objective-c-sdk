@@ -110,6 +110,17 @@
                                       error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
+ * Retrieves an id of last entry from the table.
+ *
+ * @param tableName The database table name.
+ * @param error An error object is returned if an error occurs.
+ * @return The return value is an id of NSInteger
+ */
+
+- (NSInteger)retrieveLastEntryId:(NSString * _Nonnull)tableName
+                           error:(NSError * _Nullable __autoreleasing * _Nullable)error;
+
+/**
  * Returns the number of rows of a table.
  *
  * @param tableName The database table name.
