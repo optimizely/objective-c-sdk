@@ -18,10 +18,9 @@
 # 9. git push all tags.
 # 10. Confirm if pod trunk session is open.
 # 11. pod trunk push all the podspecs.
-# 12. If patch release, than cherry pick changes from master onto the release branch; otherwise, create the release branch.
 
 # Change to the project root folder
-(cd ..;
+pushd ..
 printf "Current working directory: $PWD.\n\n";
 
 #1. Prompt a reminder to update the CHANGELOG
@@ -277,31 +276,20 @@ pod trunk me;
 
 read  -n 1 -p "Do you have a valid Cocoapod session running? [y/n] $cr? " cocoapod_session;
 if [ "$cocoapod_session" != "y" ]; then
-printf "\nCreate a Cocoapod trunk session: https://guides.cocoapods.org/making/getting-setup-with-trunk.html.\n"
-exit 1
+    printf "\nCreate a Cocoapod trunk session: https://guides.cocoapods.org/making/getting-setup-with-trunk.html.\n"
+    printf "Use 'pod trunk register' command to create your first COCOAPODS.ORG session\n"
+    printf "or renew an expired COCOAPODS.ORG session .  See:"
+    printf "https://guides.cocoapods.org/terminal/commands.html#pod_trunk_register .\n"
+    exit 1
 fi;
 
 # ---- push podspecs to cocoapods ----
-# the podspecs need to be pushed in the correct order because of dependencies!
-printf "\n\n11. Pushing podspecs to Cocoapods...\n";
+# The podspecs need to be pushed in the correct order because of dependencies!
+printf "\n\n11. Pushing podspecs to COCOAPODS.ORG .\n";
 for (( i = 0; i < ${number_pods}; i++ ));
 do
-    echo "Pushing the ${pods[i]} pod to Cocoapods"
-    pod trunk push ${pods[i]}.podspec
-
-
-# ---- Prompt to determine what kind of release ----
-# patch releases require cherry-picking changes onto the release branch
-read  -n 1 -p "12. Is this a patch release? [y/n] $cr " patch_release;
-if [ "$patch_release" == "y" ]; then
-printf "\n\nMoving to the release branch $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x.\n";
-git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
-printf "\n\nCherry-pick last commit from master.\n";
-git cherry-pick master
-exit 1
-fi;
-# if not a patch release, than a release branch needs to be created
-printf "\n\nCreating the $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x release branch...\n";
-git checkout -b $OPTIMIZELY_SDK_CORE_VERSION_MAJOR.$OPTIMIZELY_SDK_CORE_VERSION_MINOR.x
-git push
-done)
+    podname=${pods[i]};
+    printf "Pushing the ${podname} pod to COCOAPODS.ORG .\n"
+    pod trunk push --allow-warnings ${podname}.podspec
+    pod update
+done
