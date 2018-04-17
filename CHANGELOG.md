@@ -1,4 +1,13 @@
 # Optimizely Objective-C SDK Changelog
+## 1.5.1
+April 17, 2018
+
+### Bug Fixes:
+* Fix single quote in events issue.  Event was sent repeatedly because it was
+unable to be deleted from data store due to syntax error.
+* Remove "Pod_..." static library from demo app "Embedded Frameworks".
+* Fix red Xcode Project Navigator group folder.
+
 ## 1.5.0
 December 6, 2017
 
