@@ -127,8 +127,8 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlockInvalidModulesFails {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     
-    id<OPTLYLogger> logger = [NSObject new];
-    id<OPTLYErrorHandler> errorHandler = [NSObject new];
+    id<OPTLYLogger> logger = (id<OPTLYLogger>)[NSObject new];
+    id<OPTLYErrorHandler> errorHandler = (id<OPTLYErrorHandler>)[NSObject new];
     
     OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
         builder.datafile = datafile;
