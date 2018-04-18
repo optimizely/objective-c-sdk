@@ -179,10 +179,10 @@ static NSData *whitelistingDatafile;
     NSDictionary *userProfile1 = [self.userProfileService lookup:kUserId1];
     XCTAssertNil(userProfile1, @"User profile for userId 1 should have been removed.");
     
-    NSString *userProfile2 = [self.userProfileService lookup:kUserId2];
+    NSDictionary *userProfile2 = [self.userProfileService lookup:kUserId2];
     XCTAssertNotNil(userProfile2, @"User profile for userId 2 should not be removed.");
     
-    NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
+    NSDictionary *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNotNil(userProfile3, @"User profile for userId 3a should not be removed.");
     
     NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
@@ -196,10 +196,10 @@ static NSData *whitelistingDatafile;
     NSDictionary *userProfile1 = [self.userProfileService lookup:kUserId1];
     XCTAssertNil(userProfile1, @"User profile for userId 1 should have been removed.");
     
-    NSString *userProfile2 = [self.userProfileService lookup:kUserId2];
+    NSDictionary *userProfile2 = [self.userProfileService lookup:kUserId2];
     XCTAssertNil(userProfile2, @"User profile for userId 2 should have been removed.");
     
-    NSString *userProfile3 = [self.userProfileService lookup:kUserId3];
+    NSDictionary *userProfile3 = [self.userProfileService lookup:kUserId3];
     XCTAssertNil(userProfile3, @"User profile for userId 3 should have been removed.");
     
     NSDictionary *userData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];
@@ -279,7 +279,10 @@ static NSData *whitelistingDatafile;
     OPTLYUserProfileServiceDefault *userProfileService = [[OPTLYUserProfileServiceDefault alloc] init];
     [userProfileService removeAllUserExperimentRecords];
     XCTAssertNotNil(userProfileService);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
     [userProfileService save:nil];
+#pragma clang diagnostic pop
     XCTAssertEqual(0, [[userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] count]);
 }
 
@@ -319,7 +322,7 @@ static NSData *whitelistingDatafile;
     [self saveUserId:kUserId3 experimentId:kExperimentId3c variationId:kVariationId3c];
     
     NSDictionary *legacyUserProfileData = [self.userProfileService.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfile];
-    XCTAssert([legacyUserProfileData count] == 3, @"Invalid number of legacy user profile entities saved: %@.", [legacyUserProfileData count]);
+    XCTAssert([legacyUserProfileData count] == 3, @"Invalid number of legacy user profile entities saved: %@.", @([legacyUserProfileData count]));
     [self.userProfileService migrateLegacyUserProfileIfNeeded];
     
     NSDictionary *newUserProfileDict1 = [self.userProfileService lookup:kUserId1];

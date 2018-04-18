@@ -339,7 +339,7 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     typedef void (^FlushEventsBlock)(void);
     __block __weak FlushEventsBlock weakFlushEvents = nil;
     __weak typeof(self) weakSelf = self;
-    __block void (^flushEvents)() = ^(){
+    __block void (^flushEvents)(void) = ^(){
         FlushEventsBlock strongFlushEvents = weakFlushEvents;
         attempts++;
         [eventDispatcher flushEvents:^{
