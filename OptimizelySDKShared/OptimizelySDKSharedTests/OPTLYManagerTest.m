@@ -114,7 +114,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
     id partialMockManager = OCMPartialMock(manager);
     
     // mock a failed cached datafile load
-    id partialDatafileManagerMock = OCMPartialMock(manager.datafileManager);
+    id partialDatafileManagerMock = OCMPartialMock((NSObject*)manager.datafileManager);
     OCMStub([partialDatafileManagerMock getSavedDatafile:nil]).andReturn(nil);
     
     OPTLYClient *client = [partialMockManager initialize];
@@ -371,7 +371,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
         builder.projectId = kProjectId;
     }];
     
-    id partialMockManager = OCMPartialMock(manager);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
+    OCMPartialMock(manager);
+#pragma clang diagnostic pop
     
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithCallbackDownloadErrorNoDatafile"];
@@ -390,13 +393,15 @@ static NSString * const kClientEngine = @"tvos-sdk";
 - (void)isClientValid:(OPTLYClient *)client
              datafile:(NSData *)datafile
 {
-    Optimizely *optly = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
+    [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = kClientEngine;
         builder.clientVersion = kClientVersion;
     }];
-    OPTLYProjectConfig *projectConfig = optly.config;
-    
+#pragma clang diagnostic pop
+
     XCTAssertNotNil(client, @"Client should not be nil.");
     // TODO (Alda): Need to write equality methods for the data models to properly make this assertion
     //XCTAssert([projectConfig isEqual:client.optimizely.config], @"Optimizely config is invalid.");

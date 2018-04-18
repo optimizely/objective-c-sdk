@@ -35,13 +35,16 @@
 
 - (void)testConformsToOPTLYLoggerProtocol
 {
-    id<OPTLYErrorHandler> errorHandler = [NSObject new];
-    BOOL conformsToProtocol = [OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]];
-    NSAssert(conformsToProtocol == FALSE, @"Object does not conform to protocol.");
-    
-    errorHandler = [OPTLYErrorHandlerDefault new];
-    conformsToProtocol = [OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]];
-    NSAssert(conformsToProtocol == TRUE, @"Object should conform to protocol.");
+    {
+        NSObject* errorHandler = [NSObject new];
+        BOOL conformsToProtocol = [OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]];
+        XCTAssert(conformsToProtocol == FALSE, @"Object does not conform to protocol.");
+    }
+    {
+        id<OPTLYErrorHandler> errorHandler = [OPTLYErrorHandlerDefault new];
+        BOOL conformsToProtocol = [OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[errorHandler class]];
+        XCTAssert(conformsToProtocol == TRUE, @"Object should conform to protocol.");
+    }
 }
 
 @end
