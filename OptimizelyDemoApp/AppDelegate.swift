@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ---- 1. Asynchronous Initialization -----
         // initialize Optimizely Client from a datafile download
         optimizelyManager?.initialize(callback: { [weak self] (error, optimizelyClient) in
+#if os(iOS)
             optimizelyClient?.optimizely?.notificationCenter?.addActivateNotificationListener({ (experiment, userId, attributes, variation, event) in
                 // ---- Amplitude ----
                 let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
@@ -117,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Localytics.tagEvent(localyticsEventIdentifier)
 
             })
-            
+#endif
             let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         })
@@ -181,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        optimizelyClient?.optimizely?.notificationCenter?.clearAllNotifications();
+        optimizelyClient?.optimizely?.notificationCenter?.clearAllNotificationListeners();
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

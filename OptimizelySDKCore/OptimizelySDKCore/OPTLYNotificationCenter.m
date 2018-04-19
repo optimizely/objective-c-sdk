@@ -63,7 +63,7 @@
     return [self addNotification:OPTLYNotificationTypeTrack listener:(GenericListener)trackListener];
 }
 
-- (BOOL)removeNotification:(NSUInteger)notificationId {
+- (BOOL)removeNotificationListener:(NSUInteger)notificationId {
     for (NSNumber *notificationType in _notifications.allKeys) {
         OPTLYNotificationHolder *notificationMap = _notifications[notificationType];
         if (notificationMap != nil && [notificationMap.allKeys containsObject:@(notificationId)]) {
@@ -74,13 +74,13 @@
     return NO;
 }
 
-- (void)clearNotifications:(OPTLYNotificationType)type {
+- (void)clearNotificationListeners:(OPTLYNotificationType)type {
     [_notifications[@(type)] removeAllObjects];
 }
 
-- (void)clearAllNotifications {
+- (void)clearAllNotificationListeners {
     for (NSNumber *notificationType in _notifications.allKeys) {
-        [self clearNotifications:[notificationType unsignedIntegerValue]];
+        [self clearNotificationListeners:[notificationType unsignedIntegerValue]];
     }
 }
 

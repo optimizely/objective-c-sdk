@@ -81,7 +81,7 @@ static NSString *const kVariationId = @"6362476365";
     [super tearDown];
     
     // clean up all notifications
-    [_notificationCenter clearAllNotifications];
+    [_notificationCenter clearAllNotificationListeners];
 }
 
 - (void)testAddAndRemoveNotificationListener {
@@ -92,11 +92,11 @@ static NSString *const kVariationId = @"6362476365";
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
     // Verify that callback removed successfully.
-    XCTAssertEqual(YES, [_notificationCenter removeNotification:notificationId]);
+    XCTAssertEqual(YES, [_notificationCenter removeNotificationListener:notificationId]);
     XCTAssertEqual(0, _notificationCenter.notificationsCount);
     
     //Verify return false with invalid ID.
-    XCTAssertEqual(NO, [_notificationCenter removeNotification:notificationId]);
+    XCTAssertEqual(NO, [_notificationCenter removeNotificationListener:notificationId]);
     
     // Verify that callback added successfully and return right notification ID.
     XCTAssertEqual(_notificationCenter.notificationId, [_notificationCenter addActivateNotificationListener:_activateNotification]);
@@ -124,16 +124,16 @@ static NSString *const kVariationId = @"6362476365";
     XCTAssertEqual(3, _notificationCenter.notificationsCount);
     
     // Verify that only decision callbacks are removed.
-    [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
     // Verify that ClearNotifications does not break on calling twice for same type.
-    [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
-    [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
     
     // Verify that ClearNotifications does not break after calling ClearAllNotifications.
-    [_notificationCenter clearAllNotifications];
-    [_notificationCenter clearNotifications:OPTLYNotificationTypeTrack];
+    [_notificationCenter clearAllNotificationListeners];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeTrack];
 }
 
 - (void)testClearAllNotifications {
@@ -149,13 +149,13 @@ static NSString *const kVariationId = @"6362476365";
     XCTAssertEqual(3, _notificationCenter.notificationsCount);
     
     // Verify that ClearAllNotifications remove all the callbacks.
-    [_notificationCenter clearAllNotifications];
+    [_notificationCenter clearAllNotificationListeners];
     XCTAssertEqual(0, _notificationCenter.notificationsCount);
     
     // Verify that ClearAllNotifications does not break on calling twice or after ClearNotifications.
-    [_notificationCenter clearNotifications:OPTLYNotificationTypeActivate];
-    [_notificationCenter clearAllNotifications];
-    [_notificationCenter clearAllNotifications];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
+    [_notificationCenter clearAllNotificationListeners];
+    [_notificationCenter clearAllNotificationListeners];
 }
 
 - (void)testSendNotifications {
@@ -193,7 +193,7 @@ static NSString *const kVariationId = @"6362476365";
     
     // Verify that after clearing notifications, SendNotification should not call any notification
     // which were previously registered.
-    [_notificationCenter clearAllNotifications];
+    [_notificationCenter clearAllNotificationListeners];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation, event]];
     
