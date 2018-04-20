@@ -143,17 +143,17 @@ printf "the correct 'Target' branch.  We expect you are tagging a commit\n"
 printf "on a #.#.x branch.)\n"
 read  -n 1 -p "[y/n] $cr? " tag_release;
 if [ "$tag_release" == "y" ]; then
-    printf "Tagging ${OPTIMIZELY_SDK_VERSION}\n";
-    git tag -a ${OPTIMIZELY_SDK_VERSION} -m "Release ${OPTIMIZELY_SDK_VERSION}";
+    printf "Tagging v${OPTIMIZELY_SDK_VERSION}\n";
+    git tag -a "v${OPTIMIZELY_SDK_VERSION}" -m "Release ${OPTIMIZELY_SDK_VERSION}";
     printf "\n\n9. Pushing git tag.\n"
-    git push origin ${OPTIMIZELY_SDK_VERSION} --verbose;
+    git push origin "v${OPTIMIZELY_SDK_VERSION}" --verbose;
 fi;
 
-if git tag -l | grep -q "${OPTIMIZELY_SDK_VERSION}"
+if git tag -l | grep -q "v${OPTIMIZELY_SDK_VERSION}"
 then
-    printf "Release is tagged ${OPTIMIZELY_SDK_VERSION}\n";
+    printf "Release is tagged v${OPTIMIZELY_SDK_VERSION}\n";
 else
-    printf "Release must be tagged ${OPTIMIZELY_SDK_VERSION}\n";
+    printf "Release must be tagged v${OPTIMIZELY_SDK_VERSION}\n";
     printf "(If release isn't tagged, then 'pod trunk push ...' to COCOAPODS.ORG will fail.)"
     exit 1
 fi
