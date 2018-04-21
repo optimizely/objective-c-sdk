@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
-## 2.0.0-beta1
-April 5, 2018
+## 2.0.0
+April 20, 2018
 
 This major release of the Optimizely SDK introduces APIs for Feature Management.
 
