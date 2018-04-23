@@ -74,18 +74,18 @@ typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolde
  * @param notificationId the id passed back from add notification.
  * @return true if removed otherwise false (if the notification is already removed, it returns false).
  */
-- (BOOL)removeNotification:(NSUInteger)notificationId;
+- (BOOL)removeNotificationListener:(NSUInteger)notificationId;
 
 /**
  * Clear notification listeners by notification type.
  * @param type type of OPTLYNotificationType to remove.
  */
-- (void)clearNotifications:(OPTLYNotificationType)type;
+- (void)clearNotificationListeners:(OPTLYNotificationType)type;
 
 /**
  * Clear out all the notification listeners.
  */
-- (void)clearAllNotifications;
+- (void)clearAllNotificationListeners;
 
 //
 /**
