@@ -197,6 +197,15 @@ typedef NS_ENUM(NSUInteger, OPTLYDataStoreEventType)
                                 error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
+ * Gets the last entry id.
+ *
+ * @param eventType The event type of the data that needs to be removed.
+ * @param error An error object is returned if an error occurs.
+ */
+- (NSInteger)getLastEventId:(OPTLYDataStoreEventType)eventType
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
+
+/**
  * Gets all events.
  *
  * @param eventType The event type of the data that needs to be retrieved.
