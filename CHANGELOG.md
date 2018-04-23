@@ -74,6 +74,12 @@ with Notification Listeners APIs
 * Added `@"$opt_bucketing_id"` in the attribute map for overriding bucketing using the user id.  This string is
 available as OptimizelyBucketId in OPTLYEventBuilder.h .
 
+### Bug Fixes:
+* Fix single quote in events issue.  Event was sent repeatedly because it was
+unable to be deleted from data store due to syntax error.
+* Remove "Pod_..." static library from demo app "Embedded Frameworks".
+* Fix red Xcode Project Navigator group folder.
+
 ### Breaking Changes
 * Removed track APIs with revenue as a parameter.
 * Deprecated live variable APIs.
