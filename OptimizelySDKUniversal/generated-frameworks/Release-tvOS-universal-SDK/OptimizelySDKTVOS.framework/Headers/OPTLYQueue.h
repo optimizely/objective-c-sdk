@@ -75,6 +75,13 @@ extern const NSInteger OPTLYQueueDefaultMaxSize;
 - (id)front;
 
 /**
+ * Returns an index of the latest item in the queue (the queue is not mutated).
+ *
+ * @return An index of the latest item in the queue.
+ */
+- (NSInteger)lastItemIndex;
+
+/**
  * Returns a copy of the oldest N items in the queue (the queue is not mutated).
  *
  * @return An array with a copy of the oldest N items in the queue.
