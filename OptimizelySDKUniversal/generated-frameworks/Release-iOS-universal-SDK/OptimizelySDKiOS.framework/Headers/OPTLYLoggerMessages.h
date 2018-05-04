@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -26,6 +26,20 @@ extern NSString *const OPTLYLoggerMessagesVariationUserAssigned;
 // info
 extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
+// error
+extern NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
+extern NSString *const OPTLYLoggerMessagesFeatureEnabledNotExperimented;
+extern NSString *const OPTLYLoggerMessagesFeatureEnabled;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvalid;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableType;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotUsed;
+extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotBucketed;
 
 // ---- Bucketer ----
 // debug
@@ -143,14 +157,6 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
-// ---- Live Variables ----
-// info
-extern NSString *const OPTLYLoggerMessagesVariableValue;
-extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
-// warning
-extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
-extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
-
 // ---- Manager ----
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
@@ -175,6 +181,9 @@ extern NSString *const OPTLYLoggerMessagesEventUnknownForEventKey;
 extern NSString *const OPTLYLoggerMessagesExperimentIdUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentId;
 extern NSString *const OPTLYLoggerMessagesExperimentUnknownForExperimentKey;
+extern NSString *const OPTLYLoggerMessagesFeatureFlagUnknownForFeatureFlagKey;
+extern NSString *const OPTLYLoggerMessagesVariableUsageUnknownForVariableId;
+extern NSString *const OPTLYLoggerMessagesRolloutUnknownForRolloutId;
 extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
 extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;
@@ -206,6 +215,20 @@ extern NSString *const OPTLYLoggerMessagesDecisionServiceSavedVariationParseErro
 extern NSString *const OPTLYLoggerMessagesDecisionServiceGetVariationParseError;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceReplaceBucketEntity;
 extern NSString *const OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID;
+// FF = Feature Flag
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFFUserNotBucketed;
+// FF = Feature Rollout
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRNotUsed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserExcluded;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserNotBucketed;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceUserInVariation;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
+extern NSString *const OPTLYLoggerMessagesDecisionServiceGroupUnknownForGroupId;
 
 // ---- HTTP Request Manager ----
 // Debug (not through logger handler)

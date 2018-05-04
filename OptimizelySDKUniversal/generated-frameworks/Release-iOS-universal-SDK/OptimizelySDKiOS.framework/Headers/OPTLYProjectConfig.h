@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kExpectedDatafileVersion;
 NS_ASSUME_NONNULL_END
 
-@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfileService, OPTLYVariation, OPTLYVariable;
-@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfileService, OPTLYVariation, OPTLYFeatureFlag, OPTLYRollout;
+@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariation, OPTLYFeatureFlag, OPTLYRollout;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -56,9 +56,6 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
-/// List of live variable objects
-/// TODO: Make variables required
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -70,6 +67,10 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
 /// Returns the client version number
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
+/// List of Optimizely Feature Flags objects
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag, Optional> *featureFlags;
+/// List of Optimizely Rollouts objects
+@property (nonatomic, strong, nonnull) NSArray<OPTLYRollout, Optional> *rollouts;
 
 /**
  * Initialize the Project Config from a builder block.
@@ -102,6 +103,16 @@ NS_ASSUME_NONNULL_END
 - (nullable OPTLYGroup *)getGroupForGroupId:(nonnull NSString *)groupId;
 
 /**
+ * Get a Feature Flag object for a key.
+ */
+- (nullable OPTLYFeatureFlag *)getFeatureFlagForKey:(nonnull NSString *)featureFlagKey;
+
+/**
+ * Get a Rollout object for an Id.
+ */
+- (nullable OPTLYRollout *)getRolloutForId:(nonnull NSString *)rolloutId;
+
+/**
  * Gets an event id for a corresponding event key
  */
 - (nullable NSString *)getEventIdForKey:(nonnull NSString *)eventKey;
@@ -120,11 +131,6 @@ NS_ASSUME_NONNULL_END
  * Get an audience for a given audience id.
  */
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
-
-/**
- * Get a variable for a given live variable key.
- */
-- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
  * Get forced variation for a given experiment key and user id.

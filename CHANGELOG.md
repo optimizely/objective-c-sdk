@@ -1,4 +1,98 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.0
+April 23, 2018
+
+This major release of the Optimizely SDK introduces APIs for Feature Management.
+
+### New Features
+* Introduces the `isFeatureEnabled:userId:attributes:` API to determine whether to show a feature to a user or not.
+```
+/**
+ * Determine whether a feature is enabled.
+ * Send an impression event if the user is bucketed into an experiment using the feature.
+ * @param featureKey The key for the feature flag.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return YES if feature is enabled, false otherwise.
+ */
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* You can get all the enabled features for the user by calling the `getEnabledFeatures:attributes:` API which returns an array of strings representing the feature keys:
+```
+/**
+ * Get array of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> Array of feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* Introduces Feature Variables to configure or parameterize your feature. There are four variable types: `BOOL`, `double`, `int`, `NSString*`.
+```
+/**
+ * API's that get feature variable values.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return feature variable value.
+ */
+- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+                     variableKey:(nullable NSString *)variableKey
+                          userId:(nullable NSString *)userId
+                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* Introducing Optimizely Notification Center with Notification Listeners
+Optimizely object now has a Notification Center
+```
+    @property (nonatomic, strong, readonly, nullable) OPTLYNotificationCenter *notificationCenter;
+```
+with Notification Listeners APIs
+```
+- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener;
+- (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
+- (BOOL)removeNotificationListener:(NSUInteger)notificationId;
+- (void)clearNotificationListeners:(OPTLYNotificationType)type;
+- (void)clearAllNotificationListeners;
+```
+* Added `@"$opt_bucketing_id"` in the attribute map for overriding bucketing using the user id.  This string is
+available as OptimizelyBucketId in OPTLYEventBuilder.h .
+
+### Bug Fixes:
+* Fix single quote in events issue.  Event was sent repeatedly because it was
+unable to be deleted from data store due to syntax error.
+* Remove "Pod_..." static library from demo app "Embedded Frameworks".
+* Fix red Xcode Project Navigator group folder.
+
+### Breaking Changes
+* Removed track APIs with revenue as a parameter.
+* Deprecated live variable APIs.
+
+## 1.5.1
+April 17, 2018
+
+### Bug Fixes:
+* Fix single quote in events issue.  Event was sent repeatedly because it was
+unable to be deleted from data store due to syntax error.
+* Remove "Pod_..." static library from demo app "Embedded Frameworks".
+* Fix red Xcode Project Navigator group folder.
+
 ## 1.5.0
 December 6, 2017
 

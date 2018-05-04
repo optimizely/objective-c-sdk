@@ -31,7 +31,7 @@
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYGroup.h"
 
-NSString * _Nonnull const OptimizelyBucketId = @"Optimizely Bucketing ID";
+NSString * _Nonnull const OptimizelyBucketId = @"$opt_bucketing_id";
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;

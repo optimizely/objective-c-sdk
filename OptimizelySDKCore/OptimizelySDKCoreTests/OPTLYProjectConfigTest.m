@@ -95,7 +95,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNotNil(projectConfig.errorHandler, @"error handler should not be nil.");
     XCTAssertNotNil(projectConfig.userProfileService, @"User profile should not be nil.");
     XCTAssertEqualObjects(projectConfig.clientEngine, kClientEngine, @"Invalid client engine: %@. Expected: %@.", projectConfig.clientEngine, kClientEngine);
-    XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION, @"Invalid client version: %@. Expected: %@.", projectConfig.clientVersion, OPTIMIZELY_SDK_CORE_VERSION);
+    XCTAssertEqualObjects(projectConfig.clientVersion, OPTIMIZELY_SDK_VERSION, @"Invalid client version: %@. Expected: %@.", projectConfig.clientVersion, OPTIMIZELY_SDK_VERSION);
 }
 /**
  * Make sure we can pass in different values for client engine and client version to override the defaults.

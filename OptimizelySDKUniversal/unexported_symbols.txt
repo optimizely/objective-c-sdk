@@ -1,4 +1,10 @@
 _BUCKETING_ID_TEMPLATE
+_DecisionSourceExperiment
+_DecisionSourceRollout
+_FeatureVariableTypeBoolean
+_FeatureVariableTypeDouble
+_FeatureVariableTypeInteger
+_FeatureVariableTypeString
 _HASH_SEED
 _MAX_HASH_VALUE
 _MAX_TRAFFIC_VALUE
