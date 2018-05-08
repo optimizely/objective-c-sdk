@@ -1,4 +1,10 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.1
+May 9, 2018
+
+### New Features
+* Adding mobile 2.x data file CDN url change to support FullStack projects without Feature Management V2 schema.
+
 ## 2.0.0
 April 23, 2018
 
@@ -83,6 +89,15 @@ unable to be deleted from data store due to syntax error.
 ### Breaking Changes
 * Removed track APIs with revenue as a parameter.
 * Deprecated live variable APIs.
+
+## 1.5.1
+April 17, 2018
+
+### Bug Fixes:
+* Fix single quote in events issue.  Event was sent repeatedly because it was
+unable to be deleted from data store due to syntax error.
+* Remove "Pod_..." static library from demo app "Embedded Frameworks".
+* Fix red Xcode Project Navigator group folder.
 
 ## 1.5.0
 December 6, 2017

@@ -19,7 +19,7 @@
 #import "OPTLYDatafileManagerBasic.h"
 
 static NSString *const kProjectId = @"6372300739";
-static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/public/%@/datafile_v%@.json";
+static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/json/%@.json";
 
 @interface OPTLYDatafileManagerTest : XCTestCase
 
@@ -28,7 +28,7 @@ static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/pu
 @implementation OPTLYDatafileManagerTest
 
 - (void)testProjectConfigURLPathReturnsExpectedURL {
-    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId, kExpectedDatafileVersion];
+    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId];
     NSURL *expectedURL = [NSURL URLWithString:expectedURLString];
     
     NSURL *cdnURL = [OPTLYDatafileManagerUtility projectConfigURLPath:kProjectId];
