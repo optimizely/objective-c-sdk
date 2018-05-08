@@ -1,4 +1,10 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.1
+May 9, 2018
+
+### New Features
+* Adding mobile 2.x data file CDN url change to support FullStack projects without Feature Management V2 schema.
+
 ## 2.0.0
 April 23, 2018
 
