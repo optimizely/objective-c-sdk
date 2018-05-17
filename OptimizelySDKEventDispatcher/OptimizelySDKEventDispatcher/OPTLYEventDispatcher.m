@@ -209,11 +209,14 @@ dispatch_queue_t dispatchEventQueue()
     }];
 }
 
+// A saved event has entityId and json in its dictionary so that it can be deleted by entityId
 - (bool)isSavedEvent:(nonnull NSDictionary *)event {
     return event[@"json"] != nil;
 }
+// It is an old single point event if it contains clientEngine. So, send it to the appropriate endpoint.
+// This may not be necessary but just in case there are some old events in the queue.
 - (bool)isOldEvent:(nonnull NSDictionary *)event {
-    return [self isSavedEvent:event] && event[@"json"][@"client_engine"] != nil;
+    return [self isSavedEvent:event] && event[@"json"][@"clientEngine"] != nil;
 }
 
 - (void)dispatchEvent:(nonnull NSDictionary *)event
