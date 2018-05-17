@@ -119,6 +119,62 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     }];
 }
 
+// Test that a successful dispatch:
+//  - no events are persisted
+//  - flushEvents is called
+- (void)testDispatchImpressionOldEventSuccess {
+    [self stubSuccessResponse];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent success."];
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:self.parameters];
+    params[@"clientEngine"] = @"iOS";
+    [eventDispatcherMock dispatchImpressionEvent:params callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
+        XCTAssert(numberOfSavedEvents == 0, @"Impression events should not have been saved.");
+        XCTAssert([response.URL.absoluteString isEqualToString: @"https://logx.optimizely.com/log/decision"]);
+        [eventDispatcherMock verify];
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for dispatchImpressionEvent: %@", error);
+        }
+    }];
+}
+
+// Test that a successful dispatch:
+//  - no events are persisted
+//  - flushEvents is called
+- (void)testDispatchImpressionNewEventSuccess {
+    [self stubSuccessResponse];
+    
+    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault new];
+    id eventDispatcherMock = [OCMockObject partialMockForObject:eventDispatcher];
+    [[eventDispatcherMock expect] flushEvents];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for dispatchImpressionEvent success."];
+    __weak typeof(self) weakSelf = self;
+    [eventDispatcherMock dispatchImpressionEvent:self.parameters callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSInteger numberOfSavedEvents = [weakSelf.eventDispatcher numberOfEvents:OPTLYDataStoreEventTypeImpression];
+        XCTAssert(numberOfSavedEvents == 0, @"Impression events should not have been saved.");
+        XCTAssert([response.URL.absoluteString isEqualToString: @"https://logx.optimizely.com/v1/events"]);
+        [eventDispatcherMock verify];
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for dispatchImpressionEvent: %@", error);
+        }
+    }];
+}
+
 - (void)testDispatchConversionEventSuccess {
     [self stubSuccessResponse];
     
