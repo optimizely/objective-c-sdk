@@ -262,7 +262,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     params[OPTLYEventParameterKeysClientEngine] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientEngine]];
     params[OPTLYEventParameterKeysClientVersion] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientVersion]];
     params[OPTLYEventParameterKeysRevision] = [OPTLYEventBuilderDefault stringOrEmpty:config.revision];
-    params[OPTLYEventParameterKeysAnonymizeIP] = config.anonymizeIP ? @YES : @NO;
+    params[OPTLYEventParameterKeysAnonymizeIP] = @(config.anonymizeIP.boolValue);
     
     return [params copy];
 }
