@@ -113,6 +113,12 @@ NSString * const kExpectedDatafileVersion  = @"4";
             [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
+        if (projectConfig.anonymizeIP == nil) {
+            NSString *logMessage = @"Forcing old datafile to include anonymizeIP required by V4 format.";
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            projectConfig.anonymizeIP = @1;
+        }
+
         if (datafileError)
         {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
