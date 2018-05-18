@@ -1,12 +1,13 @@
 # Optimizely Objective-C SDK Changelog
-## 2.0.1
-May 9, 2018
+## 2.0.2-beta1
+May 17, 2018
 
-### New Features
-* Adding mobile 2.x data file CDN url change to support FullStack projects without Feature Management V2 schema.
-
-## 2.0.0
-April 23, 2018
+**This "-beta1" pre-release corrects two significant bugs present in the
+previous 2.0.x releases which have been withdrawn.  Please note that
+2.0+ SDKs are incompatible with existing 1.x Mobile Optimizely
+projects.  Before you use 2.0+ and Feature Management, please contact
+your Optimizely account team.  If you are not upgrading to Feature
+Management, we recommend remaining on your current 1.x SDK.**
 
 This major release of the Optimizely SDK introduces APIs for Feature Management.
 
@@ -79,6 +80,8 @@ with Notification Listeners APIs
 ```
 * Added `@"$opt_bucketing_id"` in the attribute map for overriding bucketing using the user id.  This string is
 available as OptimizelyBucketId in OPTLYEventBuilder.h .
+
+* Adding mobile 2.x data file CDN url change to support FullStack projects without Feature Management V2 schema.
 
 ### Bug Fixes:
 * Fix single quote in events issue.  Event was sent repeatedly because it was
