@@ -136,7 +136,7 @@ dispatch_queue_t dispatchEventQueue()
                                                          repeats:YES];
             
             NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             
             if (completion) {
                 completion();
