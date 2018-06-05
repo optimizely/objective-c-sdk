@@ -127,27 +127,25 @@ dispatch_queue_t dispatchEventQueue()
 // The timer must be dispatched on the main thread.
 - (void)setupNetworkTimer:(void(^)(void))completion
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
-        if (self.eventDispatcherDispatchInterval > 0) {
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
-                                                          target:self
-                                                        selector:@selector(flushEvents)
-                                                        userInfo:nil
-                                                         repeats:YES];
-            
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
-            [self->_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
+        typeof(self) strongSelf = weakSelf;
+        if (strongSelf && strongSelf.eventDispatcherDispatchInterval > 0) {
+            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
+                                                                target:self
+                                                              selector:@selector(flushEvents)
+                                                              userInfo:nil
+                                                               repeats:YES];
+            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, weakSelf.eventDispatcherDispatchInterval];
+            [strongSelf->_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             if (completion) {
                 completion();
             }
         }
     };
-    
     if ([NSThread isMainThread]) {
         block();
-    }
-    else {
+    } else {
         dispatch_async(dispatch_get_main_queue(), block);
     }
 }
