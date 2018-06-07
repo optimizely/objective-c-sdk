@@ -350,7 +350,6 @@
 				EA3C68541DC1E6B600C578CA /* Frameworks */,
 				EA3C68551DC1E6B600C578CA /* Resources */,
 				987B8D46924F81D5C589121C /* [CP] Embed Pods Frameworks */,
-				7583F3375CD28D1418D3F1E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -522,21 +521,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7583F3375CD28D1418D3F1E3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8A697A24C6D425810F530CF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
