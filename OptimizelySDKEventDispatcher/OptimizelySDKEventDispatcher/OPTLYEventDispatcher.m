@@ -130,7 +130,8 @@ dispatch_queue_t dispatchEventQueue()
     __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
         typeof(self) strongSelf = weakSelf;
-        if (strongSelf && strongSelf.eventDispatcherDispatchInterval > 0) {
+        if (!strongSelf) return;
+        if (strongSelf.eventDispatcherDispatchInterval > 0) {
             strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
                                                                 target:self
                                                               selector:@selector(flushEvents)
