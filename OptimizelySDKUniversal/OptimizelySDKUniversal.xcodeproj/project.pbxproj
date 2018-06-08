@@ -1172,7 +1172,6 @@
 				EA52CDE51E8649B800D4FCA0 /* Frameworks */,
 				EA52CDE61E8649B800D4FCA0 /* Resources */,
 				A94BF9626F2CB3FB00E9B271 /* [CP] Embed Pods Frameworks */,
-				BF18BBBAC0994E44F563C56D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1193,7 +1192,6 @@
 				EA52CDF61E8649DA00D4FCA0 /* Frameworks */,
 				EA52CDF71E8649DA00D4FCA0 /* Resources */,
 				233009EB73772B296AB4B52C /* [CP] Embed Pods Frameworks */,
-				BC68B211576439AD2EA338E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1350,36 +1348,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC68B211576439AD2EA338E0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF18BBBAC0994E44F563C56D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D119266B83472599082E839D /* [CP] Check Pods Manifest.lock */ = {
