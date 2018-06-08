@@ -1,1 +1,43 @@
-{"experiments":[{"id":"3","status":"Running","layerId":"12343","key":"whiteListExperiment","trafficAllocation":[{"entityId":"normalvariationId","endOfRange":10000}],"variations":[{"id":"variation4","key":"whiteListedVariation","variables":[]},{"id":"normalvariationId","key":"normal_variation","variatbles":[]}],"audienceIds":[],"forcedVariations":{"userId":"whiteListedVariation"}}],"version":"3","audiences":[],"attributes":[],"groups":[],"projectId":"projectId","accountId":"accountId","events":[],"revision":"25","anonymizeIP":true}
+{
+    "experiments": [
+                    {
+                    "id" : "3",
+                    "status": "Running",
+                    "layerId": "12343",
+                    "key": "whiteListExperiment",
+                    "trafficAllocation":[
+                                         {
+                                         "entityId" : "normalvariationId",
+                                         "endOfRange" : 10000
+                                         }
+                                        ],
+                    "variations" : [
+                                    {
+                                    "id" : "variation4",
+                                    "key" : "whiteListedVariation",
+                                    "variables": []
+                                    },
+                                    {
+                                    "id" : "normalvariationId",
+                                    "key" : "normal_variation",
+                                    "variatbles": []
+                                    }
+                                    ],
+                    "audienceIds" : [],
+                    "forcedVariations": {
+                    "userId" : "whiteListedVariation"
+                    }
+                    }
+                    ],
+    "version": "3",
+    "audiences": [],
+    "attributes": [],
+    "groups": [
+               ],
+    "projectId": "projectId",
+    "accountId": "accountId",
+    "events": [],
+    "variables": [],
+    "revision": "25",
+    "anonymizeIP": true
+}

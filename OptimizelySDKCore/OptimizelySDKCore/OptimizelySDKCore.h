@@ -60,6 +60,8 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariableUsage.h"
 #import "OPTLYVariation.h"
+#import "OPTLYVariable.h"
+#import "OPTLYVariationVariable.h"
 
 #import "OPTLYJSONModel.h"
 #import "OPTLYJSONModelClassProperty.h"
