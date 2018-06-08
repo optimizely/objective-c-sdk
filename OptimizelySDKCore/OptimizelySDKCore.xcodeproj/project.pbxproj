@@ -200,6 +200,8 @@
 		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */; };
 		3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */; };
+		3EEC2B0220CB40ED00D096E4 /* OptimizelyV3Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC2B0120CB40ED00D096E4 /* OptimizelyV3Test.m */; };
+		3EEC2B0320CB40ED00D096E4 /* OptimizelyV3Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC2B0120CB40ED00D096E4 /* OptimizelyV3Test.m */; };
 		3EF9D99020AE425000A9B002 /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */; };
 		3EF9D99120AE425000A9B002 /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
@@ -593,6 +595,7 @@
 		3ECB82021FD92736006505E6 /* OPTLYRollout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYRollout.h; sourceTree = "<group>"; };
 		3ECB82031FD92736006505E6 /* OPTLYRollout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYRollout.m; sourceTree = "<group>"; };
 		3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_10_experimentsV3.json; sourceTree = "<group>"; };
+		3EEC2B0120CB40ED00D096E4 /* OptimizelyV3Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptimizelyV3Test.m; sourceTree = "<group>"; };
 		3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V2TestDatafile.json; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
@@ -1213,6 +1216,7 @@
 				EA3C68161DC1E66C00C578CA /* OptimizelySDKCoreTests-Info.plist */,
 				EA2FAB841DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m */,
 				EA2FAB861DC6FDFA00B1D81B /* OptimizelyTest.m */,
+				3EEC2B0120CB40ED00D096E4 /* OptimizelyV3Test.m */,
 				EA2FAB871DC6FDFA00B1D81B /* OPTLYAudienceTest.m */,
 				EA2FAB881DC6FDFA00B1D81B /* OPTLYBucketerTest.m */,
 				EA2FAB891DC6FDFA00B1D81B /* OPTLYBuilderTest.m */,
@@ -1946,6 +1950,7 @@
 				EA2FABA81DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A11ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
 				EA2FABAB1DC6FDFA00B1D81B /* OPTLYBuilderTest.m in Sources */,
+				3EEC2B0220CB40ED00D096E4 /* OptimizelyV3Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2018,6 +2023,7 @@
 				EA2FAB9D1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
 				3E8E517E202C844600B08F83 /* (null) in Sources */,
 				EA2FABA31DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
+				3EEC2B0320CB40ED00D096E4 /* OptimizelyV3Test.m in Sources */,
 				EA2FABC41DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBE1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCF1DD3FCD800DF7537 /* OPTLYQueueTest.m in Sources */,
