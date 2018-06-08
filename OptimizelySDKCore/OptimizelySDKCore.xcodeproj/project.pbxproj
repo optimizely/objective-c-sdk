@@ -103,7 +103,7 @@
 		3E858C951F42280900D53856 /* OPTLYJSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C801F4227E300D53856 /* OPTLYJSONKeyMapper.m */; };
 		3E858C961F42280900D53856 /* OPTLYJSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E858C811F4227E300D53856 /* OPTLYJSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E858C971F42280900D53856 /* OPTLYJSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E858C821F4227E300D53856 /* OPTLYJSONValueTransformer.m */; };
-		3E8E517E202C844600B08F83 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		3E8E517E202C844600B08F83 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3E92800E1F26AD4700214C58 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
 		3E99A9F81F4BAF9A009F8805 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FA81E1DC5DBB100B1D81B /* OptimizelySDKCore.framework */; };
 		3E99AA001F4BB1BA009F8805 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
@@ -198,6 +198,8 @@
 		3ECB82061FD92736006505E6 /* OPTLYRollout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB82031FD92736006505E6 /* OPTLYRollout.m */; };
 		3ECB82071FD92736006505E6 /* OPTLYRollout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB82031FD92736006505E6 /* OPTLYRollout.m */; };
 		3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */; };
+		3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */; };
+		3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */; };
 		3EF9D99020AE425000A9B002 /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */; };
 		3EF9D99120AE425000A9B002 /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */; };
 		4FFB468BAFC670CF55514638 /* Pods_OptimizelySDKCoreTVOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3A368275572C29A76DC80A /* Pods_OptimizelySDKCoreTVOSTests.framework */; };
@@ -590,6 +592,7 @@
 		3ECB81FD1FD926FE006505E6 /* OPTLYVariableUsage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariableUsage.m; sourceTree = "<group>"; };
 		3ECB82021FD92736006505E6 /* OPTLYRollout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYRollout.h; sourceTree = "<group>"; };
 		3ECB82031FD92736006505E6 /* OPTLYRollout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYRollout.m; sourceTree = "<group>"; };
+		3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_data_10_experimentsV3.json; sourceTree = "<group>"; };
 		3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V2TestDatafile.json; sourceTree = "<group>"; };
 		51B050141BF2E9277B39EEE8 /* Pods-OptimizelySDKCoreiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
@@ -1038,8 +1041,6 @@
 				EA2FAA791DC6F57100B1D81B /* OPTLYEventView.m */,
 				EA2FAA7A1DC6F57100B1D81B /* OPTLYExperiment.h */,
 				EA2FAA7B1DC6F57100B1D81B /* OPTLYExperiment.m */,
-				EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */,
-				EA16D93B1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.m */,
 				3E9CADF91FD90E6200EBC49A /* OPTLYFeatureFlag.h */,
 				3E9CADFA1FD90E6200EBC49A /* OPTLYFeatureFlag.m */,
 				3ECB81F01FD9267D006505E6 /* OPTLYFeatureVariable.h */,
@@ -1054,8 +1055,6 @@
 				EA2FAA811DC6F57100B1D81B /* OPTLYTrafficAllocation.m */,
 				5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */,
 				5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */,
-				EA2FAA821DC6F57100B1D81B /* OPTLYVariation.h */,
-				EA2FAA831DC6F57100B1D81B /* OPTLYVariation.m */,
 				EA2C24311DE7887C0063ADA0 /* OPTLYVariationVariable.h */,
 				EA2C24321DE7887C0063ADA0 /* OPTLYVariationVariable.m */,
 				EA16D93A1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h */,
@@ -1150,6 +1149,7 @@
 				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
 				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
 				EA2FAB971DC6FDFA00B1D81B /* test_data_10_experiments.json */,
+				3EEC2AF120CB3D9E00D096E4 /* test_data_10_experimentsV3.json */,
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
 				EA2FAB991DC6FDFA00B1D81B /* test_data_50_experiments.json */,
 				3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */,
@@ -1636,6 +1636,7 @@
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
+				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				3EF9D99020AE425000A9B002 /* V2TestDatafile.json in Resources */,
 				EA2FABD21DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
@@ -1660,6 +1661,7 @@
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
+				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				3EF9D99120AE425000A9B002 /* V2TestDatafile.json in Resources */,
 				EA2FABCA1DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
@@ -2014,7 +2016,7 @@
 			files = (
 				EA2FABAF1DC6FDFA00B1D81B /* OPTLYConditionTest.m in Sources */,
 				EA2FAB9D1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
-				3E8E517E202C844600B08F83 /* BuildFile in Sources */,
+				3E8E517E202C844600B08F83 /* (null) in Sources */,
 				EA2FABA31DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
 				EA2FABC41DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBE1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
