@@ -466,6 +466,18 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                             nil]];
 }
 
+////////////////////////////////////////////////////////////////
+//
+//      Mobile 1.x Live Variables are DEPRECATED
+//
+// Optimizely Mobile 1.x Projects creating Mobile 1.x Experiments that
+// contain Mobile 1.x Variables should migrate to Mobile 2.x Projects
+// creating Mobile 2.x Experiments that utilize Optimizely Full Stack 2.0
+// Feature Management which is more capable and powerful than Mobile 1.x
+// Live Variables.  Please check Full Stack 2.0 Feature Management online
+// at OPTIMIZELY.COM .
+////////////////////////////////////////////////////////////////
+
 #pragma mark - Live variable getters (DEPRECATED)
 
 /**
