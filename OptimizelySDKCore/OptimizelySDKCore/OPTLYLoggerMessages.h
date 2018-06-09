@@ -157,11 +157,12 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
-// ---- Live Variables ---- (DEPRECATED
+// ---- Live Variables ---- (DEPRECATED)
 // info
 extern NSString *const OPTLYLoggerMessagesVariableValue;
 extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
 // warning
+extern NSString *const OPTLYLoggerMessagesLiveVariablesDeprecated;
 extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
 extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 

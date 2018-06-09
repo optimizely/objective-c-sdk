@@ -151,11 +151,12 @@ NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DIS
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent = @"[EVENT DISPATCHER] Invalid event.";
 
-// ---- Live Variables ---- (DEPRECATED
+// ---- Live Variables ---- (DEPRECATED)
 // info
 NSString *const OPTLYLoggerMessagesVariableValue = @"[LIVE VARIABLES] Variable %@ has value: %@.";
 NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"[LIVE VARIABLES] Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
 // warning
+NSString *const OPTLYLoggerMessagesLiveVariablesDeprecated = @"[LIVE VARIABLES] Mobile 1.x Live Variables are DEPRECATED.  Please migrate to Full Stack 2.0 Feature Management.";
 NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"[LIVE VARIABLES] No experiment was found to contain variable key: %@.";
 NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIABLES] Live variable not found for variable key: %@."; // live variable key
 

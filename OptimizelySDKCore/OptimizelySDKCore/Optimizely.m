@@ -580,6 +580,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
                              callback:(void (^)(NSError *))callback {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
     OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
     
     if (!variable) {
@@ -690,6 +692,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
     BOOL variableValue = false;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
@@ -739,6 +743,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
                        error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
     NSInteger variableValue = 0;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
@@ -788,6 +794,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
                    error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
     double variableValue = 0.0;
     NSString *variableValueStringOrNil = [self variableString:variableKey
                                                        userId:userId
