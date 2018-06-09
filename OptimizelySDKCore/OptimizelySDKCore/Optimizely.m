@@ -37,6 +37,8 @@
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYVariableUsage.h"
 #import "OPTLYNotificationCenter.h"
+
+// (DEPRECATED)
 #import "OPTLYVariable.h"
 #import "OPTLYVariationVariable.h"
 
@@ -464,7 +466,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                             nil]];
 }
 
-#pragma mark - Live variable getters
+#pragma mark - Live variable getters (DEPRECATED)
 
 /**
  * Finds experiment(s) that contain the live variable.

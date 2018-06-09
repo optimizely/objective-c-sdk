@@ -32,6 +32,7 @@
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYVariableUsage.h"
+// Live Variables (DEPRECATED)
 #import "OPTLYVariable.h"
 
 // static data from datafile
@@ -309,7 +310,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
 }
 
-#pragma mark - Test getVariableForVariableKey:
+#pragma mark - Test getVariableForVariableKey: (DEPRECATED)
 
 - (void)testGetVariableForVariableKey
 {

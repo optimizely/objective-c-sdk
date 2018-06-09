@@ -21,15 +21,15 @@
     #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
+@class OPTLYVariableUsage;
+@protocol OPTLYVariableUsage;
+@protocol OPTLYVariation;
+// Live Variables (DEPRECATED)
+@protocol OPTLYVariationVariable;
+
 /**
  * This class is a representation of an Optimizely variation.
  */
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
-@protocol OPTLYVariationVariable;
-@protocol OPTLYVariation
-@end
-
 @interface OPTLYVariation : OPTLYJSONModel
 
 /// The variation's ID.
@@ -44,7 +44,7 @@
 /// Gets the variable usage instance for a given variable id
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
 
-/// The array containing the variation's live variable information -- variable ID and variable value.
-@property (nonatomic, strong) NSArray<OPTLYVariationVariable, Optional> *variables;
+/// The array containing the variation's live variable information -- variable ID and variable value. (DEPRECATED)
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariationVariable, Optional> *variables;
 
 @end

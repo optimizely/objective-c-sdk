@@ -27,7 +27,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 @class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
-// ---- Live Variable Getter Errors ----
+// ---- Live Variable Getter Errors ---- (DEPRECATED)
 
 typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
     OPTLYLiveVariableErrorNone = 0,
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
-#pragma mark - Live Variable Getters
+#pragma mark - Live Variable Getters (DEPRECATED)
 
 /**
  * Gets the string value of the live variable.

@@ -64,6 +64,7 @@ extern NSString * const OPTLYDatafileKeysVariationId;
 extern NSString * const OPTLYDatafileKeysVariationKey;
 extern NSString * const OPTLYDatafileKeysVariationVariableUsageInstances;
 extern NSString * const OPTLYDatafileKeysVariationFeatureEnabled;
+// Live Variables Variations (DEPRECATED
 extern NSString * const OPTLYDatafileKeysVariationVariables;
 // Conditions
 extern NSString * const OPTLYDatafileKeysConditionName;
@@ -72,12 +73,12 @@ extern NSString * const OPTLYDatafileKeysConditionValue;
 extern NSString * const OPTLYDatafileKeysAndCondition;
 extern NSString * const OPTLYDatafileKeysNotCondition;
 extern NSString * const OPTLYDatafileKeysOrCondition;
-// Live Variables
+// Live Variables (DEPRECATED)
 extern NSString * const OPTLYDatafileKeysVariableId;
 extern NSString * const OPTLYDatafileKeysVariableKey;
 extern NSString * const OPTLYDatafileKeysVariableType;
 extern NSString * const OPTLYDatafileKeysVariableValue;
-// Variation Live Variable
+// Variation Live Variable (DEPRECATED)
 extern NSString * const OPTLYDatafileKeysVariationVariableId;
 extern NSString * const OPTLYDatafileKeysVariationVariableValue;
 // User Profile Service (not in datafile yet)

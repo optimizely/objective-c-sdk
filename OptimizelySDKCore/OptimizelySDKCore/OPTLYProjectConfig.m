@@ -27,10 +27,11 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYUserProfileServiceBasic.h"
-#import "OPTLYVariable.h"
 #import "OPTLYVariation.h"
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
+// Live Variables (DEPRECATED)
+#import "OPTLYVariable.h"
 
 NSString * const kExpectedDatafileVersion  = @"4";
 
@@ -46,10 +47,12 @@ NSString * const kExpectedDatafileVersion  = @"4";
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 //@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><Ignore> *forcedVariationMap;
 //    userId --> experimentId --> variationId
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *forcedVariationMap;
+
+// Live Variables (DEPRECATED)
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 
 @end
 
@@ -252,6 +255,7 @@ NSString * const kExpectedDatafileVersion  = @"4";
     return rollout;
 }
 
+// Live Variables (DEPRECATED)
 - (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
     OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
     if (!variable) {
@@ -413,6 +417,7 @@ NSString * const kExpectedDatafileVersion  = @"4";
     return _groupIdToGroupMap;
 }
 
+// Live Variables (DEPRECATED)
 - (NSDictionary<NSString *, OPTLYVariable *> *)variableKeyToVariableMap {
     if (!_variableKeyToVariableMap) {
         _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
@@ -542,6 +547,7 @@ NSString * const kExpectedDatafileVersion  = @"4";
     return [NSDictionary dictionaryWithDictionary:map];
 }
 
+// Live Variables (DEPRECATED)
 - (NSDictionary<NSString *, OPTLYVariable *> *)generateVariableKeyToVariableMap {
     NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
     for (OPTLYVariable *variable in self.variables) {

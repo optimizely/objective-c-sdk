@@ -14,6 +14,9 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+// Live Variables (DEPRECATED)
+// OptimizelyV3Test is testing DEPRECATED Live Variables
+
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>

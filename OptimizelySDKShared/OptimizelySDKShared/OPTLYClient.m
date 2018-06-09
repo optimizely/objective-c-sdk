@@ -261,7 +261,7 @@
                  eventTags:eventTags];
 }
 
-#pragma mark - Live variable getters
+#pragma mark - Live variable getters (DEPRECATED)
 
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId {
@@ -486,6 +486,8 @@
                         activateExperiment:activateExperiment
                                      error:error];
 }
+
+#pragma mark - description
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Optimizely: %@ \nlogger:%@\n", self.optimizely, self.logger];

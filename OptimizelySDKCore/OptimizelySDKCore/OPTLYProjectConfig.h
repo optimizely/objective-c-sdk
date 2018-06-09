@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
-/// List of live variable objects
+/// List of live variable objects (DEPRECATED
 @property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_END
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
 
 /**
- * Get a variable for a given live variable key.
+ * Get a variable for a given live variable key. (DEPRECATED
  */
 - (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
