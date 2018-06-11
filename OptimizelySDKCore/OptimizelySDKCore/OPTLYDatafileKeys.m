@@ -58,10 +58,8 @@ NSString * const OPTLYDatafileKeysTrafficAllocationEndOfRange = @"endOfRange";
 // Variations
 NSString * const OPTLYDatafileKeysVariationId = @"id";
 NSString * const OPTLYDatafileKeysVariationKey = @"key";
-NSString * const OPTLYDatafileKeysVariationVariableUsageInstances = @"variables";
-NSString * const OPTLYDatafileKeysVariationFeatureEnabled = @"featureEnabled";
-// Live Variables Variations (DEPRECATED)
 NSString * const OPTLYDatafileKeysVariationVariables = @"variables";
+NSString * const OPTLYDatafileKeysVariationFeatureEnabled = @"featureEnabled";
 // Conditions
 NSString * const OPTLYDatafileKeysConditionName = @"name";
 NSString * const OPTLYDatafileKeysConditionType = @"type";

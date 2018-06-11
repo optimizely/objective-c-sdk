@@ -276,10 +276,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if (decision) {
         OPTLYVariation *variation = decision.variation;
-        OPTLYVariableUsage *featureVariableUsageInstance = [variation getVariableUsageForVariableId:featureVariable.variableId];
+        OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
         
-        if (featureVariableUsageInstance) {
-            variableValue = featureVariableUsageInstance.value;
+        if (featureVariableUsage) {
+            variableValue = featureVariableUsage.value;
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         } else {
