@@ -266,7 +266,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -283,7 +283,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId
                    activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -302,7 +302,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -323,7 +323,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
                                 error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -338,7 +338,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
  */
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
                  userId:(nonnull NSString *)userId
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -355,7 +355,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
                  userId:(nonnull NSString *)userId
      activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -374,7 +374,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -395,7 +395,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 
 /**
@@ -411,7 +411,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
  */
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
                       userId:(nonnull NSString *)userId
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -428,7 +428,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
                       userId:(nonnull NSString *)userId
           activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -447,7 +447,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -468,7 +468,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
                        error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -483,7 +483,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
  */
 - (double)variableDouble:(nonnull NSString *)variableKey
                   userId:(nonnull NSString *)userId
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -500,7 +500,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
 - (double)variableDouble:(nonnull NSString *)variableKey
                   userId:(nonnull NSString *)userId
       activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -519,7 +519,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -540,7 +540,7 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
                    error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
-__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 @end
 
