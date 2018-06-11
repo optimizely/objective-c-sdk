@@ -12,6 +12,8 @@
 		3E3AD1412061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AD1422061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework */; };
 		3E62A2602061E71500D1AC12 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */; };
 		3EB7197C1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EEC2AD520CB399500D096E4 /* demoTestDatafileV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AD220CB399500D096E4 /* demoTestDatafileV3.json */; };
+		3EEC2AD620CB399500D096E4 /* demoTestDatafileV3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EEC2AD220CB399500D096E4 /* demoTestDatafileV3.json */; };
 		3EF452841ECA639300BA82CB /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF452831ECA639300BA82CB /* OptimizelySDKUserProfileService.framework */; };
 		EA1E4B491E65060300BDDABD /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */; };
 		EA1E4B4A1E65060300BDDABD /* OptimizelySDKEventDispatcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E4B481E65060300BDDABD /* OptimizelySDKEventDispatcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -158,6 +160,7 @@
 		3E39BD0E2072E05E00F73BD0 /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_OptimizelyTVOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3AD1422061E09E00081305 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB7197B1EC6589600B54F89 /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OptimizelySDKUserProfileService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EEC2AD220CB399500D096E4 /* demoTestDatafileV3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = demoTestDatafileV3.json; sourceTree = "<group>"; };
 		3EF452831ECA639300BA82CB /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = "../Debug-appletvos/OptimizelySDKUserProfileService.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		920E4FB688AA1A8926800320 /* Pods-OptimizelyTVOSDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelyTVOSDemoApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 		B8C4B923152B213925B727C4 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +256,7 @@
 				EA70FFC31E552D0B00590BEF /* Roboto-Medium.ttf */,
 				EA70FFC41E552D0B00590BEF /* SF-UI-Text-Regular.otf */,
 				EA4A62BA1E566F3500F1C3CE /* demoTestDatafile.json */,
+				3EEC2AD220CB399500D096E4 /* demoTestDatafileV3.json */,
 				EAF6953A1FA07BF800C73CC2 /* optimizely_6372300739.json */,
 				EAF6953D1FA08DD900C73CC2 /* optimizely_8182362857.json */,
 			);
@@ -470,6 +474,7 @@
 				3E19F86C1F0176AC001FC077 /* Assets.xcassets in Resources */,
 				EA299EDC1E55311700931399 /* tvOSMain.storyboard in Resources */,
 				EA7000121E552EBD00590BEF /* ProximaNova-Regular.otf in Resources */,
+				3EEC2AD620CB399500D096E4 /* demoTestDatafileV3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +489,7 @@
 				EA4A62BB1E566F3500F1C3CE /* demoTestDatafile.json in Resources */,
 				EA70FFF41E552E9E00590BEF /* SF-UI-Text-Regular.otf in Resources */,
 				EA299EEF1E55316300931399 /* Assets.xcassets in Resources */,
+				3EEC2AD520CB399500D096E4 /* demoTestDatafileV3.json in Resources */,
 				EA70FFF51E552E9E00590BEF /* ProximaNovaCond-Regular.otf in Resources */,
 				EAF6953E1FA08DD900C73CC2 /* optimizely_8182362857.json in Resources */,
 			);

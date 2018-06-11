@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2016, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,30 +21,31 @@
     #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-@class OPTLYVariableUsage;
-@protocol OPTLYVariableUsage;
-@protocol OPTLYVariation;
-// Live Variables (DEPRECATED)
-@protocol OPTLYVariationVariable;
-
 /**
- * This class is a representation of an Optimizely variation.
+ * This class is a representation of an Optimizely live variable scoped within a project:
+ *   "variables": [
+ *    {
+ *      "id": "6384881128",
+ *      "key": "someString",
+ *      "type": "string",
+ *      "defaultValue": "defaultStringValue"
+ *    },
+ *     ...
+ *    ]
  */
-@interface OPTLYVariation : OPTLYJSONModel
 
-/// The variation's ID.
-@property (nonatomic, strong, nonnull) NSString *variationId;
-/// The variation's Key.
-@property (nonatomic, strong, nonnull) NSString *variationKey;
-/// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
-/// Flag for Feature Toggle Ability
-@property (nonatomic, assign) BOOL featureEnabled;
+@protocol OPTLYVariable
+@end
 
-/// Gets the variable usage instance for a given variable id
-- (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
+@interface OPTLYVariable : OPTLYJSONModel
 
-/// The array containing the variation's live variable information -- variable ID and variable value. (DEPRECATED)
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariationVariable, Optional> *variables;
+/// The variable's ID.
+@property (nonatomic, strong) NSString *variableId;
+/// The variable's Key.
+@property (nonatomic, strong) NSString *variableKey;
+/// The variable's type.
+@property (nonatomic, strong) NSString *type;
+/// The variable's default value.
+@property (nonatomic, strong) NSString *defaultValue;
 
 @end
