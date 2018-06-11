@@ -1,0 +1,25 @@
+var annotated_dup =
+[
+    [ "<AbstractOPTLYJSONModelProtocol >", "protocol_abstract_o_p_t_l_y_j_s_o_n_model_protocol_01-p.html", "protocol_abstract_o_p_t_l_y_j_s_o_n_model_protocol_01-p" ],
+    [ "NSObject(OPTLYJSONModelPropertyCompatibility)", "category_n_s_object_07_o_p_t_l_y_j_s_o_n_model_property_compatibility_08.html", null ],
+    [ "Optimizely", "interface_optimizely.html", "interface_optimizely" ],
+    [ "OPTLYBucketer", "interface_o_p_t_l_y_bucketer.html", "interface_o_p_t_l_y_bucketer" ],
+    [ "<OPTLYBucketer >", "protocol_o_p_t_l_y_bucketer_01-p.html", "protocol_o_p_t_l_y_bucketer_01-p" ],
+    [ "<OPTLYErrorHandler >", "protocol_o_p_t_l_y_error_handler_01-p.html", "protocol_o_p_t_l_y_error_handler_01-p" ],
+    [ "OPTLYErrorHandlerNoOp", "interface_o_p_t_l_y_error_handler_no_op.html", null ],
+    [ "<OPTLYEvent>", "protocol_o_p_t_l_y_event-p.html", null ],
+    [ "OPTLYEventDispatcherBasic", "interface_o_p_t_l_y_event_dispatcher_basic.html", null ],
+    [ "OPTLYEventDispatcherNoOp", "interface_o_p_t_l_y_event_dispatcher_no_op.html", null ],
+    [ "<OPTLYExperiment>", "protocol_o_p_t_l_y_experiment-p.html", null ],
+    [ "OPTLYFeatureDecision", "interface_o_p_t_l_y_feature_decision.html", "interface_o_p_t_l_y_feature_decision" ],
+    [ "<OPTLYGroup>", "protocol_o_p_t_l_y_group-p.html", null ],
+    [ "OPTLYJSONKeyMapper", "interface_o_p_t_l_y_j_s_o_n_key_mapper.html", "interface_o_p_t_l_y_j_s_o_n_key_mapper" ],
+    [ "OPTLYJSONModel", "interface_o_p_t_l_y_j_s_o_n_model.html", "interface_o_p_t_l_y_j_s_o_n_model" ],
+    [ "OPTLYJSONModelClassProperty", "interface_o_p_t_l_y_j_s_o_n_model_class_property.html", "interface_o_p_t_l_y_j_s_o_n_model_class_property" ],
+    [ "OPTLYJSONModelError", "interface_o_p_t_l_y_j_s_o_n_model_error.html", "interface_o_p_t_l_y_j_s_o_n_model_error" ],
+    [ "OPTLYJSONValueTransformer", "interface_o_p_t_l_y_j_s_o_n_value_transformer.html", "interface_o_p_t_l_y_j_s_o_n_value_transformer" ],
+    [ "<OPTLYLogger >", "protocol_o_p_t_l_y_logger_01-p.html", "protocol_o_p_t_l_y_logger_01-p" ],
+    [ "OPTLYLoggerDefault", "interface_o_p_t_l_y_logger_default.html", "interface_o_p_t_l_y_logger_default" ],
+    [ "<OPTLYTrafficAllocation>", "protocol_o_p_t_l_y_traffic_allocation-p.html", null ],
+    [ "OPTLYUserProfileServiceNoOp", "interface_o_p_t_l_y_user_profile_service_no_op.html", null ]
+];
