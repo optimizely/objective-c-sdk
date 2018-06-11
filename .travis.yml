@@ -5,7 +5,7 @@ branches:
     - master
 env:
   matrix:
-    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air' RUN_SOURCECLEAR=1
+    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air' RUN_SOURCECLEAR=true
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
     - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.3 NAME='iPhone 6s'
