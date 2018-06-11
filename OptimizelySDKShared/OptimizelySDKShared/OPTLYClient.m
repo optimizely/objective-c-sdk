@@ -262,6 +262,9 @@
 }
 
 #pragma mark - Live variable getters (DEPRECATED)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId {
@@ -486,6 +489,7 @@
                         activateExperiment:activateExperiment
                                      error:error];
 }
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
 
 #pragma mark - description
 

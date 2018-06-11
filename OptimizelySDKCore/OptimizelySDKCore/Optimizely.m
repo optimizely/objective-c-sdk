@@ -479,6 +479,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 ////////////////////////////////////////////////////////////////
 
 #pragma mark - Live variable getters (DEPRECATED)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 /**
  * Finds experiment(s) that contain the live variable.
@@ -809,6 +812,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     return variableValue;
 }
+
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
 
 # pragma mark - Helper methods
 // log and propagate error for a track failure

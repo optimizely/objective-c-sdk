@@ -265,7 +265,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
-                               userId:(nonnull NSString *)userId;
+                               userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -281,7 +282,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId
-                   activateExperiment:(BOOL)activateExperiment;
+                   activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -299,7 +301,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (nullable NSString *)variableString:(nonnull NSString *)variableKey
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
-                   activateExperiment:(BOOL)activateExperiment;
+                   activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the string value of the live variable.
@@ -319,7 +322,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                                userId:(nonnull NSString *)userId
                            attributes:(nullable NSDictionary *)attributes
                    activateExperiment:(BOOL)activateExperiment
-                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -333,7 +337,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
-                 userId:(nonnull NSString *)userId;
+                 userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -349,7 +354,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
                  userId:(nonnull NSString *)userId
-     activateExperiment:(BOOL)activateExperiment;
+     activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -367,7 +373,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (BOOL)variableBoolean:(nonnull NSString *)variableKey
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
-     activateExperiment:(BOOL)activateExperiment;
+     activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the boolean value of the live variable.
@@ -387,7 +394,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                  userId:(nonnull NSString *)userId
              attributes:(nullable NSDictionary *)attributes
      activateExperiment:(BOOL)activateExperiment
-                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 
 /**
@@ -402,7 +410,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
-                      userId:(nonnull NSString *)userId;
+                      userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -418,7 +427,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
                       userId:(nonnull NSString *)userId
-          activateExperiment:(BOOL)activateExperiment;
+          activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -436,7 +446,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (NSInteger)variableInteger:(nonnull NSString *)variableKey
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
-          activateExperiment:(BOOL)activateExperiment;
+          activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the integer value of the live variable.
@@ -456,7 +467,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                       userId:(nonnull NSString *)userId
                   attributes:(nullable NSDictionary *)attributes
           activateExperiment:(BOOL)activateExperiment
-                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -470,7 +482,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
  */
 - (double)variableDouble:(nonnull NSString *)variableKey
-                  userId:(nonnull NSString *)userId;
+                  userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -486,7 +499,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (double)variableDouble:(nonnull NSString *)variableKey
                   userId:(nonnull NSString *)userId
-      activateExperiment:(BOOL)activateExperiment;
+      activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -504,7 +518,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (double)variableDouble:(nonnull NSString *)variableKey
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
-      activateExperiment:(BOOL)activateExperiment;
+      activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 /**
  * Gets the double value of the live variable.
@@ -524,7 +539,8 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
                   userId:(nonnull NSString *)userId
               attributes:(nullable NSDictionary *)attributes
       activateExperiment:(BOOL)activateExperiment
-                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW;
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Managment instead.")));
 
 @end
 
