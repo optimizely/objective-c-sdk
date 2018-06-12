@@ -348,7 +348,6 @@
 				EA2FA72A1DC1FAA000B1D81B /* Frameworks */,
 				EA2FA72B1DC1FAA000B1D81B /* Resources */,
 				1C2D4316EACCAEF931BEC9F1 /* [CP] Embed Pods Frameworks */,
-				35CF810E20FE71992880EDF2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -540,21 +539,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35CF810E20FE71992880EDF2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3E8C4A65AA3B5D009D588FC4 /* [CP] Check Pods Manifest.lock */ = {

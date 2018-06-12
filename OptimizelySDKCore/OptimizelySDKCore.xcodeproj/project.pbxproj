@@ -1392,7 +1392,6 @@
 				EA2FA8031DC5DBA000B1D81B /* Frameworks */,
 				EA2FA8041DC5DBA000B1D81B /* Resources */,
 				14BE202F5B035590ACC23D13 /* [CP] Embed Pods Frameworks */,
-				8857BE90A44CFBEDA6B9CD96 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1431,7 +1430,6 @@
 				EA2FA8231DC5DBB100B1D81B /* Frameworks */,
 				EA2FA8241DC5DBB100B1D81B /* Resources */,
 				AFBD9685AB3F81623C9C815B /* [CP] Embed Pods Frameworks */,
-				38A610DE7FA3981A6C09C0B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1633,21 +1631,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		38A610DE7FA3981A6C09C0B1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		872DDF662E30A809F92BC54A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1664,21 +1647,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8857BE90A44CFBEDA6B9CD96 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AFBD9685AB3F81623C9C815B /* [CP] Embed Pods Frameworks */ = {

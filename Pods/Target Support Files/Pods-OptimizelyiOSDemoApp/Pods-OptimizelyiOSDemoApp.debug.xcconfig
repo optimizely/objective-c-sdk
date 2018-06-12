@@ -1,13 +1,13 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Amplitude-iOS" "$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac" "$PODS_CONFIGURATION_BUILD_DIR/Mixpanel-swift" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/Google/Frameworks" "${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Amplitude-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac" "${PODS_CONFIGURATION_BUILD_DIR}/Mixpanel-swift" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/Google/Frameworks" "${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/Google/Headers $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FirebaseAnalytics" "${PODS_ROOT}/Headers/Public/FirebaseCore" "${PODS_ROOT}/Headers/Public/FirebaseInstanceID" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/GoogleAnalytics" "${PODS_ROOT}/Headers/Public/Localytics"
+HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/Google/Headers "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/GoogleAnalytics/Libraries"
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Amplitude-iOS/Amplitude_iOS.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Mixpanel-swift/Mixpanel.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FirebaseAnalytics" -isystem "${PODS_ROOT}/Headers/Public/FirebaseCore" -isystem "${PODS_ROOT}/Headers/Public/FirebaseInstanceID" -isystem "${PODS_ROOT}/Headers/Public/Google" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics" -isystem "${PODS_ROOT}/Headers/Public/Localytics"
+OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Amplitude-iOS/Amplitude_iOS.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Mixpanel-swift/Mixpanel.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Google" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"GoogleAnalytics" -l"c++" -l"sqlite3" -l"stdc++" -l"z" -framework "AdSupport" -framework "AddressBook" -framework "Amplitude_iOS" -framework "AssetsLibrary" -framework "CoreData" -framework "CoreFoundation" -framework "CoreLocation" -framework "CoreMotion" -framework "FirebaseAnalytics" -framework "FirebaseCore" -framework "FirebaseInstanceID" -framework "GGLAnalytics" -framework "GGLCore" -framework "GoogleToolboxForMac" -framework "Localytics" -framework "MessageUI" -framework "Mixpanel" -framework "StoreKit" -framework "SystemConfiguration"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
-PODS_BUILD_DIR = $BUILD_DIR
-PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/..
 PODS_ROOT = ${SRCROOT}/../Pods

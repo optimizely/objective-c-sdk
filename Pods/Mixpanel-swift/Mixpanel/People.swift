@@ -27,14 +27,19 @@ open class People {
     var unidentifiedQueue = Queue()
     var distinctId: String? = nil
     var delegate: FlushDelegate?
+    let metadata: SessionMetadata
 
-    init(apiToken: String, serialQueue: DispatchQueue, lock: ReadWriteLock) {
+    init(apiToken: String, serialQueue: DispatchQueue, lock: ReadWriteLock, metadata: SessionMetadata) {
         self.apiToken = apiToken
         self.serialQueue = serialQueue
         self.lock = lock
+        self.metadata = metadata
     }
 
     func addPeopleRecordToQueueWithAction(_ action: String, properties: InternalProperties) {
+        if Mixpanel.mainInstance().hasOptedOutTracking() {
+            return
+        }
         let epochMilliseconds = round(Date().timeIntervalSince1970 * 1000)
         let ignoreTimeCopy = ignoreTime
 
@@ -52,17 +57,19 @@ open class People {
                 r[action] = properties["$properties"]
             } else {
                 if action == "$set" || action == "$set_once" {
-                    p += AutomaticProperties.peopleProperties
+                    AutomaticProperties.automaticPropertiesLock.read {
+                        p += AutomaticProperties.peopleProperties
+                    }
                 }
                 p += properties
                 r[action] = p
             }
+            self.metadata.toDict(isEvent: false).forEach { (k,v) in r[k] = v }
 
             if let distinctId = self.distinctId {
                 r["$distinct_id"] = distinctId
                 self.addPeopleObject(r)
             } else {
-                
                 self.lock.write {
                     self.unidentifiedQueue.append(r)
                     if self.unidentifiedQueue.count > QueueConstants.queueSize {
@@ -74,7 +81,6 @@ open class People {
             self.lock.read{
                 Persistence.archivePeople(self.flushPeopleQueue + self.peopleQueue, token: self.apiToken)
             }
-            
         }
 
         if MixpanelInstance.isiOSAppExtension() {
@@ -259,7 +265,7 @@ open class People {
     /**
      Union list properties.
 
-     Property keys must be array objects.
+     Property values must be array objects.
 
      - parameter properties: mapping of list property names to lists to union
      */
