@@ -596,7 +596,7 @@
 		009F36360CEA410F9F1DB0C085A65E71 /* Pods-OptimizelySDKCoreiOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKCoreiOSTests-frameworks.sh"; sourceTree = "<group>"; };
 		00CC16E98AD8F7AD38E4302C8C325986 /* Pods-OptimizelySDKCoreTVOSTests.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKCoreTVOSTests.rc .xcconfig"; sourceTree = "<group>"; };
 		00D261F7671D0B022F530B6EE3BC9505 /* Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKEventDispatcheriOSTests.rc.xcconfig"; sourceTree = "<group>"; };
-		010D195BD0744CF307C6A40A7075FC84 /* Pods_OptimizelySDKTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKTVOSTests.framework; path = "Pods-OptimizelySDKTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		010D195BD0744CF307C6A40A7075FC84 /* Pods_OptimizelySDKTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D6F95DD25BA3CDF6AF3CC512327C4E /* OCMFunctions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMFunctions.m; path = Source/OCMock/OCMFunctions.m; sourceTree = "<group>"; };
 		02A2D1590B32368C6557BA876314C503 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		035B2EF8A7B2E7D12AE8511D8FDF96B0 /* OCMBlockArgCaller.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMBlockArgCaller.m; path = Source/OCMock/OCMBlockArgCaller.m; sourceTree = "<group>"; };
@@ -616,11 +616,11 @@
 		0D9B587C44BF2BD8B212B413D1A1C5D4 /* AutomaticProperties.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutomaticProperties.swift; path = Mixpanel/AutomaticProperties.swift; sourceTree = "<group>"; };
 		0E176D3183F16F4D7239E000E6D2C67E /* OHHTTPStubsMethodSwizzling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OHHTTPStubsMethodSwizzling.m; path = OHHTTPStubs/Sources/NSURLSession/OHHTTPStubsMethodSwizzling.m; sourceTree = "<group>"; };
 		0E5B8B9C54352ACCAC774D696D54BE2D /* OCMVerifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMVerifier.h; path = Source/OCMock/OCMVerifier.h; sourceTree = "<group>"; };
-		0E6CE4B6940B764BCB1004C179047557 /* ComodoRsaDomainValidationCA.der */ = {isa = PBXFileReference; includeInIndex = 1; name = ComodoRsaDomainValidationCA.der; path = Amplitude/ComodoRsaDomainValidationCA.der; sourceTree = "<group>"; };
+		0E6CE4B6940B764BCB1004C179047557 /* ComodoRsaDomainValidationCA.der */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = ComodoRsaDomainValidationCA.der; path = Amplitude/ComodoRsaDomainValidationCA.der; sourceTree = "<group>"; };
 		0E88AA7F51FAD6AB320EAE1C5DDC5D33 /* Pods-OptimizelySDKiOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKiOSTests-dummy.m"; sourceTree = "<group>"; };
 		0EB2AA277FC08F5445CAE2EBE3D62405 /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHHTTPStubsResponse.h; path = OHHTTPStubs/Sources/OHHTTPStubsResponse.h; sourceTree = "<group>"; };
 		0F729C4A7EADB637149699DDC8DA2CAB /* OCMReturnValueProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMReturnValueProvider.m; path = Source/OCMock/OCMReturnValueProvider.m; sourceTree = "<group>"; };
-		0F9675AA50D899F9E0B936AAB94D4F01 /* Pods_OptimizelySDKSharediOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKSharediOSTests.framework; path = "Pods-OptimizelySDKSharediOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F9675AA50D899F9E0B936AAB94D4F01 /* Pods_OptimizelySDKSharediOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharediOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118B801906672D295DC4070CA3CB0A14 /* Pods-OptimizelySDKUserProfileServiceiOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKUserProfileServiceiOSTests-umbrella.h"; sourceTree = "<group>"; };
 		127F0A340077D238ADB3698224A9316F /* SnapshotMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SnapshotMessage.swift; path = Mixpanel/SnapshotMessage.swift; sourceTree = "<group>"; };
 		12F9EAB2B973E5BBB355D7A098D5E981 /* Pods-OptimizelyiOSDemoApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OptimizelyiOSDemoApp.modulemap"; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 		33A970E784247D2189D58306AABF527B /* Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = Mixpanel/Logger.swift; sourceTree = "<group>"; };
 		33D59EB9F828A5E90E539713FF5896C5 /* Pods-OptimizelySDKUserProfileServiceiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKUserProfileServiceiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		33F0E02C946D65B2066AB8D8845311DE /* ReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReadWriteLock.swift; path = Mixpanel/ReadWriteLock.swift; sourceTree = "<group>"; };
-		3453E48950F9897C3D9B4CE74328EE1D /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelyTVOSDemoApp.framework; path = "Pods-OptimizelyTVOSDemoApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3453E48950F9897C3D9B4CE74328EE1D /* Pods_OptimizelyTVOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyTVOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		352BB59B2FABE5D3673F491CAC6D2867 /* MPCloseButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPCloseButton.png; path = Mixpanel/MPCloseButton.png; sourceTree = "<group>"; };
 		3574F198911BD60A0849B5775E28D27E /* JSONHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONHandler.swift; path = Mixpanel/JSONHandler.swift; sourceTree = "<group>"; };
 		3589D3E727A481296D07801FA34C2AC6 /* Pods-OptimizelySDKDatafileManagerTVOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKDatafileManagerTVOSTests-frameworks.sh"; sourceTree = "<group>"; };
@@ -728,7 +728,7 @@
 		4B646D860878F9DE946CC30F52888159 /* Pods-OptimizelySDKiOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKiOSTests-frameworks.sh"; sourceTree = "<group>"; };
 		4BD1FAD7538392647338742F0B8F670B /* Pods-OptimizelySDKTVOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOSTests-dummy.m"; sourceTree = "<group>"; };
 		4C707E82972EEEC33EA081B35A1C8705 /* Pods-OptimizelySDKDatafileManagerTVOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKDatafileManagerTVOSTests-resources.sh"; sourceTree = "<group>"; };
-		4CAA35D353E1431DAAA99C55E50F3F67 /* Mixpanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Mixpanel.framework; path = "Mixpanel-swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CAA35D353E1431DAAA99C55E50F3F67 /* Mixpanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBA5D5E29D939BB31E786581FCDB5B8 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "Localytics-iOS-5.1.0/Localytics.framework"; sourceTree = "<group>"; };
 		4CEEB983DF56B7F608E8A70499BCC876 /* OCMReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMReturnValueProvider.h; path = Source/OCMock/OCMReturnValueProvider.h; sourceTree = "<group>"; };
 		4DE0B5633007E6E21E6915773C8F4374 /* Pods-OptimizelySDKUserProfileServiceiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKUserProfileServiceiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -737,7 +737,7 @@
 		4F1062C441654200F2B36D5F1D8BAAE8 /* OCMBlockCaller.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMBlockCaller.m; path = Source/OCMock/OCMBlockCaller.m; sourceTree = "<group>"; };
 		4F3219729A16D0655488912914F48DF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		4F4103E00AA3601A1D69F1F28E8F9B65 /* OHHTTPStubs-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "OHHTTPStubs-iOS.modulemap"; sourceTree = "<group>"; };
-		4F5294AAB8610BAF6A3EB6D98E7D7F3B /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKiOSUniversalTests.framework; path = "Pods-OptimizelySDKiOSUniversalTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5294AAB8610BAF6A3EB6D98E7D7F3B /* Pods_OptimizelySDKiOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKiOSUniversalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5EC31EB314B5F87BC8A24A5A0C0244 /* Pods-OptimizelySDKDatafileManagerTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKDatafileManagerTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		4FB6BC04F6C0D0F65B1DE0D5EF39E738 /* Pods-OptimizelySDKSharediOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKSharediOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		500565F1F208F1DC28E782633E65749E /* ObjectSerializerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectSerializerConfig.swift; path = Mixpanel/ObjectSerializerConfig.swift; sourceTree = "<group>"; };
@@ -752,7 +752,7 @@
 		585EF4F7636D6B79838048110E3ED9F3 /* OCMPassByRefSetter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMPassByRefSetter.m; path = Source/OCMock/OCMPassByRefSetter.m; sourceTree = "<group>"; };
 		588A6EDC1FF150109216B9963245C244 /* TakeoverNotificationViewController~iphoneportrait.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = "TakeoverNotificationViewController~iphoneportrait.xib"; path = "Mixpanel/TakeoverNotificationViewController~iphoneportrait.xib"; sourceTree = "<group>"; };
 		58F15FF9EE6FC05119A25E1D07F2E9D9 /* Pods-OptimizelySDKCoreiOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKCoreiOSTests-resources.sh"; sourceTree = "<group>"; };
-		5AC24CA603947E3BE67880595713C582 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OHHTTPStubs.framework; path = "OHHTTPStubs-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AC24CA603947E3BE67880595713C582 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC293E32528FADC8B9B503B1E684B3F /* OCMIndirectReturnValueProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMIndirectReturnValueProvider.m; path = Source/OCMock/OCMIndirectReturnValueProvider.m; sourceTree = "<group>"; };
 		5BD0695FC8F7C54E3D233A76E3884A9B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C57FA8D5683BF05C92A46367033216B /* Pods-OptimizelyTVOSDemoApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelyTVOSDemoApp-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -785,7 +785,7 @@
 		6BBF4FD69134111E5879C9809ADF8164 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
 		6CD25927C6C74BA4D2C640826DCF5A80 /* TweakPersistency.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TweakPersistency.swift; path = Mixpanel/TweakPersistency.swift; sourceTree = "<group>"; };
 		6D6F551E80E5ABC801D236742BBA70C4 /* Decide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Decide.swift; path = Mixpanel/Decide.swift; sourceTree = "<group>"; };
-		6DC44BB3DCCE7EA3C2930B2F5BDEB8BA /* Pods_OptimizelySDKiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKiOSTests.framework; path = "Pods-OptimizelySDKiOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DC44BB3DCCE7EA3C2930B2F5BDEB8BA /* Pods_OptimizelySDKiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E24E181355BC987A974843C56CD1A3F /* UIFontToNSDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFontToNSDictionary.swift; path = Mixpanel/UIFontToNSDictionary.swift; sourceTree = "<group>"; };
 		6F0E5EA9EA9B70CF26AE3418FF331108 /* OCMock-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OCMock-iOS-umbrella.h"; sourceTree = "<group>"; };
 		6FB6ADC935B9D4C7A89919F234649F9D /* NSObject+OCMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+OCMAdditions.m"; path = "Source/OCMock/NSObject+OCMAdditions.m"; sourceTree = "<group>"; };
@@ -806,7 +806,7 @@
 		757E1EF85B47ED6B2301AAB8F9D9E60F /* GoogleToolboxForMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GoogleToolboxForMac.modulemap; sourceTree = "<group>"; };
 		76E100B3BC9968274BCE22CC318EE15E /* Pods-OptimizelySDKEventDispatcherTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKEventDispatcherTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		770DA72C3460C17D86C76EE2A5BFBBD4 /* ISPCertificatePinning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ISPCertificatePinning.m; path = Amplitude/SSLCertificatePinning/ISPCertificatePinning.m; sourceTree = "<group>"; };
-		7745ADD3B98FD3BDCC33B245A8A61199 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OCMock.framework; path = "OCMock-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7745ADD3B98FD3BDCC33B245A8A61199 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C44212CFFA6C601E8A26A1629B4D66 /* OCMock-tvOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "OCMock-tvOS.modulemap"; path = "../OCMock-tvOS/OCMock-tvOS.modulemap"; sourceTree = "<group>"; };
 		7886D8B8FCF6B77DFC24B25AFC36A8A1 /* Pods-OptimizelySDKDatafileManageriOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKDatafileManageriOSTests-resources.sh"; sourceTree = "<group>"; };
 		78F00C8D66660EB4BE1F324A7FBF098A /* Pods-OptimizelyTVOSDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelyTVOSDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -828,19 +828,19 @@
 		7EF9967C0F0169A965D0ADE5D5E1E761 /* Pods-OptimizelyiOSDemoApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelyiOSDemoApp-dummy.m"; sourceTree = "<group>"; };
 		80C2C98DDEC753973DDDB2ACCF6392F4 /* Pods-OptimizelySDKSharedTVOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKSharedTVOSTests-dummy.m"; sourceTree = "<group>"; };
 		81E7E194A55E1DD5617E729D0A3D8610 /* Pods-OptimizelySDKCoreTVOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OptimizelySDKCoreTVOSTests.modulemap"; sourceTree = "<group>"; };
-		82720D0EEDC15F4FE7C44CD8CF104A9B /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKTVOSUniversalTests.framework; path = "Pods-OptimizelySDKTVOSUniversalTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82720D0EEDC15F4FE7C44CD8CF104A9B /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSUniversalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8277AEF14E071133F723696203C6A956 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Sources/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		82AF15F755144C4E1380DF1F3CB27B5E /* OHHTTPStubs+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OHHTTPStubs+NSURLSessionConfiguration.m"; path = "OHHTTPStubs/Sources/NSURLSession/OHHTTPStubs+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
 		8397C6CE983E711413C9605AC4A2217F /* OCMVerifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMVerifier.m; path = Source/OCMock/OCMVerifier.m; sourceTree = "<group>"; };
 		840212FF0398CFC7265BA9432BDEA773 /* OCMLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMLocation.m; path = Source/OCMock/OCMLocation.m; sourceTree = "<group>"; };
-		84A42040A15F8E1945114A522FCDE0D5 /* Pods_OptimizelySDKSharedTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKSharedTVOSTests.framework; path = "Pods-OptimizelySDKSharedTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85A5CC953F0F98F5ADC88EBA4BB01376 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKCoreiOSTests.framework; path = "Pods-OptimizelySDKCoreiOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A42040A15F8E1945114A522FCDE0D5 /* Pods_OptimizelySDKSharedTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85A5CC953F0F98F5ADC88EBA4BB01376 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		864FD30CD9F3909C408F9B6E41841255 /* ObjectSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectSelector.swift; path = Mixpanel/ObjectSelector.swift; sourceTree = "<group>"; };
 		86CA7BCB3C795BBD10BC520C25DF857D /* Pods-OptimizelyTVOSDemoApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelyTVOSDemoApp-frameworks.sh"; sourceTree = "<group>"; };
 		884ADA487A3C20FBC97E9106F50D08C4 /* Pods-OptimizelySDKUserProfileServiceTVOSTests.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKUserProfileServiceTVOSTests.rc .xcconfig"; sourceTree = "<group>"; };
 		8864FFBB6E54AEDACECE7A28E570A14B /* Pods-OptimizelySDKSharedTVOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKSharedTVOSTests-umbrella.h"; sourceTree = "<group>"; };
-		889CE49C3435D015F223764E752C281C /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKEventDispatcherTVOSTests.framework; path = "Pods-OptimizelySDKEventDispatcherTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		88CE54169144A3F0474E9C36992F0CFF /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKUserProfileServiceTVOSTests.framework; path = "Pods-OptimizelySDKUserProfileServiceTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		889CE49C3435D015F223764E752C281C /* Pods_OptimizelySDKEventDispatcherTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKEventDispatcherTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88CE54169144A3F0474E9C36992F0CFF /* Pods_OptimizelySDKUserProfileServiceTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileServiceTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D480B95986390CA1E8E19A1C858906 /* OCMRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMRecorder.h; path = Source/OCMock/OCMRecorder.h; sourceTree = "<group>"; };
 		88DBC8F7533ED3C8C22CCDA62C50B596 /* Pods-OptimizelyTVOSDemoApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelyTVOSDemoApp-dummy.m"; sourceTree = "<group>"; };
 		893B331CD67B08390F57F73AC1E8659F /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+OCMAdditions.h"; path = "Source/OCMock/NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -859,7 +859,7 @@
 		8E3C9C0FF52664203FE56A5972958743 /* Pods-OptimizelySDKTVOSUniversalTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKTVOSUniversalTests-umbrella.h"; sourceTree = "<group>"; };
 		8F3B63026033C8BC4F706A1592E031DD /* Pods-OptimizelySDKUserProfileServiceTVOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKUserProfileServiceTVOSTests-resources.sh"; sourceTree = "<group>"; };
 		8F58509B3E40236E53B0B21AE12FD59F /* Pods-OptimizelySDKCoreiOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKCoreiOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		8F5F8C83241183F448D1CB49EBA3380B /* Amplitude_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Amplitude_iOS.framework; path = "Amplitude-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F5F8C83241183F448D1CB49EBA3380B /* Amplitude_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Amplitude_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F645E36936C9F8BA3E13F6FF7B8F5BF /* OCMNotificationPoster.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMNotificationPoster.m; path = Source/OCMock/OCMNotificationPoster.m; sourceTree = "<group>"; };
 		906DAD205B67F8634A9CA34C526DB3E4 /* AMPURLConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMPURLConnection.m; path = Amplitude/AMPURLConnection.m; sourceTree = "<group>"; };
 		9128EE4EE50B1A8137973A7C73A58EDA /* GAIEcommerceFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = Sources/GAIEcommerceFields.h; sourceTree = "<group>"; };
@@ -867,7 +867,7 @@
 		91A538D2CDCFBA415A2AF05F5F24423B /* Pods-OptimizelySDKDatafileManageriOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKDatafileManageriOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		92F9F11E73206A6729ABD06B5C1D92E8 /* Pods-OptimizelySDKSharedTVOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKSharedTVOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9393A75B25DE4E394AB38044313D66E3 /* Pods-OptimizelySDKDatafileManagerTVOSTests.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKDatafileManagerTVOSTests.rc .xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94167C8AD6D8B9314E9F7DC796AFE45A /* Mixpanel-swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Mixpanel-swift.xcconfig"; sourceTree = "<group>"; };
 		94AF14E59DA1E90A907A070358CB7AB6 /* OCMock-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "OCMock-iOS.xcconfig"; sourceTree = "<group>"; };
 		94DDC19B509842D45181FCDA1EC4DD12 /* Pods-OptimizelySDKTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -928,7 +928,7 @@
 		AA502C60EE40F42AF1AF9168DDEBEE17 /* OCMInvocationMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMInvocationMatcher.h; path = Source/OCMock/OCMInvocationMatcher.h; sourceTree = "<group>"; };
 		AB2934FE9E0C8408E7907A15013B8133 /* Variant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Variant.swift; path = Mixpanel/Variant.swift; sourceTree = "<group>"; };
 		AD45C288DF4BDBC74AD969A551E434C8 /* Pods-OptimizelyiOSDemoApp.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelyiOSDemoApp.beta.xcconfig"; sourceTree = "<group>"; };
-		ADC714AC88FE4CF4D8A723CDEA0B2BDA /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OHHTTPStubs.framework; path = "OHHTTPStubs-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC714AC88FE4CF4D8A723CDEA0B2BDA /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEA065014327E207AC231891B2CE2EF /* Pods-OptimizelySDKTVOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSTests-frameworks.sh"; sourceTree = "<group>"; };
 		ADF09759E2BBD848C61BE6ECD465B824 /* ObjectSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectSerializer.swift; path = Mixpanel/ObjectSerializer.swift; sourceTree = "<group>"; };
 		AE1D81EE163B41B1A0DBC63C20B9469E /* Codeless.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Codeless.swift; path = Mixpanel/Codeless.swift; sourceTree = "<group>"; };
@@ -947,12 +947,12 @@
 		B24219AF1F7F36F200113A237DC098DC /* OCMPassByRefSetter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMPassByRefSetter.h; path = Source/OCMock/OCMPassByRefSetter.h; sourceTree = "<group>"; };
 		B2705FB7FE4B0375BFE1D06F674F79A5 /* OCMock-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OCMock-iOS-prefix.pch"; sourceTree = "<group>"; };
 		B2835549F9D577A74FF31E4054638CDF /* Pods-OptimizelySDKSharedTVOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKSharedTVOSTests-resources.sh"; sourceTree = "<group>"; };
-		B2D9BBEC0DA1CAA939E01531EDDBE8A5 /* Pods_OptimizelySDKDatafileManageriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKDatafileManageriOSTests.framework; path = "Pods-OptimizelySDKDatafileManageriOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2D9BBEC0DA1CAA939E01531EDDBE8A5 /* Pods_OptimizelySDKDatafileManageriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKDatafileManageriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E8D2469FEE7CE7F800AF7EF9BA9237 /* Pods-OptimizelySDKEventDispatcherTVOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKEventDispatcherTVOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B44A9B66C8A98BA8FC5177302B2D50B7 /* Pods-OptimizelySDKSharediOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OptimizelySDKSharediOSTests-umbrella.h"; sourceTree = "<group>"; };
 		B4729E4A69C201A5D7DEDAB62901FD23 /* OHHTTPStubs-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OHHTTPStubs-tvOS-umbrella.h"; path = "../OHHTTPStubs-tvOS/OHHTTPStubs-tvOS-umbrella.h"; sourceTree = "<group>"; };
 		B4E6E558D1C9010DFDB9F0F17F9D7DDC /* Pods-OptimizelySDKTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
-		B72C2D462E6DDE218E1913C94DE8234C /* ComodoRsaCA.der */ = {isa = PBXFileReference; includeInIndex = 1; name = ComodoRsaCA.der; path = Amplitude/ComodoRsaCA.der; sourceTree = "<group>"; };
+		B72C2D462E6DDE218E1913C94DE8234C /* ComodoRsaCA.der */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = ComodoRsaCA.der; path = Amplitude/ComodoRsaCA.der; sourceTree = "<group>"; };
 		B78A347F8B19BC433BF4E64DC35B5B52 /* OCMExceptionReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMExceptionReturnValueProvider.h; path = Source/OCMock/OCMExceptionReturnValueProvider.h; sourceTree = "<group>"; };
 		B830696C56EE8008016FE7823352F0AC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B835E1F7E8FB376635CD58C8D076D027 /* ISPPinnedNSURLSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ISPPinnedNSURLSessionDelegate.h; path = Amplitude/SSLCertificatePinning/ISPPinnedNSURLSessionDelegate.h; sourceTree = "<group>"; };
@@ -969,7 +969,7 @@
 		BF66FFBFA8A701122DB9BE810120D2E3 /* AMPUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AMPUtils.m; path = Amplitude/AMPUtils.m; sourceTree = "<group>"; };
 		BF8ACEAF1495E8A6CE9650F610D744B5 /* Pods-OptimizelySDKDatafileManagerTVOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKDatafileManagerTVOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		C00B4AB5AC41CF375F48BB6902C208DE /* OHHTTPStubs-tvOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OHHTTPStubs-tvOS-prefix.pch"; path = "../OHHTTPStubs-tvOS/OHHTTPStubs-tvOS-prefix.pch"; sourceTree = "<group>"; };
-		C0250575E7C0A17E985B3778600AFE0F /* Pods_OptimizelySDKCoreTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKCoreTVOSTests.framework; path = "Pods-OptimizelySDKCoreTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0250575E7C0A17E985B3778600AFE0F /* Pods_OptimizelySDKCoreTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1026E2049F4FEE4F2470AA12173E6F3 /* Pods-OptimizelySDKDatafileManageriOSTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKDatafileManageriOSTests.beta.xcconfig"; sourceTree = "<group>"; };
 		C185FA72EC5487A7617B4ABC709D222D /* AnyTweak.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyTweak.swift; path = Mixpanel/AnyTweak.swift; sourceTree = "<group>"; };
 		C2A011BADB24C641E06EC80482EE05C6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1018,12 +1018,12 @@
 		D599170C0308E913EB024E5EBBBFD8A7 /* AMPDatabaseHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPDatabaseHelper.h; path = Amplitude/AMPDatabaseHelper.h; sourceTree = "<group>"; };
 		D60FB25A088088FA6AA8B9886A278AFD /* OCMExpectationRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMExpectationRecorder.m; path = Source/OCMock/OCMExpectationRecorder.m; sourceTree = "<group>"; };
 		D82655AF18DB42E29D20D8FEE30B554E /* OCMock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMock.h; path = Source/OCMock/OCMock.h; sourceTree = "<group>"; };
-		D87FD79F6E2B87C7072B3DA21B84C48A /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OCMock.framework; path = "OCMock-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D87FD79F6E2B87C7072B3DA21B84C48A /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB14877F96C65DA3EAC0EF5E5DF05C6 /* Pods-OptimizelyTVOSDemoApp.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelyTVOSDemoApp.rc .xcconfig"; sourceTree = "<group>"; };
 		DB09CF1BFF0CF08B2F65D2C78DA26C79 /* Pods-OptimizelySDKiOSUniversalTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKiOSUniversalTests-frameworks.sh"; sourceTree = "<group>"; };
-		DB2B345336822171F2821DF5D905E42E /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKDatafileManagerTVOSTests.framework; path = "Pods-OptimizelySDKDatafileManagerTVOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB2B345336822171F2821DF5D905E42E /* Pods_OptimizelySDKDatafileManagerTVOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKDatafileManagerTVOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6274E5B04682C9F762B24B1B3A3442 /* Pods-OptimizelySDKDatafileManagerTVOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OptimizelySDKDatafileManagerTVOSTests.modulemap"; sourceTree = "<group>"; };
-		DBC7BED92BAD17AE478711017E648889 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelyiOSDemoApp.framework; path = "Pods-OptimizelyiOSDemoApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBC7BED92BAD17AE478711017E648889 /* Pods_OptimizelyiOSDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyiOSDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0C3E914275BF7013DD7B26C1D31767 /* UITableViewBinding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewBinding.swift; path = Mixpanel/UITableViewBinding.swift; sourceTree = "<group>"; };
 		DC457D06462C1FE7E0110941709D7372 /* Pods-OptimizelySDKUserProfileServiceiOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKUserProfileServiceiOSTests-dummy.m"; sourceTree = "<group>"; };
 		DC46CE4F1AEEC375460DBBE89DB9F403 /* UIEdgeInsetsToNSDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIEdgeInsetsToNSDictionary.swift; path = Mixpanel/UIEdgeInsetsToNSDictionary.swift; sourceTree = "<group>"; };
@@ -1032,7 +1032,7 @@
 		DD862A47AB9DD1522CA006F8CC299268 /* OCObserverMockObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCObserverMockObject.h; path = Source/OCMock/OCObserverMockObject.h; sourceTree = "<group>"; };
 		DDB271F784FB4DC03C5A55CD0DDD51A1 /* Pods-OptimizelySDKCoreiOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKCoreiOSTests-dummy.m"; sourceTree = "<group>"; };
 		DE1C0A402AB8CE1D5D5C89BBFE4F5515 /* OCMIndirectReturnValueProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMIndirectReturnValueProvider.h; path = Source/OCMock/OCMIndirectReturnValueProvider.h; sourceTree = "<group>"; };
-		DE8F8EB5E9515CD842441079EACCF6DD /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleToolboxForMac.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE8F8EB5E9515CD842441079EACCF6DD /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF87EE5599473CF1C0A78F9901E0CCE7 /* Pods-OptimizelySDKUserProfileServiceiOSTests.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKUserProfileServiceiOSTests.rc .xcconfig"; sourceTree = "<group>"; };
 		DFBA39891B8A71170027934E9352F555 /* Pods-OptimizelySDKSharedTVOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKSharedTVOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E0218D432EED4D893245F0DEDE5455EE /* ConnectIntegrations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectIntegrations.swift; path = Mixpanel/ConnectIntegrations.swift; sourceTree = "<group>"; };
@@ -1062,7 +1062,7 @@
 		EADB952C2E41144981B7ECFE5DC1C41F /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB1E283437B7DEE4308D65C49FEA238B /* Pods-OptimizelySDKEventDispatcheriOSTests.rc .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKEventDispatcheriOSTests.rc .xcconfig"; sourceTree = "<group>"; };
 		EB470EB0F6C2F70FD04C3019A0EE6F01 /* OCMBlockArgCaller.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMBlockArgCaller.h; path = Source/OCMock/OCMBlockArgCaller.h; sourceTree = "<group>"; };
-		EBDEBDDC137872AFA18941169A0B7003 /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKEventDispatcheriOSTests.framework; path = "Pods-OptimizelySDKEventDispatcheriOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBDEBDDC137872AFA18941169A0B7003 /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKEventDispatcheriOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC207DD8A3F3453B7FBDC8E6B96A9492 /* Pods-OptimizelySDKDatafileManageriOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OptimizelySDKDatafileManageriOSTests.modulemap"; sourceTree = "<group>"; };
 		EC5E93D8DF1A472958C3A74A6D6171B8 /* AMPIdentify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPIdentify.h; path = Amplitude/AMPIdentify.h; sourceTree = "<group>"; };
 		EC8A5406B998CF3C3982A459878C236F /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
@@ -1080,7 +1080,7 @@
 		F3659916867527F0AB4A710E6A706BDE /* Pods-OptimizelySDKDatafileManagerTVOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKDatafileManagerTVOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F3F1A31912E2E4216057BFF49614B77F /* Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OptimizelySDKiOSUniversalTests.rc.xcconfig"; sourceTree = "<group>"; };
 		F419CD6C0986F66FBC5AD7F3A2B3A9C5 /* Pods-OptimizelySDKTVOSUniversalTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKTVOSUniversalTests-dummy.m"; sourceTree = "<group>"; };
-		F4C4FEFFCEE3D491F9972EC11B4FB2C8 /* api.amplitude.com.der */ = {isa = PBXFileReference; includeInIndex = 1; name = api.amplitude.com.der; path = Amplitude/api.amplitude.com.der; sourceTree = "<group>"; };
+		F4C4FEFFCEE3D491F9972EC11B4FB2C8 /* api.amplitude.com.der */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = api.amplitude.com.der; path = Amplitude/api.amplitude.com.der; sourceTree = "<group>"; };
 		F4DB90298D78BC045FAE7883A2985FD7 /* Pods-OptimizelySDKiOSUniversalTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OptimizelySDKiOSUniversalTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F5FF5D10EB1D607DFB73ADF9843C2651 /* Pods-OptimizelySDKCoreiOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OptimizelySDKCoreiOSTests.modulemap"; sourceTree = "<group>"; };
 		F6D0B7EC0192D78AA122D5DE5EEEC41B /* MPCloseButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseButton@2x.png"; path = "Mixpanel/MPCloseButton@2x.png"; sourceTree = "<group>"; };
@@ -1088,7 +1088,7 @@
 		F76F559C2284C9D4CC154EEFF8241EBA /* Amplitude.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = Amplitude/Amplitude.m; sourceTree = "<group>"; };
 		F7EBA74792FC5EF6B07E9EB1C933D0F7 /* Pods-OptimizelySDKTVOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OptimizelySDKTVOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F85423A0F28CA26D2FDB3A210997909C /* Pods-OptimizelySDKTVOSUniversalTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OptimizelySDKTVOSUniversalTests-resources.sh"; sourceTree = "<group>"; };
-		FA44A6CDE96CFF5A1933441B04475F74 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OptimizelySDKUserProfileServiceiOSTests.framework; path = "Pods-OptimizelySDKUserProfileServiceiOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA44A6CDE96CFF5A1933441B04475F74 /* Pods_OptimizelySDKUserProfileServiceiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKUserProfileServiceiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA97EC0C679D577DC4CC9ADB6AF564CD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB0E3434B3284F23624EA148D2859F2A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB8A3715A83B519971D994F71D3163D /* OCMRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMRecorder.m; path = Source/OCMock/OCMRecorder.m; sourceTree = "<group>"; };
@@ -1099,7 +1099,7 @@
 		FE402AFF1ECDAB747CF81BB0B257BADE /* Pods-OptimizelySDKEventDispatcherTVOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OptimizelySDKEventDispatcherTVOSTests-dummy.m"; sourceTree = "<group>"; };
 		FE7C0AD92FE446CBCBE8BAB33AD4DBAF /* OCMObserverRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCMObserverRecorder.m; path = Source/OCMock/OCMObserverRecorder.m; sourceTree = "<group>"; };
 		FEED231CB589907B614AB5937E3EFD05 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		FF82F56506BE601B9D876F8A8D5BF6AC /* ComodoCaLimitedRsaCertificationAuthority.der */ = {isa = PBXFileReference; includeInIndex = 1; name = ComodoCaLimitedRsaCertificationAuthority.der; path = Amplitude/ComodoCaLimitedRsaCertificationAuthority.der; sourceTree = "<group>"; };
+		FF82F56506BE601B9D876F8A8D5BF6AC /* ComodoCaLimitedRsaCertificationAuthority.der */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = ComodoCaLimitedRsaCertificationAuthority.der; path = Amplitude/ComodoCaLimitedRsaCertificationAuthority.der; sourceTree = "<group>"; };
 		FF9CAF50BEDBE93941666DB68051B9C7 /* OCMMacroState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMMacroState.h; path = Source/OCMock/OCMMacroState.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1337,7 +1337,6 @@
 				3C04199CEDE9EA6D0D0DB3654C1121E2 /* Resources */,
 				5B9D8B5035CC27A9CCA7C62CBB9AAEB9 /* Support Files */,
 			);
-			name = "Mixpanel-swift";
 			path = "Mixpanel-swift";
 			sourceTree = "<group>";
 		};
@@ -1364,7 +1363,6 @@
 				4D450FFE58CA526055CA5396E32B9D03 /* NSData+zlib */,
 				10EFD13074489EFD0750A44C61ECE199 /* Support Files */,
 			);
-			name = GoogleToolboxForMac;
 			path = GoogleToolboxForMac;
 			sourceTree = "<group>";
 		};
@@ -1373,7 +1371,6 @@
 			children = (
 				9726864AEF48A15F44BBEABD8D949985 /* Frameworks */,
 			);
-			name = FirebaseAnalytics;
 			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
@@ -1431,7 +1428,6 @@
 				A141C073CB8ADB98E1D177C84B2106DD /* GAITracker.h */,
 				E0665526BAEAA5648CFCDF306EAEFAF7 /* Frameworks */,
 			);
-			name = GoogleAnalytics;
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
@@ -1535,7 +1531,6 @@
 			children = (
 				99A129153107E2853A5F5178553ACEB9 /* Frameworks */,
 			);
-			name = FirebaseInstanceID;
 			path = FirebaseInstanceID;
 			sourceTree = "<group>";
 		};
@@ -1611,7 +1606,6 @@
 				C9F6CCD9C5448133571BD9A50D7B1C29 /* OHPathHelpers */,
 				5C6693A4F036286544128D32F10A4145 /* Support Files */,
 			);
-			name = OHHTTPStubs;
 			path = OHHTTPStubs;
 			sourceTree = "<group>";
 		};
@@ -1688,7 +1682,6 @@
 				C37ED10450639DC7FB3396D27ACE154F /* OCProtocolMockObject.m */,
 				3A07C55B269D27FE85242EB6E472FF01 /* Support Files */,
 			);
-			name = OCMock;
 			path = OCMock;
 			sourceTree = "<group>";
 		};
@@ -1814,7 +1807,6 @@
 			children = (
 				1848693EC68D2EC24F38227D4E8F67E4 /* Frameworks */,
 			);
-			name = Localytics;
 			path = Localytics;
 			sourceTree = "<group>";
 		};
@@ -1881,7 +1873,6 @@
 			children = (
 				AEB2AA3A27F6D40C9E2297F08E515B7D /* Frameworks */,
 			);
-			name = FirebaseCore;
 			path = FirebaseCore;
 			sourceTree = "<group>";
 		};
@@ -2057,7 +2048,6 @@
 				DAE503663B1553246BC9BF063C6F1361 /* Resources */,
 				822417A4C9155D02F7F2CEC5EB6A9FC8 /* Support Files */,
 			);
-			name = "Amplitude-iOS";
 			path = "Amplitude-iOS";
 			sourceTree = "<group>";
 		};
@@ -2128,7 +2118,6 @@
 				48A0D9E65B44F65CB8B0DC73CDE5A4F8 /* Analytics */,
 				CB159A7C9EEF43D04DDB907ABF987ADF /* Core */,
 			);
-			name = Google;
 			path = Google;
 			sourceTree = "<group>";
 		};
@@ -3012,7 +3001,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4445,6 +4434,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
