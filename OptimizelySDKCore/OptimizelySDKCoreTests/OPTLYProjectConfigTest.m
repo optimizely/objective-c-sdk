@@ -143,7 +143,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
     OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     
-    XCTAssertFalse(projectConfig.anonymizeIP, @"IP anonymization should be set to false.");
+    XCTAssertFalse(projectConfig.anonymizeIP.boolValue, @"IP anonymization should be set to false.");
 }
 
 #pragma mark - Test getExperimentForKey:
@@ -408,7 +408,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSAssert([projectConfig.revision isEqualToString:kRevision], @"Invalid revision number.");
     
     // validate IP anonymization value
-    XCTAssertTrue(projectConfig.anonymizeIP, @"IP anonymization should be set to true.");
+    XCTAssertTrue(projectConfig.anonymizeIP.boolValue, @"IP anonymization should be set to true.");
     
     // check experiments
     NSAssert([projectConfig.experiments count] == 48, @"deserializeJSONArray failed to deserialize the right number of experiments objects in project config.");
