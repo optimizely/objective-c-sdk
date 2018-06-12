@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		242C5560BF8316BF4ECE55C7 /* Pods_OptimizelySDKCoreiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */; };
 		3E0347A71F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */; };
+		3E0FAAB320CF425000B1E89D /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0FAAB220CF425000B1E89D /* V2TestDatafile.json */; };
+		3E0FAAB420CF425000B1E89D /* V2TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0FAAB220CF425000B1E89D /* V2TestDatafile.json */; };
 		3E35DC471F47ACFE00018732 /* ArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC321F47ACFE00018732 /* ArrayTests.m */; };
 		3E35DC481F47ACFE00018732 /* BuiltInConversionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */; };
 		3E35DC491F47ACFE00018732 /* ConcurrentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E35DC341F47ACFE00018732 /* ConcurrentTests.m */; };
@@ -435,6 +437,7 @@
 		2D5457511DC903410095E286 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_OptimizelySDKCoreiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/OptimizelySDK-aiiogbugxrjwkbcfmwnqywdmaqtv/Build/Products/Debug-iphonesimulator/Pods_OptimizelySDKCoreiOS.framework"; sourceTree = "<group>"; };
 		3E0347A51F4B612A001F13E3 /* OPTLYJSONModelTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYJSONModelTestHelper.h; sourceTree = "<group>"; };
 		3E0347A61F4B612A001F13E3 /* OPTLYJSONModelTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYJSONModelTestHelper.m; sourceTree = "<group>"; };
+		3E0FAAB220CF425000B1E89D /* V2TestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V2TestDatafile.json; sourceTree = "<group>"; };
 		3E35DC321F47ACFE00018732 /* ArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayTests.m; sourceTree = "<group>"; };
 		3E35DC331F47ACFE00018732 /* BuiltInConversionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuiltInConversionsTests.m; sourceTree = "<group>"; };
 		3E35DC341F47ACFE00018732 /* ConcurrentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcurrentTests.m; sourceTree = "<group>"; };
@@ -1085,12 +1088,13 @@
 			children = (
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
+				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
 				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
+				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
 				EA2FAB971DC6FDFA00B1D81B /* test_data_10_experiments.json */,
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
 				EA2FAB991DC6FDFA00B1D81B /* test_data_50_experiments.json */,
-				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
-				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
+				3E0FAAB220CF425000B1E89D /* V2TestDatafile.json */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -1560,6 +1564,7 @@
 				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD21DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
+				3E0FAAB320CF425000B1E89D /* V2TestDatafile.json in Resources */,
 				3EE687AA1F312FA30084B375 /* BucketerTestsDatafile2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1582,6 +1587,7 @@
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
 				EA2FABCA1DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
+				3E0FAAB420CF425000B1E89D /* V2TestDatafile.json in Resources */,
 				EA2FABD31DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

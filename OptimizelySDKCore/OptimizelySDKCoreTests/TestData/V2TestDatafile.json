@@ -1,0 +1,48 @@
+{
+    "accountId": "12345",
+    "projectId": "23456",
+    "revision": "6",
+    "version": "2",
+    "experiments": [
+        {
+            "key": "my_experiment",
+            "id": "45678",
+            "layerId": "34567",
+            "status": "Running",
+            "variations": [
+                {
+                    "id": "56789",
+                    "key": "control"
+                },
+                {
+                    "id": "67890",
+                    "key": "treatment"
+                }
+            ],
+            "trafficAllocation": [
+                {
+                    "entityId": "56789",
+                    "endOfRange": 5000
+                },
+                {
+                    "entityId": "67890",
+                    "endOfRange": 10000
+                }
+            ],
+            "audienceIds": [],
+            "forcedVariations": {}
+        }
+    ],
+    "events": [
+        {
+            "experimentIds": [
+                "34567"
+            ],
+            "id": "56789",
+            "key": "my_conversion"
+        }
+    ],
+    "audiences": [],
+    "attributes": [],
+    "groups": []
+}
