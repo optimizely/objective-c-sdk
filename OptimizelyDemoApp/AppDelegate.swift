@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             // ---- Amplitude ----
                             let propertyKey : String! = "[Optimizely] " + experiment.experimentKey
                             let identify : AMPIdentify = AMPIdentify()
-                            identify.set(propertyKey, value:variation.variationKey as NSObject!)
+                            identify.set(propertyKey, value:variation.variationKey as NSObject?)
                             // Track impression event (optional)
                             let eventIdentifier : String = "[Optimizely] " + experiment.experimentKey + " - " + variation.variationKey
                             Amplitude.instance().logEvent(eventIdentifier)
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             let label : String = "Variation - " + variation.variationKey
                             // Build and send a non-interaction Event
                             let builder = GAIDictionaryBuilder.createEvent(withCategory: "Optimizely", action: action, label: label, value: nil).build()
-                            tracker?.send(builder as [NSObject : AnyObject]!)
+                            tracker?.send(builder as [NSObject : AnyObject]?)
                             // ---- Mixpanel ----
                             let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
                             mixpanel.registerSuperProperties([propertyKey: variation.variationKey])

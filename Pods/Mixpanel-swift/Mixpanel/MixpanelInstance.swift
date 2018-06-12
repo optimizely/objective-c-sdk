@@ -12,6 +12,13 @@ import UIKit
 #else
 import Cocoa
 #endif // os(OSX)
+#if os(iOS)
+import SystemConfiguration
+#endif
+
+#if os(iOS)
+import CoreTelephony
+#endif // os(iOS
 
 /**
  *  Delegate protocol for controlling the Mixpanel API's network behavior.
@@ -228,19 +235,26 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
     var timedEvents = InternalProperties()
     var trackingQueue: DispatchQueue!
     var networkQueue: DispatchQueue!
+    var optOutStatus = false
     let readWriteLock: ReadWriteLock
+    #if os(iOS)
+    var reachability: SCNetworkReachability?
+    let telephonyInfo = CTTelephonyNetworkInfo()
+    #endif
     #if !os(OSX)
     var taskId = UIBackgroundTaskInvalid
     #endif // os(OSX)
+    let sessionMetadata: SessionMetadata
     let flushInstance: Flush
     let trackInstance: Track
     #if DECIDE
     let decideInstance: Decide
     let automaticEvents = AutomaticEvents()
+    let connectIntegrations = ConnectIntegrations()
     #endif // DECIDE
 
     #if !os(OSX)
-    init(apiToken: String?, launchOptions: [UIApplicationLaunchOptionsKey : Any]?, flushInterval: Double, name: String) {
+    init(apiToken: String?, launchOptions: [UIApplicationLaunchOptionsKey : Any]?, flushInterval: Double, name: String, automaticPushTracking: Bool = true, optOutTrackingByDefault: Bool = false) {
         if let apiToken = apiToken, !apiToken.isEmpty {
             self.apiToken = apiToken
         }
@@ -250,22 +264,52 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         #if DECIDE
             decideInstance = Decide(basePathIdentifier: name, lock: self.readWriteLock)
         #endif // DECIDE
-        trackInstance = Track(apiToken: self.apiToken, lock: self.readWriteLock)
         let label = "com.mixpanel.\(self.apiToken)"
         trackingQueue = DispatchQueue(label: label)
+        sessionMetadata = SessionMetadata(trackingQueue: trackingQueue)
+        trackInstance = Track(apiToken: self.apiToken,
+                              lock: self.readWriteLock,
+                              metadata: sessionMetadata)
         networkQueue = DispatchQueue(label: label)
+        
+        #if os(iOS)
+            reachability = SCNetworkReachabilityCreateWithName(nil, "api.mixpanel.com")
+            if let reachability = reachability {
+                var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+                func reachabilityCallback(reachability: SCNetworkReachability, flags: SCNetworkReachabilityFlags, unsafePointer: UnsafeMutableRawPointer?) -> Void {
+                    let wifi = flags.contains(SCNetworkReachabilityFlags.reachable) && !flags.contains(SCNetworkReachabilityFlags.isWWAN)
+                    AutomaticProperties.automaticPropertiesLock.write {
+                        AutomaticProperties.properties["$wifi"] = wifi
+                    }
+                    Logger.info(message: "reachability changed, wifi=\(wifi)")
+                }
+                if SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context) {
+                    if !SCNetworkReachabilitySetDispatchQueue(reachability, trackingQueue) {
+                        // cleanup callback if setting dispatch queue failed
+                        SCNetworkReachabilitySetCallback(reachability, nil, nil)
+                    }
+                }
+            }
+        #endif
         flushInstance.delegate = self
         distinctId = defaultDistinctId()
         people = People(apiToken: self.apiToken,
                         serialQueue: trackingQueue,
-                        lock: self.readWriteLock)
+                        lock: self.readWriteLock,
+                        metadata: sessionMetadata)
         people.delegate = self
         flushInstance._flushInterval = flushInterval
         setupListeners()
         unarchive()
+        
+        if optOutTrackingByDefault {
+            self.optOutTracking()
+        }
+        
         #if DECIDE
             if !MixpanelInstance.isiOSAppExtension() {
                 automaticEvents.delegate = self
+                automaticEvents.automaticPushTracking = automaticPushTracking
                 automaticEvents.initializeEvents()
                 decideInstance.inAppDelegate = self
                 executeCachedVariants()
@@ -275,25 +319,30 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
                     trackPushNotification(notification, event: "$app_open")
                 }
             }
+            connectIntegrations.mixpanel = self
         #endif // DECIDE
     }
     #else
-    init(apiToken: String?, flushInterval: Double, name: String) {
+    init(apiToken: String?, flushInterval: Double, name: String, optOutTrackingByDefault: Bool = false) {
         if let apiToken = apiToken, !apiToken.isEmpty {
             self.apiToken = apiToken
         }
         self.name = name
         self.readWriteLock = ReadWriteLock(label: "globalLock")
         flushInstance = Flush(basePathIdentifier: name, lock: self.readWriteLock)
-        trackInstance = Track(apiToken: self.apiToken, lock: self.readWriteLock)
-        flushInstance.delegate = self
         let label = "com.mixpanel.\(self.apiToken)"
         trackingQueue = DispatchQueue(label: label)
+        sessionMetadata = SessionMetadata(trackingQueue: trackingQueue)
+        trackInstance = Track(apiToken: self.apiToken,
+                              lock: self.readWriteLock,
+                              metadata: sessionMetadata)
+        flushInstance.delegate = self
         networkQueue = DispatchQueue(label: label)
         distinctId = defaultDistinctId()
         people = People(apiToken: self.apiToken,
                         serialQueue: trackingQueue,
-                        lock: self.readWriteLock)
+                        lock: self.readWriteLock,
+                        metadata: sessionMetadata)
         flushInstance._flushInterval = flushInterval
         setupListeners()
         unarchive()
@@ -311,10 +360,10 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
                                            name: .CTRadioAccessTechnologyDidChange,
                                            object: nil)
             #if DECIDE
-            notificationCenter.addObserver(self,
-                                           selector: #selector(executeTweaks),
-                                           name: Notification.Name("MPExecuteTweaks"),
-                                           object: nil)
+                notificationCenter.addObserver(self,
+                                               selector: #selector(executeTweaks),
+                                               name: Notification.Name("MPExecuteTweaks"),
+                                               object: nil)
             #endif
         #endif // os(iOS)
         if !MixpanelInstance.isiOSAppExtension() {
@@ -352,21 +401,31 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(applicationWillTerminate(_:)),
-                                       name: .NSApplicationWillTerminate,
+                                       name: NSApplication.willTerminateNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(applicationWillResignActive(_:)),
-                                       name: .NSApplicationWillResignActive,
+                                       name: NSApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(applicationDidBecomeActive(_:)),
-                                       name: .NSApplicationDidBecomeActive,
+                                       name: NSApplication.didBecomeActiveNotification,
                                        object: nil)
     }
     #endif // os(OSX)
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+        #if os(iOS)
+            if let reachability = reachability {
+                if !SCNetworkReachabilitySetCallback(reachability, nil, nil) {
+                    Logger.error(message: "\(self) error unsetting reachability callback")
+                }
+                if !SCNetworkReachabilitySetDispatchQueue(reachability, nil) {
+                    Logger.error(message: "\(self) error unsetting reachability dispatch queue")
+                }
+            }
+        #endif
     }
 
     static func isiOSAppExtension() -> Bool {
@@ -412,6 +471,10 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
                                 self.markVariantRun(variant)
                             }
                         }
+
+                        if decideResponse.integrations.count > 0 {
+                            self.connectIntegrations.setupIntegrations(decideResponse.integrations)
+                        }
                     }
                 }
             }
@@ -424,7 +487,8 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         if flushOnBackground {
             flush()
         }
-        networkQueue.async() {
+
+        networkQueue.async {
             self.archive()
         }
         #endif
@@ -435,6 +499,11 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
             return
         }
+        
+        if self.hasOptedOutTracking() {
+            return
+        }
+        
         taskId = sharedApplication.beginBackgroundTask() {
             self.taskId = UIBackgroundTaskInvalid
         }
@@ -443,7 +512,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
             flush()
         }
 
-        networkQueue.async() {
+        networkQueue.async {
             self.archive()
             #if DECIDE
             self.readWriteLock.write {
@@ -461,7 +530,8 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
             return
         }
-        trackingQueue.async() {
+        sessionMetadata.applicationWillEnterForeground()
+        trackingQueue.async {
             if self.taskId != UIBackgroundTaskInvalid {
                 sharedApplication.endBackgroundTask(self.taskId)
                 self.taskId = UIBackgroundTaskInvalid
@@ -487,7 +557,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
     #endif // os(OSX)
 
     @objc private func applicationWillTerminate(_ notification: Notification) {
-        networkQueue.async() {
+        networkQueue.async {
             self.archive()
         }
     }
@@ -513,7 +583,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         if let ASIdentifierManagerClass = NSClassFromString("ASIdentifierManager") {
             let sharedManagerSelector = NSSelectorFromString("sharedManager")
             if let sharedManagerIMP = ASIdentifierManagerClass.method(for: sharedManagerSelector) {
-                typealias sharedManagerFunc = @convention(c) (AnyObject, Selector) -> AnyObject!
+                typealias sharedManagerFunc = @convention(c) (AnyObject, Selector) -> AnyObject?
                 let curriedImplementation = unsafeBitCast(sharedManagerIMP, to: sharedManagerFunc.self)
                 if let sharedManager = curriedImplementation(ASIdentifierManagerClass.self, sharedManagerSelector) {
                     let advertisingTrackingEnabledSelector = NSSelectorFromString("isAdvertisingTrackingEnabled")
@@ -552,13 +622,27 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
             }
         }
     }
-
+    #if os(iOS)
     @objc func setCurrentRadio() {
-        let currentRadio = AutomaticProperties.getCurrentRadio()
-        trackingQueue.async() {
-            AutomaticProperties.properties["$radio"] = currentRadio
+        var radio = telephonyInfo.currentRadioAccessTechnology ?? "None"
+        let prefix = "CTRadioAccessTechnology"
+        if radio.hasPrefix(prefix) {
+            radio = (radio as NSString).substring(from: prefix.count)
+        }
+        trackingQueue.async {
+            AutomaticProperties.automaticPropertiesLock.write {
+                [unowned self] in
+                AutomaticProperties.properties["$radio"] = radio
+                if self.telephonyInfo.subscriberCellularProvider?.carrierName == nil {
+                    AutomaticProperties.properties["$carrier"] = ""
+                }
+                else {
+                    AutomaticProperties.properties["$carrier"] = self.telephonyInfo.subscriberCellularProvider?.carrierName
+                }
+            }
         }
     }
+    #endif
 
     #if DECIDE
     func initializeGestureRecognizer() {
@@ -616,12 +700,15 @@ extension MixpanelInstance {
                             This should only be set to false if you wish to prevent people profile updates for that user.
      */
     open func identify(distinctId: String, usePeople: Bool = true) {
+        if self.hasOptedOutTracking() {
+            return
+        }
         if distinctId.isEmpty {
             Logger.error(message: "\(self) cannot identify blank distinct id")
             return
         }
 
-        trackingQueue.async() {
+        trackingQueue.async {
             // identify only changes the distinct id if it doesn't match either the existing or the alias;
             // if it's new, blow away the alias as well.
             if distinctId != self.alias {
@@ -668,7 +755,6 @@ extension MixpanelInstance {
      createAlias: and then identify: (with their new user ID)
      when they log in the next time. This will keep your signup funnels working
      correctly.
-
      This makes the current id and 'Alias' interchangeable distinct ids.
      Mixpanel.
      mixpanelInstance.createAlias("Alias", mixpanelInstance.distinctId)
@@ -682,6 +768,9 @@ extension MixpanelInstance {
      This should only be set to false if you wish to prevent people profile updates for that user.
      */
     open func createAlias(_ alias: String, distinctId: String, usePeople: Bool = true) {
+        if self.hasOptedOutTracking() {
+            return
+        }
         if distinctId.isEmpty {
             Logger.error(message: "\(self) cannot identify blank distinct id")
             return
@@ -693,7 +782,7 @@ extension MixpanelInstance {
         }
 
         if alias != distinctId {
-            trackingQueue.async() {
+            trackingQueue.async {
                 self.alias = alias
                 self.archiveProperties()
                 Persistence.storeIdentity(token: self.apiToken,
@@ -716,7 +805,7 @@ extension MixpanelInstance {
      */
     open func reset() {
         flush();
-        trackingQueue.async() {
+        trackingQueue.async {
             self.networkQueue.sync {
                 self.readWriteLock.write {
                     Persistence.deleteMPUserDefaultsData(token: self.apiToken)
@@ -733,6 +822,8 @@ extension MixpanelInstance {
                     self.decideInstance.decideFetched = false
                     self.decideInstance.ABTestingInstance.variants = Set()
                     self.decideInstance.codelessInstance.codelessBindings = Set()
+                    self.connectIntegrations.reset()
+                    MixpanelTweaks.defaultStore.reset()
                     #endif // DECIDE
                 }
                 self.archive()
@@ -815,6 +906,7 @@ extension MixpanelInstance {
          decideInstance.notificationsInstance.shownNotifications,
          decideInstance.codelessInstance.codelessBindings,
          decideInstance.ABTestingInstance.variants,
+         optOutStatus,
          decideInstance.automaticEventsEnabled) = Persistence.unarchive(token: apiToken)
 
         if distinctId == "" {
@@ -865,9 +957,12 @@ extension MixpanelInstance {
     #endif // DECIDE
 
     func trackIntegration() {
+        if self.hasOptedOutTracking() {
+            return
+        }
         let defaultsKey = "trackedKey"
         if !UserDefaults.standard.bool(forKey: defaultsKey) {
-            trackingQueue.async() {
+            trackingQueue.async {
                 Network.trackIntegration(apiToken: self.apiToken, serverURL: BasePath.DefaultMixpanelAPI) {
                     (success) in
                     if success {
@@ -894,48 +989,46 @@ extension MixpanelInstance {
      - parameter completion: an optional completion handler for when the flush has completed.
      */
     open func flush(completion: (() -> Void)? = nil) {
-        
-        networkQueue.async() {
-            
-            if let shouldFlush = self.delegate?.mixpanelWillFlush(self), !shouldFlush {
-                return
-            }
-            
-            self.readWriteLock.write {
-                self.flushEventsQueue = self.eventsQueue
-                self.people.flushPeopleQueue = self.people.peopleQueue
-
-                self.eventsQueue.removeAll()
-                self.people.peopleQueue.removeAll()
-            }
-
-            
-            #if DECIDE
-            self.flushInstance.flushEventsQueue(&self.flushEventsQueue,
-                                                automaticEventsEnabled: self.decideInstance.automaticEventsEnabled)
-            #else
-            self.flushInstance.flushEventsQueue(&self.flushEventsQueue,
-                                                automaticEventsEnabled: false)
-            #endif
-            self.flushInstance.flushPeopleQueue(&self.people.flushPeopleQueue)
-
-            self.readWriteLock.write {
-                self.eventsQueue = self.flushEventsQueue + self.eventsQueue
-                self.people.peopleQueue = self.people.flushPeopleQueue + self.people.peopleQueue
-                    
-                self.flushEventsQueue.removeAll()
-                self.people.flushPeopleQueue.removeAll()
-            }
-
-            self.archive()
-            
-            
-
-            if let completion = completion {
-                DispatchQueue.main.async(execute: completion)
-            }
+        if self.hasOptedOutTracking() {
+            return
         }
-    }
+        trackingQueue.async {
+            self.networkQueue.async {
+                if let shouldFlush = self.delegate?.mixpanelWillFlush(self), !shouldFlush {
+                    return
+                }
+                
+                self.readWriteLock.write {
+                    self.flushEventsQueue = self.eventsQueue
+                    self.people.flushPeopleQueue = self.people.peopleQueue
+                    
+                    self.eventsQueue.removeAll()
+                    self.people.peopleQueue.removeAll()
+                }
+                
+                #if DECIDE
+                self.flushInstance.flushEventsQueue(&self.flushEventsQueue,
+                                                    automaticEventsEnabled: self.decideInstance.automaticEventsEnabled)
+                #else
+                self.flushInstance.flushEventsQueue(&self.flushEventsQueue,
+                                                    automaticEventsEnabled: false)
+                #endif
+                self.flushInstance.flushPeopleQueue(&self.people.flushPeopleQueue)
+                
+                self.readWriteLock.write {
+                    self.eventsQueue = self.flushEventsQueue + self.eventsQueue
+                    self.people.peopleQueue = self.people.flushPeopleQueue + self.people.peopleQueue
+                    self.flushEventsQueue.removeAll()
+                    self.people.flushPeopleQueue.removeAll()
+                }
+                
+                self.archive()
+                
+                if let completion = completion {
+                    DispatchQueue.main.async(execute: completion)
+                }
+            }
+        }}
 }
 
 extension MixpanelInstance {
@@ -954,8 +1047,11 @@ extension MixpanelInstance {
      - parameter properties: properties dictionary
      */
     open func track(event: String?, properties: Properties? = nil) {
+        if self.hasOptedOutTracking() {
+            return
+        }
         let epochInterval = Date().timeIntervalSince1970
-        trackingQueue.async() {
+        trackingQueue.async {
             self.trackInstance.track(event: event,
                                      properties: properties,
                                      eventsQueue: &self.eventsQueue,
@@ -977,6 +1073,9 @@ extension MixpanelInstance {
     #if DECIDE
     func trackPushNotification(_ userInfo: [AnyHashable: Any],
                                       event: String = "$campaign_received") {
+        if self.hasOptedOutTracking() {
+            return
+        }
         if let mpPayload = userInfo["mp"] as? InternalProperties {
             if let m = mpPayload["m"], let c = mpPayload["c"] {
                 var properties = Properties()
@@ -1024,7 +1123,7 @@ extension MixpanelInstance {
      */
     open func time(event: String) {
         let startTime = Date().timeIntervalSince1970
-        trackingQueue.async() {
+        trackingQueue.async {
             self.trackInstance.time(event: event, timedEvents: &self.timedEvents, startTime: startTime)
         }
     }
@@ -1045,7 +1144,7 @@ extension MixpanelInstance {
      Clears all current event timers.
      */
     open func clearTimedEvents() {
-        trackingQueue.async() {
+        trackingQueue.async {
             self.trackInstance.clearTimedEvents(&self.timedEvents)
         }
     }
@@ -1124,9 +1223,75 @@ extension MixpanelInstance {
                                                        superProperties: &self.superProperties)
         }
     }
+    
+    /**
+     Opt out tracking.
+     
+     This method is used to opt out tracking. This causes all events and people request no longer
+     to be sent back to the Mixpanel server.
+     */
+    open func optOutTracking() {
+        trackingQueue.async {
+            self.readWriteLock.write {
+                self.eventsQueue = Queue()
+                self.people.peopleQueue = Queue()
+            }
+        }
+        
+        if self.people.distinctId != nil {
+            self.people.deleteUser()
+            self.people.clearCharges()
+            self.flush()
+        }
+        
+        trackingQueue.async {
+            self.readWriteLock.write {
+                self.alias = nil
+                self.people.distinctId = nil
+                self.distinctId = self.defaultDistinctId()
+                self.superProperties = InternalProperties()
+                self.people.unidentifiedQueue = Queue()
+                self.timedEvents = InternalProperties()
+            }
+            self.archive()
+        }
+        
+        self.optOutStatus = true
+        Persistence.archiveOptOutStatus(self.optOutStatus, token: self.apiToken)
+    }
+    
+    /**
+     Opt in tracking.
+     
+     Use this method to opt in an already opted out user from tracking. People updates and track calls will be
+     sent to Mixpanel after using this method.
+     
+     This method will internally track an opt in event to your project.
+     
+     - parameter distintId: an optional string to use as the distinct ID for events
+     - parameter properties: an optional properties dictionary that could be passed to add properties to the opt-in event that is sent to Mixpanel
+     */
+    open func optInTracking(distinctId: String? = nil, properties: Properties? = nil) {
+        self.optOutStatus = false
+        Persistence.archiveOptOutStatus(self.optOutStatus, token: self.apiToken)
+        
+        if let distinctId = distinctId {
+            identify(distinctId: distinctId)
+        }
+        track(event: "$opt_in", properties: properties)
+    }
+    
+    /**
+     Returns if the current user has opted out tracking.
+
+     - returns: the current super opted out tracking status
+     */
+    open func hasOptedOutTracking() -> Bool {
+        return self.optOutStatus
+    }
 
     func dispatchAndTrack(closure: @escaping () -> Void) {
-        trackingQueue.async() {
+        trackingQueue.async {
             closure()
             self.archiveProperties()
         }
@@ -1141,10 +1306,9 @@ extension MixpanelInstance: InAppNotificationsDelegate {
         self.trackingQueue.async {
             self.networkQueue.async {
                 self.decideInstance.checkDecide(forceFetch: forceFetch,
-                                            distinctId: self.people.distinctId ?? self.distinctId,
-                                            token: self.apiToken,
-                                            completion: completion)
-        
+                                                distinctId: self.people.distinctId ?? self.distinctId,
+                                                token: self.apiToken,
+                                                completion: completion)
             }
         }
     }
@@ -1166,7 +1330,6 @@ extension MixpanelInstance: InAppNotificationsDelegate {
         Logger.info(message: "Marking variant \(variant.ID) shown for experiment \(variant.experimentID)")
         let shownVariant = ["\(variant.experimentID)": variant.ID]
         people.merge(properties: ["$experiments": shownVariant])
-        
         trackingQueue.async {
             var superPropertiesCopy = self.superProperties
             var shownVariants = superPropertiesCopy["$experiments"] as? [String: Any] ?? [:]
@@ -1177,7 +1340,6 @@ extension MixpanelInstance: InAppNotificationsDelegate {
         }
         track(event: "$experiment_started", properties: ["$experiment_id": variant.experimentID,
                                                          "$variant_id": variant.ID])
-
     }
 
     func executeCachedVariants() {
@@ -1222,7 +1384,6 @@ extension MixpanelInstance: InAppNotificationsDelegate {
                     self.markVariantRun(variant)
                 }
             }
-
             DispatchQueue.main.async {
                 if let callback = callback {
                     callback()
@@ -1281,10 +1442,10 @@ extension MixpanelInstance: InAppNotificationsDelegate {
             }
         }
     }
-    
+
     /**
      Returns the payload of a notification if available
-     
+
      - note: You do not need to call this method on the main thread.
      */
     open func fetchNotificationPayload(completion: @escaping ([String: AnyObject]?) -> Void){
