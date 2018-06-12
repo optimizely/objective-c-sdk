@@ -30,11 +30,11 @@ NS_ASSUME_NONNULL_END
 /**
  * Download the project config file from remote server
  *
- * @param projectId The project ID of the datafile to download
+ * @param projectUr The project URL of the datafilel to download
  * @param backoffRetry Indicates if the exponential backoff retry should be enabled
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)downloadProjectConfig:(nonnull NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)projectUrl
                  backoffRetry:(BOOL)backoffRetry
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
@@ -42,12 +42,12 @@ NS_ASSUME_NONNULL_END
  * Download the project config file from remote server only if it
  * has been modified.
  *
- * @param projectId The project ID of the exponential the datafile to download
+ * @param projectURL The project URL of the exponential the datafile to download
  * @param backoffRetry Indicates if backoff retry should be enabled
  * @param lastModifiedDate The date the datafile was last modified
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)downloadProjectConfig:(nonnull NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)projectURL
                  backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;

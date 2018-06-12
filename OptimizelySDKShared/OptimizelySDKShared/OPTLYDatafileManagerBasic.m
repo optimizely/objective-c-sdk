@@ -35,10 +35,6 @@
     return validProtocolDeclaration && implementsDownloadDatafileMethod && implementsSaveDatafileMethod && implementsGetDatafileMethod;
 }
 
-+ (NSURL *)projectConfigURLPath:(NSString *)projectId {
-    return [OPTLYNetworkService projectConfigURLPath:projectId];
-}
-
 @end
 
 @interface OPTLYDatafileManagerBasic ()
@@ -49,10 +45,10 @@
 
 @implementation OPTLYDatafileManagerBasic
 
-- (void)downloadDatafile:(nonnull NSString *)projectId
+- (void)downloadDatafile:(nonnull OPTLYDatafileConfig *)datafileConfig
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion {
     OPTLYNetworkService *networkService = [OPTLYNetworkService new];
-    [networkService downloadProjectConfig:projectId
+    [networkService downloadProjectConfig:[datafileConfig URLForKey]
                              backoffRetry:NO
                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                             if ([data length] > 0) {

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2E93A020CF435000E0893E /* OPTLYDatafileConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2E93A120CF435000E0893E /* OPTLYDatafileConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2E93A220CF435000E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */; };
+		0B2E93A320CF435000E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */; };
+		0B2E93AB20D0396500E0893E /* NSString+OPTLYCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E93A920D0396500E0893E /* NSString+OPTLYCategory.h */; };
+		0B2E93AC20D0396500E0893E /* NSString+OPTLYCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E93A920D0396500E0893E /* NSString+OPTLYCategory.h */; };
+		0B2E93AD20D0396500E0893E /* NSString+OPTLYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E93AA20D0396500E0893E /* NSString+OPTLYCategory.m */; };
+		0B2E93AE20D0396500E0893E /* NSString+OPTLYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E93AA20D0396500E0893E /* NSString+OPTLYCategory.m */; };
 		2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */; };
@@ -183,6 +191,10 @@
 /* Begin PBXFileReference section */
 		0443A97CD668FC2F4004BE08 /* Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileConfig.h; sourceTree = "<group>"; };
+		0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileConfig.m; sourceTree = "<group>"; };
+		0B2E93A920D0396500E0893E /* NSString+OPTLYCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+OPTLYCategory.h"; sourceTree = "<group>"; };
+		0B2E93AA20D0396500E0893E /* NSString+OPTLYCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPTLYCategory.m"; sourceTree = "<group>"; };
 		2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYClient.h; sourceTree = "<group>"; };
 		2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClient.m; sourceTree = "<group>"; };
 		2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClientTest.m; sourceTree = "<group>"; };
@@ -309,6 +321,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2E93A820D037BA00E0893E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0B2E93A920D0396500E0893E /* NSString+OPTLYCategory.h */,
+				0B2E93AA20D0396500E0893E /* NSString+OPTLYCategory.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		2D08FB671DCA5A78006CA063 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +358,8 @@
 		2D3EC79B1DEFB5F30014D9A7 /* Datafile Manger */ = {
 			isa = PBXGroup;
 			children = (
+				0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */,
+				0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */,
 				EAC5F3491E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.h */,
 				EAC5F34A1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m */,
 			);
@@ -440,6 +463,7 @@
 		EA3C682B1DC1E68E00C578CA /* OptimizelySDKShared */ = {
 			isa = PBXGroup;
 			children = (
+				0B2E93A820D037BA00E0893E /* Categories */,
 				EA52473E1DC71AA300AF6685 /* OptimizelySDKShared.modulemap */,
 				EA3C682E1DC1E68E00C578CA /* OptimizelySDKShared-Info.plist */,
 				EA3C682C1DC1E68E00C578CA /* OptimizelySDKShared.h */,
@@ -534,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E858C481F4226E800D53856 /* OPTLYFMDBDatabaseQueue.h in Headers */,
+				0B2E93AB20D0396500E0893E /* NSString+OPTLYCategory.h in Headers */,
 				3E858C421F4226E800D53856 /* OPTLYFMDBDatabase.h in Headers */,
 				3E858C4B1F4226E800D53856 /* OPTLYFMDBResultSet.h in Headers */,
 				3E858C4A1F4226E800D53856 /* OPTLYFMDB.h in Headers */,
@@ -541,6 +566,7 @@
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA064BD21DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
+				0B2E93A020CF435000E0893E /* OPTLYDatafileConfig.h in Headers */,
 				EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				EA92F8641E281DE200A859C7 /* OPTLYManagerBasic.h in Headers */,
@@ -557,11 +583,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FBA01DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
+				0B2E93A120CF435000E0893E /* OPTLYDatafileConfig.h in Headers */,
 				EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
 				EA29D9E81DD274A30034A4FE /* OPTLYFileManager.h in Headers */,
 				EA92F8261E27FB6000A859C7 /* OPTLYManagerBuilder.h in Headers */,
+				0B2E93AC20D0396500E0893E /* NSString+OPTLYCategory.h in Headers */,
 				EA92F8651E281DE200A859C7 /* OPTLYManagerBasic.h in Headers */,
 				EA92F86D1E28243E00A859C7 /* OPTLYManagerBase.h in Headers */,
 				EAC5F34C1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.h in Headers */,
@@ -920,6 +948,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
+				0B2E93A220CF435000E0893E /* OPTLYDatafileConfig.m in Sources */,
 				EAC5F34D1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
 				3E858C431F4226E800D53856 /* OPTLYFMDBDatabase.m in Sources */,
@@ -930,6 +959,7 @@
 				EA92F8271E27FB6000A859C7 /* OPTLYManagerBuilder.m in Sources */,
 				EA92F86E1E28243E00A859C7 /* OPTLYManagerBase.m in Sources */,
 				2D08FBA21DCA5FB3006CA063 /* OPTLYClientBuilder.m in Sources */,
+				0B2E93AD20D0396500E0893E /* NSString+OPTLYCategory.m in Sources */,
 				EA064BD41DD4030700DF7537 /* OPTLYDataStore.m in Sources */,
 				EA92F8661E281DE200A859C7 /* OPTLYManagerBasic.m in Sources */,
 				EA29D9551DCED4580034A4FE /* OPTLYDatabaseEntity.m in Sources */,
@@ -954,7 +984,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B2E93AE20D0396500E0893E /* NSString+OPTLYCategory.m in Sources */,
 				EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */,
+				0B2E93A320CF435000E0893E /* OPTLYDatafileConfig.m in Sources */,
 				EAC5F34E1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
 				EA92F8281E27FB6000A859C7 /* OPTLYManagerBuilder.m in Sources */,
