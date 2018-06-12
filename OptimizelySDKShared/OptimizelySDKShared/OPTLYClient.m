@@ -140,12 +140,16 @@
     [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:nil];
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    eventValue:(NSNumber *)eventValue
 {
     [self track:eventKey userId:userId attributes:nil eventTags:nil eventValue:eventValue];
 }
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
@@ -154,6 +158,9 @@
     [self track:eventKey userId:userId attributes:nil eventTags:eventTags eventValue:nil];
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
    attributes:(NSDictionary *)attributes
@@ -161,6 +168,7 @@
 {
     [self track:eventKey userId:userId attributes:attributes eventTags:nil eventValue:eventValue];
 }
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
