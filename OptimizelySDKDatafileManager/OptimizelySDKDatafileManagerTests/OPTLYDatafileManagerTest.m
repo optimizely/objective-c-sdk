@@ -62,7 +62,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
     self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
     }];
 }
 
@@ -88,7 +88,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeClientAsync"];
     
     // request datafile
-    [self.datafileManager downloadDatafile:self.datafileManager.projectId
+    [self.datafileManager downloadDatafile:self.datafileManager.datafileConfig
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                              completionWasCalled = true;
                              [expectation fulfill];
@@ -130,7 +130,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     id<OHHTTPStubsDescriptor> stub = [self stub200Response];
     
     // Call download datafile
-    [self.datafileManager downloadDatafile:self.datafileManager.projectId
+    [self.datafileManager downloadDatafile:self.datafileManager.datafileConfig
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                              XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile], @"we should have stored the datafile");
                              NSString *savedLastModifiedDate = [self.datafileManager getLastModifiedDate:kProjectId];
@@ -149,7 +149,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)testNetworkTimerIsEnabled
 {
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = kDatafileDownloadInteval;
     }];
     
@@ -163,7 +163,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)testNetworkTimerIsDisabled
 {
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = 0;
     }];
     
@@ -172,7 +172,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
     datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectId;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = -5;
     }];
     
@@ -200,7 +200,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     // make sure we get a 200 the first time around and save that datafile
     __weak XCTestExpectation *expect200 = [self expectationWithDescription:@"should get a 200 on first try"];
     XCTAssertFalse([self.datafileManager isDatafileCached]);
-    [self.datafileManager downloadDatafile:kProjectId
+    [self.datafileManager downloadDatafile:self.datafileManager.datafileConfig
                          completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                              XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode , 200);
                              XCTAssertTrue([self.datafileManager isDatafileCached]);
@@ -215,7 +215,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *expect304 = [self expectationWithDescription:@"downloadDatafile304Response"];
     XCTAssertTrue([self.dataStore fileExists:kProjectId type:OPTLYDataStoreDataTypeDatafile]);
     XCTAssertNotNil([self.datafileManager getLastModifiedDate:kProjectId]);
-    [self.datafileManager downloadDatafile:kProjectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self.datafileManager downloadDatafile:self.datafileManager.datafileConfig completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         XCTAssertEqual(((NSHTTPURLResponse *)response).statusCode, 304);
         XCTAssertEqual([data length], 0);
         [expect304 fulfill];
@@ -258,7 +258,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 # pragma mark - Helper Methods
 - (id<OHHTTPStubsDescriptor>)stub200Response {
-    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSURL *hostURL = [self.datafileManager.datafileConfig URLForKey];
     NSString *hostName = [hostURL host];
     
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
@@ -272,7 +272,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 // 304 returns nil data
 - (id<OHHTTPStubsDescriptor>)stub304Response {
-    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSURL *hostURL = [self.datafileManager.datafileConfig URLForKey];
     NSString *hostName = [hostURL host];
     
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
@@ -294,7 +294,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 // 400 returns nil data
 - (id<OHHTTPStubsDescriptor>)stub400Response {
-    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSURL *hostURL = [self.datafileManager.datafileConfig URLForKey];
     NSString *hostName = [hostURL host];
     
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {

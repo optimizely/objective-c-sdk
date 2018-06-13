@@ -86,6 +86,10 @@
         // --- project id ---
         self.projectId = builder.projectId;
         
+        self.sdkKey = builder.sdkKey;
+        
+        self.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:self.projectId withSDKKey:self.sdkKey];
+        
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set

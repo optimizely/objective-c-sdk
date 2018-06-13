@@ -446,7 +446,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
 
 
 - (void)stubResponse:(int)statusCode data:(NSData *)data{
-    NSURL *hostURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
+    NSURL *hostURL = [[[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil] URLForKey];
     NSString *hostName = [hostURL host];
     
     [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {

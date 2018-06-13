@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,25 +14,12 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <XCTest/XCTest.h>
-#import <OptimizelySDKCore/OPTLYProjectConfig.h>
-#import "OPTLYDatafileManagerBasic.h"
 
-static NSString *const kProjectId = @"6372300739";
-static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/json/%@.json";
+#import "NSString+OPTLYCategory.h"
 
-@interface OPTLYDatafileManagerTest : XCTestCase
+@implementation NSString(OPTLYCategory)
 
-@end
-
-@implementation OPTLYDatafileManagerTest
-
-- (void)testProjectConfigURLPathReturnsExpectedURL {
-    NSString *expectedURLString = [NSString stringWithFormat:kExpectedCDNURLTemplate, kProjectId];
-    NSURL *expectedURL = [NSURL URLWithString:expectedURLString];
-    
-    NSURL *cdnURL = [[[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil] URLForKey];
-    
-    XCTAssertEqualObjects(cdnURL, expectedURL, @"Unexpected CDN URL: %@", cdnURL);
+- (BOOL)isValidKeyString {
+    return (self != nil && ![self isEqualToString:@""] && ![self containsString:@" "]);
 }
 @end

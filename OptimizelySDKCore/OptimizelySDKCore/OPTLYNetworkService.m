@@ -19,7 +19,6 @@
 
 // ---- Datafile Download URLs ----
 // TODO: Move this to the Datafile manager and parameterize the URL for the datafile download
-NSString * const OPTLYNetworkServiceCDNServerURL    = @"https://cdn.optimizely.com/json/";
 NSString * const OPTLYNetworkServiceS3ServerURL     = @"https://optimizely.s3.amazonaws.com/";
 
 // ---- The total backoff and retry interval is: pow(2, attempts) * interval ----
@@ -44,38 +43,35 @@ const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_m
     return self;
 }
 
-- (void)downloadProjectConfig:(nonnull NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)datafileConfigURL
                  backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
     if (backoffRetry) {
         [self.requestManager GETIfModifiedSince:lastModifiedDate
-                                            url:cdnConfigFilePathURL
+                                            url:datafileConfigURL
                            backoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
                                         retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
                               completionHandler:completion];
     } else {
         [self.requestManager GETIfModifiedSince:lastModifiedDate
-                                            url:cdnConfigFilePathURL
+                                            url:datafileConfigURL
                               completionHandler:completion];
     }
 }
 
-- (void)downloadProjectConfig:(NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)datafileConfigURL
                  backoffRetry:(BOOL)backoffRetry
             completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURL *cdnConfigFilePathURL = [OPTLYNetworkService projectConfigURLPath:projectId];
-    
     if (backoffRetry) {
         [self.requestManager GETWithBackoffRetryInterval:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_ms
-                                                     url:cdnConfigFilePathURL
+                                                     url:datafileConfigURL
                                                  retries:OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryAttempts
                                        completionHandler:completion];
     } else {
-        [self.requestManager GETWithURL:cdnConfigFilePathURL
+        [self.requestManager GETWithURL:datafileConfigURL
                              completion:completion];
     }
 }
@@ -97,15 +93,5 @@ const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_m
                               completionHandler:completion];
     }
 }
-
-# pragma mark - Helper Methods
-
-+ (NSURL *)projectConfigURLPath:(NSString *)projectId
-{
-    NSURL *cdnURL = [NSURL URLWithString:OPTLYNetworkServiceCDNServerURL];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@.json", cdnURL.absoluteString, projectId];
-    return [NSURL URLWithString:filePath];
-}
-
 
 @end
