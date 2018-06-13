@@ -44,6 +44,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
 @interface OPTLYManagerTest : XCTestCase
 @property (nonatomic, strong) NSData *defaultDatafile;
 @property (nonatomic, strong) NSData *alternateDatafile;
+@property (nonatomic, strong) NSData *sdkKeyDatafile;
 @property (nonatomic, strong) OPTLYManagerBase *manager;
 @end
 
@@ -137,6 +138,30 @@ static NSString * const kClientEngine = @"tvos-sdk";
     OPTLYClient *client = [partialMockManager initialize];
     
     XCTAssertNil(client.optimizely, @"Client config should be nil when no datafile is saved or bundled.");
+}
+
+- (void)testInitializeWithSDKKey
+{
+    [self stubResponse:200 data:self.defaultDatafile];
+    
+    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder){
+        builder.sdkKey = kProjectId;
+    }];
+    
+    // setup async expectation
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithSDKKey"];
+    // initialize client with alternate datafile
+    __weak typeof(self) weakSelf = self;
+    [manager initializeWithCallback:^(NSError * _Nullable error, OPTLYClient * _Nullable client) {
+        [weakSelf isClientValid:client datafile:weakSelf.alternateDatafile];
+        // make sure the client is initialized with the alternate datafile
+        [self checkConfigIsUsingDefaultDatafile:client.optimizely.config];
+        [self checkClientDefaultAttributes:client];
+        [expectation fulfill];
+    }];
+    
+    // wait for async start to finish
+    [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
 #pragma mark - `initializeWithDatafile` Tests

@@ -19,7 +19,7 @@ import UIKit
     import OptimizelySDKiOS
     import Amplitude_iOS
     import Localytics
-    import Mixpanel
+//    import Mixpanel
 #elseif os(tvOS)
     import OptimizelySDKTVOS
 #endif
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // ---- Initialize integration SDKs ----
             // ** Google Analytics is initialized via the GoogleService-info.plist file
             Amplitude.instance().initializeApiKey("YOUR_API_KEY_HERE")
-            Mixpanel.initialize(token:"MIXPANEL_TOKEN")
+            //Mixpanel.initialize(token:"MIXPANEL_TOKEN")
             Localytics.autoIntegrate("YOUR-LOCALYTICS-APP-KEY", launchOptions: launchOptions)
             
         #endif
@@ -106,10 +106,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let builder = GAIDictionaryBuilder.createEvent(withCategory: "Optimizely", action: action, label: label, value: nil).build()
                 tracker?.send(builder as [NSObject : AnyObject]?)
                 // ---- Mixpanel ----
-                let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
-                mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
-                mixpanel.people.set(property: propertyKey, to: variation.variationKey)
-                mixpanel.track(event:eventIdentifier)
+//                let mixpanel : MixpanelInstance = Mixpanel.mainInstance()
+//                mixpanel.registerSuperProperties([propertyKey: variation.variationKey])
+//                mixpanel.people.set(property: propertyKey, to: variation.variationKey)
+//                mixpanel.track(event:eventIdentifier)
             })
             
             optimizelyClient?.optimizely?.notificationCenter?.addTrackNotificationListener({ (eventKey, userId, attributes, eventTags, event) in

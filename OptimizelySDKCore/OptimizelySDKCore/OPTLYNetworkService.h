@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_END
 /**
  * Download the project config file from remote server
  *
- * @param projectUrl The project URL of the datafilel to download
+ * @param projectUrl The project URL of the datafile to download
  * @param backoffRetry Indicates if the exponential backoff retry should be enabled
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
