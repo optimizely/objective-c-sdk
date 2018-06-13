@@ -7,7 +7,7 @@
 ![Platforms](https://img.shields.io/cocoapods/p/OptimizelySDKTVOS.svg)
 [![Podspec](https://img.shields.io/cocoapods/v/OptimizelySDKTVOS.svg)](https://cocoapods.org/pods/OptimizelySDKTVOS)
 
-This repository houses the Optimizely Mobile and OTT experimentation SDKs.
+This repository houses the official Optimizely Mobile and OTT experimentation SDKs.
 
 
 ## Getting Started
