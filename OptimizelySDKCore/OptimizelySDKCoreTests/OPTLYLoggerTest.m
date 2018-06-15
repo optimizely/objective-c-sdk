@@ -35,13 +35,16 @@
 
 - (void)testConformsToOPTLYLoggerProtocol
 {
-    id<OPTLYLogger> logger = [NSObject new];
-    BOOL conformsToProtocol = [OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[logger class]];
-    NSAssert(conformsToProtocol == FALSE, @"Object does not conform to protocol.");
-    
-    logger = [OPTLYLoggerDefault new];
-    conformsToProtocol = [OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[logger class]];
-    NSAssert(conformsToProtocol == TRUE, @"Object should conform to protocol.");
+    {
+        NSObject* logger = [NSObject new];
+        BOOL conformsToProtocol = [OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[logger class]];
+        XCTAssert(conformsToProtocol == FALSE, @"Object does not conform to protocol.");
+    }
+    {
+        id<OPTLYLogger> logger = [OPTLYLoggerDefault new];
+        BOOL conformsToProtocol = [OPTLYLoggerUtility conformsToOPTLYLoggerProtocol:[logger class]];
+        XCTAssert(conformsToProtocol == TRUE, @"Object should conform to protocol.");
+    }
 }
 
 

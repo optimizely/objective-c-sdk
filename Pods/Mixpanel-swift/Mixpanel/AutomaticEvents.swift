@@ -6,7 +6,6 @@
 //  Copyright © 2017 Mixpanel. All rights reserved.
 //
 
-
 protocol AEDelegate {
     func track(event: String?, properties: Properties?)
     #if DECIDE
@@ -46,6 +45,7 @@ class AutomaticEvents: NSObject, SKPaymentTransactionObserver, SKProductsRequest
     var sessionLength: TimeInterval = 0
     var sessionStartTime: TimeInterval = Date().timeIntervalSince1970
     var hasAddedObserver = false
+    var automaticPushTracking = true
 
     func initializeEvents() {
         let firstOpenKey = "MPFirstOpen"
@@ -85,9 +85,10 @@ class AutomaticEvents: NSObject, SKPaymentTransactionObserver, SKProductsRequest
 
         SKPaymentQueue.default().add(self)
         DispatchQueue.main.async {
-            self.setupAutomaticPushTracking()
+            if self.automaticPushTracking {
+                self.setupAutomaticPushTracking()
+            }
         }
-
     }
 
     @objc func appWillResignActive(_ notification: Notification) {
@@ -232,7 +233,6 @@ class AutomaticEvents: NSObject, SKPaymentTransactionObserver, SKProductsRequest
             UNUserNotificationCenter.current().removeDelegateObserver(ae: self)
         }
     }
-
 }
 
 @available(iOS 10.0, *)
@@ -247,7 +247,7 @@ extension UNUserNotificationCenter {
 }
 
 extension UIResponder {
-    func application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Swift.Void) {
+    @objc func application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Swift.Void) {
         let originalSelector = NSSelectorFromString("application:didReceiveRemoteNotification:fetchCompletionHandler:")
         if let originalMethod = class_getInstanceMethod(type(of: self), originalSelector),
             let swizzle = Swizzler.swizzles[originalMethod] {
@@ -261,7 +261,7 @@ extension UIResponder {
         }
     }
 
-    func application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    @objc func application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         let originalSelector = NSSelectorFromString("application:didReceiveRemoteNotification:")
         if let originalMethod = class_getInstanceMethod(type(of: self), originalSelector),
             let swizzle = Swizzler.swizzles[originalMethod] {
@@ -278,7 +278,9 @@ extension UIResponder {
 
 @available(iOS 10.0, *)
 extension NSObject {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, newDidReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    @objc func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                      newDidReceive response: UNNotificationResponse,
+                                      withCompletionHandler completionHandler: @escaping () -> Void) {
         let originalSelector = NSSelectorFromString("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")
         if let originalMethod = class_getInstanceMethod(type(of: self), originalSelector),
             let swizzle = Swizzler.swizzles[originalMethod] {
@@ -291,7 +293,6 @@ extension NSObject {
             }
         }
     }
-
 }
 
 #endif

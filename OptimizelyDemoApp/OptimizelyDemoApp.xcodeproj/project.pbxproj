@@ -345,8 +345,6 @@
 				EA7000041E552EBD00590BEF /* Sources */,
 				EA7000091E552EBD00590BEF /* Frameworks */,
 				EA70000C1E552EBD00590BEF /* Resources */,
-				EA7000131E552EBD00590BEF /* [CP] Embed Pods Frameworks */,
-				EA7000141E552EBD00590BEF /* [CP] Copy Pods Resources */,
 				EA7000151E552EBD00590BEF /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -369,7 +367,6 @@
 				EA70FFEB1E552E9E00590BEF /* Frameworks */,
 				EA70FFEE1E552E9E00590BEF /* Resources */,
 				EA70FFF61E552E9E00590BEF /* [CP] Embed Pods Frameworks */,
-				EA70FFF71E552E9E00590BEF /* [CP] Copy Pods Resources */,
 				EA299F031E55331000931399 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -390,14 +387,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA7000001E552EBD00590BEF = {
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0940;
 					};
 					EA70FFE01E552E9E00590BEF = {
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -513,36 +510,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA7000131E552EBD00590BEF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA7000141E552EBD00590BEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyTVOSDemoApp/Pods-OptimizelyTVOSDemoApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EA70FFE51E552E9E00590BEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,7 +537,7 @@
 				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1/Localytics.framework",
+				"${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0/Localytics.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -583,21 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA70FFF71E552E9E00590BEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -684,6 +636,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -691,6 +644,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -747,6 +701,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -754,6 +709,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -806,7 +762,8 @@
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -827,7 +784,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -849,7 +807,7 @@
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
 					"\"${PODS_ROOT}/Google/Frameworks\"",
-					"\"${PODS_ROOT}/Localytics/Localytics-iOS-4.4.1\"",
+					"\"${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/OptimizelyiOSDemoApp/OptimizelyiOSDemoApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -858,7 +816,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelyDemoApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -877,7 +836,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelyiOSDemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelyDemoApp-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

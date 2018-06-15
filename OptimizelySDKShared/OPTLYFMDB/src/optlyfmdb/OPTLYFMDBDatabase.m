@@ -396,7 +396,9 @@ static int OPTLYFMDBDatabaseBusyHandler(void *f, int count) {
     
     [statements addObject:statement];
     
-    [_cachedStatements setObject:statements forKey:query];
+    if (query) {
+        [_cachedStatements setObject:statements forKey:query];
+    }
     
     OPTLYFMDBRelease(query);
 }

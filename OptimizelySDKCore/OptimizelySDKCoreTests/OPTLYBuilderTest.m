@@ -80,7 +80,7 @@ static NSData *datafile;
 }
 
 - (void)testBuilderCanAssignEventDispatcher {
-    id<OPTLYEventDispatcher> eventDispatcher = [[NSObject alloc] init];
+    id<OPTLYEventDispatcher> eventDispatcher = (id<OPTLYEventDispatcher>)[[NSObject alloc] init];
     
     Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
         builder.datafile = datafile;
@@ -116,7 +116,10 @@ static NSData *datafile;
 }
 
 - (void)testInitializationWithoutBuilder {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
     Optimizely *optimizely = [Optimizely init:nil];
+#pragma clang diagnostic pop
     XCTAssertNil(optimizely);
 }
 
