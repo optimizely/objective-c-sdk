@@ -38,7 +38,7 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
     return self;
 }
 - (NSString*)key {
-    return _sdkKey != nil ? _sdkKey : _projectId;
+    return (_sdkKey != nil) ? _sdkKey : _projectId;
 }
 
 - (NSURL *)URLForKey {
@@ -54,10 +54,13 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
         return NO;
     }
     OPTLYDatafileConfig* p = (OPTLYDatafileConfig *) object;
-    return self.projectId != nil ? (p.projectId != nil ? [self.projectId isEqual: (p.projectId)] : self.projectId == p.projectId) : p.projectId == nil
-    &&
-    self.sdkKey != nil ? (p.sdkKey != nil ? [self.sdkKey isEqual:(p.sdkKey)] : self.sdkKey == p.sdkKey) : p.sdkKey == nil;
-    
+    return (((self.projectId != nil)
+             ? (p.projectId != nil ? [self.projectId isEqual:p.projectId] : (self.projectId == p.projectId))
+             : (p.projectId == nil))
+            &&
+            ((self.sdkKey != nil)
+             ? (p.sdkKey != nil ? [self.sdkKey isEqual:p.sdkKey] : (self.sdkKey == p.sdkKey))
+             : (p.sdkKey == nil)));
 }
 
 -(NSUInteger) hash {
