@@ -46,6 +46,15 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
     return [NSURL URLWithString:filePath];
 }
 
++ (BOOL)areNilOrEqual:(NSString*)x y:(NSString*)y {
+    // Equivalence relation which allows nil inputs and implies isEqual: for non-nil inputs.
+    if (x==nil) {
+        return (y==nil);
+    } else {
+        return [x isEqual:y];
+    }
+}
+
 - (BOOL)isEqual:(id)object {
     if (self == object) {
         return YES;
@@ -53,14 +62,9 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
     if (![object isKindOfClass: [OPTLYDatafileConfig class]]) {
         return NO;
     }
-    OPTLYDatafileConfig* p = (OPTLYDatafileConfig *) object;
-    return (((self.projectId != nil)
-             ? (p.projectId != nil ? [self.projectId isEqual:p.projectId] : (self.projectId == p.projectId))
-             : (p.projectId == nil))
-            &&
-            ((self.sdkKey != nil)
-             ? (p.sdkKey != nil ? [self.sdkKey isEqual:p.sdkKey] : (self.sdkKey == p.sdkKey))
-             : (p.sdkKey == nil)));
+    OPTLYDatafileConfig* p = (OPTLYDatafileConfig *)object;
+    return ([OPTLYDatafileConfig areNilOrEqual:self.projectId y:p.projectId]
+            &&[OPTLYDatafileConfig areNilOrEqual:self.sdkKey y:p.sdkKey]);
 }
 
 -(NSUInteger) hash {
