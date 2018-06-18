@@ -26,16 +26,15 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 
 @implementation OPTLYDatafileConfig
 
-- (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey {
-    self = [super init];
-    
+- (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey {
     if (![projectId isValidKeyString] && ![sdkKey isValidKeyString]) {
+        // One of projectId and sdkKey needs to be a valid key string.
         return nil;
     }
-    
-    self.projectId = projectId;
-    self.sdkKey = sdkKey;
-    
+    if (self = [super init]) {
+        self.projectId = projectId;
+        self.sdkKey = sdkKey;
+    }
     return self;
 }
 - (NSString*)key {
