@@ -67,9 +67,11 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
             &&[OPTLYDatafileConfig areNilOrEqual:self.sdkKey y:p.sdkKey]);
 }
 
--(NSUInteger) hash {
-    NSUInteger result = 17;
-    result = 31 * result + (self.projectId == nil ? 0 : [self.projectId hash]) + (self.sdkKey == nil ? 0 : [self.sdkKey hash]);
+- (NSUInteger)hash {
+    NSUInteger a = 40229;
+    NSUInteger result = 524758627;
+    result = a*result + (self.projectId == nil ? 0 : [self.projectId hash]);
+    result = a*result + (self.sdkKey == nil ? 0 : [self.sdkKey hash]);
     return result;
 }
 @end
