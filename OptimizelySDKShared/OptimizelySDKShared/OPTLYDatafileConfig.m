@@ -48,10 +48,10 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 
 - (BOOL)isEqual:(id)object {
     if (self == object) {
-        return true;
+        return YES;
     }
     if (![object isKindOfClass: [OPTLYDatafileConfig class]]) {
-        return false;
+        return NO;
     }
     OPTLYDatafileConfig* p = (OPTLYDatafileConfig *) object;
     return self.projectId != nil ? (p.projectId != nil ? [self.projectId isEqual: (p.projectId)] : self.projectId == p.projectId) : p.projectId == nil
