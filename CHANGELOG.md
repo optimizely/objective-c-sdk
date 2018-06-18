@@ -1,4 +1,11 @@
 # Optimizely Objective-C SDK Changelog
+## 1.5.2
+June 15, 2018
+
+### New Features
+* Updated SDK targets to Xcode 9.4 recommended settings, pod update'd third party Cocoapods used by the 2 demo apps,
+and eliminated Xcode 9.4 Build and Analyze warnings for SDK targets.
+
 ## 2.0.2-beta1
 May 17, 2018
 
