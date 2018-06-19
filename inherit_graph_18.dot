@@ -1,7 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node0 [label="OPTLYJSONModelError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_o_p_t_l_y_j_s_o_n_model_error.html"];
-}
