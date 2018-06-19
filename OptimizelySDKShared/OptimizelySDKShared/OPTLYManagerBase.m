@@ -181,4 +181,8 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 - (NSString *)description {
     return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfileService];
 }
+
++ (BOOL)isValidKeyString:(NSString*)s {
+    return ((s != nil) && ![s isEqualToString:@""] && ![s containsString:@" "]);
+}
 @end

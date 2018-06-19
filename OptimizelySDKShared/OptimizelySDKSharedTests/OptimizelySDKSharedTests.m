@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 #import <XCTest/XCTest.h>
-#import "NSString+OPTLYCategory.h"
 
 @interface OptimizelySDKSharedTests : XCTestCase
 
@@ -36,13 +35,6 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
--(void)testCategory {
-    XCTAssertTrue([@"12121212" isValidKeyString]);
-    NSString *strTest = nil;
-    XCTAssertFalse([strTest isValidKeyString]);
-    XCTAssertFalse([@"" isValidKeyString]);
 }
 
 - (void)testPerformanceExample {

@@ -15,7 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYDatafileConfig.h"
-#import "NSString+OPTLYCategory.h"
+#import "OPTLYManagerBase.h"
 
 NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 
@@ -27,7 +27,7 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 @implementation OPTLYDatafileConfig
 
 - (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey {
-    if (![projectId isValidKeyString] && ![sdkKey isValidKeyString]) {
+    if (![OPTLYManagerBase isValidKeyString:projectId] && ![OPTLYManagerBase isValidKeyString:sdkKey]) {
         // One of projectId and sdkKey needs to be a valid key string.
         return nil;
     }

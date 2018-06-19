@@ -122,8 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #endif
             let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
             
-            let booleanValue = optimizelyClient?.getFeatureVariableString("feature_test", variableKey: "variables", userId: (self?.userId)!, attributes: (self?.attributes))
-            
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         })
         

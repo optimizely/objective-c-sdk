@@ -23,9 +23,9 @@
     #import <OptimizelySDKCore/OPTLYLogger.h>
 #endif
 
+#import "OPTLYManagerBase.h"
 #import "OPTLYManagerBuilder.h"
 #import "OPTLYDatafileManagerBasic.h"
-#import "NSString+OPTLYCategory.h"
 
 @implementation OPTLYManagerBuilder
 
@@ -80,7 +80,7 @@
         }
         
         // check the project id
-        if (![_projectId isValidKeyString] && ![_sdkKey isValidKeyString]) {
+        if (![OPTLYManagerBase isValidKeyString:_projectId] && ![OPTLYManagerBase isValidKeyString:_sdkKey]) {
             [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
                       withLevel:OptimizelyLogLevelError];
             return nil;

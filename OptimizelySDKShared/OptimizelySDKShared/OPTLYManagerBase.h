@@ -24,7 +24,7 @@ extern NSString * _Nonnull const OptimizelySDKVersionKey;
 extern NSString * _Nonnull const OptimizelyBundleDatafilePrefix;
 extern NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension;
 
-@class OPTLYClient, OPTLYManagerBuilder;
+@class OPTLYClient, OPTLYDatafileConfig, OPTLYManagerBuilder;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder);
@@ -122,4 +122,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  */
 - (nullable OPTLYClient *)getOptimizely;
 
+/*
+ * Test if string s can be an Optimizely SDK key string.
+ */
++ (BOOL)isValidKeyString:(NSString*)s;
 @end
