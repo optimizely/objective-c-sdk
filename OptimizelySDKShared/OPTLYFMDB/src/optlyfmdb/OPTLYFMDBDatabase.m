@@ -1502,7 +1502,7 @@ void OPTLYFMDBBlockSQLiteCallBackFunction(sqlite3_context *context, int argc, sq
 #endif
 }
 
-- (SqliteValueType)valueType:(void *)value {
+- (OPTLYSqliteValueType)valueType:(void *)value {
     return sqlite3_value_type(value);
 }
 
