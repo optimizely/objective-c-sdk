@@ -218,23 +218,24 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     
-    if (!decision || !decision.variation.featureEnabled) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        return false;
+    if (decision) {
+        if ([decision.source isEqualToString:DecisionSourceExperiment]) {
+            [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
+        } else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+
+        if (decision.variation.featureEnabled) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            return true;
+        }
     }
     
-    if ([decision.source isEqualToString:DecisionSourceExperiment]) {
-        [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
-    } else {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    
-    return true;
+    return false;
 }
 
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
