@@ -17,7 +17,7 @@
 #import "OPTLYDatafileConfig.h"
 #import "OPTLYManagerBase.h"
 
-NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
+NSString * const OPTLY_DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 
 @interface OPTLYDatafileConfig()
 @property(nonatomic, strong, nullable) NSString* projectId;
@@ -42,7 +42,7 @@ NSString * const DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
 }
 
 - (NSURL *)URLForKey {
-    NSString *filePath = [NSString stringWithFormat:DATAFILE_URL, [self key]];
+    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, [self key]];
     return [NSURL URLWithString:filePath];
 }
 

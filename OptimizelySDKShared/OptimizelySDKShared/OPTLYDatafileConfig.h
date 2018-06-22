@@ -15,6 +15,8 @@
  ***************************************************************************/
 #import <Foundation/Foundation.h>
 
+extern NSString * const OPTLY_DATAFILE_URL;
+
 @interface OPTLYDatafileConfig : NSObject
 - (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey;
 - (NSURL *) URLForKey;

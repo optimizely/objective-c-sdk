@@ -16,12 +16,12 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OptimizelySDKShared/OPTLYDatafileConfig.h>
 #import "OPTLYNetworkService.h"
 #import "OPTLYTestHelper.h"
 
 static NSString *const kDatafileVersion = @"3";
 
-static NSString *const kExpectedCDNURLTemplate = @"https://cdn.optimizely.com/json/%@.json";
 static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 static NSString *const kLastModifiedDate = @"Mon, 28 Nov 2016 06:10:59 GMT";
 static NSString *const kProjectId = @"6372300739";
@@ -64,7 +64,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
     
-    NSString *filePath = [NSString stringWithFormat:@"https://cdn.optimizely.com/json/%@.json", kProjectId];
+    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
     
     [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
                            backoffRetry:NO
@@ -83,7 +83,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion {
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
-    NSString *filePath = [NSString stringWithFormat:@"https://cdn.optimizely.com/json/%@.json", kProjectId];
+    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
 
     [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
                            backoffRetry:NO
@@ -101,7 +101,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 # pragma mark - Helper Methods
 - (id<OHHTTPStubsDescriptor>)stub200Response {
-    NSString *filePath = [NSString stringWithFormat:@"https://cdn.optimizely.com/json/%@.json", kProjectId];
+    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
     
      NSURL *hostURL = [NSURL URLWithString:filePath];
     NSString *hostName = [hostURL host];
