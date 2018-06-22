@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // customizable settings
     let datafileName = "demoTestDatafile" // default parameter for initializing Optimizely from saved datafile
-    var projectId = "8182362857" // project name: X Mobile - Sample App
+    var projectId = "10657931863" // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
     let attributes = ["sample_attribute_key":"sample_attribute_value"]
@@ -73,12 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ---- Create the Datafile Manager ----
         let datafileManager = OPTLYDatafileManagerDefault.init{(builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.projectId = self.projectId
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:self.projectId)!;
         }
         
         // ---- Create the Manager ----
         let optimizelyManager = OPTLYManager.init {(builder) in
-            builder!.projectId = self.projectId
+            builder!.projectId = nil;
+            builder!.sdkKey = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         }
@@ -120,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
 #endif
             let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+            
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         })
         

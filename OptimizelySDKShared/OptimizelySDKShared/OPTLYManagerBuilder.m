@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -23,6 +23,7 @@
     #import <OptimizelySDKCore/OPTLYLogger.h>
 #endif
 
+#import "OPTLYManagerBase.h"
 #import "OPTLYManagerBuilder.h"
 #import "OPTLYDatafileManagerBasic.h"
 
@@ -79,17 +80,12 @@
         }
         
         // check the project id
-        if (_projectId == nil) {
+        if (![OPTLYManagerBase isValidKeyString:_projectId] && ![OPTLYManagerBase isValidKeyString:_sdkKey]) {
             [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
                       withLevel:OptimizelyLogLevelError];
             return nil;
         }
         
-        if ([_projectId isEqualToString:@""]) {
-            [_logger logMessage:OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString
-                      withLevel:OptimizelyLogLevelError];
-            return nil;
-        }
         
     }
     return self;

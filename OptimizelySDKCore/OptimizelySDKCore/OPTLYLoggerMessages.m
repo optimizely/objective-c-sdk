@@ -167,10 +167,10 @@ NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDa
 NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol = @"[MANAGER] Error handler does not conform to the OPTLYErrorHandler protocol.";
 NSString *const OPTLYLoggerMessagesManagerEventDispatcherDoesNotConformToOPTLYEventDispatcherProtocol = @"[MANAGER] Event dispatcher does not conform to the OPTLYEventDispatcher protocol.";
 NSString *const OPTLYLoggerMessagesManagerLoggerDoesNotConformToOPTLYLoggerProtocol = @"[MANAGER] Logger does not conform to the OPTLYLogger protocol.";
-NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID.";
+NSString *const OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId = @"[MANAGER] An Optimizely Manager instance must be initialized with a project ID or SDK Key.";
 NSString *const OPTLYLoggerMessagesManagerProjectIdCannotBeEmptyString = @"[MANAGER] The project ID for the Optimizely Manager instance cannot be an empty string";
-NSString *const OPTLYLoggerMessagesManagerInit = @"[MANAGER] Initializing client for project %@.";
-NSString *const OPTLYLoggerMessagesManagerInitWithCallback = @"[MANAGER] Initializing client with callback for project %@.";
+NSString *const OPTLYLoggerMessagesManagerInit = @"[MANAGER] Initializing client for projectId %@ with SDK Key %@.";
+NSString *const OPTLYLoggerMessagesManagerInitWithCallback = @"[MANAGER] Initializing client with callback for projectId %@ with SDK Key %@.";
 NSString *const OPTLYLoggerMessagesManagerInitWithCallbackErrorDatafileDownload = @"[MANAGER] Error downloading datafile: %@.";
 NSString *const OPTLYLoggerMessagesManagerInitWithCallbackNoDatafileUpdates = @"[MANAGER] Not downloading new datafile — no updates have been made.";
 NSString *const OPTLYLoggerMessagesManagerBundledDataLoaded = @"[MANAGER] The bundled datafile was loaded.";
