@@ -279,7 +279,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         if ([request.allHTTPHeaderFields objectForKey:@"If-Modified-Since"] != nil) {
-            return [OHHTTPStubsResponse responseWithData:nil
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
                                               statusCode:304
                                                  headers:kCDNResponseHeaders];
         }
@@ -300,7 +300,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [OHHTTPStubsResponse responseWithData:nil
+        return [OHHTTPStubsResponse responseWithData:[NSData data]
                                           statusCode:400
                                              headers:kCDNResponseHeaders];
     }];
