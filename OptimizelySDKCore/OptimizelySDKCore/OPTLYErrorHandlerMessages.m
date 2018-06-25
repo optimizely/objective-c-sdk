@@ -45,6 +45,9 @@ NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown = @"Traffic a
 NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed = @"Event %@ failed to dispatch.";
 NSString * const OPTLYErrorHandlerMessagesConfigInvalid = @"Project config is nil or invalid.";
 
+// Live Variables (DEPRECATED)
+NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown = @"Live variable key %@ is not in datafile."; // live variable key
+
 // Manager Errors
 NSString *const OPTLYErrorHandlerMessagesManagerBuilderInvalid = @"Provided OPTLYManagerBuilder object is invalid.";
 

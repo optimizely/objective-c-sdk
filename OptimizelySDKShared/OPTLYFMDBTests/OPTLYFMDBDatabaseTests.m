@@ -7,7 +7,7 @@
 //
 /****************************************************************************
  * Modifications to FMDB by Optimizely, Inc.                                *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -1098,12 +1098,12 @@
 
 - (void)createCustomFunctions {
     [self.db makeFunctionNamed:@"RemoveDiacritics" arguments:1 block:^(void *context, int argc, void **argv) {
-        SqliteValueType type = [self.db valueType:argv[0]];
-        if (type == SqliteValueTypeNull) {
+        OPTLYSqliteValueType type = [self.db valueType:argv[0]];
+        if (type == OPTLYSqliteValueTypeNull) {
             [self.db resultNullInContext:context];
             return;
         }
-        if (type != SqliteValueTypeText) {
+        if (type != OPTLYSqliteValueTypeText) {
             [self.db resultError:@"Expected text" context:context];
             return;
         }
@@ -1113,9 +1113,9 @@
     }];
 
     [self.db makeFunctionNamed:@"Hypotenuse" arguments:2 block:^(void *context, int argc, void **argv) {
-        SqliteValueType type1 = [self.db valueType:argv[0]];
-        SqliteValueType type2 = [self.db valueType:argv[1]];
-        if (type1 != SqliteValueTypeFloat && type1 != SqliteValueTypeInteger && type2 != SqliteValueTypeFloat && type2 != SqliteValueTypeInteger) {
+        OPTLYSqliteValueType type1 = [self.db valueType:argv[0]];
+        OPTLYSqliteValueType type2 = [self.db valueType:argv[1]];
+        if (type1 != OPTLYSqliteValueTypeFloat && type1 != OPTLYSqliteValueTypeInteger && type2 != OPTLYSqliteValueTypeFloat && type2 != OPTLYSqliteValueTypeInteger) {
             [self.db resultError:@"Expected numeric" context:context];
             return;
         }
@@ -1125,8 +1125,8 @@
     }];
 
     [self.db makeFunctionNamed:@"SetAlternatingByteToOne" arguments:1 block:^(void *context, int argc, void **argv) {
-        SqliteValueType type = [self.db valueType:argv[0]];
-        if (type != SqliteValueTypeBlob) {
+        OPTLYSqliteValueType type = [self.db valueType:argv[0]];
+        if (type != OPTLYSqliteValueTypeBlob) {
             [self.db resultError:@"Expected blob" context:context];
             return;
         }

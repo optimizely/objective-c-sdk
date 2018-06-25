@@ -5,7 +5,7 @@ branches:
     - master
 env:
   matrix:
-    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
+    - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air' RUN_SOURCECLEAR=true
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
     - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.3 NAME='iPhone 6s'
@@ -13,10 +13,13 @@ env:
     - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 before_install: 
   - gem install slather --no-rdoc --no-ri --no-document --quiet
+addons:
+  srcclr: true
 script:
   - pod spec lint --quick
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
 after_success:
+  - ./Scripts/sourceclear.sh
   - slather
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
 

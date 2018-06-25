@@ -38,6 +38,10 @@
 #import "OPTLYVariableUsage.h"
 #import "OPTLYNotificationCenter.h"
 
+// (DEPRECATED)
+#import "OPTLYVariable.h"
+#import "OPTLYVariationVariable.h"
+
 NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
 NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
 NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
@@ -214,23 +218,24 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     
-    if (!decision || !decision.variation.featureEnabled) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-        return false;
+    if (decision) {
+        if ([decision.source isEqualToString:DecisionSourceExperiment]) {
+            [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
+        } else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+
+        if (decision.variation.featureEnabled) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            return true;
+        }
     }
     
-    if ([decision.source isEqualToString:DecisionSourceExperiment]) {
-        [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
-    } else {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
-        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    }
-    
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    
-    return true;
+    return false;
 }
 
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
@@ -272,10 +277,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if (decision) {
         OPTLYVariation *variation = decision.variation;
-        OPTLYVariableUsage *featureVariableUsageInstance = [variation getVariableUsageForVariableId:featureVariable.variableId];
+        OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
         
-        if (featureVariableUsageInstance) {
-            variableValue = featureVariableUsageInstance.value;
+        if (featureVariableUsage) {
+            variableValue = featureVariableUsage.value;
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         } else {
@@ -461,6 +466,355 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                             conversionEventParams,
                                             nil]];
 }
+
+////////////////////////////////////////////////////////////////
+//
+//      Mobile 1.x Live Variables are DEPRECATED
+//
+// Optimizely Mobile 1.x Projects creating Mobile 1.x Experiments that
+// contain Mobile 1.x Variables should migrate to Mobile 2.x Projects
+// creating Mobile 2.x Experiments that utilize Optimizely Full Stack 2.0
+// Feature Management which is more capable and powerful than Mobile 1.x
+// Live Variables.  Please check Full Stack 2.0 Feature Management online
+// at OPTIMIZELY.COM .
+////////////////////////////////////////////////////////////////
+
+#pragma mark - Live variable getters (DEPRECATED)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
+
+/**
+ * Finds experiment(s) that contain the live variable.
+ * If live variable is in an experiment, it will be in all variations for that experiment.
+ * Therefore, we only need to check the variables from the first variation in the array of variations for experiments.
+ *
+ * @param variableId ID of the live variable
+ * @return Array of experiment key(s) that contain the live variable
+ */
+- (NSArray *)getExperimentKeysForLiveVariable:(NSString *)variableId
+{
+    NSArray *allExperiments = self.config.allExperiments;
+    NSMutableArray *experimentsForLiveVariable = [NSMutableArray new];
+    
+    for (OPTLYExperiment *experiment in allExperiments) {
+        OPTLYVariation *firstVariation = [experiment.variations objectAtIndex:0];
+        NSArray *firstVariationVariables = firstVariation.variables;
+        
+        for (OPTLYVariationVariable *firstVariationVariable in firstVariationVariables) {
+            NSString *firstVariationVariableId = firstVariationVariable.variableId;
+            if ([firstVariationVariableId isEqualToString:variableId]) {
+                NSString *experimentKey = experiment.experimentKey;
+                [experimentsForLiveVariable addObject:experimentKey];
+            }
+        }
+    }
+    
+    return experimentsForLiveVariable;
+}
+
+/**
+ * Gets the stringified value of the live variable that is stored in the datafile.
+ *
+ * @param variableId ID of the live variable
+ * @param variation Variation of the experiment that the user has been bucketed into
+ * @return Stringified value of the variation's live variable
+ */
+- (NSString *)getValueForLiveVariable:(NSString *)variableId
+                            variation:(OPTLYVariation *)variation {
+    for (OPTLYVariationVariable *variable in variation.variables) {
+        NSString *variationVariableId = variable.variableId;
+        if ([variationVariableId isEqualToString:variableId]) {
+            NSString *variableValue = variable.value;
+            return variableValue;
+        }
+    }
+    
+    return nil;
+}
+
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:NO
+                          error:nil];
+}
+
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId
+                   activateExperiment:(BOOL)activateExperiment {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:activateExperiment
+                          error:nil];
+}
+
+- (nullable NSString *)variableString:(NSString *)variableKey
+                               userId:(NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:attributes
+             activateExperiment:activateExperiment
+                          error:nil];
+}
+
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    return [self variableString:variableKey
+                         userId:userId
+                     attributes:attributes
+             activateExperiment:activateExperiment
+                       callback:^(NSError *e) {
+                           if (error && e) {
+                                *error = e;
+                           }
+                       }];
+}
+
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                             callback:(void (^)(NSError *))callback {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
+    OPTLYVariable *variable = [self.config getVariableForVariableKey:variableKey];
+    
+    if (!variable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+        [_logger logMessage:logMessage
+                  withLevel:OptimizelyLogLevelError];
+        
+        NSError *variableUnknownForVariableKey = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                                     code:OPTLYLiveVariableErrorKeyUnknown
+                                                                 userInfo:@{NSLocalizedDescriptionKey :
+                                                                                [NSString stringWithFormat:NSLocalizedString(OPTLYErrorHandlerMessagesLiveVariableKeyUnknown, nil), variableKey]}];
+    
+        [self.errorHandler handleError:variableUnknownForVariableKey];
+    
+        if (callback) {
+            callback(variableUnknownForVariableKey);
+        }
+        
+        return nil;
+    }
+    
+    NSString *variableId = variable.variableId;
+    
+    NSArray *experimentKeysForLiveVariable = [self getExperimentKeysForLiveVariable:variableId];
+    
+    if ([experimentKeysForLiveVariable count] == 0) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNoExperimentsContainVariable, variableKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        
+        if (callback) {
+            callback(nil);
+        }
+        
+        return variable.defaultValue;
+    }
+    
+    for (NSString *experimentKey in experimentKeysForLiveVariable) {
+        
+        OPTLYVariation *variation = [self variation:experimentKey
+                                             userId:userId
+                                         attributes:attributes];
+        
+        
+        if (variation) {
+            NSString *valueForLiveVariable = [self getValueForLiveVariable:variableId variation:variation];
+            
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableValue, variableId, valueForLiveVariable];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            
+            if (activateExperiment) {
+                [self activate:experimentKey
+                        userId:userId
+                    attributes:attributes
+                      callback:callback];
+            } else {
+                if (callback) {
+                    callback(nil);
+                }
+            }
+            
+            return valueForLiveVariable;
+        } else {
+            // If user is not bucketed into experiment, then continue to another experiment
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable, userId, experimentKey, variableKey];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+    }
+    
+    if (callback) {
+        callback(nil);
+    }
+    
+    return variable.defaultValue;
+}
+
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:NO
+                           error:nil];
+}
+
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId
+     activateExperiment:(BOOL)activateExperiment {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:activateExperiment
+                           error:nil];
+}
+
+- (BOOL)variableBoolean:(NSString *)variableKey
+                 userId:(NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment {
+    return [self variableBoolean:variableKey
+                          userId:userId
+                      attributes:attributes
+              activateExperiment:activateExperiment
+                           error:nil];
+}
+
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
+    BOOL variableValue = false;
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
+    
+    if (variableValueStringOrNil != nil) {
+        variableValue = [variableValueStringOrNil boolValue];
+    }
+    
+    return variableValue;
+}
+
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:NO
+                           error:nil];
+}
+
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId
+          activateExperiment:(BOOL)activateExperiment {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:nil
+              activateExperiment:activateExperiment
+                           error:nil];
+}
+
+- (NSInteger)variableInteger:(NSString *)variableKey
+                      userId:(NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment {
+    return [self variableInteger:variableKey
+                          userId:userId
+                      attributes:attributes
+              activateExperiment:activateExperiment
+                           error:nil];
+}
+
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
+    NSInteger variableValue = 0;
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
+    
+    if (variableValueStringOrNil != nil) {
+        variableValue = [variableValueStringOrNil intValue];
+    }
+    
+    return variableValue;
+}
+
+- (double)variableDouble:(NSString *)variableKey
+                  userId:(NSString *)userId {
+    return [self variableDouble:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:NO
+                          error:nil];
+}
+
+- (double)variableDouble:(NSString *)variableKey
+                  userId:(NSString *)userId
+      activateExperiment:(BOOL)activateExperiment {
+    return [self variableDouble:variableKey
+                         userId:userId
+                     attributes:nil
+             activateExperiment:activateExperiment
+                          error:nil];
+}
+
+- (double)variableDouble:(NSString *)variableKey
+                  userId:(NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment {
+    return [self variableDouble:variableKey
+                         userId:userId
+                     attributes:attributes
+             activateExperiment:activateExperiment
+                          error:nil];
+}
+
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error {
+    [_logger logMessage:OPTLYLoggerMessagesLiveVariablesDeprecated
+              withLevel:OptimizelyLogLevelWarning];
+    double variableValue = 0.0;
+    NSString *variableValueStringOrNil = [self variableString:variableKey
+                                                       userId:userId
+                                                   attributes:attributes
+                                           activateExperiment:activateExperiment
+                                                        error:error];
+    
+    if (variableValueStringOrNil != nil) {
+        variableValue = [variableValueStringOrNil doubleValue];
+    }
+    
+    return variableValue;
+}
+
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
 
 # pragma mark - Helper methods
 // log and propagate error for a track failure

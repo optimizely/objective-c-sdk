@@ -29,7 +29,7 @@
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysVariationId   : @"variationId",
                                                              OPTLYDatafileKeysVariationKey  : @"variationKey",
-                                                             OPTLYDatafileKeysVariationVariableUsageInstances  : @"variableUsageInstances",
+                                                             OPTLYDatafileKeysVariationVariables  : @"variableUsageInstances",
                                                              OPTLYDatafileKeysVariationFeatureEnabled : @"featureEnabled"
                                                        }];
 }

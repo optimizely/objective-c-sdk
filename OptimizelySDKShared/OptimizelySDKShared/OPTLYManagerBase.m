@@ -25,6 +25,7 @@
 #import <OptimizelySDKCore/OPTLYLogger.h>
 #import <OptimizelySDKCore/OPTLYLoggerMessages.h>
 #endif
+#import "OPTLYDatafileConfig.h"
 #import "OPTLYClient.h"
 #import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYManagerBase.h"
@@ -96,7 +97,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 #pragma mark - Client Getters
 
 - (OPTLYClient *)initialize {
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInit, self.projectId]
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInit, self.projectId, self.sdkKey]
                   withLevel:OptimizelyLogLevelInfo];
     
     // attempt to get the cached datafile
@@ -119,10 +120,10 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 }
 
 - (void)initializeWithCallback:(void (^)(NSError * _Nullable, OPTLYClient * _Nullable))callback {
-    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInitWithCallback, self.projectId]
+    [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInitWithCallback, self.projectId, self.sdkKey]
                   withLevel:OptimizelyLogLevelInfo];
     
-    [self.datafileManager downloadDatafile:self.projectId completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [self.datafileManager downloadDatafile:self.datafileConfig completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             [self.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesManagerInitWithCallbackErrorDatafileDownload, error.localizedDescription]
                           withLevel:OptimizelyLogLevelError];
@@ -179,5 +180,9 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"projectId: %@ \nclientEngine: %@\nclientVersion: %@\ndatafile:%@\nlogger:%@\nerrorHandler:%@\ndatafileManager:%@\neventDispatcher:%@\nuserProfile:%@", self.projectId, self.clientEngine, self.clientVersion, self.datafile, self.logger, self.errorHandler, self.datafileManager, self.eventDispatcher, self.userProfileService];
+}
+
++ (BOOL)isValidKeyString:(NSString*)s {
+    return ((s != nil) && ![s isEqualToString:@""] && ![s containsString:@" "]);
 }
 @end
