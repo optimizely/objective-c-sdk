@@ -30,7 +30,16 @@
  * @param builderBlock The builder block with which to initialize the Optimizely User Profile object
  * @return An instance of OPTLYUserProfileService
  */
-+ (nullable instancetype)init:(nonnull OPTLYUserProfileServiceBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYUserProfileServiceBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
+
+/**
+ * Initializer for Optimizely User Profile object
+ *
+ * @param builder The OPTLYUserProfileServiceBuilder object with which to initialize the Optimizely User Profile object
+ * @return An instance of OPTLYUserProfileService
+ */
+- (instancetype)initWithBuilder:(OPTLYUserProfileServiceBuilder *)builder;
 
 /**
  * Cleans and removes all bucketing mapping for specific userId.

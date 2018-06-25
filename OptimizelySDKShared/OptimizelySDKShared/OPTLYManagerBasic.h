@@ -23,5 +23,13 @@
  * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
  * @return OptimizelyManager instance
  */
-+ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYManagerBasic initWithBuilder method instead.")));
+
+/**
+ * Init with OPTLYManagerBuilder object
+ * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
+ * @return OptimizelyManager instance
+ */
+- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
 @end

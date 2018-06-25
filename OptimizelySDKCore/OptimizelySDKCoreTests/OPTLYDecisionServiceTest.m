@@ -123,10 +123,10 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
     id<OPTLYUserProfileService> profileService = [OPTLYUserProfileServiceNoOp new];
 
-    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.userProfileService = profileService;
-    }];
+    }]];
     self.config = self.optimizely.config;
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:self.bucketer];
@@ -177,9 +177,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = whitelistingDatafile;
-    }];
+    }]];
     
     // user should not be bucketed if userId is not a match and they do not pass attributes
     OPTLYVariation *variation = [optimizely variation:kWhitelistedExperiment

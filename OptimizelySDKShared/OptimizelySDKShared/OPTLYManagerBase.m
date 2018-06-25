@@ -163,7 +163,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 }
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [[OPTLYClient new] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;
         builder.errorHandler = self.errorHandler;
         builder.eventDispatcher = self.eventDispatcher;
@@ -171,7 +171,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
         builder.userProfileService = self.userProfileService;
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
-    }];
+    }]];
     client.defaultAttributes = [self newDefaultAttributes];
     return client;
 }

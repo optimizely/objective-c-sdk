@@ -92,11 +92,11 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set
-            self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+            self.datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
                 builder.datafileConfig = self.datafileConfig;
                 builder.errorHandler = self.errorHandler;
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.datafileManager = builder.datafileManager;
         }
@@ -114,9 +114,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- user profile ---
         if (!builder.userProfileService) {
             // set default user profile if no user profile is set
-            self.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
+            self.userProfileService = [[OPTLYUserProfileServiceDefault alloc] initWithBuilder:[OPTLYUserProfileServiceBuilder builderWithBlock:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.userProfileService = builder.userProfileService;
         }

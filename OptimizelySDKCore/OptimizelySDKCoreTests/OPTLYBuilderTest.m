@@ -38,16 +38,15 @@ static NSData *datafile;
 }
 
 - (void)testBuilderRequiresDatafile {
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
-        
-    }];
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+    }]];
     XCTAssertNil(optimizely);
 }
 
 - (void)testBuilderBuildsDefaults {
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    }];
+    }]];
     XCTAssertNotNil(optimizely);
     XCTAssertNotNil(optimizely.bucketer);
     XCTAssertNotNil(optimizely.config);
@@ -64,14 +63,14 @@ static NSData *datafile;
 - (void)testBuilderCanAssignErrorHandler {
     OPTLYErrorHandlerDefault *errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
     
-    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.errorHandler = errorHandler;
-    }];
+    }]];
     
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.errorHandler);
@@ -82,14 +81,14 @@ static NSData *datafile;
 - (void)testBuilderCanAssignEventDispatcher {
     id<OPTLYEventDispatcher> eventDispatcher = (id<OPTLYEventDispatcher>)[[NSObject alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
     
-    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.eventDispatcher = eventDispatcher;
-    }];
+    }]];
     
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.eventDispatcher);
@@ -100,14 +99,14 @@ static NSData *datafile;
 - (void)testBuilderCanAssignLogger {
     OPTLYLoggerDefault *logger = [[OPTLYLoggerDefault alloc] init];
     
-    Optimizely *defaultOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *defaultOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
     
-    Optimizely *customOptimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *customOptimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = logger;
-    }];
+    }]];
     
     XCTAssertNotNil(customOptimizely);
     XCTAssertNotNil(customOptimizely.logger);
@@ -118,15 +117,15 @@ static NSData *datafile;
 - (void)testInitializationWithoutBuilder {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnonnull"
-    Optimizely *optimizely = [Optimizely init:nil];
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:nil]];
 #pragma clang diagnostic pop
     XCTAssertNil(optimizely);
 }
 
 - (void)testBuilderReturnsNilWithBadDatafile {
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = [[NSData alloc] init];
-    }];
+    }]];
     XCTAssertNil(optimizely);
 }
 
@@ -137,11 +136,11 @@ static NSData *datafile;
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
     
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
-    }];
+    }]];
     
     XCTAssertNotNil(optimizely);
     XCTAssertNotNil(optimizely.config);

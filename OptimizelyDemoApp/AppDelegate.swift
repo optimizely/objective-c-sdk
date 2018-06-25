@@ -65,24 +65,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // **************************************************
         
         // ---- Create the Event Dispatcher ----
-        let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder) in
+        let eventDispatcher = OPTLYEventDispatcherDefault.init(builder: OPTLYEventDispatcherBuilder.init(block: { (builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
             builder?.logger = OPTLYLoggerDefault.init(logLevel: .debug)
-        }
+        }))
         
         // ---- Create the Datafile Manager ----
-        let datafileManager = OPTLYDatafileManagerDefault.init{(builder) in
+        let datafileManager = OPTLYDatafileManagerDefault.init(builder: OPTLYDatafileManagerBuilder.init(block: { (builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:self.projectId)!;
-        }
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:self.projectId)!; 
+        }))
         
         // ---- Create the Manager ----
-        let optimizelyManager = OPTLYManager.init {(builder) in
+        let optimizelyManager = OPTLYManager.init(builder: OPTLYManagerBuilder.init(block: { (builder) in
             builder!.projectId = nil;
             builder!.sdkKey = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
-        }
+        }))
         
         // After creating the client, there are three different ways to intialize the manager:
         

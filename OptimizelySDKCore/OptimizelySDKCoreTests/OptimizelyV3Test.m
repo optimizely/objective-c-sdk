@@ -125,11 +125,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [super setUp];
     self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experimentsV3"];
     
-    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-    }];
+    }]];
     
     XCTAssertNotNil(self.optimizely);
     

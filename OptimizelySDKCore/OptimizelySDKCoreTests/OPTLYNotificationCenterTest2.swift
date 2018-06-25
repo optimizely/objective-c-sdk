@@ -29,11 +29,11 @@ class OPTLYNotificationCenterTest2: XCTestCase {
         //var datafile = OPTLYTestHelper.loadJSONDatafileIntoDataObject("test_data_10_experiments")
         let datafile = NSData(contentsOfFile: path!)
         
-        optimizely = Optimizely.init({ (builder) in
+        optimizely = Optimizely.init(builder: OPTLYBuilder.init(block: { (builder) in
             builder?.datafile = datafile as Data?
             return;
-        });
-        
+        }))
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

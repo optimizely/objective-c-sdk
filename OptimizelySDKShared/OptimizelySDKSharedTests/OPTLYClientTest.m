@@ -30,9 +30,9 @@ static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 @implementation OPTLYClientTest
 
 - (void)testEmptyClientInitializationReturnsDummyClient {
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nullable builder) {
+    OPTLYClient *client = [[OPTLYClient alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         
-    }];
+    }]];
     XCTAssertNotNil(client);
     XCTAssertNil(client.optimizely);
     XCTAssertNotNil(client.logger);
@@ -40,9 +40,9 @@ static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 }
 
 - (void)testClientBuildsOptimizelyDefaults {
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nullable builder) {
+    OPTLYClient *client = [[OPTLYClient alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
-    }];
+    }]];
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     XCTAssertNotNil(client.logger);
@@ -54,11 +54,11 @@ static NSString *const kDatamodelDatafileName = @"optimizely_6372300739";
 - (void)testClientPassesThroughClientEngineAndVersion {
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [[OPTLYClient alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatamodelDatafileName];
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
-    }];
+    }]];
     XCTAssertNotNil(client);
     XCTAssertNotNil(client.optimizely);
     XCTAssertNotNil(client.optimizely.config);

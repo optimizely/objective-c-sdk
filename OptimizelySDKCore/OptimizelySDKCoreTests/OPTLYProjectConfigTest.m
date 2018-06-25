@@ -64,12 +64,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     [super setUp];
     
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    self.projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    self.projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.projectConfig];
 }
@@ -85,12 +85,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlock
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
@@ -107,11 +107,11 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
-    }];
+    }]];
     XCTAssertNotNil(projectConfig);
     XCTAssertEqualObjects(projectConfig.clientEngine, clientEngine);
     XCTAssertEqualObjects(projectConfig.clientVersion, clientVersion);
@@ -119,9 +119,9 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 
 - (void)testInitWithBuilderBlockNoDatafile
 {
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = nil;
-    }];
+    }]];
     
     XCTAssertNil(projectConfig, @"project config should be nil.");
 }
@@ -132,11 +132,11 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     id<OPTLYLogger> logger = (id<OPTLYLogger>)[NSObject new];
     id<OPTLYErrorHandler> errorHandler = (id<OPTLYErrorHandler>)[NSObject new];
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = logger;
         builder.errorHandler = errorHandler;
-    }];
+    }]];
     
     XCTAssertNil(projectConfig.userProfileService, @"Invalid user profile should not have been set.");
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
