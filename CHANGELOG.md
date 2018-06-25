@@ -78,6 +78,8 @@ with Notification Listeners APIs
 - (void)clearNotificationListeners:(OPTLYNotificationType)type;
 - (void)clearAllNotificationListeners;
 ```
+* Add environments support to SDK with SDK key initialization. A new sdkKey property has been added to OPTLYManagerBuilder
+that is an alternative to the older projectId property.
 * Added `@"$opt_bucketing_id"` in the attribute map for overriding bucketing using the user id.  This string is
 available as OptimizelyBucketId in OPTLYEventBuilder.h .
 
