@@ -16,7 +16,6 @@
 ################################################################
 set -e
 
-
 cleanup() {
   rm -f "${tempfiles[@]}"
 }
@@ -44,13 +43,22 @@ main() {
   local source_dir="$(dirname $0)"
   local universal_dir="${source_dir}/../../OptimizelySDKUniversal"
   local universal_framework="${universal_dir}/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework"
-  if [[ ! -d "${universal_framework}" ]]; then
-    # Build "${universal_framework}" if it doesn't exist.
+  {
+    # Make blank unexported_symbols.txt
+    local unexported_symbols_txt="${universal_dir}/unexported_symbols.txt"
+    if [ -f "${unexported_symbols_txt}" ]; then
+      # Remove previous unexported_symbols.txt
+      rm "${unexported_symbols_txt}"
+    fi
+    touch "${unexported_symbols_txt}"
+  }
+  {
+    # Rebuild "${universal_framework}" always.
     echo "Building Universal Framework"
     xcodebuild -project "${universal_dir}/OptimizelySDKUniversal.xcodeproj" \
                -target "OptimizelySDKiOS-Universal" \
                -configuration "Release"
-  fi
+  }
   local arm64_slice="${source_dir}/OptimizelySDKiOS-arm64"
   {
     tempfiles+=( "${arm64_slice}" )
