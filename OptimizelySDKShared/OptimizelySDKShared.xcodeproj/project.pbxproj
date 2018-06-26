@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2E93A020CF435000E0893E /* OPTLYDatafileConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2E93A120CF435000E0893E /* OPTLYDatafileConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2E93A220CF435000E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */; };
+		0B2E93A320CF435000E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */; };
 		2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D08FB6E1DCA5B3D006CA063 /* OPTLYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */; };
@@ -183,6 +187,8 @@
 /* Begin PBXFileReference section */
 		0443A97CD668FC2F4004BE08 /* Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		09704701D3CB97F3D3F408E3 /* Pods_OptimizelySDKSharediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYDatafileConfig.h; sourceTree = "<group>"; };
+		0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileConfig.m; sourceTree = "<group>"; };
 		2D08FB6A1DCA5A99006CA063 /* OPTLYClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYClient.h; sourceTree = "<group>"; };
 		2D08FB6D1DCA5B3D006CA063 /* OPTLYClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClient.m; sourceTree = "<group>"; };
 		2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYClientTest.m; sourceTree = "<group>"; };
@@ -337,6 +343,8 @@
 		2D3EC79B1DEFB5F30014D9A7 /* Datafile Manger */ = {
 			isa = PBXGroup;
 			children = (
+				0B2E939E20CF435000E0893E /* OPTLYDatafileConfig.h */,
+				0B2E939F20CF435000E0893E /* OPTLYDatafileConfig.m */,
 				EAC5F3491E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.h */,
 				EAC5F34A1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m */,
 			);
@@ -541,6 +549,7 @@
 				EA5249971DC7D8AD00AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6B1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA064BD21DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
+				0B2E93A020CF435000E0893E /* OPTLYDatafileConfig.h in Headers */,
 				EA29D94E1DCE778C0034A4FE /* OPTLYDatabase.h in Headers */,
 				EA29D9541DCED4580034A4FE /* OPTLYDatabaseEntity.h in Headers */,
 				EA92F8641E281DE200A859C7 /* OPTLYManagerBasic.h in Headers */,
@@ -557,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FBA01DCA5FA8006CA063 /* OPTLYClientBuilder.h in Headers */,
+				0B2E93A120CF435000E0893E /* OPTLYDatafileConfig.h in Headers */,
 				EA52499A1DC7D8B800AF6685 /* OptimizelySDKShared.h in Headers */,
 				2D08FB6C1DCA5A99006CA063 /* OPTLYClient.h in Headers */,
 				EA064BD31DD4030700DF7537 /* OPTLYDataStore.h in Headers */,
@@ -618,7 +628,6 @@
 				EA5247081DC7192200AF6685 /* Frameworks */,
 				EA5247091DC7192200AF6685 /* Resources */,
 				7C453A45F5FB4134EB4DFA9A /* [CP] Embed Pods Frameworks */,
-				55AA6AE0318D6040EF79F2B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -658,7 +667,6 @@
 				EA5247281DC7193B00AF6685 /* Frameworks */,
 				EA5247291DC7193B00AF6685 /* Resources */,
 				5B4E077BF88B57AC8CD8560A /* [CP] Embed Pods Frameworks */,
-				1DC322AE8D1ADDEDB74449B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -676,7 +684,7 @@
 		EA3C68201DC1E68E00C578CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					3ECBCC151F43983400160937 = {
@@ -826,36 +834,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1DC322AE8D1ADDEDB74449B2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55AA6AE0318D6040EF79F2B2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharediOSTests/Pods-OptimizelySDKSharediOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5B4E077BF88B57AC8CD8560A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -952,6 +930,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA064BDD1DD4194700DF7537 /* OPTLYDatabase.m in Sources */,
+				0B2E93A220CF435000E0893E /* OPTLYDatafileConfig.m in Sources */,
 				EAC5F34D1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA29D8FF1DCBBE250034A4FE /* OPTLYFileManager.m in Sources */,
 				3E858C431F4226E800D53856 /* OPTLYFMDBDatabase.m in Sources */,
@@ -987,6 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA29D9E31DD274870034A4FE /* OPTLYFileManager.m in Sources */,
+				0B2E93A320CF435000E0893E /* OPTLYDatafileConfig.m in Sources */,
 				EAC5F34E1E7B7E6600C087B8 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA58C5251E12E58400EE44AE /* OPTLYEventDataStore.m in Sources */,
 				EA92F8281E27FB6000A859C7 /* OPTLYManagerBuilder.m in Sources */,
@@ -1091,12 +1071,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1131,7 +1113,7 @@
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
-				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta1";
+				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1154,12 +1136,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1201,7 +1185,7 @@
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 0;
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
-				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta1";
+				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

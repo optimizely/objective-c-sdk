@@ -29,12 +29,12 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testBasicInitializationWorks {
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectID;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
     }];
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
     XCTAssertEqual(datafileManager.datafileFetchInterval, 0, @"default fetch interval should be 0");
-    XCTAssertNotNil(datafileManager.projectId);
-    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.datafileConfig);
+    XCTAssertEqualObjects(datafileManager.datafileConfig, [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil], @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
     XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManagerDefault Logger should be LogLevelAll");
 }
@@ -45,15 +45,15 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     
     // Initialize datafile manager
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectID;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.logger = defaultLogger;
     }];
     
     // run checks
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
     XCTAssertEqual(datafileManager.datafileFetchInterval, 0, @"default fetch interval should be 0");
-    XCTAssertNotNil(datafileManager.projectId);
-    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.datafileConfig);
+    XCTAssertEqualObjects(datafileManager.datafileConfig, [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil], @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
     XCTAssertEqualObjects(datafileManager.logger, defaultLogger);
     XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelOff, @"should have the same log level as the default logger initialized for this tests");
@@ -62,22 +62,22 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 - (void)testDatafileFetchIntervalIsSetCorrectly {
     // initialize datafile manager with datafile fetch interval
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectID;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.datafileFetchInterval = kDatafileFetchInterval;
     }];
     
     // run checks
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
     XCTAssertEqual(datafileManager.datafileFetchInterval, kDatafileFetchInterval, @"datafile fetch interval not set correctly");
-    XCTAssertNotNil(datafileManager.projectId);
-    XCTAssertEqual(datafileManager.projectId, kProjectID, @"project ID was not set correctly");
+    XCTAssertNotNil(datafileManager.datafileConfig);
+    XCTAssertEqualObjects(datafileManager.datafileConfig, [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil], @"project ID was not set correctly");
     XCTAssertNotNil(datafileManager.logger);
     XCTAssertEqual(datafileManager.logger.logLevel, OptimizelyLogLevelAll, @"Default log level of the OPTLYDatafileManagerDefault Logger should be LogLevelAll");
 }
 
 - (void)testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval {
     OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-        builder.projectId = kProjectID;
+        builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.datafileFetchInterval = -1.0;
     }];
     XCTAssertNil(datafileManager, @"A datafile manager cannot be initialized with a negative fetch interval");

@@ -253,9 +253,9 @@ extension Collection where Self.Iterator.Element == UInt8, Self.Index == Int {
         return result
     }
 
-    func toInteger<T: Integer>() -> T where T: ByteConvertible, T: BitshiftOperationsType {
+    func toInteger<T: SignedInteger>() -> T where T: ByteConvertible, T: BitshiftOperationsType {
         if self.isEmpty {
-            return 0
+            return 0 as! T
         }
 
         var bytes = self.reversed() //FIXME: check it this is equivalent of Array(...)
@@ -270,7 +270,7 @@ extension Collection where Self.Iterator.Element == UInt8, Self.Index == Int {
             return T(truncatingBitPattern: UInt64(bytes[0]))
         }
 
-        var result: T = 0
+        var result: T = 0 as! T
         for byte in bytes.reversed() {
             result = result << 8 | T(byte)
         }
@@ -313,8 +313,8 @@ func arrayOfBytes<T>(value: T, length: Int? = nil) -> Array<UInt8> {
         bytes[totalBytes - 1 - j] = (bytesPointer + j).pointee
     }
 
-    valuePointer.deinitialize()
-    valuePointer.deallocate(capacity: 1)
+    valuePointer.deinitialize(count: 1)
+    valuePointer.deallocate()
 
     return bytes
 }
@@ -332,10 +332,8 @@ protocol BitshiftOperationsType {
 }
 
 struct BytesSequence<D: RandomAccessCollection>: Sequence where D.Iterator.Element == UInt8,
-                                                                D.IndexDistance == Int,
-                                                                D.SubSequence.IndexDistance == Int,
                                                                 D.Index == Int {
-    let chunkSize: D.IndexDistance
+    let chunkSize: Int
     let data: D
 
     func makeIterator() -> AnyIterator<D.SubSequence> {
@@ -390,7 +388,7 @@ extension CSArrayType where Iterator.Element == UInt8 {
     func toHexString() -> String {
         return self.lazy.reduce("") {
             var s = String($1, radix: 16)
-            if s.characters.count == 1 {
+            if s.count == 1 {
                 s = "0" + s
             }
             return $0 + s

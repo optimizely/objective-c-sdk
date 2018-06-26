@@ -1,6 +1,6 @@
 /****************************************************************************
  * Modifications to FMDB by Optimizely, Inc.                                *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -396,7 +396,9 @@ static int OPTLYFMDBDatabaseBusyHandler(void *f, int count) {
     
     [statements addObject:statement];
     
-    [_cachedStatements setObject:statements forKey:query];
+    if (query) {
+        [_cachedStatements setObject:statements forKey:query];
+    }
     
     OPTLYFMDBRelease(query);
 }
@@ -1500,7 +1502,7 @@ void OPTLYFMDBBlockSQLiteCallBackFunction(sqlite3_context *context, int argc, sq
 #endif
 }
 
-- (SqliteValueType)valueType:(void *)value {
+- (OPTLYSqliteValueType)valueType:(void *)value {
     return sqlite3_value_type(value);
 }
 

@@ -19,6 +19,7 @@
     #import "OPTLYErrorHandler.h"
     #import "OPTLYLogger.h"
     #import "OPTLYLoggerMessages.h"
+    #import "OPTLYDatafileConfig.h"
 #else
     #import <OptimizelySDKCore/OPTLYErrorHandler.h>
     #import <OptimizelySDKCore/OPTLYLogger.h>
@@ -45,7 +46,7 @@
                           withLevel:OptimizelyLogLevelError];
             return nil;
         }
-        if (_projectId == nil) {
+        if (_datafileConfig == nil) {
             [self.logger logMessage:OPTLYLoggerMessagesDatafileManagerInitializedWithoutProjectIdMessage
                           withLevel:OptimizelyLogLevelWarning];
             return nil;

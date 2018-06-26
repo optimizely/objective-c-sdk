@@ -88,11 +88,15 @@ static NSString * const kClientEngine = @"ios-sdk";
         // --- project id ---
         self.projectId = builder.projectId;
         
+        self.sdkKey = builder.sdkKey;
+        
+        self.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:self.projectId withSDKKey:self.sdkKey];
+        
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set
             self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
-                builder.projectId = self.projectId;
+                builder.datafileConfig = self.datafileConfig;
                 builder.errorHandler = self.errorHandler;
                 builder.logger = self.logger;
             }];

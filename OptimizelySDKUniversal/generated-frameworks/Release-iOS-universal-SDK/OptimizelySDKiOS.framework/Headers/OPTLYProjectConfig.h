@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kExpectedDatafileVersion;
 NS_ASSUME_NONNULL_END
 
-@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfileService, OPTLYVariation, OPTLYFeatureFlag, OPTLYRollout;
-@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariation, OPTLYFeatureFlag, OPTLYRollout;
+@class OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYUserProfileService, OPTLYVariation, OPTLYVariable, OPTLYFeatureFlag, OPTLYRollout;
+@protocol OPTLYAttribute, OPTLYAudience, OPTLYBucketer, OPTLYErrorHandler, OPTLYEvent, OPTLYExperiment, OPTLYGroup, OPTLYLogger, OPTLYVariable, OPTLYVariation, OPTLYFeatureFlag, OPTLYRollout;
 
 /*
     This class represents all the data contained in the project datafile 
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_END
 /// Datafile Revision number
 @property (nonatomic, strong, nonnull) NSString *revision;
 /// Flag for IP anonymization
-@property (nonatomic) NSNumber<Optional> *anonymizeIP;
+@property (nonatomic, strong, nonnull) NSNumber<Optional> *anonymizeIP;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
@@ -56,6 +56,8 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
+/// List of live variable objects (DEPRECATED)
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -131,6 +133,11 @@ NS_ASSUME_NONNULL_END
  * Get an audience for a given audience id.
  */
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
+
+/**
+ * Get a variable for a given live variable key. (DEPRECATED)
+ */
+- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
  * Get forced variation for a given experiment key and user id.
