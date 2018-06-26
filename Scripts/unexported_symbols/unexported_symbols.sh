@@ -13,6 +13,18 @@
 #
 # cd ~/objective-c-sdk/Scripts/unexported_symbols
 # sh ./unexported_symbols.sh
+#
+# A bit of a downside to the improved unexported_symbols.sh
+# is that it is always going to rebuild a universal framework
+# with an empty unexported_symbols.txt .  This is going to
+# create a lot of additional files besides unexported_symbols.txt .
+# They will have to be replaced again by recompiling the universal
+# with the correct unexported_symbols.txt .  Users can deal
+# with this situation by:
+#     * Just "git commit" the changed unexported_symbols.txt
+#     if it has changed.
+#     * Later on, rebuild the universal frameworks in some
+#     future commit.
 ################################################################
 set -e
 
