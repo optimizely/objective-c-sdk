@@ -27,6 +27,13 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 @class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;
 
+// ---- Live Variable Getter Errors ---- (DEPRECATED)
+
+typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
+    OPTLYLiveVariableErrorNone = 0,
+    OPTLYLiveVariableErrorKeyUnknown
+};
+
 @protocol Optimizely <NSObject>
 
 #pragma mark - activateExperiment methods
@@ -231,6 +238,309 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
        userId:(nonnull NSString *)userId
    attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
+
+////////////////////////////////////////////////////////////////
+//
+//      Mobile 1.x Live Variables are DEPRECATED
+//
+// Optimizely Mobile 1.x Projects creating Mobile 1.x Experiments that
+// contain Mobile 1.x Variables should migrate to Mobile 2.x Projects
+// creating Mobile 2.x Experiments that utilize Optimizely Full Stack 2.0
+// Feature Management which is more capable and powerful than Mobile 1.x
+// Live Variables.  Please check Full Stack 2.0 Feature Management online
+// at OPTIMIZELY.COM .
+////////////////////////////////////////////////////////////////
+
+#pragma mark - Live Variable Getters (DEPRECATED)
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param userId The user ID
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param userId The user ID
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                   activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the string value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @param error An error value if the value is not valid
+ * @return The string value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, nil is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (nullable NSString *)variableString:(nonnull NSString *)variableKey
+                               userId:(nonnull NSString *)userId
+                           attributes:(nullable NSDictionary *)attributes
+                   activateExperiment:(BOOL)activateExperiment
+                                error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param userId The user ID
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param userId The user ID
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+     activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the boolean value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable boolean
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @param error An error value if the value is not valid
+ * @return The boolean value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, false is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (BOOL)variableBoolean:(nonnull NSString *)variableKey
+                 userId:(nonnull NSString *)userId
+             attributes:(nullable NSDictionary *)attributes
+     activateExperiment:(BOOL)activateExperiment
+                  error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable integer
+ * @param userId The user ID
+ * @return The integer value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable integer
+ * @param userId The user ID
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The integer value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+          activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable integer
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The integer value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the integer value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable integer
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @param error An error value if the value is not valid
+ * @return The integer value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (NSInteger)variableInteger:(nonnull NSString *)variableKey
+                      userId:(nonnull NSString *)userId
+                  attributes:(nullable NSDictionary *)attributes
+          activateExperiment:(BOOL)activateExperiment
+                       error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the double value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable double
+ * @param userId The user ID
+ * @return The double value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the double value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable double
+ * @param userId The user ID
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The double value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+      activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the double value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable double
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @return The double value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the error handler.
+ */
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
+
+/**
+ * Gets the double value of the live variable.
+ * The value is cached when the client is initialized
+ * and is not refreshed until re-initialization.
+ *
+ * @param variableKey The name of the live variable double
+ * @param userId The user ID
+ * @param attributes A map of attribute names to current user attribute values
+ * @param activateExperiment Indicates if the experiment should be activated
+ * @param error An error value if the value is not valid
+ * @return The double value for the live variable.
+ *  If no matching variable key is found, then the default value is returned if it exists. Otherwise, 0.0 is returned.
+ *  If an error is found, a warning message is logged, and an error will be propagated to the user.
+ */
+- (double)variableDouble:(nonnull NSString *)variableKey
+                  userId:(nonnull NSString *)userId
+              attributes:(nullable NSDictionary *)attributes
+      activateExperiment:(BOOL)activateExperiment
+                   error:(out NSError * _Nullable __autoreleasing * _Nullable)error NS_SWIFT_NOTHROW
+__attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead.")));
 
 @end
 

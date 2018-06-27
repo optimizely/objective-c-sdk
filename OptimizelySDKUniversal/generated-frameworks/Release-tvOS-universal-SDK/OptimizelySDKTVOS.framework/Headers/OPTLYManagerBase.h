@@ -24,7 +24,7 @@ extern NSString * _Nonnull const OptimizelySDKVersionKey;
 extern NSString * _Nonnull const OptimizelyBundleDatafilePrefix;
 extern NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension;
 
-@class OPTLYClient, OPTLYManagerBuilder;
+@class OPTLYClient, OPTLYDatafileConfig, OPTLYManagerBuilder;
 @protocol OPTLYDatafileManager, OPTLYErrorHandler, OPTLYEventDispatcher, OPTLYLogger, OPTLYUserProfileService;
 
 typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder);
@@ -45,8 +45,12 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
     NSString *_clientVersion;
 }
 
-/// The ID of the Optimizely project to manager
-@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
+/// The ID of the Optimizely Project the manager will oversee
+@property (nonatomic, readwrite, strong, nullable) NSString *projectId;
+/// The ID of the Optimizely Project SDK key the manager will oversee
+@property (nonatomic, readwrite, strong, nullable) NSString *sdkKey;
+// The wrapper for project id and sdk key
+@property (nonatomic, readwrite, strong, nullable) OPTLYDatafileConfig* datafileConfig;
 /// The default datafile to initialize an Optimizely Client with
 @property (nonatomic, readwrite, strong, nullable) NSData *datafile;
 /// The datafile manager that will download the datafile for the manager
@@ -118,4 +122,8 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  */
 - (nullable OPTLYClient *)getOptimizely;
 
+/*
+ * Test if string s can be an Optimizely SDK key string.
+ */
++ (BOOL)isValidKeyString:(NSString*)s;
 @end
