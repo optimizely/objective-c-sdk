@@ -58,10 +58,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testTVOSSDKInitializedWithOverrides {
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]];
 
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafileManager);
@@ -104,10 +104,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertEqualObjects(@"optimizely_tvos_os_version", OptimizelyOSVersionKey);
     XCTAssertEqualObjects(@"optimizely_tvos_sdk_version", OptimizelySDKVersionKey);
     
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]] ;
     
     OPTLYClient *client = [manager initialize];
     XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);

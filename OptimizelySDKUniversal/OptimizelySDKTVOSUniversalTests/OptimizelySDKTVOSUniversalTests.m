@@ -57,10 +57,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testTVOSSDKInitializedWithOverrides {
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]];
     
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafileManager);
