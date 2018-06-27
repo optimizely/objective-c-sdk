@@ -56,7 +56,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
     return [self initWithBuilder:nil];
 }
 
-- (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
+- (nullable instancetype)initWithBuilder:(nullable OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
     if (self != nil) {
         _flushEventAttempts = 0;

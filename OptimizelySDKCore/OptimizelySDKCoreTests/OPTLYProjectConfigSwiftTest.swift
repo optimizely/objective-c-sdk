@@ -39,7 +39,7 @@ class OPTLYProjectConfigSwiftTest: XCTestCase {
             builder?.logger = OPTLYLoggerDefault.init()
             builder?.errorHandler = OPTLYErrorHandlerNoOp.init()
             builder?.userProfileService = OPTLYUserProfileServiceNoOp.init()
-        }))
+        })!)
         XCTAssertNotNil(self.projectConfig, "project config should not be nil.")
     }
 }

@@ -43,7 +43,7 @@
     return [self initWithBuilder:nil];
 }
 
-- (instancetype)initWithBuilder:(OPTLYUserProfileServiceBuilder *)builder {
+- (nullable instancetype)initWithBuilder:(nullable OPTLYUserProfileServiceBuilder *)builder {
     self = [super init];
     if (self != nil) {
         _logger = builder.logger;

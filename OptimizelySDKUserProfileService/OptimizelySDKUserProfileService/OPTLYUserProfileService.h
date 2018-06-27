@@ -39,7 +39,7 @@ __attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
  * @param builder The OPTLYUserProfileServiceBuilder object with which to initialize the Optimizely User Profile object
  * @return An instance of OPTLYUserProfileService
  */
-- (instancetype)initWithBuilder:(OPTLYUserProfileServiceBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nullable OPTLYUserProfileServiceBuilder *)builder;
 
 /**
  * Cleans and removes all bucketing mapping for specific userId.

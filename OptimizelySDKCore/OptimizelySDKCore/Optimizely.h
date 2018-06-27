@@ -573,7 +573,7 @@ __attribute((deprecated("Use Optimizely initWithBuilder method instead.")));
  * @param builder The OPTLYBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
  * @return Optimizely instance.
  */
-- (instancetype)initWithBuilder:(OPTLYBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nullable OPTLYBuilder *)builder;
 
 /**
  * Track an event

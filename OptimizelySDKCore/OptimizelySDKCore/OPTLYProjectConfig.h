@@ -85,7 +85,7 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  * @param builder The OPTLYProjectConfigBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
  * @return OPTLYProjectConfig instance.
  */
-- (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nonnull OPTLYProjectConfigBuilder *)builder;
 
 /**
  * Initialize the Project Config from a datafile.

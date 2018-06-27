@@ -76,7 +76,7 @@ __attribute((deprecated("Use OPTLYEventDispatcherDefault initWithBuilder method 
  * @param builder The OPTLYEventDispatcherBuilder object with which to initialize the Optimizely Event Dispatcher object
  * @return An instance of OPTLYEventDispatcher
  */
-- (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nullable OPTLYEventDispatcherBuilder *)builder;
 
 /**
  * Dispatch an impression event.

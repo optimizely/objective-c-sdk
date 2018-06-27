@@ -37,5 +37,5 @@ __attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
  * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
  * @return OPTLYManager instance
  */
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nullable OPTLYManagerBuilder *)builder;
 @end
