@@ -194,52 +194,60 @@ typedef enum : NSUInteger {
 - (void)testBuildConversionTicketWithNoConfig
 {
     NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:nil
                                                            bucketer:self.bucketer
                                                              userId:kUserId
                                                           eventName:kEventWithAudienceName
                                                           eventTags:nil
                                                          attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
 - (void)testBuildConversionTicketWithNoBucketer
 {
     NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
                                                                      bucketer:nil
                                                                        userId:kUserId
                                                                     eventName:kEventWithAudienceName
                                                                     eventTags:nil
                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
 - (void)testBuildConversionTicketWithNoUserID
 {
     NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
                                                                      bucketer:self.bucketer
                                                                        userId:nil
                                                                     eventName:kEventWithAudienceName
                                                                     eventTags:nil
                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
 - (void)testBuildConversionTicketWithNoEvent
 {
     NSDictionary *attributes = @{ kAttributeKeyBrowserType : kAttributeValueFirefox };
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
                                                                      bucketer:self.bucketer
                                                                        userId:kUserId
                                                                     eventName:nil
                                                                     eventTags:nil
                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
@@ -797,33 +805,33 @@ typedef enum : NSUInteger {
                                                                         userId:kUserId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
-    
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:nil
                                                                                        userId:kUserId
                                                                                 experimentKey:kExperimentWithAudienceKey
                                                                                   variationId:bucketedVariation.variationId
                                                                                    attributes:attributes];
     
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no config.");
 }
 
 - (void)testBuildImpressionEventTicketWithNoExperiment
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
-    
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
                                                                                        userId:kUserId
                                                                                 experimentKey:nil
                                                                                   variationId:bucketedVariation.variationId
                                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Experiment.");
 }
 
@@ -835,27 +843,28 @@ typedef enum : NSUInteger {
                                                                         userId:kUserId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
-    
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
                                                                                        userId:nil
                                                                                 experimentKey:kExperimentWithAudienceKey
                                                                                   variationId:bucketedVariation.variationId
                                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no UserId.");
 }
 
 - (void)testBuildImpressionEventTicketWithNoVariation
 {
     NSDictionary *attributes = @{kAttributeKeyBrowserType : kAttributeValueFirefox};
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
                                                                                        userId:kUserId
                                                                                 experimentKey:kExperimentWithAudienceKey
                                                                                   variationId:nil
                                                                                    attributes:attributes];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Variation.");
 }
 
