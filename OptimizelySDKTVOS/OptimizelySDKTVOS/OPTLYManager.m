@@ -104,9 +104,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- event dispatcher ---
         if (!builder.eventDispatcher) {
             // set default event dispatcher if no event dispatcher is set
-            self.eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
+            self.eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.eventDispatcher = builder.eventDispatcher;
         }
