@@ -94,7 +94,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 @property (nonatomic, strong) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
 @property (nonatomic, strong) NSDictionary *attributes;
-@property (nonatomic, strong) OPTLYUserProfile *userProfileWithFirefoxAudience;
+@property (nonatomic, strong) NSDictionary *userProfileWithFirefoxAudience;
 @end
 
 @interface OPTLYDecisionService()
@@ -244,7 +244,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testGetVariationNoAudience
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
 
@@ -433,7 +433,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testSaveVariation
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
     NSDictionary *variationDict = @{ OPTLYDatafileKeysVariationId  : kExperimentWithAudienceVariationId,
                                      OPTLYDatafileKeysVariationKey : kExperimentWithAudienceVariationKey };
@@ -452,9 +452,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testSaveMultipleVariations
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
-    OPTLYUserProfile *userProfileMultipleExperimentValues = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
+    NSDictionary *userProfileMultipleExperimentValues = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
                                                                OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{
                                                                        kExperimentWithAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentWithAudienceVariationId },
                                                                        kExperimentNoAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentNoAudienceVariationId } } };

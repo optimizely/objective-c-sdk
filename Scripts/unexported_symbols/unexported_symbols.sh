@@ -13,9 +13,20 @@
 #
 # cd ~/objective-c-sdk/Scripts/unexported_symbols
 # sh ./unexported_symbols.sh
+#
+# A bit of a downside to the improved unexported_symbols.sh
+# is that it is always going to rebuild a universal framework
+# with an empty unexported_symbols.txt .  This is going to
+# create a lot of additional files besides unexported_symbols.txt .
+# They will have to be replaced again by recompiling the universal
+# with the correct unexported_symbols.txt .  Users can deal
+# with this situation by:
+#     * Just "git commit" the changed unexported_symbols.txt
+#     if it has changed.
+#     * Later on, rebuild the universal frameworks in some
+#     future commit.
 ################################################################
 set -e
-
 
 cleanup() {
   rm -f "${tempfiles[@]}"
@@ -44,13 +55,22 @@ main() {
   local source_dir="$(dirname $0)"
   local universal_dir="${source_dir}/../../OptimizelySDKUniversal"
   local universal_framework="${universal_dir}/generated-frameworks/Release-iOS-universal-SDK/OptimizelySDKiOS.framework"
-  if [[ ! -d "${universal_framework}" ]]; then
-    # Build "${universal_framework}" if it doesn't exist.
+  {
+    # Make blank unexported_symbols.txt
+    local unexported_symbols_txt="${universal_dir}/unexported_symbols.txt"
+    if [ -f "${unexported_symbols_txt}" ]; then
+      # Remove previous unexported_symbols.txt
+      rm "${unexported_symbols_txt}"
+    fi
+    touch "${unexported_symbols_txt}"
+  }
+  {
+    # Rebuild "${universal_framework}" always.
     echo "Building Universal Framework"
     xcodebuild -project "${universal_dir}/OptimizelySDKUniversal.xcodeproj" \
                -target "OptimizelySDKiOS-Universal" \
                -configuration "Release"
-  fi
+  }
   local arm64_slice="${source_dir}/OptimizelySDKiOS-arm64"
   {
     tempfiles+=( "${arm64_slice}" )

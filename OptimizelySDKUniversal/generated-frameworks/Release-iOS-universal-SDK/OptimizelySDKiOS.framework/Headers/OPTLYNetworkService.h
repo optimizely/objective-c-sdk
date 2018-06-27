@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -30,11 +30,11 @@ NS_ASSUME_NONNULL_END
 /**
  * Download the project config file from remote server
  *
- * @param projectId The project ID of the datafile to download
+ * @param projectUrl The project URL of the datafile to download
  * @param backoffRetry Indicates if the exponential backoff retry should be enabled
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)downloadProjectConfig:(nonnull NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)projectUrl
                  backoffRetry:(BOOL)backoffRetry
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
 
@@ -42,12 +42,12 @@ NS_ASSUME_NONNULL_END
  * Download the project config file from remote server only if it
  * has been modified.
  *
- * @param projectId The project ID of the exponential the datafile to download
+ * @param projectURL The project URL of the datafile to download
  * @param backoffRetry Indicates if backoff retry should be enabled
  * @param lastModifiedDate The date the datafile was last modified
  * @param completion The completion block of type OPTLYHTTPRequestManagerResponse
  */
-- (void)downloadProjectConfig:(nonnull NSString *)projectId
+- (void)downloadProjectConfig:(nonnull NSURL *)projectURL
                  backoffRetry:(BOOL)backoffRetry
                  lastModified:(nonnull NSString *)lastModifiedDate
             completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
@@ -63,11 +63,5 @@ NS_ASSUME_NONNULL_END
          backoffRetry:(BOOL)backoffRetry
                 toURL:(nonnull NSURL *)url
     completionHandler:(nullable OPTLYHTTPRequestManagerResponse)completion;
-
-/**
- * Returns the URL path for the datafile of a particular project.
- * @param projectId The project ID of the datafile whose URL path we are looking for.
- */
-+ (NSURL * _Nonnull)projectConfigURLPath:(nonnull NSString *)projectId;
 
 @end

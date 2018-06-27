@@ -119,10 +119,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 
 - (void)testInitWithBuilderBlockNoDatafile
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = nil;
     }]];
-    
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(projectConfig, @"project config should be nil.");
 }
 

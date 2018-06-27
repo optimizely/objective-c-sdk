@@ -1,6 +1,6 @@
 /****************************************************************************
  * Modifications to FMDB by Optimizely, Inc.                                *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -1039,12 +1039,12 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
  For example:
  
     [db makeFunctionNamed:@"RemoveDiacritics" arguments:1 block:^(void *context, int argc, void **argv) {
-        SqliteValueType type = [self.db valueType:argv[0]];
-        if (type == SqliteValueTypeNull) {
+        OPTLYSqliteValueType type = [self.db valueType:argv[0]];
+        if (type == OPTLYSqliteValueTypeNull) {
             [self.db resultNullInContext:context];
              return;
         }
-        if (type != SqliteValueTypeText) {
+        if (type != OPTLYSqliteValueTypeText) {
             [self.db resultError:@"Expected text" context:context];
             return;
         }
@@ -1069,15 +1069,15 @@ typedef int(^OPTLYFMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDicti
 
 - (void)makeFunctionNamed:(NSString *)name maximumArguments:(int)count withBlock:(void (^)(void *context, int argc, void * _Nonnull * _Nonnull argv))block __deprecated_msg("Use makeFunctionNamed:arguments:block:");
 
-typedef NS_ENUM(int, SqliteValueType) {
-    SqliteValueTypeInteger = 1,
-    SqliteValueTypeFloat   = 2,
-    SqliteValueTypeText    = 3,
-    SqliteValueTypeBlob    = 4,
-    SqliteValueTypeNull    = 5
+typedef NS_ENUM(int, OPTLYSqliteValueType) {
+    OPTLYSqliteValueTypeInteger = 1,
+    OPTLYSqliteValueTypeFloat   = 2,
+    OPTLYSqliteValueTypeText    = 3,
+    OPTLYSqliteValueTypeBlob    = 4,
+    OPTLYSqliteValueTypeNull    = 5
 };
 
-- (SqliteValueType)valueType:(void *)argv;
+- (OPTLYSqliteValueType)valueType:(void *)argv;
 
 /**
  Get integer value of parameter in custom function.

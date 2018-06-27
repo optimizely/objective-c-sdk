@@ -45,9 +45,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
     NSString *_clientVersion;
 }
 
-/// The ID of the Optimizely project to manager
+/// The ID of the Optimizely Project the manager will oversee
 @property (nonatomic, readwrite, strong, nullable) NSString *projectId;
-/// The ID of the Optimizely project to manager
+/// The ID of the Optimizely Project SDK key the manager will oversee
 @property (nonatomic, readwrite, strong, nullable) NSString *sdkKey;
 // The wrapper for project id and sdk key
 @property (nonatomic, readwrite, strong, nullable) OPTLYDatafileConfig* datafileConfig;

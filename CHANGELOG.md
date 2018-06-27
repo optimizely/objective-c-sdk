@@ -1,15 +1,8 @@
 # Optimizely Objective-C SDK Changelog
-## 1.5.2
-June 15, 2018
+## 2.0.2-beta2
+Jun 25, 2018
 
-### New Features
-* Updated SDK targets to Xcode 9.4 recommended settings, pod update'd third party Cocoapods used by the 2 demo apps,
-and eliminated Xcode 9.4 Build and Analyze warnings for SDK targets.
-
-## 2.0.2-beta1
-May 17, 2018
-
-**This "-beta1" pre-release corrects two significant bugs present in the
+**This "-beta2" pre-release corrects two significant bugs present in the
 previous 2.0.x releases which have been withdrawn.  Please note that
 2.0+ SDKs are incompatible with existing 1.x Mobile Optimizely
 projects.  Before you use 2.0+ and Feature Management, please contact
@@ -85,6 +78,8 @@ with Notification Listeners APIs
 - (void)clearNotificationListeners:(OPTLYNotificationType)type;
 - (void)clearAllNotificationListeners;
 ```
+* Add environments support to SDK with SDK key initialization. A new sdkKey property has been added to OPTLYManagerBuilder
+that is an alternative to the older projectId property.
 * Added `@"$opt_bucketing_id"` in the attribute map for overriding bucketing using the user id.  This string is
 available as OptimizelyBucketId in OPTLYEventBuilder.h .
 
@@ -99,6 +94,13 @@ unable to be deleted from data store due to syntax error.
 ### Breaking Changes
 * Removed track APIs with revenue as a parameter.
 * Deprecated live variable APIs.
+
+## 1.5.2
+June 15, 2018
+
+### New Features
+* Updated SDK targets to Xcode 9.4 recommended settings, pod update'd third party Cocoapods used by the 2 demo apps,
+and eliminated Xcode 9.4 Build and Analyze warnings for SDK targets.
 
 ## 1.5.1
 April 17, 2018
