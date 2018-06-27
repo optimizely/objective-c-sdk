@@ -34,6 +34,6 @@
 @property (strong, nonatomic) NSMutableArray* dynamicList;
 @property (strong, nonatomic) NSDictionary* dictionary;
 @property (strong, nonatomic) NSMutableDictionary* dynamicDictionary;
-@property (strong, nonatomic) NSString<Optional>* notAvailable;
+@property (strong, nonatomic) NSString<OPTLYOptional>* notAvailable;
 
 @end

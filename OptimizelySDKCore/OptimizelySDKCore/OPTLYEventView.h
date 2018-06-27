@@ -31,10 +31,10 @@
 @interface OPTLYEventView : OPTLYJSONModel
 
 // The ID of the view containing this impression.
-@property (nonatomic, strong, nullable) NSString<Optional> *viewId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *viewId;
 // The timestamp when the containing view was activated.
-@property (nonatomic, strong, nullable) NSNumber<Optional> *activatedTimestamp;
+@property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *activatedTimestamp;
 // Features attached to the view.
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature, Optional> *viewFeatures;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature, OPTLYOptional> *viewFeatures;
 
 @end

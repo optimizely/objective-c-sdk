@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_END
 /// Datafile Revision number
 @property (nonatomic, strong, nonnull) NSString *revision;
 /// Flag for IP anonymization
-@property (nonatomic, strong, nonnull) NSNumber<Optional> *anonymizeIP;
+@property (nonatomic, strong, nonnull) NSNumber<OPTLYOptional> *anonymizeIP;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_END
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
 /// List of live variable objects (DEPRECATED)
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, Optional> *variables;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, OPTLYOptional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
@@ -70,9 +70,9 @@ NS_ASSUME_NONNULL_END
 /// Returns the client version number
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
 /// List of Optimizely Feature Flags objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag, Optional> *featureFlags;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag, OPTLYOptional> *featureFlags;
 /// List of Optimizely Rollouts objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYRollout, Optional> *rollouts;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYRollout, OPTLYOptional> *rollouts;
 
 /**
  * Initialize the Project Config from a builder block.

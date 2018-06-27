@@ -211,9 +211,9 @@ for OPTLYJSONModel to work, the protocol must be in place.
 ```objc
 @interface ProductModel : OPTLYJSONModel
 @property (nonatomic) NSInteger id;
-@property (nonatomic) NSString <Optional> *name;
+@property (nonatomic) NSString <OPTLYOptional> *name;
 @property (nonatomic) float price;
-@property (nonatomic) NSNumber <Optional> *uuid;
+@property (nonatomic) NSNumber <OPTLYOptional> *uuid;
 @end
 ```
 
