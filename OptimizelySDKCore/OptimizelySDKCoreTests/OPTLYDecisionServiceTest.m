@@ -30,6 +30,7 @@
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
+#import "OPTLYControlAttributes.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kUserId = @"6369992312";
