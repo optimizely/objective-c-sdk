@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSString *revision;
 /// Flag for IP anonymization
 @property (nonatomic, strong, nonnull) NSNumber<Optional> *anonymizeIP;
+/// Flag for Bot Filtering
+@property (nonatomic, strong, nonnull) NSNumber<Optional> *botFiltering;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
@@ -128,6 +130,11 @@ NS_ASSUME_NONNULL_END
 * Get an attribute for a given key.
 */
 - (nullable OPTLYAttribute *)getAttributeForKey:(nonnull NSString *)attributeKey;
+
+/**
+ * Get an attribute Id for a given key.
+ **/
+- (nullable NSString *)getAttributeIdForKey:(nonnull NSString *)attributeKey;
 
 /**
  * Get an audience for a given audience id.

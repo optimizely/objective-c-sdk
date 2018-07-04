@@ -191,6 +191,7 @@ NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId = @"[PROJECT CONFIG] G
 NSString *const OPTLYLoggerMessagesGetVariationNilVariation = @"[PROJECT CONFIG] Get variation returned a nil variation for user %@, experiment %@";
 NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey = @"[PROJECT CONFIG] Variation key %@ not found for experiment key %@.";
 NSString *const OPTLYLoggerMessagesProjectConfigUserIdInvalid = @"[PROJECT CONFIG] User ID cannot be an empty string.";
+NSString *const OPTLYLoggerMessagesAttributeIsReserved = @"[PROJECT CONFIG] Attribute %@ unexpectedly has reserved prefix %@; using attribute ID instead of reserved attribute name.";
 
 // ---- User Profile ----
 // debug
