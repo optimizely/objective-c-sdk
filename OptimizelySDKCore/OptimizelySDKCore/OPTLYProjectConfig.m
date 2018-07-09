@@ -196,6 +196,8 @@ NSString * const kReservedAttributePrefix = @"$opt_";
     } else if (hasReservedPrefix) {
         attributeId = attributeKey;
     }
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeNotFound, attributeKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
     return attributeId;
 }
 
