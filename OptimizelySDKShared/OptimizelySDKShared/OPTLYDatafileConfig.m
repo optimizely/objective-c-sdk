@@ -17,16 +17,35 @@
 #import "OPTLYDatafileConfig.h"
 #import "OPTLYManagerBase.h"
 
-NSString * const OPTLY_DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json";
+NSString * const DEFAULT_HOST = @"https://cdn.optimizely.com";
+NSString * const OPTLY_PROJECTID_SUFFIX = @"/json/%@.json";
+NSString * const OPTLY_ENVIRONMENTS_SUFFIX = @"/datafiles/%@.json";
 
 @interface OPTLYDatafileConfig()
+- (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey withHost:(NSString *)host;
 @property(nonatomic, strong, nullable) NSString* projectId;
 @property(nonatomic, strong, nullable) NSString* sdkKey;
+@property(nonatomic, strong) NSString* host;
+@property(nonatomic, strong) NSURL* projectIdUrl;
+@property(nonatomic, strong) NSURL* sdkKeyUrl;
+@end
+
+@implementation OPTLYDatafileConfig(OPTLYHelpers)
++ (NSString *)defaultProjectIdPath:(NSString *)projectId {
+    NSString *datafileFormat = [DEFAULT_HOST stringByAppendingString:OPTLY_PROJECTID_SUFFIX];
+    return [NSString stringWithFormat:datafileFormat, projectId];
+}
++ (NSString *)defaultSdkKeyPath:(NSString *)sdkKey {
+    NSString *datafileFormat = [DEFAULT_HOST stringByAppendingString:OPTLY_ENVIRONMENTS_SUFFIX];
+    return [NSString stringWithFormat:datafileFormat, sdkKey];
+}
 @end
 
 @implementation OPTLYDatafileConfig
 
-- (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey {
+- (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey withHost:(NSString *)host {
+    self.host = host;
+    
     if (![OPTLYManagerBase isValidKeyString:projectId] && ![OPTLYManagerBase isValidKeyString:sdkKey]) {
         // One of projectId and sdkKey needs to be a valid key string.
         return nil;
@@ -34,16 +53,29 @@ NSString * const OPTLY_DATAFILE_URL = @"https://cdn.optimizely.com/json/%@.json"
     if (self = [super init]) {
         self.projectId = projectId;
         self.sdkKey = sdkKey;
+        if (self.projectId != nil) {
+            NSString *datafileFormat = [self.host stringByAppendingString:OPTLY_PROJECTID_SUFFIX];
+            NSString *datafile = [NSString stringWithFormat:datafileFormat, self.projectId];
+            self.projectIdUrl = [NSURL URLWithString:datafile];
+        }
+        if (self.sdkKey != nil) {
+            NSString *datafileFormat = [self.host stringByAppendingString:OPTLY_ENVIRONMENTS_SUFFIX];
+            NSString *datafile = [NSString stringWithFormat:datafileFormat, self.sdkKey];
+            self.sdkKeyUrl = [NSURL URLWithString:datafile];
+        }
     }
     return self;
+}
+
+- (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey {
+    return [self initWithProjectId:projectId withSDKKey:sdkKey withHost:DEFAULT_HOST];
 }
 - (NSString*)key {
     return (_sdkKey != nil) ? _sdkKey : _projectId;
 }
 
 - (NSURL *)URLForKey {
-    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, [self key]];
-    return [NSURL URLWithString:filePath];
+    return (_sdkKey != nil)? _sdkKeyUrl : _projectIdUrl;
 }
 
 + (BOOL)areNilOrEqual:(NSString*)x y:(NSString*)y {

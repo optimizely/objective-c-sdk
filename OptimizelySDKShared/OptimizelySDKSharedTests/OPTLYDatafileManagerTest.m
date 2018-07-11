@@ -28,7 +28,7 @@ static NSString *const kProjectId = @"6372300739";
 @implementation OPTLYDatafileManagerTest
 
 - (void)testProjectConfigURLPathReturnsExpectedURL {
-    NSString *expectedURLString = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
+    NSString *expectedURLString = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
     NSURL *expectedURL = [NSURL URLWithString:expectedURLString];
     
     NSURL *cdnURL = [[[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil] URLForKey];

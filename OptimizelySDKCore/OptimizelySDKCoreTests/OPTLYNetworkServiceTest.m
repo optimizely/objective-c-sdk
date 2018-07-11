@@ -64,7 +64,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
     
-    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
+    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
     
     [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
                            backoffRetry:NO
@@ -83,7 +83,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion {
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
-    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
+    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
 
     [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
                            backoffRetry:NO
@@ -101,7 +101,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 # pragma mark - Helper Methods
 - (id<OHHTTPStubsDescriptor>)stub200Response {
-    NSString *filePath = [NSString stringWithFormat:OPTLY_DATAFILE_URL, kProjectId];
+    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
     
      NSURL *hostURL = [NSURL URLWithString:filePath];
     NSString *hostName = [hostURL host];

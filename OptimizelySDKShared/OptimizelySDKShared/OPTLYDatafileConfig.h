@@ -15,10 +15,17 @@
  ***************************************************************************/
 #import <Foundation/Foundation.h>
 
-extern NSString * const OPTLY_DATAFILE_URL;
+extern NSString * const DEFAULT_HOST;
+extern NSString * const OPTLY_PROJECTID_SUFFIX;
+extern NSString * const OPTLY_ENVIRONMENTS_SUFFIX;
 
 @interface OPTLYDatafileConfig : NSObject
 - (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey;
 - (NSURL *) URLForKey;
 - (NSString *) key;
+@end
+
+@interface OPTLYDatafileConfig(OPTLYHelpers)
++ (NSString *)defaultProjectIdPath:(NSString *)projectId;
++ (NSString *)defaultSdkKeyPath:(NSString *)sdkKey;
 @end
