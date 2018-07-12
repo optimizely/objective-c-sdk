@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -157,9 +157,9 @@ NSString * const kExpectedDatafileVersion  = @"4";
 }
 
 - (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
-    return [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    return [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
 }
 
 #pragma mark -- Getters --

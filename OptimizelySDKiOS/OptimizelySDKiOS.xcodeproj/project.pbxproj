@@ -16,6 +16,7 @@
 		2D3504021DFA78CB00B0A822 /* test_data_50_experiments.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503FB1DFA78CB00B0A822 /* test_data_50_experiments.json */; };
 		2D3504031DFA78CB00B0A822 /* optimizely_7519590183.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503FC1DFA78CB00B0A822 /* optimizely_7519590183.json */; };
 		2D54570B1DC8223F0095E286 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5457041DC822130095E286 /* OptimizelySDKDatafileManager.framework */; };
+		59CAB0FA20E37389009D9E04 /* OPTLYManageriOSSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAB0F920E37389009D9E04 /* OPTLYManageriOSSwiftTest.swift */; };
 		EA3C68511DC1E6B600C578CA /* OptimizelySDKiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3C68501DC1E6B600C578CA /* OptimizelySDKiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3C68581DC1E6B600C578CA /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3C684D1DC1E6B600C578CA /* OptimizelySDKiOS.framework */; };
 		EA3C685D1DC1E6B600C578CA /* OptimizelySDKiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */; };
@@ -152,6 +153,8 @@
 		2D5456FC1DC822120095E286 /* OptimizelySDKDatafileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OptimizelySDKDatafileManager.xcodeproj; path = ../OptimizelySDKDatafileManager/OptimizelySDKDatafileManager.xcodeproj; sourceTree = "<group>"; };
 		386DDAA1E39D8E12BACD053C /* Pods-OptimizelySDKiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		38CF46AA2858603BBBB43C69 /* Pods_OptimizelySDKiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59CAB0F820E37389009D9E04 /* OptimizelySDKiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		59CAB0F920E37389009D9E04 /* OPTLYManageriOSSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYManageriOSSwiftTest.swift; sourceTree = "<group>"; };
 		6DC2730DA4955D0C186F0988 /* Pods-OptimizelySDKiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89536CDC4F5C49E221ACFE43 /* Pods-OptimizelySDKiOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSTests/Pods-OptimizelySDKiOSTests.rc.xcconfig"; sourceTree = "<group>"; };
 		8D9B2266C94E7767CEB55292 /* Pods_OptimizelySDKiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,11 +265,13 @@
 		EA3C685B1DC1E6B600C578CA /* OptimizelySDKiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				59CAB0F820E37389009D9E04 /* OptimizelySDKiOSTests-Bridging-Header.h */,
+				EA3C685E1DC1E6B600C578CA /* OptimizelySDKiOSTests-Info.plist */,
+				EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */,
+				59CAB0F920E37389009D9E04 /* OPTLYManageriOSSwiftTest.swift */,
 				2D3503F41DFA78CB00B0A822 /* OPTLYTestHelper.h */,
 				2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */,
 				2D3503F61DFA78CB00B0A822 /* TestData */,
-				EA3C685C1DC1E6B600C578CA /* OptimizelySDKiOSTests.m */,
-				EA3C685E1DC1E6B600C578CA /* OptimizelySDKiOSTests-Info.plist */,
 			);
 			path = OptimizelySDKiOSTests;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 					};
 					EA3C68561DC1E6B600C578CA = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -576,6 +582,7 @@
 			files = (
 				2D3503FD1DFA78CB00B0A822 /* OPTLYTestHelper.m in Sources */,
 				EA3C685D1DC1E6B600C578CA /* OptimizelySDKiOSTests.m in Sources */,
+				59CAB0FA20E37389009D9E04 /* OPTLYManageriOSSwiftTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +669,7 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -692,10 +700,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 386DDAA1E39D8E12BACD053C /* Pods-OptimizelySDKiOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "OptimizelySDKiOSTests/OptimizelySDKiOSTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKiOSTests/OptimizelySDKiOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -760,6 +771,7 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -789,10 +801,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DC2730DA4955D0C186F0988 /* Pods-OptimizelySDKiOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "OptimizelySDKiOSTests/OptimizelySDKiOSTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKiOSTests/OptimizelySDKiOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};

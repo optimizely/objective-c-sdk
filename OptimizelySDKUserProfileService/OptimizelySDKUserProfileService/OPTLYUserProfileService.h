@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -30,7 +30,16 @@
  * @param builderBlock The builder block with which to initialize the Optimizely User Profile object
  * @return An instance of OPTLYUserProfileService
  */
-+ (nullable instancetype)init:(nonnull OPTLYUserProfileServiceBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYUserProfileServiceBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
+
+/**
+ * Initializer for Optimizely User Profile object
+ *
+ * @param builder The OPTLYUserProfileServiceBuilder object with which to initialize the Optimizely User Profile object
+ * @return An instance of OPTLYUserProfileService
+ */
+- (nullable instancetype)initWithBuilder:(nullable OPTLYUserProfileServiceBuilder *)builder;
 
 /**
  * Cleans and removes all bucketing mapping for specific userId.

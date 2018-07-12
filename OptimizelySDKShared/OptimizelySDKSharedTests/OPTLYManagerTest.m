@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -70,9 +70,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
 - (void)testInitializeWithCachedDatafile
 {
     // initialize manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
-    }];
+    }]];
     
     // save the datafile
     [manager.datafileManager saveDatafile:self.alternateDatafile];
@@ -88,10 +88,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
 - (void)testInitializeNoCachedDatafile
 {
     // need to mock the manager bundled datafile load to read from the test bundle
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafile = self.alternateDatafile;
-    }];
+    }]];
     id partialMockManager = OCMPartialMock(manager);
     
     OPTLYClient *client = [partialMockManager initialize];
@@ -106,10 +106,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
 - (void)testInitializeCachedDatafileBadLoad
 {
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafile = self.defaultDatafile;
-    }];
+    }]];
     // save the datafile (alternate datafile)
     [manager.datafileManager saveDatafile:self.alternateDatafile];
     id partialMockManager = OCMPartialMock(manager);
@@ -130,9 +130,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
 - (void)testInitializeNoDatafile
 {
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     id partialMockManager = OCMPartialMock(manager);
     
     OPTLYClient *client = [partialMockManager initialize];
@@ -144,9 +144,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
 {
     [self stubResponse:200 data:self.defaultDatafile];
     
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder){
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.sdkKey = kProjectId;
-    }];
+    }]];
     
     // setup async expectation
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithSDKKey"];
@@ -175,7 +175,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
     id<OPTLYUserProfileService> userProfileService = [[OPTLYUserProfileServiceNoOp alloc] init];
     
     // initialize Manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.datafileManager = datafileManager;
         builder.errorHandler = errorHandler;
@@ -183,7 +183,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
         builder.logger = logger;
         builder.projectId = kProjectId;
         builder.userProfileService = userProfileService;
-    }];
+    }]];
     XCTAssertEqual(manager.datafileManager, datafileManager);
     
     // get the client
@@ -209,10 +209,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
 
 - (void)testInitializeWithDatafile {
     // initialize manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = self.defaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]];
     
     // make sure manager is initialized correctly
     XCTAssertNotNil(manager);
@@ -240,9 +240,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [self stubResponse:200 data:self.alternateDatafile];
     
     // initialize manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
-    }];
+    }]];
     
     // save the datafile (default)
     [manager.datafileManager saveDatafile:self.defaultDatafile];
@@ -270,9 +270,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [OPTLYTestHelper stubFailureResponse];
     
     // initialize manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
-    }];
+    }]];
     
     // save the datafile (default)
     [manager.datafileManager saveDatafile:self.defaultDatafile];
@@ -300,9 +300,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [self stubResponse:304 data:nil];
     
     // initialize manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
-    }];
+    }]];
     // save the datafile (default)
     [manager.datafileManager saveDatafile:self.defaultDatafile];
     
@@ -328,10 +328,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [OPTLYTestHelper stubFailureResponse];
     
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafile = self.defaultDatafile;
-    }];
+    }]];
     id partialMockManager = OCMPartialMock(manager);
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testInitializeWithCallbackDownloadErrorNoCachedDatafile"];
@@ -363,11 +363,11 @@ static NSString * const kClientEngine = @"tvos-sdk";
     OCMStub([partialDatafileManagerMock getSavedDatafile:((NSError __autoreleasing **)[OCMArg anyPointer])]).andReturn(nil);
     
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kAlternateProjectId;
         builder.datafileManager = datafileManager;
         builder.datafile = self.defaultDatafile;
-    }];
+    }]];
     
     id partialMockManager = OCMPartialMock(manager);
     
@@ -392,9 +392,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [OPTLYTestHelper stubFailureResponse];
     
     // need to mock the manager bundled datafile load to read from the test bundle (default datafile)
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
@@ -429,11 +429,11 @@ static NSString * const kClientEngine = @"tvos-sdk";
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
-    [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = kClientEngine;
         builder.clientVersion = kClientVersion;
-    }];
+    }]];
 #pragma clang diagnostic pop
 
     XCTAssertNotNil(client, @"Client should not be nil.");

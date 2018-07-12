@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -39,7 +39,7 @@
         if (block != nil) {
             block(self);
         }
-        _optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+        _optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
             builder.datafile = self->_datafile;
             builder.errorHandler = self->_errorHandler;
             builder.eventDispatcher = self->_eventDispatcher;
@@ -47,7 +47,7 @@
             builder.userProfileService = self->_userProfileService;
             builder.clientEngine = self->_clientEngine;
             builder.clientVersion = self->_clientVersion;
-        }];
+        }]];
         _logger = _optimizely.logger;
         if (!_logger) {
             _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];

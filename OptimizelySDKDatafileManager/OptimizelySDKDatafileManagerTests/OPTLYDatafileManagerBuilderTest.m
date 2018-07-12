@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -28,9 +28,9 @@ NSString *const kProjectID = @"projectID";
 NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testBasicInitializationWorks {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
-    }];
+    }]];
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
     XCTAssertEqual(datafileManager.datafileFetchInterval, 0, @"default fetch interval should be 0");
     XCTAssertNotNil(datafileManager.datafileConfig);
@@ -44,10 +44,10 @@ NSTimeInterval const kDatafileFetchInterval = 7;
     OPTLYLoggerDefault *defaultLogger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
     
     // Initialize datafile manager
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.logger = defaultLogger;
-    }];
+    }]];
     
     // run checks
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
@@ -61,10 +61,10 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 
 - (void)testDatafileFetchIntervalIsSetCorrectly {
     // initialize datafile manager with datafile fetch interval
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.datafileFetchInterval = kDatafileFetchInterval;
-    }];
+    }]];
     
     // run checks
     XCTAssertNotNil(datafileManager, @"datafile manager should be created");
@@ -76,10 +76,10 @@ NSTimeInterval const kDatafileFetchInterval = 7;
 }
 
 - (void)testDatafileManagerCannotBeInitializedWithNegativeDatafileFetchInterval {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectID withSDKKey:nil];
         builder.datafileFetchInterval = -1.0;
-    }];
+    }]];
     XCTAssertNil(datafileManager, @"A datafile manager cannot be initialized with a negative fetch interval");
 }
 
