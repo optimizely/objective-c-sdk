@@ -158,9 +158,9 @@ NSString * const kReservedAttributePrefix = @"$opt_";
 }
 
 - (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
-    return [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    return [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
 }
 
 #pragma mark -- Getters --

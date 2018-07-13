@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,22 +14,27 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import "OPTLYManagerBase.h"
+import XCTest
+import OptimizelySDKShared
 
-@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
-/**
- * Init with builder block
- * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock
-__attribute((deprecated("Use OPTLYManagerBasic initWithBuilder method instead.")));
-
-/**
- * Init with OPTLYManagerBuilder object
- * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
- * @return OptimizelyManager instance
- */
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
-@end
+class OPTLYManagerSwiftTest: XCTestCase {
+    
+    let kAlternateProjectId = "7519590183"
+    var manager: OPTLYManagerBasic?
+    
+    override func setUp() {
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testOPTLYManagerBasicInitWithBuilder() -> Void {
+        // initialize manager
+        self.manager = OPTLYManagerBasic.init(builder: OPTLYManagerBuilder.init(block: { (builder) in
+            builder?.projectId = self.kAlternateProjectId
+        }))
+        XCTAssertNotNil(self.manager, "optimizely maanger should not be nil")
+    }
+}

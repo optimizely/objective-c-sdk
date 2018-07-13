@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -110,9 +110,9 @@ static NSData *whitelistingDatafile;
 }
 
 - (void)setUp {
-    self.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder *builder) {
+    self.userProfileService = [[OPTLYUserProfileServiceDefault alloc] initWithBuilder:[OPTLYUserProfileServiceBuilder builderWithBlock:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
         builder.logger = [OPTLYLoggerDefault new];
-    }];
+    }]];
     
     self.userProfile1 = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId1,
                            OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{ kExperimentId1 : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kVariationId1 } } };
@@ -213,15 +213,15 @@ static NSData *whitelistingDatafile;
     XCTAssertNotEqualObjects(originalDatafile, updatedDatafile);
     
     // instantiate the manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
+        builder.userProfileService = [[OPTLYUserProfileServiceDefault alloc] initWithBuilder:[OPTLYUserProfileServiceBuilder builderWithBlock:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
             builder.logger = logger;
-        }];
+        }]];
         
         [(OPTLYUserProfileServiceDefault *)builder.userProfileService removeAllUserExperimentRecords];
-    }];
+    }]];
     XCTAssertNotNil(manager);
     
     OPTLYClient *originalClient = [manager initializeWithDatafile:originalDatafile];
@@ -248,13 +248,13 @@ static NSData *whitelistingDatafile;
     XCTAssertNotEqualObjects(originalDatafile, removedVariationDatafile);
     
     // instantiate the manager
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"projectId";
         __block id<OPTLYLogger> logger = builder.logger;
-        builder.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
+        builder.userProfileService = [[OPTLYUserProfileServiceDefault alloc] initWithBuilder:[OPTLYUserProfileServiceBuilder builderWithBlock:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
             builder.logger = logger;
-        }];
-    }];
+        }]];
+    }]];
     XCTAssertNotNil(manager);
     
     OPTLYClient *originalClient = [manager initializeWithDatafile:originalDatafile];
@@ -294,10 +294,10 @@ static NSData *whitelistingDatafile;
     [self.userProfileService removeAllUserExperimentRecords];
     
     // initialize optimizely client with user profile
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [[OPTLYClient alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = whitelistingDatafile;
         builder.userProfileService = self.userProfileService;
-    }];
+    }]];
     
     // save a variation for the user into user profile
     [self.userProfileService save:self.userProfile1];

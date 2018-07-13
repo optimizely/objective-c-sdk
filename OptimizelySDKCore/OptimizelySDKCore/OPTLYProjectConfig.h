@@ -79,7 +79,15 @@ NS_ASSUME_NONNULL_END
 /**
  * Initialize the Project Config from a builder block.
  */
-+ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead.")));
+
+/**
+ * Initialize the Project Config from a OPTLYProjectConfigBuilder object.
+ * @param builder The OPTLYProjectConfigBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
+ * @return OPTLYProjectConfig instance.
+ */
+- (nullable instancetype)initWithBuilder:(nonnull OPTLYProjectConfigBuilder *)builder;
 
 /**
  * Initialize the Project Config from a datafile.
