@@ -26,18 +26,20 @@ NSString * const OPTLY_ENVIRONMENTS_SUFFIX = @"/datafiles/%@.json";
 @property(nonatomic, strong, nullable) NSString* projectId;
 @property(nonatomic, strong, nullable) NSString* sdkKey;
 @property(nonatomic, strong) NSString* host;
-@property(nonatomic, strong) NSURL* projectIdUrl;
-@property(nonatomic, strong) NSURL* sdkKeyUrl;
+@property(nonatomic, strong) NSURL* datafileUrl;
 @end
 
 @implementation OPTLYDatafileConfig(OPTLYHelpers)
-+ (NSString *)defaultProjectIdPath:(NSString *)projectId {
++ (NSString *)defaultProjectIdCdnPath:(NSString *)projectId {
     NSString *datafileFormat = [DEFAULT_HOST stringByAppendingString:OPTLY_PROJECTID_SUFFIX];
     return [NSString stringWithFormat:datafileFormat, projectId];
 }
-+ (NSString *)defaultSdkKeyPath:(NSString *)sdkKey {
++ (NSString *)defaultSdkKeyCdnPath:(NSString *)sdkKey {
     NSString *datafileFormat = [DEFAULT_HOST stringByAppendingString:OPTLY_ENVIRONMENTS_SUFFIX];
     return [NSString stringWithFormat:datafileFormat, sdkKey];
+}
++ (BOOL)isValidKeyString:(NSString*)s {
+    return ((s != nil) && ![s isEqualToString:@""] && ![s containsString:@" "]);
 }
 @end
 
@@ -46,22 +48,22 @@ NSString * const OPTLY_ENVIRONMENTS_SUFFIX = @"/datafiles/%@.json";
 - (instancetype)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey withHost:(NSString *)host {
     self.host = host;
     
-    if (![OPTLYManagerBase isValidKeyString:projectId] && ![OPTLYManagerBase isValidKeyString:sdkKey]) {
+    if (![OPTLYDatafileConfig isValidKeyString:projectId] && ![OPTLYDatafileConfig isValidKeyString:sdkKey]) {
         // One of projectId and sdkKey needs to be a valid key string.
         return nil;
     }
     if (self = [super init]) {
         self.projectId = projectId;
         self.sdkKey = sdkKey;
-        if (self.projectId != nil) {
-            NSString *datafileFormat = [self.host stringByAppendingString:OPTLY_PROJECTID_SUFFIX];
-            NSString *datafile = [NSString stringWithFormat:datafileFormat, self.projectId];
-            self.projectIdUrl = [NSURL URLWithString:datafile];
-        }
         if (self.sdkKey != nil) {
             NSString *datafileFormat = [self.host stringByAppendingString:OPTLY_ENVIRONMENTS_SUFFIX];
             NSString *datafile = [NSString stringWithFormat:datafileFormat, self.sdkKey];
-            self.sdkKeyUrl = [NSURL URLWithString:datafile];
+            self.datafileUrl = [NSURL URLWithString:datafile];
+        }
+        else {
+            NSString *datafileFormat = [self.host stringByAppendingString:OPTLY_PROJECTID_SUFFIX];
+            NSString *datafile = [NSString stringWithFormat:datafileFormat, self.projectId];
+            self.datafileUrl = [NSURL URLWithString:datafile];
         }
     }
     return self;
@@ -75,7 +77,7 @@ NSString * const OPTLY_ENVIRONMENTS_SUFFIX = @"/datafiles/%@.json";
 }
 
 - (NSURL *)URLForKey {
-    return (_sdkKey != nil)? _sdkKeyUrl : _projectIdUrl;
+    return _datafileUrl;
 }
 
 + (BOOL)areNilOrEqual:(NSString*)x y:(NSString*)y {

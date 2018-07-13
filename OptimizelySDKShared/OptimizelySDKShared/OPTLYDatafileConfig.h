@@ -26,6 +26,11 @@ extern NSString * const OPTLY_ENVIRONMENTS_SUFFIX;
 @end
 
 @interface OPTLYDatafileConfig(OPTLYHelpers)
-+ (NSString *)defaultProjectIdPath:(NSString *)projectId;
-+ (NSString *)defaultSdkKeyPath:(NSString *)sdkKey;
++ (NSString *)defaultProjectIdCdnPath:(NSString *)projectId;
++ (NSString *)defaultSdkKeyCdnPath:(NSString *)sdkKey;
+/*
+ * Test if string s can be an Optimizely SDK key string.
+ */
++ (BOOL)isValidKeyString:(NSString*)s;
+
 @end

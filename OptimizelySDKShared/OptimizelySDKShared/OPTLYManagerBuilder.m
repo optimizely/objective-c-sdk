@@ -80,7 +80,7 @@
         }
         
         // check the project id
-        if (![OPTLYManagerBase isValidKeyString:_projectId] && ![OPTLYManagerBase isValidKeyString:_sdkKey]) {
+        if (![OPTLYDatafileConfig isValidKeyString:_projectId] && ![OPTLYDatafileConfig isValidKeyString:_sdkKey]) {
             [_logger logMessage:OPTLYLoggerMessagesManagerMustBeInitializedWithProjectId
                       withLevel:OptimizelyLogLevelError];
             return nil;
