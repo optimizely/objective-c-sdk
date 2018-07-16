@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -32,8 +32,8 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
+#import "OPTLYControlAttributes.h"
 
-NSString * const OptimizelyBucketIdEventParam = @"optimizely_bucketing_id";
 NSString * const OptimizelyActivateEventKey = @"campaign_activated";
 
 // --- Event URLs ----
@@ -401,45 +401,39 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
-                     attributes:(NSDictionary *)attributes
-{
+                     attributes:(NSDictionary *)attributes {
+    
+    NSNumber *botFiltering = config.botFiltering;
     NSMutableArray *features = [NSMutableArray new];
     NSArray *attributeKeys = [attributes allKeys];
     
     for (NSString *attributeKey in attributeKeys) {
-        OPTLYAttribute *attribute = [config getAttributeForKey:attributeKey];
         NSString *attributeValue = attributes[attributeKey];
-        NSString *attributeId = attribute.attributeId;
-        
-        if ([attributeValue length] == 0) {
+        if ([OPTLYEventBuilderDefault isEmptyString:attributeValue]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
         }
-        
-        NSDictionary *featureParams;
-        if ([attributeKey isEqualToString:OptimizelyBucketId]) {
-            // check for reserved attribute OptimizelyBucketId
-            featureParams = @{ OPTLYEventParameterKeysFeaturesId           : OptimizelyBucketId,
-                               OPTLYEventParameterKeysFeaturesKey          : OptimizelyBucketIdEventParam,
-                               OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
-                               OPTLYEventParameterKeysFeaturesValue        : attributeValue,
-                               OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
+        NSString *attributeId = [config getAttributeIdForKey:attributeKey];
+        if ([OPTLYEventBuilderDefault isEmptyString:attributeId]) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeInvalidFormat, attributeKey];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+            continue;
         } else {
-            if ([attributeId length] == 0) {
-                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeInvalidFormat, attributeKey];
-                [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                continue;
-            }
-            featureParams = @{ OPTLYEventParameterKeysFeaturesId           : attributeId,
-                               OPTLYEventParameterKeysFeaturesKey          : attributeKey,
+            [features addObject: @{ OPTLYEventParameterKeysFeaturesId           : attributeId,
+                                    OPTLYEventParameterKeysFeaturesKey          : attributeKey,
+                                    OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
+                                    OPTLYEventParameterKeysFeaturesValue        : attributeValue,
+                                    OPTLYEventParameterKeysFeaturesShouldIndex  : @YES }];
+        }
+    }
+    //check for botFiltering value in the project config file.
+    if (botFiltering) {
+        [features addObject:@{ OPTLYEventParameterKeysFeaturesId           : OptimizelyBotFiltering,
+                               OPTLYEventParameterKeysFeaturesKey          : OptimizelyBotFiltering,
                                OPTLYEventParameterKeysFeaturesType         : OPTLYEventFeatureFeatureTypeCustomAttribute,
-                               OPTLYEventParameterKeysFeaturesValue        : attributeValue,
-                               OPTLYEventParameterKeysFeaturesShouldIndex  : @YES };
-        }
-        if (featureParams) {
-            [features addObject:featureParams];
-        }
+                               OPTLYEventParameterKeysFeaturesValue        : @(botFiltering.boolValue),
+                               OPTLYEventParameterKeysFeaturesShouldIndex  : @YES }];
     }
     return [features copy];
 }
@@ -458,6 +452,12 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 + (NSString *)stringOrEmpty:(NSString *)str {
     NSString *string = str != nil ? str : @"";
     return string;
+}
+
++ (BOOL)isEmptyString:(NSString*)str {
+    return (str == nil
+            || [str isKindOfClass:[NSNull class]]
+            || [str length] == 0);
 }
 
 @end

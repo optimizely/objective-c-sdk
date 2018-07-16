@@ -33,7 +33,8 @@
 // Live Variables (DEPRECATED)
 #import "OPTLYVariable.h"
 
-NSString * const kExpectedDatafileVersion  = @"4";
+NSString * const kExpectedDatafileVersion = @"4";
+NSString * const kReservedAttributePrefix = @"$opt_";
 
 @interface OPTLYProjectConfig()
 
@@ -180,6 +181,24 @@ NSString * const kExpectedDatafileVersion  = @"4";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return attribute;
+}
+
+- (nullable NSString *)getAttributeIdForKey:(nonnull NSString *)attributeKey {
+    OPTLYAttribute *attribute = self.attributeKeyToAttributeMap[attributeKey];
+    BOOL hasReservedPrefix = [attributeKey hasPrefix:kReservedAttributePrefix];
+    NSString *attributeId;
+    if (attribute) {
+        if (hasReservedPrefix) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeIsReserved, attributeKey, kReservedAttributePrefix];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        attributeId = attribute.attributeId;
+    } else if (hasReservedPrefix) {
+        attributeId = attributeKey;
+    }
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeNotFound, attributeKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    return attributeId;
 }
 
 - (NSString *)getEventIdForKey:(NSString *)eventKey {
