@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -59,10 +59,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testiOSSDKInitializedWithOverrides {
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]];
     
     // asset manager got intialized with the correct defaults
     XCTAssertNotNil(manager);
@@ -107,10 +107,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
     XCTAssertEqualObjects(@"optimizely_ios_os_version", OptimizelyOSVersionKey);
     XCTAssertEqualObjects(@"optimizely_ios_sdk_version", OptimizelySDKVersionKey);
     
-    OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
-    }];
+    }]];
     
     OPTLYClient *client = [manager initialize];
     XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);

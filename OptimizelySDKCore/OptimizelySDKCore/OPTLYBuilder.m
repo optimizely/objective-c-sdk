@@ -50,14 +50,14 @@
         return nil;
     }
     
-    _config = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    _config = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = self.logger;
         builder.userProfileService = self.userProfileService;
         builder.errorHandler = self.errorHandler;
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
-    }];
+    }]];
     
     if (_config == nil) {
         NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -43,16 +43,16 @@ static NSString *const kProjectId = @"6372300739";
 }
 
 - (void)testManagerBuilderRequiresProjectId {
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         
-    }];
+    }]];
     XCTAssertNil(manager);
 }
 
 - (void)testManagerBuilderBuildsSuccessfulWithProjectId {
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.projectId);
     XCTAssertEqual(manager.projectId, kProjectId);
@@ -67,14 +67,14 @@ static NSString *const kProjectId = @"6372300739";
 - (void)testBuilderCanAssignErrorHandler {
     OPTLYErrorHandlerDefault *errorHandler = [[OPTLYErrorHandlerDefault alloc] init];
     
-    OPTLYManagerBasic *defaultManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *defaultManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     
-    OPTLYManagerBasic *customManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *customManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.errorHandler = errorHandler;
-    }];
+    }]];
     
     XCTAssertNotNil(customManager);
     XCTAssertNotNil(customManager.errorHandler);
@@ -85,14 +85,14 @@ static NSString *const kProjectId = @"6372300739";
 - (void)testBuilderCanAssignEventDispatcher {
     OPTLYEventDispatcherNoOp *eventDispatcher = [[OPTLYEventDispatcherNoOp alloc] init];
     
-    OPTLYManagerBasic *defaultManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *defaultManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     
-    OPTLYManagerBasic *customManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *customManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.eventDispatcher = eventDispatcher;
-    }];
+    }]];
     
     XCTAssertNotNil(customManager);
     XCTAssertNotNil(customManager.eventDispatcher);
@@ -103,14 +103,14 @@ static NSString *const kProjectId = @"6372300739";
 - (void)testBuilderCanAssignLogger {
     OPTLYLoggerDefault *logger = [[OPTLYLoggerDefault alloc] init];
     
-    OPTLYManagerBasic *defaultOptimizely = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *defaultOptimizely = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     
-    OPTLYManagerBasic *customManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *customManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.logger = logger;
-    }];
+    }]];
     
     XCTAssertNotNil(customManager);
     XCTAssertNotNil(customManager.logger);
@@ -121,14 +121,14 @@ static NSString *const kProjectId = @"6372300739";
 - (void)testBuilderCanAssignDatafileManager {
     OPTLYDatafileManagerNoOp *datafileManager = [[OPTLYDatafileManagerNoOp alloc] init];
     
-    OPTLYManagerBasic *defaultManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *defaultManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
-    }];
+    }]];
     
-    OPTLYManagerBasic *customManager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *customManager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = datafileManager;
-    }];
+    }]];
     
     XCTAssertNotNil(customManager);
     XCTAssertNotNil(customManager.datafileManager);
@@ -139,10 +139,10 @@ static NSString *const kProjectId = @"6372300739";
 - (void)testBuilderCannotAssignDatafileManagerThatDoesNotConformToProtocol {
     OPTLYFakeDatafileManagerClass *object = [[OPTLYFakeDatafileManagerClass alloc] init];
     
-    OPTLYManagerBasic *managerWithObject = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *managerWithObject = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = object;
-    }];
+    }]];
     
     XCTAssertNil(managerWithObject);
 }
@@ -151,9 +151,9 @@ static NSString *const kProjectId = @"6372300739";
  * Test the manager is not initialized when an empty string is passed in for the projectID
  */
 - (void)testManagerIsNotInitializedWhenProjectIdIsEmptyString {
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = @"";
-    }];
+    }]];
     XCTAssertNil(manager, @"Manager should not be initialized if we pass in an empty string as the project ID");
 }
 

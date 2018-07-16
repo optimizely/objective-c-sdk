@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,22 +14,31 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import "OPTLYManagerBase.h"
+import XCTest
+import OptimizelySDKShared
 
-@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
-/**
- * Init with builder block
- * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock
-__attribute((deprecated("Use OPTLYManagerBasic initWithBuilder method instead.")));
-
-/**
- * Init with OPTLYManagerBuilder object
- * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
- * @return OptimizelyManager instance
- */
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
-@end
+class OPTLYClientSwiftTest: XCTestCase {
+    
+    let defaultDatafileFileName = "optimizely_6372300739"
+    var defaultDatafile: Data?
+    var client: OPTLYClient?
+    
+    override func setUp() {
+        super.setUp()
+        self.defaultDatafile = OPTLYTestHelper.loadJSONDatafile(intoDataObject: self.defaultDatafileFileName)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        self.defaultDatafile = nil
+    }
+    
+    func testOPTLYManagerInitWithBuilder() -> Void {
+        self.client = OPTLYClient.init(builder: OPTLYClientBuilder.init(block: { (builder) in
+            builder.datafile = self.defaultDatafile
+        }))
+        XCTAssertNotNil(self.client, "optimizely client should not be nil")
+        XCTAssertNotNil(self.client?.optimizely, "optimizely should not be nil")
+        XCTAssertNotNil(self.client?.logger, "optimizely logger should not be nil")
+    }
+}

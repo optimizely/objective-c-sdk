@@ -55,6 +55,10 @@
 		3ECBCC351F439AD000160937 /* OPTLYFMDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2C1F439AD000160937 /* OPTLYFMDBTempDBTests.m */; };
 		3ECBCC361F439AD000160937 /* OPTLYFMDBResultSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBCC2E1F439AD000160937 /* OPTLYFMDBResultSetTests.m */; };
 		5318433267A9188A3D16D3A2 /* Pods_OptimizelySDKSharediOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9FE2FE02E36C64D6F1F442 /* Pods_OptimizelySDKSharediOSTests.framework */; };
+		59CAB10720E385CC009D9E04 /* OPTLYClientSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAB10620E385CC009D9E04 /* OPTLYClientSwiftTest.swift */; };
+		59CAB10820E385CC009D9E04 /* OPTLYClientSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAB10620E385CC009D9E04 /* OPTLYClientSwiftTest.swift */; };
+		59CAB11A20E3A514009D9E04 /* OPTLYManagerSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAB11920E3A514009D9E04 /* OPTLYManagerSwiftTest.swift */; };
+		59CAB11B20E3A514009D9E04 /* OPTLYManagerSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAB11920E3A514009D9E04 /* OPTLYManagerSwiftTest.swift */; };
 		5E4C07F61DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
 		5E4C07F71DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
 		5E4C08001E0087940042B1F8 /* OPTLYDatafileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */; };
@@ -222,6 +226,10 @@
 		3ECBCC2B1F439AD000160937 /* OPTLYFMDBTempDBTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYFMDBTempDBTests.h; sourceTree = "<group>"; };
 		3ECBCC2C1F439AD000160937 /* OPTLYFMDBTempDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBTempDBTests.m; sourceTree = "<group>"; };
 		3ECBCC2E1F439AD000160937 /* OPTLYFMDBResultSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYFMDBResultSetTests.m; sourceTree = "<group>"; };
+		59CAB10420E385CC009D9E04 /* OptimizelySDKSharediOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKSharediOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		59CAB10520E385CC009D9E04 /* OptimizelySDKSharedTVOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKSharedTVOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		59CAB10620E385CC009D9E04 /* OPTLYClientSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYClientSwiftTest.swift; sourceTree = "<group>"; };
+		59CAB11920E3A514009D9E04 /* OPTLYManagerSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYManagerSwiftTest.swift; sourceTree = "<group>"; };
 		5E4C07F51DFF65AA0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InvalidDatafileVersionDatafile.json; path = TestData/InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDatafileManagerTest.m; sourceTree = "<group>"; };
 		5EDD2F1182FB354ABC0E04A1 /* Pods_OptimizelySDKSharedTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKSharedTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,15 +470,19 @@
 		EA3C68371DC1E68E00C578CA /* OptimizelySDKSharedTests */ = {
 			isa = PBXGroup;
 			children = (
+				59CAB10420E385CC009D9E04 /* OptimizelySDKSharediOSTests-Bridging-Header.h */,
 				EA3C683A1DC1E68E00C578CA /* OptimizelySDKSharedTests-Info.plist */,
-				EA1E168F1DC87DC700F00033 /* OPTLYTestHelper.h */,
-				EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */,
 				EA3C68381DC1E68E00C578CA /* OptimizelySDKSharedTests.m */,
+				59CAB10520E385CC009D9E04 /* OptimizelySDKSharedTVOSTests-Bridging-Header.h */,
+				59CAB10620E385CC009D9E04 /* OPTLYClientSwiftTest.swift */,
 				2D08FB701DCA5BF6006CA063 /* OPTLYClientTest.m */,
 				5E4C07FF1E0087940042B1F8 /* OPTLYDatafileManagerTest.m */,
-				2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */,
-				2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */,
 				EA064BDE1DD53F3100DF7537 /* OPTLYDataStoreTest.m */,
+				2DB3D1521DC8163600ECF72E /* OPTLYManagerBuilderTest.m */,
+				59CAB11920E3A514009D9E04 /* OPTLYManagerSwiftTest.swift */,
+				2DCC50B21DD3CDAB006C9815 /* OPTLYManagerTest.m */,
+				EA1E168F1DC87DC700F00033 /* OPTLYTestHelper.h */,
+				EA1E16901DC87DC700F00033 /* OPTLYTestHelper.m */,
 				2D08FB7F1DCA5E59006CA063 /* TestData */,
 			);
 			path = OptimizelySDKSharedTests;
@@ -697,6 +709,7 @@
 					};
 					EA52470A1DC7192200AF6685 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					EA5247221DC7193B00AF6685 = {
@@ -705,6 +718,7 @@
 					};
 					EA52472A1DC7193B00AF6685 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -952,9 +966,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCC50B31DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
+				59CAB10720E385CC009D9E04 /* OPTLYClientSwiftTest.swift in Sources */,
 				2D08FB711DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */,
 				EA1E16961DC87E0000F00033 /* OPTLYTestHelper.m in Sources */,
 				5E4C08001E0087940042B1F8 /* OPTLYDatafileManagerTest.m in Sources */,
+				59CAB11A20E3A514009D9E04 /* OPTLYManagerSwiftTest.swift in Sources */,
 				2DB3D1591DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				2DB3D1561DC8163900ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
 				EA064BDF1DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */,
@@ -983,9 +999,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D08FB721DCA5BF6006CA063 /* OPTLYClientTest.m in Sources */,
+				59CAB10820E385CC009D9E04 /* OPTLYClientSwiftTest.swift in Sources */,
 				EA1E16971DC87E0100F00033 /* OPTLYTestHelper.m in Sources */,
 				2DB3D1581DC8164800ECF72E /* OptimizelySDKSharedTests.m in Sources */,
 				5E4C08011E0087940042B1F8 /* OPTLYDatafileManagerTest.m in Sources */,
+				59CAB11B20E3A514009D9E04 /* OPTLYManagerSwiftTest.swift in Sources */,
 				EA064BE01DD53F3100DF7537 /* OPTLYDataStoreTest.m in Sources */,
 				2DCC50B41DD3CDAB006C9815 /* OPTLYManagerTest.m in Sources */,
 				2DB3D1571DC8163A00ECF72E /* OPTLYManagerBuilderTest.m in Sources */,
@@ -1115,6 +1133,7 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1187,6 +1206,7 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "-beta2";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1251,6 +1271,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5CD117F87B2E120D54985DC /* Pods-OptimizelySDKSharediOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1263,6 +1284,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKSharedTests/OptimizelySDKSharediOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1270,6 +1294,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 82F3098AD78201EA74F987C8 /* Pods-OptimizelySDKSharediOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1278,6 +1303,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKSharedTests/OptimizelySDKSharediOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1343,6 +1370,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0443A97CD668FC2F4004BE08 /* Pods-OptimizelySDKSharedTVOSTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1355,6 +1383,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKSharedTests/OptimizelySDKSharedTVOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -1363,6 +1394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD8D79A465193E85049C2A6B /* Pods-OptimizelySDKSharedTVOSTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1371,6 +1403,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKSharedTVOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "OptimizelySDKSharedTests/OptimizelySDKSharedTVOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;

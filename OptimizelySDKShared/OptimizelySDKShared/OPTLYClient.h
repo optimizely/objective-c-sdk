@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -35,7 +35,15 @@
 /// Optimizely X Mobile Default Attributes
 @property (atomic, strong, readwrite, nullable) NSDictionary *defaultAttributes;
 
-+ (nonnull instancetype)init:(nonnull OPTLYClientBuilderBlock)builderBlock;
++ (nonnull instancetype)init:(nonnull OPTLYClientBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYClient initWithBuilder method instead.")));
+
+/**
+ * Init with OPTLYClientBuilder object
+ * @param builder The OPTLYClientBuilder object which has datafile, event handler, event dispatcher, and other configurations to be set.
+ * @return OPTLYClient instance
+ */
+- (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder;
 
 - (OPTLYNotificationCenter *_Nullable)notificationCenter;
 

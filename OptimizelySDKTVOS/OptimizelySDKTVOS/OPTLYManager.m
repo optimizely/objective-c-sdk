@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -92,11 +92,11 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set
-            self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+            self.datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
                 builder.datafileConfig = self.datafileConfig;
                 builder.errorHandler = self.errorHandler;
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.datafileManager = builder.datafileManager;
         }
@@ -104,9 +104,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- event dispatcher ---
         if (!builder.eventDispatcher) {
             // set default event dispatcher if no event dispatcher is set
-            self.eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
+            self.eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.eventDispatcher = builder.eventDispatcher;
         }
@@ -114,9 +114,9 @@ static NSString * const kClientEngine = @"tvos-sdk";
         // --- user profile ---
         if (!builder.userProfileService) {
             // set default user profile if no user profile is set
-            self.userProfileService = [OPTLYUserProfileServiceDefault init:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
+            self.userProfileService = [[OPTLYUserProfileServiceDefault alloc] initWithBuilder:[OPTLYUserProfileServiceBuilder builderWithBlock:^(OPTLYUserProfileServiceBuilder * _Nullable builder) {
                 builder.logger = self.logger;
-            }];
+            }]];
         } else {
             self.userProfileService = builder.userProfileService;
         }

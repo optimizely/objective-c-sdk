@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,22 +14,28 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import "OPTLYManagerBase.h"
+import XCTest
+import OptimizelySDKDatafileManager
 
-@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
-/**
- * Init with builder block
- * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock
-__attribute((deprecated("Use OPTLYManagerBasic initWithBuilder method instead.")));
-
-/**
- * Init with OPTLYManagerBuilder object
- * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
- * @return OptimizelyManager instance
- */
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
-@end
+class OPTLYDatafileManagerSwiftTest: XCTestCase {
+    
+    let kProjectId = "6372300739"
+    var datafileManager: OPTLYDatafileManagerDefault?
+    
+    override func setUp() {
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testOPTLYDatafileManagerInitWithBuilder() -> Void {
+        let datafileConfig = OPTLYDatafileConfig.init(projectId: self.kProjectId, withSDKKey: nil)
+        XCTAssertNotNil(datafileConfig, "data file config should not be nil.")
+        self.datafileManager = OPTLYDatafileManagerDefault.init(builder: OPTLYDatafileManagerBuilder.init(block: { (builder) in
+            builder?.datafileConfig = datafileConfig!
+        }))
+        XCTAssertNotNil(self.datafileManager, "data file manager should not be nil.")
+    }
+}

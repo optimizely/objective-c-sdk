@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -77,7 +77,15 @@ NS_ASSUME_NONNULL_END
 /**
  * Initialize the Project Config from a builder block.
  */
-+ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYProjectConfigBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead.")));
+
+/**
+ * Initialize the Project Config from a OPTLYProjectConfigBuilder object.
+ * @param builder The OPTLYProjectConfigBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
+ * @return OPTLYProjectConfig instance.
+ */
+- (nullable instancetype)initWithBuilder:(nonnull OPTLYProjectConfigBuilder *)builder;
 
 /**
  * Initialize the Project Config from a datafile.

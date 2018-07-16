@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -56,7 +56,7 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
     return [self initWithBuilder:nil];
 }
 
-- (instancetype)initWithBuilder:(OPTLYEventDispatcherBuilder *)builder {
+- (nullable instancetype)initWithBuilder:(nullable OPTLYEventDispatcherBuilder *)builder {
     self = [super init];
     if (self != nil) {
         _flushEventAttempts = 0;

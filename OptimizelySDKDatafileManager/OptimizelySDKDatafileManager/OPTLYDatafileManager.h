@@ -44,6 +44,14 @@
  * @param builderBlock The builder block containing the datafile fetch interval.
  * @return an Optimizely Datafile Manager instance.
  */
-+ (nullable instancetype)init:(nonnull OPTLYDatafileManagerBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYDatafileManagerBuilderBlock)builderBlock
+__attribute((deprecated("Use OPTLYDatafileManagerDefault initWithBuilder method instead.")));
+
+/**
+ * Init with OPTLYDatafileManagerBuilder object
+ * @param builder The OPTLYDatafileManagerBuilder object containing the datafile fetch interval.
+ * @return an Optimizely Datafile Manager instance.
+ */
+- (instancetype)initWithBuilder:(OPTLYDatafileManagerBuilder *)builder;
 
 @end
