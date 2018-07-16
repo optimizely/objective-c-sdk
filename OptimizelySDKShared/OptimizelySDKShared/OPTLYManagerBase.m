@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -163,7 +163,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 }
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
-    OPTLYClient *client = [OPTLYClient init:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [[OPTLYClient new] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;
         builder.errorHandler = self.errorHandler;
         builder.eventDispatcher = self.eventDispatcher;
@@ -171,7 +171,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
         builder.userProfileService = self.userProfileService;
         builder.clientEngine = self.clientEngine;
         builder.clientVersion = self.clientVersion;
-    }];
+    }]];
     client.defaultAttributes = [self newDefaultAttributes];
     return client;
 }
