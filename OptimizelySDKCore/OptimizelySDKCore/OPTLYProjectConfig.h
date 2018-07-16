@@ -46,8 +46,6 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSString *revision;
 /// Flag for IP anonymization
 @property (nonatomic, strong, nonnull) NSNumber<Optional> *anonymizeIP;
-/// Flag for Bot Filtering
-@property (nonatomic, strong, nonnull) NSNumber<Optional> *botFiltering;
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
@@ -138,11 +136,6 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
 * Get an attribute for a given key.
 */
 - (nullable OPTLYAttribute *)getAttributeForKey:(nonnull NSString *)attributeKey;
-
-/**
- * Get an attribute Id for a given key.
- **/
-- (nullable NSString *)getAttributeIdForKey:(nonnull NSString *)attributeKey;
 
 /**
  * Get an audience for a given audience id.
