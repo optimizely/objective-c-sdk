@@ -121,9 +121,4 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * Gets the cached Optimizely client.
  */
 - (nullable OPTLYClient *)getOptimizely;
-
-/*
- * Test if string s can be an Optimizely SDK key string.
- */
-+ (BOOL)isValidKeyString:(NSString*)s;
 @end
