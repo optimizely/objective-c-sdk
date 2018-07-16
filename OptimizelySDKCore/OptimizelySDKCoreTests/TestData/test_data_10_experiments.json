@@ -678,7 +678,6 @@
   ],
   "revision": "83",
   "anonymizeIP": true,
-  "botFiltering": true,
   "featureFlags": [
     {
       "id": "155564",
