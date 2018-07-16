@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,6 +21,7 @@ NSString * const OPTLYDatafileKeysAccountId = @"accountId";
 NSString * const OPTLYDatafileKeysProjectId = @"projectId";
 NSString * const OPTLYDatafileKeysVersion = @"version";
 NSString * const OPTLYDatafileKeysRevision =  @"revision";
+NSString * const OPTLYDatafileKeysAnonymizeIP = @"anonymizeIP";
 NSString * const OPTLYDatafileKeysExperiments = @"experiments";
 NSString * const OPTLYDatafileKeysEvents = @"events";
 NSString * const OPTLYDatafileKeysAudiences = @"audiences";
