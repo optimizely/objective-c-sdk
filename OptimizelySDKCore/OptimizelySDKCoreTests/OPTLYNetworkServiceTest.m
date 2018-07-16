@@ -64,9 +64,9 @@ static NSDictionary *kCDNResponseHeaders = nil;
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
     
-    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
+    NSString *cdnPath = [OPTLYDatafileConfig defaultProjectIdCdnPath:kProjectId];
     
-    [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
+    [self.network downloadProjectConfig:[NSURL URLWithString:cdnPath]
                            backoffRetry:NO
                       completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                           NSDictionary *datafile = [NSJSONSerialization JSONObjectWithData:data
@@ -83,9 +83,9 @@ static NSDictionary *kCDNResponseHeaders = nil;
 - (void)testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion {
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"testDownloadProjectConfigWithLastModifiedRequestRetrievesProperDatafileVersion"];
     [self stub200Response];
-    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
+    NSString *cdnPath = [OPTLYDatafileConfig defaultProjectIdCdnPath:kProjectId];
 
-    [self.network downloadProjectConfig:[NSURL URLWithString:filePath]
+    [self.network downloadProjectConfig:[NSURL URLWithString:cdnPath]
                            backoffRetry:NO
                            lastModified:kLastModifiedDate
                       completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -101,7 +101,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 
 # pragma mark - Helper Methods
 - (id<OHHTTPStubsDescriptor>)stub200Response {
-    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdPath:kProjectId];
+    NSString *filePath = [OPTLYDatafileConfig defaultProjectIdCdnPath:kProjectId];
     
      NSURL *hostURL = [NSURL URLWithString:filePath];
     NSString *hostName = [hostURL host];
