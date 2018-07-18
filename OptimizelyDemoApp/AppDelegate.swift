@@ -65,24 +65,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // **************************************************
         
         // ---- Create the Event Dispatcher ----
-        let eventDispatcher = OPTLYEventDispatcherDefault.init(builder: OPTLYEventDispatcherBuilder.init(block: { (builder) in
+        let eventDispatcher = OPTLYEventDispatcherDefault(builder: OPTLYEventDispatcherBuilder(block: { (builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
             builder?.logger = OPTLYLoggerDefault.init(logLevel: .debug)
         }))
         
         // ---- Create the Datafile Manager ----
-        let datafileManager = OPTLYDatafileManagerDefault.init(builder: OPTLYDatafileManagerBuilder.init(block: { (builder) in
+        let datafileManager = OPTLYDatafileManagerDefault(builder: OPTLYDatafileManagerBuilder(block: { (builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.datafileConfig = OPTLYDatafileConfig(projectId: self.projectId, withSDKKey:nil)!;
-        }
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:"6hmwpgZcRFp36wH5QLK8Sb")!;
+            
+        }))
         
-        // ---- Create the Manager ----
-        let optimizelyManager = OPTLYManager.init(builder: OPTLYManagerBuilder.init(block: { (builder) in
+        let builder = OPTLYManagerBuilder(block: { (builder) in
             builder!.projectId = nil;
             builder!.sdkKey = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
-        }))
+        })
+        
+        // ---- Create the Manager ----
+        var optimizelyManager = OPTLYManager(builder: builder)
+        
+        optimizelyManager?.datafileConfig = datafileManager?.datafileConfig
         
         // After creating the client, there are three different ways to intialize the manager:
         

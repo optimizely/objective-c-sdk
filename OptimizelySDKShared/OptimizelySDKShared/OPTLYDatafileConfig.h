@@ -20,6 +20,7 @@ extern NSString * const OPTLY_PROJECTID_SUFFIX;
 extern NSString * const OPTLY_ENVIRONMENTS_SUFFIX;
 
 @interface OPTLYDatafileConfig : NSObject
+- (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey withHost:(NSString *)host;
 - (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey;
 - (NSURL *) URLForKey;
 - (NSString *) key;
