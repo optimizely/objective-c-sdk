@@ -28,7 +28,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 /// The dispatch interval for the event dispatcher.
 @property (nonatomic, readwrite) NSTimeInterval eventDispatchInterval;
 /// The ID of the Optimizely Project the manager will oversee
-@property (nonatomic, readwrite, strong, nonnull) NSString *projectId;
+@property (nonatomic, readwrite, strong, nullable) NSString *projectId;
+/// The ID of the Optimizely Project SDK key the manager will oversee
+@property (nonatomic, readwrite, strong, nullable) NSString *sdkKey;
 /// The datafile manager to be used for the manager
 @property (nonatomic, readwrite, strong, nonnull) id<OPTLYDatafileManager> datafileManager;
 /// The error handler to be used for the manager, client, and all subcomponents

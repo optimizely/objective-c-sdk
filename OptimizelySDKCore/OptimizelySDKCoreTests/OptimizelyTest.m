@@ -96,11 +96,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [super setUp];
     self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experiments"];
     
-    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-    }];
+    }]];
     
     XCTAssertNotNil(self.optimizely);
     
@@ -161,9 +161,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 // Test initializing with older V2 datafile
 - (void)testOlderV2Datafile {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kV2TestDatafileName];
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
     XCTAssertNotNil(optimizely);
 }
 
@@ -171,9 +171,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 - (void)testVariationWhitelisting {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
     
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
     XCTAssertNotNil(optimizely);
     
     // get variation
@@ -246,11 +246,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *invalidEventKey = @"invalid";
     
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = loggerMock;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-    }];
+    }]];
     [optimizely track:invalidEventKey userId:kUserId attributes:self.attributes];
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, invalidEventKey, kUserId];
@@ -261,11 +261,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 - (void)testOptimizelyTrackWithEventOfNoExperiment {
     NSString *eventWithNoExerimentKey = @"testEventWithoutExperiments";
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = loggerMock;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-    }];
+    }]];
     [optimizely track:eventWithNoExerimentKey userId:kUserId attributes:self.attributes];
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventWithNoExerimentKey, kUserId];

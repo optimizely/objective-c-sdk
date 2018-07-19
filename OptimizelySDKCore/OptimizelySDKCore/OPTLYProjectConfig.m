@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -33,7 +33,8 @@
 // Live Variables (DEPRECATED)
 #import "OPTLYVariable.h"
 
-NSString * const kExpectedDatafileVersion  = @"4";
+NSString * const kExpectedDatafileVersion = @"4";
+NSString * const kReservedAttributePrefix = @"$opt_";
 
 @interface OPTLYProjectConfig()
 
@@ -157,9 +158,9 @@ NSString * const kExpectedDatafileVersion  = @"4";
 }
 
 - (nullable instancetype)initWithDatafile:(nonnull NSData *)datafile {
-    return [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    return [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
-    }];
+    }]];
 }
 
 #pragma mark -- Getters --
@@ -180,6 +181,24 @@ NSString * const kExpectedDatafileVersion  = @"4";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return attribute;
+}
+
+- (nullable NSString *)getAttributeIdForKey:(nonnull NSString *)attributeKey {
+    OPTLYAttribute *attribute = self.attributeKeyToAttributeMap[attributeKey];
+    BOOL hasReservedPrefix = [attributeKey hasPrefix:kReservedAttributePrefix];
+    NSString *attributeId;
+    if (attribute) {
+        if (hasReservedPrefix) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeIsReserved, attributeKey, kReservedAttributePrefix];
+            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        attributeId = attribute.attributeId;
+    } else if (hasReservedPrefix) {
+        attributeId = attributeKey;
+    }
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeNotFound, attributeKey];
+    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    return attributeId;
 }
 
 - (NSString *)getEventIdForKey:(NSString *)eventKey {

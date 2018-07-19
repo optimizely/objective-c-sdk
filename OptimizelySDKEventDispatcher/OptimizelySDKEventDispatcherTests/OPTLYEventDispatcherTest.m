@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -73,18 +73,18 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 
 - (void)testEventDispatcherInitWithBuilderBlock
 {
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
         builder.eventDispatcherDispatchInterval = kEventHandlerDispatchInterval;
         builder.logger = [OPTLYLoggerDefault new];
-    }];
+    }]];
     
     XCTAssertNotNil(eventDispatcher);
     XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == kEventHandlerDispatchInterval, @"Invalid dispatch timeout set.");
     XCTAssertNotNil(eventDispatcher.logger);
     XCTAssert([eventDispatcher.logger isKindOfClass:[OPTLYLoggerDefault class]]);
     
-    eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
-    }];
+    eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
+    }]];
     
     XCTAssertNotNil(eventDispatcher);
     XCTAssert(eventDispatcher.eventDispatcherDispatchInterval == OPTLYEventDispatcherDefaultDispatchIntervalTime_s, @"Invalid default dispatch interval set.");
@@ -380,10 +380,10 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
     [self stubFailureResponse];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for testFlushEventAttempts failure."];
     
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
         builder.eventDispatcherDispatchInterval = 1;
         builder.logger = [OPTLYLoggerDefault new];
-    }];
+    }]];
     
 
     [eventDispatcher.dataStore saveEvent:self.parameters
@@ -421,11 +421,11 @@ typedef void (^EventDispatchCallback)(NSData * _Nullable data, NSURLResponse * _
 - (void)testMaxEventDispatchLimit
 {    
     NSInteger maxNumberEvents = 10;
-    OPTLYEventDispatcherDefault *eventDispatcher = [OPTLYEventDispatcherDefault init:^(OPTLYEventDispatcherBuilder *builder) {
+    OPTLYEventDispatcherDefault *eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
         builder.maxNumberOfEventsToSave = maxNumberEvents;
         builder.eventDispatcherDispatchInterval = 1;
         builder.logger = [OPTLYLoggerDefault new];
-    }];
+    }]];
     
     // make sure that the max value is set properly
     XCTAssert(eventDispatcher.maxNumberOfEventsToSave == maxNumberEvents, @"Invalid number of max events set: %lu", eventDispatcher.maxNumberOfEventsToSave);

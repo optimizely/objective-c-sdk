@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -33,7 +33,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 @property (nonatomic, strong) NSTimer *datafileDownloadTimer;
 - (void)saveDatafile:(NSData *)datafile;
 - (nullable NSString *)getLastModifiedDate:(nonnull NSString *)projectId;
-- (void)downloadDatafile:(NSString *)projectId completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
+- (void)downloadDatafile:(OPTLYDatafileConfig *)datafileConfig completionHandler:(OPTLYHTTPRequestManagerResponse)completion;
 @end
 
 @interface OPTLYDatafileManagerTest : XCTestCase
@@ -61,9 +61,9 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [super setUp];
     self.dataStore = [OPTLYDataStore new];
     [self.dataStore removeAll:nil];
-    self.datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    self.datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
-    }];
+    }]];
 }
 
 - (void)tearDown {
@@ -148,10 +148,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is enabled if the download interval is > 0
 - (void)testNetworkTimerIsEnabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = kDatafileDownloadInteval;
-    }];
+    }]];
     
     // check that the timer is set correctly
     XCTAssertNotNil(datafileManager.datafileDownloadTimer, @"Timer should not be nil.");
@@ -162,19 +162,19 @@ static NSDictionary *kCDNResponseHeaders = nil;
 // timer is disabled if the datafile download interval is <= 0
 - (void)testNetworkTimerIsDisabled
 {
-    OPTLYDatafileManagerDefault *datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    OPTLYDatafileManagerDefault *datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = 0;
-    }];
+    }]];
     
     // check that the timer is set correctly
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
     XCTAssertFalse(datafileManager.datafileDownloadTimer.valid, @"Timer should not be valid.");
     
-    datafileManager = [OPTLYDatafileManagerDefault init:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+    datafileManager = [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
         builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:kProjectId withSDKKey:nil];
         builder.datafileFetchInterval = -5;
-    }];
+    }]];
     
     // check that the timer is set correctly
     XCTAssertNil(datafileManager.datafileDownloadTimer, @"Timer should be nil.");
@@ -224,10 +224,10 @@ static NSDictionary *kCDNResponseHeaders = nil;
     [self waitForExpectationsWithTimeout:2 handler:nil];
     
     // test datafile manager works in optly manager class
-    OPTLYManagerBasic *manager = [OPTLYManagerBasic init:^(OPTLYManagerBuilder * _Nullable builder) {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.projectId = kProjectId;
         builder.datafileManager = self.datafileManager;
-    }];
+    }]];
     XCTAssertNotNil(manager);
     XCTAssertNotNil(manager.datafileManager);
     XCTAssertEqual(manager.datafileManager, self.datafileManager);
@@ -279,7 +279,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         if ([request.allHTTPHeaderFields objectForKey:@"If-Modified-Since"] != nil) {
-            return [OHHTTPStubsResponse responseWithData:nil
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
                                               statusCode:304
                                                  headers:kCDNResponseHeaders];
         }
@@ -300,7 +300,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
     return [OHHTTPStubs stubRequestsPassingTest:^BOOL (NSURLRequest *request) {
         return [request.URL.host isEqualToString:hostName];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [OHHTTPStubsResponse responseWithData:nil
+        return [OHHTTPStubsResponse responseWithData:[NSData data]
                                           statusCode:400
                                              headers:kCDNResponseHeaders];
     }];

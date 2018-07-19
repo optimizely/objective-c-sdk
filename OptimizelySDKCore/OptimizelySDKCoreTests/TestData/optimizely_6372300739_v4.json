@@ -1747,6 +1747,7 @@
   ],
   "revision": "58",
   "anonymizeIP": true,
+  "botFiltering": true,
   "featureFlags": [
     {
       "id": "4195505407",

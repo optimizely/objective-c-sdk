@@ -30,8 +30,7 @@
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYGroup.h"
-
-NSString * _Nonnull const OptimizelyBucketId = @"$opt_bucketing_id";
+#import "OPTLYControlAttributes.h"
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;

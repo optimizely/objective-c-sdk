@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,15 +21,17 @@
     #import <OptimizelySDKCore/OPTLYHTTPRequestManager.h>
 #endif
 
+#import "OPTLYDatafileConfig.h"
+
 @protocol OPTLYErrorHandler, OPTLYLogger;
 @protocol OPTLYDatafileManager <NSObject>
 
 /**
  * Download the datafile for the project ID
- * @param projectId The project ID of the datafile to request.
+ * @param datafileConfig The project ID of the datafile to request.
  * @param completion Completion handler.
  */
-- (void)downloadDatafile:(nonnull NSString *)projectId
+- (void)downloadDatafile:(nonnull OPTLYDatafileConfig *)datafileConfig
        completionHandler:(nullable void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completion;
 
 /**
@@ -61,12 +63,6 @@
  * This method uses compile and run time checks
  */
 + (BOOL)conformsToOPTLYDatafileManagerProtocol:(nonnull Class)instanceClass;
-
-/**
- * Utility method that returns the URL path for the datafile of a particular project.
- * @param projectId The project ID of the datafile whose URL path we are looking for.
- */
-+ (NSURL * _Nonnull)projectConfigURLPath:(nonnull NSString *)projectId;
 
 @end
 

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -32,6 +32,7 @@
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYVariableUsage.h"
+#import "OPTLYControlAttributes.h"
 // Live Variables (DEPRECATED)
 #import "OPTLYVariable.h"
 
@@ -50,6 +51,8 @@ static NSUInteger const kNumberOfGroupObjects = 1;
 static NSUInteger const kNumberOfAttributeObjects = 1;
 static NSUInteger const kNumberOfAudienceObjects = 8;
 static NSUInteger const kNumberOfExperimentObjects = 48;
+static NSString * const kAttributeKey = @"browser_type";
+static NSString * const kAttributeId = @"6380961481";
 
 static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
 
@@ -64,12 +67,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     [super setUp];
     
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    self.projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    self.projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.projectConfig];
 }
@@ -85,12 +88,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 - (void)testInitWithBuilderBlock
 {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     
     XCTAssertNotNil(projectConfig, @"project config should not be nil.");
     XCTAssertNotNil(projectConfig.logger, @"logger should not be nil.");
@@ -107,11 +110,11 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString *clientEngine = @"clientEngine";
     NSString *clientVersion = @"clientVersion";
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.clientEngine = clientEngine;
         builder.clientVersion = clientVersion;
-    }];
+    }]];
     XCTAssertNotNil(projectConfig);
     XCTAssertEqualObjects(projectConfig.clientEngine, clientEngine);
     XCTAssertEqualObjects(projectConfig.clientVersion, clientVersion);
@@ -119,10 +122,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 
 - (void)testInitWithBuilderBlockNoDatafile
 {
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = nil;
-    }];
-    
+    }]];
+#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(projectConfig, @"project config should be nil.");
 }
 
@@ -132,11 +137,11 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     id<OPTLYLogger> logger = (id<OPTLYLogger>)[NSObject new];
     id<OPTLYErrorHandler> errorHandler = (id<OPTLYErrorHandler>)[NSObject new];
     
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.logger = logger;
         builder.errorHandler = errorHandler;
-    }];
+    }]];
     
     XCTAssertNil(projectConfig.userProfileService, @"Invalid user profile should not have been set.");
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
@@ -156,6 +161,12 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     
     XCTAssertFalse(projectConfig.anonymizeIP.boolValue, @"IP anonymization should be set to false.");
+}
+
+- (void)testInitWithoutBotFiltering {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileNameAnonymizeIPFalse];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
+    XCTAssertNil(projectConfig.botFiltering, @"Shouldn't find Bot Filtering node in datafile");
 }
 
 #pragma mark - Test getExperimentForKey:
@@ -276,12 +287,11 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
 
 - (void)testGetAttributeForKey
 {
-    NSString* attributeKey = @"browser_type";
-    OPTLYAttribute *attribute = [self.projectConfig getAttributeForKey:attributeKey];
-    XCTAssertNotNil(attribute, @"Should find attribute for key: %@", attributeKey);
+    OPTLYAttribute *attribute = [self.projectConfig getAttributeForKey:kAttributeKey];
+    XCTAssertNotNil(attribute, @"Should find attribute for key: %@", kAttributeKey);
     XCTAssert([attribute isKindOfClass:[OPTLYAttribute class]], @"Expected to be an OPTLYAttribute: %@", attribute);
-    XCTAssertEqualObjects(attribute.attributeKey, attributeKey,
-                          @"Expecting attribute's attributeKey %@ to be: %@", attribute.attributeKey, attributeKey);
+    XCTAssertEqualObjects(attribute.attributeKey, kAttributeKey,
+                          @"Expecting attribute's attributeKey %@ to be: %@", attribute.attributeKey, kAttributeKey);
 }
 
 - (void)testGetAttributeForNonexistentKey
@@ -289,6 +299,44 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     NSString* attributeKey = @"nonexistent_browser_type";
     OPTLYAttribute *attribute = [self.projectConfig getAttributeForKey:attributeKey];
     XCTAssertNil(attribute, @"Shouldn't find attribute for id: %@", attributeKey);
+}
+
+#pragma mark - Test getAttributeIdForKey:
+
+- (void)testGetAttributeIdWhenAttributeKeyIsValid {
+    NSString *attributeId = [self.projectConfig getAttributeIdForKey:kAttributeKey];
+    XCTAssertEqualObjects(attributeId, kAttributeId, @"should retrieve attribute Id %@ for valid attribute key in datafile", kAttributeId);
+}
+
+- (void)testGetAttributeIdWhenAttributeKeyIsReserved {
+    NSString *attributeId = [self.projectConfig getAttributeIdForKey:OptimizelyUserAgent];
+    XCTAssertEqualObjects(attributeId, OptimizelyUserAgent, @"should retrieve attribute Id %@ for reserved attribute key", OptimizelyUserAgent);
+}
+
+- (void)testGetAttributeIdWhenAttributeKeyIsInvalid {
+    NSString* attributeKey = @"nonexistent_browser_type";
+    NSString *attributeId = [self.projectConfig getAttributeIdForKey:attributeKey];
+    XCTAssertNil(attributeId, @"Shouldn't find an attribute id for key: %@", attributeKey);
+}
+
+- (void)testGetAttributeIdWhenAttributeKeyIsValidAndReserved {
+    NSMutableDictionary *datafile = [[NSMutableDictionary alloc] initWithDictionary:[OPTLYTestHelper loadJSONDatafile:kDataModelDatafileName]];
+    NSString *expectedAttributeKey = @"$opt_some_reserved_attribute";
+    NSString *expectedAttributeId = @"555";
+    [datafile setValue:@[ @{
+                            @"id": expectedAttributeId,
+                            @"key": expectedAttributeKey
+                            }
+                        ] forKey:@"attributes"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
+    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+        builder.datafile = data;
+        builder.logger = [OPTLYLoggerDefault new];
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+        builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
+    }];
+    NSString *attributeId = [projectConfig getAttributeIdForKey:expectedAttributeKey];
+    XCTAssertEqualObjects(attributeId, expectedAttributeId, @"should retrieve attribute Id %@ for reserved attribute key in datafile", expectedAttributeId);
 }
 
 #pragma mark - Test getAudienceForId:
@@ -371,7 +419,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     // invalid audience
     OPTLYVariation *variationInvalidAudience = [self.projectConfig getVariationForExperiment:@"testExperimentWithFirefoxAudience"
                                                                                       userId:@"user_b"
-                                                                                  attributes:@{@"browser_type":@"chrome"}
+                                                                                  attributes:@{kAttributeKey:@"chrome"}
                                                                                     bucketer:self.bucketer];
     
     XCTAssertNil(variationInvalidAudience, @"Variation should be nil for experiment that does not pass audience evaluation: %@", variationInvalidAudience);
@@ -379,7 +427,7 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     // valid audience
     OPTLYVariation *variationValidAudience = [self.projectConfig getVariationForExperiment:@"testExperimentWithFirefoxAudience"
                                                                                     userId:@"user_b"
-                                                                                attributes:@{@"browser_type":@"firefox"}
+                                                                                attributes:@{kAttributeKey:@"firefox"}
                                                                                   bucketer:self.bucketer];
     XCTAssert([variationValidAudience.variationKey isEqualToString:@"variation"], @"Invalid variation for getVariation with whitelisted user: %@", variationValidAudience.variationKey);
 }
@@ -489,6 +537,9 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     
     // validate IP anonymization value
     XCTAssertTrue(projectConfig.anonymizeIP.boolValue, @"IP anonymization should be set to true.");
+    
+    // validate Bot Filtering value
+    XCTAssertTrue(projectConfig.botFiltering.boolValue, @"Bot Filtering should be set to true.");
     
     // check experiments
     NSAssert([projectConfig.experiments count] == kNumberOfExperimentObjects, @"deserializeJSONArray failed to deserialize the right number of experiments objects in project config.");

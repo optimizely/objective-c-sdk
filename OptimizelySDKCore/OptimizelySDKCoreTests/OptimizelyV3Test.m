@@ -120,16 +120,20 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 @end
 
 @implementation OptimizelyV3Test
+// LIVE VARIABLES ARE (DEPRECATED)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 
 - (void)setUp {
     [super setUp];
     self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experimentsV3"];
     
-    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
-    }];
+    }]];
     
     XCTAssertNotNil(self.optimizely);
     
@@ -447,4 +451,6 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     }];
 }
 
+#pragma GCC diagnostic pop // "-Wdeprecated-declarations" "-Wdeprecated-implementations"
+// END OF LIVE VARIABLES ARE (DEPRECATED)
 @end

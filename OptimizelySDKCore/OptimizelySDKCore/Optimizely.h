@@ -565,7 +565,15 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead
  * @param builderBlock The builder block, where the logger, errorHandler, and eventDispatcher can be set.
  * @return Optimizely instance.
  */
-+ (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock
+__attribute((deprecated("Use Optimizely initWithBuilder method instead.")));
+
+/**
+ * Init with OPTLYBuilder object
+ * @param builder The OPTLYBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
+ * @return Optimizely instance.
+ */
+- (nullable instancetype)initWithBuilder:(nullable OPTLYBuilder *)builder;
 
 /**
  * Track an event

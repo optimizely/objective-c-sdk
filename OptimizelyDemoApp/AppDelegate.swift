@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -65,24 +65,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // **************************************************
         
         // ---- Create the Event Dispatcher ----
-        let eventDispatcher = OPTLYEventDispatcherDefault.init{(builder) in
+        let eventDispatcher = OPTLYEventDispatcherDefault(builder: OPTLYEventDispatcherBuilder(block: { (builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
             builder?.logger = OPTLYLoggerDefault.init(logLevel: .debug)
-        }
+        }))
         
         // ---- Create the Datafile Manager ----
-        let datafileManager = OPTLYDatafileManagerDefault.init{(builder) in
+        let datafileManager = OPTLYDatafileManagerDefault(builder: OPTLYDatafileManagerBuilder(block: { (builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:self.projectId)!;
-        }
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:"6hmwpgZcRFp36wH5QLK8Sb")!;
+            
+        }))
         
-        // ---- Create the Manager ----
-        let optimizelyManager = OPTLYManager.init {(builder) in
+        let builder = OPTLYManagerBuilder(block: { (builder) in
             builder!.projectId = nil;
             builder!.sdkKey = self.projectId
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
-        }
+        })
+        
+        // ---- Create the Manager ----
+        var optimizelyManager = OPTLYManager(builder: builder)
+        
+        optimizelyManager?.datafileConfig = datafileManager?.datafileConfig
         
         // After creating the client, there are three different ways to intialize the manager:
         

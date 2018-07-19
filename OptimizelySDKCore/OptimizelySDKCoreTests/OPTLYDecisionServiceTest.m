@@ -30,6 +30,7 @@
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
+#import "OPTLYControlAttributes.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kUserId = @"6369992312";
@@ -94,7 +95,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 @property (nonatomic, strong) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
 @property (nonatomic, strong) NSDictionary *attributes;
-@property (nonatomic, strong) OPTLYUserProfile *userProfileWithFirefoxAudience;
+@property (nonatomic, strong) NSDictionary *userProfileWithFirefoxAudience;
 @end
 
 @interface OPTLYDecisionService()
@@ -123,10 +124,10 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
     id<OPTLYUserProfileService> profileService = [OPTLYUserProfileServiceNoOp new];
 
-    self.optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
         builder.userProfileService = profileService;
-    }];
+    }]];
     self.config = self.optimizely.config;
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:self.bucketer];
@@ -177,9 +178,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
-    Optimizely *optimizely = [Optimizely init:^(OPTLYBuilder * _Nullable builder) {
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = whitelistingDatafile;
-    }];
+    }]];
     
     // user should not be bucketed if userId is not a match and they do not pass attributes
     OPTLYVariation *variation = [optimizely variation:kWhitelistedExperiment
@@ -244,7 +245,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testGetVariationNoAudience
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithAudienceKey];
 
@@ -433,7 +434,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testSaveVariation
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
     NSDictionary *variationDict = @{ OPTLYDatafileKeysVariationId  : kExperimentWithAudienceVariationId,
                                      OPTLYDatafileKeysVariationKey : kExperimentWithAudienceVariationKey };
@@ -452,9 +453,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testSaveMultipleVariations
 {
     id decisionServiceMock = OCMPartialMock(self.decisionService);
-    id userProfileServiceMock = OCMPartialMock(self.config.userProfileService);
+    id userProfileServiceMock = OCMPartialMock((NSObject *)self.config.userProfileService);
     
-    OPTLYUserProfile *userProfileMultipleExperimentValues = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
+    NSDictionary *userProfileMultipleExperimentValues = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
                                                                OPTLYDatafileKeysUserProfileServiceExperimentBucketMap : @{
                                                                        kExperimentWithAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentWithAudienceVariationId },
                                                                        kExperimentNoAudienceId : @{ OPTLYDatafileKeysUserProfileServiceVariationId : kExperimentNoAudienceVariationId } } };

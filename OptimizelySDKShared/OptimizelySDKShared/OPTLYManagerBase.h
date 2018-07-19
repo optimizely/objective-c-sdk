@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -45,9 +45,9 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
     NSString *_clientVersion;
 }
 
-/// The ID of the Optimizely project to manager
+/// The ID of the Optimizely Project the manager will oversee
 @property (nonatomic, readwrite, strong, nullable) NSString *projectId;
-/// The ID of the Optimizely project to manager
+/// The ID of the Optimizely Project SDK key the manager will oversee
 @property (nonatomic, readwrite, strong, nullable) NSString *sdkKey;
 // The wrapper for project id and sdk key
 @property (nonatomic, readwrite, strong, nullable) OPTLYDatafileConfig* datafileConfig;
@@ -121,9 +121,4 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * Gets the cached Optimizely client.
  */
 - (nullable OPTLYClient *)getOptimizely;
-
-/*
- * Test if string s can be an Optimizely SDK key string.
- */
-+ (BOOL)isValidKeyString:(NSString*)s;
 @end
