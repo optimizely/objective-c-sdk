@@ -60,6 +60,7 @@
 #import "OPTLYUserProfileServiceBasic.h"
 #import "OPTLYVariableUsage.h"
 #import "OPTLYVariation.h"
+#import "OPTLYControlAttributes.h"
 
 // (DEPRECATED)
 #import "OPTLYVariable.h"

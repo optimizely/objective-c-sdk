@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,21 +15,16 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "OPTLYManagerBase.h"
 
-@interface OPTLYManagerBasic : OPTLYManagerBase<OPTLYManager>
-/**
- * Init with builder block
- * @param builderBlock The Optimizely Manager Builder Block where datafile manager, event dispatcher, and other configurations will be set.
- * @return OptimizelyManager instance
- */
-+ (nullable instancetype)init:(nonnull OPTLYManagerBuilderBlock)builderBlock
-__attribute((deprecated("Use OPTLYManagerBasic initWithBuilder method instead.")));
-
-/**
- * Init with OPTLYManagerBuilder object
- * @param builder The OPTLYManagerBuilder object which has datafile manager, event dispatcher, and other configurations to be set.
- * @return OptimizelyManager instance
- */
-- (instancetype)initWithBuilder:(OPTLYManagerBuilder *)builder;
-@end
+// An optional bucketing ID may be provided in attributes via a
+// key-value pair
+//     OptimizelyBucketId : bucketId
+// to accomplish decoupling bucketing from user identification so
+// that a group of users that have the same bucketing ID are put
+// into the same variation.
+// A Bucketing ID allows equivalence relation on user IDs. A group
+// of users with the same bucketing ID defines an equivalence class
+// of user IDs that all map to the same experiment variation.
+extern NSString * _Nonnull const OptimizelyBucketId;
+extern NSString * _Nonnull const OptimizelyBotFiltering;
+extern NSString * _Nonnull const OptimizelyUserAgent;
