@@ -7,8 +7,10 @@ July 24, 2018
 ### New Features
 Same as 2.0.2-beta2 (see below)
 
-* Added `@"$opt_user_agent"` in the attribute map to be used when bot filtering is turned on (please see docs).
-* Support Mobile and Fullstack projects.
+* Introduces support for bot filtering.
+* Supports Mobile and Fullstack projects.
+* Introduces support for Environments.
+* Support for Feature Management (see previous release notes).
 * Backward support for deprecated Live Variables.
 
 ### Bug Fixes:
