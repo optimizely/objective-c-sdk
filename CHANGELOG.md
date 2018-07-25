@@ -1,4 +1,21 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.2-beta3
+July 24, 2018
+
+** This is beta 3 and a possible release candidate.  There are several things to note about this pre-release.  This release includes Feature Management and is backward compatible. The APIs mentioned in beta 2 are included.  
+
+### New Features
+Same as 2.0.2-beta2 (see below)
+
+* Introduces support for bot filtering.
+* Supports Mobile and Fullstack projects.
+* Introduces support for Environments.
+* Support for Feature Management (see previous release notes).
+* Backward support for deprecated Live Variables.
+
+### Bug Fixes:
+* Fix static init methods that caused problems in Swift 4
+
 ## 2.0.2-beta2
 Jun 25, 2018
 

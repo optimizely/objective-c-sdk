@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // customizable settings
     let datafileName = "demoTestDatafile" // default parameter for initializing Optimizely from saved datafile
-    var projectId = "10657931863" // project name: X Mobile - Sample App
+    var projectId = "11093712109" // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
     let attributes = ["sample_attribute_key":"sample_attribute_value"]
@@ -73,13 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ---- Create the Datafile Manager ----
         let datafileManager = OPTLYDatafileManagerDefault(builder: OPTLYDatafileManagerBuilder(block: { (builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:"6hmwpgZcRFp36wH5QLK8Sb")!;
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:"XUzRsTuTtjc6eGv7QieivC")!;
             
         }))
         
         let builder = OPTLYManagerBuilder(block: { (builder) in
             builder!.projectId = nil;
-            builder!.sdkKey = self.projectId
+            builder!.sdkKey = "XUzRsTuTtjc6eGv7QieivC"
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         })
