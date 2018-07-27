@@ -41,7 +41,9 @@
     NSParameterAssert(block);
     self = [super init];
     if (self != nil) {
-        block(self);
+        if (block != nil) {
+            block(self);
+        }
         
         // check the logger
         if (_logger) {
