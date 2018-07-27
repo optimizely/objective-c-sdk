@@ -33,12 +33,7 @@
     return [[self alloc] initWithBlock:block];
 }
 
-- (id)init {
-    return [self initWithBlock:nil];
-}
-
 - (id)initWithBlock:(OPTLYManagerBuilderBlock)block {
-    NSParameterAssert(block);
     self = [super init];
     if (self != nil) {
         if (block != nil) {
@@ -52,6 +47,9 @@
                           withLevel:OptimizelyLogLevelError];
                 return nil;
             }
+        }
+        else {
+            _logger = [OPTLYLoggerDefault new];
         }
         
         // check the error handler

@@ -42,6 +42,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 /// User profile to be used by the client to store user-specific data.
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfileService;
 
+- (instancetype)init NS_UNAVAILABLE;
 /// Create the Optimizely Manager object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYManagerBuilderBlock)block;
 
