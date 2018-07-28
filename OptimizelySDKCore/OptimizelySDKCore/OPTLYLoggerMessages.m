@@ -162,6 +162,7 @@ NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIA
 
 // ---- Manager ----
 // error
+NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid = @"[MANAGER] An Optimizely Manager Builder instance was not able to be initialized because the OPTLYManagerBuilderBlock was nil.";
 NSString *const OPTLYLoggerMessagesManagerBuilderNotValid = @"[MANAGER] An Optimizely Manager instance was not able to be initialized because the OPTLYManagerBuilder object was invalid.";
 NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol = @"[MANAGER] Datafile manager does not conform to the OPTLYDatafileManager protocol.";
 NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol = @"[MANAGER] Error handler does not conform to the OPTLYErrorHandler protocol.";

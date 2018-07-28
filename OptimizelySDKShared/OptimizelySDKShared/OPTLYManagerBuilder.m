@@ -39,6 +39,11 @@
         if (block != nil) {
             block(self);
         }
+        else {
+            [[OPTLYLoggerDefault new] logMessage:OPTLYLoggerMessagesManagerBuilderBlockNotValid
+                      withLevel:OptimizelyLogLevelError];
+            return nil;
+        }
         
         // check the logger
         if (_logger) {
