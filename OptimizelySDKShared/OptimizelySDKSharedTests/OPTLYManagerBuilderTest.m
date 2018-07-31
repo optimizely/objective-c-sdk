@@ -156,5 +156,12 @@ static NSString *const kProjectId = @"6372300739";
     }]];
     XCTAssertNil(manager, @"Manager should not be initialized if we pass in an empty string as the project ID");
 }
+/**
+ * Test the manager is not initialized when an nil builder block.
+ */
+- (void)testManagerIsNotInitializedWhenNilBuilderBlock {
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:nil];
+    XCTAssertNil(manager, @"Manager should not be initialized if we pass in an nil builder");
+}
 
 @end

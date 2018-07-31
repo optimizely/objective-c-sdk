@@ -168,6 +168,7 @@ extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 
 // ---- Manager ----
 // error
+extern NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol;
 extern NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol;
