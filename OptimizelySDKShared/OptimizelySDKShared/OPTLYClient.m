@@ -146,14 +146,14 @@
     }
 }
 
--(BOOL)getFeatureVariableBoolean:(NSString *)featureKey
+-(NSNumber *)getFeatureVariableBoolean:(NSString *)featureKey
                      variableKey:(NSString *)variableKey
                           userId:(NSString *)userId
                       attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
-        return false;
+        return nil;
     }
     else {
         return [self.optimizely getFeatureVariableBoolean:featureKey
@@ -163,14 +163,14 @@
     }
 }
 
-- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
-        return 0.0;
+        return nil;
     }
     else {
         return [self.optimizely getFeatureVariableDouble:featureKey
@@ -181,14 +181,14 @@
 }
 
 
-- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
                       attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
-        return 0;
+        return nil;
     }
     else {
         return [self.optimizely getFeatureVariableInteger:featureKey
