@@ -494,10 +494,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     // expectations
     NSString *expectedValueString = @"true";
-    BOOL expectedValue = true;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyTrue expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyTrue userId:kUserId attributes:nil] boolValue],
-                   @"should return %@ for feature variable value %@", expectedValue ? @"true" : @"false", expectedValueString);
+    XCTAssertTrue([[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyTrue userId:kUserId attributes:nil] boolValue],
+                   @"should return true for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyTrue
@@ -513,10 +512,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     // expectations
     NSString *expectedValueString = @"false";
-    BOOL expectedValue = false;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyFalse expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyFalse userId:kUserId attributes:nil] boolValue],
-                   @"should return %@ for feature variable value %@", expectedValue ? @"true" : @"false", expectedValueString);
+    XCTAssertFalse([[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyFalse userId:kUserId attributes:nil] boolValue],
+                   @"should return false for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyFalse
@@ -531,11 +529,10 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *featureVariableType = FeatureVariableTypeBoolean;
     
     // expectations
-    NSString *expectedValueString = @"nonBooleanValue";
-    BOOL expectedValue = false;
+    NSString *expectedValueString = @"123";
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNonBoolean expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyNonBoolean userId:kUserId attributes:nil] boolValue],
-                   @"should return %@ for feature variable value %@", expectedValue ? @"true" : @"false", expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyNonBoolean userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyNonBoolean
@@ -551,10 +548,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     // expectations
     NSString *expectedValueString = @"nonBooleanValue";
-    BOOL expectedValue = false;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNull expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil] boolValue],
-                   @"should return %@ for feature variable value %@", expectedValue ? @"true" : @"false", expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyNull
@@ -588,10 +584,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *featureVariableType = FeatureVariableTypeDouble;
 
     NSString *expectedValueString = @"100";
-    double expectedValue = 100;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyInt expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyInt userId:kUserId attributes:nil] doubleValue],
-                   @"should return %f for feature variable value %@", expectedValue, expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyInt userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyInt
@@ -606,9 +601,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *featureVariableType = FeatureVariableTypeDouble;
 
     NSString *expectedValueString = @"nonDoubleValue";
-    double expectedValue = 0.0;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNonDouble expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyNonDouble userId:kUserId attributes:nil] doubleValue],
+    XCTAssertNil([optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyNonDouble userId:kUserId attributes:nil],
                    @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
@@ -624,9 +618,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *featureVariableType = FeatureVariableTypeDouble;
 
     NSString *expectedValueString = nil;
-    NSNumber* expectedValue = nil;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNull expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil],
+    XCTAssertNil([optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil],
                    @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
@@ -662,10 +655,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     // expectations
     NSString *expectedValueString = @"100.45";
-    int expectedValue = 100;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyDouble expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableKeyDouble userId:kUserId attributes:nil] integerValue],
-                   @"should return %d for feature variable value %@", expectedValue, expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableKeyDouble userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyDouble
@@ -674,17 +666,16 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [optimizelyMock stopMocking];
 }
 
-- (void)testGetFeatureVariableIntegerWithInvalidDouble {
+- (void)testGetFeatureVariableIntegerWithInvalidInt {
     NSString *featureKey = @"featureKey";
     NSString *variableNonInt = @"varNonInt";
     NSString *featureVariableType = FeatureVariableTypeInteger;
     
     // expectations
     NSString *expectedValueString = @"nonIntegerValue";
-    int expectedValue = 0;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableNonInt expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableNonInt userId:kUserId attributes:nil] integerValue],
-                   @"should return %d for feature variable value %@", expectedValue, expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableNonInt userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableNonInt
@@ -700,10 +691,9 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     // expectations
     NSString *expectedValueString = nil;
-    int expectedValue = 0;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNull expectedReturn:expectedValueString];
-    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil] integerValue],
-                   @"should return %d for feature variable value %@", expectedValue, expectedValueString);
+    XCTAssertNil([optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableKeyNull userId:kUserId attributes:nil],
+                   @"should return nil for feature variable value %@", expectedValueString);
     OCMVerify([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                   featureKey:featureKey
                                                  variableKey:variableKeyNull

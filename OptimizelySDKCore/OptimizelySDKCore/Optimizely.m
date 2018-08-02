@@ -306,7 +306,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                             userId:userId
                                                         attributes:attributes];
     NSNumber* booleanValue = nil;
-    if (variableValue) {
+    if (variableValue && ([variableValue.lowercaseString isEqualToString:@"true"] || [variableValue.lowercaseString isEqualToString:@"false"])) {
         booleanValue = @([variableValue boolValue]);
     }
     return booleanValue;
@@ -322,9 +322,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    NSNumber* doubleValue = nil;
-    if (variableValue) {
-        doubleValue = @([variableValue doubleValue]);
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    NSNumber* doubleValue = [formatter numberFromString:variableValue];
+    
+    if (!doubleValue || CFNumberGetType((CFNumberRef)doubleValue) != kCFNumberFloat64Type) {
+        doubleValue = nil;
     }
     return doubleValue;
 }
@@ -340,9 +342,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    NSNumber* intValue = nil;
-    if (variableValue) {
-        intValue = @([variableValue intValue]);
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    NSNumber* intValue = [formatter numberFromString:variableValue];
+    
+    if (!intValue || CFNumberGetType((CFNumberRef)intValue) != kCFNumberSInt64Type) {
+        intValue = nil;
     }
     return intValue;
 }
