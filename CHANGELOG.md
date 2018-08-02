@@ -46,15 +46,15 @@ To learn more about Feature Management, read our [knowledge base article introdu
  * @param attributes The user's attributes.
  * @return feature variable value.
  */
-- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
-- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
-- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
