@@ -1,4 +1,13 @@
 # Optimizely Objective-C SDK Changelog
+## 2.0.2-beta4
+August 1, 2018
+
+** This is beta 4 and a release candidate.  There are several things to note about this pre-release.  This release includes Feature Management and is backward compatible. The APIs mentioned in beta 3 are included.  
+
+### Bug Fixes:
+* Force builderWithBlock for OPTLYManagerBuilder
+* Return nil for getFeatureVariable[Integer,Double,Boolean] if the value type is incorrect or the feature variable does not exist.
+
 ## 2.0.2-beta3
 July 24, 2018
 
