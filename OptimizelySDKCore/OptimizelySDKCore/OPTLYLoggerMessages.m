@@ -95,8 +95,8 @@ NSString *const OPTLYLoggerMessagesDatafileManagerInitializedWithoutProjectIdMes
 NSString *const OPTLYLoggerMessagesDatafileFetchIntervalInvalid = @"[DATAFILE MANAGER BUILDER] A datafile fetch interval of %f is invalid. Please set a datafile fetch interval >= 0."; // invalid datafile fetch interval value
 
 // ---- Datafile Versioning ----
-// warning
-NSString *const OPTLYLoggerMessagesInvalidDatafileVersion = @"[PROJECT CONFIG] Datafile version is invalid for this SDK version: expected %@ and received %@."; // datafile version
+// info
+NSString *const OPTLYLoggerMessagesDatafileVersion = @"[PROJECT CONFIG] Datafile version is  %@."; // datafile version
 
 // ---- Event Builder ----
 // debug
