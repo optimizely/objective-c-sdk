@@ -1,4 +1,5 @@
 _BUCKETING_ID_TEMPLATE
+_DEFAULT_HOST
 _DecisionSourceExperiment
 _DecisionSourceRollout
 _FeatureVariableTypeBoolean
@@ -18,4 +19,5 @@ _isNull
 _kClientEngine
 _kDefaultDatafileFetchInterval_s
 _kExpectedDatafileVersion
+_kReservedAttributePrefix
 _networkTasksQueue

@@ -115,8 +115,8 @@ NSString * const kReservedAttributePrefix = @"$opt_";
         
         // check if project config's datafile version matches expected datafile version
         if (![projectConfig.version isEqualToString:kExpectedDatafileVersion]) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesInvalidDatafileVersion, kExpectedDatafileVersion, projectConfig.version];
-            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileVersion, projectConfig.version];
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         }
         
         if (projectConfig.anonymizeIP == nil) {

@@ -168,6 +168,7 @@ extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 
 // ---- Manager ----
 // error
+extern NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol;
 extern NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol;
@@ -197,6 +198,8 @@ extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
 extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesProjectConfigUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesAttributeIsReserved;
+extern NSString *const OPTLYLoggerMessagesAttributeNotFound;
 
 // ---- User Profile ----
 // debug

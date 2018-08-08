@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return BOOL feature variable value.
  */
-- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
@@ -158,7 +158,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return double feature variable value of type double.
  */
-- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return int feature variable value of type integer.
  */
-- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
@@ -565,7 +565,15 @@ __attribute((deprecated("Use Optimizely FullStack 2.0 Feature Management instead
  * @param builderBlock The builder block, where the logger, errorHandler, and eventDispatcher can be set.
  * @return Optimizely instance.
  */
-+ (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock;
++ (nullable instancetype)init:(nonnull OPTLYBuilderBlock)builderBlock
+__attribute((deprecated("Use Optimizely initWithBuilder method instead.")));
+
+/**
+ * Init with OPTLYBuilder object
+ * @param builder The OPTLYBuilder object, which has logger, errorHandler, and eventDispatcher to be set.
+ * @return Optimizely instance.
+ */
+- (nullable instancetype)initWithBuilder:(nullable OPTLYBuilder *)builder;
 
 /**
  * Track an event

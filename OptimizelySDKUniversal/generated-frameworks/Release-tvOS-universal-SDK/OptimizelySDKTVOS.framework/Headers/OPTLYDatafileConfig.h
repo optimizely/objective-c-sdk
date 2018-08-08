@@ -15,10 +15,23 @@
  ***************************************************************************/
 #import <Foundation/Foundation.h>
 
-extern NSString * const OPTLY_DATAFILE_URL;
+extern NSString * const DEFAULT_HOST;
+extern NSString * const OPTLY_PROJECTID_SUFFIX;
+extern NSString * const OPTLY_ENVIRONMENTS_SUFFIX;
 
 @interface OPTLYDatafileConfig : NSObject
+- (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey withHost:(NSString *)host;
 - (nullable id)initWithProjectId:(NSString *)projectId withSDKKey:(NSString *)sdkKey;
 - (NSURL *) URLForKey;
 - (NSString *) key;
+@end
+
+@interface OPTLYDatafileConfig(OPTLYHelpers)
++ (NSString *)defaultProjectIdCdnPath:(NSString *)projectId;
++ (NSString *)defaultSdkKeyCdnPath:(NSString *)sdkKey;
+/*
+ * Test if string s can be an Optimizely SDK key string.
+ */
++ (BOOL)isValidKeyString:(NSString*)s;
+
 @end

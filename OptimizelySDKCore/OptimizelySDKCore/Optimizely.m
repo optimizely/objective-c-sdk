@@ -295,7 +295,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return variableValue;
 }
 
-- (BOOL)getFeatureVariableBoolean:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
@@ -305,14 +305,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    BOOL booleanValue = false;
+    NSNumber* booleanValue = nil;
     if (variableValue) {
-        booleanValue = [variableValue boolValue];
+        booleanValue = @([variableValue boolValue]);
     }
     return booleanValue;
 }
 
-- (double)getFeatureVariableDouble:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
@@ -322,15 +322,15 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    double doubleValue = 0.0;
+    NSNumber* doubleValue = nil;
     if (variableValue) {
-        doubleValue = [variableValue doubleValue];
+        doubleValue = @([variableValue doubleValue]);
     }
     return doubleValue;
 }
 
 
-- (int)getFeatureVariableInteger:(nullable NSString *)featureKey
+- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
@@ -340,9 +340,9 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    int intValue = 0;
+    NSNumber* intValue = nil;
     if (variableValue) {
-        intValue = [variableValue intValue];
+        intValue = @([variableValue intValue]);
     }
     return intValue;
 }

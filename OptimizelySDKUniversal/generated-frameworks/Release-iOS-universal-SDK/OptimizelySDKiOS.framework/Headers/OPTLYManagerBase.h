@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -121,9 +121,4 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
  * Gets the cached Optimizely client.
  */
 - (nullable OPTLYClient *)getOptimizely;
-
-/*
- * Test if string s can be an Optimizely SDK key string.
- */
-+ (BOOL)isValidKeyString:(NSString*)s;
 @end

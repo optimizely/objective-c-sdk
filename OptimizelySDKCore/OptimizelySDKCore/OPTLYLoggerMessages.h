@@ -100,7 +100,7 @@ extern NSString *const OPTLYLoggerMessagesDatafileFetchIntervalInvalid;
 
 // ---- Datafile Versioning ----
 // warning
-extern NSString *const OPTLYLoggerMessagesInvalidDatafileVersion;
+extern NSString *const OPTLYLoggerMessagesDatafileVersion;
 
 // ---- Event Builder ----
 // debug
@@ -168,6 +168,7 @@ extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
 
 // ---- Manager ----
 // error
+extern NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerBuilderNotValid;
 extern NSString *const OPTLYLoggerMessagesManagerDatafileManagerDoesNotConformToOPTLYDatafileManagerProtocol;
 extern NSString *const OPTLYLoggerMessagesManagerErrorHandlerDoesNotConformToOPTLYErrorHandlerProtocol;
