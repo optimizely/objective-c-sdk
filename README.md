@@ -116,7 +116,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 ### Credits
 
-First-party code (under OptimizelySDKCore/, OptimizelySDKDatafileManager/, OptimizelySDKEventDispatcher/, OptimizelySDKiOS/, OptimizelySDKShared/, OptimizelySDKTVOS/, OptimizelySDKUniversal/, OptimizelySDKUserProfile/, OptimizelySDKUserProfileService/, ) is copyright Optimizely, Inc. and contributors, licensed under Apache 2.0.
+First-party code (under OptimizelySDKCore/, OptimizelySDKDatafileManager/, OptimizelySDKEventDispatcher/, OptimizelySDKiOS/, OptimizelySDKShared/, OptimizelySDKTVOS/, OptimizelySDKUniversal/, OptimizelySDKUserProfileService/, ) is copyright Optimizely, Inc. and contributors, licensed under Apache 2.0.
 
 ### Additional Code
 
