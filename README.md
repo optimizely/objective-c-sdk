@@ -116,6 +116,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 ### Credits
 
+First-party code (under OptimizelySDKCore/, OptimizelySDKDatafileManager/, OptimizelySDKEventDispatcher/, OptimizelySDKiOS/, OptimizelySDKShared/, OptimizelySDKTVOS/, OptimizelySDKUniversal/, OptimizelySDKUserProfile/, OptimizelySDKUserProfileService/, ) is copyright Optimizely, Inc. and contributors, licensed under Apache 2.0.
+
+### Additional Code
+
 **FMDB** [https://github.com/ccgus/fmdb](https://github.com/ccgus/fmdb)  
 License (MIT):: [https://github.com/ccgus/fmdb/blob/master/LICENSE.txt](https://github.com/ccgus/fmdb/blob/master/LICENSE.txt)
 Modfied: Yes
@@ -139,5 +143,3 @@ License (Public Domain):: [https://github.com/PeterScott/murmur3l](https://githu
 Modfied: No
 Distributed: Yes
 Distribution: Binary
-
-### Additional Code
