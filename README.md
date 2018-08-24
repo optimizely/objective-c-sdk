@@ -114,3 +114,32 @@ If you choose to build the universal framework yourself, you can do so by runnin
 ### Contributing
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
+### Credits
+
+First-party code (under OptimizelySDKCore/, OptimizelySDKDatafileManager/, OptimizelySDKEventDispatcher/, OptimizelySDKiOS/, OptimizelySDKShared/, OptimizelySDKTVOS/, OptimizelySDKUniversal/, OptimizelySDKUserProfileService/, ) is copyright Optimizely, Inc. and contributors, licensed under Apache 2.0.
+
+### Additional Code
+
+**FMDB** [https://github.com/ccgus/fmdb](https://github.com/ccgus/fmdb)  
+License (MIT):: [https://github.com/ccgus/fmdb/blob/master/LICENSE.txt](https://github.com/ccgus/fmdb/blob/master/LICENSE.txt)
+Modfied: Yes
+Distributed: Yes
+Distribution: Binary
+
+**SQLITE3** [https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)  
+License (Public Domain):: [https://www.sqlite.org/copyright.html](https://www.sqlite.org/copyright.html)
+Modfied: Yes
+Distributed: Yes
+Distribution: Binary
+
+**JSONModel** [https://github.com/jsonmodel/jsonmodel](https://github.com/jsonmodel/jsonmodel)  
+License (MIT):: [https://github.com/jsonmodel/jsonmodel/blob/master/LICENSEl](https://github.com/jsonmodel/jsonmodel/blob/master/LICENSE)
+Modfied: Yes
+Distributed: Yes
+Distribution: Binary
+
+**murmur3** [https://github.com/PeterScott/murmur3l](https://github.com/PeterScott/murmur3)  
+License (Public Domain):: [https://github.com/PeterScott/murmur3l](https://github.com/PeterScott/murmur3)
+Modfied: No
+Distributed: Yes
+Distribution: Binary
