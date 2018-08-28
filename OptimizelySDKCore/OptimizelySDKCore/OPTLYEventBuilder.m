@@ -321,6 +321,9 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     }
     
     NSMutableArray *conversionEventParams = [NSMutableArray new];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    NSMutableArray *decisions = [NSMutableArray new];
+    
     for (NSString *eventExperimentId in eventExperimentIds) {
         OPTLYExperiment *experiment = [config getExperimentForId:eventExperimentId];
         
@@ -338,63 +341,60 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                                                                      bucketer:bucketer];
         
         if (bucketedVariation) {
-            
-            NSMutableDictionary *params = [NSMutableDictionary new];
-            
             NSMutableDictionary *decision = [NSMutableDictionary new];
             decision[OPTLYEventParameterKeysDecisionCampaignId]         =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
             decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
             decision[OPTLYEventParameterKeysDecisionVariationId]        =bucketedVariation.variationId;
             decision[OPTLYEventParameterKeysDecisionIsLayerHoldback]    = @NO;
-            NSArray *decisions = @[decision];
-            
-            NSMutableDictionary *event = [NSMutableDictionary new];
-            event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
-            event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
-            event[OPTLYEventParameterKeysKey]           =eventKey;
-            event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
-            
-            NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
-            
-            for (NSString *key in [eventTags allKeys]) {
-                id eventTagValue = eventTags[key];
-                
-                // only string, long, int, double, float, and booleans are supported
-                if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
-                    if ([key isEqualToString:OPTLYEventMetricNameRevenue]) {
-                        // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
-                        NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
-                        if (revenueValue != nil) {
-                            event[OPTLYEventMetricNameRevenue] = revenueValue;
-                        } else {
-                            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
-                        }
-                    }
-                    if ([key isEqualToString:OPTLYEventMetricNameValue]) {
-                        // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
-                        NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
-                        if (numericValue != nil) {
-                            event[OPTLYEventMetricNameValue] = numericValue;
-                        } else {
-                            [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
-                        }
-                    }
-                } else {
-                    [mutableEventTags removeObjectForKey:key];
-                    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
-                    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-                }
-            }
-            event[OPTLYEventParameterKeysTags] = mutableEventTags;
-
-            NSArray *events = @[event];
-            
-            params[OPTLYEventParameterKeysDecisions] = decisions;
-            params[OPTLYEventParameterKeysEvents] = events;
-            
-            [conversionEventParams addObject:params];
+            [decisions addObject:decision];
         }
     }
+
+    NSMutableDictionary *event = [NSMutableDictionary new];
+    event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
+    event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
+    event[OPTLYEventParameterKeysKey]           =eventKey;
+    event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
+    
+    NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
+    
+    for (NSString *key in [eventTags allKeys]) {
+        id eventTagValue = eventTags[key];
+        
+        // only string, long, int, double, float, and booleans are supported
+        if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
+            if ([key isEqualToString:OPTLYEventMetricNameRevenue]) {
+                // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
+                NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
+                if (revenueValue != nil) {
+                    event[OPTLYEventMetricNameRevenue] = revenueValue;
+                } else {
+                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
+                }
+            }
+            if ([key isEqualToString:OPTLYEventMetricNameValue]) {
+                // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
+                NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
+                if (numericValue != nil) {
+                    event[OPTLYEventMetricNameValue] = numericValue;
+                } else {
+                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
+                }
+            }
+        } else {
+            [mutableEventTags removeObjectForKey:key];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        }
+    }
+    event[OPTLYEventParameterKeysTags] = mutableEventTags;
+    
+    NSArray *events = @[event];
+    
+    params[OPTLYEventParameterKeysDecisions] = decisions;
+    params[OPTLYEventParameterKeysEvents] = events;
+    
+    [conversionEventParams addObject:params];
     
     return [conversionEventParams copy];
 }

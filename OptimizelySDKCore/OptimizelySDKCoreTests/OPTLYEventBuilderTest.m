@@ -72,6 +72,10 @@ static NSString * const kEventWithoutExperimentId = @"6386521015";
 static NSString * const kEventWithMultipleExperimentsName = @"testEventWithMultipleExperiments";
 static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
+// events with invalid experiments
+static NSString * const kEventWithInvalidExperimentName = @"testEventWithInvalidExperiment";
+static NSString * const kEventWithInvalidExperimentId = @"6370392433";
+
 typedef enum : NSUInteger {
     ImpressionTicket,
     ConversionTicket
@@ -170,7 +174,12 @@ typedef enum : NSUInteger {
                                                           eventName:kEventWithAudienceName
                                                           eventTags:nil
                                                          attributes:attributes];
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithExperimentNotRunning
@@ -181,7 +190,28 @@ typedef enum : NSUInteger {
                                                           eventName:kEventWithExperimentNotRunningName
                                                           eventTags:nil
                                                          attributes:nil];
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
+}
+
+- (void)testBuildConversionTicketWithInvalidExperiment
+{
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
+                                                                     bucketer:self.bucketer
+                                                                       userId:kUserId
+                                                                    eventName:kEventWithInvalidExperimentName
+                                                                    eventTags:nil
+                                                                   attributes:nil];
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithoutExperiment
