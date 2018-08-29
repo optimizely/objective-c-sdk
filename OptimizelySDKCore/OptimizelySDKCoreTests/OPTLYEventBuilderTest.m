@@ -1119,8 +1119,6 @@ typedef enum : NSUInteger {
     XCTAssert([campaignId isEqualToString:params[OPTLYEventParameterKeysDecisionCampaignId]], @"Invalid campaignId.");
     XCTAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
     XCTAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
-    NSNumber *isLayerHoldback = params[OPTLYEventParameterKeysDecisionIsLayerHoldback];
-    XCTAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
 }
 
 - (void)checkImpression:(NSDictionary *)params

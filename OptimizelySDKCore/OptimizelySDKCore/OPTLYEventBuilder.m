@@ -275,7 +275,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     decision[OPTLYEventParameterKeysDecisionCampaignId]                 =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
     decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
     decision[OPTLYEventParameterKeysDecisionVariationId]        =variationId;
-    decision[OPTLYEventParameterKeysDecisionIsLayerHoldback]    = @NO;
     NSArray *decisions = @[decision];
     
     NSMutableDictionary *event = [NSMutableDictionary new];
@@ -321,7 +320,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     }
     
     NSMutableArray *conversionEventParams = [NSMutableArray new];
-    NSMutableDictionary *params = [NSMutableDictionary new];
+    NSMutableDictionary *snapshot = [NSMutableDictionary new];
     NSMutableArray *decisions = [NSMutableArray new];
     
     for (NSString *eventExperimentId in eventExperimentIds) {
@@ -345,16 +344,15 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             decision[OPTLYEventParameterKeysDecisionCampaignId]         =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
             decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
             decision[OPTLYEventParameterKeysDecisionVariationId]        =bucketedVariation.variationId;
-            decision[OPTLYEventParameterKeysDecisionIsLayerHoldback]    = @NO;
             [decisions addObject:decision];
         }
     }
 
-    NSMutableDictionary *event = [NSMutableDictionary new];
-    event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
-    event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
-    event[OPTLYEventParameterKeysKey]           =eventKey;
-    event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
+    NSMutableDictionary *eventDict = [NSMutableDictionary new];
+    eventDict[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
+    eventDict[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
+    eventDict[OPTLYEventParameterKeysKey]           =eventKey;
+    eventDict[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
     
     NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
     
@@ -367,7 +365,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
                 NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
                 if (revenueValue != nil) {
-                    event[OPTLYEventMetricNameRevenue] = revenueValue;
+                    eventDict[OPTLYEventMetricNameRevenue] = revenueValue;
                 } else {
                     [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
                 }
@@ -376,7 +374,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
                 NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
                 if (numericValue != nil) {
-                    event[OPTLYEventMetricNameValue] = numericValue;
+                    eventDict[OPTLYEventMetricNameValue] = numericValue;
                 } else {
                     [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
                 }
@@ -387,18 +385,19 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         }
     }
-    event[OPTLYEventParameterKeysTags] = mutableEventTags;
+    if (mutableEventTags.count > 0) {
+        eventDict[OPTLYEventParameterKeysTags] = mutableEventTags;
+    }
     
-    NSArray *events = @[event];
+    NSArray *events = @[eventDict];
     
-    params[OPTLYEventParameterKeysDecisions] = decisions;
-    params[OPTLYEventParameterKeysEvents] = events;
+    snapshot[OPTLYEventParameterKeysDecisions] = decisions;
+    snapshot[OPTLYEventParameterKeysEvents] = events;
     
-    [conversionEventParams addObject:params];
+    [conversionEventParams addObject:snapshot];
     
     return [conversionEventParams copy];
 }
-
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
                      attributes:(NSDictionary *)attributes {

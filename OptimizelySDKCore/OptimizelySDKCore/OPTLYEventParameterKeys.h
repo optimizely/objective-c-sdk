@@ -48,7 +48,6 @@ extern NSString * const OPTLYEventParameterKeysFeaturesName;
 extern NSString * const OPTLYEventParameterKeysDecisionCampaignId;
 extern NSString * const OPTLYEventParameterKeysDecisionExperimentId;
 extern NSString * const OPTLYEventParameterKeysDecisionVariationId;
-extern NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback;
 
 // --- Common Event Parameters ----
 extern NSString * const OPTLYEventParameterKeysTimestamp;
