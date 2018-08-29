@@ -72,7 +72,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 - (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments {
     if (experiments == nil) return;
     
-    if (_userProfileService != nil && [(NSObject *)_userProfileService respondsToSelector:@selector(removeExperimentForAllUsers:)]) {
+    if (_userProfileService != nil && [(NSObject *)_userProfileService respondsToSelector:@selector(removeInvalidExperimentsForAllUsers:)]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (self.userProfileService != nil) {
                 NSMutableArray<NSString*> *ids = [[NSMutableArray alloc] initWithCapacity:experiments.count];
@@ -80,9 +80,13 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                     NSString *exKey = ((OPTLYExperiment *)experiments[i]).experimentId;
                     [ids addObject:exKey];
                 }
-            
-                [(NSObject *)self.userProfileService performSelector:@selector(removeExperimentForAllUsers:) withObject:ids];
-                
+
+                @try {
+                    [(NSObject *)self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:ids];
+                }
+                @catch(NSException *e) {
+                    [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
+                }
             }
         });
     }

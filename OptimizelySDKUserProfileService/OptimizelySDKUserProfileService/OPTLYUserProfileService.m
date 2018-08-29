@@ -157,7 +157,7 @@
     [self.dataStore removeAllUserData];
 }
 
-- (void)removeExperimentForAllUsers:(NSArray<NSString *> *)experimentIds {
+- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)experimentIds {
     
     NSMutableDictionary*userProflieService = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
     
