@@ -366,8 +366,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
                 if (revenueValue != nil) {
                     eventDict[OPTLYEventMetricNameRevenue] = revenueValue;
-                } else {
-                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameRevenue];
                 }
             }
             if ([key isEqualToString:OPTLYEventMetricNameValue]) {
@@ -375,8 +373,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
                 if (numericValue != nil) {
                     eventDict[OPTLYEventMetricNameValue] = numericValue;
-                } else {
-                    [mutableEventTags removeObjectForKey:OPTLYEventMetricNameValue];
                 }
             }
         } else {
