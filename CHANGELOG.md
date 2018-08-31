@@ -1,4 +1,126 @@
 # Optimizely Objective-C SDK Changelog
+
+## 2.1.0
+August 2nd, 2018
+
+This release is the 2.x general availability launch of the Objective-C SDK, which includes a number of significant new features that are now stable and fully supported. [Feature Management](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#feature-introduction) is now generally available, which introduces  new APIs and which replaces the SDK's variable APIs (`getVariableBoolean`, etc.) with the feature variable APIs (`getFeatureVariableBoolean`, etc.).  
+
+The primary difference between the new Feature Variable APIs and the older, Variable APIs is that they allow you to link your variables to a Feature (a new type of entity defined in the Optimizely UI) and to a feature flag in your application. This in turn allows you to run Feature Tests and Rollouts on both your Features and Feature Variables. For complete details of the Feature Management APIs, see the "New Features" section below.
+
+To learn more about Feature Management, read our [knowledge base article introducing the feature](https://help.optimizely.com/Set_Up_Optimizely/Develop_a_product_or_feature_with_Feature_Management).
+
+### New Features
+* Introduces the `isFeatureEnabled` API, a featue flag used to determine whether to show a feature to a user. The `isFeatureEnabled` should be used in place of the `activate` API to activate experiments running on features. Specifically, calling this API causes the SDK to evaluate all [Feature Tests](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-tests) and [Rollouts](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-rollouts) associated with the provided feature key.
+```
+/**
+ * Determine whether a feature is enabled.
+ * Send an impression event if the user is bucketed into an experiment using the feature.
+ * @param featureKey The key for the feature flag.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return YES if feature is enabled, false otherwise.
+ */
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+
+* Get all enabled features for a user by calling the following method, which returns a list of strings representing the feature keys:
+```
+/**
+ * Get array of features that are enabled for the user.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return NSArray<NSString> Array of feature keys that are enabled for the user.
+ */
+- (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
+                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* Introduces Feature Variables to configure or parameterize your feature. There are four variable types: `BOOL`, `double`, `int`, `NSString*`. Note that unlike the Variable APIs, the Feature Variable APIs do not dispatch impression events.  Instead, first call `isFeatureEnabled` to activate your experiments, then retrieve your variables.
+```
+/**
+ * API's that get feature variable values.
+ * @param featureKey The key for the feature flag.
+ * @param variableKey The key for the variable.
+ * @param userId The user ID to be used for bucketing.
+ * @param attributes The user's attributes.
+ * @return feature variable value.
+ */
+- (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
+                      variableKey:(nullable NSString *)variableKey
+                           userId:(nullable NSString *)userId
+                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
+                       variableKey:(nullable NSString *)variableKey
+                            userId:(nullable NSString *)userId
+                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
+                     variableKey:(nullable NSString *)variableKey
+                          userId:(nullable NSString *)userId
+                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+                           variableKey:(nullable NSString *)variableKey
+                                userId:(nullable NSString *)userId
+                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+```
+
+* Introducing Optimizely Notification Center with Notification Listeners
+Optimizely object now has a Notification Center
+```
+    @property (nonatomic, strong, readonly, nullable) OPTLYNotificationCenter *notificationCenter;
+```
+with Notification Listeners APIs
+```
+- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener;
+- (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
+- (BOOL)removeNotificationListener:(NSUInteger)notificationId;
+- (void)clearNotificationListeners:(OPTLYNotificationType)type;
+- (void)clearAllNotificationListeners;
+```
+
+* Introduces SDK Keys, which allow you to use Environments with the Objective-C SDK. Use an SDK Key to initialize your OptimizelyManager, and the SDK will retrieve the datafile for the environment associated with the SDK Key. This replaces initialization with Project ID.
+```
+// Create the manager and set the datafile manager
+ OPTLYManager *manager = [OPTLYManager init:^(OPTLYManagerBuilder * _Nullable builder) {
+     builder.sdkKey = @"SDK_KEY_HERE";
+ }];
+```
+
+### Deprecations
+* Version 2.1.0 deprecates the Variable APIs: `variableBoolean`, `variableDouble`, `variableInteger`, and `variableString` 
+
+* Replace use of the Variable APIs with Feature Mangement's Feature Variable APIs, described above
+
+* We will continue to support the Variable APIs until the 3.x release, but we encourage you to upgrade as soon as possible
+
+* You will see a deprecation warning if using a 2.x SDK with the deprecated Variable APIs, but the APIs will continue to behave as they did in 1.x versions of the SDK
+
+### Upgrading from 1.x
+
+In order to begin using Feature Management, you must discontinue use of 1.x variables in your experiments.  First, pause and archive all experiments that use variables. Then, contact [Optimizely Support](https://optimizely.zendesk.com/hc/en-us/requests) in order to have your project converted from the 1.x SDK UI to the 2.x SDK UI. In addition to granting access to the Feature Management UI, upgrading to the 2.x SDK UI grants you access to [Environments](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#environments) and other new features.
+* *Note*: All future feature development on the Objective-C SDK will assume that your are using the 2.x SDK UI, so we encourage you to upgrade as soon as possible.
+
+
+### Breaking changes
+* The `track` API with revenue value as a stand-alone parameter has been removed. The revenue value should be passed in as an entry of the event tags map. The key for the revenue tag is `revenue` and will be treated by Optimizely as the key for analyzing revenue data in results.
+```
+NSDictionary *tags = @{@"revenue" : @6432};
+ // reserved "revenue" tag
+[optimizelyClient track:@"event_key" userId:@"user_1" attributes:nil eventTags:tags];
+```
+
+* We have removed deprecated classes with the `OPTLYNotificationBroadcaster` in favor of the new API with the `OPTLYNotificationCenter`. We have also added some convenience methods to add these listeners. Finally, some of the API names have changed slightly (e.g. `clearAllNotifications` is now `clearAllNotificationListener`)
+
+
+## 2.0.2-beta4
+August 1, 2018
+
+** This is beta 4 and a release candidate.  There are several things to note about this pre-release.  This release includes Feature Management and is backward compatible. The APIs mentioned in beta 3 are included.  
+
+### Bug Fixes:
+* Force builderWithBlock for OPTLYManagerBuilder.
+* Return nil for getFeatureVariable[Integer,Double,Boolean,String] if the value type is incorrect or the feature variable does not exist.
+
 ## 2.0.2-beta3
 July 24, 2018
 
