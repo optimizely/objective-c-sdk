@@ -113,6 +113,13 @@ NSString * const kReservedAttributePrefix = @"$opt_";
         NSError *datafileError;
         OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
         
+        if (!datafileError && ![[[self class] supportedDatafileVersions] containsObject:projectConfig.version]) {
+            NSString *description = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataFileInvalid, projectConfig.version];
+            datafileError = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                code:OPTLYErrorTypesDatafileInvalid
+                                            userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString(description, nil)}];
+        }
+        
         // check if project config's datafile version matches expected datafile version
         if (![projectConfig.version isEqualToString:kExpectedDatafileVersion]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDatafileVersion, projectConfig.version];
@@ -361,6 +368,11 @@ NSString * const kReservedAttributePrefix = @"$opt_";
 }
 
 #pragma mark -- Property Getters --
+
+/// Array representing supported datafile versions.
++ (NSArray *)supportedDatafileVersions {
+    return @[@"2", @"3", @"4"];
+}
 
 - (NSArray *)allExperiments
 {
