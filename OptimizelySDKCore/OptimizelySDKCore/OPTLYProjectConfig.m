@@ -35,6 +35,8 @@
 
 NSString * const kExpectedDatafileVersion = @"4";
 NSString * const kReservedAttributePrefix = @"$opt_";
+/// Array representing supported datafile versions.
+static NSArray *supportedDatafileVersions = nil;
 
 @interface OPTLYProjectConfig()
 
@@ -108,12 +110,14 @@ NSString * const kReservedAttributePrefix = @"$opt_";
         return nil;
     }
     
+    supportedDatafileVersions = @[@"2", @"3", @"4"];
+    
     // check datafile is valid
     @try {
         NSError *datafileError;
         OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
         
-        if (!datafileError && ![[[self class] supportedDatafileVersions] containsObject:projectConfig.version]) {
+        if (!datafileError && ![supportedDatafileVersions containsObject:projectConfig.version]) {
             NSString *description = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataFileInvalid, projectConfig.version];
             datafileError = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                 code:OPTLYErrorTypesDatafileInvalid
@@ -368,11 +372,6 @@ NSString * const kReservedAttributePrefix = @"$opt_";
 }
 
 #pragma mark -- Property Getters --
-
-/// Array representing supported datafile versions.
-+ (NSArray *)supportedDatafileVersions {
-    return @[@"2", @"3", @"4"];
-}
 
 - (NSArray *)allExperiments
 {
