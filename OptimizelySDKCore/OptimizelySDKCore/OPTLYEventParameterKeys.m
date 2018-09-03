@@ -46,7 +46,6 @@ NSString * const OPTLYEventParameterKeysFeaturesName                    = @"name
 NSString * const OPTLYEventParameterKeysDecisionCampaignId              = @"campaign_id";       // nonnull
 NSString * const OPTLYEventParameterKeysDecisionExperimentId            = @"experiment_id";     // nonnull
 NSString * const OPTLYEventParameterKeysDecisionVariationId             = @"variation_id";      // nonnull
-NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback         = @"is_campaign_holdback";
 
 // --- Common Event Parameters ----
 NSString * const OPTLYEventParameterKeysTimestamp                       = @"timestamp";         // nonnull

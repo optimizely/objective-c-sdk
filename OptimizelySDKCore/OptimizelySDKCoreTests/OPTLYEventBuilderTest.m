@@ -72,6 +72,10 @@ static NSString * const kEventWithoutExperimentId = @"6386521015";
 static NSString * const kEventWithMultipleExperimentsName = @"testEventWithMultipleExperiments";
 static NSString * const kEventWithMultipleExperimentsId = @"6372952486";
 
+// events with invalid experiments
+static NSString * const kEventWithInvalidExperimentName = @"testEventWithInvalidExperiment";
+static NSString * const kEventWithInvalidExperimentId = @"6370392433";
+
 typedef enum : NSUInteger {
     ImpressionTicket,
     ConversionTicket
@@ -134,7 +138,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.reservedAttributes
              eventKey:kEventWithoutAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 - (void)testBuildConversionTicketWithValidAudience
@@ -154,7 +159,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.attributes
              eventKey:kEventWithAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 #pragma mark - Test buildConversionTicket:... Invalid Args
@@ -170,7 +176,12 @@ typedef enum : NSUInteger {
                                                           eventName:kEventWithAudienceName
                                                           eventTags:nil
                                                          attributes:attributes];
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithExperimentNotRunning
@@ -181,7 +192,28 @@ typedef enum : NSUInteger {
                                                           eventName:kEventWithExperimentNotRunningName
                                                           eventTags:nil
                                                          attributes:nil];
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
+}
+
+- (void)testBuildConversionTicketWithInvalidExperiment
+{
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
+                                                                     bucketer:self.bucketer
+                                                                       userId:kUserId
+                                                                    eventName:kEventWithInvalidExperimentName
+                                                                    eventTags:nil
+                                                                   attributes:nil];
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithoutExperiment
@@ -406,8 +438,8 @@ typedef enum : NSUInteger {
 
 - (void)testRevenueMetric
 {
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue)}];
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 - (void)testRevenueMetricWithDouble
@@ -415,7 +447,8 @@ typedef enum : NSUInteger {
     // The SDK issues a console warning about casting double to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(888.88)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(888LL)}];
+                            sentEventTags:@{OPTLYEventMetricNameRevenue:@(888LL)}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(888.88)}];
 }
 
 - (void)testRevenueMetricWithHugeDouble
@@ -423,8 +456,8 @@ typedef enum : NSUInteger {
     // The SDK prevents double's outside the range [LLONG_MIN, LLONG_MAX]
     // from being cast into nonsense and sent.  Instead a console warning
     // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(1.0e100)}
-                       sentEventTags:@{}];
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(1.0e100)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:@{} sentTags:tags];
 }
 
 - (void)testRevenueMetricWithBoundaryDouble1
@@ -439,7 +472,8 @@ typedef enum : NSUInteger {
     double doubleRevenue = stayInside*(double)LLONG_MIN;
     long long longLongRevenue = (long long)doubleRevenue;
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+                            sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}];
 }
 
 - (void)testRevenueMetricWithBoundaryDouble2
@@ -455,7 +489,8 @@ typedef enum : NSUInteger {
     double doubleRevenue = stayInside*(double)LLONG_MAX;
     long long longLongRevenue = (long long)doubleRevenue;
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}];
+                            sentEventTags:@{OPTLYEventMetricNameRevenue:@(longLongRevenue)}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}];
 }
 
 - (void)testRevenueMetricWithBoundaryDouble3
@@ -469,7 +504,8 @@ typedef enum : NSUInteger {
     const double stayOutside = 1.00001;
     double doubleRevenue = stayOutside*(double)LLONG_MIN;
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}];
 }
 
 - (void)testRevenueMetricWithBoundaryDouble4
@@ -484,14 +520,16 @@ typedef enum : NSUInteger {
     const double stayOutside = 1.00001;
     double doubleRevenue = stayOutside*(double)LLONG_MAX;
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(doubleRevenue)}];
 }
 
 - (void)testRevenueMetricWithCastUnsignedLongLong
 {
     // "unsigned long long" which is barely in range.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@((unsigned long long)LLONG_MAX)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+                            sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@((unsigned long long)LLONG_MAX)}];
 }
 
 - (void)testRevenueMetricWithBoundaryUnsignedLongLong
@@ -501,7 +539,8 @@ typedef enum : NSUInteger {
     // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
     // A Bridge Too Far
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(1ULL+(unsigned long long)LLONG_MAX)}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(1ULL+(unsigned long long)LLONG_MAX)}];
 }
 
 - (void)testRevenueMetricWithHugeUnsignedLongLong
@@ -511,19 +550,20 @@ typedef enum : NSUInteger {
     // is issued and the 'revenue' key-value pair will not appear in the transmitted event.
     // NOTE: ULLONG_MAX > LLONG_MAX is such an example.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(ULLONG_MAX)}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@(ULLONG_MAX)}];
 }
 
 - (void)testRevenueMetricWithLongLongMax
 {
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MAX)}];
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(LLONG_MAX)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 - (void)testRevenueMetricWithLongLongMin
 {
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(LLONG_MIN)}];
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(LLONG_MIN)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 - (void)testRevenueMetricWithBoolean
@@ -532,7 +572,8 @@ typedef enum : NSUInteger {
     // @YES won't be sent to Optimizely server, since it will serialize
     // as "true" instead of a JSON number.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@YES}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@YES}];
 }
 
 - (void)testRevenueMetricWithString
@@ -540,21 +581,23 @@ typedef enum : NSUInteger {
     // The SDK issues a console warning about casting NSString to "long long",
     // but a "revenue" key-value pair will appear in the transmitted event.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@"8.234"}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(8LL)}];
+                            sentEventTags:@{OPTLYEventMetricNameRevenue:@(8LL)}
+                                 sentTags:@{OPTLYEventMetricNameRevenue:@"8.234"}];
 }
 
 - (void)testRevenueMetricWithInvalidObject
 {
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@[@"BAD",@"DATA"]}
-                       sentEventTags:@{}];
+                            sentEventTags:nil
+                                 sentTags:nil];
 }
 
 #pragma mark - Test value Metric
 
 - (void)testValueMetric
 {
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@(kEventValue)}
-                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue)}];
+    NSDictionary *tags = @{OPTLYEventMetricNameValue:@(kEventValue)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 - (void)testValueMetricWithBoolean
@@ -563,7 +606,8 @@ typedef enum : NSUInteger {
     // @YES won't be sent to Optimizely server, since it will serialize
     // as "true" instead of a JSON number.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@YES}
-                       sentEventTags:@{}];
+                            sentEventTags:@{}
+                                 sentTags:@{OPTLYEventMetricNameValue:@YES}];
 }
 
 - (void)testValueMetricWithString
@@ -571,9 +615,11 @@ typedef enum : NSUInteger {
     // The SDK issues a console warning about casting NSString to "double",
     // but a "value" key-value pair will appear in the transmitted event.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:[NSString stringWithFormat:@"%g", kEventValue],
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}
-                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue),
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}
+                            sentEventTags:@{OPTLYEventMetricNameValue:@(kEventValue),
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}
+                                 sentTags:@{OPTLYEventMetricNameValue:[NSString stringWithFormat:@"%g", kEventValue],
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testValueMetricWithNAN
@@ -583,8 +629,10 @@ typedef enum : NSUInteger {
     // and omits the proposed "value" key-value pair which will not
     // appear in the transmitted event.  IOW, invalid value suppressed.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@(NAN),
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}
-                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}
+                            sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}
+                                 sentTags:@{OPTLYEventMetricNameValue:@(NAN),
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testValueMetricWithINFINITY
@@ -594,15 +642,18 @@ typedef enum : NSUInteger {
     // and omits the proposed "value" key-value pair which will not
     // appear in the transmitted event.  IOW, invalid value suppressed.
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@(INFINITY),
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}
-                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}
+                            sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}
+                                 sentTags:@{OPTLYEventMetricNameValue:@(INFINITY),
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 - (void)testValueMetricWithInvalidObject
 {
     [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@[@"BAD",@"DATA"],
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}
-                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
+                                            kAttributeKeyBrowserType:kAttributeValueChrome}
+                            sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}
+                                 sentTags:@{kAttributeKeyBrowserType:kAttributeValueChrome}];
 }
 
 #pragma mark - Test revenue Metric and value Metric
@@ -613,10 +664,9 @@ typedef enum : NSUInteger {
     //     "revenue" == money received
     //     "value" == temperature measured
     // There isn't a good reason why both can't be sent in the same event.
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
-                                       OPTLYEventMetricNameValue:@(kEventValue)}
-                       sentEventTags:@{OPTLYEventMetricNameRevenue:@(kEventRevenue),
-                                       OPTLYEventMetricNameValue:@(kEventValue)}];
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 #pragma mark - Test BuildConversionTicket:... with Multiple eventTags
@@ -624,22 +674,25 @@ typedef enum : NSUInteger {
 - (void)testBuildConversionTicketWithEventTags
 {
     [self commonBuildConversionTicketTest:@{kAttributeKeyBrowserType:kAttributeValueChrome,
-                                       @"IntegerTag":@15,
-                                       @"BooleanTag":@YES,
-                                       @"FloatTag":@1.23,
-                                       @"InvalidArrayTag":[NSArray new]}
-                       sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
-                                       @"IntegerTag":@15,
-                                       @"FloatTag":@1.23,
-                                       @"BooleanTag":@YES}];
+                                            @"IntegerTag":@15,
+                                            @"BooleanTag":@YES,
+                                            @"FloatTag":@1.23,
+                                            @"InvalidArrayTag":[NSArray new]}
+                            sentEventTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                            @"IntegerTag":@15,
+                                            @"FloatTag":@1.23,
+                                            @"BooleanTag":@YES}
+                                 sentTags:@{kAttributeKeyBrowserType:kAttributeValueChrome,
+                                            @"IntegerTag":@15,
+                                            @"BooleanTag":@YES,
+                                            @"FloatTag":@1.23}];
 }
 
 - (void)testBuildConversionTicketWithRevenueAndEventTags
 {
-    [self commonBuildConversionTicketTest:@{OPTLYEventMetricNameValue:@(kEventRevenue),
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}
-                       sentEventTags:@{OPTLYEventMetricNameValue:@(kEventRevenue),
-                                       kAttributeKeyBrowserType:kAttributeValueChrome}];
+    NSDictionary *tags = @{OPTLYEventMetricNameValue:@(kEventRevenue),
+                           kAttributeKeyBrowserType:kAttributeValueChrome};
+    [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
 #pragma mark - Test anonymizeIP
@@ -680,7 +733,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:attributes
              eventKey:kEventWithoutAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 - (void)testCreateImpressionEventWithEmptyAttributeId {
@@ -707,7 +761,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.reservedAttributes
              eventKey:kEventWithoutAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 
@@ -737,7 +792,8 @@ typedef enum : NSUInteger {
        experimentKeys:@[kExperimentWithAudienceKey]
           variationId:bucketedVariation.variationId
            attributes:self.attributes
-             eventKey:nil eventTags:nil bucketer:nil userId:kUserId];
+             eventKey:nil eventTags:nil tags:nil
+             bucketer:nil userId:kUserId];
 }
 
 - (void)testImpressionEventWithBotFilteringFalse {
@@ -766,7 +822,8 @@ typedef enum : NSUInteger {
        experimentKeys:@[kExperimentWithAudienceKey]
           variationId:bucketedVariation.variationId
            attributes:self.attributes
-             eventKey:nil eventTags:nil bucketer:nil userId:kUserId];
+             eventKey:nil eventTags:nil tags:nil
+             bucketer:nil userId:kUserId];
 }
 
 - (void)testConversionEventWithoutBotFiltering {
@@ -789,7 +846,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.attributes
              eventKey:kEventWithAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 - (void)testConversionEventWithBotFilteringFalse {
@@ -814,7 +872,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.attributes
              eventKey:kEventWithAudienceName
-            eventTags:nil bucketer:self.bucketer userId:kUserId];
+            eventTags:nil tags:nil
+             bucketer:self.bucketer userId:kUserId];
 }
 
 #pragma mark - Test BuildImpressionEventTicket:...
@@ -839,7 +898,8 @@ typedef enum : NSUInteger {
         experimentKeys:@[kExperimentWithAudienceKey]
           variationId:bucketedVariation.variationId
            attributes:self.attributes
-             eventKey:nil eventTags:nil bucketer:nil userId:kUserId];
+             eventKey:nil eventTags:nil tags:nil
+             bucketer:nil userId:kUserId];
     
 }
 
@@ -857,7 +917,8 @@ typedef enum : NSUInteger {
         experimentKeys:@[kExperimentWithoutAudienceKey]
           variationId:kVariationWithoutAudienceId
            attributes:self.attributes
-             eventKey:nil eventTags:nil bucketer:nil userId:kUserId];
+             eventKey:nil eventTags:nil tags:nil
+             bucketer:nil userId:kUserId];
 }
 
 - (void)testBuildImpressionEventTicketWithUnknownExperiment
@@ -953,17 +1014,19 @@ typedef enum : NSUInteger {
 
 #pragma mark - Helper Methods
 
-- (void)commonBuildConversionTicketTest:(NSDictionary*)eventTags sentEventTags:(NSDictionary*)sentEventTags
-{
+- (void)commonBuildConversionTicketTest:(NSDictionary*)eventTags
+                          sentEventTags:(NSDictionary*)sentEventTags
+                               sentTags:(NSDictionary*)sentTags {
+    
     // Common subroutine for many of the testBuildEventXxx test methods.
     // Generally, a testBuildEventXxx should make at most one call
-    // to commonBuildConversionTicketTest:sentEventTags: .
+    // to commonBuildConversionTicketTest:sentEventTags:sentTags: .
     NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithAudienceName
-                                                     eventTags:eventTags
-                                                    attributes:self.attributes];
+                                                           bucketer:self.bucketer
+                                                             userId:kUserId
+                                                          eventName:kEventWithAudienceName
+                                                          eventTags:eventTags
+                                                         attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
             forParams:params
@@ -972,7 +1035,8 @@ typedef enum : NSUInteger {
           variationId:nil
            attributes:self.attributes
              eventKey:kEventWithAudienceName
-            eventTags:sentEventTags bucketer:self.bucketer userId:kUserId];
+            eventTags:sentEventTags tags:sentTags
+             bucketer:self.bucketer userId:kUserId];
 }
 
 - (void)checkTicket:(Ticket)ticket
@@ -983,6 +1047,7 @@ typedef enum : NSUInteger {
          attributes:(NSDictionary *)attributes
            eventKey:(NSString *)eventKey
           eventTags:(NSDictionary *)eventTags
+               tags:(NSDictionary *)tags
            bucketer:(OPTLYBucketer *)bucketer
              userId:(NSString *)userId {
     
@@ -1008,8 +1073,7 @@ typedef enum : NSUInteger {
                 }
                 case ConversionTicket: {
                     OPTLYEvent *eventEntity = [config getEventForKey:eventKey];
-                    [self checkConversionTicket:ticketParams config:config eventId:eventEntity.eventId eventKey:eventKey experimentKeys:experimentKeys
-                                    eventTags:eventTags attributes:attributes bucketer:bucketer userId:userId];
+                    [self checkConversionTicket:ticketParams config:config eventId:eventEntity.eventId eventKey:eventKey experimentKeys:experimentKeys eventTags:eventTags tags:tags attributes:attributes bucketer:bucketer userId:userId];
                     break;
                 }
             }
@@ -1050,10 +1114,10 @@ typedef enum : NSUInteger {
                      eventKey:(NSString *)eventKey
                experimentKeys:(NSArray *)experimentKeys
                     eventTags:(NSDictionary *)eventTags
+                         tags:(NSDictionary *)tags
                    attributes:(NSDictionary *)attributes
                      bucketer:(OPTLYBucketer *)bucketer
                        userId:(NSString *)userId {
-    
     
     // check conversion if payload available
     XCTAssertNotNil(params, @"Invalid Conversion ticket");
@@ -1077,7 +1141,7 @@ typedef enum : NSUInteger {
     XCTAssertGreaterThan([events count], 0, @"Didn't find any event");
     
     for (NSDictionary *event in events) {
-        [self checkConversion:event entityId:eventId eventKey:eventKey uuid:@"" eventTags:eventTags];
+        [self checkConversion:event entityId:eventId eventKey:eventKey uuid:@"" eventTags:eventTags tags:tags];
     }
 }
 
@@ -1089,8 +1153,6 @@ typedef enum : NSUInteger {
     XCTAssert([campaignId isEqualToString:params[OPTLYEventParameterKeysDecisionCampaignId]], @"Invalid campaignId.");
     XCTAssert([experimentId isEqualToString:params[OPTLYEventParameterKeysDecisionExperimentId]], @"Invalid experimentId.");
     XCTAssert([variationId isEqualToString: params[OPTLYEventParameterKeysDecisionVariationId]], @"Invalid variationId.");
-    NSNumber *isLayerHoldback = params[OPTLYEventParameterKeysDecisionIsLayerHoldback];
-    XCTAssert([isLayerHoldback boolValue] == false, @"Invalid isLayerHoldback value.");
 }
 
 - (void)checkImpression:(NSDictionary *)params
@@ -1115,7 +1177,8 @@ typedef enum : NSUInteger {
                entityId:(NSString *)entityId
                eventKey:(NSString *)eventKey
                    uuid:(NSString *)uuid
-              eventTags:(NSDictionary *)eventTags {
+              eventTags:(NSDictionary *)eventTags
+                   tags:(NSDictionary *)tags {
     
     XCTAssert([entityId isEqualToString:params[OPTLYEventParameterKeysEntityId]], @"Invalid entityId.");
     
@@ -1129,23 +1192,16 @@ typedef enum : NSUInteger {
     XCTAssertNotNil(params[OPTLYEventParameterKeysUUID], @"Did not find uuid in conversion event.");
     XCTAssertNotEqual(params[OPTLYEventParameterKeysUUID], uuid, @"Invalid uuid.");
     
-    NSDictionary *tags = params[OPTLYEventParameterKeysTags];
-    [self checkEventTags:eventTags withTags:tags];
+    NSDictionary *sentTags = params[OPTLYEventParameterKeysTags];
+    [self checkEventTags:tags withTags:sentTags];
     [self checkEventTags:eventTags withEvent:params];
 }
 
 - (void)checkEventTags:(NSDictionary *)eventTags
               withTags:(NSDictionary *)tags {
     
-    // check for equal number of tags with event tags
-    XCTAssert([eventTags count] == [tags count], @"Invalid number of event tags.");
-    
-    for (NSString *eventTag in [eventTags allKeys]) {
-        if (!([eventTag isEqualToString:OPTLYEventMetricNameRevenue] || [eventTag isEqualToString:OPTLYEventMetricNameValue])) {
-            XCTAssertNotNil(tags[eventTag], @"Invalid event tag name.");
-            XCTAssert([eventTags[eventTag] isEqual: tags[eventTag]], @"Invalid event tag value.");
-        }
-    }
+    // match tags with event tags. i.e number of tags and their content.
+    XCTAssertEqualObjects(eventTags, tags, @"Invalid tags transmitted in the event");
 }
 
 - (void)checkEventTags:(NSDictionary *)eventTags
