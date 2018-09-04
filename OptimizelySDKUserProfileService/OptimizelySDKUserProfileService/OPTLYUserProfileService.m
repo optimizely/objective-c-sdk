@@ -157,7 +157,7 @@
     [self.dataStore removeAllUserData];
 }
 
-- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)experimentIds {
+- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds {
     
     NSMutableDictionary*userProflieService = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
     
@@ -166,7 +166,7 @@
         NSDictionary * bucketMap = userProfileDict[@"experiment_bucket_map"];
         NSMutableDictionary *newBucketMap = [bucketMap mutableCopy];
         for (NSString *exId in bucketMap.allKeys) {
-            if (![experimentIds containsObject:exId]) {
+            if (![validExperimentIds containsObject:exId]) {
                 [newBucketMap removeObjectForKey:exId];
             }
         }

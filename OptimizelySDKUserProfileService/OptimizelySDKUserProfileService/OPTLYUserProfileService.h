@@ -52,4 +52,8 @@ __attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
  **/
 - (void)removeAllUserExperimentRecords;
 
+/**
+ * Cleanup and remove experiments that are not in the valid experiment list passed in.
+ **/
+- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds;
 @end
