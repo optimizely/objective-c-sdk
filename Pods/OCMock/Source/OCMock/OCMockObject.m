@@ -224,7 +224,16 @@
     {
         @synchronized(expectations)
         {
-            if([expectations count] == 0)
+            BOOL allExpectationsAreMatchAndReject = YES;
+            for(OCMInvocationExpectation *expectation in expectations)
+            {
+                if(![expectation isMatchAndReject])
+                {
+                    allExpectationsAreMatchAndReject = NO;
+                    break;
+                }
+            }
+            if(allExpectationsAreMatchAndReject)
                 break;
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:MIN(step, delay)]];
@@ -363,8 +372,12 @@
             [stubs removeObject:stub];
         }
     }
-    [stub handleInvocation:anInvocation];
-    [stub release];
+
+    @try {
+        [stub handleInvocation:anInvocation];
+    } @finally {
+        [stub release];
+    }
 
     return YES;
 }
