@@ -27,6 +27,8 @@ extern NSString *const OPTLYLoggerMessagesVariationUserAssigned;
 extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
 // error
+extern NSString *const OPTLYLoggerMessagesActivateUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
