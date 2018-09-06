@@ -1,8 +1,8 @@
 workspace 'OptimizelySDK.xcworkspace'
 
 def common_test_pods
-  pod 'OHHTTPStubs', '5.2.2'
-  pod 'OCMock', '3.3.1'
+  pod 'OHHTTPStubs', '6.1.0'
+  pod 'OCMock', '3.4.1'
 end
 
 def analytics_pods
