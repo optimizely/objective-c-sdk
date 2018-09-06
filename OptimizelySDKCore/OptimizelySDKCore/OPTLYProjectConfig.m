@@ -35,7 +35,7 @@
 
 NSString * const kExpectedDatafileVersion = @"4";
 NSString * const kReservedAttributePrefix = @"$opt_";
-/// Array representing supported datafile versions.
+// Array representing supported datafile versions.
 static NSArray *supportedDatafileVersions = nil;
 
 @interface OPTLYProjectConfig()

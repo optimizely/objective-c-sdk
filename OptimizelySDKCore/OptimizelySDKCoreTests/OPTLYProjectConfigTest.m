@@ -54,7 +54,7 @@ static NSUInteger const kNumberOfExperimentObjects = 48;
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeId = @"6380961481";
 
-static NSString * const kInvalidVersionDatafileName = @"InvalidVersionDatafile";
+static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDatafile";
 
 @interface OPTLYProjectConfigTest : XCTestCase
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
@@ -148,7 +148,7 @@ static NSString * const kInvalidVersionDatafileName = @"InvalidVersionDatafile";
 }
 
 - (void)testInitWithBuilderBlockUnsupportedDatafile {
-    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kInvalidVersionDatafileName];
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kUnsupportedVersionDatafileName];
     id errorHandlerMock = OCMPartialMock([OPTLYErrorHandlerNoOp new]);
     NSString *description = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataFileInvalid, @"5"];
     NSError *datafileError = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
