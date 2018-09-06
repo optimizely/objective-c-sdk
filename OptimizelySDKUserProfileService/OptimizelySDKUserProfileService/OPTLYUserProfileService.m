@@ -159,10 +159,10 @@
 
 - (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds {
     
-    NSMutableDictionary*userProflieService = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
+    NSMutableDictionary*userProfileService = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
     
-    for (NSString *key in userProflieService.allKeys) {
-        NSMutableDictionary *userProfileDict = [userProflieService[key] mutableCopy];
+    for (NSString *key in userProfileService.allKeys) {
+        NSMutableDictionary *userProfileDict = [userProfileService[key] mutableCopy];
         NSDictionary * bucketMap = userProfileDict[@"experiment_bucket_map"];
         NSMutableDictionary *newBucketMap = [bucketMap mutableCopy];
         for (NSString *exId in bucketMap.allKeys) {
@@ -171,10 +171,10 @@
             }
         }
         userProfileDict[@"experiment_bucket_map"] = newBucketMap;
-        userProflieService[key] = userProfileDict;
+        userProfileService[key] = userProfileDict;
     }
     
-    [self.dataStore saveUserData:userProflieService type:OPTLYDataStoreDataTypeUserProfileService];
+    [self.dataStore saveUserData:userProfileService type:OPTLYDataStoreDataTypeUserProfileService];
 }
     
 @end

@@ -53,7 +53,11 @@ __attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
 - (void)removeAllUserExperimentRecords;
 
 /**
- * Cleanup and remove experiments that are not in the valid experiment list passed in.
+ * Clean up and remove experiments that are not in the valid experiment list passed in.
+ * This is called when initialzied from a remote datafile to ensure that the UserProfileService
+ * does not grow indefinitely.
+ * @param validExperimentIds An array of valid experiment ids.  If default user profile contains
+ * experiments not in this list, they are removed from user profile service.
  **/
 - (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds;
 @end
