@@ -39,7 +39,30 @@ NSString * const OptimizelyActivateEventKey = @"campaign_activated";
 // --- Event URLs ----
 NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.com/v1/events";
 
-@implementation OPTLYEventBuilderDefault : NSObject 
+@interface OPTLYEventBuilderDefault ()
+
+@property (readonly, strong) OPTLYProjectConfig *config;
+
+@end
+
+@implementation OPTLYEventBuilderDefault : NSObject
+
+-(id)init {
+    @try {
+        NSAssert(NO, @"Use initWithConfig:");
+    } @catch (NSException *exception) {
+    } @finally {
+        return nil;
+    }
+}
+
+-(instancetype)initWithConfig:(OPTLYProjectConfig *)config {
+    self = [super init];
+    if (self != nil) {
+        _config = config;
+    }
+    return self;
+}
 
 // NOTE: A dictionary is used to build the decision event ticket object instead of
 // OPTLYDecisionEventTicket object to simplify the logic. The OPTLYEventFeature value can be a

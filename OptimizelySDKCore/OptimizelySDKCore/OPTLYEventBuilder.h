@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYProjectConfig, OPTLYDecisionEventTicket;
+@class OPTLYProjectConfig;
 @protocol OPTLYBucketer;
 
 // --- Event URLs ----
@@ -68,5 +68,12 @@ NS_ASSUME_NONNULL_END
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>
+
+/**
+ * Initialize the default event build with the project config.
+ * @param config The project config that the event builder will use for event building.
+ * @return The event builder that has been created.
+ */
+- (nullable instancetype)initWithConfig:(nonnull OPTLYProjectConfig *)config;
 
 @end
