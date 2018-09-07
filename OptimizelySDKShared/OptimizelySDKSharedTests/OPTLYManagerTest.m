@@ -450,14 +450,12 @@ static NSString * const kClientEngine = @"tvos-sdk";
                datafile:self.alternateDatafile];
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
     
+    // pass in nil
     [manager cleanUserProfileService:nil];
-    
+    // pass in empty
     [manager cleanUserProfileService:experiments];
-    
+    // pass in experiements
     [manager cleanUserProfileService:client.optimizely.config.experiments];
-    
-    
-    
 }
 
 #pragma mark - isValidKeyString
