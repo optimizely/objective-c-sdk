@@ -20,6 +20,8 @@
 #import "OPTLYLogger.h"
 #import "OPTLYLoggerMessages.h"
 #else
+#import <OptimizelySDKCore/OPTLYExperiment.h>
+#import <OptimizelySDKCore/OPTLYProjectConfig.h>
 #import <OptimizelySDKCore/OPTLYErrorHandler.h>
 #import <OptimizelySDKCore/OPTLYEventDispatcherBasic.h>
 #import <OptimizelySDKCore/OPTLYLogger.h>
@@ -67,6 +69,29 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 
 @implementation OPTLYManagerBase
 
+- (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments {
+    if (experiments == nil) return;
+    
+    if (_userProfileService != nil && [(NSObject *)_userProfileService respondsToSelector:@selector(removeInvalidExperimentsForAllUsers:)]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (self.userProfileService != nil) {
+                NSMutableArray<NSString*> *ids = [[NSMutableArray alloc] initWithCapacity:experiments.count];
+                for (int i = 0; i < experiments.count; i++) {
+                    NSString *exKey = ((OPTLYExperiment *)experiments[i]).experimentId;
+                    [ids addObject:exKey];
+                }
+
+                @try {
+                    [(NSObject *)self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:ids];
+                }
+                @catch(NSException *e) {
+                    [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
+                }
+            }
+        });
+    }
+}
+
 #pragma mark - Constructors
 
 - (instancetype)init {
@@ -102,14 +127,22 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
     
     // attempt to get the cached datafile
     NSData *data = [self.datafileManager getSavedDatafile:nil];
-    
+    BOOL cleanUserProfile = NO;
     // fall back to the datafile provided by the manager builder if we can't get the saved datafile
     if (data == nil) {
         data = self.datafile;
         [self.logger logMessage:OPTLYLoggerMessagesManagerBundledDataLoaded withLevel:OptimizelyLogLevelInfo]; 
     }
+    else {
+        // cleanup user profile service in background
+        cleanUserProfile = YES;
+    }
     
     OPTLYClient *client = [self initializeWithDatafile:data];
+    
+    if (cleanUserProfile) {
+        [self cleanUserProfileService:client.optimizely.config.experiments];
+    }
 
     return client;
 }
@@ -138,12 +171,21 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
         }
         
         // fall back to the datafile provided by the manager builder if we can't get the saved datafile
+        BOOL cleanUserProfileService = NO;
         if (data == nil) {
             data = self.datafile;
             [self.logger logMessage:OPTLYLoggerMessagesManagerBundledDataLoaded withLevel:OptimizelyLogLevelInfo];
         }
+        else {
+            // update user profile service in the background.
+            cleanUserProfileService = YES;
+        }
         
         OPTLYClient *client = [self initializeWithDatafile:data];
+        
+        if (cleanUserProfileService) {
+            [self cleanUserProfileService:client.optimizely.config.experiments];
+        }
         
         if (callback) {
             callback(error, client);
