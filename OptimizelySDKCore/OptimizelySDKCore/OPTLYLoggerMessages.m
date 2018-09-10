@@ -24,7 +24,8 @@ NSString *const OPTLYLoggerMessagesActivationSuccess = @"[OPTIMIZELY] Activating
 NSString *const OPTLYLoggerMessagesConversionSuccess = @"[OPTIMIZELY] Tracking event %@ for user %@.";
 // error
 NSString *const OPTLYLoggerMessagesActivateUserIdInvalid = @"[OPTIMIZELY] User ID cannot be nil or an empty string.";
-NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid = @"[OPTIMIZELY] Experiment Key cannot be nil or an empty string.";
+NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty = @"[OPTIMIZELY] Experiment Key cannot be nil or an empty string.";
+NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid = @"[OPTIMIZELY] Experiment not found for Key %@.";
 NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid = @"[OPTIMIZELY] User ID must not be empty for feature enabled.";
 NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid = @"[OPTIMIZELY] Feature flag key must not be empty for feature enabled.";
 NSString *const OPTLYLoggerMessagesFeatureDisabled = @"[OPTIMIZELY] Feature flag %@ is not enabled for user %@.";
@@ -107,11 +108,10 @@ NSString *const OPTLYLoggerMessagesAttributeValueInvalidFormat = @"[EVENT BUILDE
 NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment = @"[EVENT BUILDER] Event key %@ is not associated with any experiment."; // event key
 NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent = @"[EVENT BUILDER] Experiment %@ is not associated with event %@.";
 // warning
-NSString *const OPTLYLoggerMessagesBucketerInvalid = @"[EVENT BUILDER] Bucketer is not valid.";
 NSString *const OPTLYLoggerMessagesEventKeyInvalid = @"[EVENT BUILDER] Event key cannot be an empty string.";
-NSString *const OPTLYLoggerMessagesExperimentKeyInvalid = @"[EVENT BUILDER] Experiment key cannot be an empty string.";
-NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for experiment key %@.";
-NSString *const OPTLYLoggerMessagesUserIdInvalid = @"[EVENT BUILDER] User ID cannot be an empty string.";
+NSString *const OPTLYLoggerMessagesNoExperiment = @"[EVENT BUILDER] Not building decision event ticket for no experiment.";
+NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for no variation.";
+NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket = @"[EVENT BUILDER] User ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesVariationIdInvalid = @"[EVENT BUILDER] Variation ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation = @"[EVENT BUILDER] None of the experiments of %@ pass audience evaluation.";
 NSString *const OPTLYLoggerMessagesRevenueValueFloat = @"[EVENT BUILDER] Provided float revenue value %@ will be cast to integer %@.";

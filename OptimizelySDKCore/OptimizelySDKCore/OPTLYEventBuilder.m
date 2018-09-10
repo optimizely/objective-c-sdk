@@ -14,25 +14,25 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#import "OPTLYAttribute.h"
-#import "OPTLYBucketer.h"
-#import "OPTLYDecisionEventTicket.h"
-#import "OPTLYDecisionService.h"
-#import "OPTLYErrorHandler.h"
+//#import "OPTLYAttribute.h"
+//#import "OPTLYBucketer.h"
+#import "OPTLYControlAttributes.h"
+//#import "OPTLYDecisionEventTicket.h"
+//#import "OPTLYDecisionService.h"
+//#import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventFeature.h"
-#import "OPTLYEventDecision.h"
-#import "OPTLYEventDecisionTicket.h"
-#import "OPTLYEventHeader.h"
-#import "OPTLYEventLayerState.h"
+//#import "OPTLYEventDecision.h"
+//#import "OPTLYEventDecisionTicket.h"
+//#import "OPTLYEventHeader.h"
+//#import "OPTLYEventLayerState.h"
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
-#import "OPTLYControlAttributes.h"
 
 NSString * const OptimizelyActivateEventKey = @"campaign_activated";
 
@@ -47,15 +47,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 @implementation OPTLYEventBuilderDefault : NSObject
 
--(id)init {
-    @try {
-        NSAssert(NO, @"Use initWithConfig:");
-    } @catch (NSException *exception) {
-    } @finally {
-        return nil;
-    }
-}
-
 -(instancetype)initWithConfig:(OPTLYProjectConfig *)config {
     self = [super init];
     if (self != nil) {
@@ -69,73 +60,59 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 // string, double, float, int, or boolean.
 // The OPTLYJSONModel cannot support a generic primitive/object type, so each event tag
 // value would have to be manually checked and converted to the appropriate OPTLYEventFeature type.
--(NSDictionary *)buildImpressionEventTicket:(OPTLYProjectConfig *)config
-                                     userId:(NSString *)userId
-                              experimentKey:(NSString *)experimentKey
-                                variationId:(NSString *)variationId
-                                 attributes:(NSDictionary<NSString *,NSString *> *)attributes {
-    if (!config) {
+-(NSDictionary *)buildImpressionEventTicketForUser:(NSString *)userId
+                                        experiment:(OPTLYExperiment *)experiment
+                                         variation:(OPTLYVariation *)variation
+                                        attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    if (!self.config) {
         return nil;
     }
     
-    if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+    if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
-    
-    if ([experimentKey length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesExperimentKeyInvalid withLevel:OptimizelyLogLevelWarning];
-        return nil;
-    }
-    
-    if ([variationId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
-        return nil;
-    }
-    
-    OPTLYExperiment *experiment = [config getExperimentForKey:experimentKey];
     
     if (!experiment) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesNotBuildingDecisionEventTicket, experimentKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoExperimentForDecisionEventTicket withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
-    NSDictionary *commonParams = [self createCommonParams:config userId:userId attributes:attributes];
-    NSDictionary *impressionOnlyParams = [self createImpressionParams:experiment variationId:variationId];
+        
+    if (!variation) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoVariationForDecisionEventTicket withLevel:OptimizelyLogLevelWarning];
+        return nil;
+    }
+
+    NSDictionary *commonParams = [self createCommonParamsForUser:userId attributes:attributes];
+    NSDictionary *impressionOnlyParams = [self createImpressionParamsOfExperiment:experiment variation:variation];
     NSDictionary *impressionParams = [self createImpressionOrConversionParamsWithCommonParams:commonParams conversionOrImpressionOnlyParams:@[impressionOnlyParams]];
     
     return impressionParams;
 }
-    
--(NSDictionary *)buildConversionTicket:(OPTLYProjectConfig *)config
-                              bucketer:(id<OPTLYBucketer>)bucketer
-                                userId:(NSString *)userId
-                             eventName:(NSString *)eventName
-                             eventTags:(NSDictionary *)eventTags
-                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
-    if (!config) {
+
+-(NSDictionary *)buildConversionEventTicketForUser:(NSString *)userId
+                                         eventName:(NSString *)eventName
+                                         eventTags:(NSDictionary *)eventTags
+                                        attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+
+    if (!self.config) {
         return nil;
     }
     
-    if (!bucketer) {
-        [config.logger logMessage:OPTLYLoggerMessagesBucketerInvalid withLevel:OptimizelyLogLevelWarning];
+    if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
-    if ([userId length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+    if ([OPTLYEventBuilderDefault isEmptyString:eventName]) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
-    if ([eventName length] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
-        return nil;
-    }
-    
-    NSDictionary *commonParams = [self createCommonParams:config userId:userId attributes:attributes];
-    NSArray *conversionOnlyParams = [self createConversionParams:config bucketer:bucketer eventKey:eventName userId:userId eventTags:eventTags attributes:attributes];
+    NSDictionary *commonParams = [self createCommonParamsForUser:userId attributes:attributes];
+    NSArray *conversionOnlyParams = [self createConversionParams:self.config bucketer:bucketer eventKey:eventName userId:userId eventTags:eventTags attributes:attributes];
     if ([conversionOnlyParams count] == 0) {
-        [config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     NSDictionary *conversionParams = [self createImpressionOrConversionParamsWithCommonParams:commonParams conversionOrImpressionOnlyParams:conversionOnlyParams];
@@ -270,59 +247,56 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     return answer;
 }
 
-- (NSDictionary *)createCommonParams:(OPTLYProjectConfig *)config userId:(NSString *)userId
-                          attributes:(NSDictionary<NSString *, NSString *> *)attributes {
-    NSMutableDictionary *params = [NSMutableDictionary new];
+- (NSDictionary *)createCommonParamsForUser:(NSString *)userId
+                                 attributes:(NSDictionary<NSString *, NSString *> *)attributes {
+    NSMutableDictionary *commonParams = [NSMutableDictionary new];
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];
     visitor[OPTLYEventParameterKeysSnapshots] =  [NSMutableArray new];
     visitor[OPTLYEventParameterKeysVisitorId] = [OPTLYEventBuilderDefault stringOrEmpty:userId];
-    visitor[OPTLYEventParameterKeysAttributes] = [self createUserFeatures:config attributes:attributes];
+    visitor[OPTLYEventParameterKeysAttributes] = [self createUserFeatures:self.config attributes:attributes];
+
+    commonParams[OPTLYEventParameterKeysVisitors] = @[visitor];
+    commonParams[OPTLYEventParameterKeysProjectId] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.projectId ];
+    commonParams[OPTLYEventParameterKeysAccountId] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.accountId];
+    commonParams[OPTLYEventParameterKeysClientEngine] = [OPTLYEventBuilderDefault stringOrEmpty:[self.config clientEngine]];
+    commonParams[OPTLYEventParameterKeysClientVersion] = [OPTLYEventBuilderDefault stringOrEmpty:[self.config clientVersion]];
+    commonParams[OPTLYEventParameterKeysRevision] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.revision];
+    commonParams[OPTLYEventParameterKeysAnonymizeIP] = @(self.config.anonymizeIP.boolValue);
     
-    params[OPTLYEventParameterKeysVisitors] = @[visitor];
-    params[OPTLYEventParameterKeysProjectId] = [OPTLYEventBuilderDefault stringOrEmpty:config.projectId ];
-    params[OPTLYEventParameterKeysAccountId] = [OPTLYEventBuilderDefault stringOrEmpty:config.accountId];
-    params[OPTLYEventParameterKeysClientEngine] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientEngine]];
-    params[OPTLYEventParameterKeysClientVersion] = [OPTLYEventBuilderDefault stringOrEmpty:[config clientVersion]];
-    params[OPTLYEventParameterKeysRevision] = [OPTLYEventBuilderDefault stringOrEmpty:config.revision];
-    params[OPTLYEventParameterKeysAnonymizeIP] = @(config.anonymizeIP.boolValue);
-    
-    return [params copy];
+    return [commonParams copy];
 }
     
-- (NSDictionary *)createImpressionParams:(OPTLYExperiment *)experiment variationId:(NSString *)variationId {
+- (NSDictionary *)createImpressionParamsOfExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation {
     
-    NSMutableDictionary *params = [NSMutableDictionary new];
+    NSMutableDictionary *snapshot = [NSMutableDictionary new];
     
     NSMutableDictionary *decision = [NSMutableDictionary new];
-    decision[OPTLYEventParameterKeysDecisionCampaignId]                 =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
-    decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
-    decision[OPTLYEventParameterKeysDecisionVariationId]        =variationId;
+    decision[OPTLYEventParameterKeysDecisionCampaignId]     = [OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
+    decision[OPTLYEventParameterKeysDecisionExperimentId]   = experiment.experimentId;
+    decision[OPTLYEventParameterKeysDecisionVariationId]    = variation.variationId;
     NSArray *decisions = @[decision];
-    
+
     NSMutableDictionary *event = [NSMutableDictionary new];
-    event[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
-    event[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
-    event[OPTLYEventParameterKeysKey]           =OptimizelyActivateEventKey;
-    event[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
+    event[OPTLYEventParameterKeysEntityId]      = [OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
+    event[OPTLYEventParameterKeysTimestamp]     = [self time] ? : @0;
+    event[OPTLYEventParameterKeysKey]           = OptimizelyActivateEventKey;
+    event[OPTLYEventParameterKeysUUID]          = [[NSUUID UUID] UUIDString];
     NSArray *events = @[event];
+
+    snapshot[OPTLYEventParameterKeysDecisions]  = decisions;
+    snapshot[OPTLYEventParameterKeysEvents]     = events;
     
-    params[OPTLYEventParameterKeysDecisions] = decisions;
-    params[OPTLYEventParameterKeysEvents] = events;
-    
-    return params;
+    return snapshot;
 }
 
 - (NSDictionary *)createImpressionOrConversionParamsWithCommonParams:(NSDictionary *)commonParams
                                  conversionOrImpressionOnlyParams:(NSArray *)conversionOrImpressionOnlyParams {
     
     NSMutableArray *visitors = commonParams[OPTLYEventParameterKeysVisitors];
-    
     if(visitors.count > 0) {
-        NSMutableDictionary *visitor = visitors[0];
-        visitor[OPTLYEventParameterKeysSnapshots] = conversionOrImpressionOnlyParams;
+        visitors[0][OPTLYEventParameterKeysSnapshots] = conversionOrImpressionOnlyParams;
     }
-    
     return commonParams;
 }
 

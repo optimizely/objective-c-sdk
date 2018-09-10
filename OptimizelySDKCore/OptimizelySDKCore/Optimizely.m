@@ -115,13 +115,23 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     __weak void (^_callback)(NSError *) = callback ? : ^(NSError *error) {};
     
     if ([Optimizely isEmptyString:experimentKey]) {
-        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateExperimentKeyInvalid];
+        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateExperimentKeyEmpty];
         _callback(error);
         return nil;
     }
     
     if ([Optimizely isEmptyString:userId]) {
         NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateUserIdInvalid];
+        _callback(error);
+        return nil;
+    }
+    
+    // get experiment
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+    
+    if (!experiment) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivateExperimentKeyInvalid, experimentKey];
+        NSError *error = [self handleErrorLogsForActivate:logMessage];
         _callback(error);
         return nil;
     }
@@ -136,18 +146,27 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return nil;
     }
     
-    // get experiment
-    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
-    
     // send impression event
     __weak typeof(self) weakSelf = self;
-    [self sendImpressionEventFor:experiment variation:variation userId:userId attributes:attributes callback:^(NSError *error) {
+    OPTLYVariation *sentVariation = [self sendImpressionEventFor:experiment
+                                                       variation:variation
+                                                          userId:userId
+                                                      attributes:attributes
+                                                        callback:^(NSError *error) {
         if (error) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
             [weakSelf handleErrorLogsForActivate:logMessage];
         }
         _callback(error);
     }];
+    
+    if (!sentVariation) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
+        NSError *error = [self handleErrorLogsForActivate:logMessage];
+        _callback(error);
+        return nil;
+    }
+
     return variation;
 }
 
@@ -835,7 +854,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return [NSString stringWithFormat:@"config:%@\nlogger:%@\nerrorHandler:%@\neventDispatcher:%@\nuserProfile:%@", self.config, self.logger, self.errorHandler, self.eventDispatcher, self.userProfileService];
 }
 
-- (void)sendImpressionEventFor:(OPTLYExperiment *)experiment
+- (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
                                 attributes:(NSDictionary<NSString *,NSString *> *)attributes
@@ -849,7 +868,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                              attributes:attributes];
     
     if ([Optimizely isEmptyDictionary:impressionEventParams]) {
-        return;
+        return nil;
     }
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent, userId, experiment.experimentKey];
@@ -870,6 +889,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     NSArray *args = @[experiment, userId ? : @"", attributes ? : [NSDictionary new], variation, impressionEventParams];
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
+    return variation
 }
 
 + (BOOL)isEmptyString:(NSObject*)string {
