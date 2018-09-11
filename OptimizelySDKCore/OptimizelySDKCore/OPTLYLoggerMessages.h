@@ -26,10 +26,16 @@ extern NSString *const OPTLYLoggerMessagesVariationUserAssigned;
 // info
 extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
+extern NSString *const OPTLYLoggerMessagesConversionFailure;
 // error
-extern NSString *const OPTLYLoggerMessagesActivateUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty;
 extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesTrackEventKeyEmpty;
+extern NSString *const OPTLYLoggerMessagesTrackEventKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesTrackEventNoAssociation;
+extern NSString *const OPTLYLoggerMessagesTrackExperimentNoAssociation;
+extern NSString *const OPTLYLoggerMessagesTrackExperimentNotTracked;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
@@ -113,6 +119,8 @@ extern NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment;
 extern NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent;
 // warning
 extern NSString *const OPTLYLoggerMessagesEventKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket;
+extern NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket;
 extern NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;

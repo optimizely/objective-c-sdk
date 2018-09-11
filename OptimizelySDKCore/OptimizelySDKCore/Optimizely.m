@@ -121,7 +121,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     }
     
     if ([Optimizely isEmptyString:userId]) {
-        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateUserIdInvalid];
+        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesUserIdInvalid];
         _callback(error);
         return nil;
     }
@@ -403,22 +403,40 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
    attributes:(NSDictionary<NSString *,NSString *> *)attributes
     eventTags:(NSDictionary<NSString *,id> *)eventTags {
     
-    OPTLYEvent *event = [self.config getEventForKey:eventKey];
-    
-    if (!event) {
-        [self handleErrorLogsForTrackEvent:eventKey userId:userId];
+    if ([Optimizely isEmptyString:eventKey]) {
+        [self handleErrorLogsForTrack:OPTLYLoggerMessagesTrackEventKeyEmpty ofLevel:OptimizelyLogLevelError];
         return;
     }
     
-    NSDictionary *conversionEventParams = [self.eventBuilder buildConversionTicket:self.config
-                                                                          bucketer:self.bucketer
-                                                                            userId:userId
-                                                                         eventName:eventKey
-                                                                         eventTags:eventTags
-                                                                        attributes:attributes];
+    if ([Optimizely isEmptyString:userId]) {
+        [self handleErrorLogsForTrack:OPTLYLoggerMessagesUserIdInvalid ofLevel:OptimizelyLogLevelError];
+        return;
+    }
     
+    OPTLYEvent *event = [self.config getEventForKey:eventKey];
+    
+    if (!event) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
+        return;
+    }
+    
+    NSArray *decisions = [self decisionsFor:event userId:userId attributes:attributes];
+    
+    if ([Optimizely isEmptyArray:decisions]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
+        return;
+    }
+    
+    NSDictionary *conversionEventParams = [self.eventBuilder buildConversionEventTicketForUser:userId
+                                                                                         event:event
+                                                                                     decisions:decisions
+                                                                                     eventTags:eventTags
+                                                                                    attributes:attributes];
     if ([conversionEventParams count] == 0) {
-        [self handleErrorLogsForTrackEvent:eventKey userId:userId];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
         return;
     }
     
@@ -429,7 +447,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     [self.eventDispatcher dispatchConversionEvent:conversionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                              if (error) {
-                                                 [weakSelf handleErrorLogsForTrackEvent:eventKey userId:userId];
+                                                 NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
+                                                 [weakSelf handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
                                              } else {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherTrackingSuccess, eventKey, userId];
                                                  [weakSelf.logger logMessage:logMessage
@@ -437,43 +456,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                              }
                                          }];
     
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                    OptimizelyNotificationsUserDictionaryEventNameKey: eventKey,
-                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey: userId,
-                                                                                    }];
-    if (attributes != nil) {
-        userInfo[OptimizelyNotificationsUserDictionaryAttributesKey] = attributes;
-    }
-    NSMutableDictionary *experimentVariationMapping = [NSMutableDictionary new];
-    
-    NSArray *visitors = conversionEventParams[OPTLYEventParameterKeysVisitors];
-    for (NSDictionary *visitor in visitors) {
-        NSArray *snapshots = visitor[OPTLYEventParameterKeysSnapshots];
-        for (NSDictionary *snapshot in snapshots) {
-            NSDictionary *eventDecisions = snapshot[OPTLYEventParameterKeysDecisions];
-            for (NSDictionary *eventDecision in eventDecisions) {
-                OPTLYExperiment *experiment = [self.config getExperimentForId:eventDecision[OPTLYEventParameterKeysDecisionExperimentId]];
-                OPTLYVariation *variation = [experiment getVariationForVariationId:eventDecision[OPTLYEventParameterKeysDecisionVariationId]];
-                if (experiment != nil && variation != nil) {
-                    experimentVariationMapping[experiment.experimentId] = variation;
-                }
-            }
-        }
-    }
-    
-    if ([experimentVariationMapping count] > 0) {
-        userInfo[OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey] = [experimentVariationMapping copy];
-    }
-    NSString *_userId = userId ? userId : @"";
-    NSDictionary *_attributes = attributes ? attributes : [NSDictionary new];
-    NSDictionary *_eventTags = eventTags ? eventTags : [NSDictionary new];
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack
-                                      args:[NSArray arrayWithObjects:eventKey,
-                                            _userId,
-                                            _attributes,
-                                            _eventTags,
-                                            conversionEventParams,
-                                            nil]];
+    NSArray *args = @[eventKey, userId ? : @"", attributes ? : [NSDictionary new], eventTags ? : [NSDictionary new], conversionEventParams];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:args];
 }
 
 ////////////////////////////////////////////////////////////////
@@ -827,16 +811,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 # pragma mark - Helper methods
 // log and propagate error for a track failure
-- (void)handleErrorLogsForTrackEvent:(NSString *)eventKey
-                              userId:(NSString *)userId
-{
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
+- (void)handleErrorLogsForTrack:(NSString *)logMessage ofLevel:(OptimizelyLogLevel)level {
     NSDictionary *errorDictionary = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
     NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                          code:OPTLYErrorTypesEventTrack
                                      userInfo:errorDictionary];
     [self.errorHandler handleError:error];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    [self.logger logMessage:logMessage withLevel:level];
 }
 
 // log and propagate error for a activate failure
@@ -861,11 +842,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                   callback:(void (^)(NSError *))callback {
     
     // send impression event
-    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                 userId:userId
-                                                                          experimentKey:experiment.experimentKey
-                                                                            variationId:variation.variationId
-                                                                             attributes:attributes];
+    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventTicketForUser:userId
+                                                                                    experiment:experiment
+                                                                                     variation:variation
+                                                                                    attributes:attributes];
     
     if ([Optimizely isEmptyDictionary:impressionEventParams]) {
         return nil;
@@ -889,7 +869,64 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     NSArray *args = @[experiment, userId ? : @"", attributes ? : [NSDictionary new], variation, impressionEventParams];
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
-    return variation
+    return variation;
+}
+
+/**
+ Helper method to retrieve decisions for the user for experiment(s) using the provided event.
+
+ @param event The event which needs to be recorded.
+ @param userId Id for user.
+ @param attributes The user's attributes.
+ @return Array of dictionaries containing valid experiment Ids, variation Ids and layer Ids into which the user is bucketed.
+ */
+- (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
+                   userId:(NSString *)userId
+               attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+    
+    NSArray *experimentIds = event.experimentIds;
+    
+    if ([experimentIds count] == 0) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackEventNoAssociation, event.eventKey];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
+        return nil;
+    }
+    
+    NSMutableArray *decisions = [NSMutableArray new];
+    
+    for (NSString *experimentId in experimentIds) {
+        OPTLYExperiment *experiment = [self.config getExperimentForId:experimentId];
+        
+        // if the experiment is nil, then it is not part of the project's list of experiments
+        if (!experiment) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackExperimentNoAssociation, experiment.experimentKey, event.eventKey];
+            [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
+            continue;
+        }
+        
+        // bucket user into a variation
+        OPTLYVariation *variation = [self variation:experiment.experimentKey userId:userId attributes:attributes];
+        
+        // if the variation is nil, then experiment should not be tracked
+        if (!variation) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackExperimentNotTracked, userId, experiment.experimentKey];
+            [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
+            continue;
+        }
+        
+        NSMutableDictionary *decision = [NSMutableDictionary new];
+        decision[OPTLYEventParameterKeysDecisionCampaignId]         = [Optimizely stringOrEmpty:experiment.layerId];
+        decision[OPTLYEventParameterKeysDecisionExperimentId]       = experiment.experimentId;
+        decision[OPTLYEventParameterKeysDecisionVariationId]        = variation.variationId;
+        [decisions addObject:decision];
+    }
+    return decisions;
+}
+
++ (BOOL)isEmptyArray:(NSObject*)array {
+    return (!array
+            || ![array isKindOfClass:[NSArray class]]
+            || (((NSArray *)array).count == 0));
 }
 
 + (BOOL)isEmptyString:(NSObject*)string {
@@ -902,5 +939,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return (!dict
             || ![dict isKindOfClass:[NSDictionary class]]
             || (((NSDictionary *)dict).count == 0));
+}
+
++ (NSString *)stringOrEmpty:(NSString *)str {
+    NSString *string = str != nil ? str : @"";
+    return string;
 }
 @end

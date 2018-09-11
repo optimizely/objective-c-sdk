@@ -22,10 +22,16 @@ NSString *const OPTLYLoggerMessagesVariationUserAssigned = @"[OPTIMIZELY] User %
 // info
 NSString *const OPTLYLoggerMessagesActivationSuccess = @"[OPTIMIZELY] Activating user %@ in experiment %@.";
 NSString *const OPTLYLoggerMessagesConversionSuccess = @"[OPTIMIZELY] Tracking event %@ for user %@.";
+NSString *const OPTLYLoggerMessagesConversionFailure = @"[OPTIMIZELY] No valid experiment for event %@ to track.";
 // error
-NSString *const OPTLYLoggerMessagesActivateUserIdInvalid = @"[OPTIMIZELY] User ID cannot be nil or an empty string.";
+NSString *const OPTLYLoggerMessagesUserIdInvalid = @"[OPTIMIZELY] User ID cannot be nil or an empty string.";
 NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty = @"[OPTIMIZELY] Experiment Key cannot be nil or an empty string.";
 NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid = @"[OPTIMIZELY] Experiment not found for Key %@.";
+NSString *const OPTLYLoggerMessagesTrackEventKeyEmpty = @"[OPTIMIZELY] Event Key cannot be nil or an empty string.";
+NSString *const OPTLYLoggerMessagesTrackEventKeyInvalid = @"[OPTIMIZELY] Event not found for Key %@.";
+NSString *const OPTLYLoggerMessagesTrackEventNoAssociation = @"[OPTIMIZELY] Event key %@ is not associated with any experiment.";
+NSString *const OPTLYLoggerMessagesTrackExperimentNoAssociation = @"[OPTIMIZELY] Experiment %@ is not associated with event %@.";
+NSString *const OPTLYLoggerMessagesTrackExperimentNotTracked = @"[OPTIMIZELY] Not tracking user %@ for experiment %@";
 NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid = @"[OPTIMIZELY] User ID must not be empty for feature enabled.";
 NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid = @"[OPTIMIZELY] Feature flag key must not be empty for feature enabled.";
 NSString *const OPTLYLoggerMessagesFeatureDisabled = @"[OPTIMIZELY] Feature flag %@ is not enabled for user %@.";
@@ -109,6 +115,8 @@ NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment = @"[EVENT B
 NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent = @"[EVENT BUILDER] Experiment %@ is not associated with event %@.";
 // warning
 NSString *const OPTLYLoggerMessagesEventKeyInvalid = @"[EVENT BUILDER] Event key cannot be an empty string.";
+NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no event.";
+NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no decision.";
 NSString *const OPTLYLoggerMessagesNoExperiment = @"[EVENT BUILDER] Not building decision event ticket for no experiment.";
 NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for no variation.";
 NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket = @"[EVENT BUILDER] User ID cannot be an empty string.";

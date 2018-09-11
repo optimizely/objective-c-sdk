@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYProjectConfig, OPTLYExperiment, OPTLYVariation;
+@class OPTLYProjectConfig, OPTLYExperiment, OPTLYVariation, OPTLYEvent;
 @protocol OPTLYBucketer;
 
 // --- Event URLs ----
@@ -50,14 +50,15 @@ NS_ASSUME_NONNULL_END
  * Create the parameters for a conversion event.
  *
  * @param userId The ID of the user.
- * @param eventName The event name.
+ * @param event The event name.
  * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean).
  * @param attributes A map of attribute names to current user attribute values.
  * @return A map of parameters for a conversion event. This value can be nil.
  *
  */
 - (nullable NSDictionary *)buildConversionEventTicketForUser:(nonnull NSString *)userId
-                                                   eventName:(nonnull NSString *)eventName
+                                                       event:(nonnull OPTLYEvent *)event
+                                                   decisions:(nonnull NSArray<NSDictionary *> *)decisions
                                                    eventTags:(nullable NSDictionary *)eventTags
                                                   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end

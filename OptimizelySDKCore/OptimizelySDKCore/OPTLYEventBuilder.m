@@ -91,7 +91,8 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 -(NSDictionary *)buildConversionEventTicketForUser:(NSString *)userId
-                                         eventName:(NSString *)eventName
+                                             event:(OPTLYEvent *)event
+                                         decisions:(NSArray<NSDictionary *> *)decisions
                                          eventTags:(NSDictionary *)eventTags
                                         attributes:(NSDictionary<NSString *,NSString *> *)attributes {
 
@@ -104,24 +105,31 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
         return nil;
     }
     
-    if ([OPTLYEventBuilderDefault isEmptyString:eventName]) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesEventKeyInvalid withLevel:OptimizelyLogLevelWarning];
+    if (!event) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoEventForConversionEventTicket withLevel:OptimizelyLogLevelWarning];
+        return nil;
+    }
+    
+    if (!decisions) {
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoDecisionForConversionEventTicket withLevel:OptimizelyLogLevelWarning];
         return nil;
     }
     
     NSDictionary *commonParams = [self createCommonParamsForUser:userId attributes:attributes];
-    NSArray *conversionOnlyParams = [self createConversionParams:self.config bucketer:bucketer eventKey:eventName userId:userId eventTags:eventTags attributes:attributes];
-    if ([conversionOnlyParams count] == 0) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesVariationIdInvalid withLevel:OptimizelyLogLevelWarning];
-        return nil;
-    }
+    NSArray *conversionOnlyParams = [self createConversionParamsOfEvent:event userId:userId
+                                                              decisions:decisions eventTags:eventTags
+                                                             attributes:attributes];
     NSDictionary *conversionParams = [self createImpressionOrConversionParamsWithCommonParams:commonParams conversionOrImpressionOnlyParams:conversionOnlyParams];
     
     return conversionParams;
 }
 
 
-- (NSNumber *)revenueValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
+- (NSNumber *)revenueValueFromEventTags:(NSDictionary *)eventTags {
+    NSObject *value = eventTags[OPTLYEventMetricNameRevenue];
+    if (!value) {
+        return nil;
+    }
     // Convert value to NSNumber of type "long long" or nil (failure) if impossible.
     NSNumber *answer = nil;
     // If the object is an in range NSNumber, then char, floats, and boolean values will be cast to a "long long".
@@ -140,7 +148,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             // JSON booleans "true" and "false" instead of JSON numbers.
             // These aren't integers, so shouldn't be sent.
             answer = nil;
-            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalidBoolean withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalidBoolean withLevel:OptimizelyLogLevelWarning];
         } else if ((strcmp(objCType, @encode(char)) == 0)
             || (strcmp(objCType, @encode(unsigned char)) == 0)
             || (strcmp(objCType, @encode(short)) == 0)
@@ -163,7 +171,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 // The unsignedLongLongValue is outside of [LLONG_MIN,LLONG_MAX], so
                 // can't be properly cast to "long long" nor will be sent.
                 answer = nil;
-                [config.logger logMessage:OPTLYLoggerMessagesRevenueValueIntegerOverflow withLevel:OptimizelyLogLevelWarning];
+                [self.config.logger logMessage:OPTLYLoggerMessagesRevenueValueIntegerOverflow withLevel:OptimizelyLogLevelWarning];
             }
         } else if ((LLONG_MIN<=[answer doubleValue])&&([answer doubleValue]<=LLONG_MAX)) {
             // Cast in range floats etc. to long long, rounding or trunctating fraction parts.
@@ -184,24 +192,28 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             // Appropriate warning since conversion to integer generally will lose
             // some non-zero fraction after the decimal point.  Even if the fraction is zero,
             // the warning could alert user of SDK to a coding issue that should be remedied.
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueFloatOverflow, value, answer] withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueFloatOverflow, value, answer] withLevel:OptimizelyLogLevelWarning];
         } else {
             // all other NSNumber's can't be reasonably cast to long long
             answer = nil;
-            [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to long long
         answer = @([(NSString*)value longLongValue]);
-        [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, value] withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, value] withLevel:OptimizelyLogLevelWarning];
     } else {
         // all other objects can't be cast to long long
-        [config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
     };
     return answer;
 }
 
-- (NSNumber *)numericValue:(OPTLYProjectConfig *)config value:(NSObject *)value {
+- (NSNumber *)numericValueFromEventTags:(NSDictionary *)eventTags {
+    NSObject *value = eventTags[OPTLYEventMetricNameRevenue];
+    if (!value) {
+        return nil;
+    }
     // Convert value to NSNumber of type "double" or nil (failure) if impossible.
     NSNumber *answer = nil;
     // if the object is an NSNumber, then char, floats, and boolean values will be cast to a double int
@@ -220,7 +232,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
             // JSON booleans "true" and "false" instead of JSON numbers.
             // These aren't integers, so shouldn't be sent.
             answer = nil;
-            [config.logger logMessage:OPTLYLoggerMessagesNumericValueInvalidBoolean withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:OPTLYLoggerMessagesNumericValueInvalidBoolean withLevel:OptimizelyLogLevelWarning];
         } else {
             // Require real numbers (not infinite or NaN).
             double doubleValue = [(NSNumber*)value doubleValue];
@@ -228,21 +240,21 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                 answer = (NSNumber*)value;
             } else {
                 answer = nil;
-                [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidFloat, value] withLevel:OptimizelyLogLevelWarning];
+                [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidFloat, value] withLevel:OptimizelyLogLevelWarning];
             }
         }
     } else if ([value isKindOfClass:[NSString class]]) {
         // cast strings to double
         double doubleValue = [(NSString*)value doubleValue];
         if (isfinite(doubleValue)) {
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueString, value] withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueString, value] withLevel:OptimizelyLogLevelWarning];
             answer = [NSNumber numberWithDouble:doubleValue];
         } else {
-            [config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidString, value] withLevel:OptimizelyLogLevelWarning];
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidString, value] withLevel:OptimizelyLogLevelWarning];
         }
     } else {
         // all other objects can't be cast to double
-        [config.logger logMessage:OPTLYLoggerMessagesNumericValueInvalid withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNumericValueInvalid withLevel:OptimizelyLogLevelWarning];
     };
     return answer;
 }
@@ -300,96 +312,63 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     return commonParams;
 }
 
-- (NSArray *)createConversionParams:(OPTLYProjectConfig *)config
-                                bucketer:(id<OPTLYBucketer>)bucketer
-                                eventKey:(NSString *)eventKey
-                                  userId:(NSString *)userId
-                               eventTags:(NSDictionary *)eventTags
-                              attributes:(NSDictionary *)attributes {
-    
-    OPTLYEvent *eventEntity = [config getEventForKey:eventKey];
-    NSArray *eventExperimentIds = eventEntity.experimentIds;
-    
-    if ([eventExperimentIds count] == 0) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventNotAssociatedWithExperiment, eventKey];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-        return nil;
-    }
+- (NSArray *)createConversionParamsOfEvent:(OPTLYEvent *)event
+                                    userId:(NSString *)userId
+                                 decisions:(NSArray<NSDictionary *> *)decisions
+                                 eventTags:(NSDictionary *)eventTags
+                                attributes:(NSDictionary *)attributes {
     
     NSMutableArray *conversionEventParams = [NSMutableArray new];
     NSMutableDictionary *snapshot = [NSMutableDictionary new];
-    NSMutableArray *decisions = [NSMutableArray new];
     
-    for (NSString *eventExperimentId in eventExperimentIds) {
-        OPTLYExperiment *experiment = [config getExperimentForId:eventExperimentId];
-        
-        // if the experiment is nil, then it is not part of the project's list of experiments
-        if (!experiment) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesExperimentNotPartOfEvent, experiment.experimentKey, eventEntity.eventKey];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            continue;
-        }
-        
-        // bucket user into a variation
-        OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
-                                                                       userId:userId
-                                                                   attributes:attributes
-                                                                     bucketer:bucketer];
-        
-        if (bucketedVariation) {
-            NSMutableDictionary *decision = [NSMutableDictionary new];
-            decision[OPTLYEventParameterKeysDecisionCampaignId]         =[OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
-            decision[OPTLYEventParameterKeysDecisionExperimentId]       =experiment.experimentId;
-            decision[OPTLYEventParameterKeysDecisionVariationId]        =bucketedVariation.variationId;
-            [decisions addObject:decision];
-        }
-    }
-
     NSMutableDictionary *eventDict = [NSMutableDictionary new];
-    eventDict[OPTLYEventParameterKeysEntityId]      =[OPTLYEventBuilderDefault stringOrEmpty:eventEntity.eventId];
-    eventDict[OPTLYEventParameterKeysTimestamp]     =[self time] ? : @0;
-    eventDict[OPTLYEventParameterKeysKey]           =eventKey;
-    eventDict[OPTLYEventParameterKeysUUID]          =[[NSUUID UUID] UUIDString];
+    eventDict[OPTLYEventParameterKeysEntityId]      = [OPTLYEventBuilderDefault stringOrEmpty:event.eventId];
+    eventDict[OPTLYEventParameterKeysTimestamp]     = [self time] ? : @0;
+    eventDict[OPTLYEventParameterKeysKey]           = event.eventKey;
+    eventDict[OPTLYEventParameterKeysUUID]          = [[NSUUID UUID] UUIDString];
     
-    NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
-    
-    for (NSString *key in [eventTags allKeys]) {
-        id eventTagValue = eventTags[key];
+    if (eventTags) {
+        // remove tags if their types are not supported
+        NSDictionary *filteredEventTags = [self filterEventTags:eventTags];
         
-        // only string, long, int, double, float, and booleans are supported
-        if ([eventTagValue isKindOfClass:[NSString class]] || [eventTagValue isKindOfClass:[NSNumber class]]) {
-            if ([key isEqualToString:OPTLYEventMetricNameRevenue]) {
-                // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
-                NSNumber *revenueValue = [self revenueValue:config value:eventTags[OPTLYEventMetricNameRevenue]];
-                if (revenueValue != nil) {
-                    eventDict[OPTLYEventMetricNameRevenue] = revenueValue;
-                }
-            }
-            if ([key isEqualToString:OPTLYEventMetricNameValue]) {
-                // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
-                NSNumber *numericValue = [self numericValue:config value:eventTags[OPTLYEventMetricNameValue]];
-                if (numericValue != nil) {
-                    eventDict[OPTLYEventMetricNameValue] = numericValue;
-                }
-            }
-        } else {
-            [mutableEventTags removeObjectForKey:key];
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, key];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        // Allow only 'revenue' eventTags with integer values (max long long); otherwise the value will be cast to an integer
+        NSNumber *revenueValue = [self revenueValueFromEventTags:filteredEventTags];
+        if (revenueValue != nil) {
+            eventDict[OPTLYEventMetricNameRevenue] = revenueValue;
+        }
+        // Allow only 'value' eventTags with double values; otherwise the value will be cast to a double
+        NSNumber *numericValue = [self numericValueFromEventTags:filteredEventTags];
+        if (numericValue != nil) {
+            eventDict[OPTLYEventMetricNameValue] = numericValue;
+        }
+        
+        if (filteredEventTags.count > 0) {
+            eventDict[OPTLYEventParameterKeysTags] = filteredEventTags;
         }
     }
-    if (mutableEventTags.count > 0) {
-        eventDict[OPTLYEventParameterKeysTags] = mutableEventTags;
-    }
-    
-    NSArray *events = @[eventDict];
     
     snapshot[OPTLYEventParameterKeysDecisions] = decisions;
-    snapshot[OPTLYEventParameterKeysEvents] = events;
+    snapshot[OPTLYEventParameterKeysEvents] = @[eventDict];
     
     [conversionEventParams addObject:snapshot];
     
     return [conversionEventParams copy];
+}
+
+- (NSDictionary *)filterEventTags:(NSDictionary *)eventTags {
+    NSMutableDictionary *mutableEventTags = [[NSMutableDictionary alloc] initWithDictionary:eventTags];
+    
+    for (NSString *tagKey in [eventTags allKeys]) {
+        id tagValue = eventTags[tagKey];
+        
+        // only string, long, int, double, float, and booleans are supported
+        if (![tagValue isKindOfClass:[NSString class]] && ![tagValue isKindOfClass:[NSNumber class]]) {
+            [mutableEventTags removeObjectForKey:tagKey];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, tagKey];
+            [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        }
+    }
+    return mutableEventTags;
 }
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
