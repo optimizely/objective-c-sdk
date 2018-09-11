@@ -66,6 +66,14 @@ static NSArray *supportedDatafileVersions = nil;
 }
 
 - (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
+
+    // initialize all class static objects
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // static objects which should be initialized once
+        supportedDatafileVersions = @[@"2", @"3", @"4"];
+    });
+    
     // check for valid error handler
     if (builder.errorHandler) {
         if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
@@ -109,8 +117,6 @@ static NSArray *supportedDatafileVersions = nil;
         [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         return nil;
     }
-    
-    supportedDatafileVersions = @[@"2", @"3", @"4"];
     
     // check datafile is valid
     @try {
