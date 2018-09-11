@@ -189,23 +189,14 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     
     NSString *invalidExperimentKey = @"invalid";
-    OPTLYVariation *expectedVariation = [self.optimizely variation:kExperimentKey userId:kUserId attributes:self.attributes];
-    
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    OCMStub([optimizelyMock variation:invalidExperimentKey userId:kUserId attributes:self.attributes]).andReturn(expectedVariation);
-    
-    OPTLYVariation *variation = [optimizelyMock activate:invalidExperimentKey userId:kUserId attributes:self.attributes callback:^(NSError *error) {
+    OPTLYVariation *variation = [self.optimizely activate:invalidExperimentKey userId:kUserId attributes:self.attributes callback:^(NSError *error) {
         XCTAssertNotNil(error);
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, kUserId, invalidExperimentKey];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivateExperimentKeyInvalid, invalidExperimentKey];
         XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], logMessage);
         [expectation fulfill];
     }];
     
     XCTAssertNil(variation, @"activate an invalid experiment should return nil: %@", variation);
-    
-    OCMVerify([optimizelyMock variation:invalidExperimentKey userId:kUserId attributes:self.attributes]);
-    [optimizelyMock stopMocking];
-    
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
@@ -268,8 +259,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     }]];
     [optimizely track:eventWithNoExerimentKey userId:kUserId attributes:self.attributes];
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventWithNoExerimentKey, kUserId];
-    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelError]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackEventNoAssociation, eventWithNoExerimentKey];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
 }
 

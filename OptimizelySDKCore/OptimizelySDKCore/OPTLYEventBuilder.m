@@ -14,19 +14,10 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-//#import "OPTLYAttribute.h"
-//#import "OPTLYBucketer.h"
 #import "OPTLYControlAttributes.h"
-//#import "OPTLYDecisionEventTicket.h"
-//#import "OPTLYDecisionService.h"
-//#import "OPTLYErrorHandler.h"
 #import "OPTLYEvent.h"
 #import "OPTLYEventBuilder.h"
 #import "OPTLYEventFeature.h"
-//#import "OPTLYEventDecision.h"
-//#import "OPTLYEventDecisionTicket.h"
-//#import "OPTLYEventHeader.h"
-//#import "OPTLYEventLayerState.h"
 #import "OPTLYEventMetric.h"
 #import "OPTLYEventParameterKeys.h"
 #import "OPTLYExperiment.h"

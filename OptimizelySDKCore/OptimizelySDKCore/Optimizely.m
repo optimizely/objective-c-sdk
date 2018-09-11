@@ -417,7 +417,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if (!event) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
-        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelError];
         return;
     }
     

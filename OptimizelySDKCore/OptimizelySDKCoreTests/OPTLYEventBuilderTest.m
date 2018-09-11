@@ -28,6 +28,9 @@
 #import "OPTLYVariation.h"
 #import "OPTLYEvent.h"
 #import "OPTLYControlAttributes.h"
+#import "OPTLYErrorHandler.h"
+#import "OPTLYLogger.h"
+#import "Optimizely.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
@@ -46,6 +49,7 @@ static NSString * const kAttributeValueChrome = @"chrome";
 
 // events with experiment, but no audiences
 static NSString * const kEventWithoutAudienceName = @"testEvent";
+static OPTLYEvent *eventWithoutAudience;
 static NSString * const kEventWithoutAudienceId = @"6372590948";
 static NSString * const kExperimentWithoutAudienceKey = @"testExperiment1";
 static NSString * const kExperimentWithoutAudienceId = @"6367863211";
@@ -53,8 +57,10 @@ static NSString * const kVariationWithoutAudienceId = @"6384330452";
 
 // events with experiment and audiences
 static NSString * const kEventWithAudienceName = @"testEventWithAudiences";
+static OPTLYEvent *eventWithAudience;
 static NSString * const kEventWithAudienceId = @"6384781388";
 static NSString * const kExperimentWithAudienceKey = @"testExperimentWithFirefoxAudience";
+static OPTLYExperiment *experimentWithAudience;
 static NSString * const kExperimentWithAudienceId = @"6383811281";
 static NSString * const kVariationWithAudienceId = @"6333082303";
 
@@ -81,6 +87,12 @@ typedef enum : NSUInteger {
     ConversionTicket
 } Ticket;
 
+@interface Optimizely(test)
+- (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
+                                   userId:(NSString *)userId
+                               attributes:(NSDictionary<NSString *,NSString *> *)attributes;
+@end
+
 @interface OPTLYEventBuilderDefault(Tests)
 - (NSString *)sdkVersion;
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
@@ -88,6 +100,7 @@ typedef enum : NSUInteger {
 @end
 
 @interface OPTLYEventBuilderTest : XCTestCase
+@property (nonatomic, strong) Optimizely *optimizely;
 @property (nonatomic, strong) OPTLYProjectConfig *config;
 @property (nonatomic, strong) OPTLYEventBuilderDefault *eventBuilder;
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
@@ -101,11 +114,19 @@ typedef enum : NSUInteger {
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
-    self.eventBuilder = [OPTLYEventBuilderDefault new];
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     self.attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : kAttributeValueFirefox}];
     self.reservedAttributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyUserAgent : @YES}];
+    eventWithoutAudience = [self.config getEventForKey:kEventWithoutAudienceName];
+    eventWithAudience = [self.config getEventForKey:kEventWithAudienceName];
+    experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
     
     // need to do this cast because this is what happens when we get the event time stamp
     NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
@@ -122,14 +143,13 @@ typedef enum : NSUInteger {
 
 #pragma mark - Test BuildConversionTicket:... Audiences
 
-- (void)testBuildConversionTicketWithNoAudience
-{
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                      bucketer:self.bucketer
-                                                        userId:kUserId
-                                                     eventName:kEventWithoutAudienceName
-                                                     eventTags:nil
-                                                    attributes:nil];
+- (void)testBuildConversionTicketWithNoAudience {
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:nil];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithoutAudience
+                                                                      decisions:decisions
+                                                                      eventTags:nil
+                                                                     attributes:nil];
     
     [self checkTicket:ConversionTicket
             forParams:params
@@ -142,14 +162,14 @@ typedef enum : NSUInteger {
              bucketer:self.bucketer userId:kUserId];
 }
 
-- (void)testBuildConversionTicketWithValidAudience
-{
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                        bucketer:self.bucketer
-                                          userId:kUserId
-                                       eventName:kEventWithAudienceName
-                                       eventTags:nil
-                                      attributes:self.attributes];
+- (void)testBuildConversionTicketWithValidAudience {
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithAudience
+                                                                      decisions:decisions
+                                                                      eventTags:nil
+                                                                     attributes:self.attributes];
+
     
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
@@ -169,61 +189,60 @@ typedef enum : NSUInteger {
 {
     // check without attributes that satisfy audience requirement
     NSDictionary *attributes = @{@"browser_type":@"chrome"};
-    
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:nil
-                                                         attributes:attributes];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:eventWithAudience
+                                                                                decisions:decisions
+                                                                                eventTags:nil
+                                                                               attributes:attributes];
     
     XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    decisions = snapshot[OPTLYEventParameterKeysDecisions];
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
-- (void)testBuildConversionTicketWithExperimentNotRunning
-{
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithExperimentNotRunningName
-                                                          eventTags:nil
-                                                         attributes:nil];
+- (void)testBuildConversionTicketWithExperimentNotRunning {
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithExperimentNotRunningId];
+    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:event
+                                                                                decisions:decisions
+                                                                                eventTags:nil
+                                                                               attributes:nil];
+
     
-    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
-    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
-    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
-    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
+    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
 - (void)testBuildConversionTicketWithInvalidExperiment
 {
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                                     bucketer:self.bucketer
-                                                                       userId:kUserId
-                                                                    eventName:kEventWithInvalidExperimentName
-                                                                    eventTags:nil
-                                                                   attributes:nil];
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithInvalidExperimentName];
+    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:event
+                                                                                decisions:nil
+                                                                                eventTags:nil
+                                                                               attributes:nil];
+
     
-    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    NSArray *decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    decisions = snapshot[OPTLYEventParameterKeysDecisions];
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithoutExperiment
 {
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithoutExperimentName
-                                                          eventTags:nil
-                                                         attributes:nil];
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithoutExperimentName];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:event
+                                                                                decisions:nil
+                                                                                eventTags:nil
+                                                                               attributes:nil];
+
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
@@ -231,12 +250,12 @@ typedef enum : NSUInteger {
 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:nil
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:nil
-                                                         attributes:self.attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:self.attributes];
+
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
@@ -245,12 +264,12 @@ typedef enum : NSUInteger {
 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                                     bucketer:nil
-                                                                       userId:kUserId
-                                                                    eventName:kEventWithAudienceName
-                                                                    eventTags:nil
-                                                                   attributes:self.attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:eventWithAudience
+                                                                                decisions:nil
+                                                                                eventTags:nil
+                                                                               attributes:self.attributes];
+    
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
@@ -259,12 +278,12 @@ typedef enum : NSUInteger {
 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                                     bucketer:self.bucketer
-                                                                       userId:nil
-                                                                    eventName:kEventWithAudienceName
-                                                                    eventTags:nil
-                                                                   attributes:self.attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:nil
+                                                                                    event:eventWithAudience
+                                                                                decisions:nil
+                                                                                eventTags:nil
+                                                                               attributes:self.attributes];
+
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
@@ -273,12 +292,11 @@ typedef enum : NSUInteger {
 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionTicket:self.config
-                                                                     bucketer:self.bucketer
-                                                                       userId:kUserId
-                                                                    eventName:nil
-                                                                    eventTags:nil
-                                                                   attributes:self.attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:nil
+                                                                                decisions:nil
+                                                                                eventTags:nil
+                                                                               attributes:self.attributes];
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
@@ -699,16 +717,15 @@ typedef enum : NSUInteger {
 
 - (void)testBuildConversionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
-    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
     OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
     
-    NSDictionary *params = [eventBuilder buildConversionTicket:config
-                                                 bucketer:bucketer
-                                                   userId:kUserId
-                                                eventName:kEventWithoutAudienceName
-                                                eventTags:nil
-                                               attributes:nil];
-    
+    NSDictionary *params = [eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithoutAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:nil];
+
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
@@ -718,12 +735,12 @@ typedef enum : NSUInteger {
 - (void)testCreateImpressionEventWithEmptyAttributeValue
 {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBucketId : @""}];
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithoutAudienceName
-                                                          eventTags:nil
-                                                         attributes:attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithoutAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:attributes];
+
     
     [attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
@@ -748,12 +765,12 @@ typedef enum : NSUInteger {
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
 
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithoutAudienceName
-                                                          eventTags:nil
-                                                         attributes:self.attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithoutAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:self.attributes];
+
     [self checkTicket:ConversionTicket
             forParams:params
                config:self.config
@@ -781,11 +798,11 @@ typedef enum : NSUInteger {
                                                                       bucketer:self.bucketer];
     
     
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                       userId:kUserId
-                                                                                experimentKey:kExperimentWithAudienceKey
-                                                                                  variationId:bucketedVariation.variationId
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                          experiment:experimentWithAudience
+                                                                                           variation:bucketedVariation
+                                                                                          attributes:self.attributes];
+    
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
                config:self.config
@@ -809,11 +826,11 @@ typedef enum : NSUInteger {
                                                                       bucketer:self.bucketer];
     
     
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                       userId:kUserId
-                                                                                experimentKey:kExperimentWithAudienceKey
-                                                                                  variationId:bucketedVariation.variationId
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                          experiment:experimentWithAudience
+                                                                                           variation:bucketedVariation
+                                                                                          attributes:self.attributes];
+    
     [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
@@ -833,12 +850,12 @@ typedef enum : NSUInteger {
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:nil
-                                                         attributes:self.attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:self.attributes];
+
     [self checkTicket:ConversionTicket
             forParams:params
                config:self.config
@@ -857,12 +874,12 @@ typedef enum : NSUInteger {
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
     
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:nil
-                                                         attributes:self.attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithAudience
+                                                                      decisions:nil
+                                                                      eventTags:nil
+                                                                     attributes:self.attributes];
+                            
     [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
@@ -885,12 +902,10 @@ typedef enum : NSUInteger {
                                                                     attributes:self.attributes
                                                                       bucketer:self.bucketer];
     
-    
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                   userId:kUserId
-                                                                            experimentKey:kExperimentWithAudienceKey
-                                                                              variationId:bucketedVariation.variationId
-                                                                               attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                          experiment:experimentWithAudience
+                                                                                           variation:bucketedVariation
+                                                                                          attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
@@ -903,12 +918,13 @@ typedef enum : NSUInteger {
     
 }
 
-- (void)testBuildImpressionEventTicketWithNoAudience
-{
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                   userId:kUserId
-                                                                            experimentKey:kExperimentWithoutAudienceKey
-                                                                              variationId:kVariationWithoutAudienceId
+- (void)testBuildImpressionEventTicketWithNoAudience {
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentWithoutAudienceKey];
+    OPTLYVariation *variation = [self.config getVariationForExperiment:kExperimentWithoutAudienceKey
+                                                                userId:kUserId attributes:self.attributes bucketer:self.bucketer];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                            experiment:experiment
+                                                                              variation:variation
                                                                                attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
@@ -921,63 +937,63 @@ typedef enum : NSUInteger {
              bucketer:nil userId:kUserId];
 }
 
-- (void)testBuildImpressionEventTicketWithUnknownExperiment
-{
+- (void)testBuildImpressionEventTicketWithUnknownExperiment {
     NSString *invalidExperimentKey = @"InvalidExperiment";
     NSString *invalidVariationId = @"5678";
-    
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                   userId:kUserId
-                                                                            experimentKey:invalidExperimentKey
-                                                                              variationId:invalidVariationId
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:invalidExperimentKey];
+    OPTLYVariation *variation = [self.config getVariationForExperiment:invalidExperimentKey
+                                                                userId:kUserId attributes:self.attributes bucketer:self.bucketer];
+
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                            experiment:experiment
+                                                                              variation:variation
                                                                                attributes:self.attributes];
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
 }
 
 - (void)testBuildImpressionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
-    OPTLYEventBuilderDefault *eventBuilder = [OPTLYEventBuilderDefault new];
+    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
     
-    NSDictionary *impressionEventTicketParams = [eventBuilder buildImpressionEventTicket:config
-                                                                              userId:kUserId
-                                                                       experimentKey:kExperimentWithoutAudienceKey
-                                                                         variationId:kVariationWithoutAudienceId
-                                                                          attributes:nil];
+    OPTLYExperiment *experiment = [config getExperimentForKey:kExperimentWithoutAudienceKey];
+    OPTLYVariation *variation = [config getVariationForExperiment:kExperimentWithoutAudienceKey
+                                                           userId:kUserId attributes:self.attributes bucketer:self.bucketer];
+    NSDictionary *impressionEventTicketParams = [eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                     experiment:experiment
+                                                                                      variation:variation
+                                                                                     attributes:nil];
     NSNumber *anonymizeIP = impressionEventTicketParams[OPTLYEventParameterKeysAnonymizeIP];
     XCTAssert([anonymizeIP boolValue] == false, @"Incorrect value for IP anonymization.");
 }
 
-- (void)testBuildImpressionEventTicketWithNoConfig
-{
+- (void)testBuildImpressionEventTicketWithNoConfig {
+    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:nil];
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
                                                                       bucketer:self.bucketer];
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:nil
-                                                                                       userId:kUserId
-                                                                                experimentKey:kExperimentWithAudienceKey
-                                                                                  variationId:bucketedVariation.variationId
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                     experiment:experimentWithAudience
+                                                                                      variation:bucketedVariation
+                                                                                     attributes:self.attributes];
     
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no config.");
 }
 
-- (void)testBuildImpressionEventTicketWithNoExperiment
-{
+- (void)testBuildImpressionEventTicketWithNoExperiment {
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
                                                                       bucketer:self.bucketer];
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                       userId:kUserId
-                                                                                experimentKey:nil
-                                                                                  variationId:bucketedVariation.variationId
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                          experiment:nil
+                                                                                           variation:bucketedVariation
+                                                                                          attributes:self.attributes];
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Experiment.");
 }
@@ -990,11 +1006,10 @@ typedef enum : NSUInteger {
                                                                       bucketer:self.bucketer];
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                       userId:nil
-                                                                                experimentKey:kExperimentWithAudienceKey
-                                                                                  variationId:bucketedVariation.variationId
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:nil
+                                                                                          experiment:experimentWithAudience
+                                                                                           variation:bucketedVariation
+                                                                                          attributes:self.attributes];
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no UserId.");
 }
@@ -1003,11 +1018,10 @@ typedef enum : NSUInteger {
 {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicket:self.config
-                                                                                       userId:kUserId
-                                                                                experimentKey:kExperimentWithAudienceKey
-                                                                                  variationId:nil
-                                                                                   attributes:self.attributes];
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
+                                                                                          experiment:experimentWithAudience
+                                                                                           variation:nil
+                                                                                          attributes:self.attributes];
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Variation.");
 }
@@ -1021,12 +1035,11 @@ typedef enum : NSUInteger {
     // Common subroutine for many of the testBuildEventXxx test methods.
     // Generally, a testBuildEventXxx should make at most one call
     // to commonBuildConversionTicketTest:sentEventTags:sentTags: .
-    NSDictionary *params = [self.eventBuilder buildConversionTicket:self.config
-                                                           bucketer:self.bucketer
-                                                             userId:kUserId
-                                                          eventName:kEventWithAudienceName
-                                                          eventTags:eventTags
-                                                         attributes:self.attributes];
+    NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                          event:eventWithAudience
+                                                                      decisions:nil
+                                                                      eventTags:eventTags
+                                                                     attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
             forParams:params
