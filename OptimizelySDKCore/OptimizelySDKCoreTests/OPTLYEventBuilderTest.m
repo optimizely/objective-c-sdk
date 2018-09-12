@@ -249,10 +249,9 @@ typedef enum : NSUInteger {
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
-- (void)testBuildConversionEventTicketWithNoConfig {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:nil];
+- (void)testBuildConversionTicketWithNoConfig {
+    self.config = nil;
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithAudience
@@ -260,48 +259,29 @@ typedef enum : NSUInteger {
                                                                       eventTags:nil
                                                                      attributes:self.attributes];
 
-#pragma GCC diagnostic pop // "-Wnonnull"
+
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
-- (void)testBuildConversionTicketWithNoBucketer
-{
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+- (void)testBuildConversionTicketWithNoUserID {
+    NSString *userId = nil;
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:userId attributes:self.attributes];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:userId
                                                                                     event:eventWithAudience
-                                                                                decisions:nil
+                                                                                decisions:decisions
                                                                                 eventTags:nil
                                                                                attributes:self.attributes];
-    
-#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
-- (void)testBuildConversionTicketWithNoUserID
-{
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:nil
-                                                                                    event:eventWithAudience
-                                                                                decisions:nil
-                                                                                eventTags:nil
-                                                                               attributes:self.attributes];
-
-#pragma GCC diagnostic pop // "-Wnonnull"
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
-}
-
-- (void)testBuildConversionTicketWithNoEvent
-{
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
+- (void)testBuildConversionTicketWithNoEvent {
+    OPTLYEvent *event = nil;
+    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:self.attributes];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
-                                                                                    event:nil
-                                                                                decisions:nil
+                                                                                    event:event
+                                                                                decisions:decisions
                                                                                 eventTags:nil
                                                                                attributes:self.attributes];
-#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
@@ -944,7 +924,6 @@ typedef enum : NSUInteger {
 
 - (void)testBuildImpressionEventTicketWithUnknownExperiment {
     NSString *invalidExperimentKey = @"InvalidExperiment";
-    NSString *invalidVariationId = @"5678";
     OPTLYExperiment *experiment = [self.config getExperimentForKey:invalidExperimentKey];
     OPTLYVariation *variation = [self.config getVariationForExperiment:invalidExperimentKey
                                                                 userId:kUserId attributes:self.attributes bucketer:self.bucketer];
@@ -990,17 +969,15 @@ typedef enum : NSUInteger {
 }
 
 - (void)testBuildImpressionEventTicketWithNoExperiment {
+    OPTLYExperiment *experiment = nil;
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
                                                                       bucketer:self.bucketer];
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
-                                                                                          experiment:nil
+                                                                                          experiment:experiment
                                                                                            variation:bucketedVariation
                                                                                           attributes:self.attributes];
-#pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Experiment.");
 }
 
