@@ -249,13 +249,14 @@ typedef enum : NSUInteger {
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
-- (void)testBuildConversionTicketWithNoConfig
-{
+- (void)testBuildConversionEventTicketWithNoConfig {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:nil];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:self.attributes];
 
@@ -971,8 +972,8 @@ typedef enum : NSUInteger {
 }
 
 - (void)testBuildImpressionEventTicketWithNoConfig {
-    OPTLYProjectConfig *config;
-    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
+    self.config = nil;
+    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes

@@ -434,7 +434,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                                      decisions:decisions
                                                                                      eventTags:eventTags
                                                                                     attributes:attributes];
-    if ([conversionEventParams count] == 0) {
+    if ([Optimizely isEmptyDictionary:conversionEventParams]) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
         [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
         return;
