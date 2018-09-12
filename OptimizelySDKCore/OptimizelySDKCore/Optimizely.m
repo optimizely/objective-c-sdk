@@ -115,13 +115,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     __weak void (^_callback)(NSError *) = callback ? : ^(NSError *error) {};
     
     if ([Optimizely isEmptyString:experimentKey]) {
-        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateExperimentKeyEmpty];
+        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesActivateExperimentKeyEmpty ofLevel:OptimizelyLogLevelError];
         _callback(error);
         return nil;
     }
     
     if ([Optimizely isEmptyString:userId]) {
-        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesUserIdInvalid];
+        NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesUserIdInvalid ofLevel:OptimizelyLogLevelError];
         _callback(error);
         return nil;
     }
@@ -131,7 +131,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if (!experiment) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivateExperimentKeyInvalid, experimentKey];
-        NSError *error = [self handleErrorLogsForActivate:logMessage];
+        NSError *error = [self handleErrorLogsForActivate:logMessage ofLevel:OptimizelyLogLevelError];
         _callback(error);
         return nil;
     }
@@ -141,7 +141,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
     if (!variation) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
-        NSError *error = [self handleErrorLogsForActivate:logMessage];
+        NSError *error = [self handleErrorLogsForActivate:logMessage ofLevel:OptimizelyLogLevelInfo];
         _callback(error);
         return nil;
     }
@@ -155,14 +155,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                         callback:^(NSError *error) {
         if (error) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
-            [weakSelf handleErrorLogsForActivate:logMessage];
+            [weakSelf handleErrorLogsForActivate:logMessage ofLevel:OptimizelyLogLevelInfo];
         }
         _callback(error);
     }];
     
     if (!sentVariation) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
-        NSError *error = [self handleErrorLogsForActivate:logMessage];
+        NSError *error = [self handleErrorLogsForActivate:logMessage ofLevel:OptimizelyLogLevelInfo];
         _callback(error);
         return nil;
     }
@@ -417,7 +417,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     
     if (!event) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
-        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelError];
+        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
         return;
     }
     
@@ -821,13 +821,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 // log and propagate error for a activate failure
-- (NSError *)handleErrorLogsForActivate:(NSString *)logMessage {
+- (NSError *)handleErrorLogsForActivate:(NSString *)logMessage ofLevel:(OptimizelyLogLevel)level {
     NSDictionary *errorDictionary = [NSDictionary dictionaryWithObject:logMessage forKey:NSLocalizedDescriptionKey];
     NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                          code:OPTLYErrorTypesUserActivate
                                      userInfo:errorDictionary];
     [self.errorHandler handleError:error];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    [self.logger logMessage:logMessage withLevel:level];
     return error;
 }
 

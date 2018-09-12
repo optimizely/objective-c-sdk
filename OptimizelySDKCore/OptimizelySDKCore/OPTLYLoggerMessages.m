@@ -115,11 +115,7 @@ NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment = @"[EVENT B
 NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent = @"[EVENT BUILDER] Experiment %@ is not associated with event %@.";
 // warning
 NSString *const OPTLYLoggerMessagesEventKeyInvalid = @"[EVENT BUILDER] Event key cannot be an empty string.";
-NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no event.";
-NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no decision.";
 NSString *const OPTLYLoggerMessagesNoExperiment = @"[EVENT BUILDER] Not building decision event ticket for no experiment.";
-NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for no variation.";
-NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket = @"[EVENT BUILDER] User ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesVariationIdInvalid = @"[EVENT BUILDER] Variation ID cannot be an empty string.";
 NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation = @"[EVENT BUILDER] None of the experiments of %@ pass audience evaluation.";
 NSString *const OPTLYLoggerMessagesRevenueValueFloat = @"[EVENT BUILDER] Provided float revenue value %@ will be cast to integer %@.";
@@ -135,8 +131,16 @@ NSString *const OPTLYLoggerMessagesNumericValueInvalidString = @"[EVENT BUILDER]
 NSString *const OPTLYLoggerMessagesNumericValueInvalid = @"[EVENT BUILDER] Provided numeric value is in an invalid format and will not be sent to results.";
 NSString *const OPTLYLoggerMessagesEventTagValueInvalid = @"[EVENT BUILDER] Provided event tag %@ is neither an integer nor a string and will not be sent to results.";
 
+// error
+NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for no variation.";
+NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket = @"[EVENT BUILDER] User ID cannot be an empty string.";
+NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no event.";
+NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no decision.";
+
 // ---- Event Dispatcher ----
 // info
+NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";
+NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DISPATCHER] Not tracking event %@ for user %@."; // event key, userId
 NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent = @"[EVENT DISPATCHER] Attempting to send conversion event %@ for user %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent = @"[EVENT DISPATCHER] Attempting to send impression event for user %@ in experiment %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess = @"[EVENT DISPATCHER] Successfully tracked event %@ for user %@";
@@ -157,8 +161,6 @@ NSString *const OPTLYLoggerMessagesEventDispatcherDispatchFailed =  @"[EVENT DIS
 NSString *const OPTLYLoggerMessagesEventDispatcherPendingEvent = @"[EVENT DISPATCHER] Event already pending dispatch: %@";
 NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved = @"[EVENT DISPATCHER] %@ saved: %@"; //event type, event
 NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent = @"[EVENT DISPATCHER] %@ removed: %@ with error: %@"; //event type, event, error
-NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked = @"[EVENT DISPATCHER] Not tracking event %@ for user %@."; // event key, userId
-NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent = @"[EVENT DISPATCHER] Invalid event.";
 
 // ---- Live Variables ---- (DEPRECATED)

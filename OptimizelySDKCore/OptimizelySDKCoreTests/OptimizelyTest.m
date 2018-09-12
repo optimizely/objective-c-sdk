@@ -334,7 +334,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     [optimizely track:invalidEventKey userId:kUserId attributes:self.attributes];
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, invalidEventKey, kUserId];
-    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelError]);
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
     [loggerMock stopMocking];
 }
 

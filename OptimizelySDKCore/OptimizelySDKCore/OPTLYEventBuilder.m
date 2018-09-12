@@ -60,17 +60,17 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     }
     
     if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelError];
         return nil;
     }
     
     if (!experiment) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoExperimentForDecisionEventTicket withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoExperimentForDecisionEventTicket withLevel:OptimizelyLogLevelError];
         return nil;
     }
         
     if (!variation) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoVariationForDecisionEventTicket withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoVariationForDecisionEventTicket withLevel:OptimizelyLogLevelError];
         return nil;
     }
 
@@ -92,17 +92,17 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     }
     
     if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelError];
         return nil;
     }
     
     if (!event) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoEventForConversionEventTicket withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoEventForConversionEventTicket withLevel:OptimizelyLogLevelError];
         return nil;
     }
     
     if (!decisions) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoDecisionForConversionEventTicket withLevel:OptimizelyLogLevelWarning];
+        [self.config.logger logMessage:OPTLYLoggerMessagesNoDecisionForConversionEventTicket withLevel:OptimizelyLogLevelError];
         return nil;
     }
     
