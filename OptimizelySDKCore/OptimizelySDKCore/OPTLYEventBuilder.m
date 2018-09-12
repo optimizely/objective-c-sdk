@@ -201,7 +201,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSNumber *)numericValueFromEventTags:(NSDictionary *)eventTags {
-    NSObject *value = eventTags[OPTLYEventMetricNameRevenue];
+    NSObject *value = eventTags[OPTLYEventMetricNameValue];
     if (!value) {
         return nil;
     }

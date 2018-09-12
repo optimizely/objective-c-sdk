@@ -204,7 +204,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)testBuildConversionTicketWithExperimentNotRunning {
-    OPTLYEvent *event = [self.config getEventForKey:kEventWithExperimentNotRunningId];
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithExperimentNotRunningName];
     NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                                     event:event
@@ -213,33 +213,36 @@ typedef enum : NSUInteger {
                                                                                attributes:nil];
 
     
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
-}
-
-- (void)testBuildConversionTicketWithInvalidExperiment
-{
-    OPTLYEvent *event = [self.config getEventForKey:kEventWithInvalidExperimentName];
-    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
-                                                                                    event:event
-                                                                                decisions:nil
-                                                                                eventTags:nil
-                                                                               attributes:nil];
-
-    
-    XCTAssertNotNil(conversionTicket, @"Conversion ticket should be nil.");
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
     decisions = snapshot[OPTLYEventParameterKeysDecisions];
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
-- (void)testBuildConversionTicketWithoutExperiment
-{
-    OPTLYEvent *event = [self.config getEventForKey:kEventWithoutExperimentName];
+- (void)testBuildConversionTicketWithInvalidExperiment {
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithInvalidExperimentName];
+    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                                     event:event
-                                                                                decisions:nil
+                                                                                decisions:decisions
+                                                                                eventTags:nil
+                                                                               attributes:nil];
+
+    
+    XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
+    NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
+    NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
+    decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
+}
+
+- (void)testBuildConversionTicketWithoutExperiment {
+    OPTLYEvent *event = [self.config getEventForKey:kEventWithoutExperimentName];
+    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
+    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
+                                                                                    event:event
+                                                                                decisions:decisions
                                                                                 eventTags:nil
                                                                                attributes:nil];
 
@@ -454,8 +457,7 @@ typedef enum : NSUInteger {
 
 #pragma mark - Test revenue Metric
 
-- (void)testRevenueMetric
-{
+- (void)testRevenueMetric {
     NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue)};
     [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
@@ -718,11 +720,10 @@ typedef enum : NSUInteger {
 - (void)testBuildConversionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
     OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
-    OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:config];
-    
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:nil];
     NSDictionary *params = [eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithoutAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:nil];
 
@@ -732,12 +733,12 @@ typedef enum : NSUInteger {
 
 #pragma mark - Test Invalid Attribute
 
-- (void)testCreateImpressionEventWithEmptyAttributeValue
-{
+- (void)testCreateConversionEventWithEmptyAttributeValue {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBucketId : @""}];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithoutAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:attributes];
 
@@ -754,7 +755,7 @@ typedef enum : NSUInteger {
              bucketer:self.bucketer userId:kUserId];
 }
 
-- (void)testCreateImpressionEventWithEmptyAttributeId {
+- (void)testCreateConversionEventWithEmptyAttributeId {
     NSMutableDictionary *datafile = [NSMutableDictionary dictionaryWithDictionary:[OPTLYTestHelper loadJSONDatafile:kDatafileName]];
     [datafile setObject:@[@{
                           @"id": @"",
@@ -763,11 +764,12 @@ typedef enum : NSUInteger {
                  forKey:@"attributes"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
-    self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:self.attributes];
 
     NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithoutAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:self.attributes];
 
@@ -791,7 +793,7 @@ typedef enum : NSUInteger {
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
@@ -819,7 +821,7 @@ typedef enum : NSUInteger {
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
@@ -848,11 +850,12 @@ typedef enum : NSUInteger {
     [datafile removeObjectForKey:@"botFiltering"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
-    self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     
     NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:self.attributes];
 
@@ -872,11 +875,12 @@ typedef enum : NSUInteger {
     [datafile setObject:@(NO) forKey:@"botFiltering"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
-    self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     
     NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:nil
                                                                      attributes:self.attributes];
                             
@@ -967,7 +971,8 @@ typedef enum : NSUInteger {
 }
 
 - (void)testBuildImpressionEventTicketWithNoConfig {
-    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:nil];
+    OPTLYProjectConfig *config;
+    OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
                                                                         userId:kUserId
                                                                     attributes:self.attributes
@@ -1035,9 +1040,10 @@ typedef enum : NSUInteger {
     // Common subroutine for many of the testBuildEventXxx test methods.
     // Generally, a testBuildEventXxx should make at most one call
     // to commonBuildConversionTicketTest:sentEventTags:sentTags: .
+    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventTicketForUser:kUserId
                                                                           event:eventWithAudience
-                                                                      decisions:nil
+                                                                      decisions:decisions
                                                                       eventTags:eventTags
                                                                      attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
