@@ -59,21 +59,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
         return nil;
     }
     
-    if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelError];
-        return nil;
-    }
-    
-    if (!experiment) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoExperimentForDecisionEventTicket withLevel:OptimizelyLogLevelError];
-        return nil;
-    }
-        
-    if (!variation) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoVariationForDecisionEventTicket withLevel:OptimizelyLogLevelError];
-        return nil;
-    }
-
     NSDictionary *commonParams = [self createCommonParamsForUser:userId attributes:attributes];
     NSDictionary *impressionOnlyParams = [self createImpressionParamsOfExperiment:experiment variation:variation];
     NSDictionary *impressionParams = [self createImpressionOrConversionParamsWithCommonParams:commonParams conversionOrImpressionOnlyParams:@[impressionOnlyParams]];
@@ -88,21 +73,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                                         attributes:(NSDictionary<NSString *,NSString *> *)attributes {
 
     if (!self.config) {
-        return nil;
-    }
-    
-    if ([OPTLYEventBuilderDefault isEmptyString:userId]) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelError];
-        return nil;
-    }
-    
-    if (!event) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoEventForConversionEventTicket withLevel:OptimizelyLogLevelError];
-        return nil;
-    }
-    
-    if (!decisions) {
-        [self.config.logger logMessage:OPTLYLoggerMessagesNoDecisionForConversionEventTicket withLevel:OptimizelyLogLevelError];
         return nil;
     }
     

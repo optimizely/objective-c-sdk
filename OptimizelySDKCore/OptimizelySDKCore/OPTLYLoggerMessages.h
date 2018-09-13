@@ -134,11 +134,6 @@ extern NSString *const OPTLYLoggerMessagesNumericValueInvalidFloat;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalidString;
 extern NSString *const OPTLYLoggerMessagesNumericValueInvalid;
 extern NSString *const OPTLYLoggerMessagesEventTagValueInvalid;
-// error
-extern NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket;
-extern NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket;
-extern NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket;
-extern NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket;
 
 // ---- Event Dispatcher ----
 // info

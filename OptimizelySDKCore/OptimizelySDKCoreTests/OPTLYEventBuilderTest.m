@@ -237,18 +237,6 @@ typedef enum : NSUInteger {
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
-- (void)testBuildConversionTicketWithoutExperiment {
-    OPTLYEvent *event = [self.config getEventForKey:kEventWithoutExperimentName];
-    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
-                                                                                    event:event
-                                                                                decisions:decisions
-                                                                                eventTags:nil
-                                                                               attributes:nil];
-
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
-}
-
 - (void)testBuildConversionTicketWithNoConfig {
     self.config = nil;
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
@@ -260,28 +248,6 @@ typedef enum : NSUInteger {
                                                                      attributes:self.attributes];
 
 
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
-}
-
-- (void)testBuildConversionTicketWithNoUserID {
-    NSString *userId = nil;
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:userId attributes:self.attributes];
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:userId
-                                                                                    event:eventWithAudience
-                                                                                decisions:decisions
-                                                                                eventTags:nil
-                                                                               attributes:self.attributes];
-    XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
-}
-
-- (void)testBuildConversionTicketWithNoEvent {
-    OPTLYEvent *event = nil;
-    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:self.attributes];
-    NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventTicketForUser:kUserId
-                                                                                    event:event
-                                                                                decisions:decisions
-                                                                                eventTags:nil
-                                                                               attributes:self.attributes];
     XCTAssertNil(conversionTicket, @"Conversion ticket should be nil.");
 }
 
@@ -922,19 +888,6 @@ typedef enum : NSUInteger {
              bucketer:nil userId:kUserId];
 }
 
-- (void)testBuildImpressionEventTicketWithUnknownExperiment {
-    NSString *invalidExperimentKey = @"InvalidExperiment";
-    OPTLYExperiment *experiment = [self.config getExperimentForKey:invalidExperimentKey];
-    OPTLYVariation *variation = [self.config getVariationForExperiment:invalidExperimentKey
-                                                                userId:kUserId attributes:self.attributes bucketer:self.bucketer];
-
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
-                                                                            experiment:experiment
-                                                                              variation:variation
-                                                                               attributes:self.attributes];
-    XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with unknown experiment.");
-}
-
 - (void)testBuildImpressionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
     OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
@@ -966,47 +919,6 @@ typedef enum : NSUInteger {
     
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no config.");
-}
-
-- (void)testBuildImpressionEventTicketWithNoExperiment {
-    OPTLYExperiment *experiment = nil;
-    OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
-                                                                        userId:kUserId
-                                                                    attributes:self.attributes
-                                                                      bucketer:self.bucketer];
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
-                                                                                          experiment:experiment
-                                                                                           variation:bucketedVariation
-                                                                                          attributes:self.attributes];
-    XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Experiment.");
-}
-
-- (void)testBuildImpressionEventTicketWithNoUserId
-{
-    OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
-                                                                        userId:kUserId
-                                                                    attributes:self.attributes
-                                                                      bucketer:self.bucketer];
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:nil
-                                                                                          experiment:experimentWithAudience
-                                                                                           variation:bucketedVariation
-                                                                                          attributes:self.attributes];
-#pragma GCC diagnostic pop // "-Wnonnull"
-    XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no UserId.");
-}
-
-- (void)testBuildImpressionEventTicketWithNoVariation
-{
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventTicketForUser:kUserId
-                                                                                          experiment:experimentWithAudience
-                                                                                           variation:nil
-                                                                                          attributes:self.attributes];
-#pragma GCC diagnostic pop // "-Wnonnull"
-    XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no Variation.");
 }
 
 #pragma mark - Helper Methods

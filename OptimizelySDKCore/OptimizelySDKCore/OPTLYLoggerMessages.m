@@ -131,12 +131,6 @@ NSString *const OPTLYLoggerMessagesNumericValueInvalidString = @"[EVENT BUILDER]
 NSString *const OPTLYLoggerMessagesNumericValueInvalid = @"[EVENT BUILDER] Provided numeric value is in an invalid format and will not be sent to results.";
 NSString *const OPTLYLoggerMessagesEventTagValueInvalid = @"[EVENT BUILDER] Provided event tag %@ is neither an integer nor a string and will not be sent to results.";
 
-// error
-NSString *const OPTLYLoggerMessagesNoExperimentForDecisionEventTicket = @"[EVENT BUILDER] Not building decision event ticket for no variation.";
-NSString *const OPTLYLoggerMessagesNoVariationForDecisionEventTicket = @"[EVENT BUILDER] User ID cannot be an empty string.";
-NSString *const OPTLYLoggerMessagesNoEventForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no event.";
-NSString *const OPTLYLoggerMessagesNoDecisionForConversionEventTicket = @"[EVENT BUILDER] Not building conversion event ticket for no decision.";
-
 // ---- Event Dispatcher ----
 // info
 NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure = @"[EVENT DISPATCHER] Not activating user %@ for experiment %@.";

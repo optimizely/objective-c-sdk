@@ -873,7 +873,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 /**
- Helper method to retrieve decisions for the user for experiment(s) using the provided event.
+ Helper method to retrieve decisions for the user from the provided event.
 
  @param event The event which needs to be recorded.
  @param userId Id for user.
@@ -881,8 +881,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
  @return Array of dictionaries containing valid experiment Ids, variation Ids and layer Ids into which the user is bucketed.
  */
 - (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
-                   userId:(NSString *)userId
-               attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                                   userId:(NSString *)userId
+                               attributes:(NSDictionary<NSString *,NSString *> *)attributes {
     
     NSArray *experimentIds = event.experimentIds;
     
