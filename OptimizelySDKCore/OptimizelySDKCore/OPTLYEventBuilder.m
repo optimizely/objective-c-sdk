@@ -50,7 +50,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                                      userId:(NSString *)userId
                               experimentKey:(NSString *)experimentKey
                                 variationId:(NSString *)variationId
-                                 attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (!config) {
         return nil;
     }
@@ -89,7 +89,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                                 userId:(NSString *)userId
                              eventName:(NSString *)eventName
                              eventTags:(NSDictionary *)eventTags
-                            attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                            attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (!config) {
         return nil;
     }
@@ -248,7 +248,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSDictionary *)createCommonParams:(OPTLYProjectConfig *)config userId:(NSString *)userId
-                          attributes:(NSDictionary<NSString *, NSString *> *)attributes {
+                          attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     NSMutableDictionary *params = [NSMutableDictionary new];
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];

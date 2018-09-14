@@ -80,11 +80,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 @end
 
 @implementation OPTLYNotificationV3Test
--(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 
--(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 @end
@@ -97,18 +97,18 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                              callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                     callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                                   callback:(void (^)(NSError *))callback;
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
 @interface OptimizelyV3Test : XCTestCase

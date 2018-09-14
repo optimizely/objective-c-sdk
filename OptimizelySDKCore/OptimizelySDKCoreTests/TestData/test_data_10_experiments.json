@@ -282,7 +282,8 @@
         }
       ],
       "audienceIds": [
-        "6369992312"
+        "6369992312",
+        "6378191387"
       ],
       "variations": [
         {
@@ -442,6 +443,11 @@
       "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"ie\"}]]]",
       "id": "6378191386",
       "name": "IE users"
+    },
+    {
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"integer_type\", \"type\": \"custom_dimension\", \"value\": 555}]]]",
+      "id": "6378191387",
+      "name": "Custom users"
     }
   ],
   "attributes": [

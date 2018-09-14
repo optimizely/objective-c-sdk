@@ -56,11 +56,11 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 @end
 
 @implementation OPTLYNotificationTest
--(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 
--(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 @end
@@ -68,18 +68,18 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 @interface Optimizely(test)
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                     callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                                   callback:(void (^)(NSError *))callback;
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
 @interface OptimizelyTest : XCTestCase
@@ -158,6 +158,30 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertNotNil(variation);
 }
 
+- (void)testVariationWithAudienceTypeInteger {
+    NSString *experimentKey = @"testExperimentWithFirefoxAudience";
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
+    XCTAssertNotNil(experiment);
+    OPTLYVariation *variation;
+    NSDictionary *attributesWithUserNotInAudience = @{@"integer_type" : @(55)};
+    NSDictionary *attributesWithUserInAudience = @{@"integer_type" : @(555)};
+    
+    // test get experiment without attributes
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNil(variation);
+    // test get experiment with bad attributes
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserNotInAudience];
+    XCTAssertNil(variation);
+    // test get experiment with good attributes
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserInAudience];
+    XCTAssertNotNil(variation);
+}
+
+
 // Test initializing with older V2 datafile
 - (void)testOlderV2Datafile {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kV2TestDatafileName];
@@ -231,7 +255,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
     
-    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
     }];
     
@@ -278,7 +302,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
     }];
     
@@ -293,7 +317,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     __block NSString *notificationEventKey = nil;
     __block NSDictionary *notificationEventTags = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
         notificationEventTags = eventTags;
     }];

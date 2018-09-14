@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_END
                                          userId:(nonnull NSString *)userId
                                   experimentKey:(nonnull NSString *)experimentKey
                                     variationId:(nonnull NSString *)variationId
-                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                     attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
    
 /**
  * Create the parameters for a conversion event.
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
                                  userId:(nonnull NSString *)userId
                               eventName:(nonnull NSString *)eventName
                               eventTags:(nullable NSDictionary *)eventTags
-                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                             attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>

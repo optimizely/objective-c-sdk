@@ -31,7 +31,7 @@
 /// Condition type
 @property (nonatomic, strong) NSString *type;
 /// Condition value
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSObject *value;
 
 +(BOOL)isBaseConditionJSON:(NSData *)jsonData;
 

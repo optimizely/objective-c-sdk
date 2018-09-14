@@ -21,7 +21,7 @@
 
 @interface OPTLYConditionTest : XCTestCase
 
-@property NSDictionary<NSString *, NSString *> *testUserAttributes;
+@property NSDictionary<NSString *, NSObject *> *testUserAttributes;
 
 @end
 
@@ -175,7 +175,7 @@
     OPTLYBaseCondition *baseCondition = orCondition.subConditions[0];
     XCTAssertTrue([baseCondition.name isEqualToString:@"browser_type"]);
     XCTAssertTrue([baseCondition.type isEqualToString:@"custom_dimension"]);
-    XCTAssertTrue([baseCondition.value isEqualToString:@"chrome"]);
+    XCTAssertTrue([baseCondition.value isEqual:@"chrome"]);
     XCTAssertTrue([conditionsArray[0] evaluateConditionsWithAttributes:self.testUserAttributes]);
 }
 
