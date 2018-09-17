@@ -261,6 +261,17 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     [userProfileServiceMock stopMocking];
 }
 
+// if bucketingId attribute is not a string. Defaulted to userId
+- (void)testGetVariationWithInvalidBucketingId {
+    NSDictionary *attributes = @{OptimizelyBucketId: @YES};
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentNoAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experiment attributes:attributes];
+    XCTAssertNotNil(variation, @"Get variation with invalid bucketing Id should use userId for bucketing.");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentWithAudienceVariationKey,
+                   @"Get variation with invalid bucketing Id should return: %@, but instead returns: %@.",
+                   kExperimentWithAudienceVariationKey, variation.variationKey);
+}
+
 #pragma mark - setForcedVariation
 
 // whitelisted user should return the whitelisted variation for getVariation overridden by call to setForcedVariation

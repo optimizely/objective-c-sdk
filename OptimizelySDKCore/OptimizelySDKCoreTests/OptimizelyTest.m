@@ -52,6 +52,12 @@ static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
 // variation IDs
 static NSString * const kVariationIDForWhitelisting = @"variation4";
 
+// attribute keys
+static NSString * const kAttributeKeyBrowserType = @"browser_type";
+static NSString * const kAttributeKeyBrowserVersion = @"browser_version";
+static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number";
+static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
+
 @interface OPTLYNotificationTest : NSObject
 @end
 
@@ -104,7 +110,12 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     XCTAssertNotNil(self.optimizely);
     
-    self.attributes = @{@"browser_type": @"firefox"};
+    self.attributes = @{
+                        kAttributeKeyBrowserType : @"firefox",
+                        kAttributeKeyBrowserVersion : @(68.1),
+                        kAttributeKeyBrowserBuildNumber : @(106),
+                        kAttributeKeyBrowserIsDefault : @YES
+                        };
 }
 
 - (void)tearDown {
@@ -163,8 +174,8 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
     XCTAssertNotNil(experiment);
     OPTLYVariation *variation;
-    NSDictionary *attributesWithUserNotInAudience = @{@"integer_type" : @(55)};
-    NSDictionary *attributesWithUserInAudience = @{@"integer_type" : @(555)};
+    NSDictionary *attributesWithUserNotInAudience = @{kAttributeKeyBrowserBuildNumber : @(601)};
+    NSDictionary *attributesWithUserInAudience = @{kAttributeKeyBrowserBuildNumber : @(106)};
     
     // test get experiment without attributes
     variation = [self.optimizely variation:experimentKey userId:kUserId];

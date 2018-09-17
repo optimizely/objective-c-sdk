@@ -445,7 +445,7 @@
       "name": "IE users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"integer_type\", \"type\": \"custom_dimension\", \"value\": 555}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_build_number\", \"type\": \"custom_dimension\", \"value\": 106}]]]",
       "id": "6378191387",
       "name": "Custom users"
     }
@@ -454,6 +454,18 @@
     {
       "id": "6359881003",
       "key": "browser_type"
+    },
+    {
+      "id": "6359881004",
+      "key": "browser_version"
+    },
+    {
+      "id": "6359881005",
+      "key": "browser_build_number"
+    },
+    {
+      "id": "6359881006",
+      "key": "browser_is_default"
     }
   ],
   "groups": [
