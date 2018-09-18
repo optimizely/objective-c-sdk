@@ -41,10 +41,10 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for an impression event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildImpressionEventTicketForUser:(nonnull NSString *)userId
-                                                  experiment:(nonnull OPTLYExperiment *)experiment
-                                                   variation:(nonnull OPTLYVariation *)variation
-                                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildImpressionEventForUser:(nonnull NSString *)userId
+                                            experiment:(nonnull OPTLYExperiment *)experiment
+                                             variation:(nonnull OPTLYVariation *)variation
+                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
    
 /**
  * Create the parameters for a conversion event.
@@ -56,11 +56,11 @@ NS_ASSUME_NONNULL_END
  * @return A map of parameters for a conversion event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildConversionEventTicketForUser:(nonnull NSString *)userId
-                                                       event:(nonnull OPTLYEvent *)event
-                                                   decisions:(nonnull NSArray<NSDictionary *> *)decisions
-                                                   eventTags:(nullable NSDictionary *)eventTags
-                                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildConversionEventForUser:(nonnull NSString *)userId
+                                                 event:(nonnull OPTLYEvent *)event
+                                             decisions:(nonnull NSArray<NSDictionary *> *)decisions
+                                             eventTags:(nullable NSDictionary *)eventTags
+                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>

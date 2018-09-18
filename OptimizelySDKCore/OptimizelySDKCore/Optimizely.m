@@ -429,11 +429,11 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
-    NSDictionary *conversionEventParams = [self.eventBuilder buildConversionEventTicketForUser:userId
-                                                                                         event:event
-                                                                                     decisions:decisions
-                                                                                     eventTags:eventTags
-                                                                                    attributes:attributes];
+    NSDictionary *conversionEventParams = [self.eventBuilder buildConversionEventForUser:userId
+                                                                                   event:event
+                                                                               decisions:decisions
+                                                                               eventTags:eventTags
+                                                                              attributes:attributes];
     if ([Optimizely isEmptyDictionary:conversionEventParams]) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherEventNotTracked, eventKey, userId];
         [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
@@ -842,10 +842,10 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                   callback:(void (^)(NSError *))callback {
     
     // send impression event
-    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventTicketForUser:userId
-                                                                                    experiment:experiment
-                                                                                     variation:variation
-                                                                                    attributes:attributes];
+    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventForUser:userId
+                                                                              experiment:experiment
+                                                                               variation:variation
+                                                                              attributes:attributes];
     
     if ([Optimizely isEmptyDictionary:impressionEventParams]) {
         return nil;
