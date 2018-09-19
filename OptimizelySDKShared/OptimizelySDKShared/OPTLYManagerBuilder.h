@@ -43,7 +43,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) id<OPTLYUserProfileService> userProfileService;
 
 /// init is disabled. Please use builderWithBlock to create a Manager Builder
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 /// Create the Optimizely Manager Builder object.
 + (nullable instancetype)builderWithBlock:(nonnull OPTLYManagerBuilderBlock)block;
 
