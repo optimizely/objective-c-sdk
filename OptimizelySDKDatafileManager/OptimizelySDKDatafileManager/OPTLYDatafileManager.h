@@ -52,6 +52,6 @@ __attribute((deprecated("Use OPTLYDatafileManagerDefault initWithBuilder method 
  * @param builder The OPTLYDatafileManagerBuilder object containing the datafile fetch interval.
  * @return an Optimizely Datafile Manager instance.
  */
-- (instancetype)initWithBuilder:(OPTLYDatafileManagerBuilder *)builder;
+- (nullable instancetype)initWithBuilder:(nonnull OPTLYDatafileManagerBuilder *)builder;
 
 @end

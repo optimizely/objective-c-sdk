@@ -43,7 +43,7 @@ __attribute((deprecated("Use OPTLYClient initWithBuilder method instead.")));
  * @param builder The OPTLYClientBuilder object which has datafile, event handler, event dispatcher, and other configurations to be set.
  * @return OPTLYClient instance
  */
-- (nonnull instancetype)initWithBuilder:(OPTLYClientBuilder *)builder;
+- (nonnull instancetype)initWithBuilder:(nullable OPTLYClientBuilder *)builder;
 
 - (OPTLYNotificationCenter *_Nullable)notificationCenter;
 
