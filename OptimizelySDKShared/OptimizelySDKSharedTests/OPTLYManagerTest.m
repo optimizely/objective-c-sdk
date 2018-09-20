@@ -41,6 +41,10 @@ static NSString * const kClientEngine = @"ios-sdk";
 static NSString * const kClientEngine = @"tvos-sdk";
 #endif
 
+@interface OPTLYManagerBase(Tests)
+- (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments;
+@end
+
 @interface OPTLYManagerTest : XCTestCase
 @property (nonatomic, strong) NSData *defaultDatafile;
 @property (nonatomic, strong) NSData *alternateDatafile;
@@ -74,6 +78,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
         builder.projectId = kAlternateProjectId;
     }]];
     
+    id managerMock = OCMPartialMock(manager);
+    
+    /* run code under test */
+    
     // save the datafile
     [manager.datafileManager saveDatafile:self.alternateDatafile];
     OPTLYClient *client = [manager initialize];
@@ -81,6 +89,10 @@ static NSString * const kClientEngine = @"tvos-sdk";
     [self isClientValid:client
                datafile:self.alternateDatafile];
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
+
+    NSArray<OPTLYExperiment> *experiments = [[[manager getOptimizely] optimizely].config experiments];
+    OCMVerify([managerMock cleanUserProfileService:experiments]);
+    
 }
 
 // If no datafile is cached, the client should be initialized with
@@ -94,11 +106,16 @@ static NSString * const kClientEngine = @"tvos-sdk";
     }]];
     id partialMockManager = OCMPartialMock(manager);
     
+    NSArray<OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment> alloc] init];
+    
+    [[partialMockManager reject] cleanUserProfileService:experiments];
+    
     OPTLYClient *client = [partialMockManager initialize];
     
     [self isClientValid:client
                datafile:self.alternateDatafile];
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
+    
 }
 
 // If a datafile is cached, but there is an error loading the datafile,
@@ -412,6 +429,33 @@ static NSString * const kClientEngine = @"tvos-sdk";
     
     // wait for async start to finish
     [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+#pragma mark - testCleanUserProfileService
+
+- (void)testCleanUserProfileService
+{
+    // need to mock the manager bundled datafile load to read from the test bundle
+    OPTLYManagerBasic *manager = [[OPTLYManagerBasic alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
+        builder.projectId = kProjectId;
+        builder.datafile = self.alternateDatafile;
+    }]];
+    id partialMockManager = OCMPartialMock(manager);
+    
+    NSArray<OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment> alloc] init];
+    
+    OPTLYClient *client = [partialMockManager initialize];
+    
+    [self isClientValid:client
+               datafile:self.alternateDatafile];
+    [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
+    
+    // pass in nil
+    [manager cleanUserProfileService:nil];
+    // pass in empty
+    [manager cleanUserProfileService:experiments];
+    // pass in experiements
+    [manager cleanUserProfileService:client.optimizely.config.experiments];
 }
 
 #pragma mark - isValidKeyString
