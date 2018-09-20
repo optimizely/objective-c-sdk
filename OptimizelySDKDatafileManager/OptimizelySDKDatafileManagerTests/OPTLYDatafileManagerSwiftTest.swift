@@ -33,9 +33,10 @@ class OPTLYDatafileManagerSwiftTest: XCTestCase {
     func testOPTLYDatafileManagerInitWithBuilder() -> Void {
         let datafileConfig = OPTLYDatafileConfig.init(projectId: self.kProjectId, withSDKKey: nil)
         XCTAssertNotNil(datafileConfig, "data file config should not be nil.")
-        self.datafileManager = OPTLYDatafileManagerDefault.init(builder: OPTLYDatafileManagerBuilder.init(block: { (builder) in
+        self.datafileManager = OPTLYDatafileManagerDefault.init(builder: OPTLYDatafileManagerBuilder(block: { (builder) in
             builder?.datafileConfig = datafileConfig!
         }))
+            
         XCTAssertNotNil(self.datafileManager, "data file manager should not be nil.")
     }
 }
