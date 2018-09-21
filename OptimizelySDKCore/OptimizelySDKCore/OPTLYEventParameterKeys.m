@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -46,7 +46,6 @@ NSString * const OPTLYEventParameterKeysFeaturesName                    = @"name
 NSString * const OPTLYEventParameterKeysDecisionCampaignId              = @"campaign_id";       // nonnull
 NSString * const OPTLYEventParameterKeysDecisionExperimentId            = @"experiment_id";     // nonnull
 NSString * const OPTLYEventParameterKeysDecisionVariationId             = @"variation_id";      // nonnull
-NSString * const OPTLYEventParameterKeysDecisionIsLayerHoldback         = @"is_campaign_holdback";
 
 // --- Common Event Parameters ----
 NSString * const OPTLYEventParameterKeysTimestamp                       = @"timestamp";         // nonnull

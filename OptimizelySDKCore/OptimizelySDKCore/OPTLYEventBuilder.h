@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class OPTLYProjectConfig, OPTLYDecisionEventTicket;
+@class OPTLYProjectConfig, OPTLYExperiment, OPTLYVariation, OPTLYEvent;
 @protocol OPTLYBucketer;
 
 // --- Event URLs ----
@@ -34,39 +34,45 @@ NS_ASSUME_NONNULL_END
 /**
  * Create the parameters for an impression event.
  *
- * @param config The project config object.
  * @param userId The ID of the user.
- * @param experimentKey The experiment name.
- * @param variationId The variation ID.
+ * @param experiment The experiment.
+ * @param variation The variation.
  * @param attributes A map of attribute names to current user attribute values.
  * @return A map of parameters for an impression event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildImpressionEventTicket:(nonnull OPTLYProjectConfig *)config
-                                         userId:(nonnull NSString *)userId
-                                  experimentKey:(nonnull NSString *)experimentKey
-                                    variationId:(nonnull NSString *)variationId
-                                     attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildImpressionEventForUser:(nonnull NSString *)userId
+                                            experiment:(nonnull OPTLYExperiment *)experiment
+                                             variation:(nonnull OPTLYVariation *)variation
+                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
    
 /**
  * Create the parameters for a conversion event.
  *
- * @param config The project config object.
  * @param userId The ID of the user.
- * @param eventName The event name.
+ * @param event The event name.
  * @param eventTags A map of event tag names to event tag values (NSString or NSNumber containing float, double, integer, or boolean).
  * @param attributes A map of attribute names to current user attribute values.
  * @return A map of parameters for a conversion event. This value can be nil.
  *
  */
-- (nullable NSDictionary *)buildConversionTicket:(nonnull OPTLYProjectConfig *)config
-                               bucketer:(nonnull id<OPTLYBucketer>)bucketer
-                                 userId:(nonnull NSString *)userId
-                              eventName:(nonnull NSString *)eventName
-                              eventTags:(nullable NSDictionary *)eventTags
-                             attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSDictionary *)buildConversionEventForUser:(nonnull NSString *)userId
+                                                 event:(nonnull OPTLYEvent *)event
+                                             decisions:(nonnull NSArray<NSDictionary *> *)decisions
+                                             eventTags:(nullable NSDictionary *)eventTags
+                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>
+
+/// init is disabled. Please use initWithConfig to create an Event Builder
+- (instancetype)init NS_UNAVAILABLE;
+
+/**
+ * Initialize the default event build with the project config.
+ * @param config The project config that the event builder will use for event building.
+ * @return The event builder that has been created.
+ */
+- (nullable instancetype)initWithConfig:(nonnull OPTLYProjectConfig *)config;
 
 @end
