@@ -35,6 +35,8 @@
 
 NSString * const kExpectedDatafileVersion = @"4";
 NSString * const kReservedAttributePrefix = @"$opt_";
+// Array representing supported datafile versions.
+static NSArray *supportedDatafileVersions = nil;
 
 @interface OPTLYProjectConfig()
 
@@ -64,6 +66,14 @@ NSString * const kReservedAttributePrefix = @"$opt_";
 }
 
 - (instancetype)initWithBuilder:(OPTLYProjectConfigBuilder *)builder {
+
+    // initialize all class static objects
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // static objects which should be initialized once
+        supportedDatafileVersions = @[@"2", @"3", @"4"];
+    });
+    
     // check for valid error handler
     if (builder.errorHandler) {
         if (![OPTLYErrorHandler conformsToOPTLYErrorHandlerProtocol:[builder.errorHandler class]]) {
@@ -112,6 +122,13 @@ NSString * const kReservedAttributePrefix = @"$opt_";
     @try {
         NSError *datafileError;
         OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithData:builder.datafile error:&datafileError];
+        
+        if (!datafileError && ![supportedDatafileVersions containsObject:projectConfig.version]) {
+            NSString *description = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataFileInvalid, projectConfig.version];
+            datafileError = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                code:OPTLYErrorTypesDatafileInvalid
+                                            userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString(description, nil)}];
+        }
         
         // check if project config's datafile version matches expected datafile version
         if (![projectConfig.version isEqualToString:kExpectedDatafileVersion]) {

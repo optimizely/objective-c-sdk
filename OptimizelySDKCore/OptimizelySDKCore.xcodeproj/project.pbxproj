@@ -211,8 +211,8 @@
 		59B9E1E320E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */; };
 		5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		5E3C0E711DDF7A3C0025DB85 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
-		5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
+		5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
+		5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
 		5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -608,7 +608,7 @@
 		59B9E1CE20E28D9D002F732E /* OptimizelySwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelySwiftTest.swift; sourceTree = "<group>"; };
 		59B9E1DF20E35C50002F732E /* OptimizelySDKCoreiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYProjectConfigSwiftTest.swift; sourceTree = "<group>"; };
-		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
+		5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnsupportedVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
 		5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariable.h; sourceTree = "<group>"; };
 		5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariable.m; sourceTree = "<group>"; };
@@ -1159,7 +1159,7 @@
 			children = (
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
-				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
+				5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */,
 				3E99CF7D1FE02C1C00B16B97 /* optimizely_6372300739_v4.json */,
 				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
 				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
@@ -1659,7 +1659,7 @@
 				EA2FABD81DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
-				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
+				5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
@@ -1687,7 +1687,7 @@
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
-				5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
+				5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3EF9D99120AE425000A9B002 /* V2TestDatafile.json in Resources */,
 				EA2FABCA1DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD31DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
