@@ -213,8 +213,11 @@ static NSArray *supportedDatafileVersions = nil;
     } else if (hasReservedPrefix) {
         attributeId = attributeKey;
     }
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeNotFound, attributeKey];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    
+    if (attributeId == nil) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeNotFound, attributeKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+    }
     return attributeId;
 }
 
