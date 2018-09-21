@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let datafileManagerDownloadInterval = 20000
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func applicationDidFinishLaunching(_ application: UIApplication) {
         
         // ********************************************************
         // ***************** Integration Samples ******************
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // ** Google Analytics is initialized via the GoogleService-info.plist file
             Amplitude.instance().initializeApiKey("YOUR_API_KEY_HERE")
             Mixpanel.initialize(token:"MIXPANEL_TOKEN")
-            Localytics.autoIntegrate("YOUR-LOCALYTICS-APP-KEY", launchOptions: launchOptions)
+            Localytics.autoIntegrate("YOUR-LOCALYTICS-APP-KEY", launchOptions: nil)
             
         #endif
         // **************************************************
@@ -151,8 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        let optimizelyClient = optimizelyManager?.initialize()
         //        let variation = optimizelyClient?.activate(self.experimentKey, userId:self.userId, attributes: self.attributes)
         //        self.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
-        
-        return true;
     }
     
     func setRootViewController(optimizelyClient: OPTLYClient!, bucketedVariation:OPTLYVariation?) {
