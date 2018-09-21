@@ -312,7 +312,25 @@ static NSData *whitelistingDatafile;
     XCTAssertEqualObjects(variation.variationId, kWhitelistingWhitelistedVariationId);
     XCTAssertEqualObjects(variation.variationKey, kWhitelistingWhiteListedVariationKey);
 }
-    
+
+- (void)testRemoveInvalidExperiments
+{
+    if (self.userProfileService ) {
+        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:@[]];
+        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:nil];
+        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:@[kExperimentId3a]];
+    }
+    NSDictionary *userProfile1 = [self.userProfileService lookup:kUserId1];
+    XCTAssertNil(userProfile1[kExperimentId3a], @"User profile experiment entry should be removed");
+
+    NSDictionary *userProfile2 = [self.userProfileService lookup:kUserId2];
+    XCTAssertNil(userProfile2[kExperimentId3a], @"User profile experiment entry should be removed");
+
+    NSDictionary *userProfile3 = [self.userProfileService lookup:kUserId3];
+     XCTAssertNil(userProfile3[kExperimentId3a], @"User profile experiment entry should be removed");
+
+}
+
 - (void)testLegacyUserProfileMigration
 {
     [self saveUserId:kUserId1 experimentId:kExperimentId1 variationId:kVariationId1];

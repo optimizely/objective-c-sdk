@@ -18,7 +18,8 @@
 
 NSString * const OPTLYErrorHandlerMessagesDomain = @"com.optimizely.optimizelySDK";
 
-NSString * const OPTLYErrorHandlerMessagesDataFileInvalid = @"Provided 'data file' is in an invalid format.";
+NSString * const OPTLYErrorHandlerMessagesDataFileInvalid = @"Provided 'datafile' is in an invalid format.";
+NSString * const OPTLYErrorHandlerMessagesDataFileVersionInvalid = @"Provided 'datafile' version %@ is not supported.";
 NSString * const OPTLYErrorHandlerMessagesEventDispatcherInvalid = @"Provided 'event dispatcher' is in an invalid format.";
 NSString * const OPTLYErrorHandlerMessagesLoggerInvalid = @"Provided 'logger' is in an invalid format.";
 NSString * const OPTLYErrorHandlerMessagesErrorHandlerInvalid = @"Provided 'error handler' is in an invalid format.";

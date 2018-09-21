@@ -54,7 +54,7 @@ static NSUInteger const kNumberOfExperimentObjects = 48;
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeId = @"6380961481";
 
-static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileVersionDatafile";
+static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDatafile";
 
 @interface OPTLYProjectConfigTest : XCTestCase
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
@@ -145,6 +145,27 @@ static NSString * const kInvalidDatafileVersionDatafileName = @"InvalidDatafileV
     
     XCTAssertNil(projectConfig.userProfileService, @"Invalid user profile should not have been set.");
     XCTAssertNil(projectConfig, @"project config should not be able to be created with invalid modules.");
+}
+
+- (void)testInitWithBuilderBlockUnsupportedDatafile {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kUnsupportedVersionDatafileName];
+    id errorHandlerMock = OCMPartialMock([OPTLYErrorHandlerNoOp new]);
+    NSString *description = [NSString stringWithFormat:OPTLYErrorHandlerMessagesDataFileInvalid, @"5"];
+    NSError *datafileError = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
+                                                 code:OPTLYErrorTypesDatafileInvalid
+                                             userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString(description, nil)}];
+    
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.logger = [OPTLYLoggerDefault new];
+        builder.errorHandler = errorHandlerMock;
+        builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
+    }]];
+    
+    XCTAssertNil(projectConfig, @"project config should be nil.");
+    
+    OCMVerify([errorHandlerMock handleError:datafileError]);
+    [errorHandlerMock stopMocking];
 }
 
 #pragma mark - Test initWithDatafile:
