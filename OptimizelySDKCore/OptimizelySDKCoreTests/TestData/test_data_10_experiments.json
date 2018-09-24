@@ -106,7 +106,9 @@
           "variables": []
         }
       ],
-      "forcedVariations": {},
+      "forcedVariations": {
+        "forced_variation_user": "invalid_variation"
+      },
       "id": "6364835526"
     },
     {

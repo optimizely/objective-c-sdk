@@ -76,8 +76,10 @@
 
     // ---- check if the experiment is whitelisted ----
     if ([self checkWhitelistingForUser:userId experiment:experiment]) {
-        return [self getWhitelistedVariationForUser:userId
-                                         experiment:experiment];
+        OPTLYVariation *whitelistedVariation = [self getWhitelistedVariationForUser:userId experiment:experiment];
+        if (whitelistedVariation) {
+            return whitelistedVariation;
+        }
     }
     
     // ---- check if a valid variation is stored in the user profile ----
