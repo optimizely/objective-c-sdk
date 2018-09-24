@@ -36,11 +36,11 @@
     return [[self alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:builderBlock]];
 }
 
-- (instancetype)init {
+- (nonnull instancetype)init {
     return [self initWithBuilder:nil];
 }
 
-- (instancetype)initWithBuilder:(OPTLYClientBuilder *)builder {
+- (nonnull instancetype)initWithBuilder:(nullable OPTLYClientBuilder *)builder {
     self = [super init];
     if (self) {
         if (builder != nil) {
@@ -53,17 +53,17 @@
     return self;
 }
 
--(OPTLYNotificationCenter *)notificationCenter {
+-(nullable OPTLYNotificationCenter *)notificationCenter {
     return self.optimizely.notificationCenter;
 }
 
 #pragma mark activate methods
-- (OPTLYVariation *)activate:(nonnull NSString *)experimentKey
+- (nullable OPTLYVariation *)activate:(nonnull NSString *)experimentKey
                       userId:(nonnull NSString *)userId {
     return [self activate:experimentKey userId:userId attributes:nil];
 }
 
-- (OPTLYVariation *)activate:(NSString *)experimentKey
+- (nullable OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
@@ -79,14 +79,14 @@
 }
 
 #pragma mark getVariation methods
-- (OPTLYVariation *)variation:(NSString *)experimentKey
+- (nullable OPTLYVariation *)variation:(NSString *)experimentKey
                        userId:(NSString *)userId {
     return [self variation:experimentKey
                     userId:userId
                 attributes:nil];
 }
 
-- (OPTLYVariation *)variation:(NSString *)experimentKey
+- (nullable OPTLYVariation *)variation:(NSString *)experimentKey
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
@@ -103,7 +103,7 @@
 
 #pragma mark Forced Variation Methods
 
-- (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError

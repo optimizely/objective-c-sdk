@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param userId The user ID to be used for bucketing.
  * @return forced variation if it exists, otherwise return nil.
  */
-- (OPTLYVariation *_Nullable)getForcedVariation:(nonnull NSString *)experimentKey
+- (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                          userId:(nonnull NSString *)userId;
 
 /**
@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return BOOL feature variable value.
  */
-- (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
+- (nullable NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
@@ -158,7 +158,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return double feature variable value of type double.
  */
-- (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
+- (nullable NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return int feature variable value of type integer.
  */
-- (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
+- (nullable NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return NSString feature variable value of type string.
  */
-- (NSString *_Nullable)getFeatureVariableString:(nullable NSString *)featureKey
+- (nullable NSString *)getFeatureVariableString:(nullable NSString *)featureKey
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
                             attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
