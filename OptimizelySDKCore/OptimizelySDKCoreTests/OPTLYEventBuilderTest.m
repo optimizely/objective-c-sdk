@@ -135,7 +135,7 @@ typedef enum : NSUInteger {
                                                                         kAttributeKeyBrowserBuildNumber : @"6359881005",
                                                                         kAttributeKeyBrowserIsDefault : @"6359881006"
                                                                         }];
-    self.reservedAttributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyUserAgent : @YES}];
+    self.reservedAttributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBotFiltering : @YES}];
     eventWithoutAudience = [self.config getEventForKey:kEventWithoutAudienceName];
     eventWithAudience = [self.config getEventForKey:kEventWithAudienceName];
     experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
@@ -693,7 +693,7 @@ typedef enum : NSUInteger {
 #pragma mark - Test Invalid Attribute
 
 - (void)testCreateConversionEventWithEmptyAttributeValue {
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBucketId : @""}];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : @""}];
     NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithoutAudience
@@ -792,7 +792,7 @@ typedef enum : NSUInteger {
                                                                                      variation:bucketedVariation
                                                                                     attributes:self.attributes];
     
-    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
+    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyBotFiltering];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
@@ -843,7 +843,7 @@ typedef enum : NSUInteger {
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
-    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
+    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyBotFiltering];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
             forParams:params
@@ -1212,18 +1212,9 @@ typedef enum : NSUInteger {
 
 - (void)checkUserFeatures:(NSArray *)userFeatures
            withAttributes:(NSDictionary *)attributes {
-    NSMutableDictionary *filteredAttributes = [[NSMutableDictionary alloc] initWithDictionary:attributes];
-    
-    for (NSString *attributeKey in [attributes allKeys]) {
-        id value = attributes[attributeKey];
-        NSString *attributeValue = [NSString stringWithFormat:@"%@", value];
-        if ([attributeValue length] ==0) {
-            [filteredAttributes removeObjectForKey:attributeKey];
-        }
-    }
     
     NSUInteger numberOfFeatures = [userFeatures count];
-    NSUInteger numberOfAttributes = [filteredAttributes count];
+    NSUInteger numberOfAttributes = [attributes count];
     
     XCTAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
     
@@ -1232,14 +1223,14 @@ typedef enum : NSUInteger {
         NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
 
         NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        NSArray *sortedAttributeKeys = [[filteredAttributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
+        NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         
         for (NSUInteger i = 0; i < numberOfAttributes; i++)
         {
             NSDictionary *params = sortedUserFeaturesByName[i];
             
             NSString *anAttributeKey = sortedAttributeKeys[i];
-            id anAttributeValue = [filteredAttributes objectForKey:anAttributeKey];
+            id anAttributeValue = [attributes objectForKey:anAttributeKey];
             
             NSString *featureName = params[OPTLYEventParameterKeysFeaturesKey];
             NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];

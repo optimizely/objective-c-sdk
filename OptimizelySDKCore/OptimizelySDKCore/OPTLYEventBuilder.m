@@ -207,7 +207,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     for (NSString *attributeKey in attributeKeys) {
         NSObject *attributeValue = attributes[attributeKey];
-        if ([OPTLYEventBuilderDefault isEmptyString:[NSString stringWithFormat:@"%@", attributeValue]]) {
+        if (![OPTLYEventBuilderDefault isValidAttributeValue:attributeValue]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
@@ -256,6 +256,29 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     return (!str
             || ![str isKindOfClass:[NSString class]]
             || [(NSString *)str isEqualToString:@""]);
+}
+
++ (BOOL)isValidAttributeValue:(NSObject *)value {
+    // check value is NSObject
+    if (!value) {
+        return false;
+    }
+    // check value is NSString
+    if ([value isKindOfClass:[NSString class]]) {
+        return true;
+    }
+    NSNumber *number = (NSNumber *)value;
+    // check value is NSNumber
+    if (number) {
+        const char *objCType = [number objCType];
+        // check NSNumber is of type int, double, bool
+        return (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(double)) == 0)
+            || (strcmp(objCType, @encode(bool)) == 0)
+            || [number isEqual:@YES]
+            || [number isEqual:@NO];
+    }
+    return false;
 }
 
 @end
