@@ -216,6 +216,28 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     XCTAssert([variation.variationKey isEqualToString:kWhitelistedVariation_test_data_10_experiments], @"Get variation on a whitelisted variation should return: %@, but instead returns: %@.", kWhitelistedVariation_test_data_10_experiments, variation.variationKey);
 }
 
+// whitelisted user having invalid whitelisted variation should return bucketed variation for getVariation
+- (void)testGetVariationWithInvalidWhitelistedVariation {
+    
+    OPTLYExperiment *experimentWhitelisted = [self.config getExperimentForKey:@"testExperiment5"];
+    OPTLYVariation *expectedVariation = experimentWhitelisted.variations[0];
+    
+    id bucketerMock = OCMPartialMock(self.bucketer);
+    OCMStub([bucketerMock bucketExperiment:experimentWhitelisted
+                           withBucketingId:kWhitelistedUserId_test_data_10_experiments]).andReturn(expectedVariation);
+    
+    self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config
+                                                                      bucketer:bucketerMock];
+
+    OPTLYVariation *variation = [self.decisionService getVariation:kWhitelistedUserId_test_data_10_experiments
+                                                        experiment:experimentWhitelisted
+                                                        attributes:nil];
+    XCTAssert([variation.variationKey isEqualToString:expectedVariation.variationKey], @"Get variation on an invalid whitelisted variation should return: %@, but instead returns: %@.", expectedVariation.variationKey, variation.variationKey);
+    OCMVerify([bucketerMock bucketExperiment:experimentWhitelisted withBucketingId:kWhitelistedUserId_test_data_10_experiments]);
+    [bucketerMock stopMocking];
+}
+
+
 // invalid audience should return nil for getVariation
 - (void)testGetVariationWithInvalidAudience
 {

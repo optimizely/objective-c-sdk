@@ -106,7 +106,9 @@
           "variables": []
         }
       ],
-      "forcedVariations": {},
+      "forcedVariations": {
+        "forced_variation_user": "invalid_variation"
+      },
       "id": "6364835526"
     },
     {
@@ -616,7 +618,13 @@
   "projectId": "6377970066",
   "accountId": "6365361536",
   "events": [
-    {
+     {
+     "experimentIds": [
+                       "5555555555"
+                       ],
+     "id": "6370392433",
+     "key": "testEventWithInvalidExperiment"
+     },{
       "experimentIds": [
         "6450630664",
         "6447021179"

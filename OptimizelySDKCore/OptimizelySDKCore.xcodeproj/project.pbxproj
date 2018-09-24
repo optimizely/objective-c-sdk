@@ -211,12 +211,16 @@
 		59B9E1E320E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */; };
 		5E3C0E701DDF7A290025DB85 /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
 		5E3C0E711DDF7A3C0025DB85 /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
-		5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */; };
+		5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
+		5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
 		5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5ECBBE681DDE6A800028FF6B /* OPTLYVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5ECBBE691DDE6A800028FF6B /* OPTLYVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */; };
+		9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9084F7832150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */; };
+		9084F7842150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */; };
 		90855D0020ED254500A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0120ED254600A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0D20ED2E0100A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
@@ -608,12 +612,14 @@
 		59B9E1CE20E28D9D002F732E /* OptimizelySwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizelySwiftTest.swift; sourceTree = "<group>"; };
 		59B9E1DF20E35C50002F732E /* OptimizelySDKCoreiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OptimizelySDKCoreiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYProjectConfigSwiftTest.swift; sourceTree = "<group>"; };
-		5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDatafileVersionDatafile.json; sourceTree = "<group>"; };
+		5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnsupportedVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
 		5ECBBE661DDE6A800028FF6B /* OPTLYVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYVariable.h; sourceTree = "<group>"; };
 		5ECBBE671DDE6A800028FF6B /* OPTLYVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYVariable.m; sourceTree = "<group>"; };
 		8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYEventTagUtil.h; sourceTree = "<group>"; };
+		9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventTagUtil.m; sourceTree = "<group>"; };
 		90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYControlAttributes.h; path = OptimizelySDKCore/OPTLYControlAttributes.h; sourceTree = "<group>"; };
 		90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYControlAttributes.m; path = OptimizelySDKCore/OPTLYControlAttributes.m; sourceTree = "<group>"; };
 		924C83E5511EF3E43FC015AF /* Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.rc.xcconfig"; sourceTree = "<group>"; };
@@ -1004,6 +1010,8 @@
 				EA2FAB6E1DC6F5F400B1D81B /* OPTLYLog.m */,
 				EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */,
 				EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */,
+				9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */,
+				9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1159,7 +1167,7 @@
 			children = (
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
-				5E4C07F21DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json */,
+				5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */,
 				3E99CF7D1FE02C1C00B16B97 /* optimizely_6372300739_v4.json */,
 				EA2FAB961DC6FDFA00B1D81B /* optimizely_6372300739.json */,
 				EA2FAB9A1DC6FDFA00B1D81B /* optimizely_7519590183.json */,
@@ -1350,6 +1358,7 @@
 				EA2FAAE21DC6F57200B1D81B /* OPTLYEventMetric.h in Headers */,
 				EA2FAA8E1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAA9A1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
+				9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */,
 				EA16D9361ECBA9B200C4C998 /* OPTLYUserProfile.h in Headers */,
 				EA16D93C1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EA8FD0DF1DE9798E00D950AD /* OPTLYNetworkService.h in Headers */,
@@ -1414,6 +1423,7 @@
 				EA2FAAEF1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
 				EAC5F3441E7B7DDF00C087B8 /* OPTLYEventDispatcherBasic.h in Headers */,
 				EA16D9371ECBA9B200C4C998 /* OPTLYUserProfile.h in Headers */,
+				9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */,
 				EA16D93D1ECBD90E00C4C998 /* OPTLYExperimentBucketMapEntity.h in Headers */,
 				EAC5F3541E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.h in Headers */,
 				EA2FAAA71DC6F57200B1D81B /* OPTLYDecisionEventTicket.h in Headers */,
@@ -1659,7 +1669,7 @@
 				EA2FABD81DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
-				5E4C07F31DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
+				5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
@@ -1687,7 +1697,7 @@
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
-				5E4C07F41DFF645C0042B1F8 /* InvalidDatafileVersionDatafile.json in Resources */,
+				5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3EF9D99120AE425000A9B002 /* V2TestDatafile.json in Resources */,
 				EA2FABCA1DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
 				EA2FABD31DC6FDFA00B1D81B /* test_data_25_experiments.json in Resources */,
@@ -1910,6 +1920,7 @@
 				EA2FAC101DC6FFC600B1D81B /* OPTLYEvent.m in Sources */,
 				3EA563A11FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */,
 				EA16D9441ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */,
+				9084F7832150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */,
 				EAC5F3551E7B7EEF00C087B8 /* OPTLYUserProfileServiceBasic.m in Sources */,
 				EA2FAC111DC6FFC600B1D81B /* OPTLYEventAudience.m in Sources */,
 				EA2FAC121DC6FFC600B1D81B /* OPTLYEventDecision.m in Sources */,
@@ -2000,6 +2011,7 @@
 				EA16D9451ECCC5C600C4C998 /* OPTLYDecisionService.m in Sources */,
 				3EA563A21FFD23FF00D0E311 /* OPTLYNotificationCenter.m in Sources */,
 				EA2FABEC1DC6FFA100B1D81B /* OPTLYEventAudience.m in Sources */,
+				9084F7842150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */,
 				EA2FABED1DC6FFA100B1D81B /* OPTLYEventDecision.m in Sources */,
 				EA2FABEE1DC6FFA100B1D81B /* OPTLYEventDecisionTicket.m in Sources */,
 				EA2FABEF1DC6FFA100B1D81B /* OPTLYEventFeature.m in Sources */,

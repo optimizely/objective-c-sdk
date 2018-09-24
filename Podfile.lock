@@ -21,28 +21,28 @@ PODS:
   - Mixpanel-swift (2.4.2):
     - Mixpanel-swift/Complete (= 2.4.2)
   - Mixpanel-swift/Complete (2.4.2)
-  - OCMock (3.3.1)
-  - OHHTTPStubs (5.2.2):
-    - OHHTTPStubs/Default (= 5.2.2)
-  - OHHTTPStubs/Core (5.2.2)
-  - OHHTTPStubs/Default (5.2.2):
+  - OCMock (3.4.1)
+  - OHHTTPStubs (6.1.0):
+    - OHHTTPStubs/Default (= 6.1.0)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (5.2.2):
+  - OHHTTPStubs/JSON (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (5.2.2):
+  - OHHTTPStubs/NSURLSession (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (5.2.2)
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
 
 DEPENDENCIES:
   - Amplitude-iOS
   - Google/Analytics
   - Localytics
   - Mixpanel-swift
-  - OCMock (= 3.3.1)
-  - OHHTTPStubs (= 5.2.2)
+  - OCMock (= 3.4.1)
+  - OHHTTPStubs (= 6.1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -68,9 +68,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   Localytics: 420a187fd1ba94d4a2afff66e100d1569389d9e4
   Mixpanel-swift: 63de6f5a14468b8d65e0d62ae250714455e17407
-  OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
-  OHHTTPStubs: 34d9d0994e64fcf8552dbfade5ce82ada913ee31
+  OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
 
-PODFILE CHECKSUM: a59ef34704d2b5a747fb4cbc2732a598d6620428
+PODFILE CHECKSUM: 4a5bb4d5f9611d224d1c0f8b7304aea59bbecac0
 
 COCOAPODS: 1.5.3

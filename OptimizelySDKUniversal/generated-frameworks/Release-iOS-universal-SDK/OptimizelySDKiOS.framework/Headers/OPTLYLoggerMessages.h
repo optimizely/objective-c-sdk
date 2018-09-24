@@ -100,7 +100,7 @@ extern NSString *const OPTLYLoggerMessagesDatafileFetchIntervalInvalid;
 
 // ---- Datafile Versioning ----
 // warning
-extern NSString *const OPTLYLoggerMessagesInvalidDatafileVersion;
+extern NSString *const OPTLYLoggerMessagesDatafileVersion;
 
 // ---- Event Builder ----
 // debug

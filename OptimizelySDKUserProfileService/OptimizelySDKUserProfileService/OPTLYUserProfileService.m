@@ -156,6 +156,26 @@
 - (void)removeAllUserExperimentRecords {
     [self.dataStore removeAllUserData];
 }
+
+- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds {
+    
+    NSMutableDictionary*userProfileService = [[self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService] mutableCopy];
+    
+    for (NSString *key in userProfileService.allKeys) {
+        NSMutableDictionary *userProfileDict = [userProfileService[key] mutableCopy];
+        NSDictionary * bucketMap = userProfileDict[@"experiment_bucket_map"];
+        NSMutableDictionary *newBucketMap = [bucketMap mutableCopy];
+        for (NSString *exId in bucketMap.allKeys) {
+            if (![validExperimentIds containsObject:exId]) {
+                [newBucketMap removeObjectForKey:exId];
+            }
+        }
+        userProfileDict[@"experiment_bucket_map"] = newBucketMap;
+        userProfileService[key] = userProfileDict;
+    }
+    
+    [self.dataStore saveUserData:userProfileService type:OPTLYDataStoreDataTypeUserProfileService];
+}
     
 @end
 
