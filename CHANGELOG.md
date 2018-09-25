@@ -1,5 +1,17 @@
 # Optimizely Objective-C SDK Changelog
 
+## 2.1.1
+September 25, 2018
+
+This release supports xcode 10 and Swift 4. 
+
+### New Features
+* No new features for this minor release.
+
+### Bug Fixes:
+* Fix nullable and nonnull tags so that Swift 4 functions properly.
+* Rename protocol Optional for JSON to OPTLYOptional.
+
 ## 2.1.0
 August 2nd, 2018
 

@@ -26,7 +26,16 @@ extern NSString *const OPTLYLoggerMessagesVariationUserAssigned;
 // info
 extern NSString *const OPTLYLoggerMessagesActivationSuccess;
 extern NSString *const OPTLYLoggerMessagesConversionSuccess;
+extern NSString *const OPTLYLoggerMessagesConversionFailure;
 // error
+extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty;
+extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesTrackEventKeyEmpty;
+extern NSString *const OPTLYLoggerMessagesTrackEventKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesTrackEventNoAssociation;
+extern NSString *const OPTLYLoggerMessagesTrackExperimentNoAssociation;
+extern NSString *const OPTLYLoggerMessagesTrackExperimentNotTracked;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesFeatureDisabled;
@@ -109,10 +118,7 @@ extern NSString *const OPTLYLoggerMessagesAttributeValueInvalidFormat;
 extern NSString *const OPTLYLoggerMessagesEventNotAssociatedWithExperiment;
 extern NSString *const OPTLYLoggerMessagesExperimentNotPartOfEvent;
 // warning
-extern NSString *const OPTLYLoggerMessagesBucketerInvalid;
 extern NSString *const OPTLYLoggerMessagesEventKeyInvalid;
-extern NSString *const OPTLYLoggerMessagesExperimentKeyInvalid;
-extern NSString *const OPTLYLoggerMessagesNotBuildingDecisionEventTicket;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesVariationIdInvalid;
 extern NSString *const OPTLYLoggerMessagesEventNotPassAudienceEvaluation;
@@ -131,6 +137,8 @@ extern NSString *const OPTLYLoggerMessagesEventTagValueInvalid;
 
 // ---- Event Dispatcher ----
 // info
+extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
+extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherAttemptingToSendImpressionEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherTrackingSuccess;
@@ -154,8 +162,6 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent;
 extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 
 // error
-extern NSString *const OPTLYLoggerMessagesEventDispatcherEventNotTracked;
-extern NSString *const OPTLYLoggerMessagesEventDispatcherActivationFailure;
 
 // ---- Live Variables ---- (DEPRECATED)
 // info

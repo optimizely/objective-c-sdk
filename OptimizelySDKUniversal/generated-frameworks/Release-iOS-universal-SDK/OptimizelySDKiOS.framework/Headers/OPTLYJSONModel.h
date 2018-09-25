@@ -57,16 +57,16 @@ DEPRECATED_ATTRIBUTE
  * Protocol for defining optional properties in a JSON Model class. Use like below to define
  * model properties that are not required to have values in the JSON input:
  *
- * @property (strong, nonatomic) NSString&lt;Optional&gt; *propertyName;
+ * @property (strong, nonatomic) NSString&lt;OPTLYOptional&gt; *propertyName;
  *
  */
-@protocol Optional
+@protocol OPTLYOptional
 @end
 
 /**
  * Make all objects compatible to avoid compiler warnings
  */
-@interface NSObject (OPTLYJSONModelPropertyCompatibility) <Optional, Ignore>
+@interface NSObject (OPTLYJSONModelPropertyCompatibility) <OPTLYOptional, Ignore>
 @end
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,11 +250,11 @@ DEPRECATED_ATTRIBUTE
 + (OPTLYJSONKeyMapper *)keyMapper;
 
 /**
- * Indicates whether the property with the given name is Optional.
- * To have a model with all of its properties being Optional just return YES.
+ * Indicates whether the property with the given name is OPTLYOptional.
+ * To have a model with all of its properties being OPTLYOptional just return YES.
  * This method returns by default NO, since the default behaviour is to have all properties required.
  * @param propertyName the name of the property
- * @return a BOOL result indicating whether the property is optional
+ * @return a BOOL result indicating whether the property is OPTLYOptional
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName;
 
