@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,26 +15,13 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
 
-// Model object for a view.
+@protocol OPTLYLogger;
 
-@protocol OPTLYEventFeature;
+@interface OPTLYEventTagUtil : NSObject
 
-@protocol OPTLYEventView
-@end
++ (NSNumber *)getRevenueValue:(NSDictionary *)eventTags logger:(id<OPTLYLogger>)logger;
 
-@interface OPTLYEventView : OPTLYJSONModel
-
-// The ID of the view containing this impression.
-@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *viewId;
-// The timestamp when the containing view was activated.
-@property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *activatedTimestamp;
-// Features attached to the view.
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature, OPTLYOptional> *viewFeatures;
++ (NSNumber *)getNumericValue:(NSDictionary *)eventTags logger:(id<OPTLYLogger>)logger;
 
 @end
