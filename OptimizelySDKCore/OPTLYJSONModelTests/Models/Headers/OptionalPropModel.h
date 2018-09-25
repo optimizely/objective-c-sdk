@@ -28,7 +28,7 @@
 @interface OptionalPropModel : OPTLYJSONModel
 
 @property (assign, nonatomic) int fillerNumber;
-@property (strong, nonatomic) NSString<Optional>* notRequredProperty;
+@property (strong, nonatomic) NSString<OPTLYOptional>* notRequredProperty;
 @property (strong, nonatomic) NSString<Ignore>* ignoredProperty;
 @property (assign, nonatomic) CGPoint notRequiredPoint;
 

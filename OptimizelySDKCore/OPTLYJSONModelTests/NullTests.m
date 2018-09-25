@@ -26,7 +26,7 @@
 @import OptimizelySDKCore;
 
 @interface NullModelA : OPTLYJSONModel
-@property (nonatomic) NSString <Optional> *optional;
+@property (nonatomic) NSString <OPTLYOptional> *optional;
 @property (nonatomic) NSString *required;
 @end
 
@@ -34,7 +34,7 @@
 @end
 
 @interface NullModelB : OPTLYJSONModel
-@property (nonatomic) NSString <Optional> *prop;
+@property (nonatomic) NSString <OPTLYOptional> *prop;
 @end
 
 @implementation NullModelB

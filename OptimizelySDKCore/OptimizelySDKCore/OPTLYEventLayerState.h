@@ -33,27 +33,27 @@
 // The id of the layer state
 @property (nonatomic, strong, nonnull) NSString *layerId;
 // Visitor-specific input to Client Decision Engine
-@property (nonatomic, strong, nullable) OPTLYEventDecisionTicket<Optional> *decisionTicket;
+@property (nonatomic, strong, nullable) OPTLYEventDecisionTicket<OPTLYOptional> *decisionTicket;
 // Output of the Client Decision Engine
-@property (nonatomic, strong, nullable) OPTLYEventDecision<Optional> *decision;
+@property (nonatomic, strong, nullable) OPTLYEventDecision<OPTLYOptional> *decision;
 // The activationId when the decision was made
-@property (nonatomic, strong, nullable) NSString<Optional> *decisionActivationId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *decisionActivationId;
 // The sessionId when the decision was made
-@property (nonatomic, strong, nullable) NSString<Optional> *decisionSessionId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *decisionSessionId;
 // The timestamp when the decision was made
-@property (nonatomic, strong, nullable) NSNumber<Optional> *decisionTimestamp;
+@property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *decisionTimestamp;
 // The generated UID for the DecisionEventTicketAvro logged when this decision was made.
-@property (nonatomic, strong, nullable) NSString<Optional> *decisionEventId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *decisionEventId;
 // Indicates whether any actions for this layer have trigged
 @property (nonatomic, assign) BOOL actionTriggered;
 // The activation ID when the action was last triggered
-@property (nonatomic, strong, nullable) NSString<Optional> *actionActivationId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *actionActivationId;
 // The session Id when the action was last triggered
-@property (nonatomic, strong, nullable) NSString<Optional> *actionSessionId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *actionSessionId;
 // The timestamp when the action was last triggered
-@property (nonatomic, strong, nullable) NSNumber<Optional> *actionTimestamp;
+@property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *actionTimestamp;
 // The DATA revision of the layer definition in use when this layer was processed
-@property (nonatomic, strong, nullable) NSString<Optional> *revision;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *revision;
 
 
 @end

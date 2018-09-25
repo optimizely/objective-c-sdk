@@ -31,6 +31,6 @@
 @property (strong, nonatomic) NSString<Index>* id;
 #pragma GCC diagnostic pop
 
-@property (strong, nonatomic) NSString<Optional>* name;
+@property (strong, nonatomic) NSString<OPTLYOptional>* name;
 
 @end

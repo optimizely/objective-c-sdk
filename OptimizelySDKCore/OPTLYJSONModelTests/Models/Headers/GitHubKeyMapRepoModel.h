@@ -27,7 +27,7 @@
 @interface GitHubKeyMapRepoModel : OPTLYJSONModel
 
 @property (strong, nonatomic) NSString* __description;
-@property (strong, nonatomic) NSString<Optional>* language;
+@property (strong, nonatomic) NSString<OPTLYOptional>* language;
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
