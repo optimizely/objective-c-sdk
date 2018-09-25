@@ -32,6 +32,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0B08553D215AA53100BB94D3 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B08553B215AA53100BB94D3 /* OPTLYEventTagUtil.m */; };
+		0B08553E215AA53100BB94D3 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B08553B215AA53100BB94D3 /* OPTLYEventTagUtil.m */; };
+		0B08553F215AA53100BB94D3 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B08553C215AA53100BB94D3 /* OPTLYEventTagUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B085540215AA53100BB94D3 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B08553C215AA53100BB94D3 /* OPTLYEventTagUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2E93B520D072BF00E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E93B020D072BE00E0893E /* OPTLYDatafileConfig.m */; };
 		0B2E93B620D072BF00E0893E /* OPTLYDatafileConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E93B020D072BE00E0893E /* OPTLYDatafileConfig.m */; };
 		0B2E93B920D072BF00E0893E /* OPTLYDatafileConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2E93B220D072BE00E0893E /* OPTLYDatafileConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -378,6 +382,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B08553B215AA53100BB94D3 /* OPTLYEventTagUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYEventTagUtil.m; sourceTree = "<group>"; };
+		0B08553C215AA53100BB94D3 /* OPTLYEventTagUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYEventTagUtil.h; sourceTree = "<group>"; };
 		0B2E93B020D072BE00E0893E /* OPTLYDatafileConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYDatafileConfig.m; path = ../OptimizelySDKShared/OptimizelySDKShared/OPTLYDatafileConfig.m; sourceTree = "<group>"; };
 		0B2E93B220D072BE00E0893E /* OPTLYDatafileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYDatafileConfig.h; path = ../OptimizelySDKShared/OptimizelySDKShared/OPTLYDatafileConfig.h; sourceTree = "<group>"; };
 		23CEAECCE3FF7A4D2FBE17FA /* Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKTVOSUniversalTests/Pods-OptimizelySDKTVOSUniversalTests.beta.xcconfig"; sourceTree = "<group>"; };
@@ -759,6 +765,8 @@
 		EAC5F1871E7B60D700C087B8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0B08553C215AA53100BB94D3 /* OPTLYEventTagUtil.h */,
+				0B08553B215AA53100BB94D3 /* OPTLYEventTagUtil.m */,
 				90855D0820ED2C4000A97BEC /* OPTLYControlAttributes.h */,
 				90855D0720ED2C3F00A97BEC /* OPTLYControlAttributes.m */,
 				EAC5F2921E7B651700C087B8 /* Optimizely.h */,
@@ -999,6 +1007,7 @@
 				EAF880FA1EF1D46300143F7C /* OPTLYFMDBResultSet.h in Headers */,
 				EAF880F41EF1D46300143F7C /* OPTLYFMDBDatabaseQueue.h in Headers */,
 				EAF880D91EF1D42500143F7C /* OPTLYJSONValueTransformer.h in Headers */,
+				0B08553F215AA53100BB94D3 /* OPTLYEventTagUtil.h in Headers */,
 				EA3144EC1ED7A1CD00A8E555 /* OPTLYDecisionService.h in Headers */,
 				3ED0F1BC200F37BD00FCFBE0 /* OPTLYFeatureFlag.h in Headers */,
 				EAF880BD1EF1D40A00143F7C /* OPTLYJSONModelLib.h in Headers */,
@@ -1143,6 +1152,7 @@
 				EA52CB091E851CEE00D4FCA0 /* OPTLYNetworkService.h in Headers */,
 				EA52CB0A1E851CEE00D4FCA0 /* OPTLYErrorHandler.h in Headers */,
 				EA52CB0B1E851CEE00D4FCA0 /* OptimizelySDKCore.h in Headers */,
+				0B085540215AA53100BB94D3 /* OPTLYEventTagUtil.h in Headers */,
 				EA52CEF61E86698A00D4FCA0 /* OptimizelySDKTVOS.h in Headers */,
 				90855D0C20ED2C4000A97BEC /* OPTLYControlAttributes.h in Headers */,
 				EA52CB0C1E851CEE00D4FCA0 /* OPTLYManager.h in Headers */,
@@ -1460,6 +1470,7 @@
 				EA52C9EF1E851CC100D4FCA0 /* OPTLYDatabaseEntity.m in Sources */,
 				EA52C9F01E851CC100D4FCA0 /* OPTLYDatafileManagerBasic.m in Sources */,
 				EA52C9F11E851CC100D4FCA0 /* OPTLYDataStore.m in Sources */,
+				0B08553D215AA53100BB94D3 /* OPTLYEventTagUtil.m in Sources */,
 				EA52C9F21E851CC100D4FCA0 /* OPTLYEventDataStore.m in Sources */,
 				EA52C9F31E851CC100D4FCA0 /* OPTLYFileManager.m in Sources */,
 				EA52C9F41E851CC100D4FCA0 /* OPTLYManagerBase.m in Sources */,
@@ -1535,6 +1546,7 @@
 				EA52CA901E851CEE00D4FCA0 /* Optimizely.m in Sources */,
 				EA52CA911E851CEE00D4FCA0 /* OPTLYClientBuilder.m in Sources */,
 				EA52CA921E851CEE00D4FCA0 /* OPTLYLogger.m in Sources */,
+				0B08553E215AA53100BB94D3 /* OPTLYEventTagUtil.m in Sources */,
 				EA52CA931E851CEE00D4FCA0 /* OPTLYErrorHandler.m in Sources */,
 				3ED0F1C5200F37BE00FCFBE0 /* OPTLYFeatureFlag.m in Sources */,
 				90855D0A20ED2C4000A97BEC /* OPTLYControlAttributes.m in Sources */,
