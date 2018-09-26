@@ -59,5 +59,5 @@ __attribute((deprecated("Use OPTLYManager initWithBuilder method instead.")));
  * @param validExperimentIds An array of valid experiment ids.  If default user profile contains
  * experiments not in this list, they are removed from user profile service.
  **/
-- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *)validExperimentIds;
+- (void)removeInvalidExperimentsForAllUsers:(NSArray<NSString *> *_Nullable)validExperimentIds;
 @end

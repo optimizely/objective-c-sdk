@@ -17,8 +17,6 @@
 		EA29D8F21DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA29D8EF1DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA29D8F31DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
 		EA29D8F41DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA29D8F01DCAC2410034A4FE /* OPTLYEventDispatcherBuilder.m */; };
-		EA29D8F91DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */; };
-		EA29D8FA1DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA29D8F81DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist */; };
 		EA5247C81DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5247BF1DC7272300AF6685 /* OptimizelySDKEventDispatcher.framework */; };
 		EA52493F1DC72F8400AF6685 /* OPTLYEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52493D1DC72F8400AF6685 /* OPTLYEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA5249411DC72F8400AF6685 /* OPTLYEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52493E1DC72F8400AF6685 /* OPTLYEventDispatcher.m */; };
@@ -466,7 +464,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D8F91DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +478,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA29D8FA1DCB23750034A4FE /* OptimizelySDKEventDispatcherTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

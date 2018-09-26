@@ -37,7 +37,7 @@
 /// The variation's Key.
 @property (nonatomic, strong, nonnull) NSString *variationKey;
 /// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, Optional> *variableUsageInstances;
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, OPTLYOptional> *variableUsageInstances;
 /// Flag for Feature Toggle Ability
 @property (nonatomic, assign) BOOL featureEnabled;
 
@@ -45,6 +45,6 @@
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
 
 /// The array containing the variation's live variable information -- variable ID and variable value. (DEPRECATED)
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariationVariable, Optional> *variables;
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariationVariable, OPTLYOptional> *variables;
 
 @end

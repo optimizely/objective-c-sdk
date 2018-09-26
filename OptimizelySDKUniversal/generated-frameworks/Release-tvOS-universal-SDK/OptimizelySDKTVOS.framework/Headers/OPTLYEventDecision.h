@@ -29,9 +29,9 @@
 @interface OPTLYEventDecision : OPTLYJSONModel
 
 // ID of chosen experiment, null if visitor is not targeted for any experiments
-@property (nonatomic, strong, nullable) NSString<Optional> *experimentId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *experimentId;
 // ID of chosen variation, null if if visitor is not targeted for any experiments
-@property (nonatomic, strong, nullable) NSString<Optional> *variationId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *variationId;
 // If true, the chosen experience was held back at the layer level
 // TODO - Remove later when this ticket is completed: https://optimizely.atlassian.net/browse/NB-1493
 @property (nonatomic, assign) BOOL isLayerHoldback;

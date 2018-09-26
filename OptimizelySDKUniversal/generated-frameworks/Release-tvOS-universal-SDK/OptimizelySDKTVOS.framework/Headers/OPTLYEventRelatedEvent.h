@@ -29,8 +29,8 @@
 @interface OPTLYEventRelatedEvent : OPTLYJSONModel
 
 // The id of the related event
-@property (nonatomic, strong, nullable) NSString<Optional> *eventId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *eventId;
 // The type of the relationship to this event
-@property (nonatomic, strong, nullable) NSString<Optional> *relationship;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *relationship;
 
 @end
