@@ -871,7 +871,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileService;
-				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileServiceiOS;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
 				SKIP_INSTALL = YES;
 			};
@@ -891,7 +891,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserProfileService;
-				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileServiceiOS;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
 				SKIP_INSTALL = YES;
 			};
@@ -948,7 +948,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserServiceProfile;
-				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileServiceTVOS;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -971,7 +971,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserServiceProfile;
-				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
+				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileServiceTVOS;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;

@@ -792,9 +792,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcheriOS;
 				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -816,9 +817,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcheriOS;
 				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -883,7 +885,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcherTVOS;
 				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -908,7 +910,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKEventDispatcher;
-				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcher;
+				PRODUCT_MODULE_NAME = OptimizelySDKEventDispatcherTVOS;
 				PRODUCT_NAME = OptimizelySDKEventDispatcher;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;

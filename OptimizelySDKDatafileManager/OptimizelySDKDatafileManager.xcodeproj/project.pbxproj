@@ -918,7 +918,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
-				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
+				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManageriOS;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
 				SKIP_INSTALL = YES;
 			};
@@ -942,7 +942,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
-				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
+				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManageriOS;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
 				SKIP_INSTALL = YES;
 			};
@@ -1010,7 +1010,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
-				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
+				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManagerTVOS;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1036,7 +1036,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
-				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
+				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManagerTVOS;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
