@@ -29,8 +29,8 @@
 @interface OPTLYEventAudience : OPTLYJSONModel
 
 // The ID of the audience
-@property (nonatomic, strong, nullable) NSString<Optional> *audienceId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *audienceId;
 // The audience’s name
-@property (nonatomic, strong, nullable) NSString<Optional> *name;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *name;
 
 @end
