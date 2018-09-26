@@ -272,11 +272,21 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     if (number) {
         const char *objCType = [number objCType];
         // check NSNumber is of type int, double, bool
-        return (strcmp(objCType, @encode(int)) == 0)
-            || (strcmp(objCType, @encode(double)) == 0)
-            || (strcmp(objCType, @encode(bool)) == 0)
-            || [number isEqual:@YES]
-            || [number isEqual:@NO];
+        return (strcmp(objCType, @encode(short)) == 0)
+        || (strcmp(objCType, @encode(unsigned short)) == 0)
+        || (strcmp(objCType, @encode(int)) == 0)
+        || (strcmp(objCType, @encode(unsigned int)) == 0)
+        || (strcmp(objCType, @encode(long)) == 0)
+        || (strcmp(objCType, @encode(unsigned long)) == 0)
+        || (strcmp(objCType, @encode(long long)) == 0)
+        || (strcmp(objCType, @encode(unsigned long long)) == 0)
+        || (strcmp(objCType, @encode(float)) == 0)
+        || (strcmp(objCType, @encode(double)) == 0)
+        || (strcmp(objCType, @encode(char)) == 0)
+        || (strcmp(objCType, @encode(unsigned char)) == 0)
+        || (strcmp(objCType, @encode(bool)) == 0)
+        || [number isEqual:@YES]
+        || [number isEqual:@NO];
     }
     return false;
 }
