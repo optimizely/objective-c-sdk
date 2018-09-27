@@ -145,13 +145,13 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0/Localytics.framework"
+  install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-5.3.0/Localytics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0/Localytics.framework"
+  install_framework "${PODS_ROOT}/Localytics/Localytics-iOS-5.3.0/Localytics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

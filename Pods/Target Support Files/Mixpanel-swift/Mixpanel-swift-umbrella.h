@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "ExceptionWrapper.h"
+#import "Mixpanel.h"
 
 FOUNDATION_EXPORT double MixpanelVersionNumber;
 FOUNDATION_EXPORT const unsigned char MixpanelVersionString[];
