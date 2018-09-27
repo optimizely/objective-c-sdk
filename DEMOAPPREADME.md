@@ -1,21 +1,21 @@
 # Optimizely iOS SDK Tutorial
 
-This tutorial enables you to quickly get started in your development efforts to create an iOS app with the Optimizely X iOS SDK. The Objective-c SDK package includes a Demo App project that performs an A/B test and tracks an experiment.
+This tutorial enables you to quickly get started in your development efforts to create an iOS app with the Optimizely X iOS SDK. The Objective-C SDK package includes a Demo App project that performs an A/B test and tracks an experiment.
 
 ![test-app screens](./images/demo-app-flow.png)
 
 The Demo App works as follows:
-* When the app is launched the `applicationDidFinishLaunching` method of `AppDelegate` instantiates a number of Optimizely objects including an `OPTLYManagerBuilder` that it uses to create an `OPTLYManager`.
+* When the app is launched the `applicationDidFinishLaunching` method of `AppDelegate` instantiates a number of Optimizely objects, including an `OPTLYManagerBuilder` it uses to create an `OPTLYManager`.
 * `applicationDidFinishLaunching` then uses the `OPTLYManager` to instantiate an `OPTLYClient` by asynchronously fetching the datafile.
 * Once the datafile is fetched and the Optimizely client is started, `activate` is invoked to activate an experiment named `background_experiment`. This buckets the user, sends an impression event, and returns a reference to an `OPTLYVariation`. 
-* Before the method completes, it invokes the class's `setRootViewController` helper method to configure and set the root controller to `OPTLYVariationViewController` including the assignment of the bucketed variation returned from `activate` to the controller's `variationKey` member and an event key to the controller's `eventKey` member. `Variation View Controller scene` is the corresponding scene in the storyboard for this controller.
-* When `Variation View Controller scene` is displayed, the controller's `viewDidLoad` method prepares a background image and text based on the `variationKey` for either Variation A or B.
-* The scene contains a button called **TEST CONVERSION** that has been configured in the scene to invoke the controller's `attemptTrackAndShowSuccessOrFailure` event handler when clicked. The event handler invokes the Optimizely client's `track` method and sends a conversion event for the event named `sample_conversion` stored in the `eventKey` member.
+* Before the method completes, it invokes the class's `setRootViewController` helper method to configure and set the root controller to `OPTLYVariationViewController`, including the assignment of the bucketed variation returned from `activate` to the controller's `variationKey` member, as well as an event key to the controller's `eventKey` member. The `Variation View Controller scene` is the corresponding scene in the storyboard for this controller.
+* When the `Variation View Controller scene` is displayed, the controller's `viewDidLoad` method prepares a background image and text based on the `variationKey` for either Variation A or B.
+* The scene contains a button called **TEST CONVERSION** that has been configured to invoke the controller's `attemptTrackAndShowSuccessOrFailure` event handler when clicked. The event handler invokes the Optimizely client's `track` method and sends a conversion event for the event named `sample_conversion` stored in the `eventKey` member.
 
 
 ## Prerequisites
 * Xcode 10.+
-* Github account configured with [SSH keys](https://help.github.com/articles/connecting-to-github-with-ssh/)
+* A Github account configured with [SSH keys](https://help.github.com/articles/connecting-to-github-with-ssh/)
 
 ## Quick start
 This section shows you how to prepare, build, and run the sample application using Xcode.
@@ -45,12 +45,12 @@ The following subsections provide information about key aspects of the Test App 
 
 ### Modules
 The package workspace contains the following projects: 
-1. **OptimizelySDK...** : Various Optimize SDK components most notably:
+1. **OptimizelySDK...** : Various Optimize SDK components, including:
  * **OptimizelyDemoApp**: Code and resources for the Demo App for both iOS and TVOS. Note that this tutorial only covers the iOS Demo App.
  * **OptimizelySDKiOS**: iOS-specific code for the Optimizely SDK.
  * **OptimielySDKUniversal**, **OptimielySDKCore**: Core Optimizely SDK classes and interfaces.
- * **OptimizelyDatafileManager**: Handles the downloading and caching of the configuration datafile. The Optimizely Objective-c SDK core uses a default implementation provided in this module called `OPTLYDatafileManagerDefault`.
- * **OptimizelySDKEventDispatcher**: handles dispatching events to the Optimizely backend using a service so that events can be sent without the app being re-opened. Events are persisted in a SQLite3 database. The Optimizely Objective-c SDK core uses a default implementation provided in this module called `OPTLYEventDispatcherDefault`
+ * **OptimizelyDatafileManager**: Handles the downloading and caching of the configuration datafile. The Optimizely Objective-C SDK core uses a default implementation provided in this module called `OPTLYDatafileManagerDefault`.
+ * **OptimizelySDKEventDispatcher**: handles dispatching events to the Optimizely backend using a service so that events can be sent without the app being re-opened. Events are persisted in a SQLite3 database. The Optimizely Objective-C SDK core uses a default implementation provided in this module called `OPTLYEventDispatcherDefault`
 2. **Pods** : Third-party dependencies.
 
 For details about the APIs used to develop this sample, see the [documentation](https://docs.developers.optimizely.com/full-stack/docs).
@@ -61,8 +61,8 @@ The following scenes are defined in **/OptimizelyDemoApp/OptimizelyiOSDemoApp/iO
 
 |Component                        |Description                                                                                                                                 |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-|`Splash Screen View Controller`       |The screen that is shown during launch.|
-|`Failure View Controller Scene`       |The screen that is shown when the impression cannot be sent (e.g. due to a network failure).|
+|`Splash Screen View Controller`       |The screen that is displayed during launch.|
+|`Failure View Controller Scene`       |The screen that is displayed when the impression cannot be sent (e.g. due to a network failure).|
 |`Variation View Controller Scene`       |The screen with the **TEST CONVERSION** button for a given variation.|
 |`Conversion Success View Controller Scene`       |The screen that is displayed when the impression is successfully sent to Optimizely. The screen includes a **BACK** button that returns the user to the **Variation View Controller Scene** to invoke another impression.|
 
@@ -138,7 +138,7 @@ func applicationDidFinishLaunching(_ application: UIApplication) {
 The event handler sets up the event dispatch interval and assigns a logger to use for logging events. The datafile manager instantiates an `OPTLYDatafileConfig` that the builder will use to manage the sample datafile.
 
 ### Create the Manager Instance
-The `applicationDidFinishLaunching` method then creates an `OptlyManagerBuilder` object, passing in the SDK key, and the event handler and datafile manager created above:
+The `applicationDidFinishLaunching` method then creates an `OptlyManagerBuilder` object, passing in the SDK key, and the event handler and datafile manager described above:
 
 ```swift
 func applicationDidFinishLaunching(_ application: UIApplication) {
@@ -195,7 +195,7 @@ The callback adds listeners for activate and track events, both of which pass th
 * [Track the Experiment](#track-the-experiment)
 
 ### Perform an A/B Test
-The `applicationDidFinishLaunching` callback invokes `activate` to start an experiment and receives back a variation. It then uses the class's `setRootViewController` helper method to start the storyboard, passing in the variation that will be used by the various scenes in the storyboard:
+The `applicationDidFinishLaunching` callback invokes `activate` to start an experiment and receives back a variation. It then uses the class' `setRootViewController` helper method to start the storyboard, passing in the variation that will be used by the various scenes in the storyboard:
 
 ```swift
 ```swift
@@ -266,4 +266,4 @@ class OPTLYVariationViewController: UIViewController {
 }
 ```
 
-This method has been assigned as the on-click handler for the **TEST CONVERSION** button in the scene. The [Track](https://docs.developers.optimizely.com/full-stack/docs/track) method tracks events across the experiment. At the end of the event handler, a segue is performed to inform the user that the test has successfully started.
+This method has been assigned as the `on-click` handler for the **TEST CONVERSION** button in the scene. The [Track](https://docs.developers.optimizely.com/full-stack/docs/track) method tracks events across the experiment. At the end of the event handler, a segue is performed to inform the user that the test has successfully started.
