@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A40C71D7B825E4BFD61A110 /* Pods_OptimizelySDKiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B2266C94E7767CEB55292 /* Pods_OptimizelySDKiOSTests.framework */; };
+		0B353273215D60CD00CB5E5F /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B353272215D60CD00CB5E5F /* OptimizelySDKCore.framework */; };
+		0B35327E215D60DE00CB5E5F /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B35327D215D60DE00CB5E5F /* OptimizelySDKShared.framework */; };
 		2D3503FD1DFA78CB00B0A822 /* OPTLYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */; };
 		2D3503FE1DFA78CB00B0A822 /* BucketerTestsDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */; };
 		2D3503FF1DFA78CB00B0A822 /* optimizely_6372300739.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3503F81DFA78CB00B0A822 /* optimizely_6372300739.json */; };
@@ -142,6 +144,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B353272215D60CD00CB5E5F /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OptimizelySDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B35327D215D60DE00CB5E5F /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OptimizelySDKShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3503F41DFA78CB00B0A822 /* OPTLYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYTestHelper.h; sourceTree = "<group>"; };
 		2D3503F51DFA78CB00B0A822 /* OPTLYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTestHelper.m; sourceTree = "<group>"; };
 		2D3503F71DFA78CB00B0A822 /* BucketerTestsDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BucketerTestsDatafile.json; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B35327E215D60DE00CB5E5F /* OptimizelySDKShared.framework in Frameworks */,
+				0B353273215D60CD00CB5E5F /* OptimizelySDKCore.framework in Frameworks */,
 				EA61128B1EC288D5001967ED /* OptimizelySDKUserProfileService.framework in Frameworks */,
 				2D54570B1DC8223F0095E286 /* OptimizelySDKDatafileManager.framework in Frameworks */,
 				EA5249E91DC7E49000AF6685 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
@@ -279,6 +285,8 @@
 		EA5246561DC7172C00AF6685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B35327D215D60DE00CB5E5F /* OptimizelySDKShared.framework */,
+				0B353272215D60CD00CB5E5F /* OptimizelySDKCore.framework */,
 				EA6112741EC288AD001967ED /* OptimizelySDKUserProfileService.xcodeproj */,
 				EA5248D41DC72ED200AF6685 /* OptimizelySDKEventDispatcher.xcodeproj */,
 				2D5456FC1DC822120095E286 /* OptimizelySDKDatafileManager.xcodeproj */,
