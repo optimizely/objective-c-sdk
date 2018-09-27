@@ -1,9 +1,9 @@
 # Optimizely Objective-C SDK Changelog
 
 ## 2.1.1
-September 25, 2018
+September 27, 2018
 
-This release supports xcode 10 and Swift 4. 
+This release supports xcode 10 and Swift 4. However, there seems to still be an issue with Carthage.
 
 ### New Features
 * No new features for this minor release.
