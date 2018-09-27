@@ -6,7 +6,7 @@ September 27, 2018
 This release supports xcode 10 and Swift 4. However, there seems to still be an issue with Carthage.
 
 ### New Features
-* No new features for this minor release.
+* No new features for this patch release.
 
 ### Bug Fixes:
 * Fix nullable and nonnull tags so that Swift 4 functions properly.
