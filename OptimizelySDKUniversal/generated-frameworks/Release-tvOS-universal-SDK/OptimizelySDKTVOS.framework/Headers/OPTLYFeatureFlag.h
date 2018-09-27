@@ -39,7 +39,7 @@
 /// an NSArray of the feature variables that are part of this feature
 @property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable> *variables;
 /// an NSString to hold the group Id the feature belongs to.
-@property (nonatomic, strong, nullable) NSString<Optional> *groupId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *groupId;
 
 /**
  * Determines whether all the experiments in the feature flag belongs to the same mutex group
