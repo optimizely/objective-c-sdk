@@ -775,7 +775,7 @@
 				OPTIMIZELY_SDK_VERSION = "$(OPTIMIZELY_SDK_VERSION_MAJOR).$(OPTIMIZELY_SDK_VERSION_MINOR).$(OPTIMIZELY_SDK_VERSION_PATCH)$(OPTIMIZELY_SDK_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -842,7 +842,7 @@
 				OPTIMIZELY_SDK_VERSION = "$(OPTIMIZELY_SDK_VERSION_MAJOR).$(OPTIMIZELY_SDK_VERSION_MINOR).$(OPTIMIZELY_SDK_VERSION_PATCH)$(OPTIMIZELY_SDK_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_VERSION_PATCH = 1;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -947,6 +947,7 @@
 				INFOPLIST_FILE = "OptimizelySDKUserProfileService/OptimizelySDKUserProfileService-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserServiceProfile;
 				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
@@ -970,6 +971,7 @@
 				INFOPLIST_FILE = "OptimizelySDKUserProfileService/OptimizelySDKUserProfileService-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKUserServiceProfile;
 				PRODUCT_MODULE_NAME = OptimizelySDKUserProfileService;
 				PRODUCT_NAME = OptimizelySDKUserProfileService;
