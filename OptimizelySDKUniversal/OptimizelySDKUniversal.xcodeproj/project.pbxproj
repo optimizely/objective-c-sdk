@@ -1771,6 +1771,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;
@@ -1816,6 +1817,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKUniversal/OptimizelySDKTVOS.modulemap;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKTVOS;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME)";
 				PRODUCT_NAME = OptimizelySDKTVOS;

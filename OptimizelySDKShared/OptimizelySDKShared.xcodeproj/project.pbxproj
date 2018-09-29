@@ -1235,6 +1235,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
 				PRODUCT_NAME = OptimizelySDKShared;
@@ -1260,6 +1261,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = OptimizelySDKShared/OptimizelySDKShared.modulemap;
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKShared;
 				PRODUCT_MODULE_NAME = OptimizelySDKShared;
 				PRODUCT_NAME = OptimizelySDKShared;
