@@ -1009,6 +1009,7 @@
 				INFOPLIST_FILE = "OptimizelySDKDatafileManager/OptimizelySDKDatafileManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
 				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
@@ -1035,6 +1036,7 @@
 				INFOPLIST_FILE = "OptimizelySDKDatafileManager/OptimizelySDKDatafileManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = Optimizely.OptimizelySDKDatafileManager;
 				PRODUCT_MODULE_NAME = OptimizelySDKDatafileManager;
 				PRODUCT_NAME = OptimizelySDKDatafileManager;
