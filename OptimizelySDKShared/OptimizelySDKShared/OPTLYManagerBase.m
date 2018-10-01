@@ -35,6 +35,15 @@
 
 @import UIKit;
 
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
+
+
 // Currently, Optimizely only supports tvOS and iOS, but this #if...#endif
 // could be elaborated with TARGET_OS_MAC or TARGET_OS_WATCH also defined in
 // usr/include/TargetConditionals.h in the future if the need should arise.
@@ -72,7 +81,9 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 - (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments {
     if (experiments == nil) return;
     
-    if (_userProfileService != nil && [(NSObject *)_userProfileService respondsToSelector:@selector(removeInvalidExperimentsForAllUsers:)]) {
+    SEL selector = NSSelectorFromString(@"removeInvalidExperimentsForAllUsers:");
+    
+    if (_userProfileService != nil && [(NSObject *)_userProfileService respondsToSelector:selector]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (self.userProfileService != nil) {
                 NSMutableArray<NSString*> *ids = [[NSMutableArray alloc] initWithCapacity:experiments.count];
@@ -80,9 +91,8 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                     NSString *exKey = ((OPTLYExperiment *)experiments[i]).experimentId;
                     [ids addObject:exKey];
                 }
-
                 @try {
-                    [(NSObject *)self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:ids];
+                    SuppressPerformSelectorLeakWarning([(NSObject *)self.userProfileService performSelector:selector withObject:ids]);
                 }
                 @catch(NSException *e) {
                     [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
