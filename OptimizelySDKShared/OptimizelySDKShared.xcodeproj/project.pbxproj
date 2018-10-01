@@ -696,7 +696,7 @@
 		EA3C68201DC1E68E00C578CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					3ECBCC151F43983400160937 = {
@@ -1133,7 +1133,6 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
