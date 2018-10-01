@@ -444,7 +444,7 @@
 		EA2FA77C1DC5B38900B1D81B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Optimizely;
 				TargetAttributes = {
 					EA5248431DC72B5500AF6685 = {
@@ -845,6 +845,7 @@
 				OPTIMIZELY_SDK_VERSION_PATCH = 2;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
