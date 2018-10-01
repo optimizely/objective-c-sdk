@@ -82,15 +82,16 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                     NSString *exKey = ((OPTLYExperiment *)experiments[i]).experimentId;
                     [ids addObject:exKey];
                 }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+// can't suppress the warning because travis-ci keeps complaining.
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 @try {
                     [(NSObject *)self.userProfileService performSelector:selector withObject:ids];
                 }
                 @catch(NSException *e) {
                     [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
                 }
-#pragma clang diagnostic pop
+//#pragma clang diagnostic pop
             }
         });
     }
