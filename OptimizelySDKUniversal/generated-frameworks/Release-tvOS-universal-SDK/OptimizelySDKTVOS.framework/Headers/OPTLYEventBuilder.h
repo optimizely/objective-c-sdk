@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_END
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>
 
 /// init is disabled. Please use initWithConfig to create an Event Builder
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 /**
  * Initialize the default event build with the project config.
