@@ -21,7 +21,6 @@
 #import <Foundation/Foundation.h>
 
 @class OPTLYProjectConfig, OPTLYExperiment, OPTLYVariation, OPTLYEvent;
-@protocol OPTLYBucketer;
 
 // --- Event URLs ----
 NS_ASSUME_NONNULL_BEGIN

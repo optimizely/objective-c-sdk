@@ -32,7 +32,7 @@
 @property (assign, nonatomic) int watchers;
 @property (strong, nonatomic) NSString* owner;
 @property (assign, nonatomic) int forks;
-@property (strong, nonatomic) NSString<Optional>* language;
+@property (strong, nonatomic) NSString<OPTLYOptional>* language;
 @property (assign, nonatomic) BOOL fork;
 @property (assign, nonatomic) double size;
 @property (assign, nonatomic) int followers;

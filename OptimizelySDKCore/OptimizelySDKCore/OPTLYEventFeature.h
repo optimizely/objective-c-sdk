@@ -33,11 +33,11 @@ NS_ASSUME_NONNULL_END
 @interface OPTLYEventFeature : OPTLYJSONModel
 
 // The ID of feature for non-custom features. Should be the GAE ID if it exists.
-@property (nonatomic, strong, nullable) NSString<Optional> *featureId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *featureId;
 // The name of the feature, which along with type uniquely identify the feature.
-@property (nonatomic, strong, nullable) NSString<Optional> *name;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *name;
 // The type the feature, which along with name uniquely identifies the feature.
-@property (nonatomic, strong, nullable) NSString<Optional> *type;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *type;
 // The value of the feature (supports: string, long, int, double, float, boolean)
 @property (nonatomic, strong, nonnull) id value;
 // If true, this feature will be indexed in the counting service. Otherwise it will just be logged

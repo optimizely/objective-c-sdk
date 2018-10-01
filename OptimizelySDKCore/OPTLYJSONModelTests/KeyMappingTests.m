@@ -39,9 +39,9 @@
 @interface TestModel: OPTLYJSONModel
 
 @property (strong, nonatomic) NSString* text1;
-@property (strong, nonatomic) NSString<Optional>* text2;
+@property (strong, nonatomic) NSString<OPTLYOptional>* text2;
 
-@property (strong, nonatomic) NSString<Optional>* text3;
+@property (strong, nonatomic) NSString<OPTLYOptional>* text3;
 
 @end
 

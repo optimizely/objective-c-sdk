@@ -30,6 +30,6 @@
 
 @property (strong, nonatomic) NSNumber* idImage;
 @property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) CopyrightModel<Optional>* copyright;
+@property (strong, nonatomic) CopyrightModel<OPTLYOptional>* copyright;
 
 @end

@@ -607,7 +607,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
 
                     [scanner scanUpToString:@">" intoString: &protocolName];
 
-                    if ([protocolName isEqualToString:@"Optional"]) {
+                    if ([protocolName isEqualToString:@"OPTLYOptional"]) {
                         p.isOptional = YES;
                     } else if([protocolName isEqualToString:@"Index"]) {
 #pragma GCC diagnostic push

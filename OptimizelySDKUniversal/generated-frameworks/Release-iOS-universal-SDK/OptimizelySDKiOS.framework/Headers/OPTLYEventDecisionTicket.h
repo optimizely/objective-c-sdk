@@ -31,8 +31,8 @@
 @interface OPTLYEventDecisionTicket : OPTLYJSONModel
 
 // The audiences bucketed at decision time
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventAudience, Optional> *audiences;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventAudience, OPTLYOptional> *audiences;
 // Id (UUID or visitorId) used for bucketing
-@property (nonatomic, strong, nullable) NSString<Optional> *bucketingId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *bucketingId;
 
 @end
