@@ -35,13 +35,13 @@
 
 @import UIKit;
 
-#define SuppressPerformSelectorLeakWarning(Stuff) \
-do { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
-Stuff; \
-_Pragma("clang diagnostic pop") \
-} while (0)
+//#define SuppressPerformSelectorLeakWarning(Stuff) \
+//do { \
+//_Pragma("clang diagnostic push") \
+//_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+//Stuff; \
+//_Pragma("clang diagnostic pop") \
+//} while (0)
 
 
 // Currently, Optimizely only supports tvOS and iOS, but this #if...#endif
@@ -92,7 +92,8 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
                     [ids addObject:exKey];
                 }
                 @try {
-                    SuppressPerformSelectorLeakWarning([(NSObject *)self.userProfileService performSelector:selector withObject:ids]);
+                   // SuppressPerformSelectorLeakWarning([(NSObject *)self.userProfileService performSelector:selector withObject:ids]);
+                     [(NSObject *)self.userProfileService performSelector:selector withObject:ids];
                 }
                 @catch(NSException *e) {
                     [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
