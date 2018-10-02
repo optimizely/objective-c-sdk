@@ -1,7 +1,7 @@
 # Optimizely Objective-C SDK Changelog
 
 ## 2.1.2
-September 28, 2018
+October 1, 2018
 
 This release supports xcode 10 and Swift 4. This fixes the carthage issue.
 
@@ -12,6 +12,9 @@ This release supports xcode 10 and Swift 4. This fixes the carthage issue.
 * Fix nullable and nonnull tags so that Swift 4 functions properly.
 * Rename protocol Optional for JSON to OPTLYOptional.
 * Fix logging of attribute as missing when included.
+* Fix EventBuilder init nullable.
+* Fix build warnings
+* Fix Carthage build
 
 ## 2.1.1
 September 27, 2018
