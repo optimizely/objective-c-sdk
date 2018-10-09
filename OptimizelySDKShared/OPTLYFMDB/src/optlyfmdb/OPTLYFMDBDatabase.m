@@ -1268,7 +1268,7 @@ int OPTLYFMDBExecuteBulkSQLCallback(void *theBlockAsVoid, int columns, char **va
     return [self executeStatements:sql withResultBlock:nil];
 }
 
-- (BOOL)executeStatements:(NSString *)sql withResultBlock:(OPTLYFMDBExecuteStatementsCallbackBlock)block {
+- (BOOL)executeStatements:(__attribute__((noescape)) NSString *)sql withResultBlock:(__attribute__((noescape)) OPTLYFMDBExecuteStatementsCallbackBlock)block {
     
     int rc;
     char *errmsg = nil;
@@ -1410,7 +1410,7 @@ static NSString *OPTLYFMDBEscapeSavePointName(NSString *savepointName) {
 #endif
 }
 
-- (NSError*)inSavePoint:(void (^)(BOOL *rollback))block {
+- (NSError*)inSavePoint:(__attribute__((noescape)) void (^)(BOOL *rollback))block {
 #if SQLITE_VERSION_NUMBER >= 3007000
     static unsigned long savePointIdx = 0;
     
