@@ -42,13 +42,6 @@
 #import "OPTLYVariable.h"
 #import "OPTLYVariationVariable.h"
 
-NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
-NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
-NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
-NSString *const OptimizelyNotificationsUserDictionaryAttributesKey = @"attributes";
-NSString *const OptimizelyNotificationsUserDictionaryEventNameKey = @"eventKey";
-NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey = @"ExperimentVariationMapping";
-
 @implementation Optimizely
 
 + (instancetype)init:(OPTLYBuilderBlock)builderBlock {
@@ -455,8 +448,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                      withLevel:OptimizelyLogLevelInfo];
                                              }
                                          }];
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:eventKey forKey:OPTLYNotificationEventKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    [args setValue:eventTags forKey:OPTLYNotificationEventTags];
+    [args setValue:conversionEventParams forKey:OPTLYNotificationLogEventParams];
     
-    NSArray *args = @[eventKey, userId ? : @"", attributes ? : [NSDictionary new], eventTags ? : [NSDictionary new], conversionEventParams];
     [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:args];
 }
 
@@ -867,7 +865,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                              }
                                          }];
     
-    NSArray *args = @[experiment, userId ? : @"", attributes ? : [NSDictionary new], variation, impressionEventParams];
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:experiment forKey:OPTLYNotificationExperimentKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    [args setValue:variation forKey:OPTLYNotificationVariationKey];
+    [args setValue:impressionEventParams forKey:OPTLYNotificationLogEventParams];
+    
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
     return variation;
 }

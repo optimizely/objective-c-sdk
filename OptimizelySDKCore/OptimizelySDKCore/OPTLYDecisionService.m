@@ -164,7 +164,7 @@
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
     if (![OPTLYDecisionService isEmptyString:attributes[OptimizelyBucketId]]) {
-        bucketingId = attributes[OptimizelyBucketId];
+        bucketingId = (NSString *)attributes[OptimizelyBucketId];
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
                                         bucketingId]
                              withLevel:OptimizelyLogLevelDebug];

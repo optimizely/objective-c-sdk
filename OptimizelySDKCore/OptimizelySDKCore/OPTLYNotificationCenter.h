@@ -36,9 +36,17 @@ typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSDictionary * _Nonnull eventTags,
                               NSDictionary<NSString *,NSObject *> * _Nonnull event);
 
-typedef void (^GenericListener)(NSArray * _Nonnull args);
+typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
 typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
+
+static NSString *const OPTLYNotificationExperimentKey = @"experiment";
+static NSString *const OPTLYNotificationVariationKey = @"variation";
+static NSString *const OPTLYNotificationUserIdKey = @"userId";
+static NSString *const OPTLYNotificationAttributesKey = @"attributes";
+static NSString *const OPTLYNotificationEventKey = @"eventKey";
+static NSString *const OPTLYNotificationEventTags = @"eventTags";
+static NSString *const OPTLYNotificationLogEventParams = @"logEventParams";
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -93,5 +101,5 @@ typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolde
  * @param type type of OPTLYNotificationType to fire.
  * @param args The arg list changes depending on the type of notification sent.
  */
-- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSArray *)args;
+- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSDictionary *)args;
 @end
