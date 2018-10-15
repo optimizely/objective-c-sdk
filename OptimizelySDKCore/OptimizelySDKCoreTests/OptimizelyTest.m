@@ -325,6 +325,49 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
 
+- (void)testOptimizelyPostsActivateExperimentNotificationAllAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *notificationExperimentKey = nil;
+    
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                         @"browser_name": @"chrome",
+                                                         @"buildno": @(10),
+                                                         @"buildversion": @(0.13)
+                                                         };
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        notificationExperimentKey = experiment.experimentId;
+        actualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:expectedAttributes];
+    XCTAssertEqualObjects(expectedAttributes, actualAttributes);
+    XCTAssertNotNil(_variation);
+    XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
+}
+
+- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *notificationExperimentKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        notificationExperimentKey = experiment.experimentId;
+        actualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:nil];
+    XCTAssertNil(actualAttributes);
+    XCTAssertNotNil(_variation);
+    XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
+}
+
+
 - (void)testOptimizelyTrackWithNoEvent {
     
     NSString *eventKey;
@@ -398,6 +441,52 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }];
     
     [self.optimizely track:eventKey userId:kUserId attributes:self.attributes];
+    XCTAssertEqual(eventKey, notificationEventKey);
+}
+
+- (void)testOptimizelyPostEventTrackNotificationWithAllAttributesEventTags {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    NSDictionary<NSString *, NSObject *> *expectedEventTags = @{
+                                                         OPTLYEventMetricNameRevenue: OPTLYEventMetricNameValue,
+                                                         @"event_int": @(11),
+                                                         @"event_version": @(1.3),
+                                                         @"event_bool": @(YES)
+                                                         };
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+        notificationEventKey = eventKey;
+    }];
+    
+    [self.optimizely track:eventKey userId:kUserId attributes:self.attributes eventTags:expectedEventTags];
+    XCTAssertEqualObjects(self.attributes, actualAttributes);
+    XCTAssertEqualObjects(expectedEventTags, actualEventTags);
+    XCTAssertEqual(eventKey, notificationEventKey);
+}
+
+- (void)testOptimizelyPostEventTrackNotificationWithNilAttributesEventTags {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+        notificationEventKey = eventKey;
+    }];
+    
+    [self.optimizely track:eventKey userId:kUserId attributes:nil eventTags:nil];
+    
+    XCTAssertNil(actualAttributes);
+    XCTAssertNil(actualEventTags);
     XCTAssertEqual(eventKey, notificationEventKey);
 }
 

@@ -21,6 +21,7 @@
 #import "OPTLYVariation.h"
 #import <objc/runtime.h>
 
+
 @interface OPTLYNotificationCenter()
 
 // Associative array of notification type to notification id and notification pair.
@@ -84,7 +85,7 @@
     }
 }
 
-- (void)sendNotifications:(OPTLYNotificationType)type args:(NSArray *)args {
+- (void)sendNotifications:(OPTLYNotificationType)type args:(NSDictionary *)args {
     OPTLYNotificationHolder *notification = _notifications[@(type)];
     for (GenericListener listener in notification.allValues) {
         @try {
@@ -127,62 +128,67 @@
     return _notificationId++;
 }
 
-- (void)notifyActivateListener:(ActivateListener)listener args:(NSArray *)args {
+- (void)notifyActivateListener:(ActivateListener)listener args:(NSDictionary *)args {
     
-    if(args.count < 5) {
+    if(args.allKeys.count < 3) {
         NSString *logMessage = [NSString stringWithFormat:@"Not enough arguments to call %@ for notification callback.", listener];
         [_config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         return; // Not enough arguments in the array
     }
     
-    OPTLYExperiment *experiment = (OPTLYExperiment *)args[0];
+    OPTLYExperiment *experiment = (OPTLYExperiment *)[args objectForKey:OPTLYNotificationExperimentKey];
     assert(experiment);
     assert([experiment isKindOfClass:[OPTLYExperiment class]]);
     
-    NSString *userId = (NSString *)args[1];
+    NSString *userId = (NSString *)[args objectForKey:OPTLYNotificationUserIdKey];
     assert(userId);
     assert([userId isKindOfClass:[NSString class]]);
     
-    NSDictionary *attributes = (NSDictionary *)args[2];
-    assert(attributes);
-    assert([attributes isKindOfClass:[NSDictionary class]]);
+    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
     
-    OPTLYVariation *variation = (OPTLYVariation *)args[3];
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
+        assert([attributes isKindOfClass:[NSDictionary class]]);
+    }
+    
+    OPTLYVariation *variation = (OPTLYVariation *)[args objectForKey:OPTLYNotificationVariationKey];
     assert(variation);
     assert([variation isKindOfClass:[OPTLYVariation class]]);
     
-    NSDictionary *logEvent = (NSDictionary *)args[4];
+    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParams];
     assert(logEvent);
     assert([logEvent isKindOfClass:[NSDictionary class]]);
     
     listener(experiment, userId, attributes, variation, logEvent);
 }
 
-- (void)notifyTrackListener:(TrackListener)listener args:(NSArray *)args {
+- (void)notifyTrackListener:(TrackListener)listener args:(NSDictionary *)args {
     
-    if(args.count < 5) {
+    if(args.allKeys.count < 3) {
         NSString *logMessage = [NSString stringWithFormat:@"Not enough arguments to call %@ for notification callback.", listener];
         [_config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
         return; // Not enough arguments in the array
     }
     
-    NSString *eventKey = (NSString *)args[0];
+    NSString *eventKey = (NSString *)[args objectForKey:OPTLYNotificationEventKey];
     assert(eventKey);
     assert([eventKey isKindOfClass:[NSString class]]);
     
-    NSString *userId = (NSString *)args[1];
+    NSString *userId = (NSString *)[args objectForKey:OPTLYNotificationUserIdKey];
     assert(userId);
     assert([userId isKindOfClass:[NSString class]]);
     
-    NSDictionary *attributes = (NSDictionary *)args[2];
-    assert(attributes);
-    assert([attributes isKindOfClass:[NSDictionary class]]);
+    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
+        assert([attributes isKindOfClass:[NSDictionary class]]);
+    }
     
-    NSDictionary *eventTags = (NSDictionary *)args[3];
-    assert(eventTags);
-    assert([eventTags isKindOfClass:[NSDictionary class]]);
+    NSDictionary *eventTags = (NSDictionary *)[args objectForKey:OPTLYNotificationEventTags];
     
-    NSDictionary *logEvent = (NSDictionary *)args[4];
+    if (eventTags != nil && ![eventTags isEqual:[NSNull null]]) {
+        assert([eventTags isKindOfClass:[NSDictionary class]]);
+    }
+    
+    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParams];
     assert(logEvent);
     assert([logEvent isKindOfClass:[NSDictionary class]]);
     
