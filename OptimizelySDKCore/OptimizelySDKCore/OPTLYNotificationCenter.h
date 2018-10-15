@@ -36,7 +36,7 @@ typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSDictionary * _Nullable eventTags,
                               NSDictionary<NSString *,NSObject *> * _Nonnull event);
 
-typedef void (^GenericListener)(NSArray * _Nonnull args);
+typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
 typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
 
@@ -101,5 +101,5 @@ static NSString *const OPTLYNotificationLogEventParams = @"logEventParams";
  * @param type type of OPTLYNotificationType to fire.
  * @param args The arg list changes depending on the type of notification sent.
  */
-- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSArray *)args;
+- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSDictionary *)args;
 @end
