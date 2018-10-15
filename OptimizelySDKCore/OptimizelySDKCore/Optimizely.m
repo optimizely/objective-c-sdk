@@ -882,7 +882,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
  */
 - (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
                                    userId:(NSString *)userId
-                               attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                               attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSArray *experimentIds = event.experimentIds;
     

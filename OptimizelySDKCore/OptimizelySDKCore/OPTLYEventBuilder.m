@@ -260,7 +260,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 + (BOOL)isValidAttributeValue:(NSObject *)value {
     // check value is NSObject
-    if (!value) {
+    if (!value || [value isEqual:[NSNull null]]) {
         return false;
     }
     // check value is NSString
@@ -269,7 +269,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     }
     NSNumber *number = (NSNumber *)value;
     // check value is NSNumber
-    if (number) {
+    if (number && [number isKindOfClass:[NSNumber class]]) {
         const char *objCType = [number objCType];
         // check NSNumber is of type int, double, bool
         return (strcmp(objCType, @encode(short)) == 0)
