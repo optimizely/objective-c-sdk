@@ -42,10 +42,12 @@ static NSString * const kLayerId = @"1234";
 static NSInteger kEventRevenue = 88;
 static double kEventValue = 123.456;
 static NSString * const kTotalRevenueId = @"6316734272";
-static NSString * const kAttributeId = @"6359881003";
 static NSString * const kAttributeKeyBrowserType = @"browser_type";
 static NSString * const kAttributeValueFirefox = @"firefox";
 static NSString * const kAttributeValueChrome = @"chrome";
+static NSString * const kAttributeKeyBrowserVersion = @"browser_version";
+static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number";
+static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 // events with experiment, but no audiences
 static NSString * const kEventWithoutAudienceName = @"testEvent";
@@ -106,6 +108,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
 @property (nonatomic, strong) NSDate *begTimestamp;
 @property (nonatomic, strong) NSMutableDictionary *attributes;
+@property (nonatomic, strong) NSMutableDictionary *attributeIds;
 @property (nonatomic, strong) NSMutableDictionary *reservedAttributes;
 @end
 
@@ -122,8 +125,17 @@ typedef enum : NSUInteger {
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:datafile];
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
-    self.attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : kAttributeValueFirefox}];
-    self.reservedAttributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyUserAgent : @YES}];
+    self.attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : kAttributeValueFirefox,
+                                                                      kAttributeKeyBrowserVersion : @(68.1),
+                                                                      kAttributeKeyBrowserBuildNumber : @(106),
+                                                                      kAttributeKeyBrowserIsDefault : @YES
+                                                                      }];
+    self.attributeIds = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : @"6359881003",
+                                                                        kAttributeKeyBrowserVersion : @"6359881004",
+                                                                        kAttributeKeyBrowserBuildNumber : @"6359881005",
+                                                                        kAttributeKeyBrowserIsDefault : @"6359881006"
+                                                                        }];
+    self.reservedAttributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBotFiltering : @YES}];
     eventWithoutAudience = [self.config getEventForKey:kEventWithoutAudienceName];
     eventWithAudience = [self.config getEventForKey:kEventWithAudienceName];
     experimentWithAudience = [self.config getExperimentForKey:kExperimentWithAudienceKey];
@@ -681,7 +693,7 @@ typedef enum : NSUInteger {
 #pragma mark - Test Invalid Attribute
 
 - (void)testCreateConversionEventWithEmptyAttributeValue {
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{OptimizelyBucketId : @""}];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : @""}];
     NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithoutAudience
@@ -780,7 +792,7 @@ typedef enum : NSUInteger {
                                                                                      variation:bucketedVariation
                                                                                     attributes:self.attributes];
     
-    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
+    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyBotFiltering];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
@@ -831,7 +843,7 @@ typedef enum : NSUInteger {
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
-    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyUserAgent];
+    [self.reservedAttributes setObject:@(NO) forKey:OptimizelyBotFiltering];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ConversionTicket
             forParams:params
@@ -919,6 +931,26 @@ typedef enum : NSUInteger {
     
 #pragma GCC diagnostic pop // "-Wnonnull"
     XCTAssert([impressionEventTicketParams count] == 0, @"parameters should not be created with no config.");
+}
+
+- (void)testBuildImpressionEventTicketWithAllTypeAttributes {
+    OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:kExperimentWithAudienceKey
+                                                                        userId:kUserId
+                                                                    attributes:self.attributes
+                                                                      bucketer:self.bucketer];
+    
+    NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventForUser:kUserId
+                                                                                experiment:experimentWithAudience
+                                                                                  variation:bucketedVariation
+                                                                                   attributes:self.attributes];
+    [self.attributes addEntriesFromDictionary:self.reservedAttributes];
+    [self checkTicket:ImpressionTicket
+            forParams:impressionEventTicketParams
+               config:self.config
+       experimentKeys:@[kExperimentWithAudienceKey]
+          variationId:bucketedVariation.variationId
+           attributes:self.attributes
+             eventKey:nil eventTags:nil tags:nil bucketer:nil userId:kUserId];    
 }
 
 #pragma mark - Helper Methods
@@ -1179,36 +1211,26 @@ typedef enum : NSUInteger {
 }
 
 - (void)checkUserFeatures:(NSArray *)userFeatures
-           withAttributes:(NSDictionary *)attributes
-{
-    NSMutableDictionary *filteredAttributes = [[NSMutableDictionary alloc] initWithDictionary:attributes];
-    
-    for (NSString *attributeKey in [attributes allKeys]) {
-        id value = attributes[attributeKey];
-        NSString *attributeValue = [NSString stringWithFormat:@"%@", value];
-        if ([attributeValue length] ==0) {
-            [filteredAttributes removeObjectForKey:attributeKey];
-        }
-    }
+           withAttributes:(NSDictionary *)attributes {
     
     NSUInteger numberOfFeatures = [userFeatures count];
-    NSUInteger numberOfAttributes = [filteredAttributes count];
+    NSUInteger numberOfAttributes = [attributes count];
     
     XCTAssert(numberOfFeatures == numberOfAttributes, @"Incorrect number of user features.");
     
     if (numberOfFeatures == numberOfAttributes) {
-//        NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesName ascending:YES];
-//        NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
-//
-//        NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-//        NSArray *sortedAttributeKeys = [[filteredAttributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
+        NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesKey ascending:YES];
+        NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
+
+        NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         
         for (NSUInteger i = 0; i < numberOfAttributes; i++)
         {
-            NSDictionary *params = userFeatures[i];
+            NSDictionary *params = sortedUserFeaturesByName[i];
             
-            NSString *anAttributeKey = [filteredAttributes allKeys][i];
-            id anAttributeValue = [filteredAttributes objectForKey:anAttributeKey];
+            NSString *anAttributeKey = sortedAttributeKeys[i];
+            id anAttributeValue = [attributes objectForKey:anAttributeKey];
             
             NSString *featureName = params[OPTLYEventParameterKeysFeaturesKey];
             NSString *featureID = params[OPTLYEventParameterKeysFeaturesId];
@@ -1219,7 +1241,7 @@ typedef enum : NSUInteger {
                 // check name
                 XCTAssert([featureName isEqualToString:anAttributeKey ], @"Incorrect feature name.");
                 // check id
-                XCTAssert([featureID isEqualToString:kAttributeId], @"Incorrect feature id: %@.", featureID);
+                XCTAssert([featureID isEqualToString:self.attributeIds[featureName]], @"Incorrect feature id: %@.", featureID);
             }
             
             // check type

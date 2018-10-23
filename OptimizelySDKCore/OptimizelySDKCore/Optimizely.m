@@ -102,14 +102,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     return [self activate:experimentKey userId:userId attributes:attributes callback:nil];
 }
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                     callback:(void (^)(NSError *))callback {
     
     __weak void (^_callback)(NSError *) = callback ? : ^(NSError *error) {};
@@ -180,7 +180,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (OPTLYVariation *)variation:(NSString *)experimentKey
                        userId:(NSString *)userId
-                   attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:experimentKey
                                                                         userId:userId
@@ -206,7 +206,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 #pragma mark - Feature Flag Methods
 
-- (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+- (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if ([Optimizely isEmptyString:userId]) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid withLevel:OptimizelyLogLevelError];
         return false;
@@ -251,7 +251,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if ([Optimizely isEmptyString:featureKey]) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid withLevel:OptimizelyLogLevelError];
         return nil;
@@ -307,7 +307,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeBoolean
                                                         featureKey:featureKey
@@ -324,7 +324,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeDouble
                                                         featureKey:featureKey
@@ -342,7 +342,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeInteger
                                                         featureKey:featureKey
@@ -359,7 +359,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSString *)getFeatureVariableString:(nullable NSString *)featureKey
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes {
+                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     return [self getFeatureVariableValueForType:FeatureVariableTypeString
                                      featureKey:featureKey
                                     variableKey:variableKey
@@ -368,7 +368,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
     
 -(NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
-                                attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSMutableArray<NSString *> *enabledFeatures = [NSMutableArray new];
     for (OPTLYFeatureFlag *feature in self.config.featureFlags) {
@@ -388,7 +388,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSString *> * )attributes {
+   attributes:(NSDictionary<NSString *, NSObject *> * )attributes {
     [self track:eventKey userId:userId attributes:attributes eventTags:nil];
 }
 
@@ -400,7 +400,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *,NSString *> *)attributes
+   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
     eventTags:(NSDictionary<NSString *,id> *)eventTags {
     
     if ([Optimizely isEmptyString:eventKey]) {
@@ -838,7 +838,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                                   callback:(void (^)(NSError *))callback {
     
     // send impression event
@@ -882,7 +882,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
  */
 - (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
                                    userId:(NSString *)userId
-                               attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                               attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSArray *experimentIds = event.experimentIds;
     

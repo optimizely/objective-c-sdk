@@ -115,7 +115,7 @@
 
 @implementation OPTLYAndCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
         // if any of our sub conditions are false
         if (![condition evaluateConditionsWithAttributes:attributes]) {
@@ -131,7 +131,7 @@
 
 @implementation OPTLYOrCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
         // if any of our sub conditions are true
         if ([condition evaluateConditionsWithAttributes:attributes]) {
@@ -147,7 +147,7 @@
 
 @implementation OPTLYNotCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     // return the negative of the subcondition
     return ![self.subCondition evaluateConditionsWithAttributes:attributes];
 }

@@ -46,7 +46,7 @@
     }
 }
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     for (NSObject<OPTLYCondition> *condition in self.conditions) {
         if ([condition evaluateConditionsWithAttributes:attributes]) {
             // if user satisfies any conditions, return true.

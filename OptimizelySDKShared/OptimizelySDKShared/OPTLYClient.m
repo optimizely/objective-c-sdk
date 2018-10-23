@@ -65,7 +65,7 @@
 
 - (nullable OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -88,7 +88,7 @@
 
 - (nullable OPTLYVariation *)variation:(NSString *)experimentKey
                        userId:(NSString *)userId
-                   attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -135,7 +135,7 @@
 
 - (BOOL)isFeatureEnabled:(nullable NSString *)featureKey
                   userId:(nullable NSString *)userId
-              attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+              attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -149,7 +149,7 @@
 -(NSNumber *)getFeatureVariableBoolean:(NSString *)featureKey
                      variableKey:(NSString *)variableKey
                           userId:(NSString *)userId
-                      attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -166,7 +166,7 @@
 - (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -184,7 +184,7 @@
 - (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
-                      attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+                      attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -199,7 +199,7 @@
 }
     
 - (NSArray<NSString *> *)getEnabledFeatures:(nullable NSString *)userId
-               attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+               attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -215,7 +215,7 @@
 - (NSString * _Nullable)getFeatureVariableString:(nullable NSString *)featureKey
                                      variableKey:(nullable NSString *)variableKey
                                           userId:(nullable NSString *)userId
-                                      attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes {
+                                      attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
                       withLevel:OptimizelyLogLevelError];
@@ -236,7 +236,7 @@
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSString *> * )attributes {
+   attributes:(NSDictionary<NSString *, NSObject *> * )attributes {
     [self track:eventKey userId:userId attributes:attributes eventTags:nil];
 }
 
@@ -248,7 +248,7 @@
 
 - (void)track:(NSString *)eventKey
       userId:(NSString *)userId
-  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
    eventTags:(NSDictionary<NSString *,id> *)eventTags {
     if (self.optimizely == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesClientDummyOptimizelyError
