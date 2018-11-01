@@ -67,9 +67,19 @@ extern NSString * const OPTLYDatafileKeysVariationFeatureEnabled;
 extern NSString * const OPTLYDatafileKeysConditionName;
 extern NSString * const OPTLYDatafileKeysConditionType;
 extern NSString * const OPTLYDatafileKeysConditionValue;
+extern NSString * const OPTLYDatafileKeysConditionMatch;
 extern NSString * const OPTLYDatafileKeysAndCondition;
 extern NSString * const OPTLYDatafileKeysNotCondition;
 extern NSString * const OPTLYDatafileKeysOrCondition;
+// Match Types
+extern NSString * const OPTLYDatafileKeysMatchTypeExact;
+extern NSString * const OPTLYDatafileKeysMatchTypeExists;
+extern NSString * const OPTLYDatafileKeysMatchTypeSubstring;
+extern NSString * const OPTLYDatafileKeysMatchTypeGreaterThan;
+extern NSString * const OPTLYDatafileKeysMatchTypeLessThan;
+extern NSString * const OPTLYDatafileKeysMatchTypeRegex;
+// Custom Attribute Condition Types
+extern NSString * const OPTLYDatafileKeysCustomAttributeConditionType;
 // Live Variables (DEPRECATED)
 extern NSString * const OPTLYDatafileKeysVariableId;
 extern NSString * const OPTLYDatafileKeysVariableKey;

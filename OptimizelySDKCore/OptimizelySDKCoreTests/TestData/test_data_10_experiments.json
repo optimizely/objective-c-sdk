@@ -407,47 +407,47 @@
   "version": "3",
   "audiences": [
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"safari\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"safari\"}]]]",
       "id": "6352892614",
       "name": "Safari users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"android\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"android\"}]]]",
       "id": "6355234780",
       "name": "Android users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"desktop\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"desktop\"}]]]",
       "id": "6360574256",
       "name": "Desktop users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"opera\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"opera\"}]]]",
       "id": "6365864533",
       "name": "Opera users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"tablet\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"tablet\"}]]]",
       "id": "6369831151",
       "name": "Tablet users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"firefox\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"firefox\"}]]]",
       "id": "6369992312",
       "name": "Firefox users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"chrome\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"chrome\"}]]]",
       "id": "6373141157",
       "name": "Chrome users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"ie\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"ie\"}]]]",
       "id": "6378191386",
       "name": "IE users"
     },
     {
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_build_number\", \"type\": \"custom_dimension\", \"value\": 106}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_build_number\", \"type\": \"custom_attribute\", \"value\": 106}]]]",
       "id": "6378191387",
       "name": "Custom users"
     }

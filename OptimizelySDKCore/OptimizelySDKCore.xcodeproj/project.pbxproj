@@ -225,6 +225,8 @@
 		90855D0120ED254600A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0D20ED2E0100A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
 		90855D0E20ED2E0300A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
+		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -629,6 +631,7 @@
 		A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -1240,6 +1243,7 @@
 				EA2FAB861DC6FDFA00B1D81B /* OptimizelyTest.m */,
 				3EEC2B0120CB40ED00D096E4 /* OptimizelyV3Test.m */,
 				EA2FAB871DC6FDFA00B1D81B /* OPTLYAudienceTest.m */,
+				C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */,
 				EA2FAB881DC6FDFA00B1D81B /* OPTLYBucketerTest.m */,
 				EA2FAB891DC6FDFA00B1D81B /* OPTLYBuilderTest.m */,
 				EA2FAB8A1DC6FDFA00B1D81B /* OPTLYConditionTest.m */,
@@ -1970,6 +1974,7 @@
 				EA2FAB9C1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
 				EA2FABA21DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
 				59B9E1D120E28DBC002F732E /* OptimizelySwiftTest.swift in Sources */,
+				C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */,
 				EA2FABC31DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */,
@@ -2060,6 +2065,7 @@
 				EA2FAB9D1DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m in Sources */,
 				3E8E517E202C844600B08F83 /* (null) in Sources */,
 				EA2FABA31DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
+				C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */,
 				3EEC2B0320CB40ED00D096E4 /* OptimizelyV3Test.m in Sources */,
 				EA2FABC41DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				59B9E1D220E28DBE002F732E /* OptimizelySwiftTest.swift in Sources */,

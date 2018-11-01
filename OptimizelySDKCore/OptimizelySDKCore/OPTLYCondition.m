@@ -41,12 +41,18 @@
         return nil;
     }
     
-    if (jsonArray.count > 1 && [OPTLYBaseCondition isBaseConditionJSON:jsonArray[1]]) { //base case condition
+    NSMutableArray *mutableJSONArray = [jsonArray mutableCopy];
+    if(mutableJSONArray.count < 2){
+        // Should return 'OR' operator in case there is none
+        [mutableJSONArray insertObject:OPTLYDatafileKeysOrCondition atIndex:0];
+    }
+    
+    if ([OPTLYBaseCondition isBaseConditionJSON:mutableJSONArray[1]]) { //base case condition
         
         // generate all base conditions
-        NSMutableArray<OPTLYCondition> *conditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
-        for (int i = 1; i < jsonArray.count; i++) {
-            NSDictionary *info = jsonArray[i];
+        NSMutableArray<OPTLYCondition> *conditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(mutableJSONArray.count - 1)];
+        for (int i = 1; i < mutableJSONArray.count; i++) {
+            NSDictionary *info = mutableJSONArray[i];
             NSError *err = nil;
             OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:info
                                                                                      error:&err];
@@ -60,15 +66,15 @@
         }
         
         // return an (And/Or/Not) Condition handling the base conditions
-        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
+        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:mutableJSONArray[0]
                                                                               withConditions:conditions];
         return (NSArray<OPTLYCondition> *)@[condition];
     }
     else { // further condition arrays to deserialize
-        NSMutableArray<OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
-        for (int i = 1; i < jsonArray.count; i++) {
+        NSMutableArray<OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(mutableJSONArray.count - 1)];
+        for (int i = 1; i < mutableJSONArray.count; i++) {
             NSError *err = nil;
-            NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSONArray:jsonArray[i] error:&err];
+            NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSONArray:mutableJSONArray[i] error:&err];
             
             if (err) {
                 *error = err;
@@ -79,7 +85,7 @@
                 [subConditions addObjectsFromArray:deserializedJsonObject];
             }
         }
-        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
+        NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:mutableJSONArray[0]
                                                                               withConditions:subConditions];
         return (NSArray<OPTLYCondition> *)@[condition];
     }
@@ -115,41 +121,76 @@
 
 @implementation OPTLYAndCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+    // According to the matrix:
+    // false and true is false
+    // false and null is false
+    // true and null is null.
+    // true and false is false
+    // true and true is true
+    // null and null is null
+    BOOL foundNull = false;
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
-        // if any of our sub conditions are false
-        if (![condition evaluateConditionsWithAttributes:attributes]) {
+        // if any of our sub conditions are false or null
+        NSNumber * result = [condition evaluateConditionsWithAttributes:attributes];
+        if(result == NULL){
+            foundNull = true;
+        }else if ([result boolValue] == false){
             // short circuit and return false
-            return false;
+            return [NSNumber numberWithBool:false];
         }
     }
+    //if found null condition, return null
+    if(foundNull){
+        return NULL;
+    }
+    
     // if all sub conditions are true, return true.
-    return true;
+    return [NSNumber numberWithBool:true];
 }
 
 @end
 
 @implementation OPTLYOrCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+    // According to the matrix:
+    // true returns true
+    // false or null is null
+    // false or false is false
+    // null or null is null
+    BOOL foundNull = false;
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
-        // if any of our sub conditions are true
-        if ([condition evaluateConditionsWithAttributes:attributes]) {
+        NSNumber * result = [condition evaluateConditionsWithAttributes:attributes];
+        if(result == NULL){
+            foundNull = true;
+        }
+        else if ([result boolValue] == true) {
+            // if any of our sub conditions are true
             // short circuit and return true
-            return true;
+            return [NSNumber numberWithBool:true];
         }
     }
+    //if found null condition, return null
+    if(foundNull){
+        return NULL;
+    }
+    
     // if all of the sub conditions are false, return false
-    return false;
+    return [NSNumber numberWithBool:false];
 }
 
 @end
 
 @implementation OPTLYNotCondition
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     // return the negative of the subcondition
-    return ![self.subCondition evaluateConditionsWithAttributes:attributes];
+    NSNumber * result = [self.subCondition evaluateConditionsWithAttributes:attributes];
+    if(result == NULL){
+        return NULL;
+    }
+    return [NSNumber numberWithBool:![result boolValue]];
 }
 
 @end

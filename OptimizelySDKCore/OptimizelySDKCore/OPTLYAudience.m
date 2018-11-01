@@ -46,15 +46,16 @@
     }
 }
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     for (NSObject<OPTLYCondition> *condition in self.conditions) {
-        if ([condition evaluateConditionsWithAttributes:attributes]) {
+        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes];
+        if (result != NULL && [result boolValue] == true) {
             // if user satisfies any conditions, return true.
-            return true;
+            return [NSNumber numberWithBool:true];
         }
     }
     // if user doesn't satisfy any conditions, return false.
-    return false;
+    return [NSNumber numberWithBool:false];
 }
 
 @end
