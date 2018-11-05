@@ -100,6 +100,18 @@ static NSString * const kInfinityIntConditionStr = @"[\"and\", [\"or\", [\"or\",
     XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
 }
 
+- (void)testEvaluateTrueWhenNoUserAttributesAndConditionEvaluatesTrue {
+    //should return true if no attributes are passed and the audience conditions evaluate to true in the absence of attributes
+    NSString *conditions = @"[\"not\", [\"or\", [\"or\", {\"name\": \"input_value\", \"type\": \"custom_attribute\", \"match\": \"exists\"}]]]";
+    OPTLYAudience *audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
+                                                                          @"name" : kAudienceName,
+                                                                          @"conditions" : conditions}
+                                                                  error:nil];
+    XCTAssertNotNil(audience);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:NULL] boolValue]);
+}
+
+
 ///MARK:- Invalid input Tests
 
 - (void)testEvaluateReturnsNullWithInvalidConditionType {

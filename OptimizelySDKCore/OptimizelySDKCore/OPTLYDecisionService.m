@@ -485,9 +485,9 @@
         return true;
     }
     
-    // if there are audiences, but no user attributes, the user is not in the experiment.
-    if ([attributes count] == 0) {
-        return false;
+    // if there are audiences, but no user attributes, Defaults to empty attributes
+    if(attributes == nil){
+        attributes = @{};
     }
     
     for (NSString *audienceId in audiences) {
