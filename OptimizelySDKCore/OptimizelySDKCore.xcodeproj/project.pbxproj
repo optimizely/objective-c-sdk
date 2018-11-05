@@ -227,6 +227,8 @@
 		90855D0E20ED2E0300A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
 		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
 		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
+		C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -632,6 +634,7 @@
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
+		C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -1168,6 +1171,7 @@
 		EA2FAB941DC6FDFA00B1D81B /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */,
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
 				5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */,
@@ -1673,6 +1677,7 @@
 				EA2FABD81DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
+				C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */,
 				5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
@@ -1698,6 +1703,7 @@
 				EA2FABCD1DC6FDFA00B1D81B /* optimizely_6372300739.json in Resources */,
 				EA2FABD91DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
+				C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */,
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
