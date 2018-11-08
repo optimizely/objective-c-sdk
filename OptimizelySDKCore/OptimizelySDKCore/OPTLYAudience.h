@@ -32,7 +32,7 @@
 /// The audience name
 @property (nonatomic, strong) NSString *audienceName;
 /// Audience evaluator conditionals
-@property (nonatomic, strong) NSArray<OPTLYCondition> *conditions;
+@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *conditions;
 
 /// Override OPTLYJSONModel set conditions
 - (void)setConditionsWithNSString:(NSString *)string;

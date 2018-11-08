@@ -21,7 +21,7 @@
     #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
-@class OPTLYVariation;
+@class OPTLYVariation, OPTLYTrafficAllocation, OPTLYVariation;
 @protocol OPTLYTrafficAllocation, OPTLYVariation;
 
 /**
@@ -46,11 +46,11 @@ NS_ASSUME_NONNULL_END
 /// The group ID the experiment belongs to.
 @property (nonatomic, strong, nullable) NSString<Ignore> *groupId;
 /// The experiment's traffic allocations.
-@property (nonatomic, strong, nonnull) NSArray<OPTLYTrafficAllocation> *trafficAllocations;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYTrafficAllocation *><OPTLYTrafficAllocation> *trafficAllocations;
 /// An array of audience Ids for the experiment
 @property (nonatomic, strong, nonnull) NSArray<NSString *> *audienceIds;
 /// An array of variation Ids for the experiment
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariation> *variations;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYVariation *><OPTLYVariation> *variations;
 /// A dictionary indicating the forced and control variation
 @property (nonatomic, strong, nonnull) NSDictionary<NSString *, NSString *> *forcedVariations;
 /// Personalization layer id

@@ -45,9 +45,10 @@
 @end
 
 @protocol ConcurrentModel;
+@class ConcurrentModel;
 
 @interface ConcurrentReposModel : OPTLYJSONModel
 
-@property (strong, nonatomic) NSMutableArray<ConcurrentModel>* repositories;
+@property (strong, nonatomic) NSMutableArray<ConcurrentModel *><ConcurrentModel>* repositories;
 
 @end

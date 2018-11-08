@@ -23,9 +23,10 @@
 @import OptimizelySDKCore;
 
 @protocol DrugModel;
+@class DrugModel;
 
 @interface ExtremeNestingModel : OPTLYJSONModel
 
-@property NSArray<DrugModel> *drugs;
+@property NSArray<DrugModel *><DrugModel> *drugs;
 
 @end

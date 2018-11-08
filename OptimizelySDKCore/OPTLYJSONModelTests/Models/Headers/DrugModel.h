@@ -23,10 +23,11 @@
 @import OptimizelySDKCore;
 
 @protocol InteractionModel;
+@class InteractionModel;
 
 @interface DrugModel : OPTLYJSONModel
 
 @property NSString *brand_name;
-@property NSArray<InteractionModel> *interaction_list;
+@property NSArray<InteractionModel *><InteractionModel> *interaction_list;
 
 @end

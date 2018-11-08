@@ -78,7 +78,7 @@
 
 - (void)testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
@@ -88,7 +88,7 @@
 
 - (void)testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysFalse]
                                                              ];
@@ -98,7 +98,7 @@
 
 - (void)testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysTrue]
                                                               ];
@@ -108,7 +108,7 @@
 
 - (void)testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysFalse]
                                                               ];

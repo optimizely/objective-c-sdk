@@ -37,7 +37,7 @@
 /// an NSArray of the IDs of the experiments the feature flag is attached to.
 @property (nonatomic, strong, nonnull) NSArray<NSString *> *experimentIds;
 /// an NSArray of the feature variables that are part of this feature
-@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable> *variables;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable *><OPTLYFeatureVariable> *variables;
 /// an NSString to hold the group Id the feature belongs to.
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *groupId;
 
