@@ -26,13 +26,13 @@ typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
 
 typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
                                  NSString * _Nonnull userId,
-                                 NSDictionary<NSString *, NSObject *> * _Nonnull attributes,
+                                 NSDictionary<NSString *,NSString *> * _Nonnull attributes,
                                  OPTLYVariation * _Nonnull variation,
                                  NSDictionary<NSString *,NSObject *> * _Nonnull event);
 
 typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSString * _Nonnull userId,
-                              NSDictionary<NSString *, NSObject *> * _Nonnull attributes,
+                              NSDictionary<NSString *,NSString *> * _Nonnull attributes,
                               NSDictionary * _Nonnull eventTags,
                               NSDictionary<NSString *,NSObject *> * _Nonnull event);
 

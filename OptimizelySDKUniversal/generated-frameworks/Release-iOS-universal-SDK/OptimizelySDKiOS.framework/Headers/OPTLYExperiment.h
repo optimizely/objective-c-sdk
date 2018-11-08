@@ -29,35 +29,6 @@
  */
 
 @protocol OPTLYExperiment
-
-/// The experiment's ID.
-@property (nonatomic, strong, nonnull) NSString *experimentId;
-/// The experiment's Key.
-@property (nonatomic, strong, nonnull) NSString *experimentKey;
-/// The experiment's status.
-@property (nonatomic, strong, nonnull) NSString *status;
-/// The group ID the experiment belongs to.
-@property (nonatomic, strong, nullable) NSString<Ignore> *groupId;
-/// The experiment's traffic allocations.
-@property (nonatomic, strong, nonnull) NSArray<OPTLYTrafficAllocation> *trafficAllocations;
-/// An array of audience Ids for the experiment
-@property (nonatomic, strong, nonnull) NSArray<NSString *> *audienceIds;
-/// An array of variation Ids for the experiment
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariation> *variations;
-/// A dictionary indicating the forced and control variation
-@property (nonatomic, strong, nonnull) NSDictionary<NSString *, NSString *> *forcedVariations;
-/// Personalization layer id
-@property (nonatomic, strong, nonnull) NSString *layerId;
-
-/// Gets the variation object for a given variation id
-- (nullable OPTLYVariation *)getVariationForVariationId:(nonnull NSString *)variationId;
-/// Gets the variation object for a given variation key
-- (nullable OPTLYVariation *)getVariationForVariationKey:(nonnull NSString *)variationKey;
-
-/// Determines if the experiment is running
-- (BOOL)isExperimentRunning;
-
-
 @end
 
 NS_ASSUME_NONNULL_BEGIN
