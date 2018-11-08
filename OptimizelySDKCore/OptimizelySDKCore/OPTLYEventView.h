@@ -24,6 +24,7 @@
 // Model object for a view.
 
 @protocol OPTLYEventFeature;
+@class OPTLYEventFeature;
 
 @protocol OPTLYEventView
 @end
@@ -35,6 +36,6 @@
 // The timestamp when the containing view was activated.
 @property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *activatedTimestamp;
 // Features attached to the view.
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature, OPTLYOptional> *viewFeatures;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature *><OPTLYEventFeature, OPTLYOptional> *viewFeatures;
 
 @end

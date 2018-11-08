@@ -30,7 +30,7 @@
 @interface NestedModel : OPTLYJSONModel
 
 @property (strong, nonatomic) ImageModel* singleImage;
-@property (strong, nonatomic) NSArray<ImageModel>* images;
+@property (strong, nonatomic) NSArray<ImageModel *><ImageModel>* images;
 @property (strong, nonatomic) NSDictionary<ImageModel>* imagesObject;
 
 @end

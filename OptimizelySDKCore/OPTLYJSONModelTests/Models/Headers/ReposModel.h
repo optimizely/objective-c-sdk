@@ -25,10 +25,11 @@
 @import OptimizelySDKCore;
 
 @protocol GitHubRepoModel;
+@class GitHubRepoModel;
 
 @interface ReposModel : OPTLYJSONModel
 
-@property (strong, nonatomic) NSMutableArray<GitHubRepoModel>* repositories;
+@property (strong, nonatomic) NSMutableArray<GitHubRepoModel *><GitHubRepoModel>* repositories;
 
 @end
 

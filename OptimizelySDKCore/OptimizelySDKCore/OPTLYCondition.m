@@ -21,13 +21,13 @@
 
 @implementation OPTLYCondition
 
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
     return [OPTLYCondition deserializeJSONArray:jsonArray error:nil];
 }
 
 // example jsonArray:
 //  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
                                             error:(NSError * __autoreleasing *)error {
     
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
@@ -44,7 +44,7 @@
     if (jsonArray.count > 1 && [OPTLYBaseCondition isBaseConditionJSON:jsonArray[1]]) { //base case condition
         
         // generate all base conditions
-        NSMutableArray<OPTLYCondition> *conditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
+        NSMutableArray<OPTLYCondition *><OPTLYCondition> *conditions = (NSMutableArray<OPTLYCondition *><OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
         for (int i = 1; i < jsonArray.count; i++) {
             NSDictionary *info = jsonArray[i];
             NSError *err = nil;
@@ -62,10 +62,10 @@
         // return an (And/Or/Not) Condition handling the base conditions
         NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
                                                                               withConditions:conditions];
-        return (NSArray<OPTLYCondition> *)@[condition];
+        return (NSArray<OPTLYCondition *><OPTLYCondition> *)@[condition];
     }
     else { // further condition arrays to deserialize
-        NSMutableArray<OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
+        NSMutableArray<OPTLYCondition *><OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition *><OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(jsonArray.count - 1)];
         for (int i = 1; i < jsonArray.count; i++) {
             NSError *err = nil;
             NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSONArray:jsonArray[i] error:&err];
@@ -81,11 +81,11 @@
         }
         NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:jsonArray[0]
                                                                               withConditions:subConditions];
-        return (NSArray<OPTLYCondition> *)@[condition];
+        return (NSArray<OPTLYCondition *><OPTLYCondition> *)@[condition];
     }
 }
 
-+ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(NSString *)conditionClass withConditions:(NSArray<OPTLYCondition> *)conditions {
++ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(NSString *)conditionClass withConditions:(NSArray<OPTLYCondition *><OPTLYCondition> *)conditions {
     if ([conditionClass isEqualToString:OPTLYDatafileKeysAndCondition]) {
         OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
         andCondition.subConditions = conditions;

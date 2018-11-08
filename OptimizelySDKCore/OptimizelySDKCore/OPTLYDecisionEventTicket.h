@@ -22,7 +22,7 @@
 
 // Model object representing a Decision Ticket sent when layer decision is made.
 
-@class OPTLYEventHeader, OPTLYEventDecision;
+@class OPTLYEventHeader, OPTLYEventDecision, OPTLYEventDecisionTicket, OPTLYEventFeature;
 @protocol OPTLYEventDecisionTicket, OPTLYEventFeature;
 
 @interface OPTLYDecisionEventTicket : OPTLYJSONModel
@@ -50,7 +50,7 @@
 // The layer affected by this decision
 @property (nonatomic, strong, nonnull) NSString *layerId;
 // Visitor-specific input to Client Decision Engine
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventDecisionTicket, OPTLYOptional> *decisionTicket;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventDecisionTicket *><OPTLYEventDecisionTicket, OPTLYOptional> *decisionTicket;
 // Output of the Client Decision Engine
 @property (nonatomic, strong, nonnull) OPTLYEventDecision *decision;
 // The ID of the user
@@ -58,7 +58,7 @@
 // The unique user ID of the user (if available)
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *visitorUUID;
 // Features attached to the user
-@property (nonatomic, strong, nonnull) NSArray<OPTLYEventFeature> *userFeatures;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYEventFeature *><OPTLYEventFeature> *userFeatures;
 // If true, then the experience in this decision was held back at the global level
 @property (nonatomic, assign) BOOL isGlobalHoldback;
 // If true, then anonymize IP.

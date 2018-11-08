@@ -22,6 +22,7 @@
 #endif
 
 @protocol OPTLYExperiment, OPTLYTrafficAllocation;
+@class OPTLYTrafficAllocation, OPTLYExperiment;
 /**
  * This class is a representation of an Optimizely Group.
  */
@@ -36,8 +37,8 @@
 /// The Group's policy.
 @property (nonatomic, strong) NSString *policy;
 /// The Group's traffic allocations.
-@property (nonatomic, strong) NSArray<OPTLYTrafficAllocation> *trafficAllocations;
+@property (nonatomic, strong) NSArray<OPTLYTrafficAllocation *><OPTLYTrafficAllocation> *trafficAllocations;
 /// The Group's experiments.
-@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
+@property (nonatomic, strong) NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments;
 
 @end

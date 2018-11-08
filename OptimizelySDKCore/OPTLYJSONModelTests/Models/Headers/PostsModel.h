@@ -25,9 +25,10 @@
 @import OptimizelySDKCore;
 
 @protocol PostModel;
+@class PostModel;
 
 @interface PostsModel : OPTLYJSONModel
 
-@property (strong, nonatomic) NSArray<PostModel>* posts;
+@property (strong, nonatomic) NSArray<PostModel *><PostModel>* posts;
 
 @end
