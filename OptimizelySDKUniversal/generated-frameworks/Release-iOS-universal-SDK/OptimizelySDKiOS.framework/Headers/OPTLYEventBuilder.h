@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_END
 - (nullable NSDictionary *)buildImpressionEventForUser:(nonnull NSString *)userId
                                             experiment:(nonnull OPTLYExperiment *)experiment
                                              variation:(nonnull OPTLYVariation *)variation
-                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
    
 /**
  * Create the parameters for a conversion event.
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_END
                                                  event:(nonnull OPTLYEvent *)event
                                              decisions:(nonnull NSArray<NSDictionary *> *)decisions
                                              eventTags:(nullable NSDictionary *)eventTags
-                                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault : NSObject<OPTLYEventBuilder>

@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_END
 /// Flag for Bot Filtering
 @property (nonatomic, strong, nonnull) NSNumber<OPTLYOptional> *botFiltering;
 /// List of Optimizely Experiment objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
+@property (nonatomic, strong, nonnull) NSArray<id<OPTLYExperiment>> *experiments;
 /// List of Optimizely Event Type objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYEvent> *events;
 /// List of audience ids
@@ -172,7 +172,7 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
                                                 userId:(nonnull NSString *)userId
-                                            attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
+                                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
 
 @end

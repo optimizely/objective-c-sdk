@@ -21,7 +21,7 @@
 /**
  * Evaluate the condition against the user attributes.
  */
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSString *> *)attributes;
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes;
 
 @end
 
