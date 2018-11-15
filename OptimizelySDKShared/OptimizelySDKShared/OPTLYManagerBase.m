@@ -69,7 +69,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 
 @implementation OPTLYManagerBase
 
-- (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments {
+- (void)cleanUserProfileService:(NSArray<OPTLYExperiment *><OPTLYExperiment> *)experiments {
     if (experiments == nil) return;
     
     SEL selector = NSSelectorFromString(@"removeInvalidExperimentsForAllUsers:");

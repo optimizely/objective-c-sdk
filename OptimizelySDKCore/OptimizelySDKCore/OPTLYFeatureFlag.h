@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -37,7 +37,7 @@
 /// an NSArray of the IDs of the experiments the feature flag is attached to.
 @property (nonatomic, strong, nonnull) NSArray<NSString *> *experimentIds;
 /// an NSArray of the feature variables that are part of this feature
-@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable> *variables;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureVariable *><OPTLYFeatureVariable> *variables;
 /// an NSString to hold the group Id the feature belongs to.
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *groupId;
 
