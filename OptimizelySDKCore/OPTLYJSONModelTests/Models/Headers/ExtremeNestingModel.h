@@ -4,7 +4,7 @@
 //
 /****************************************************************************
  * Modifications to JSONModel by Optimizely, Inc.                           *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -23,9 +23,10 @@
 @import OptimizelySDKCore;
 
 @protocol DrugModel;
+@class DrugModel;
 
 @interface ExtremeNestingModel : OPTLYJSONModel
 
-@property NSArray<DrugModel> *drugs;
+@property NSArray<DrugModel *><DrugModel> *drugs;
 
 @end
