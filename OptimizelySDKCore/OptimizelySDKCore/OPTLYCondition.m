@@ -34,9 +34,10 @@
     
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
     if (![jsonArray isKindOfClass:[NSArray class]]) {
-        if([jsonArray isKindOfClass:[NSDictionary class]] && [OPTLYBaseCondition isBaseConditionJSON:((NSData *)jsonArray)]){
+        if ([jsonArray isKindOfClass:[NSDictionary class]] && [OPTLYBaseCondition isBaseConditionJSON:((NSData *)jsonArray)]) {
             mutableJsonArray = [[NSMutableArray alloc] initWithArray:@[OPTLYDatafileKeysOrCondition,jsonArray]];
-        }else{
+        }
+        else {
             NSError *err = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
                                                code:OPTLYErrorTypesDatafileInvalid
                                            userInfo:@{NSLocalizedDescriptionKey : OPTLYErrorHandlerMessagesProjectConfigInvalidAudienceCondition}];
@@ -45,11 +46,12 @@
             }
             return nil;
         }
-    }else{
+    }
+    else {
         mutableJsonArray = [jsonArray mutableCopy];
     }
     
-    if(mutableJsonArray.count < 2){
+    if (mutableJsonArray.count < 2) {
         // Should return 'OR' operator in case there is none
         [mutableJsonArray insertObject:OPTLYDatafileKeysOrCondition atIndex:0];
     }
@@ -65,7 +67,8 @@
                                                                                      error:&err];
             if (error && err) {
                 *error = err;
-            } else {
+            }
+            else {
                 if (condition != nil) {
                     [conditions addObject:condition];
                 }
@@ -140,15 +143,16 @@
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
         // if any of our sub conditions are false or null
         NSNumber * result = [condition evaluateConditionsWithAttributes:attributes];
-        if(result == NULL){
+        if (result == NULL) {
             foundNull = true;
-        }else if ([result boolValue] == false){
+        }
+        else if ([result boolValue] == false) {
             // short circuit and return false
             return [NSNumber numberWithBool:false];
         }
     }
     //if found null condition, return null
-    if(foundNull){
+    if (foundNull) {
         return NULL;
     }
     
@@ -169,7 +173,7 @@
     BOOL foundNull = false;
     for (NSObject<OPTLYCondition> *condition in self.subConditions) {
         NSNumber * result = [condition evaluateConditionsWithAttributes:attributes];
-        if(result == NULL){
+        if (result == NULL) {
             foundNull = true;
         }
         else if ([result boolValue] == true) {
@@ -179,7 +183,7 @@
         }
     }
     //if found null condition, return null
-    if(foundNull){
+    if (foundNull) {
         return NULL;
     }
     
@@ -194,7 +198,7 @@
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     // return the negative of the subcondition
     NSNumber * result = [self.subCondition evaluateConditionsWithAttributes:attributes];
-    if(result == NULL){
+    if (result == NULL) {
         return NULL;
     }
     return [NSNumber numberWithBool:![result boolValue]];

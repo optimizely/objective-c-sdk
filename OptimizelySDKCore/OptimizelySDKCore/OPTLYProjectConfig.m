@@ -498,7 +498,7 @@ static NSArray *supportedDatafileVersions = nil;
         map[audienceId] = audience;
     }
     //override previously mapped audience objects with typed audience objects
-    if(self.typedAudiences){
+    if (self.typedAudiences) {
         for (OPTLYAudience *audience in self.typedAudiences) {
             NSString *audienceId = audience.audienceId;
             map[audienceId] = audience;

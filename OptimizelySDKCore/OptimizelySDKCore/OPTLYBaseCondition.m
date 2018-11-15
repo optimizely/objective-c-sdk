@@ -100,16 +100,16 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     NSNumber *success = NULL;
     
-    if([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]){
+    if ([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self isNumeric:self.value] && [self isNumeric:userAttribute]){
+    else if ([self isNumeric:self.value] && [self isNumeric:userAttribute]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self.value isKindOfClass:[NSNull class]] && [userAttribute isKindOfClass:[NSNull class]]){
+    else if ([self.value isKindOfClass:[NSNull class]] && [userAttribute isKindOfClass:[NSNull class]]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self isBool:self.value] && [self isBool:userAttribute]){
+    else if ([self isBool:self.value] && [self isBool:userAttribute]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     return success;
@@ -125,7 +125,7 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     BOOL userAndOurValueHaveStringClassTypes = ([self.value isKindOfClass: [NSString class]] && [userAttribute isKindOfClass: [NSString class]]);
     
-    if(userAndOurValueHaveStringClassTypes){
+    if (userAndOurValueHaveStringClassTypes) {
         BOOL containsSubstring = [((NSString *)userAttribute) containsString: (NSString *)self.value];
         return [NSNumber numberWithBool:containsSubstring];
     }
@@ -137,7 +137,7 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     BOOL userValueAndOurValueHaveNSNumberClassTypes = [self isNumeric:self.value] && [self isNumeric:userAttribute];
     
-    if(userValueAndOurValueHaveNSNumberClassTypes){
+    if (userValueAndOurValueHaveNSNumberClassTypes) {
         NSNumber *ourValue = (NSNumber *)self.value;
         NSNumber *userValue = (NSNumber *)userAttribute;
         return [NSNumber numberWithBool: ([userValue doubleValue] > [ourValue doubleValue])];
@@ -150,7 +150,7 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     BOOL userValueAndOurValueHaveNSNumberClassTypes = [self isNumeric:self.value] && [self isNumeric:userAttribute];
     
-    if(userValueAndOurValueHaveNSNumberClassTypes){
+    if (userValueAndOurValueHaveNSNumberClassTypes) {
         NSNumber *ourValue = (NSNumber *)self.value;
         NSNumber *userValue = (NSNumber *)userAttribute;
         return [NSNumber numberWithBool: ([userValue doubleValue] < [ourValue doubleValue])];
@@ -160,7 +160,7 @@
 
 -(BOOL)isNumeric:(NSObject *)object{
     //Check if given object is acceptable numeric type
-    if([self isBool:object]) {
+    if ([self isBool:object]) {
         return false;
     }
     else if ([object isKindOfClass:[NSNumber class]]) {
