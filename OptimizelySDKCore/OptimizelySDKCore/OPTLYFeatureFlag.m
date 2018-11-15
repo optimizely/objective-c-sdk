@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -19,6 +19,7 @@
 #import "OPTLYProjectConfig.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYFeatureVariable.h"
+#import "OPTLYNSObject+Validation.h"
 
 @interface OPTLYFeatureFlag()
 
@@ -40,7 +41,7 @@
 }
 
 - (BOOL)isValid:(OPTLYProjectConfig *)config {
-    if ([OPTLYFeatureFlag isEmptyArray:self.experimentIds]) {
+    if ([self.experimentIds getValidArray] == nil) {
         return true;
     }
     if (self.experimentIds.count == 1) {
@@ -78,12 +79,6 @@
         map[variable.key] = variable;
     }
     return [NSDictionary dictionaryWithDictionary:map];
-}
-
-+ (BOOL)isEmptyArray:(NSObject*)array {
-    return (!array
-            || ![array isKindOfClass:[NSArray class]]
-            || (((NSArray *)array).count == 0));
 }
 
 @end
