@@ -154,7 +154,7 @@ static NSString * const kAudienceConditionsWithOr = @"[\"or\",[\"or\", [\"or\", 
 
 - (void)testOrConditionReturnsTrueWhenAtLeastOneofItsChildrenReturnsTrue {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
@@ -163,7 +163,7 @@ static NSString * const kAudienceConditionsWithOr = @"[\"or\",[\"or\", [\"or\", 
 
 - (void)testOrConditionReturnsFalseWhenAllOfItsChildrenEvaluateFalse {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysFalse]
                                                              ];
@@ -251,7 +251,7 @@ static NSString * const kAudienceConditionsWithOr = @"[\"or\",[\"or\", [\"or\", 
 
 - (void)testAndConditionReturnsTrueWhenAllOfItsChildrenEvaluateTrue {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysTrue]
                                                               ];
@@ -260,7 +260,7 @@ static NSString * const kAudienceConditionsWithOr = @"[\"or\",[\"or\", [\"or\", 
 
 - (void)testAndConditionReturnsFalseWhenOneOfItsChildrenEvaluateFalse {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysFalse]
                                                               ];

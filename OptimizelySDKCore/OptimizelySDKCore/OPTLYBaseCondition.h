@@ -40,6 +40,7 @@
 /// Condition match type
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *match;
 
+
 +(BOOL)isBaseConditionJSON:(NSData *)jsonData;
 
 @end

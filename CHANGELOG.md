@@ -1,5 +1,17 @@
 # Optimizely Objective-C SDK Changelog
 
+## 2.1.3
+November 8, 2018
+
+This release fixes a possible issue with tvOS.  The issue is that if the app goes foreground and background the events get flushed.  However, there might be a removeEvent queued.  This remove event was failing because the queue was emptry.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Fix tvOS issue with the event queue
+* Fix Swift 4 accessing ProjectConfig properties such as experiments used to require a cast.  That is now fixed.
+
 ## 2.1.2
 September 28, 2018
 

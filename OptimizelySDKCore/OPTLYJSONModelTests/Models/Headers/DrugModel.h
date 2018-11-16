@@ -4,7 +4,7 @@
 //
 /****************************************************************************
  * Modifications to JSONModel by Optimizely, Inc.                           *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -23,10 +23,11 @@
 @import OptimizelySDKCore;
 
 @protocol InteractionModel;
+@class InteractionModel;
 
 @interface DrugModel : OPTLYJSONModel
 
 @property NSString *brand_name;
-@property NSArray<InteractionModel> *interaction_list;
+@property NSArray<InteractionModel *><InteractionModel> *interaction_list;
 
 @end
