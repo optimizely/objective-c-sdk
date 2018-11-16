@@ -21,13 +21,13 @@
 
 @implementation OPTLYCondition
 
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
     return [OPTLYCondition deserializeJSONArray:jsonArray error:nil];
 }
 
 // example jsonArray:
 //  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
                                             error:(NSError * __autoreleasing *)error {
     
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
@@ -69,7 +69,7 @@
         // return an (And/Or/Not) Condition handling the base conditions
         NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:mutableJSONArray[0]
                                                                               withConditions:conditions];
-        return (NSArray<OPTLYCondition> *)@[condition];
+        return (NSArray<OPTLYCondition *><OPTLYCondition> *)@[condition];
     }
     else { // further condition arrays to deserialize
         NSMutableArray<OPTLYCondition> *subConditions = (NSMutableArray<OPTLYCondition> *)[[NSMutableArray alloc] initWithCapacity:(mutableJSONArray.count - 1)];
@@ -88,11 +88,11 @@
         }
         NSObject<OPTLYCondition> *condition = [OPTLYCondition createConditionInstanceOfClass:mutableJSONArray[0]
                                                                               withConditions:subConditions];
-        return (NSArray<OPTLYCondition> *)@[condition];
+        return (NSArray<OPTLYCondition *><OPTLYCondition> *)@[condition];
     }
 }
 
-+ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(NSString *)conditionClass withConditions:(NSArray<OPTLYCondition> *)conditions {
++ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(NSString *)conditionClass withConditions:(NSArray<OPTLYCondition *><OPTLYCondition> *)conditions {
     if ([conditionClass isEqualToString:OPTLYDatafileKeysAndCondition]) {
         OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
         andCondition.subConditions = conditions;

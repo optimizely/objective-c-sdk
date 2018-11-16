@@ -125,8 +125,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             })
 #endif
-            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: (self?.attributes))
+            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!)
             
+            if let experiments = optimizelyClient?.optimizely?.config?.experiments {
+                for experiment in experiments {
+                    print(experiment.experimentKey)
+                }
+            }
             self?.setRootViewController(optimizelyClient: optimizelyClient, bucketedVariation:variation)
         })
         

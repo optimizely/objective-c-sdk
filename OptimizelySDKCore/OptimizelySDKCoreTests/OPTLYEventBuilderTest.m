@@ -950,7 +950,7 @@ typedef enum : NSUInteger {
        experimentKeys:@[kExperimentWithAudienceKey]
           variationId:bucketedVariation.variationId
            attributes:self.attributes
-             eventKey:nil eventTags:nil tags:nil bucketer:nil userId:kUserId];    
+             eventKey:nil eventTags:nil tags:nil bucketer:nil userId:kUserId];
 }
 
 #pragma mark - Helper Methods
@@ -1201,7 +1201,7 @@ typedef enum : NSUInteger {
     
     XCTAssert(visitors && [visitors count] > 0, @"Didn't find any visitor.");
     NSDictionary *visitor = [visitors firstObject];
-
+    
     // check visitor id
     NSString *visitorId = visitor[OPTLYEventParameterKeysVisitorId];
     XCTAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");

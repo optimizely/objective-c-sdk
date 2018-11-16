@@ -27,21 +27,21 @@
 
 @interface OPTLYCondition : NSObject
 
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
                                             error:(NSError * __autoreleasing *)error;
-+ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
 
 @end
 
 @interface OPTLYAndCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSArray<OPTLYCondition> *subConditions;
+@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *subConditions;
 
 @end
 
 @interface OPTLYOrCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSArray<OPTLYCondition> *subConditions;
+@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *subConditions;
 
 @end
 

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -24,6 +24,7 @@
 // Model object for a view.
 
 @protocol OPTLYEventFeature;
+@class OPTLYEventFeature;
 
 @protocol OPTLYEventView
 @end
@@ -35,6 +36,6 @@
 // The timestamp when the containing view was activated.
 @property (nonatomic, strong, nullable) NSNumber<OPTLYOptional> *activatedTimestamp;
 // Features attached to the view.
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature, OPTLYOptional> *viewFeatures;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventFeature *><OPTLYEventFeature, OPTLYOptional> *viewFeatures;
 
 @end

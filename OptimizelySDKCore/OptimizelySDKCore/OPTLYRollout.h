@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,6 +21,7 @@
 #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
 
+@class OPTLYExperiment;
 @protocol OPTLYExperiment;
 @protocol OPTLYRollout
 @end
@@ -30,6 +31,6 @@
 /// an NSString to hold the rollout Id
 @property (nonatomic, strong) NSString *rolloutId;
 /// an NSArray to hold the experiments representing the different rules of the rollout
-@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
+@property (nonatomic, strong) NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments;
 
 @end

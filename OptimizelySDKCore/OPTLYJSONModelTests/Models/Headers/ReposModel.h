@@ -7,7 +7,7 @@
 //
 /****************************************************************************
  * Modifications to JSONModel by Optimizely, Inc.                           *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -25,10 +25,11 @@
 @import OptimizelySDKCore;
 
 @protocol GitHubRepoModel;
+@class GitHubRepoModel;
 
 @interface ReposModel : OPTLYJSONModel
 
-@property (strong, nonatomic) NSMutableArray<GitHubRepoModel>* repositories;
+@property (strong, nonatomic) NSMutableArray<GitHubRepoModel *><GitHubRepoModel>* repositories;
 
 @end
 
