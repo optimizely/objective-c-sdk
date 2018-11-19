@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // customizable settings
     let datafileName = "demoTestDatafile" // default parameter for initializing Optimizely from saved datafile
-    var projectId = "11093712109" // project name: X Mobile - Sample App
+    var projectId:String? // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
     let attributes = ["sample_attribute_key":"sample_attribute_value"]

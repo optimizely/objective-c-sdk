@@ -26,6 +26,8 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @interface OPTLYHTTPRequestManager()
 
+- (NSURLSession *)session;
+
 // Use this flag to deterine if we are running a unit test
 // The flag is needed to track some values for unit test
 @property (nonatomic, assign) BOOL isRunningTest;
@@ -34,6 +36,13 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 @end
 
 @implementation OPTLYHTTPRequestManager
+
+- (NSURLSession *)session {
+    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
+
+    return ephemeralSession;
+}
 
 # pragma mark - Object Initializers
 
@@ -83,9 +92,9 @@ dispatch_queue_t networkTasksQueue()
                       url:(NSURL *)url
         completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    
     NSURL *urlWithParameterQuery = [self buildQueryURL:url withParameters:parameters];
-    NSURLSessionDataTask *downloadTask = [ephemeralSession dataTaskWithURL:urlWithParameterQuery
+    NSURLSessionDataTask *downloadTask = [self.session dataTaskWithURL:urlWithParameterQuery
                                                          completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                              if (completion) {
                                                                  completion(data, response, error);
@@ -178,8 +187,7 @@ dispatch_queue_t networkTasksQueue()
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:lastModifiedDate forHTTPHeaderField:@"If-Modified-Since"];
     
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-    NSURLSessionDataTask *dataTask = [ephemeralSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (completion) {
             completion(data, response, error);
         }
@@ -272,7 +280,6 @@ dispatch_queue_t networkTasksQueue()
                        url:(NSURL *)url
          completionHandler:(OPTLYHTTPRequestManagerResponse)completion
 {
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:kHTTPRequestMethodPost];
     
@@ -288,7 +295,7 @@ dispatch_queue_t networkTasksQueue()
     
     [request addValue:kHTTPHeaderFieldValueApplicationJSON forHTTPHeaderField:kHTTPHeaderFieldContentType];
     
-    NSURLSessionUploadTask *uploadTask = [ephemeralSession uploadTaskWithRequest:request
+    NSURLSessionUploadTask *uploadTask = [self.session uploadTaskWithRequest:request
                                                                         fromData:data
                                                                completionHandler:^(NSData *data,NSURLResponse *response,NSError *error) {
                                                                    if (completion) {
