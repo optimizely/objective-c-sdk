@@ -3,14 +3,14 @@
 ## 2.1.4
 November 19, 2018
 
-This release fixes remaining issues having to cast to access data model objects.  Also, sets TSL minimum version. 
+This release fixes remaining issues having to cast to access data model objects.  Also, sets TLS minimum version. 
 
 ### New Features
 * No new features for this patch release.
 
 ### Bug Fixes:
 * Fix Swift 4 accessing data model properties without cast.
-* Pin TSL minimum version.
+* Pin TLS minimum version.
 
 ## 2.1.3
 November 8, 2018
