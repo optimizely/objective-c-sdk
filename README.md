@@ -27,7 +27,7 @@ Please note below that _\<platform\>_ is used to represent the platform on which
 #### Cocoapod 
 1. Add the following lines to the _Podfile_:<pre>
     ```use_frameworks!```
-    ```pod 'OptimizelySDK<platform>', '2.1.3'```
+    ```pod 'OptimizelySDK<platform>', '2.1.4'```
 </pre>
 
 2. Run the following command: <pre>``` pod install ```</pre>
