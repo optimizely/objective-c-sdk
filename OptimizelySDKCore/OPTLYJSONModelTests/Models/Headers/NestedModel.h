@@ -7,7 +7,7 @@
 //
 /****************************************************************************
  * Modifications to JSONModel by Optimizely, Inc.                           *
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -30,7 +30,7 @@
 @interface NestedModel : OPTLYJSONModel
 
 @property (strong, nonatomic) ImageModel* singleImage;
-@property (strong, nonatomic) NSArray<ImageModel>* images;
+@property (strong, nonatomic) NSArray<ImageModel *><ImageModel>* images;
 @property (strong, nonatomic) NSDictionary<ImageModel>* imagesObject;
 
 @end
