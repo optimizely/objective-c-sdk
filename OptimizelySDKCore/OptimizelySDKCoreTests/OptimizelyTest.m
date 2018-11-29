@@ -58,6 +58,11 @@ static NSString * const kAttributeKeyBrowserVersion = @"browser_version";
 static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number";
 static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
+@interface Optimizely(Testing)
+- (BOOL)validateStringInputs:(NSMutableDictionary<NSString *, NSString *> *)inputs logs:(NSDictionary<NSString *, NSString *> *)logs;
+- (id)ObjectOrNull:(id)object;
+@end
+
 @interface OPTLYNotificationTest : NSObject
 @end
 
@@ -1093,11 +1098,103 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqualObjects(features, enabledFeatures);
 }
 
+#pragma mark - setForcedVariation
+
+- (void)testSetForcedVariationWithNullAndEmptyUserId
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                                userId:[NSNull null]
+                                          variationKey:kVariationKeyForWhitelisting]);
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                               userId:@""
+                                         variationKey:kVariationKeyForWhitelisting]);
+}
+
+- (void)testSetForcedVariationWithInvalidExperimentKey
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:@"invalid"
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:kVariationKeyForWhitelisting]);
+    XCTAssertFalse([self.optimizely setForcedVariation:@""
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:kVariationKeyForWhitelisting]);
+    XCTAssertFalse([self.optimizely setForcedVariation:[NSNull null]
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:kVariationKeyForWhitelisting]);
+}
+
+- (void)testSetForcedVariationWithInvalidVariationKey
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:@"invalid"]);
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:@""]);
+}
+
+- (void)testGetForcedVariationWithInvalidUserID
+{
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                                userId:kUserIdForWhitelisting
+                                          variationKey:kVariationKeyForWhitelisting]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForWhitelisting userId:[NSNull null]]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForWhitelisting userId:@"invalid"]);
+}
+
+- (void)testGetForcedVariationWithInvalidExperimentKey
+{
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                               userId:kUserIdForWhitelisting
+                                         variationKey:kVariationKeyForWhitelisting]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"invalid" userId:kUserIdForWhitelisting]);
+    XCTAssertNil([self.optimizely getForcedVariation:[NSNull null] userId:kUserIdForWhitelisting]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"" userId:kUserIdForWhitelisting]);
+}
+
+#pragma mark - Test ValidateStringInputs
+
+- (void)testValidateStringInputsWithValidValues
+{
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryExperimentKey:@"test_experiment"}];
+    XCTAssertTrue([self.optimizely validateStringInputs:dictionary logs:@{}]);
+    
+    NSMutableDictionary<NSString *, NSString *> *dictionary2 = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryEventNameKey:@"buy_now_event"}];
+    XCTAssertTrue([self.optimizely validateStringInputs:dictionary2 logs:@{}]);
+}
+
+- (void)testValidateStringInputsWithInvalidValues
+{
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryExperimentKey:@""}];
+    XCTAssertFalse([self.optimizely validateStringInputs:dictionary logs:@{}]);
+    
+    NSMutableDictionary<NSString *, NSString *> *dictionary2 = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                 OptimizelyNotificationsUserDictionaryEventNameKey:[NSNull null]}];
+    XCTAssertFalse([self.optimizely validateStringInputs:dictionary2 logs:@{}]);
+}
+
+- (void)testValidateStringInputsWithUserId
+{
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryUserIdKey:@"testUser"}];
+    XCTAssertTrue([self.optimizely validateStringInputs:dictionary logs:@{}]);
+    
+    NSMutableDictionary<NSString *, NSString *> *dictionary2 = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                 OptimizelyNotificationsUserDictionaryUserIdKey:@""}];
+    XCTAssertTrue([self.optimizely validateStringInputs:dictionary2 logs:@{}]);
+    
+    NSMutableDictionary<NSString *, NSString *> *dictionary3 = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                 OptimizelyNotificationsUserDictionaryUserIdKey:[NSNull null]}];
+    XCTAssertFalse([self.optimizely validateStringInputs:dictionary3 logs:@{}]);
+}
+
 #pragma mark - Helper Methods
 
 - (id)getOptimizelyMockForFeatureVariableType:(NSString *)featureVariableType variableKey:(NSString *)variableKey expectedReturn:(NSString *)expectedReturn {
     id optimizelyMock = OCMPartialMock(self.optimizely);
-    
     OCMStub([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                 featureKey:[OCMArg any]
                                                variableKey:variableKey
