@@ -21,21 +21,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Validation)
 
 /**
- * Determines if object is a valid string type.
+ * Determines if object is a valid non-empty string type.
  *
  * @returns A NSString if object is valid string type, else return nil.
  **/
 - (nullable NSString *)getValidString;
 
 /**
- * Determines if object is a valid array type.
+ * Determines if object is a valid non-empty array type.
  *
  * @returns A NSArray if object is valid array type, else return nil.
  **/
 - (nullable NSArray *)getValidArray;
 
 /**
- * Determines if object is a valid dictionary type.
+ * Determines if object is a valid non-empty dictionary type.
  *
  * @returns A NSDictionary if object is valid dictionary type, else return nil.
  **/

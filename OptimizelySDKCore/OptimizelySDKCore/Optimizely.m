@@ -453,8 +453,8 @@
     [args setValue:eventKey forKey:OPTLYNotificationEventKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
-    [args setValue:eventTags forKey:OPTLYNotificationEventTags];
-    [args setValue:conversionEventParams forKey:OPTLYNotificationLogEventParams];
+    [args setValue:eventTags forKey:OPTLYNotificationEventTagsKey];
+    [args setValue:conversionEventParams forKey:OPTLYNotificationLogEventParamsKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:args];
 }
@@ -871,7 +871,7 @@
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     [args setValue:variation forKey:OPTLYNotificationVariationKey];
-    [args setValue:impressionEventParams forKey:OPTLYNotificationLogEventParams];
+    [args setValue:impressionEventParams forKey:OPTLYNotificationLogEventParamsKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
     return variation;
