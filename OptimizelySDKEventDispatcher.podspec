@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKEventDispatcher"
-  s.version                 = "2.1.3"
+  s.version                 = "2.1.4"
   s.summary                 = "Optimizely server-side testing event dispatcher framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
-  s.dependency 'OptimizelySDKShared', '2.1.3'
+  s.dependency 'OptimizelySDKShared', '2.1.4'
 end
