@@ -316,7 +316,7 @@ static NSArray *supportedDatafileVersions = nil;
     // Get experiment from experimentKey .
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
     // this case is logged in getExperimentFromKey
-    if ([self isNullOrEmpty:experiment.experimentId]) {
+    if (!experiment || [self isNullOrEmpty:experiment.experimentId]) {
         return nil;
     }
     
@@ -329,7 +329,7 @@ static NSArray *supportedDatafileVersions = nil;
         }
         variation = [experiment getVariationForVariationId:variationId];
         
-        if ([self isNullOrEmpty:variation.variationKey]) {
+        if (!variation || [self isNullOrEmpty:variation.variationKey]) {
             return nil;
         }
     }
@@ -365,8 +365,6 @@ static NSArray *supportedDatafileVersions = nil;
             // Locate relevant dictionary inside forcedVariationMap
             NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
             if (dictionary != nil) {
-                // NOTE: removeObjectForKey: "Does nothing if [experimentKey] does not exist."
-                // https://developer.apple.com/documentation/foundation/nsmutabledictionary/1416518-removeobjectforkey?language=objc
                 [dictionary removeObjectForKey:experimentId];
                 self.forcedVariationMap[userId] = dictionary;
             }

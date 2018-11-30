@@ -42,12 +42,15 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 // user IDs
 static NSString * const kUserIdForWhitelisting = @"userId";
+static NSString * const kUserIdForFV = @"userId";
 
 // experiment Keys
 static NSString * const kExperimentKeyForWhitelisting = @"whiteListExperiment";
+static NSString * const kExperimentKeyForFV = @"whiteListExperiment";
 
 // variation Keys
 static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
+static NSString * const kVariationKeyForFV = @"whiteListedVariation";
 
 // variation IDs
 static NSString * const kVariationIDForWhitelisting = @"variation4";
@@ -1102,54 +1105,54 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testSetForcedVariationWithNullAndEmptyUserId
 {
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
                                                 userId:[NSNull null]
-                                          variationKey:kVariationKeyForWhitelisting]);
-    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
                                                userId:@""
-                                         variationKey:kVariationKeyForWhitelisting]);
+                                         variationKey:kVariationKeyForFV]);
 }
 
 - (void)testSetForcedVariationWithInvalidExperimentKey
 {
     XCTAssertFalse([self.optimizely setForcedVariation:@"invalid"
-                                                userId:kUserIdForWhitelisting
-                                          variationKey:kVariationKeyForWhitelisting]);
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
     XCTAssertFalse([self.optimizely setForcedVariation:@""
-                                                userId:kUserIdForWhitelisting
-                                          variationKey:kVariationKeyForWhitelisting]);
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
     XCTAssertFalse([self.optimizely setForcedVariation:[NSNull null]
-                                                userId:kUserIdForWhitelisting
-                                          variationKey:kVariationKeyForWhitelisting]);
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
 }
 
 - (void)testSetForcedVariationWithInvalidVariationKey
 {
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
-                                                userId:kUserIdForWhitelisting
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
                                           variationKey:@"invalid"]);
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
-                                                userId:kUserIdForWhitelisting
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
                                           variationKey:@""]);
 }
 
 - (void)testGetForcedVariationWithInvalidUserID
 {
-    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
-                                                userId:kUserIdForWhitelisting
-                                          variationKey:kVariationKeyForWhitelisting]);
-    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForWhitelisting userId:[NSNull null]]);
-    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForWhitelisting userId:@"invalid"]);
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForFV userId:[NSNull null]]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForFV userId:@"invalid"]);
 }
 
 - (void)testGetForcedVariationWithInvalidExperimentKey
 {
-    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForWhitelisting
-                                               userId:kUserIdForWhitelisting
-                                         variationKey:kVariationKeyForWhitelisting]);
-    XCTAssertNil([self.optimizely getForcedVariation:@"invalid" userId:kUserIdForWhitelisting]);
-    XCTAssertNil([self.optimizely getForcedVariation:[NSNull null] userId:kUserIdForWhitelisting]);
-    XCTAssertNil([self.optimizely getForcedVariation:@"" userId:kUserIdForWhitelisting]);
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                               userId:kUserIdForFV
+                                         variationKey:kVariationKeyForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"invalid" userId:kUserIdForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:[NSNull null] userId:kUserIdForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"" userId:kUserIdForFV]);
 }
 
 #pragma mark - Test ValidateStringInputs
