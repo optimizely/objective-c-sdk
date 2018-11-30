@@ -1193,9 +1193,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqualObjects(features, enabledFeatures);
 }
 
-#pragma mark - TypeAudiences Tests
+#pragma mark - TypedAudiences Tests
 
-- (void)testActivateWithTypeAudiences {
+- (void)testActivateWithTypedAudiences {
     NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
                                                                  @"house": @"Gryffindor"
                                                                  };
@@ -1209,7 +1209,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
-- (void)testActivateExcludeUserFromExperimentWithTypeAudiences {
+- (void)testActivateExcludesUserFromExperimentWithTypedAudiences {
     NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
                                                                  @"house": @"Hufflepuff"
                                                                  };
@@ -1223,7 +1223,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
-- (void)testTrackWithTypeAudiences {
+- (void)testTrackWithTypedAudiences {
     NSString *eventId = @"item_bought";
     NSString *userId = @"user1";
     NSDictionary<NSString *, NSObject *> *attributes = @{
@@ -1242,7 +1242,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [loggerMock stopMocking];
 }
 
-- (void)testTrackExcludeUserFromExperimentWithTypeAudiences {
+- (void)testTrackExcludesUserFromExperimentWithTypedAudiences {
     NSString *eventId = @"item_bought";
     NSString *userId = @"user1";
     NSDictionary<NSString *, NSObject *> *attributes = @{
@@ -1274,7 +1274,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertTrue([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
 }
 
-- (void)testIsFeatureEnabledExcludeUserFromExperimentWithTypedAudiences {
+- (void)testIsFeatureEnabledExcludesUserFromExperimentWithTypedAudiences {
     NSString *featureFlagKey = @"feat";
     NSString *userId = @"user1";
     NSDictionary<NSString *, NSObject *> *attributes = @{
@@ -1282,7 +1282,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertFalse([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
 }
 
-- (void)testGetFeatureVariableStringReturnVariableValueWithTypedAudiences {
+- (void)testGetFeatureVariableStringReturnsVariableValueWithTypedAudiences {
     NSString *featureKey = @"feat_with_var";
     NSString *variableKey = @"x";
     NSString *userId = @"user1";
@@ -1299,7 +1299,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqualObjects(featureVariable, @"xyz");
 }
 
-- (void)testGetFeatureVariableStringReturnDefaultVariableValueWithTypedAudiences {
+- (void)testGetFeatureVariableStringReturnsDefaultVariableValueWithTypedAudiences {
     NSString *featureKey = @"feat_with_var";
     NSString *variableKey = @"x";
     NSString *userId = @"user1";

@@ -380,7 +380,7 @@ static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDa
     XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
 }
 
-- (void)testExperimentAudiencesRetrivedFromTypedAudiencesFirstThenFromAudiences
+- (void)testExperimentAudiencesRetrievedFromTypedAudiencesFirstThenFromAudiences
 {
     NSString* experimentKey = @"feat_with_var_test";
     NSArray *audienceIds = @[@"3468206642", @"3988293898", @"3988293899", @"3468206646", @"3468206647", @"3468206644", @"3468206643"];
