@@ -71,6 +71,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
         filePath = NSTemporaryDirectory();
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
 #endif
+        _fileManager = [[OPTLYFileManager alloc] initWithBaseDir:self.baseDirectory];
+
     }
     return self;
 }
@@ -94,9 +96,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 - (OPTLYFileManager *)fileManager {
-    if (!_fileManager) {
-        _fileManager = [[OPTLYFileManager alloc] initWithBaseDir:self.baseDirectory];
-    }
     return _fileManager;
 }
 
