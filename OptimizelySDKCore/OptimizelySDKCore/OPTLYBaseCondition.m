@@ -19,6 +19,9 @@
 
 @implementation OPTLYBaseCondition
 
+/**
+ * Given a json, this mapper finds JSON keys for each key in the provided dictionary and maps the json value to the class property with name corresponding to the dictionary value
+ */
 + (OPTLYJSONKeyMapper*)keyMapper
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysConditionName   : @"name",
@@ -43,60 +46,8 @@
     }
 }
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
-    if (attributes == nil) {
-        // if the user did not pass in attributes, return false
-        return [NSNumber numberWithBool:false];
-    }
-    else {
-        // check user attribute value for the condition and match type against our condition value
-        return [self evaluateCustomMatchType: attributes];
-    }
-}
-
--(nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, NSObject *> *)attributes {
-    
-    if (![self.type isEqual:OPTLYDatafileKeysCustomAttributeConditionType]){
-        //Check if given type is the required type
-        return NULL;
-    }
-    else if (!self.match || [self.match isEqualToString:@""]){
-        //Check if given match is empty, if so, opt for legacy Exact Matching
-        self.match = OPTLYDatafileKeysMatchTypeExact;
-    }
-    else if (self.value == NULL && ![self.match isEqualToString:OPTLYDatafileKeysMatchTypeExists]){
-        //Check if given value is null, which is only acceptable if match type is Exists
-        return NULL;
-    }
-    
-    SWITCH(self.match){
-        CASE(OPTLYDatafileKeysMatchTypeExact) {
-            return [self evaluateMatchTypeExact: attributes];
-        }
-        CASE(OPTLYDatafileKeysMatchTypeExists) {
-            return [self evaluateMatchTypeExist: attributes];
-        }
-        CASE(OPTLYDatafileKeysMatchTypeSubstring) {
-            return [self evaluateMatchTypeSubstring: attributes];
-        }
-        CASE(OPTLYDatafileKeysMatchTypeGreaterThan) {
-            return [self evaluateMatchTypeGreaterThan: attributes];
-        }
-        CASE(OPTLYDatafileKeysMatchTypeLessThan) {
-            return [self evaluateMatchTypeLessThan: attributes];
-        }
-        CASE(OPTLYDatafileKeysMatchTypeRegex) {
-            // null for now! We plan on updating the SDKs later in the quarter to return true or false as needed
-            return NULL;
-        }
-        DEFAULT {
-            return NULL;
-        }
-    }
-}
-
 -(nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes{
-    // check if user attributes contains a value exactly equals to our value
+    // check if user attributes contain a value that is of similar class type to our value and also equals to our value, else return Null
     NSObject *userAttribute = [attributes objectForKey:self.name];
     NSNumber *success = NULL;
     
@@ -156,6 +107,51 @@
         return [NSNumber numberWithBool: ([userValue doubleValue] < [ourValue doubleValue])];
     }
     return NULL;
+}
+
+-(nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, NSObject *> *)attributes {
+    
+    if (![self.type isEqual:OPTLYDatafileKeysCustomAttributeConditionType]){
+        //Check if given type is the required type
+        return NULL;
+    }
+    else if (!self.match || [self.match isEqualToString:@""]){
+        //Check if given match is empty, if so, opt for legacy Exact Matching
+        self.match = OPTLYDatafileKeysMatchTypeExact;
+    }
+    else if (self.value == NULL && ![self.match isEqualToString:OPTLYDatafileKeysMatchTypeExists]){
+        //Check if given value is null, which is only acceptable if match type is Exists
+        return NULL;
+    }
+    
+    SWITCH(self.match){
+        CASE(OPTLYDatafileKeysMatchTypeExact) {
+            return [self evaluateMatchTypeExact: attributes];
+        }
+        CASE(OPTLYDatafileKeysMatchTypeExists) {
+            return [self evaluateMatchTypeExist: attributes];
+        }
+        CASE(OPTLYDatafileKeysMatchTypeSubstring) {
+            return [self evaluateMatchTypeSubstring: attributes];
+        }
+        CASE(OPTLYDatafileKeysMatchTypeGreaterThan) {
+            return [self evaluateMatchTypeGreaterThan: attributes];
+        }
+        CASE(OPTLYDatafileKeysMatchTypeLessThan) {
+            return [self evaluateMatchTypeLessThan: attributes];
+        }
+        DEFAULT {
+            return NULL;
+        }
+    }
+}
+
+/**
+ * Evaluates the condition against the user attributes, returns NULL if invalid.
+ */
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+    // check user attribute value for the condition and match type against our condition value
+    return [self evaluateCustomMatchType: attributes];
 }
 
 -(BOOL)isNumeric:(NSObject *)object{

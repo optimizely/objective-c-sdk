@@ -51,9 +51,9 @@ NS_ASSUME_NONNULL_END
 /// List of Optimizely Experiment objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYEvent> *events;
-/// List of audience objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYAudience> *audiences;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYEvent *><OPTLYEvent> *events;
+/// List of audience ids
+@property (nonatomic, strong, nonnull) NSArray<OPTLYAudience *><OPTLYAudience> *audiences;
 /// List of typed audience objects
 @property (nonatomic, strong, nullable) NSArray<OPTLYAudience, OPTLYOptional> *typedAudiences;
 /// List of attributes objects
