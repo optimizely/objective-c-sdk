@@ -95,10 +95,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     return _eventDataStore;
 }
 
-- (OPTLYFileManager *)fileManager {
-    return _fileManager;
-}
-
 - (BOOL)removeAll:(NSError * _Nullable __autoreleasing * _Nullable)error {
     BOOL ok = YES;
     [self removeAllUserData];
