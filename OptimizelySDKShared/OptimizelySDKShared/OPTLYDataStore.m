@@ -73,7 +73,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
 #endif
         
-        _fileManagerCreateQueue = dispatch_queue_create("FileManagerCreateQueue", DISPATCH_QUEUE_SERIAL);
+        _fileManagerCreateQueue = dispatch_queue_create("OptlyFileManagerCreateQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
