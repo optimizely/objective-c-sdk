@@ -152,7 +152,7 @@
 - (void)testOrEvaluatorReturnsNullWhenOperandsEvaluateToFalsesAndNulls {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"Android",
                                             @"num_users" : @20,
-                                            @"decimal_value": @false};
+                                            @"decimal_value": @NO};
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
     XCTAssertNil([orCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
 }
@@ -234,7 +234,7 @@
 - (void)testAndEvaluatorReturnsNullWhenAllOperandsReturnNull {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @15,
                                             @"num_users" : @"test",
-                                            @"decimal_value": @false};
+                                            @"decimal_value": @NO};
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
 }
@@ -242,7 +242,7 @@
 - (void)testAndEvaluatorReturnsNullWhenOperandsEvaluateToTruesAndNulls {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"my iPhone",
                                             @"num_users" : @15,
-                                            @"decimal_value": @false}; // This evaluates to null.
+                                            @"decimal_value": @NO}; // This evaluates to null.
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
 }

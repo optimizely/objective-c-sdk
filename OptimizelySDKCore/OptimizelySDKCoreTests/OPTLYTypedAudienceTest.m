@@ -254,9 +254,9 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 - (void)testExactMatcherReturnsNullWhenTypeMismatch {
-    NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @true};
+    NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @YES};
     NSDictionary *attributesPassOrValue2 = @{@"attr_value" : @"abcd"};
-    NSDictionary *attributesPassOrValue3 = @{@"attr_value" : @false};
+    NSDictionary *attributesPassOrValue3 = @{@"attr_value" : @NO};
     NSDictionary *attributesPassOrValue4 = @{@"attr_value" : @"apple"};
     NSDictionary *attributesPassOrValue5 = @{};
     
@@ -379,8 +379,8 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 - (void)testGTMatcherReturnsNullWhenAttributeValueIsNotANumericValue {
     NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @"invalid"};
     NSDictionary *attributesPassOrValue2 = @{};
-    NSDictionary *attributesPassOrValue3 = @{@"attr_value" : @true};
-    NSDictionary *attributesPassOrValue4 = @{@"attr_value" : @false};
+    NSDictionary *attributesPassOrValue3 = @{@"attr_value" : @YES};
+    NSDictionary *attributesPassOrValue4 = @{@"attr_value" : @NO};
     
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithGreaterThanMatchType]];
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue1]);

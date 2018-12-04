@@ -1196,12 +1196,91 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 #pragma mark - TypedAudiences Tests
 
 - (void)testActivateWithTypedAudiences {
+    // Should be included via exact match string audience with id '3468206642'
     NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
                                                                  @"house": @"Gryffindor"
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     
     OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via exact match number audience with id '3468206646'
+    expectedAttributes = @{
+                           @"lasers": @45.5
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via exact match bool audience with id '3468206643'
+    expectedAttributes = @{
+                           @"should_do_it": @YES
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via substring match string audience with id '3988293898'
+    expectedAttributes = @{
+                           @"house": @"222Slytherin"
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via exists match string audience with id '3988293899'
+    expectedAttributes = @{
+                           @"favorite_ice_cream": @1
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via lt match number audience with id '3468206644'
+    expectedAttributes = @{
+                                                                 @"lasers": @0.8
+                                                                 };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via gt match number audience with id '3468206647'
+    expectedAttributes = @{
+                           @"lasers": @71
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
     }];
     XCTAssertEqualObjects(@"A", variation.variationKey);
     [expectation fulfill];
@@ -1293,7 +1372,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqualObjects(featureVariable, @"xyz");
     
     attributes = @{
-                   @"should_do_it": @true
+                   @"should_do_it": @YES
                    };
     featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
     XCTAssertEqualObjects(featureVariable, @"xyz");
