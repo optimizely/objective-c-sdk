@@ -152,8 +152,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     __block OPTLYDataStore *weakSelf = self;
     dispatch_sync(_fileManagerCreateQueue, ^{
         if (weakSelf != nil) {
-            if (weakSelf.fileManager != nil) {
-                weakSelf.fileManager = [[OPTLYFileManager alloc] initWithBaseDir:self.baseDirectory];
+            if (weakSelf->_fileManager == nil) {
+                weakSelf->_fileManager = [[OPTLYFileManager alloc] initWithBaseDir:weakSelf.baseDirectory];
             }
         }
     });
