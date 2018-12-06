@@ -16,6 +16,7 @@
 
 #import "OPTLYBaseCondition.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYNSObject+Validation.h"
 
 @implementation OPTLYBaseCondition
 
@@ -54,13 +55,13 @@
     if ([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self isNumeric:self.value] && [self isNumeric:userAttribute]) {
+    else if ([self.value isNumeric] && [userAttribute isNumeric]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     else if ([self.value isKindOfClass:[NSNull class]] && [userAttribute isKindOfClass:[NSNull class]]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self isBool:self.value] && [self isBool:userAttribute]) {
+    else if ([self.value isBool] && [userAttribute isBool]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     return success;
@@ -86,7 +87,7 @@
 -(nullable NSNumber *)evaluateMatchTypeGreaterThan:(NSDictionary<NSString *, NSObject *> *)attributes{
     // check if user attributes contain a value greater than our value
     NSObject *userAttribute = [attributes objectForKey:self.name];
-    BOOL userValueAndOurValueHaveNSNumberClassTypes = [self isNumeric:self.value] && [self isNumeric:userAttribute];
+    BOOL userValueAndOurValueHaveNSNumberClassTypes = [self.value isNumeric] && [userAttribute isNumeric];
     
     if (userValueAndOurValueHaveNSNumberClassTypes) {
         NSNumber *ourValue = (NSNumber *)self.value;
@@ -99,7 +100,7 @@
 -(nullable NSNumber *)evaluateMatchTypeLessThan:(NSDictionary<NSString *, NSObject *> *)attributes{
     // check if user attributes contain a value lesser than our value
     NSObject *userAttribute = [attributes objectForKey:self.name];
-    BOOL userValueAndOurValueHaveNSNumberClassTypes = [self isNumeric:self.value] && [self isNumeric:userAttribute];
+    BOOL userValueAndOurValueHaveNSNumberClassTypes = [self.value isNumeric] && [userAttribute isNumeric];
     
     if (userValueAndOurValueHaveNSNumberClassTypes) {
         NSNumber *ourValue = (NSNumber *)self.value;
@@ -149,40 +150,9 @@
 /**
  * Evaluates the condition against the user attributes, returns NULL if invalid.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check user attribute value for the condition and match type against our condition value
     return [self evaluateCustomMatchType: attributes];
-}
-
--(BOOL)isNumeric:(NSObject *)object{
-    //Check if given object is acceptable numeric type
-    if ([object isKindOfClass:[NSNumber class]]) {
-        NSNumber *number = (NSNumber*)object;
-        CFTypeID cfnumID = CFNumberGetTypeID(); // the type ID of CFNumber
-        CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
-        if (numID == cfnumID) {
-            // Require real numbers (not infinite or NaN).
-            double doubleValue = [number doubleValue];
-            if (isfinite(doubleValue)) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-    return false;
-}
-
--(BOOL)isBool:(NSObject *)object{
-    //Check if given object is acceptable boolean type
-    if ([object isKindOfClass:[NSNumber class]]) {
-        NSNumber *number = (NSNumber*)object;
-        CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
-        CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
-        return numID == boolID;
-    }
-    return false;
 }
 
 @end

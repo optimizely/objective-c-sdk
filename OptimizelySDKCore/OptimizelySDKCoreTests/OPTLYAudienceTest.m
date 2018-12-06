@@ -34,9 +34,9 @@ static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name
                                                                           @"conditions" : kAudienceConditions}
                                                                   error:nil];
     XCTAssertNotNil(audience);
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:@{@"browser_type" : @"android"}] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"android"}] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"browser_type" : @"wrong_value"}] boolValue]);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:@{@"browser_type" : @"android"} projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"android"} projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"browser_type" : @"wrong_value"} projectConfig:nil] boolValue]);
 }
 
 - (void)testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly {
@@ -46,9 +46,9 @@ static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name
                                                                   error:nil];
     
     XCTAssertNotNil(audience);
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:@{@"example" : @"nottest"}] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"example" : @"test"}] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"test"}] boolValue]);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:@{@"example" : @"nottest"} projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"example" : @"test"} projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"wrong_name" : @"test"} projectConfig:nil] boolValue]);
 }
 
 - (void)testComplexAudience {
@@ -74,12 +74,12 @@ static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name
     NSDictionary *attributesFailBadAttributeAnd = @{@"attribute_or" : @"attribute_or_value1",
                                                     @"attribute_not" : @"attribute_value"};
     
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue1] boolValue]);
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue2] boolValue]);
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue3] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeNot] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeOr] boolValue]);
-    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeAnd] boolValue]);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue1 projectConfig:nil] boolValue]);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil] boolValue]);
+    XCTAssertTrue([[audience evaluateConditionsWithAttributes:attributesPassOrValue3 projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeNot projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeOr projectConfig:nil] boolValue]);
+    XCTAssertFalse([[audience evaluateConditionsWithAttributes:attributesFailBadAttributeAnd projectConfig:nil] boolValue]);
 }
 
 @end

@@ -48,6 +48,34 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 - (NSString *)getStringOrEmpty;
 
+/**
+ * Returns if object is of numeric type
+ *
+ * @returns A bool for whether object is valid numeric type.
+ **/
+- (BOOL)isNumeric;
+
+/**
+ * Returns if object is of boolean type
+ *
+ * @returns A bool for whether object is valid boolean type.
+ **/
+- (BOOL)isBool;
+
+/**
+ * Determines if object is a valid audience conditions array type.
+ *
+ * @returns A NSArray of audience conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidAudienceConditionsArray;
+
+/**
+ * Determines if object is a valid conditions array type.
+ *
+ * @returns A NSArray of conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidConditionsArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

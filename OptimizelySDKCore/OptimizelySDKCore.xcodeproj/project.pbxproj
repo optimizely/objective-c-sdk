@@ -225,14 +225,18 @@
 		90855D0120ED254600A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0D20ED2E0100A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
 		90855D0E20ED2E0300A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
-		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
-		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
-		C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
-		C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
 		C77958C3219BFBC300B4CA89 /* OPTLYNSObject+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */; };
 		C77958C4219BFBC400B4CA89 /* OPTLYNSObject+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */; };
 		C77958C5219BFBC700B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
 		C77958C6219BFBC800B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
+		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
+		C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
+		C78F98B9219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
+		C78F98BA219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
+		C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
+		C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -637,10 +641,12 @@
 		A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
-		C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
 		C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPTLYNSObject+Validation.h"; sourceTree = "<group>"; };
 		C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OPTLYNSObject+Validation.m"; sourceTree = "<group>"; };
+		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
+		C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYAudienceBaseCondition.h; sourceTree = "<group>"; };
+		C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYAudienceBaseCondition.m; sourceTree = "<group>"; };
+		C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -1053,6 +1059,8 @@
 				EA2FAA531DC6F57100B1D81B /* OPTLYAttribute.m */,
 				EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */,
 				EA2FAA551DC6F57100B1D81B /* OPTLYAudience.m */,
+				C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */,
+				C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */,
 				EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */,
 				EA2FAA571DC6F57100B1D81B /* OPTLYBaseCondition.m */,
 				EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */,
@@ -1366,6 +1374,7 @@
 				EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
 				EA2FAAB21DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */,
 				EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */,
+				C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */,
 				EA2FAAE81DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */,
 				EA2FAADC1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */,
 				EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
@@ -1432,6 +1441,7 @@
 				EA2FAB131DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
 				EA2FAA891DC6F57100B1D81B /* OPTLYAttribute.h in Headers */,
 				EA2FAA9B1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
+				C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */,
 				EA2FAAAD1DC6F57200B1D81B /* OPTLYEvent.h in Headers */,
 				EA2FAA8F1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAB071DC6F57200B1D81B /* OPTLYGroup.h in Headers */,
@@ -1961,6 +1971,7 @@
 				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
+				C78F98B9219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */,
 				EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
 				EA2FAC1B1DC6FFC600B1D81B /* OPTLYEventView.m in Sources */,
@@ -2054,6 +2065,7 @@
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
+				C78F98BA219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */,
 				3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,

@@ -15,6 +15,7 @@
  ***************************************************************************/
 
 #import "OPTLYNSObject+Validation.h"
+#import "OPTLYDatafileKeys.h"
 
 @implementation NSObject (Validation)
 
@@ -53,5 +54,79 @@
         }
     }
     return string;
+}
+
+-(BOOL)isNumeric {
+    //Check if given object is acceptable numeric type
+    if (self) {
+        if ([self isKindOfClass:[NSNumber class]]) {
+            NSNumber *number = (NSNumber*)self;
+            CFTypeID cfnumID = CFNumberGetTypeID(); // the type ID of CFNumber
+            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+            if (numID == cfnumID) {
+                // Require real numbers (not infinite or NaN).
+                double doubleValue = [number doubleValue];
+                if (isfinite(doubleValue)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+    return false;
+}
+
+-(BOOL)isBool {
+    //Check if given object is acceptable boolean type
+    if (self) {
+        if ([self isKindOfClass:[NSNumber class]]) {
+            NSNumber *number = (NSNumber*)self;
+            CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+            return numID == boolID;
+        }
+    }
+    return false;
+}
+
+- (nullable NSArray *)getValidAudienceConditionsArray {
+    if(self) {
+        if ([self isKindOfClass:[NSString class]]) {
+            //Check if string is a valid json
+            NSError *error = nil;
+            NSData *data = [(NSString *)self dataUsingEncoding:NSUTF8StringEncoding];
+            id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            if (error) {
+                //check if string is not a valid json but is a non-empty string and can be casted as a number
+                if ([(NSString *)self getValidString]) {
+                    NSString *audienceString = [(NSString *)self getValidString];
+                    if ([audienceString intValue]) {
+                        return @[OPTLYDatafileKeysOrCondition,audienceString];
+                    }
+                }
+                return nil;
+            }
+            
+            return (NSArray *)json;
+        }
+    }
+    return nil;
+}
+
+- (nullable NSArray *)getValidConditionsArray {
+    if(self) {
+        if ([self isKindOfClass:[NSString class]]) {
+            NSError *error = nil;
+            NSData *data = [(NSString *)self dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *conditionsArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            if (!error) {
+                return conditionsArray;
+            }
+        }
+    }
+    return nil;
 }
 @end
