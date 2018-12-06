@@ -186,7 +186,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
                            OPTLYNotificationUserIdKey: userId,
                            OPTLYNotificationAttributesKey: attributes,
                            OPTLYNotificationVariationKey: variation,
-                           OPTLYNotificationLogEventParams: event,
+                           OPTLYNotificationLogEventParamsKey: event,
                            };
     // Verify that only the registered notifications of decision type are called.
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
@@ -203,8 +203,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
                            OPTLYNotificationUserIdKey: userId,
                            OPTLYNotificationAttributesKey: attributes,
                            OPTLYNotificationVariationKey: variation,
-                           OPTLYNotificationEventTags: eventTags,
-                           OPTLYNotificationLogEventParams: event
+                           OPTLYNotificationEventTagsKey: eventTags,
+                           OPTLYNotificationLogEventParamsKey: event
                            };
     
     
@@ -253,7 +253,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
                                    OPTLYNotificationUserIdKey: userId,
                                    OPTLYNotificationAttributesKey: attributes,
                                    OPTLYNotificationVariationKey: variation,
-                                   OPTLYNotificationLogEventParams: logEvent,
+                                   OPTLYNotificationLogEventParamsKey: logEvent,
                                    };
     
     // Verify that only the registered notifications of decision type are called.
@@ -267,8 +267,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
                                 OPTLYNotificationUserIdKey: userId,
                                 OPTLYNotificationAttributesKey: attributes,
                                 OPTLYNotificationVariationKey: variation,
-                                OPTLYNotificationEventTags: eventTags,
-                                OPTLYNotificationLogEventParams: logEvent
+                                OPTLYNotificationEventTagsKey: eventTags,
+                                OPTLYNotificationLogEventParamsKey: logEvent
                                 };
     
     // Verify that only the registered notifications of track type are called.
