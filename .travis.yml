@@ -15,7 +15,7 @@ before_install:
   - gem install slather --no-rdoc --no-ri --no-document --quiet
 script:
   - pod spec lint --quick
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
 after_success:
   - slather
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
