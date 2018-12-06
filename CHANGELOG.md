@@ -1,5 +1,54 @@
 # Optimizely Objective-C SDK Changelog
 
+## 2.1.4
+November 19, 2018
+
+This release fixes remaining issues having to cast to access data model objects.  Also, sets TLS minimum version. 
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Fix Swift 4 accessing data model properties without cast.
+* Pin TLS minimum version.
+
+## 2.1.3
+November 8, 2018
+
+This release fixes a possible issue with tvOS.  The issue is that if the app goes foreground and background the events get flushed.  However, there might be a removeEvent queued.  This remove event was failing because the queue was emptry.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Fix tvOS issue with the event queue
+* Fix Swift 4 accessing ProjectConfig properties such as experiments used to require a cast.  That is now fixed.
+
+## 2.1.2
+September 28, 2018
+
+This release supports xcode 10 and Swift 4. This fixes the carthage issue.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Fix nullable and nonnull tags so that Swift 4 functions properly.
+* Rename protocol Optional for JSON to OPTLYOptional.
+* Fix logging of attribute as missing when included.
+
+## 2.1.1
+September 27, 2018
+
+This release supports xcode 10 and Swift 4. However, there seems to still be an issue with Carthage.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Fix nullable and nonnull tags so that Swift 4 functions properly.
+* Rename protocol Optional for JSON to OPTLYOptional.
+
 ## 2.1.0
 August 2nd, 2018
 

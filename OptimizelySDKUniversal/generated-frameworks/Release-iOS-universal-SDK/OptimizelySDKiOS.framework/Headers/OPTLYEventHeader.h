@@ -31,8 +31,8 @@
 // The IP address of the client
 @property (nonatomic, strong, nonnull) NSString *clientIp;
 // The user agent of the client. Null on mobile.
-@property (nonatomic, strong, nullable) NSString<Optional> *userAgent;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *userAgent;
 // The referrer of the client. Null on mobile.
-@property (nonatomic, strong, nullable) NSString<Optional> *referer;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *referer;
 
 @end

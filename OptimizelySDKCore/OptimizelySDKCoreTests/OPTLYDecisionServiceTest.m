@@ -59,6 +59,11 @@ static NSString * const kExperimentNotRunningId = @"6367444440";
 static NSString * const kAttributeKey = @"browser_type";
 static NSString * const kAttributeValue = @"firefox";
 static NSString * const kAttributeValueChrome = @"chrome";
+static NSString * const kAttributeKeyBrowserBuildNumberInt = @"browser_buildnumber";
+static NSString * const kAttributeKeyBrowserVersionNumberInt = @"browser_version";
+static NSString * const kAttributeKeyIsBetaVersionBool = @"browser_isbeta";
+
+
 
 // experiment with no audience
 static NSString * const kExperimentNoAudienceKey = @"testExperiment4";
@@ -281,6 +286,27 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
     [decisionServiceMock stopMocking];
     [userProfileServiceMock stopMocking];
+}
+
+// if bucketingId attribute is not a string. Defaulted to userId
+- (void)testGetVariationWithInvalidBucketingId {
+    NSDictionary *attributes = @{OptimizelyBucketId: @YES};
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentNoAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experiment attributes:attributes];
+    XCTAssertNotNil(variation, @"Get variation with invalid bucketing Id should use userId for bucketing.");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentWithAudienceVariationKey,
+                   @"Get variation with invalid bucketing Id should return: %@, but instead returns: %@.",
+                   kExperimentWithAudienceVariationKey, variation.variationKey);
+}
+
+- (void)testGetVariationAcceptAllTypeAttributes {
+    
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentNoAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experiment attributes:@{kAttributeKey: kAttributeValue,
+                                                                                                              kAttributeKeyBrowserBuildNumberInt: @(10), kAttributeKeyBrowserVersionNumberInt: @(0.23), kAttributeKeyIsBetaVersionBool: @(YES)}];
+
+    XCTAssertNotNil(variation, @"Get variation with supported types should return valid variation.");
+    XCTAssertEqualObjects(variation.variationKey, kExperimentWithAudienceVariationKey);
 }
 
 #pragma mark - setForcedVariation

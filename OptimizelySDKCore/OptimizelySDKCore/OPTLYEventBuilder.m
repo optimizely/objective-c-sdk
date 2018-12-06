@@ -55,7 +55,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 -(NSDictionary *)buildImpressionEventForUser:(NSString *)userId
                                   experiment:(OPTLYExperiment *)experiment
                                    variation:(OPTLYVariation *)variation
-                                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (!self.config) {
         return nil;
     }
@@ -71,7 +71,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
                                        event:(OPTLYEvent *)event
                                    decisions:(NSArray<NSDictionary *> *)decisions
                                    eventTags:(NSDictionary *)eventTags
-                                  attributes:(NSDictionary<NSString *,NSString *> *)attributes {
+                                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
 
     if (!self.config) {
         return nil;
@@ -87,7 +87,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSDictionary *)createCommonParamsForUser:(NSString *)userId
-                                 attributes:(NSDictionary<NSString *, NSString *> *)attributes {
+                                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     NSMutableDictionary *commonParams = [NSMutableDictionary new];
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];
@@ -199,15 +199,15 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
-                     attributes:(NSDictionary *)attributes {
+                     attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSNumber *botFiltering = config.botFiltering;
     NSMutableArray *features = [NSMutableArray new];
     NSArray *attributeKeys = [attributes allKeys];
     
     for (NSString *attributeKey in attributeKeys) {
-        NSString *attributeValue = attributes[attributeKey];
-        if ([OPTLYEventBuilderDefault isEmptyString:attributeValue]) {
+        NSObject *attributeValue = attributes[attributeKey];
+        if (![OPTLYEventBuilderDefault isValidAttributeValue:attributeValue]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
@@ -252,10 +252,43 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     return string;
 }
 
-+ (BOOL)isEmptyString:(NSString*)str {
-    return (str == nil
-            || [str isKindOfClass:[NSNull class]]
-            || [str length] == 0);
++ (BOOL)isEmptyString:(NSObject *)str {
+    return (!str
+            || ![str isKindOfClass:[NSString class]]
+            || [(NSString *)str isEqualToString:@""]);
+}
+
++ (BOOL)isValidAttributeValue:(NSObject *)value {
+    // check value is NSObject
+    if (!value || [value isEqual:[NSNull null]]) {
+        return false;
+    }
+    // check value is NSString
+    if ([value isKindOfClass:[NSString class]]) {
+        return true;
+    }
+    NSNumber *number = (NSNumber *)value;
+    // check value is NSNumber
+    if (number && [number isKindOfClass:[NSNumber class]]) {
+        const char *objCType = [number objCType];
+        // check NSNumber is of type int, double, bool
+        return (strcmp(objCType, @encode(short)) == 0)
+        || (strcmp(objCType, @encode(unsigned short)) == 0)
+        || (strcmp(objCType, @encode(int)) == 0)
+        || (strcmp(objCType, @encode(unsigned int)) == 0)
+        || (strcmp(objCType, @encode(long)) == 0)
+        || (strcmp(objCType, @encode(unsigned long)) == 0)
+        || (strcmp(objCType, @encode(long long)) == 0)
+        || (strcmp(objCType, @encode(unsigned long long)) == 0)
+        || (strcmp(objCType, @encode(float)) == 0)
+        || (strcmp(objCType, @encode(double)) == 0)
+        || (strcmp(objCType, @encode(char)) == 0)
+        || (strcmp(objCType, @encode(unsigned char)) == 0)
+        || (strcmp(objCType, @encode(bool)) == 0)
+        || [number isEqual:@YES]
+        || [number isEqual:@NO];
+    }
+    return false;
 }
 
 @end

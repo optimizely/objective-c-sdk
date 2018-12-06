@@ -24,6 +24,7 @@
 extern NSString * const OPTLYErrorHandlerMessagesDomain;
 
 extern NSString * const OPTLYErrorHandlerMessagesDataFileInvalid;
+extern NSString * const OPTLYErrorHandlerMessagesDataFileVersionInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesEventDispatcherInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesLoggerInvalid;
 extern NSString * const OPTLYErrorHandlerMessagesErrorHandlerInvalid;

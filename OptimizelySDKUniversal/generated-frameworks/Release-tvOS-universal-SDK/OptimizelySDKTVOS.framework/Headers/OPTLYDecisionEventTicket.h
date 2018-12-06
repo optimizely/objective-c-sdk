@@ -30,33 +30,33 @@
 //The time the decision was made.
 @property (nonatomic, assign) long long timestamp;
 // Revision of client DATA, corresponding to a stored snapshot
-@property (nonatomic, strong, nullable) NSString<Optional> *revision;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *revision;
 // Unique ID shared by all events in the current activation cycle
-@property (nonatomic, strong, nullable) NSString<Optional> *activationId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *activationId;
 // GUID ID uniquely identifying the decision event triggering
-@property (nonatomic, strong, nullable) NSString<Optional> *decisionId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *decisionId;
 // GUID ID uniquely identifying the user’s current session
-@property (nonatomic, strong, nullable) NSString<Optional> *sessionId;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *sessionId;
 // Project ID of the decision.
 @property (nonatomic, strong, nonnull) NSString *projectId;
 // Account ID of the decision.
 @property (nonatomic, strong, nonnull) NSString *accountId;
 // The type of client engine sending this event: ‘ios’, ‘android’, ‘js’.
-@property (nonatomic, strong, nullable) NSString<Optional> *clientEngine;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *clientEngine;
 // The version of the client engine sending this event.
-@property (nonatomic, strong, nullable) NSString<Optional> *clientVersion;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *clientVersion;
 // Event information taken from the http header instead of the payload
-@property (nonatomic, strong, nullable) OPTLYEventHeader<Optional> *header;
+@property (nonatomic, strong, nullable) OPTLYEventHeader<OPTLYOptional> *header;
 // The layer affected by this decision
 @property (nonatomic, strong, nonnull) NSString *layerId;
 // Visitor-specific input to Client Decision Engine
-@property (nonatomic, strong, nullable) NSArray<OPTLYEventDecisionTicket, Optional> *decisionTicket;
+@property (nonatomic, strong, nullable) NSArray<OPTLYEventDecisionTicket, OPTLYOptional> *decisionTicket;
 // Output of the Client Decision Engine
 @property (nonatomic, strong, nonnull) OPTLYEventDecision *decision;
 // The ID of the user
 @property (nonatomic, strong, nonnull) NSString *visitorId;
 // The unique user ID of the user (if available)
-@property (nonatomic, strong, nullable) NSString<Optional> *visitorUUID;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *visitorUUID;
 // Features attached to the user
 @property (nonatomic, strong, nonnull) NSArray<OPTLYEventFeature> *userFeatures;
 // If true, then the experience in this decision was held back at the global level

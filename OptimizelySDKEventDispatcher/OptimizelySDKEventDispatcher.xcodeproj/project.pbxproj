@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0027551ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027541ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework */; };
-		3E0027571ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0027561ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework */; };
 		54770275047095CC925FC46E /* Pods_OptimizelySDKEventDispatcheriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3E25CA29BD3B84317654DD /* Pods_OptimizelySDKEventDispatcheriOSTests.framework */; };
 		59B9E1E920E36E64002F732E /* OPTLYEventDispatcherSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B9E1E820E36E64002F732E /* OPTLYEventDispatcherSwiftTest.swift */; };
 		59B9E1EA20E36E64002F732E /* OPTLYEventDispatcherSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B9E1E820E36E64002F732E /* OPTLYEventDispatcherSwiftTest.swift */; };
@@ -140,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA9FD3921E8C57CC00D86791 /* OptimizelySDKShared.framework in Frameworks */,
-				3E0027551ECBBE950072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E0027571ECBBEB10072DDAD /* OptimizelySDKUserProfileService.framework in Frameworks */,
 				EA9FD3951E8C57DE00D86791 /* OptimizelySDKShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,7 +687,7 @@
 				OPTIMIZELY_SDK_VERSION = "$(OPTIMIZELY_SDK_VERSION_MAJOR).$(OPTIMIZELY_SDK_VERSION_MINOR).$(OPTIMIZELY_SDK_VERSION_PATCH)$(OPTIMIZELY_SDK_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_VERSION_PATCH = 4;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -764,7 +760,7 @@
 				OPTIMIZELY_SDK_VERSION = "$(OPTIMIZELY_SDK_VERSION_MAJOR).$(OPTIMIZELY_SDK_VERSION_MINOR).$(OPTIMIZELY_SDK_VERSION_PATCH)$(OPTIMIZELY_SDK_VERSION_SUFFIX)";
 				OPTIMIZELY_SDK_VERSION_MAJOR = 2;
 				OPTIMIZELY_SDK_VERSION_MINOR = 1;
-				OPTIMIZELY_SDK_VERSION_PATCH = 0;
+				OPTIMIZELY_SDK_VERSION_PATCH = 4;
 				OPTIMIZELY_SDK_VERSION_SUFFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;

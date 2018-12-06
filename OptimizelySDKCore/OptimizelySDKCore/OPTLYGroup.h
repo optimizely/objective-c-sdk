@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -22,6 +22,7 @@
 #endif
 
 @protocol OPTLYExperiment, OPTLYTrafficAllocation;
+@class OPTLYTrafficAllocation, OPTLYExperiment;
 /**
  * This class is a representation of an Optimizely Group.
  */
@@ -36,8 +37,8 @@
 /// The Group's policy.
 @property (nonatomic, strong) NSString *policy;
 /// The Group's traffic allocations.
-@property (nonatomic, strong) NSArray<OPTLYTrafficAllocation> *trafficAllocations;
+@property (nonatomic, strong) NSArray<OPTLYTrafficAllocation *><OPTLYTrafficAllocation> *trafficAllocations;
 /// The Group's experiments.
-@property (nonatomic, strong) NSArray<OPTLYExperiment> *experiments;
+@property (nonatomic, strong) NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments;
 
 @end
