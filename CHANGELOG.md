@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 2.1.5
+December 6th, 2018
+
+This includes a potential fix to a problem with lazy loading the OPTLYFileManager.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Wrap fileManager accessor in a serial queue to avoid multiple threads creating multiple fileManagers causing an access to memory that is no longer valid.
+
 ## 2.1.4
 November 19, 2018
 
