@@ -149,6 +149,14 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 
 # pragma mark - File Manager Methods
 - (OPTLYFileManager *)fileManager {
+    if (_fileManager == nil) {
+        [self loadFileManagerIfNecessary];
+    }
+    return _fileManager;
+
+}
+
+- (void) loadFileManagerIfNecessary {
     __block OPTLYDataStore *weakSelf = self;
     dispatch_sync(_fileManagerCreateQueue, ^{
         if (weakSelf != nil) {
@@ -157,9 +165,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
             }
         }
     });
-    
-    return _fileManager;
-
 }
 
 - (BOOL)saveFile:(nonnull NSString *)fileName
