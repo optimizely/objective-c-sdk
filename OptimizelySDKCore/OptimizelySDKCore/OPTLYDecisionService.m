@@ -31,6 +31,7 @@
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYGroup.h"
 #import "OPTLYControlAttributes.h"
+#import "OPTLYNSObject+Validation.h"
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;
@@ -163,11 +164,14 @@
     NSString *bucketingId = userId;
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
-    if (![OPTLYDecisionService isEmptyString:attributes[OptimizelyBucketId]]) {
-        bucketingId = attributes[OptimizelyBucketId];
-        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
-                                        bucketingId]
-                             withLevel:OptimizelyLogLevelDebug];
+    if (attributes != nil) {
+        NSString *validBucketingId = [attributes[OptimizelyBucketId] getValidString];
+        if (validBucketingId != nil) {
+            bucketingId = validBucketingId;
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
+                                            bucketingId]
+                                 withLevel:OptimizelyLogLevelDebug];
+        }
     }
     return bucketingId;
 }
@@ -194,7 +198,7 @@
     OPTLYFeatureDecision *decision = nil;
     NSString *logMessage = nil;
     
-    if ([OPTLYDecisionService isEmptyString:groupId]) {
+    if ([groupId getValidString] == nil) {
         logMessage = OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
     } else {
         NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
@@ -230,7 +234,7 @@
     NSString *featureFlagKey = featureFlag.key;
     NSArray *experimentIds = featureFlag.experimentIds;
     // Check if there are any experiment IDs inside feature flag
-    if ([OPTLYDecisionService isEmptyArray:experimentIds]) {
+    if ([experimentIds getValidArray] == nil) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -266,7 +270,7 @@
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
     NSString *featureFlagKey = featureFlag.key;
     NSString *rolloutId = featureFlag.rolloutId;
-    if ([OPTLYDecisionService isEmptyString:rolloutId]) {
+    if ([rolloutId getValidString] == nil) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -277,7 +281,7 @@
         return nil;
     }
     NSArray *rolloutRules = rollout.experiments;
-    if ([OPTLYDecisionService isEmptyArray:rolloutRules]) {
+    if ([rolloutRules getValidArray] == nil) {
         return nil;
     }
     // Evaluate all rollout rules except for last one
@@ -499,18 +503,5 @@
     }
     
     return false;
-}
-
-+ (BOOL)isEmptyString:(NSObject*)string {
-    return (!string
-            || ![string isKindOfClass:[NSString class]]
-            || [(NSString *)string isEqualToString:@""]);
-}
-
-
-+ (BOOL)isEmptyArray:(NSObject*)array {
-    return (!array
-            || ![array isKindOfClass:[NSArray class]]
-            || (((NSArray *)array).count == 0));
 }
 @end
