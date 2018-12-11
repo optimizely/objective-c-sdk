@@ -43,6 +43,7 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 @interface OPTLYDataStore()
 @property (nonatomic, strong) OPTLYFileManager *fileManager;
 @property (nonatomic, strong) id<OPTLYEventDataStore> eventDataStore;
+@property (nonatomic, strong) dispatch_queue_t fileManagerCreateQueue;
 @end
 
 @implementation OPTLYDataStore
@@ -71,6 +72,8 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
         filePath = NSTemporaryDirectory();
         _baseDirectory = [filePath stringByAppendingPathComponent:kOptimizelyDirectory];
 #endif
+        
+        _fileManagerCreateQueue = dispatch_queue_create("OptlyFileManagerCreateQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -91,13 +94,6 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
     }
     
     return _eventDataStore;
-}
-
-- (OPTLYFileManager *)fileManager {
-    if (!_fileManager) {
-        _fileManager = [[OPTLYFileManager alloc] initWithBaseDir:self.baseDirectory];
-    }
-    return _fileManager;
 }
 
 - (BOOL)removeAll:(NSError * _Nullable __autoreleasing * _Nullable)error {
@@ -152,6 +148,26 @@ static NSString *const kOPTLYDataStoreEventTypeConversion = @"conversion_events"
 }
 
 # pragma mark - File Manager Methods
+- (OPTLYFileManager *)fileManager {
+    if (_fileManager == nil) {
+        [self loadFileManagerIfNecessary];
+    }
+    return _fileManager;
+
+}
+
+- (void) loadFileManagerIfNecessary {
+    __block __weak OPTLYDataStore *weakSelf = self;
+    dispatch_sync(_fileManagerCreateQueue, ^{
+        if (weakSelf != nil) {
+            OPTLYDataStore *strongSelf = weakSelf;
+            if (strongSelf->_fileManager == nil) {
+                strongSelf->_fileManager = [[OPTLYFileManager alloc] initWithBaseDir:strongSelf.baseDirectory];
+            }
+        }
+    });
+}
+
 - (BOOL)saveFile:(nonnull NSString *)fileName
             data:(nonnull NSData *)data
             type:(OPTLYDataStoreDataType)dataType
