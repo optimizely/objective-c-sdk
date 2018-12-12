@@ -1,15 +1,25 @@
 #!/bin/bash
 
-# This script consistently updates the SDK version numbers in several places:
+# update_version.sh
 #
+# This script consistently updates the SDK version numbers in several places:
 # 1. {XcodeProject}/{XcodeProject}.xcodeproj/project.pbxproj
 # 2. {XcodeProject}.podspec
+#
+# Usage:
+#  $ ./update_version.sh [releaseSDKVersion]
+#
 
 
 #----------------------------------------------------------------------------------
 # set the release SDK version
 #----------------------------------------------------------------------------------
-releaseSDKVersion="2.1.4"
+if [ "$#" -eq  "1" ];
+then
+    releaseSDKVersion="$1"
+else
+read  -p "Enter the new SDK release version (ex: 2.1.4): " releaseSDKVersion;
+fi
 
 varComps=( ${releaseSDKVersion//./ } )
 
