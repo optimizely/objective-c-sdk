@@ -54,4 +54,58 @@
     }
     return string;
 }
+
+- (BOOL)isValidAttributeValue {
+    if (self) {
+        if ([self isEqual:[NSNull null]]) {
+            return false;
+        }
+        // check value is NSString
+        if ([self isKindOfClass:[NSString class]]) {
+            return true;
+        }
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            const char *objCType = [number objCType];
+            
+            // check NSNumber is bool
+            if ((strcmp(objCType, @encode(bool)) == 0)
+                || [number isEqual:@YES]
+                || [number isEqual:@NO]) {
+                return true;
+            }
+            // check for Nan
+            if ([number isEqualToNumber:[NSDecimalNumber notANumber]]) {
+                return false;
+            }
+            // check for infinity
+            if (isinf([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is of type int, double
+            Boolean isNumeric = (strcmp(objCType, @encode(short)) == 0)
+            || (strcmp(objCType, @encode(unsigned short)) == 0)
+            || (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(unsigned int)) == 0)
+            || (strcmp(objCType, @encode(long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long)) == 0)
+            || (strcmp(objCType, @encode(long long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long long)) == 0)
+            || (strcmp(objCType, @encode(float)) == 0)
+            || (strcmp(objCType, @encode(double)) == 0)
+            || (strcmp(objCType, @encode(char)) == 0)
+            || (strcmp(objCType, @encode(unsigned char)) == 0);
+            
+            if (isNumeric) {
+                //double is the only data type capable of handling values greater than 3.40282e+038 && less than 1.17549e-038
+                //https://stackoverflow.com/a/12322917/4849178
+                // check for value greater than 1e53 and less than -1e53
+                NSNumber *maxValue = [NSNumber numberWithDouble:exp(53)];
+                return (fabs([number doubleValue]) < [maxValue doubleValue]);
+            }
+        }
+    }
+    return false;
+}
 @end
