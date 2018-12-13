@@ -76,7 +76,7 @@
                 return true;
             }
             // check for Nan
-            if ([number isEqualToNumber:[NSDecimalNumber notANumber]]) {
+            if (isnan([number doubleValue])) {
                 return false;
             }
             // check for infinity
