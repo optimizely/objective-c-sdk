@@ -165,11 +165,14 @@
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
     
-    for (NSString *validBucketingId = [attributes[OptimizelyBucketId] getValidString]; validBucketingId != nil; validBucketingId = nil) {
-        bucketingId = validBucketingId;
-        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
-                                        bucketingId]
-                             withLevel:OptimizelyLogLevelDebug];
+    if (attributes != nil) {
+        NSString *validBucketingId = [attributes[OptimizelyBucketId] getValidString];
+        if (validBucketingId != nil) {
+            bucketingId = validBucketingId;
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
+                                            bucketingId]
+                                 withLevel:OptimizelyLogLevelDebug];
+        }
     }
     return bucketingId;
 }

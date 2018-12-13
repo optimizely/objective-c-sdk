@@ -40,13 +40,13 @@ typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
 typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
 
-static NSString *const OPTLYNotificationExperimentKey = @"experiment";
-static NSString *const OPTLYNotificationVariationKey = @"variation";
-static NSString *const OPTLYNotificationUserIdKey = @"userId";
-static NSString *const OPTLYNotificationAttributesKey = @"attributes";
-static NSString *const OPTLYNotificationEventKey = @"eventKey";
-static NSString *const OPTLYNotificationEventTags = @"eventTags";
-static NSString *const OPTLYNotificationLogEventParams = @"logEventParams";
+extern NSString *const OPTLYNotificationExperimentKey;
+extern NSString *const OPTLYNotificationVariationKey;
+extern NSString *const OPTLYNotificationUserIdKey;
+extern NSString *const OPTLYNotificationAttributesKey;
+extern NSString *const OPTLYNotificationEventKey;
+extern NSString *const OPTLYNotificationEventTagsKey;
+extern NSString *const OPTLYNotificationLogEventParamsKey;
 
 @interface OPTLYNotificationCenter : NSObject
 
