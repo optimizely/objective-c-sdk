@@ -225,7 +225,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                                                                     OptimizelyNotificationsUserDictionaryExperimentKey:[self ObjectOrNull:featureKey]}];
     NSDictionary <NSString *, NSString *> *logs = @{
                                                     OptimizelyNotificationsUserDictionaryUserIdKey:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid,
-                                                    OptimizelyNotificationsUserDictionaryFeatureKey:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid};
+                                                    OptimizelyNotificationsUserDictionaryExperimentKey:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
         return false;

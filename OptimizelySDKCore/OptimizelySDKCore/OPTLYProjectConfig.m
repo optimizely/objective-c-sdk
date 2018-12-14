@@ -639,6 +639,6 @@ static NSArray *supportedDatafileVersions = nil;
 }
 
 - (BOOL)isNullOrEmpty:(nullable NSString *)value {
-    return ([value isKindOfClass: [NSNull class]] || [value isEqualToString:@""]);
+    return ((value == nil) || [value isKindOfClass: [NSNull class]] || [value isEqualToString:@""]);
 }
 @end
