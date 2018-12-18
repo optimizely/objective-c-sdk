@@ -110,7 +110,7 @@
             
             if (isNumeric) {
                 NSNumber *maxValue = [NSNumber numberWithDouble:pow(2,53)];
-                return (fabs([number doubleValue]) < [maxValue doubleValue]);
+                return (fabs([number doubleValue]) <= [maxValue doubleValue]);
             }
         }
     }
