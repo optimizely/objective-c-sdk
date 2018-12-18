@@ -45,6 +45,8 @@
     XCTAssertTrue([(NSObject *)@0.0 isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)@"" isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)@"test_value" isValidAttributeValue]);
+    XCTAssertTrue([(NSObject *)[NSNumber numberWithDouble:(pow(2, 53) - 1)] isValidAttributeValue]);
+    XCTAssertTrue([(NSObject *)[NSNumber numberWithDouble:(-pow(2, 53) + 1)] isValidAttributeValue]);
 }
 
 - (void)testMethodIsValidAttributeValueReturnsFalseForInvalidData
@@ -53,8 +55,10 @@
     XCTAssertFalse([(NSObject *)@{} isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)@[] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithFloat:INFINITY] isValidAttributeValue]);
+    XCTAssertFalse([(NSObject *)[NSNumber numberWithFloat:-INFINITY] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:NAN] isValidAttributeValue]);
-    XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:(exp(53) + 1)] isValidAttributeValue]);
+    XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:(pow(2, 53))] isValidAttributeValue]);
+    XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:(-pow(2, 53))] isValidAttributeValue]);
 }
 
 @end

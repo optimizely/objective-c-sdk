@@ -55,6 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 - (BOOL)isValidAttributeValue;
 
+/**
+ * Returns if object is a valid numeric attribute
+ *
+ * @returns A Bool whether object is a valid numeric attribute.
+ **/
+-(BOOL)isValidNumericAttributeValue;
+
 @end
 
 NS_ASSUME_NONNULL_END

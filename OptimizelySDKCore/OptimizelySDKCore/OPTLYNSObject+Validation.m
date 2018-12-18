@@ -64,6 +64,17 @@
         if ([self isKindOfClass:[NSString class]]) {
             return true;
         }
+        
+        //check value is valid numeric attribute
+        if ([self isValidNumericAttributeValue]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+-(BOOL)isValidNumericAttributeValue {
+    if (self) {
         NSNumber *number = (NSNumber *)self;
         // check value is NSNumber
         if (number && [number isKindOfClass:[NSNumber class]]) {
@@ -98,14 +109,12 @@
             || (strcmp(objCType, @encode(unsigned char)) == 0);
             
             if (isNumeric) {
-                //double is the only data type capable of handling values greater than 3.40282e+038 && less than 1.17549e-038
-                //https://stackoverflow.com/a/12322917/4849178
-                // check for value greater than 1e53 and less than -1e53
-                NSNumber *maxValue = [NSNumber numberWithDouble:exp(53)];
+                NSNumber *maxValue = [NSNumber numberWithDouble:pow(2,53)];
                 return (fabs([number doubleValue]) < [maxValue doubleValue]);
             }
         }
     }
     return false;
 }
+
 @end
