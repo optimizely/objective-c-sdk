@@ -64,7 +64,10 @@
         if ([self isKindOfClass:[NSString class]]) {
             return true;
         }
-        
+        // check value is Boolean
+        if ([self isValidBooleanAttributeValue]) {
+            return true;
+        }
         //check value is valid numeric attribute
         if ([self isValidNumericAttributeValue]) {
             return true;
@@ -73,7 +76,7 @@
     return false;
 }
 
--(BOOL)isValidNumericAttributeValue {
+-(BOOL)isValidBooleanAttributeValue {
     if (self) {
         NSNumber *number = (NSNumber *)self;
         // check value is NSNumber
@@ -86,8 +89,26 @@
                 || [number isEqual:@NO]) {
                 return true;
             }
+        }
+    }
+    return false;
+}
+
+-(BOOL)isValidNumericAttributeValue {
+    if (self) {
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            const char *objCType = [number objCType];
+            
             // check for Nan
             if (isnan([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is bool
+            if ((strcmp(objCType, @encode(bool)) == 0)
+                || [number isEqual:@YES]
+                || [number isEqual:@NO]) {
                 return false;
             }
             // check for infinity
