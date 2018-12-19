@@ -497,7 +497,7 @@
     
     for (NSString *audienceId in audiences) {
         OPTLYAudience *audience = [config getAudienceForId:audienceId];
-        BOOL areAttributesValid = [audience evaluateConditionsWithAttributes:attributes];
+        BOOL areAttributesValid = [[audience evaluateConditionsWithAttributes:attributes] boolValue];
         if (areAttributesValid) {
             return true;
         }

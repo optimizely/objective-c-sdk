@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -46,15 +46,16 @@
     }
 }
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     for (NSObject<OPTLYCondition> *condition in self.conditions) {
-        if ([condition evaluateConditionsWithAttributes:attributes]) {
+        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes];
+        if (result != NULL && [result boolValue] == true) {
             // if user satisfies any conditions, return true.
-            return true;
+            return [NSNumber numberWithBool:true];
         }
     }
     // if user doesn't satisfy any conditions, return false.
-    return false;
+    return [NSNumber numberWithBool:false];
 }
 
 @end

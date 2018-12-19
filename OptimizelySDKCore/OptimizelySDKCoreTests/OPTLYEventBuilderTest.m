@@ -940,9 +940,9 @@ typedef enum : NSUInteger {
                                                                       bucketer:self.bucketer];
     
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventForUser:kUserId
-                                                                                    experiment:experimentWithAudience
-                                                                                     variation:bucketedVariation
-                                                                                    attributes:self.attributes];
+                                                                                experiment:experimentWithAudience
+                                                                                  variation:bucketedVariation
+                                                                                   attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
@@ -1221,7 +1221,7 @@ typedef enum : NSUInteger {
     if (numberOfFeatures == numberOfAttributes) {
         NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesKey ascending:YES];
         NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
-        
+
         NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
         NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         
