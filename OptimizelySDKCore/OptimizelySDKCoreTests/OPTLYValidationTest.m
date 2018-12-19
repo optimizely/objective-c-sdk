@@ -45,6 +45,8 @@
     XCTAssertTrue([(NSObject *)@0.0 isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)@"" isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)@"test_value" isValidAttributeValue]);
+    XCTAssertTrue([(NSObject *)[NSNumber numberWithDouble:(pow(2, 53))] isValidAttributeValue]);
+    XCTAssertTrue([(NSObject *)[NSNumber numberWithDouble:(-pow(2, 53))] isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)[NSNumber numberWithLongLong:(pow(2, 53))] isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)[NSNumber numberWithLongLong:(-pow(2, 53))] isValidAttributeValue]);
     XCTAssertTrue([(NSObject *)[NSNumber numberWithUnsignedLongLong:(pow(2, 53))] isValidAttributeValue]);
@@ -58,6 +60,8 @@
     XCTAssertFalse([(NSObject *)[NSNumber numberWithFloat:INFINITY] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithFloat:-INFINITY] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:NAN] isValidAttributeValue]);
+    XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:(pow(2, 53) + 2)] isValidAttributeValue]);
+    XCTAssertFalse([(NSObject *)[NSNumber numberWithDouble:(-pow(2, 53) - 2)] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithLongLong:(pow(2, 53) + 2)] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithLongLong:(-pow(2, 53) - 2)] isValidAttributeValue]);
     XCTAssertFalse([(NSObject *)[NSNumber numberWithUnsignedLongLong:(pow(2, 53) + 2)] isValidAttributeValue]);
