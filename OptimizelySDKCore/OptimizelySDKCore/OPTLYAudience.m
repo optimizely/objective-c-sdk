@@ -38,8 +38,12 @@
         @throw exception;
     }
     
-    self.conditions = [OPTLYCondition deserializeJSONArray:array error:&err];
-    
+    [self setConditionsWithNSArray:array];
+}
+
+- (void)setConditionsWithNSArray:(NSArray *)array {
+    NSError *err = nil;
+    self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
     if (err != nil) {
         NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
         @throw exception;

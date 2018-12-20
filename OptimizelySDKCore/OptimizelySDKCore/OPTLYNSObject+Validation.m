@@ -78,18 +78,11 @@
 
 -(BOOL)isValidBooleanAttributeValue {
     if (self) {
-        NSNumber *number = (NSNumber *)self;
         // check value is NSNumber
-        if (number && [number isKindOfClass:[NSNumber class]]) {
-            const char *objCType = [number objCType];
-            
-            // check NSNumber is bool
-            if ((strcmp(objCType, @encode(bool)) == 0)
-                || [number isEqual:@YES]
-                || [number isEqual:@NO]) {
-                return true;
-            }
-        }
+        NSNumber *number = (NSNumber *)self;
+        CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+        CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+        return numID == boolID;
     }
     return false;
 }
@@ -106,9 +99,9 @@
                 return false;
             }
             // check NSNumber is bool
-            if ((strcmp(objCType, @encode(bool)) == 0)
-                || [number isEqual:@YES]
-                || [number isEqual:@NO]) {
+            CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+            if (boolID == numID) {
                 return false;
             }
             // check for infinity
