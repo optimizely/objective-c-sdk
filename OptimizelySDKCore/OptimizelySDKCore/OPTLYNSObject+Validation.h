@@ -21,21 +21,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Validation)
 
 /**
- * Determines if object is a valid string type.
+ * Determines if object is a valid non-empty string type.
  *
  * @returns A NSString if object is valid string type, else return nil.
  **/
 - (nullable NSString *)getValidString;
 
 /**
- * Determines if object is a valid array type.
+ * Determines if object is a valid non-empty array type.
  *
  * @returns A NSArray if object is valid array type, else return nil.
  **/
 - (nullable NSArray *)getValidArray;
 
 /**
- * Determines if object is a valid dictionary type.
+ * Determines if object is a valid non-empty dictionary type.
  *
  * @returns A NSDictionary if object is valid dictionary type, else return nil.
  **/
@@ -47,20 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
  * @returns A NSString if object is valid string type, else return empty string.
  **/
 - (NSString *)getStringOrEmpty;
-
-/**
- * Returns if object is of numeric type
- *
- * @returns A bool for whether object is valid numeric type.
- **/
-- (BOOL)isNumeric;
-
-/**
- * Returns if object is of boolean type
- *
- * @returns A bool for whether object is valid boolean type.
- **/
-- (BOOL)isBool;
 
 /**
  * Determines if object is a valid audience conditions array type.
@@ -75,6 +61,27 @@ NS_ASSUME_NONNULL_BEGIN
  * @returns A NSArray of conditions if valid, else return nil.
  **/
 - (nullable NSArray *)getValidConditionsArray;
+
+/**
+ * Returns if object is a valid attribute
+ *
+ * @returns A Bool whether object is a valid attribute.
+ **/
+- (BOOL)isValidAttributeValue;
+
+/**
+ * Returns if object is a valid boolean attribute
+ *
+ * @returns A Bool whether object is a valid boolean attribute.
+ **/
+- (BOOL)isValidBooleanAttributeValue;
+
+/**
+ * Returns if object is a valid numeric attribute
+ *
+ * @returns A Bool whether object is a valid numeric attribute.
+ **/
+- (BOOL)isValidNumericAttributeValue;
 
 @end
 

@@ -56,42 +56,6 @@
     return string;
 }
 
--(BOOL)isNumeric {
-    //Check if given object is acceptable numeric type
-    if (self) {
-        if ([self isKindOfClass:[NSNumber class]]) {
-            NSNumber *number = (NSNumber*)self;
-            CFTypeID cfnumID = CFNumberGetTypeID(); // the type ID of CFNumber
-            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
-            if (numID == cfnumID) {
-                // Require real numbers (not infinite or NaN).
-                double doubleValue = [number doubleValue];
-                if (isfinite(doubleValue)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
-    return false;
-}
-
--(BOOL)isBool {
-    //Check if given object is acceptable boolean type
-    if (self) {
-        if ([self isKindOfClass:[NSNumber class]]) {
-            NSNumber *number = (NSNumber*)self;
-            CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
-            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
-            return numID == boolID;
-        }
-    }
-    return false;
-}
-
 - (nullable NSArray *)getValidAudienceConditionsArray {
     if(self) {
         if ([self isKindOfClass:[NSString class]]) {
@@ -128,5 +92,81 @@
         }
     }
     return nil;
+}
+
+- (BOOL)isValidAttributeValue {
+    if (self) {
+        if ([self isEqual:[NSNull null]]) {
+            return false;
+        }
+        // check value is NSString
+        if ([self isKindOfClass:[NSString class]]) {
+            return true;
+        }
+        // check value is Boolean
+        if ([self isValidBooleanAttributeValue]) {
+            return true;
+        }
+        //check value is valid numeric attribute
+        if ([self isValidNumericAttributeValue]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+-(BOOL)isValidBooleanAttributeValue {
+    if (self) {
+        // check value is NSNumber
+        NSNumber *number = (NSNumber *)self;
+        CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+        CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+        return numID == boolID;
+    }
+    return false;
+}
+
+-(BOOL)isValidNumericAttributeValue {
+    if (self) {
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            const char *objCType = [number objCType];
+            
+            // check for Nan
+            if (isnan([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is bool
+            CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+            CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+            if (boolID == numID) {
+                return false;
+            }
+            // check for infinity
+            if (isinf([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is of type int, double
+            Boolean isNumeric = (strcmp(objCType, @encode(short)) == 0)
+            || (strcmp(objCType, @encode(unsigned short)) == 0)
+            || (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(unsigned int)) == 0)
+            || (strcmp(objCType, @encode(long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long)) == 0)
+            || (strcmp(objCType, @encode(long long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long long)) == 0)
+            || (strcmp(objCType, @encode(float)) == 0)
+            || (strcmp(objCType, @encode(double)) == 0)
+            || (strcmp(objCType, @encode(char)) == 0)
+            || (strcmp(objCType, @encode(unsigned char)) == 0);
+            
+            if (isNumeric) {
+                NSNumber *maxValue = [NSNumber numberWithDouble:pow(2,53)];
+                return (fabs([number doubleValue]) <= [maxValue doubleValue]);
+            }
+        }
+    }
+    return false;
 }
 @end

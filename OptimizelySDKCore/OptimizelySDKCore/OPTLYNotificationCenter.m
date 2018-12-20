@@ -21,6 +21,13 @@
 #import "OPTLYVariation.h"
 #import <objc/runtime.h>
 
+NSString *const OPTLYNotificationExperimentKey = @"experiment";
+NSString *const OPTLYNotificationVariationKey = @"variation";
+NSString *const OPTLYNotificationUserIdKey = @"userId";
+NSString *const OPTLYNotificationAttributesKey = @"attributes";
+NSString *const OPTLYNotificationEventKey = @"eventKey";
+NSString *const OPTLYNotificationEventTagsKey = @"eventTags";
+NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 
 @interface OPTLYNotificationCenter()
 
@@ -154,7 +161,7 @@
     assert(variation);
     assert([variation isKindOfClass:[OPTLYVariation class]]);
     
-    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParams];
+    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParamsKey];
     assert(logEvent);
     assert([logEvent isKindOfClass:[NSDictionary class]]);
     
@@ -182,13 +189,12 @@
         assert([attributes isKindOfClass:[NSDictionary class]]);
     }
     
-    NSDictionary *eventTags = (NSDictionary *)[args objectForKey:OPTLYNotificationEventTags];
-    
+    NSDictionary *eventTags = (NSDictionary *)[args objectForKey:OPTLYNotificationEventTagsKey];
     if (eventTags != nil && ![eventTags isEqual:[NSNull null]]) {
         assert([eventTags isKindOfClass:[NSDictionary class]]);
     }
     
-    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParams];
+    NSDictionary *logEvent = (NSDictionary *)[args objectForKey:OPTLYNotificationLogEventParamsKey];
     assert(logEvent);
     assert([logEvent isKindOfClass:[NSDictionary class]]);
     

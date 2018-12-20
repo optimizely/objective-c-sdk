@@ -208,7 +208,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     for (NSString *attributeKey in attributeKeys) {
         NSObject *attributeValue = attributes[attributeKey];
-        if (![OPTLYEventBuilderDefault isValidAttributeValue:attributeValue]) {
+        if (![attributeValue isValidAttributeValue]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
@@ -246,39 +246,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     NSNumber *timestamp = [NSNumber numberWithLongLong:currentTimeIntervalCast];
 
     return timestamp;
-}
-
-+ (BOOL)isValidAttributeValue:(NSObject *)value {
-    // check value is NSObject
-    if (!value || [value isEqual:[NSNull null]]) {
-        return false;
-    }
-    // check value is NSString
-    if ([value isKindOfClass:[NSString class]]) {
-        return true;
-    }
-    NSNumber *number = (NSNumber *)value;
-    // check value is NSNumber
-    if (number && [number isKindOfClass:[NSNumber class]]) {
-        const char *objCType = [number objCType];
-        // check NSNumber is of type int, double, bool
-        return (strcmp(objCType, @encode(short)) == 0)
-        || (strcmp(objCType, @encode(unsigned short)) == 0)
-        || (strcmp(objCType, @encode(int)) == 0)
-        || (strcmp(objCType, @encode(unsigned int)) == 0)
-        || (strcmp(objCType, @encode(long)) == 0)
-        || (strcmp(objCType, @encode(unsigned long)) == 0)
-        || (strcmp(objCType, @encode(long long)) == 0)
-        || (strcmp(objCType, @encode(unsigned long long)) == 0)
-        || (strcmp(objCType, @encode(float)) == 0)
-        || (strcmp(objCType, @encode(double)) == 0)
-        || (strcmp(objCType, @encode(char)) == 0)
-        || (strcmp(objCType, @encode(unsigned char)) == 0)
-        || (strcmp(objCType, @encode(bool)) == 0)
-        || [number isEqual:@YES]
-        || [number isEqual:@NO];
-    }
-    return false;
 }
 
 @end

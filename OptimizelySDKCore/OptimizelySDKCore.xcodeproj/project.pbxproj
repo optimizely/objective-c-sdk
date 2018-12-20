@@ -229,6 +229,8 @@
 		C77958C4219BFBC400B4CA89 /* OPTLYNSObject+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */; };
 		C77958C5219BFBC700B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
 		C77958C6219BFBC800B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
+		C779881321CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
+		C779881421CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
 		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
 		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
 		C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
@@ -643,6 +645,7 @@
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPTLYNSObject+Validation.h"; sourceTree = "<group>"; };
 		C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OPTLYNSObject+Validation.m"; sourceTree = "<group>"; };
+		C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYValidationTest.m; sourceTree = "<group>"; };
 		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
 		C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYAudienceBaseCondition.h; sourceTree = "<group>"; };
 		C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYAudienceBaseCondition.m; sourceTree = "<group>"; };
@@ -1289,6 +1292,7 @@
 				EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */,
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
+				C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */,
 				EA2FAB941DC6FDFA00B1D81B /* TestData */,
 			);
 			path = OptimizelySDKCoreTests;
@@ -2021,6 +2025,7 @@
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				C779881321CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */,
 				0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC01DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA81DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
@@ -2118,6 +2123,7 @@
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
 				0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
+				C779881421CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */,
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
