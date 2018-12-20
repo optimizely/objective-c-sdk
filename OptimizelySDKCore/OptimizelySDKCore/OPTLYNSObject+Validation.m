@@ -54,4 +54,88 @@
     }
     return string;
 }
+
+- (BOOL)isValidAttributeValue {
+    if (self) {
+        if ([self isEqual:[NSNull null]]) {
+            return false;
+        }
+        // check value is NSString
+        if ([self isKindOfClass:[NSString class]]) {
+            return true;
+        }
+        // check value is Boolean
+        if ([self isValidBooleanAttributeValue]) {
+            return true;
+        }
+        //check value is valid numeric attribute
+        if ([self isValidNumericAttributeValue]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+-(BOOL)isValidBooleanAttributeValue {
+    if (self) {
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            const char *objCType = [number objCType];
+            
+            // check NSNumber is bool
+            if ((strcmp(objCType, @encode(bool)) == 0)
+                || [number isEqual:@YES]
+                || [number isEqual:@NO]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+-(BOOL)isValidNumericAttributeValue {
+    if (self) {
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            const char *objCType = [number objCType];
+            
+            // check for Nan
+            if (isnan([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is bool
+            if ((strcmp(objCType, @encode(bool)) == 0)
+                || [number isEqual:@YES]
+                || [number isEqual:@NO]) {
+                return false;
+            }
+            // check for infinity
+            if (isinf([number doubleValue])) {
+                return false;
+            }
+            // check NSNumber is of type int, double
+            Boolean isNumeric = (strcmp(objCType, @encode(short)) == 0)
+            || (strcmp(objCType, @encode(unsigned short)) == 0)
+            || (strcmp(objCType, @encode(int)) == 0)
+            || (strcmp(objCType, @encode(unsigned int)) == 0)
+            || (strcmp(objCType, @encode(long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long)) == 0)
+            || (strcmp(objCType, @encode(long long)) == 0)
+            || (strcmp(objCType, @encode(unsigned long long)) == 0)
+            || (strcmp(objCType, @encode(float)) == 0)
+            || (strcmp(objCType, @encode(double)) == 0)
+            || (strcmp(objCType, @encode(char)) == 0)
+            || (strcmp(objCType, @encode(unsigned char)) == 0);
+            
+            if (isNumeric) {
+                NSNumber *maxValue = [NSNumber numberWithDouble:pow(2,53)];
+                return (fabs([number doubleValue]) <= [maxValue doubleValue]);
+            }
+        }
+    }
+    return false;
+}
+
 @end
