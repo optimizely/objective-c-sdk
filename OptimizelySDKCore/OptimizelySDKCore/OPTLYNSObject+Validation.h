@@ -48,6 +48,27 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 - (NSString *)getStringOrEmpty;
 
+/**
+ * Returns if object is a valid attribute
+ *
+ * @returns A Bool whether object is a valid attribute.
+ **/
+- (BOOL)isValidAttributeValue;
+
+/**
+ * Returns if object is a valid boolean attribute
+ *
+ * @returns A Bool whether object is a valid boolean attribute.
+ **/
+- (BOOL)isValidBooleanAttributeValue;
+
+/**
+ * Returns if object is a valid numeric attribute
+ *
+ * @returns A Bool whether object is a valid numeric attribute.
+ **/
+- (BOOL)isValidNumericAttributeValue;
+
 @end
 
 NS_ASSUME_NONNULL_END
