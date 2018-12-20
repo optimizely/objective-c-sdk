@@ -940,9 +940,9 @@ typedef enum : NSUInteger {
                                                                       bucketer:self.bucketer];
     
     NSDictionary *impressionEventTicketParams = [self.eventBuilder buildImpressionEventForUser:kUserId
-                                                                                experiment:experimentWithAudience
-                                                                                  variation:bucketedVariation
-                                                                                   attributes:self.attributes];
+                                                                                    experiment:experimentWithAudience
+                                                                                     variation:bucketedVariation
+                                                                                    attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
     [self checkTicket:ImpressionTicket
             forParams:impressionEventTicketParams
@@ -950,7 +950,7 @@ typedef enum : NSUInteger {
        experimentKeys:@[kExperimentWithAudienceKey]
           variationId:bucketedVariation.variationId
            attributes:self.attributes
-             eventKey:nil eventTags:nil tags:nil bucketer:nil userId:kUserId];    
+             eventKey:nil eventTags:nil tags:nil bucketer:nil userId:kUserId];
 }
 
 #pragma mark - Helper Methods
@@ -1201,7 +1201,7 @@ typedef enum : NSUInteger {
     
     XCTAssert(visitors && [visitors count] > 0, @"Didn't find any visitor.");
     NSDictionary *visitor = [visitors firstObject];
-
+    
     // check visitor id
     NSString *visitorId = visitor[OPTLYEventParameterKeysVisitorId];
     XCTAssert([visitorId isEqualToString:kUserId], @"Incorrect visitor id.");
@@ -1221,7 +1221,7 @@ typedef enum : NSUInteger {
     if (numberOfFeatures == numberOfAttributes) {
         NSSortDescriptor *featureNameDescriptor = [[NSSortDescriptor alloc] initWithKey:OPTLYEventParameterKeysFeaturesKey ascending:YES];
         NSArray *sortedUserFeaturesByName = [userFeatures sortedArrayUsingDescriptors:@[featureNameDescriptor]];
-
+        
         NSSortDescriptor *attributeKeyDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
         NSArray *sortedAttributeKeys = [[attributes allKeys] sortedArrayUsingDescriptors:@[attributeKeyDescriptor]];
         

@@ -25,6 +25,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYProjectConfig.h"
 #import "OPTLYVariation.h"
+#import "OPTLYNSObject+Validation.h"
 
 NSString * const OptimizelyActivateEventKey = @"campaign_activated";
 
@@ -92,15 +93,15 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];
     visitor[OPTLYEventParameterKeysSnapshots] =  [NSMutableArray new];
-    visitor[OPTLYEventParameterKeysVisitorId] = [OPTLYEventBuilderDefault stringOrEmpty:userId];
+    visitor[OPTLYEventParameterKeysVisitorId] = [userId getStringOrEmpty];
     visitor[OPTLYEventParameterKeysAttributes] = [self createUserFeatures:self.config attributes:attributes];
 
     commonParams[OPTLYEventParameterKeysVisitors] = @[visitor];
-    commonParams[OPTLYEventParameterKeysProjectId] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.projectId ];
-    commonParams[OPTLYEventParameterKeysAccountId] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.accountId];
-    commonParams[OPTLYEventParameterKeysClientEngine] = [OPTLYEventBuilderDefault stringOrEmpty:[self.config clientEngine]];
-    commonParams[OPTLYEventParameterKeysClientVersion] = [OPTLYEventBuilderDefault stringOrEmpty:[self.config clientVersion]];
-    commonParams[OPTLYEventParameterKeysRevision] = [OPTLYEventBuilderDefault stringOrEmpty:self.config.revision];
+    commonParams[OPTLYEventParameterKeysProjectId] = [self.config.projectId getStringOrEmpty];
+    commonParams[OPTLYEventParameterKeysAccountId] = [self.config.accountId getStringOrEmpty];
+    commonParams[OPTLYEventParameterKeysClientEngine] = [[self.config clientEngine] getStringOrEmpty];
+    commonParams[OPTLYEventParameterKeysClientVersion] = [[self.config clientVersion] getStringOrEmpty];
+    commonParams[OPTLYEventParameterKeysRevision] = [self.config.revision getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysAnonymizeIP] = @(self.config.anonymizeIP.boolValue);
     
     return [commonParams copy];
@@ -111,13 +112,13 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     NSMutableDictionary *snapshot = [NSMutableDictionary new];
     
     NSMutableDictionary *decision = [NSMutableDictionary new];
-    decision[OPTLYEventParameterKeysDecisionCampaignId]     = [OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
+    decision[OPTLYEventParameterKeysDecisionCampaignId]     = [experiment.layerId getStringOrEmpty];
     decision[OPTLYEventParameterKeysDecisionExperimentId]   = experiment.experimentId;
     decision[OPTLYEventParameterKeysDecisionVariationId]    = variation.variationId;
     NSArray *decisions = @[decision];
 
     NSMutableDictionary *event = [NSMutableDictionary new];
-    event[OPTLYEventParameterKeysEntityId]      = [OPTLYEventBuilderDefault stringOrEmpty:experiment.layerId];
+    event[OPTLYEventParameterKeysEntityId]      = [experiment.layerId getStringOrEmpty];
     event[OPTLYEventParameterKeysTimestamp]     = [self time] ? : @0;
     event[OPTLYEventParameterKeysKey]           = OptimizelyActivateEventKey;
     event[OPTLYEventParameterKeysUUID]          = [[NSUUID UUID] UUIDString];
@@ -149,7 +150,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     NSMutableDictionary *snapshot = [NSMutableDictionary new];
     
     NSMutableDictionary *eventDict = [NSMutableDictionary new];
-    eventDict[OPTLYEventParameterKeysEntityId]      = [OPTLYEventBuilderDefault stringOrEmpty:event.eventId];
+    eventDict[OPTLYEventParameterKeysEntityId]      = [event.eventId getStringOrEmpty];
     eventDict[OPTLYEventParameterKeysTimestamp]     = [self time] ? : @0;
     eventDict[OPTLYEventParameterKeysKey]           = event.eventKey;
     eventDict[OPTLYEventParameterKeysUUID]          = [[NSUUID UUID] UUIDString];
@@ -207,13 +208,13 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     for (NSString *attributeKey in attributeKeys) {
         NSObject *attributeValue = attributes[attributeKey];
-        if (![OPTLYEventBuilderDefault isValidAttributeValue:attributeValue]) {
+        if (![attributeValue isValidAttributeValue]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeValueInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
         }
         NSString *attributeId = [config getAttributeIdForKey:attributeKey];
-        if ([OPTLYEventBuilderDefault isEmptyString:attributeId]) {
+        if ([attributeId getValidString] == nil) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAttributeInvalidFormat, attributeKey];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             continue;
@@ -245,50 +246,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     NSNumber *timestamp = [NSNumber numberWithLongLong:currentTimeIntervalCast];
 
     return timestamp;
-}
-
-+ (NSString *)stringOrEmpty:(NSString *)str {
-    NSString *string = str != nil ? str : @"";
-    return string;
-}
-
-+ (BOOL)isEmptyString:(NSObject *)str {
-    return (!str
-            || ![str isKindOfClass:[NSString class]]
-            || [(NSString *)str isEqualToString:@""]);
-}
-
-+ (BOOL)isValidAttributeValue:(NSObject *)value {
-    // check value is NSObject
-    if (!value || [value isEqual:[NSNull null]]) {
-        return false;
-    }
-    // check value is NSString
-    if ([value isKindOfClass:[NSString class]]) {
-        return true;
-    }
-    NSNumber *number = (NSNumber *)value;
-    // check value is NSNumber
-    if (number && [number isKindOfClass:[NSNumber class]]) {
-        const char *objCType = [number objCType];
-        // check NSNumber is of type int, double, bool
-        return (strcmp(objCType, @encode(short)) == 0)
-        || (strcmp(objCType, @encode(unsigned short)) == 0)
-        || (strcmp(objCType, @encode(int)) == 0)
-        || (strcmp(objCType, @encode(unsigned int)) == 0)
-        || (strcmp(objCType, @encode(long)) == 0)
-        || (strcmp(objCType, @encode(unsigned long)) == 0)
-        || (strcmp(objCType, @encode(long long)) == 0)
-        || (strcmp(objCType, @encode(unsigned long long)) == 0)
-        || (strcmp(objCType, @encode(float)) == 0)
-        || (strcmp(objCType, @encode(double)) == 0)
-        || (strcmp(objCType, @encode(char)) == 0)
-        || (strcmp(objCType, @encode(unsigned char)) == 0)
-        || (strcmp(objCType, @encode(bool)) == 0)
-        || [number isEqual:@YES]
-        || [number isEqual:@NO];
-    }
-    return false;
 }
 
 @end
