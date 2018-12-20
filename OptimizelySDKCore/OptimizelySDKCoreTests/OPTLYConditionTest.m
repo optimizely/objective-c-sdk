@@ -18,10 +18,19 @@
 #import <OCMock/OCMock.h>
 #import "OPTLYCondition.h"
 #import "OPTLYBaseCondition.h"
+#import "OPTLYAudienceBaseCondition.h"
+#import "Optimizely.h"
+#import "OPTLYProjectConfig.h"
+#import "OPTLYTestHelper.h"
+#import "OPTLYErrorHandler.h"
+#import "OPTLYLogger.h"
+#import "OPTLYNSObject+Validation.h"
 
 @interface OPTLYConditionTest : XCTestCase
 
 @property NSDictionary<NSString *, NSObject *> *testUserAttributes;
+@property (nonatomic, strong) NSData *typedAudienceDatafile;
+@property (nonatomic, strong) Optimizely *optimizelyTypedAudience;
 
 @end
 
@@ -33,6 +42,18 @@
                                 @"browser_type" : @"chrome",
                                 @"device_type" : @"Android"
                                 };
+    self.typedAudienceDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"typed_audience_datafile"];
+    self.optimizelyTypedAudience = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.typedAudienceDatafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+}
+
+- (void)tearDown {
+    [super tearDown];
+    self.typedAudienceDatafile = nil;
+    self.optimizelyTypedAudience = nil;
 }
 
 - (NSArray *)kAudienceConditionsWithNot {
@@ -67,7 +88,7 @@
                                                                                      @"value": @"chrome",
                                                                                      @"type": @"custom_attribute"}
                                                                              error:nil];
-    XCTAssertTrue([[condition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[condition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testEvaluateReturnsFalseOnNonMatchingUserAttribute {
@@ -75,7 +96,7 @@
                                                                                      @"value": @"firefox",
                                                                                      @"type": @"custom_attribute"}
                                                                              error:nil];
-    XCTAssertFalse([[condition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[condition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 
@@ -84,7 +105,7 @@
                                                                                      @"type" : @"custom_attribute",
                                                                                      @"value" : @"unknown"}
                                                                              error:nil];
-    XCTAssertFalse([[condition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[condition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 // MARK:- NOT Condition Tests
@@ -92,43 +113,67 @@
 - (void)testNotEvaluatorReturnsNullWhenOperandEvaluateToNull {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @123};
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithNot]];
-    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testNotEvaluatorReturnsTrueWhenOperandEvaluateToFalse {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"Android"};
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithNot]];
-    XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testNotEvaluatorReturnsFalseWhenOperandEvaluateToTrue {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"iPhone"};
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithNot]];
-    XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testNotConditionReturnsTrueWhenChildrenAreFalse {
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     notCondition.subCondition = [self mockBaseConditionAlwaysFalse];
-    XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 -(void)testNotConditionReturnsNullWhenChildrenAreNull {
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     notCondition.subCondition = [self mockBaseConditionAlwaysNull];
-    XCTAssertNil([notCondition evaluateConditionsWithAttributes:self.testUserAttributes]);
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
 -(void)testNotConditionReturnsNullWhenNoChildren {
     NSDictionary *attributesPassOrValue = @{};
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
-    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testNotConditionReturnsFalseWhenChildrenAreTrue {
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     notCondition.subCondition = [self mockBaseConditionAlwaysTrue];
-    XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
+}
+
+- (void)testNotConditionReturnsFalseWhenComplexAudienceConditionReturnsTrue {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *notConditionArray = @[@"not", @"3468206642"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
+    XCTAssertNotNil(conditions);
+    
+    OPTLYAndCondition *notCondition = (OPTLYAndCondition *)[conditions firstObject];
+    XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+}
+
+- (void)testNotConditionReturnsTrueWhenComplexAudienceConditionsReturnsFalse {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *notConditionArray = @[@"not", @"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
+    XCTAssertNotNil(conditions);
+    
+    OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[conditions firstObject];
+    XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 }
 
 // MARK:- OR Condition Tests
@@ -138,7 +183,7 @@
                                             @"num_users" : @"test",
                                             @"decimal_value": @false};
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
-    XCTAssertNil([orCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([orCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testOrEvaluatorReturnsTrueWhenOperandsEvaluateToTruesAndNulls {
@@ -146,7 +191,7 @@
                                             @"num_users" : @15,
                                             @"decimal_value": @false};
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testOrEvaluatorReturnsNullWhenOperandsEvaluateToFalsesAndNulls {
@@ -154,15 +199,16 @@
                                             @"num_users" : @20,
                                             @"decimal_value": @NO};
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
-    XCTAssertNil([orCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([orCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testOrEvaluatorReturnsTrueWhenOperandsEvaluateToFalsesTruesAndNulls {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"iPhone file explorer",
                                             @"num_users" : @20,
                                             @"decimal_value": @false};
+
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testOrEvaluatorReturnsFalseWhenAllOperandsEvaluateToFalse {
@@ -171,7 +217,7 @@
                                             @"num_users" : @17,
                                             @"decimal_value": @3.12};
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithOr]];
-    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testOrConditionReturnsTrueWhenAtLeastOneofItsChildrenReturnsTrue {
@@ -180,7 +226,7 @@
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testOrConditionReturnsFalseWhenAllOfItsChildrenEvaluateFalse {
@@ -189,7 +235,7 @@
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysFalse]
                                                              ];
-    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testOrConditionReturnsNullWhenAllOfItsChildrenEvaluateNull {
@@ -198,7 +244,7 @@
                                                              [self mockBaseConditionAlwaysNull],
                                                              [self mockBaseConditionAlwaysNull]
                                                              ];
-     XCTAssertNil([orCondition evaluateConditionsWithAttributes:self.testUserAttributes]);
+     XCTAssertNil([orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
 - (void)testOrConditionReturnsTrueWhenChildrenEvaluateTruesAndNull {
@@ -207,7 +253,7 @@
                                                              [self mockBaseConditionAlwaysNull],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testOrConditionReturnsNullWhenChildrenEvaluateFalseAndNull {
@@ -216,7 +262,7 @@
                                                              [self mockBaseConditionAlwaysNull],
                                                              [self mockBaseConditionAlwaysFalse]
                                                              ];
-    XCTAssertNil([orCondition evaluateConditionsWithAttributes:self.testUserAttributes]);
+    XCTAssertNil([orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
 - (void)testOrConditionReturnsTrueWhenChildrenEvaluateTruesandFalseAndNull {
@@ -226,7 +272,31 @@
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
+}
+
+- (void)testOrConditionReturnsTrueWhenAnyComplexAudienceConditionReturnsTrue {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *orConditionArray = @[@"or", @"3468206642",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:orConditionArray];
+    XCTAssertNotNil(conditions);
+
+    OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[conditions firstObject];
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+}
+
+- (void)testOrConditionReturnsFalseWhenAllComplexAudienceConditionsReturnsFalse {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *orConditionArray = @[@"or", @"1",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:orConditionArray];
+    XCTAssertNotNil(conditions);
+    
+    OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[conditions firstObject];
+    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 }
 
 // MARK:- AND Condition Tests
@@ -236,7 +306,7 @@
                                             @"num_users" : @"test",
                                             @"decimal_value": @NO};
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
-    XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testAndEvaluatorReturnsNullWhenOperandsEvaluateToTruesAndNulls {
@@ -244,31 +314,34 @@
                                             @"num_users" : @15,
                                             @"decimal_value": @NO}; // This evaluates to null.
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
-    XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue]);
+    XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
 }
 
 - (void)testAndEvaluatorReturnsFalseWhenOperandsEvaluateToFalsesAndNulls {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"Android", // Evaluates to false.
                                             @"num_users" : @20, // Evaluates to false.
                                             @"decimal_value": @false}; // Evaluates to null.
+
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
-    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testAndEvaluatorReturnsFalseWhenOperandsEvaluateToFalsesTruesAndNulls {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"Phone", // Evaluates to true.
                                             @"num_users" : @20, // Evaluates to false.
                                             @"decimal_value": @false}; // Evaluates to null.
+
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
-    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testAndEvaluatorReturnsTrueWhenAllOperandsEvaluateToTrue {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @"iPhone X",
                                             @"num_users" : @15,
                                             @"decimal_value": @3.1567};
+
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithAnd]];
-    XCTAssertTrue([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue] boolValue]);
+    XCTAssertTrue([[andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil] boolValue]);
 }
 
 - (void)testAndConditionReturnsTrueWhenAllOfItsChildrenEvaluateTrue {
@@ -277,7 +350,7 @@
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysTrue]
                                                               ];
-    XCTAssertTrue([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testAndConditionReturnsFalseWhenOneOfItsChildrenEvaluateFalse {
@@ -286,7 +359,7 @@
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysFalse]
                                                               ];
-    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testAndConditionReturnsNullWhenAllOfItsChildrenEvaluateNull {
@@ -295,7 +368,7 @@
                                                               [self mockBaseConditionAlwaysNull],
                                                               [self mockBaseConditionAlwaysNull]
                                                               ];
-    XCTAssertNil([andCondition evaluateConditionsWithAttributes:self.testUserAttributes]);
+    XCTAssertNil([andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
 - (void)testAndConditionReturnsNullWhenChildrenEvaluateTruesAndNull {
@@ -304,7 +377,7 @@
                                                               [self mockBaseConditionAlwaysNull],
                                                               [self mockBaseConditionAlwaysTrue],
                                                               ];
-    XCTAssertNil([andCondition evaluateConditionsWithAttributes:self.testUserAttributes]);
+    XCTAssertNil([andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
 - (void)testAndConditionReturnsFalseWhenChildrenEvaluateFalseAndNull {
@@ -313,7 +386,7 @@
                                                               [self mockBaseConditionAlwaysNull],
                                                               [self mockBaseConditionAlwaysFalse]
                                                               ];
-    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testAndConditionReturnsFalseWhenChildrenEvaluateTrueAndFalseAndNull {
@@ -323,7 +396,31 @@
                                                               [self mockBaseConditionAlwaysFalse],
                                                               [self mockBaseConditionAlwaysTrue]
                                                               ];
-    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
+}
+
+- (void)testAndConditionReturnsFalseWhenAnyComplexAudienceConditionReturnsFalse {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *andConditionArray = @[@"and", @"3468206642",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
+    XCTAssertNotNil(conditions);
+    
+    OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[conditions firstObject];
+    XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+}
+
+- (void)testAndConditionReturnsTrueWhenAllComplexAudienceConditionsReturnsTrue {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor"
+                                                             };
+    NSArray *andConditionArray = @[@"and", @"3468206642"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
+    XCTAssertNotNil(conditions);
+    
+    OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[conditions firstObject];
+    XCTAssertTrue([[andCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 }
 
 // MARK:- Deserialization Tests
@@ -340,7 +437,7 @@
     OPTLYAndCondition *andCondition = conditions[0];
     XCTAssertTrue(andCondition.subConditions.count == 1);
     XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
-    OPTLYBaseCondition *condition = andCondition.subConditions[0];
+    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)andCondition.subConditions[0];
     XCTAssertEqualObjects(condition.name, @"someAttributeKey");
     XCTAssertEqualObjects(condition.value, @"attributeValue");
     XCTAssertEqualObjects(condition.type, @"custom_attribute");
@@ -358,7 +455,7 @@
     OPTLYAndCondition *andCondition = conditions[0];
     XCTAssertTrue(andCondition.subConditions.count == 1);
     XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
-    OPTLYBaseCondition *condition = andCondition.subConditions[0];
+    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)andCondition.subConditions[0];
     XCTAssertEqualObjects(condition.name, @"someAttributeKey");
     XCTAssertEqualObjects(condition.value, @"attributeValue");
     XCTAssertEqualObjects(condition.type, @"custom_attribute");
@@ -367,34 +464,28 @@
 
 - (void)testDeserializeConditions {
     NSString *conditionString = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"chrome\"}]]]";
-    NSData *conditionData = [conditionString dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
-                                                                        options:NSJSONReadingAllowFragments
-                                                                          error:nil];
+    NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray];
     XCTAssertNotNil(conditionsArray);
     XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYAndCondition class]]);
     OPTLYAndCondition *andCondition = conditionsArray[0];
     XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYOrCondition class]]);
-    OPTLYOrCondition *orCondition = andCondition.subConditions[0];
+    OPTLYOrCondition *orCondition = (OPTLYOrCondition *)andCondition.subConditions[0];
     XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYOrCondition class]]);
     XCTAssertTrue(orCondition.subConditions.count == 1);
-    orCondition = orCondition.subConditions[0];
+    orCondition = (OPTLYOrCondition *)orCondition.subConditions[0];
     XCTAssertTrue(orCondition.subConditions.count == 1);
     XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
-    OPTLYBaseCondition *baseCondition = orCondition.subConditions[0];
+    OPTLYBaseCondition *baseCondition = (OPTLYBaseCondition *)orCondition.subConditions[0];
     XCTAssertTrue([baseCondition.name isEqualToString:@"browser_type"]);
     XCTAssertTrue([baseCondition.type isEqualToString:@"custom_attribute"]);
     XCTAssertTrue([baseCondition.value isEqual:@"chrome"]);
-    XCTAssertTrue([[conditionsArray[0] evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[conditionsArray[0] evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 - (void)testDeserializeConditionsNoValue {
     NSString *conditionString = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"invalid\": \"custom_attribute\"}]]]";
-    NSData *conditionData = [conditionString dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
-                                                                        options:NSJSONReadingAllowFragments
-                                                                          error:nil];
+    NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSError *error = nil;
     NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
     XCTAssertNil(conditionsArray);
@@ -402,10 +493,7 @@
 
 - (void)testDeserializeConditionsEmptyConditions {
     NSString *conditionString = @"";
-    NSData *conditionData = [conditionString dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
-                                                                        options:NSJSONReadingAllowFragments
-                                                                          error:nil];
+    NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSError *error = nil;
     NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
     XCTAssertNil(conditionsArray);
@@ -417,15 +505,90 @@
     XCTAssertNil(conditionsArray);
 }
 
+- (void)testConditionComplexAudienceConditionCaseDeserializationWithAndContainer {
+    NSArray *andConditionArray = @[@"and", @"1",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
+    XCTAssertNotNil(conditions);
+    XCTAssertTrue(conditions.count == 1);
+    XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYAndCondition class]]);
+    OPTLYAndCondition *andCondition = conditions[0];
+    XCTAssertTrue(andCondition.subConditions.count == 2);
+    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    XCTAssertTrue([andCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYAudienceBaseCondition *condition1 = (OPTLYAudienceBaseCondition *)andCondition.subConditions[0];
+    XCTAssertEqualObjects(condition1.audienceId, @"1");
+    OPTLYAudienceBaseCondition *condition2 = (OPTLYAudienceBaseCondition *)andCondition.subConditions[1];
+    XCTAssertEqualObjects(condition2.audienceId, @"2");
+}
+
+- (void)testConditionComplexAudienceConditionCaseDeserializationWithOrContainer {
+    NSArray *orConditionArray = @[@"or", @"1",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:orConditionArray];
+    XCTAssertNotNil(conditions);
+    XCTAssertTrue(conditions.count == 1);
+    XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYOrCondition *orCondition = conditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 2);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    XCTAssertTrue([orCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYAudienceBaseCondition *condition1 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[0];
+    XCTAssertEqualObjects(condition1.audienceId, @"1");
+    OPTLYAudienceBaseCondition *condition2 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[1];
+    XCTAssertEqualObjects(condition2.audienceId, @"2");
+}
+
+- (void)testDeserializeComplexConditions {
+    NSString *conditionString = @"[\"and\", [\"or\", [\"or\",\"1\",\"2\"]]]";
+    NSArray *conditionStringJSONArray = [conditionString getValidAudienceConditionsArray];
+    NSArray *conditionsArray = [OPTLYCondition deserializeAudienceConditionsJSONArray:conditionStringJSONArray];
+    XCTAssertNotNil(conditionsArray);
+    XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYAndCondition class]]);
+    OPTLYAndCondition *andCondition = conditionsArray[0];
+    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYOrCondition *orCondition = (OPTLYOrCondition *)andCondition.subConditions[0];
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    XCTAssertTrue(orCondition.subConditions.count == 1);
+    orCondition = (OPTLYOrCondition *)orCondition.subConditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 2);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    XCTAssertTrue([orCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYAudienceBaseCondition *condition1 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[0];
+    XCTAssertEqualObjects(condition1.audienceId, @"1");
+    OPTLYAudienceBaseCondition *condition2 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[1];
+    XCTAssertEqualObjects(condition2.audienceId, @"2");
+}
+
+- (void)testDeserializeComplexConditionsEmptyConditions {
+    NSString *conditionString = @"";
+    NSArray *conditionStringJSONArray = [conditionString getValidAudienceConditionsArray];
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeAudienceConditionsJSONArray:conditionStringJSONArray error:&error];
+    XCTAssertNil(conditionsArray);
+}
+
+- (void)testDeserializeComplexConditionsNilConditions {
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeAudienceConditionsJSONArray:nil error:&error];
+    XCTAssertNil(conditionsArray);
+}
+
+- (void)testDeserializeComplexConditionsWithAudienceLeafNodeString {
+    NSString *conditionString = @"2";
+    NSArray *conditionStringJSONArray = [conditionString getValidAudienceConditionsArray];
+    NSError *error = nil;
+    NSArray *conditionsArray = [OPTLYCondition deserializeAudienceConditionsJSONArray:conditionStringJSONArray error:&error];
+    XCTAssertNotNil(conditionsArray);
+    XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYOrCondition *orCondition = conditionsArray[0];
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+}
+
 // MARK:- Implicit Operator Tests
 
 - (void)testShouldReturnOrOperatorWhenNoOperatorIsProvided {
     
     NSString *noOperatorConditionString = @"[{\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"android\"}]";
-    NSData *conditionData = [noOperatorConditionString dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *conditionStringJSONArray = [NSJSONSerialization JSONObjectWithData:conditionData
-                                                                        options:NSJSONReadingAllowFragments
-                                                                          error:nil];
+    NSArray *conditionStringJSONArray = [noOperatorConditionString getValidConditionsArray];
     NSError *error = nil;
     NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
     XCTAssertNotNil(conditionsArray);
@@ -436,35 +599,35 @@
                                                              [self mockBaseConditionAlwaysTrue],
                                                              [self mockBaseConditionAlwaysFalse],
                                                              ];
-    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
     
     orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysFalse],
                                                              ];
-    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes] boolValue]);
+    XCTAssertFalse([[orCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
 // MARK:- Mock Methods
 
 - (OPTLYBaseCondition *)mockBaseConditionAlwaysFalse {
     id falseBaseCondition = OCMClassMock([OPTLYBaseCondition class]);
-    OCMStub([falseBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]]]).andReturn([NSNumber numberWithBool:false]);
-    XCTAssertFalse([[falseBaseCondition evaluateConditionsWithAttributes:@{}] boolValue]);
+    OCMStub([falseBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]] projectConfig:nil]).andReturn([NSNumber numberWithBool:false]);
+    XCTAssertFalse([[falseBaseCondition evaluateConditionsWithAttributes:@{} projectConfig:nil] boolValue]);
     return falseBaseCondition;
 }
 
 - (OPTLYBaseCondition *)mockBaseConditionAlwaysTrue {
     id trueBaseCondition = OCMClassMock([OPTLYBaseCondition class]);
-    OCMStub([trueBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]]]).andReturn([NSNumber numberWithBool:true]);
-    XCTAssertTrue([[trueBaseCondition evaluateConditionsWithAttributes:@{}] boolValue]);
+    OCMStub([trueBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]] projectConfig:nil]).andReturn([NSNumber numberWithBool:true]);
+    XCTAssertTrue([[trueBaseCondition evaluateConditionsWithAttributes:@{} projectConfig:nil] boolValue]);
     return trueBaseCondition;
 }
 
 - (OPTLYBaseCondition *)mockBaseConditionAlwaysNull {
     id nullBaseCondition = OCMClassMock([OPTLYBaseCondition class]);
-    OCMStub([nullBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]]]).andReturn(NULL);
-    XCTAssertNil([nullBaseCondition evaluateConditionsWithAttributes:@{}]);
+    OCMStub([nullBaseCondition evaluateConditionsWithAttributes:[OCMArg isKindOfClass:[NSDictionary class]] projectConfig:nil]).andReturn(NULL);
+    XCTAssertNil([nullBaseCondition evaluateConditionsWithAttributes:@{} projectConfig:nil]);
     return nullBaseCondition;
 }
 

@@ -49,6 +49,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getStringOrEmpty;
 
 /**
+ * Determines if object is a valid audience conditions array type.
+ *
+ * @returns A NSArray of audience conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidAudienceConditionsArray;
+
+/**
+ * Determines if object is a valid conditions array type.
+ *
+ * @returns A NSArray of conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidConditionsArray;
+
+/**
  * Returns if object is a valid attribute
  *
  * @returns A Bool whether object is a valid attribute.

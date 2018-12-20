@@ -15,13 +15,14 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import "OPTLYProjectConfig.h"
 
 @protocol OPTLYCondition
 
 /**
  * Evaluate the condition against the user attributes.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config;
 
 @end
 
@@ -29,7 +30,10 @@
 
 + (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
                                             error:(NSError * __autoreleasing *)error;
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
++ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
++ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
+                                            error:(NSError * __autoreleasing *)error;
++ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray;
 
 @end
 

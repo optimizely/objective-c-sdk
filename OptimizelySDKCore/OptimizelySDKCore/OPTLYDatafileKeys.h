@@ -36,6 +36,7 @@ extern NSString * const OPTLYDatafileKeysExperimentKey;
 extern NSString * const OPTLYDatafileKeysExperimentStatus;
 extern NSString * const OPTLYDatafileKeysExperimentTrafficAllocation;
 extern NSString * const OPTLYDatafileKeysExperimentAudienceIds;
+extern NSString * const OPTLYDatafileKeysExperimentAudienceConditions;
 extern NSString * const OPTLYDatafileKeysExperimentVariations;
 extern NSString * const OPTLYDatafileKeysExperimentForcedVariations;
 extern NSString * const OPTLYDatafileKeysExperimentLayerId;
