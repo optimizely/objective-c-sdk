@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_END
 /// List of audience ids
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAudience *><OPTLYAudience> *audiences;
 /// List of typed audience objects
-@property (nonatomic, strong, nullable) NSArray<OPTLYAudience, OPTLYOptional> *typedAudiences;
+@property (nonatomic, strong, nullable) NSArray<OPTLYAudience *><OPTLYOptional> *typedAudiences;
 /// List of attributes objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute *><OPTLYAttribute> *attributes;
 /// List of group objects
