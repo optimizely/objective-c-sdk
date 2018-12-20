@@ -35,14 +35,14 @@
     }
 }
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *,NSString *> *)attributes {
+- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     if (attributes == nil) {
         // if the user did not pass in attributes, return false
         return false;
     }
     else {
-        // check user attribute value for the condition against our condition value 
-        return [self.value isEqualToString:attributes[self.name]];
+        // check user attribute value for the condition against our condition value
+        return [self.value isEqual:attributes[self.name]];
     }
 }
 

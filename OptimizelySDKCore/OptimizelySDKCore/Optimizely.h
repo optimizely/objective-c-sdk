@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (nullable OPTLYVariation *)activate:(nonnull NSString *)experimentKey
                                userId:(nonnull NSString *)userId
-                           attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                           attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 #pragma mark - getVariation methods
 /**
@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (nullable OPTLYVariation *)variation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 #pragma mark - Forced Variation Methods
 /**
@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @param attributes The user's attributes.
  * @return YES if feature is enabled, false otherwise.
  */
-- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Gets boolean feature variable value.
@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (nullable NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Gets double feature variable value.
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (nullable NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Gets integer feature variable value.
@@ -174,7 +174,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (nullable NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
-                      attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                      attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Gets string feature variable value.
@@ -187,7 +187,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
 - (nullable NSString *)getFeatureVariableString:(nullable NSString *)featureKey
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Get array of features that are enabled for the user.
@@ -196,7 +196,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  * @return NSArray<NSString> Array of feature keys that are enabled for the user.
  */
 - (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
-                                         attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                         attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 #pragma mark - trackEvent methods
 /**
@@ -215,7 +215,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nonnull NSDictionary<NSString *, NSString *> *)attributes;
+   attributes:(nonnull NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Track an event
@@ -236,7 +236,7 @@ typedef NS_ENUM(NSInteger, OPTLYLiveVariableError) {
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
+   attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 ////////////////////////////////////////////////////////////////
@@ -584,7 +584,7 @@ __attribute((deprecated("Use Optimizely initWithBuilder method instead.")));
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes
+   attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 @end

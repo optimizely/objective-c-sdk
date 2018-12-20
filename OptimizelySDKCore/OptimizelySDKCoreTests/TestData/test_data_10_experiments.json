@@ -284,7 +284,8 @@
         }
       ],
       "audienceIds": [
-        "6369992312"
+        "6369992312",
+        "6378191387"
       ],
       "variations": [
         {
@@ -444,12 +445,29 @@
       "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"ie\"}]]]",
       "id": "6378191386",
       "name": "IE users"
+    },
+    {
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"name\": \"browser_build_number\", \"type\": \"custom_dimension\", \"value\": 106}]]]",
+      "id": "6378191387",
+      "name": "Custom users"
     }
   ],
   "attributes": [
     {
       "id": "6359881003",
       "key": "browser_type"
+    },
+    {
+      "id": "6359881004",
+      "key": "browser_version"
+    },
+    {
+      "id": "6359881005",
+      "key": "browser_build_number"
+    },
+    {
+      "id": "6359881006",
+      "key": "browser_is_default"
     }
   ],
   "groups": [

@@ -256,8 +256,10 @@ dispatch_queue_t eventsStorageCacheQueue()
         dispatch_async(eventsStorageCacheQueue(), ^{
             __weak typeof(self) weakSelf = self;
             OPTLYQueue *queue = [weakSelf.eventsCache objectForKey:eventTypeName];
-            NSDictionary *eventJSON = [queue.queue objectAtIndex:[event[@"entityId"] integerValue]];
-            [queue removeItem:eventJSON];
+            if (queue && [queue.queue count] > [event[@"entityId"] integerValue]) {
+                NSDictionary *eventJSON = [queue.queue objectAtIndex:[event[@"entityId"] integerValue]];
+                [queue removeItem:eventJSON];
+            }
         });
         retval = YES;
     }

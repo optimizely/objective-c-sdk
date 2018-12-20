@@ -30,6 +30,12 @@ static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
 static NSString *const kVariationId = @"6362476365";
 
+static NSString *const kAttributeKeyBrowserName = @"browser_name";
+static NSString *const kAttributeValueBrowserValue = @"firefox";
+static NSString *const kAttributeKeyBrowserBuildNo = @"browser_buildno";
+static NSString *const kAttributeKeyBrowserVersion = @"browser_version";
+static NSString *const kAttributeKeyObject = @"dummy_object";
+
 @interface OPTLYNotificationCenter()
 // notification Count represeting total number of notifications.
 @property (nonatomic, readonly) NSUInteger notificationsCount;
@@ -57,19 +63,19 @@ static NSString *const kVariationId = @"6362476365";
     }]];
     self.notificationCenter = [[OPTLYNotificationCenter alloc] initWithProjectConfig:self.projectConfig];
     __weak typeof(self) weakSelf = self;
-    weakSelf.activateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    weakSelf.activateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         NSString *logMessage = @"activate notification called with %@";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, experiment.experimentKey] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, variation.variationKey] withLevel:OptimizelyLogLevelInfo];
     };
-    weakSelf.anotherActivateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    weakSelf.anotherActivateNotification = ^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         NSString *logMessage = @"activate notification called with %@";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, experiment.experimentKey] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, variation.variationKey] withLevel:OptimizelyLogLevelInfo];
     };
-    weakSelf.trackNotification = ^(NSString *eventKey, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, NSDictionary *eventTags, NSDictionary<NSString *,NSString *> *event) {
+    weakSelf.trackNotification = ^(NSString *eventKey, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, NSDictionary *eventTags, NSDictionary<NSString *,NSString *> *event) {
         NSString *logMessage = @"track notification called with %@";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, eventKey] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
@@ -168,14 +174,22 @@ static NSString *const kVariationId = @"6362476365";
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
     // Fire decision type notifications.
+    
     OPTLYExperiment *experiment = [_projectConfig getExperimentForKey:kExperimentKey];
     OPTLYVariation *variation = [experiment getVariationForVariationId:kVariationId];
     NSDictionary *attributes = [NSDictionary new];
     NSDictionary *event = [NSDictionary new];
     NSString *userId = [NSString stringWithFormat:@"%@", kUserId];
     
+    NSDictionary *activateArgs = @{
+                           OPTLYNotificationExperimentKey: experiment,
+                           OPTLYNotificationUserIdKey: userId,
+                           OPTLYNotificationAttributesKey: attributes,
+                           OPTLYNotificationVariationKey: variation,
+                           OPTLYNotificationLogEventParamsKey: event,
+                           };
     // Verify that only the registered notifications of decision type are called.
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation, event]];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
     
     OCMReject(_trackNotification);
     OCMVerify(_activateNotification);
@@ -184,8 +198,18 @@ static NSString *const kVariationId = @"6362476365";
     NSString *eventKey = [NSString stringWithFormat:@"%@", kUserId];
     NSDictionary *eventTags = [NSDictionary new];
     
+    NSDictionary *trackArgs = @{
+                           OPTLYNotificationEventKey: eventKey,
+                           OPTLYNotificationUserIdKey: userId,
+                           OPTLYNotificationAttributesKey: attributes,
+                           OPTLYNotificationVariationKey: variation,
+                           OPTLYNotificationEventTagsKey: eventTags,
+                           OPTLYNotificationLogEventParamsKey: event
+                           };
+    
+    
     // Verify that only the registered notifications of track type are called.
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:@[eventKey, userId, attributes, eventTags, event]];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:trackArgs];
     
     OCMVerify(_trackNotification);
     OCMReject(_activateNotification);
@@ -195,12 +219,60 @@ static NSString *const kVariationId = @"6362476365";
     // which were previously registered.
     [_notificationCenter clearAllNotificationListeners];
     
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:@[experiment, userId, attributes, variation, event]];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
     
     // Again verify notifications which were registered are not called.
     OCMReject(_trackNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
+}
+
+- (void) testSendNotificationWithAnyAttributes {
+    // Add activate notifications.
+    [_notificationCenter addActivateNotificationListener:_activateNotification];
+    
+    // Add track notification.
+    [_notificationCenter addTrackNotificationListener:_trackNotification];
+    
+    // Fire decision type notifications.
+    OPTLYExperiment *experiment = [_projectConfig getExperimentForKey:kExperimentKey];
+    OPTLYVariation *variation = [experiment getVariationForVariationId:kVariationId];
+    NSDictionary *attributes = @{
+        kAttributeKeyBrowserName: kAttributeValueBrowserValue,
+        kAttributeKeyBrowserBuildNo: @(10),
+        kAttributeKeyBrowserVersion: @(0.3),
+        kAttributeKeyObject: @{
+            kAttributeKeyBrowserName: kAttributeValueBrowserValue,
+        }
+    };
+    NSDictionary *logEvent = [NSDictionary new];
+    NSString *userId = [NSString stringWithFormat:@"%@", kUserId];
+    
+    NSDictionary *activateArgs = @{
+                                   OPTLYNotificationExperimentKey: experiment,
+                                   OPTLYNotificationUserIdKey: userId,
+                                   OPTLYNotificationAttributesKey: attributes,
+                                   OPTLYNotificationVariationKey: variation,
+                                   OPTLYNotificationLogEventParamsKey: logEvent,
+                                   };
+    
+    // Verify that only the registered notifications of decision type are called.
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
+    
+    NSString *eventKey = [NSString stringWithFormat:@"%@", kUserId];
+    NSDictionary *eventTags = [NSDictionary new];
+    
+    NSDictionary *trackArgs = @{
+                                OPTLYNotificationEventKey: eventKey,
+                                OPTLYNotificationUserIdKey: userId,
+                                OPTLYNotificationAttributesKey: attributes,
+                                OPTLYNotificationVariationKey: variation,
+                                OPTLYNotificationEventTagsKey: eventTags,
+                                OPTLYNotificationLogEventParamsKey: logEvent
+                                };
+    
+    // Verify that only the registered notifications of track type are called.
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:trackArgs];
 }
 
 - (void)testSendNotificationsWithInvalidArgs {

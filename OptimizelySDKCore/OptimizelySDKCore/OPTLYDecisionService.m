@@ -31,6 +31,7 @@
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYGroup.h"
 #import "OPTLYControlAttributes.h"
+#import "OPTLYNSObject+Validation.h"
 
 @interface OPTLYDecisionService()
 @property (nonatomic, strong) OPTLYProjectConfig *config;
@@ -52,7 +53,7 @@
 
 - (OPTLYVariation *)getVariation:(NSString *)userId
                       experiment:(OPTLYExperiment *)experiment
-                      attributes:(NSDictionary *)attributes
+                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     NSDictionary *userProfileDict = nil;
     OPTLYVariation *bucketedVariation = nil;
@@ -125,7 +126,7 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeature:(OPTLYFeatureFlag *)featureFlag
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary *)attributes {
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     //Evaluate in this order:
     
@@ -157,17 +158,20 @@
 # pragma mark - Helper Methods
 
 - (NSString *)getBucketingId:(NSString *)userId
-                  attributes:(NSDictionary *)attributes {
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     // By default, the bucketing ID should be the user ID .
     NSString *bucketingId = userId;
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
-    if (![OPTLYDecisionService isEmptyString:attributes[OptimizelyBucketId]]) {
-        bucketingId = attributes[OptimizelyBucketId];
-        [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
-                                        bucketingId]
-                             withLevel:OptimizelyLogLevelDebug];
+    if (attributes != nil) {
+        NSString *validBucketingId = [attributes[OptimizelyBucketId] getValidString];
+        if (validBucketingId != nil) {
+            bucketingId = validBucketingId;
+            [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceSettingTheBucketingID,
+                                            bucketingId]
+                                 withLevel:OptimizelyLogLevelDebug];
+        }
     }
     return bucketingId;
 }
@@ -189,12 +193,12 @@
 - (OPTLYFeatureDecision *)getVariationForFeatureGroup:(OPTLYFeatureFlag *)featureFlag
                                               groupId:(NSString *)groupId
                                                userId:(NSString *)userId
-                                           attributes:(NSDictionary *)attributes {
+                                           attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     OPTLYFeatureDecision *decision = nil;
     NSString *logMessage = nil;
     
-    if ([OPTLYDecisionService isEmptyString:groupId]) {
+    if ([groupId getValidString] == nil) {
         logMessage = OPTLYLoggerMessagesDecisionServiceGroupIdNotFound;
     } else {
         NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
@@ -225,12 +229,12 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeatureExperiment:(OPTLYFeatureFlag *)featureFlag
                                               userId:(NSString *)userId
-                                          attributes:(NSDictionary *)attributes {
+                                          attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *featureFlagKey = featureFlag.key;
     NSArray *experimentIds = featureFlag.experimentIds;
     // Check if there are any experiment IDs inside feature flag
-    if ([OPTLYDecisionService isEmptyArray:experimentIds]) {
+    if ([experimentIds getValidArray] == nil) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -261,12 +265,12 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeatureRollout:(OPTLYFeatureFlag *)featureFlag
                                            userId:(NSString *)userId
-                                       attributes:(NSDictionary *)attributes {
+                                       attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
     NSString *featureFlagKey = featureFlag.key;
     NSString *rolloutId = featureFlag.rolloutId;
-    if ([OPTLYDecisionService isEmptyString:rolloutId]) {
+    if ([rolloutId getValidString] == nil) {
         [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFFNotUsed, featureFlagKey]
                              withLevel:OptimizelyLogLevelDebug];
         return nil;
@@ -277,7 +281,7 @@
         return nil;
     }
     NSArray *rolloutRules = rollout.experiments;
-    if ([OPTLYDecisionService isEmptyArray:rolloutRules]) {
+    if ([rolloutRules getValidArray] == nil) {
         return nil;
     }
     // Evaluate all rollout rules except for last one
@@ -447,7 +451,7 @@
 - (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
               experiment:(OPTLYExperiment *)experiment
                      userId:(NSString *)userId
-                 attributes:(NSDictionary *)attributes
+                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     // check if the user is in the experiment
     BOOL isUserInExperiment = [self isUserInExperiment:config experiment:experiment attributes:attributes];
@@ -476,7 +480,7 @@
 
 - (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
              experiment:(OPTLYExperiment *)experiment
-                attributes:(NSDictionary *)attributes
+                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     NSArray *audiences = experiment.audienceIds;
     
@@ -499,18 +503,5 @@
     }
     
     return false;
-}
-
-+ (BOOL)isEmptyString:(NSObject*)string {
-    return (!string
-            || ![string isKindOfClass:[NSString class]]
-            || [(NSString *)string isEqualToString:@""]);
-}
-
-
-+ (BOOL)isEmptyArray:(NSObject*)array {
-    return (!array
-            || ![array isKindOfClass:[NSArray class]]
-            || (((NSArray *)array).count == 0));
 }
 @end

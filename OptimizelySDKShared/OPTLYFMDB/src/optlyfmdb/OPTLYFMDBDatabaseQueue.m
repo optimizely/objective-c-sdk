@@ -186,7 +186,7 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
     return _db;
 }
 
-- (void)inDatabase:(void (^)(OPTLYFMDBDatabase *db))block {
+- (void)inDatabase:(__attribute__((noescape)) void (^)(OPTLYFMDBDatabase *db))block {
 #ifndef NDEBUG
     /* Get the currently executing queue (which should probably be nil, but in theory could be another DB queue
      * and then check it against self to make sure we're not about to deadlock. */
@@ -243,15 +243,15 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
     OPTLYFMDBRelease(self);
 }
 
-- (void)inDeferredTransaction:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
+- (void)inDeferredTransaction:(__attribute__((noescape)) void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:YES withBlock:block];
 }
 
-- (void)inTransaction:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
+- (void)inTransaction:(__attribute__((noescape)) void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
     [self beginTransaction:NO withBlock:block];
 }
 
-- (NSError*)inSavePoint:(void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
+- (NSError*)inSavePoint:(__attribute__((noescape)) void (^)(OPTLYFMDBDatabase *db, BOOL *rollback))block {
 #if SQLITE_VERSION_NUMBER >= 3007000
     static unsigned long savePointIdx = 0;
     __block NSError *err = 0x00;

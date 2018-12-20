@@ -42,25 +42,39 @@ static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 // user IDs
 static NSString * const kUserIdForWhitelisting = @"userId";
+static NSString * const kUserIdForFV = @"userId";
 
 // experiment Keys
 static NSString * const kExperimentKeyForWhitelisting = @"whiteListExperiment";
+static NSString * const kExperimentKeyForFV = @"whiteListExperiment";
 
 // variation Keys
 static NSString * const kVariationKeyForWhitelisting = @"whiteListedVariation";
+static NSString * const kVariationKeyForFV = @"whiteListedVariation";
 
 // variation IDs
 static NSString * const kVariationIDForWhitelisting = @"variation4";
+
+// attribute keys
+static NSString * const kAttributeKeyBrowserType = @"browser_type";
+static NSString * const kAttributeKeyBrowserVersion = @"browser_version";
+static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number";
+static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
+
+@interface Optimizely(Testing)
+- (BOOL)validateStringInputs:(NSMutableDictionary<NSString *, NSString *> *)inputs logs:(NSDictionary<NSString *, NSString *> *)logs;
+- (id)ObjectOrNull:(id)object;
+@end
 
 @interface OPTLYNotificationTest : NSObject
 @end
 
 @implementation OPTLYNotificationTest
--(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 
--(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *,NSString *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+-(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 @end
@@ -68,18 +82,18 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 @interface Optimizely(test)
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                     callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *,NSString *> *)attributes
+                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
                                   callback:(void (^)(NSError *))callback;
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
 @interface OptimizelyTest : XCTestCase
@@ -104,7 +118,12 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     
     XCTAssertNotNil(self.optimizely);
     
-    self.attributes = @{@"browser_type": @"firefox"};
+    self.attributes = @{
+                        kAttributeKeyBrowserType : @"firefox",
+                        kAttributeKeyBrowserVersion : @(68.1),
+                        kAttributeKeyBrowserBuildNumber : @(106),
+                        kAttributeKeyBrowserIsDefault : @YES
+                        };
 }
 
 - (void)tearDown {
@@ -157,6 +176,30 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
                                 attributes:attributesWithUserInAudience];
     XCTAssertNotNil(variation);
 }
+
+- (void)testVariationWithAudienceTypeInteger {
+    NSString *experimentKey = @"testExperimentWithFirefoxAudience";
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
+    XCTAssertNotNil(experiment);
+    OPTLYVariation *variation;
+    NSDictionary *attributesWithUserNotInAudience = @{kAttributeKeyBrowserBuildNumber : @(601)};
+    NSDictionary *attributesWithUserInAudience = @{kAttributeKeyBrowserBuildNumber : @(106)};
+    
+    // test get experiment without attributes
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNil(variation);
+    // test get experiment with bad attributes
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserNotInAudience];
+    XCTAssertNil(variation);
+    // test get experiment with good attributes
+    variation = [self.optimizely variation:experimentKey
+                                    userId:kUserId
+                                attributes:attributesWithUserInAudience];
+    XCTAssertNotNil(variation);
+}
+
 
 // Test initializing with older V2 datafile
 - (void)testOlderV2Datafile {
@@ -280,7 +323,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
     
-    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *,NSString *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
     }];
     
@@ -289,6 +332,49 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
+
+- (void)testOptimizelyPostsActivateExperimentNotificationAllAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *notificationExperimentKey = nil;
+    
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                         @"browser_name": @"chrome",
+                                                         @"buildno": @(10),
+                                                         @"buildversion": @(0.13)
+                                                         };
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        notificationExperimentKey = experiment.experimentId;
+        actualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:expectedAttributes];
+    XCTAssertEqualObjects(expectedAttributes, actualAttributes);
+    XCTAssertNotNil(_variation);
+    XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
+}
+
+- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *notificationExperimentKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        notificationExperimentKey = experiment.experimentId;
+        actualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:nil];
+    XCTAssertNil(actualAttributes);
+    XCTAssertNotNil(_variation);
+    XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
+}
+
 
 - (void)testOptimizelyTrackWithNoEvent {
     
@@ -358,11 +444,57 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
     }];
     
     [self.optimizely track:eventKey userId:kUserId attributes:self.attributes];
+    XCTAssertEqual(eventKey, notificationEventKey);
+}
+
+- (void)testOptimizelyPostEventTrackNotificationWithAllAttributesEventTags {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    NSDictionary<NSString *, NSObject *> *expectedEventTags = @{
+                                                         OPTLYEventMetricNameRevenue: OPTLYEventMetricNameValue,
+                                                         @"event_int": @(11),
+                                                         @"event_version": @(1.3),
+                                                         @"event_bool": @(YES)
+                                                         };
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+        notificationEventKey = eventKey;
+    }];
+    
+    [self.optimizely track:eventKey userId:kUserId attributes:self.attributes eventTags:expectedEventTags];
+    XCTAssertEqualObjects(self.attributes, actualAttributes);
+    XCTAssertEqualObjects(expectedEventTags, actualEventTags);
+    XCTAssertEqual(eventKey, notificationEventKey);
+}
+
+- (void)testOptimizelyPostEventTrackNotificationWithNilAttributesEventTags {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+        notificationEventKey = eventKey;
+    }];
+    
+    [self.optimizely track:eventKey userId:kUserId attributes:nil eventTags:nil];
+    
+    XCTAssertNil(actualAttributes);
+    XCTAssertNil(actualEventTags);
     XCTAssertEqual(eventKey, notificationEventKey);
 }
 
@@ -373,7 +505,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     __block NSString *notificationEventKey = nil;
     __block NSDictionary *notificationEventTags = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *,NSString *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
         notificationEventTags = eventTags;
     }];
@@ -1058,11 +1190,173 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
     XCTAssertEqualObjects(features, enabledFeatures);
 }
 
+#pragma mark - setForcedVariation
+
+- (void)testSetForcedVariationWithNullAndEmptyUserId
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:[NSNull null]
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                               userId:@""
+                                         variationKey:kVariationKeyForFV]);
+}
+
+- (void)testSetForcedVariationWithInvalidExperimentKey
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:@"invalid"
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertFalse([self.optimizely setForcedVariation:@""
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertFalse([self.optimizely setForcedVariation:[NSNull null]
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
+}
+
+- (void)testSetForcedVariationWithInvalidVariationKey
+{
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
+                                          variationKey:@"invalid"]);
+    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
+                                          variationKey:@""]);
+}
+
+- (void)testGetForcedVariationWithInvalidUserID
+{
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                                userId:kUserIdForFV
+                                          variationKey:kVariationKeyForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForFV userId:[NSNull null]]);
+    XCTAssertNil([self.optimizely getForcedVariation:kExperimentKeyForFV userId:@"invalid"]);
+}
+
+- (void)testGetForcedVariationWithInvalidExperimentKey
+{
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
+                                               userId:kUserIdForFV
+                                         variationKey:kVariationKeyForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"invalid" userId:kUserIdForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:[NSNull null] userId:kUserIdForFV]);
+    XCTAssertNil([self.optimizely getForcedVariation:@"" userId:kUserIdForFV]);
+}
+
+#pragma mark - Test ValidateStringInputs
+
+- (void)testValidateStringInputsWithValidValuesReturnTrue
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryExperimentKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryExperimentKey:@"test_experiment"}];
+    XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testValidateStringInputsWithEmptyValueReturnFalse
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryEventNameKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryEventNameKey:@""}];
+    XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testValidateStringInputsWithNullValueReturnFalse
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryEventNameKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryEventNameKey:[NSNull null]}];
+    XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testValidateStringInputsWithValidUserIdReturnTrue
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testUser"}];
+    XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testValidateStringInputsWithEmptyUserIdReturnTrue
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                OptimizelyNotificationsUserDictionaryUserIdKey:@""}];
+    XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
+- (void)testValidateStringInputsWithNullUserIdReturnFalse
+{
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                                                 OptimizelyNotificationsUserDictionaryUserIdKey:[NSNull null]}];
+    XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
+    OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
+    [loggerMock stopMocking];
+}
+
 #pragma mark - Helper Methods
 
 - (id)getOptimizelyMockForFeatureVariableType:(NSString *)featureVariableType variableKey:(NSString *)variableKey expectedReturn:(NSString *)expectedReturn {
     id optimizelyMock = OCMPartialMock(self.optimizely);
-    
     OCMStub([optimizelyMock getFeatureVariableValueForType:featureVariableType
                                                 featureKey:[OCMArg any]
                                                variableKey:variableKey

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,7 +21,7 @@
 
 @interface OPTLYConditionTest : XCTestCase
 
-@property NSDictionary<NSString *, NSString *> *testUserAttributes;
+@property NSDictionary<NSString *, NSObject *> *testUserAttributes;
 
 @end
 
@@ -78,7 +78,7 @@
 
 - (void)testOrConditionEvaluatesTrueWhenAtLeastOneofItsChildrenEvaluatesTrue {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysTrue]
                                                              ];
@@ -88,7 +88,7 @@
 
 - (void)testOrConditionEvaluatesFalseWhenAllOfItsChildrenEvaluateFalse {
     OPTLYOrCondition *orCondition = [[OPTLYOrCondition alloc] init];
-    orCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    orCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                              [self mockBaseConditionAlwaysFalse],
                                                              [self mockBaseConditionAlwaysFalse]
                                                              ];
@@ -98,7 +98,7 @@
 
 - (void)testAndConditionEvaluatesTrueWhenAllOfItsChildrenEvaluateTrue {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysTrue]
                                                               ];
@@ -108,7 +108,7 @@
 
 - (void)testAndConditionEvaluatesFalseWhenOneOfItsChildrenEvaluateFalse {
     OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
-    andCondition.subConditions = (NSArray<OPTLYCondition> *)@[
+    andCondition.subConditions = (NSArray<OPTLYCondition *><OPTLYCondition> *)@[
                                                               [self mockBaseConditionAlwaysTrue],
                                                               [self mockBaseConditionAlwaysFalse]
                                                               ];
@@ -175,7 +175,7 @@
     OPTLYBaseCondition *baseCondition = orCondition.subConditions[0];
     XCTAssertTrue([baseCondition.name isEqualToString:@"browser_type"]);
     XCTAssertTrue([baseCondition.type isEqualToString:@"custom_dimension"]);
-    XCTAssertTrue([baseCondition.value isEqualToString:@"chrome"]);
+    XCTAssertTrue([baseCondition.value isEqual:@"chrome"]);
     XCTAssertTrue([conditionsArray[0] evaluateConditionsWithAttributes:self.testUserAttributes]);
 }
 

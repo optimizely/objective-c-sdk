@@ -42,7 +42,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
 #endif
 
 @interface OPTLYManagerBase(Tests)
-- (void)cleanUserProfileService:(NSArray<OPTLYExperiment> *)experiments;
+- (void)cleanUserProfileService:(NSArray<OPTLYExperiment *><OPTLYExperiment> *)experiments;
 @end
 
 @interface OPTLYManagerTest : XCTestCase
@@ -90,7 +90,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
                datafile:self.alternateDatafile];
     [self checkConfigIsUsingAlternativeDatafile:client.optimizely.config];
 
-    NSArray<OPTLYExperiment> *experiments = [[[manager getOptimizely] optimizely].config experiments];
+    NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments = [[[manager getOptimizely] optimizely].config experiments];
     OCMVerify([managerMock cleanUserProfileService:experiments]);
     
 }
@@ -106,7 +106,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
     }]];
     id partialMockManager = OCMPartialMock(manager);
     
-    NSArray<OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment> alloc] init];
+    NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment *><OPTLYExperiment> alloc] init];
     
     [[partialMockManager reject] cleanUserProfileService:experiments];
     
@@ -442,7 +442,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
     }]];
     id partialMockManager = OCMPartialMock(manager);
     
-    NSArray<OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment> alloc] init];
+    NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments = [[NSArray<OPTLYExperiment *><OPTLYExperiment> alloc] init];
     
     OPTLYClient *client = [partialMockManager initialize];
     

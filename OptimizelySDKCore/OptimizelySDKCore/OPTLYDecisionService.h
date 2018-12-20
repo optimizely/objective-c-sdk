@@ -54,7 +54,7 @@
  */
 - (nullable OPTLYVariation *)getVariation:(nonnull NSString *)userId
                                experiment:(nonnull OPTLYExperiment *)experiment
-                               attributes:(nullable NSDictionary *)attributes;
+                               attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 /**
  * Get a variation the user is bucketed into for the given FeatureFlag
@@ -65,6 +65,6 @@
  */
 - (nullable OPTLYFeatureDecision *)getVariationForFeature:(nonnull OPTLYFeatureFlag *)featureFlag
                                              userId:(nonnull NSString *)userId
-                                         attributes:(nullable NSDictionary *)attributes;
+                                         attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 
 @end
