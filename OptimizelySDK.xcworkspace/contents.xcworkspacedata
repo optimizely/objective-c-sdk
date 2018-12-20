@@ -71,6 +71,9 @@
       location = "container:"
       name = "Scripts">
       <FileRef
+         location = "group:Scripts/update_version.sh">
+      </FileRef>
+      <FileRef
          location = "group:Scripts/build_all.sh">
       </FileRef>
       <Group
