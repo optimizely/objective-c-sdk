@@ -229,12 +229,16 @@
 		C77958C4219BFBC400B4CA89 /* OPTLYNSObject+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */; };
 		C77958C5219BFBC700B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
 		C77958C6219BFBC800B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
-		C77987DD21CBAB8A002AAEC8 /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C77987DC21CBAB83002AAEC8 /* typed_audience_datafile.json */; };
-		C77987DE21CBAB8A002AAEC8 /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C77987DC21CBAB83002AAEC8 /* typed_audience_datafile.json */; };
-		C77987E021CBABB3002AAEC8 /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77987DF21CBABB3002AAEC8 /* OPTLYTypedAudienceTest.m */; };
-		C77987E121CBABB3002AAEC8 /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77987DF21CBABB3002AAEC8 /* OPTLYTypedAudienceTest.m */; };
-		C7809D1921C11675005725FF /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7809D1821C11675005725FF /* OPTLYValidationTest.m */; };
-		C7809D1A21C11675005725FF /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7809D1821C11675005725FF /* OPTLYValidationTest.m */; };
+		C779881321CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
+		C779881421CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
+		C77EA0C7218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C77EA0C8218843320021781A /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */; };
+		C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
+		C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
+		C78F98B9219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
+		C78F98BA219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
+		C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
+		C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -641,9 +645,11 @@
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPTLYNSObject+Validation.h"; sourceTree = "<group>"; };
 		C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OPTLYNSObject+Validation.m"; sourceTree = "<group>"; };
-		C77987DC21CBAB83002AAEC8 /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
-		C77987DF21CBABB3002AAEC8 /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
-		C7809D1821C11675005725FF /* OPTLYValidationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYValidationTest.m; sourceTree = "<group>"; };
+		C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYValidationTest.m; sourceTree = "<group>"; };
+		C77EA0C52188431E0021781A /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
+		C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYAudienceBaseCondition.h; sourceTree = "<group>"; };
+		C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYAudienceBaseCondition.m; sourceTree = "<group>"; };
+		C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -1056,6 +1062,8 @@
 				EA2FAA531DC6F57100B1D81B /* OPTLYAttribute.m */,
 				EA2FAA541DC6F57100B1D81B /* OPTLYAudience.h */,
 				EA2FAA551DC6F57100B1D81B /* OPTLYAudience.m */,
+				C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */,
+				C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */,
 				EA2FAA561DC6F57100B1D81B /* OPTLYBaseCondition.h */,
 				EA2FAA571DC6F57100B1D81B /* OPTLYBaseCondition.m */,
 				EA2FAA581DC6F57100B1D81B /* OPTLYCondition.h */,
@@ -1189,7 +1197,7 @@
 		EA2FAB941DC6FDFA00B1D81B /* TestData */ = {
 			isa = PBXGroup;
 			children = (
-				C77987DC21CBAB83002AAEC8 /* typed_audience_datafile.json */,
+				C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */,
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
 				3E92800D1F26AD4700214C58 /* BucketerTestsDatafile2.json */,
 				5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */,
@@ -1284,7 +1292,7 @@
 				EA064BCB1DD3FC9F00DF7537 /* OPTLYQueueTest.m */,
 				EA2FAB911DC6FDFA00B1D81B /* OPTLYTestHelper.h */,
 				EA2FAB921DC6FDFA00B1D81B /* OPTLYTestHelper.m */,
-				C7809D1821C11675005725FF /* OPTLYValidationTest.m */,
+				C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */,
 				EA2FAB941DC6FDFA00B1D81B /* TestData */,
 			);
 			path = OptimizelySDKCoreTests;
@@ -1370,6 +1378,7 @@
 				EA2FAAA01DC6F57100B1D81B /* OPTLYDatafileKeys.h in Headers */,
 				EA2FAAB21DC6F57200B1D81B /* OPTLYEventAudience.h in Headers */,
 				EA2FAA881DC6F57100B1D81B /* OPTLYAttribute.h in Headers */,
+				C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */,
 				EA2FAAE81DC6F57200B1D81B /* OPTLYEventParameterKeys.h in Headers */,
 				EA2FAADC1DC6F57200B1D81B /* OPTLYEventLayerState.h in Headers */,
 				EA2FAAEE1DC6F57200B1D81B /* OPTLYEventRelatedEvent.h in Headers */,
@@ -1436,6 +1445,7 @@
 				EA2FAB131DC6F57200B1D81B /* OPTLYTrafficAllocation.h in Headers */,
 				EA2FAA891DC6F57100B1D81B /* OPTLYAttribute.h in Headers */,
 				EA2FAA9B1DC6F57100B1D81B /* OPTLYCondition.h in Headers */,
+				C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */,
 				EA2FAAAD1DC6F57200B1D81B /* OPTLYEvent.h in Headers */,
 				EA2FAA8F1DC6F57100B1D81B /* OPTLYAudience.h in Headers */,
 				EA2FAB071DC6F57200B1D81B /* OPTLYGroup.h in Headers */,
@@ -1699,7 +1709,7 @@
 				EA2FABD81DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
-				C77987DD21CBAB8A002AAEC8 /* typed_audience_datafile.json in Resources */,
+				C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */,
 				5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
@@ -1725,7 +1735,7 @@
 				EA2FABCD1DC6FDFA00B1D81B /* optimizely_6372300739.json in Resources */,
 				EA2FABD91DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
-				C77987DE21CBAB8A002AAEC8 /* typed_audience_datafile.json in Resources */,
+				C7ACD4FF218C2E51008EC52E /* typed_audience_datafile.json in Resources */,
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
@@ -1965,6 +1975,7 @@
 				EA2C242F1DE6A2470063ADA0 /* OPTLYProjectConfigBuilder.m in Sources */,
 				EA8FD0E11DE9798E00D950AD /* OPTLYNetworkService.m in Sources */,
 				EA2FAC171DC6FFC600B1D81B /* OPTLYEventMetric.m in Sources */,
+				C78F98B9219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */,
 				EA2FAC181DC6FFC600B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FAC191DC6FFC600B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
 				EA2FAC1B1DC6FFC600B1D81B /* OPTLYEventView.m in Sources */,
@@ -2006,7 +2017,6 @@
 				59B9E1D120E28DBC002F732E /* OptimizelySwiftTest.swift in Sources */,
 				EA2FABC31DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
-				C7809D1921C11675005725FF /* OPTLYValidationTest.m in Sources */,
 				EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */,
 				5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */,
 				EA2FABB41DC6FDFA00B1D81B /* OPTLYEventBuilderTest.m in Sources */,
@@ -2015,6 +2025,7 @@
 				EA2FABB71DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA51DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
 				EA2FABB11DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
+				C779881321CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */,
 				0BDF71FF202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
 				EA2FABC01DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA81DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
@@ -2059,6 +2070,7 @@
 				EA2FABF21DC6FFA100B1D81B /* OPTLYEventMetric.m in Sources */,
 				EA2FABF31DC6FFA100B1D81B /* OPTLYEventParameterKeys.m in Sources */,
 				EA2FABF41DC6FFA100B1D81B /* OPTLYEventRelatedEvent.m in Sources */,
+				C78F98BA219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */,
 				3E858C881F4227F100D53856 /* OPTLYJSONModel.m in Sources */,
 				EA2FABF61DC6FFA100B1D81B /* OPTLYEventView.m in Sources */,
 				EA2FABF71DC6FFA100B1D81B /* OPTLYExperiment.m in Sources */,
@@ -2108,9 +2120,9 @@
 				3EA818961FFF890E00BEBD41 /* OPTLYNotificationCenterTest.m in Sources */,
 				EA2FABB81DC6FDFA00B1D81B /* OPTLYEventDispatcherTest.m in Sources */,
 				EA2FABA61DC6FDFA00B1D81B /* OPTLYAudienceTest.m in Sources */,
-				C7809D1A21C11675005725FF /* OPTLYValidationTest.m in Sources */,
 				EA2FABB21DC6FDFA00B1D81B /* OPTLYErrorHandlerTest.m in Sources */,
 				0BDF7200202D04EF00EB9742 /* OPTLYNotificationCenterTest2.swift in Sources */,
+				C779881421CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */,
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,

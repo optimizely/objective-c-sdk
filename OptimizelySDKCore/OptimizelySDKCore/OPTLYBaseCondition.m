@@ -150,7 +150,7 @@
 /**
  * Evaluates the condition against the user attributes, returns NULL if invalid.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check user attribute value for the condition and match type against our condition value
     return [self evaluateCustomMatchType: attributes];
 }

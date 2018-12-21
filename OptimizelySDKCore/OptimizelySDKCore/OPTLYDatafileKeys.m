@@ -32,6 +32,7 @@ NSString * const OPTLYDatafileKeysExperimentKey = @"key";
 NSString * const OPTLYDatafileKeysExperimentStatus = @"status";
 NSString * const OPTLYDatafileKeysExperimentTrafficAllocation = @"trafficAllocation";
 NSString * const OPTLYDatafileKeysExperimentAudienceIds = @"audienceIds";
+NSString * const OPTLYDatafileKeysExperimentAudienceConditions = @"audienceConditions";
 NSString * const OPTLYDatafileKeysExperimentVariations = @"variations";
 NSString * const OPTLYDatafileKeysExperimentForcedVariations = @"forcedVariations";
 NSString * const OPTLYDatafileKeysExperimentLayerId = @"layerId";

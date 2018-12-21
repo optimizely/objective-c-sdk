@@ -351,12 +351,13 @@ static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDa
                             }
                         ] forKey:@"attributes"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = data;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     NSString *attributeId = [projectConfig getAttributeIdForKey:expectedAttributeKey];
     XCTAssertEqualObjects(attributeId, expectedAttributeId, @"should retrieve attribute Id %@ for reserved attribute key in datafile", expectedAttributeId);
 }
