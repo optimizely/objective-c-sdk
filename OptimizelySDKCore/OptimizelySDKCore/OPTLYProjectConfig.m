@@ -308,74 +308,89 @@ static NSArray *supportedDatafileVersions = nil;
 
 - (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId {
-    // Get experiment from experimentKey .
-    OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
-    if (!experiment) {
-        // NOTE: getExperimentForKey: will log any non-existent experimentKey and return experiment == nil for us.
+
+    NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
+    if (dictionary == nil) {
         return nil;
     }
+    // Get experiment from experimentKey .
+    OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
+    // this case is logged in getExperimentFromKey
+    if (!experiment || [self isNullOrEmpty:experiment.experimentId]) {
+        return nil;
+    }
+    
     OPTLYVariation *variation = nil;
     @synchronized (self.forcedVariationMap) {
-        NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
-        if (dictionary != nil) {
-            // Get variation from experimentId and variationId .
-            NSString *experimentId = experiment.experimentId;
-            NSString *variationId = dictionary[experimentId];
-            variation = [experiment getVariationForVariationId:variationId];
+        // Get variation from experimentId and variationId .
+        NSString *variationId = dictionary[experiment.experimentId];
+        if ([self isNullOrEmpty:variationId]) {
+            return nil;
+        }
+        variation = [experiment getVariationForVariationId:variationId];
+        
+        if (!variation || [self isNullOrEmpty:variation.variationKey]) {
+            return nil;
         }
     }
+    
     return variation;
 }
 
 - (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
                     userId:(nonnull NSString *)userId
-              variationKey:(nonnull NSString *)variationKey {
+              variationKey:(nullable NSString *)variationKey {
     // Return YES if there were no errors, OW return NO .
+    //Check if variationKey is empty string
+    if (variationKey != nil && [variationKey isEqualToString:@""]) {
+        [self.logger logMessage:OPTLYLoggerMessagesProjectConfigVariationKeyInvalid withLevel:OptimizelyLogLevelDebug];
+        return NO;
+    }
+    
     // Get experiment from experimentKey .
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];
     if (!experiment) {
         // NOTE: getExperimentForKey: will log any non-existent experimentKey and return experiment == nil for us.
         return NO;
     }
-    NSString *experimentId=experiment.experimentId;
-    // Check for valid userId
-    if ([userId length]==0) {
-        [self.logger logMessage:OPTLYLoggerMessagesProjectConfigUserIdInvalid withLevel:OptimizelyLogLevelDebug];
+    NSString *experimentId = experiment.experimentId;
+    //Check if experimentId is valid
+    if ([self isNullOrEmpty:experimentId]) {
         return NO;
     }
-    // Get variation from experiment and non-nil variationKey, if applicable.
-    OPTLYVariation *variation = nil;
-    if (variationKey != nil) {
-        variation = [experiment getVariationForVariationKey:variationKey];
-        if (!variation) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey, variationKey, experimentKey];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            // Leave in current state, and report NO meaning there was an error.
-            return NO;
+    
+    @synchronized (self.forcedVariationMap) {
+        // clear the forced variation if the variation key is null
+        if (variationKey == nil) {
+            // Locate relevant dictionary inside forcedVariationMap
+            NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
+            if (dictionary != nil) {
+                [dictionary removeObjectForKey:experimentId];
+                self.forcedVariationMap[userId] = dictionary;
+            }
+            return YES;
         }
     }
+    
+    // Get variation from experiment and non-nil variationKey, if applicable.
+    OPTLYVariation *variation = [experiment getVariationForVariationKey:variationKey];
+    if (!variation || [self isNullOrEmpty:variation.variationId]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey, variationKey, experimentKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        // Leave in current state, and report NO meaning there was an error.
+        return NO;
+    }
+    
     @synchronized (self.forcedVariationMap) {
-        // Locate relevant dictionary inside forcedVariationMap
+        // Add User if not exist.
         NSMutableDictionary<NSString *, NSString *> *dictionary = self.forcedVariationMap[userId];
-        if ((dictionary == nil) && (variationKey != nil)) {
+        if (dictionary == nil) {
             // We need a non-nil dictionary to store an OPTLYVariation .
             dictionary = [[NSMutableDictionary alloc] init];
             self.forcedVariationMap[userId] = dictionary;
         }
-        // Apply change to dictionary
-        if (variation == nil) {
-            // NOTE: removeObjectForKey: "Does nothing if [experimentKey] does not exist."
-            // https://developer.apple.com/documentation/foundation/nsmutabledictionary/1416518-removeobjectforkey?language=objc
-            [dictionary removeObjectForKey:experimentId];
-            if ([dictionary count] == 0) {
-                // For elegance, we can remove empty dictionary for userId from self.forcedVariationMap
-                [self.forcedVariationMap removeObjectForKey:userId];
-            }
-        } else {
-            // If there is no OPTLYExperiment *experiment corresponding to experimentKey ,
-            // then we will land in the "(variation == nil)" case above due to code above.
-            dictionary[experimentId] = variation.variationId;
-        };
+        // Add/Replace Experiment to Variation ID map.
+        self.forcedVariationMap[userId][experimentId] = variation.variationId;
     };
     return YES;
 }
@@ -630,5 +645,7 @@ static NSArray *supportedDatafileVersions = nil;
     return bucketedVariation;
 }
 
-
+- (BOOL)isNullOrEmpty:(nullable NSString *)value {
+    return ((value == nil) || [value isKindOfClass: [NSNull class]] || [value isEqualToString:@""]);
+}
 @end

@@ -27,7 +27,7 @@ Please note below that _\<platform\>_ is used to represent the platform on which
 #### Cocoapod 
 1. Add the following lines to the _Podfile_:<pre>
     ```use_frameworks!```
-    ```pod 'OptimizelySDK<platform>', '2.1.4'```
+    ```pod 'OptimizelySDK<platform>', '~> 2.1.0'```
 </pre>
 
 2. Run the following command: <pre>``` pod install ```</pre>
@@ -36,7 +36,7 @@ Further installation instructions for Cocoapods: https://guides.cocoapods.org/us
 
 #### Carthage
 1. Add the following lines to the _Cartfile_:<pre> 
-github "optimizely/objective-c-sdk" "v2.1.4"
+github "optimizely/objective-c-sdk" ~> 2.1.0
 </pre>
 
 2. Run the following command:<pre>```carthage update```</pre>
@@ -53,13 +53,20 @@ github "optimizely/objective-c-sdk" "v2.1.4"
       - Add a new **Run Script** phase in your target's **Build Phase**.</br>
       - In the script area include:<pre>
       ```/usr/local/bin/carthage copy-frameworks```</pre> 
-      - Add the frameworks to the **Input Files** list:<pre>
+      - Add the paths to the frameworks to the **Input Files** list:<pre>
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKCore.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKDatafileManager.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKEventDispatcher.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKShared.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfileService.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDK<platform>.framework```</pre>
+        - Add the paths to the copied frameworks to the **Output Files** list:<pre>
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKCore.framework```
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKDatafileManager.framework```
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKEventDispatcher.framework```
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKShared.framework```
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKUserProfileService.framework```
+            ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDK<platform>.framework```</pre>
 
 Futher installation instructions for Carthage: https://github.com/Carthage/Carthage
 

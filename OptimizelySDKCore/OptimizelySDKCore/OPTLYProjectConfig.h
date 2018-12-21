@@ -167,7 +167,7 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  */
 - (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
                     userId:(nonnull NSString *)userId
-              variationKey:(nonnull NSString *)variationKey;
+              variationKey:(nullable NSString *)variationKey;
 
 /**
  * Get variation for experiment and user ID with user attributes.
