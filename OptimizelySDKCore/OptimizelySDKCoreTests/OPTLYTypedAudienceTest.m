@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2018, Optimizely, Inc. and contributors                        *
+ * Copyright 2018-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -187,18 +187,6 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
                                                                   error:nil];
     XCTAssertNotNil(audience);
     XCTAssertTrue([[audience evaluateConditionsWithAttributes:NULL projectConfig:nil] boolValue]);
-}
-
-- (void)testEvaluateTrueWhenNoUserAttributesAndConditionEvaluatesTrue {
-    //should return true if no attributes are passed and the audience conditions evaluate to true in the absence of attributes
-    
-    NSArray *conditions = @[@"not",@[@"or", @[@"or", @{@"name": @"input_value", @"type": @"custom_attribute", @"match": @"exists"}]]];
-    OPTLYAudience *audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
-                                                                          @"name" : kAudienceName,
-                                                                          @"conditions" : conditions}
-                                                                  error:nil];
-    XCTAssertNotNil(audience);
-    XCTAssertTrue([[audience evaluateConditionsWithAttributes:NULL] boolValue]);
 }
 
 ///MARK:- Invalid input Tests
