@@ -49,6 +49,34 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getStringOrEmpty;
 
 /**
+ * Returns a string value for the object
+ *
+ * @returns A NSString if object is valid json array type, else return empty string.
+ **/
+- (NSString *)getJSONArrayStringOrEmpty;
+
+/**
+ * Returns a string value for the object
+ *
+ * @returns A NSString if object is valid json dictionary type, else return empty string.
+ **/
+- (NSString *)getJSONDictionaryStringOrEmpty;
+
+/**
+ * Returns if object is of exact match type
+ *
+ * @returns A bool for whether object is valid exact match type.
+ **/
+- (BOOL)isValidExactMatchTypeValue;
+
+/**
+ * Returns if object is of GT or LT match type
+ *
+ * @returns A bool for whether object is valid GT or LT match type.
+ **/
+- (BOOL)isValidGTLTMatchTypeValue;
+
+/**
  * Returns if object is of numeric type
  *
  * @returns A bool for whether object is valid numeric type.

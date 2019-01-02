@@ -461,10 +461,21 @@
     NSArray *audienceIds = experiment.audienceIds;
     // if there are no audiences, ALL users should be part of the experiment
     if ([audienceIds count] == 0) {
+        // Log No Audiences Found
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound, experiment.experimentKey];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return true;
     }
     
     for (NSString *audienceId in audienceIds) {
+        // Log Audience Evaluation Started
+        OPTLYAudience *audience = [config getAudienceForId:audienceId];
+        NSString *conditionString = audienceId ? [audience getConditionsJSONString] : @"";
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        // Log User Attributes
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [attributes getJSONDictionaryStringOrEmpty]];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         BOOL areAttributesValid = [[self evaluateAudienceWithId:audienceId config:config attributes:attributes] boolValue];
         if (areAttributesValid) {
             return true;
@@ -478,9 +489,19 @@
                                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
     if (experiment.audienceConditions.count == 0) {
+        // Log No Audiences Found
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound, experiment.experimentKey];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         return true;
     }
+    
+    // Log Experiment Evaluation Started
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment, experiment.experimentKey, [experiment getAudienceConditionsJSONString]];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     BOOL areAttributesValid = [[experiment evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
+    // Log Evaluation Result
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, areAttributesValid ? @"TRUE" : @"FALSE"];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     if (areAttributesValid) {
         return areAttributesValid;
     }

@@ -56,7 +56,35 @@
     return string;
 }
 
--(BOOL)isNumeric {
+- (NSString *)getJSONArrayStringOrEmpty {
+    NSString *string = @"";
+    if (self) {
+        if ([self isKindOfClass:[NSArray class]]) {
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(NSArray *)self options:NSJSONWritingPrettyPrinted error:&error];
+            if (error == nil) {
+                string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            }
+        }
+    }
+    return string;
+}
+
+- (NSString *)getJSONDictionaryStringOrEmpty {
+    NSString *string = @"{}";
+    if (self) {
+        if ([self isKindOfClass:[NSDictionary class]] && ((NSDictionary *)self).count > 0) {
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(NSDictionary *)self options:NSJSONWritingPrettyPrinted error:&error];
+            if (error == nil) {
+                string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            }
+        }
+    }
+    return string;
+}
+
+- (BOOL)isNumeric {
     //Check if given object is acceptable numeric type
     if (self) {
         if ([self isKindOfClass:[NSNumber class]]) {
@@ -79,7 +107,23 @@
     return false;
 }
 
--(BOOL)isBool {
+- (BOOL)isValidExactMatchTypeValue {
+    //Check if given object is acceptable exact match type value
+    if (self) {
+        return ([self isKindOfClass:[NSString class]] || [self isNumeric] || [self isKindOfClass:[NSNull class]] || [self isBool]);
+    }
+    return false;
+}
+
+- (BOOL)isValidGTLTMatchTypeValue {
+    //Check if given object is acceptable GT or LT match type value
+    if (self) {
+        return (self != nil && ![self isKindOfClass:[NSNull class]] && [self isNumeric]);
+    }
+    return false;
+}
+
+- (BOOL)isBool {
     //Check if given object is acceptable boolean type
     if (self) {
         if ([self isKindOfClass:[NSNumber class]]) {

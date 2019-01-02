@@ -17,6 +17,7 @@
 #import <OCMock/OCMock.h>
 #import <XCTest/XCTest.h>
 #import "Optimizely.h"
+#import "OPTLYAudience.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYDatafileKeys.h"
 #import "OPTLYDecisionService.h"
@@ -32,6 +33,7 @@
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYControlAttributes.h"
 #import "OPTLYLogger.h"
+#import "OPTLYNSObject+Validation.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
 static NSString * const ktypeAudienceDatafileName = @"typed_audience_datafile";
@@ -241,38 +243,80 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     experiment.audienceIds = @[];
     experiment.audienceConditions = (NSArray<OPTLYCondition> *)@[];
     BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
-    
     XCTAssertTrue(isValid);
 }
 
 - (void)testUserInExperimentWithValidAudienceIdAndEmptyAudienceConditions
 {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
     experiment.audienceConditions = (NSArray<OPTLYCondition> *)@[];
     BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
     XCTAssertTrue(isValid);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound, experiment.experimentKey];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
 }
 
 - (void)testUserInExperimentWithEmptyAudienceIdAndNilAudienceConditions
 {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
     experiment.audienceIds = @[];
     experiment.audienceConditions = nil;
     BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
     XCTAssertTrue(isValid);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound, experiment.experimentKey];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
 }
 
 - (void)testIsUserInExperimentUsesNonNullAudienceConditionsWhenAudienceIdsAlsoAvailable
 {
+    NSDictionary *tmpAttributes = @{@"favorite_ice_cream":@"strawberry", @"house":@"Slytherin"};
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
     XCTAssertTrue([self.typedAudienceDecisionService shouldEvaluateUsingAudienceConditions:experiment]);
+    
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:tmpAttributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment, experiment.experimentKey, [experiment getAudienceConditionsJSONString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    
+    OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
+    NSString *conditionString = [audience getConditionsJSONString];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [tmpAttributes getJSONDictionaryStringOrEmpty]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, @"TRUE"];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, @"FALSE"];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+
+    [loggerMock stopMocking];
 }
 
 - (void)testIsUserInExperimentUsesAudienceIdsWhenAudienceConditionsNull
 {
-    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:@"typed_audience_experiment"];
     experiment.audienceConditions = nil;
     XCTAssertFalse([self.typedAudienceDecisionService shouldEvaluateUsingAudienceConditions:experiment]);
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+
+    OPTLYAudience *audience = [self.typedAudienceConfig getAudienceForId:@"3468206642"];
+    NSString *conditionString = [audience getConditionsJSONString];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [self.attributes getJSONDictionaryStringOrEmpty]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    
+    [loggerMock stopMocking];
 }
 
 - (void)testIsUserInExperimentReturnsTrueWhenBothAudienceConditionsAndAudienceIdsNull
@@ -813,6 +857,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
 // should return nil when the user is not bucketed into targeting rule as well as "Fall Back" rule.
 - (void)testGetVariationForFeatureWithNoBucketing {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
@@ -825,6 +870,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
     
     OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [userAttributes getJSONDictionaryStringOrEmpty]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
     
     XCTAssertNil(decision, @"Get variation for feature with rollout having no bucketing rule should return nil: %@", decision);
     
@@ -861,6 +909,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
 // should return variation when the user is bucketed into "Fall Back" rule instead of targeting rule
 - (void)testGetVariationForFeatureWithFallBackRuleBucketing {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
@@ -878,6 +927,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYDecisionService *decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:bucketerMock];
 
     OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:userAttributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [userAttributes getJSONDictionaryStringOrEmpty]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
     
     XCTAssertNotNil(decision, @"Get variation for feature with rollout having fall back rule should return variation: %@", decision);
     XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
@@ -889,6 +941,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
 // should return variation when the user is bucketed into "Fall Back" after attempting to bucket into all targeting rules
 - (void)testGetVariationForFeatureWithFallBackRuleBucketingButNoTargetingRule {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
     OPTLYFeatureFlag *booleanFeatureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     NSString *rolloutId = booleanFeatureFlag.rolloutId;
     OPTLYRollout *rollout = [self.config getRolloutForId:rolloutId];
@@ -904,6 +957,9 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
     // Provide null attributes so that user does not qualify for audience.
     OPTLYFeatureDecision *decision = [decisionService getVariationForFeature:booleanFeatureFlag userId:kUserId attributes:nil];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, @"{}"];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
     
     XCTAssertNotNil(decision, @"Get variation for feature with rollout having fall back rule after failing all targeting rules should return variation: %@", decision);
     XCTAssertEqualObjects(decision.variation, expectedDecision.variation);
@@ -913,6 +969,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 }
 
 - (void)testGetVariationForFeatureWithFallBackRuleBucketingId {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
     OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:kFeatureFlagNoBucketedRuleRolloutKey];
     OPTLYRollout *rollout = [self.config getRolloutForId:featureFlag.rolloutId];
     OPTLYExperiment *rolloutRuleExperiment = rollout.experiments[rollout.experiments.count - 1];
@@ -931,8 +988,10 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYFeatureDecision *expectedFeatureDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:rolloutRuleExperiment
                                                                                            variation:rolloutVariation
                                                                                               source:DecisionSourceRollout];
-    
     OPTLYFeatureDecision *featureDecision = [decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [attributes getJSONDictionaryStringOrEmpty]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
     
     XCTAssertEqualObjects(expectedFeatureDecision.experiment, featureDecision.experiment);
     XCTAssertEqualObjects(expectedFeatureDecision.variation, featureDecision.variation);

@@ -16,6 +16,9 @@
 
 #import "OPTLYAudienceBaseCondition.h"
 #import "OPTLYAudience.h"
+#import "OPTLYLogger.h"
+#import "OPTLYLoggerMessages.h"
+#import "OPTLYNSObject+Validation.h"
 
 @implementation OPTLYAudienceBaseCondition
 
@@ -29,12 +32,19 @@
         return [NSNumber numberWithBool:false];
     }
     
+    // Log Audience Evaluation Started
     OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
+    NSString *conditionString = self.audienceId ? [audience getConditionsJSONString] : @"";
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    // Log User Attributes
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [attributes getJSONDictionaryStringOrEmpty]];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    
     BOOL areAttributesValid = [[audience evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
     if (areAttributesValid) {
         return [NSNumber numberWithBool:true];;
     }
-    
     return [NSNumber numberWithBool:false];
 }
 

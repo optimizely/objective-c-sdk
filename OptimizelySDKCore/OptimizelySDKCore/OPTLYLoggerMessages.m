@@ -249,6 +249,24 @@ NSString *const OPTLYHTTPRequestManagerGETIfModifiedSince = @"[HTTP] GET if modi
 NSString *const OPTLYHTTPRequestManagerPOSTWithParameters = @"[HTTP] POST attempt: %lu";
 NSString *const OPTLYHTTPRequestManagerBackoffRetryStates = @"[HTTP] Retry attempt: %d exponentialMultiplier: %u delay_ns: %lu, delayTime: %lu";
 
+// ---- Audience Evaluator ----
+// info
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audience %@ evaluated as: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audiences for experiment %@ collectively evaluated as %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound = @"[AUDIENCE EVALUATOR] No Audience attached to experiment %@, Evaluated as True.";
+// warning
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForInvalidValue = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because the value for user attribute %@ is inapplicable: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMismatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because the value for user attribute %@ is of type: %@ while expected type is: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ uses an unknown match type.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition type.";
+// debug
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions = @"[AUDIENCE EVALUATOR] Starting to evaluate audience %@ with conditions: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment = @"[AUDIENCE EVALUATOR] Evaluating audiences for experiment %@: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUserAttributes = @"[AUDIENCE EVALUATOR] User attributes: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because no value was passed for user attribute %@.";
+// error
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionValue = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition value.";
+
 @implementation OPTLYLoggerMessages
 
 @end

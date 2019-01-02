@@ -68,5 +68,7 @@ NS_ASSUME_NONNULL_END
 - (BOOL)isExperimentRunning;
 /// Override OPTLYJSONModel set conditions
 - (void)setAudienceConditionsWithNSString:(NSString *)string;
+/// Returns audience conditions JSON String
+- (NSString *)getAudienceConditionsJSONString;
 
 @end
