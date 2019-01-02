@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_END
 /// List of audience ids
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAudience *><OPTLYAudience> *audiences;
 /// List of typed audience objects
-@property (nonatomic, strong, nullable) NSArray<OPTLYAudience, OPTLYOptional> *typedAudiences;
+@property (nonatomic, strong, nullable) NSArray<OPTLYAudience *><OPTLYAudience, OPTLYOptional> *typedAudiences;
 /// List of attributes objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute *><OPTLYAttribute> *attributes;
 /// List of group objects
@@ -167,7 +167,7 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  */
 - (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
                     userId:(nonnull NSString *)userId
-              variationKey:(nonnull NSString *)variationKey;
+              variationKey:(nullable NSString *)variationKey;
 
 /**
  * Get variation for experiment and user ID with user attributes.

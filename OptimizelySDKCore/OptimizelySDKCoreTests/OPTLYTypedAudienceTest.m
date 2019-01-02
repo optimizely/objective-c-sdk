@@ -229,7 +229,6 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertTrue([[audience evaluateConditionsWithAttributes:NULL projectConfig:nil] boolValue]);
 }
 
-
 ///MARK:- Invalid input Tests
 
 - (void)testEvaluateReturnsNullWithInvalidConditionType {

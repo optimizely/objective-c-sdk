@@ -70,13 +70,13 @@
     if ([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self.value isNumeric] && [userAttribute isNumeric]) {
+    else if ([self.value isValidNumericAttributeValue] && [userAttribute isValidNumericAttributeValue]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     else if ([self.value isKindOfClass:[NSNull class]] && [userAttribute isKindOfClass:[NSNull class]]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self.value isBool] && [userAttribute isBool]) {
+    else if ([self.value isValidBooleanAttributeValue] && [userAttribute isValidBooleanAttributeValue]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     else {
@@ -131,7 +131,7 @@
     // check if user attributes contain a value greater than our value
     
     // check if condition value is invalid
-    if (self.value == nil || [self.value isKindOfClass:[NSNull class]] || ![self.value isNumeric]) {
+    if (self.value == nil || [self.value isKindOfClass:[NSNull class]] || ![self.value isValidNumericAttributeValue]) {
         // Log Invalid Condition Type
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionValue, [self toJSONString]];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
@@ -145,7 +145,7 @@
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
-    if (![userAttribute isNumeric]) {
+    if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForInvalidValue, [self toJSONString], self.name, userAttribute];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
@@ -174,7 +174,7 @@
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
-    if (![userAttribute isNumeric]) {
+    if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForInvalidValue, [self toJSONString], self.name, userAttribute];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];

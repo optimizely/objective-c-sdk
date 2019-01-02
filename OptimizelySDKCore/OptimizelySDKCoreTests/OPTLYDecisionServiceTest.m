@@ -682,7 +682,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)testSetForcedVariationCalledOnInvalidUserId
 {
     NSString *invalidUserId = @"";
-    XCTAssertFalse([self.optimizely setForcedVariation:kExperimentNotRunningKey
+    XCTAssertTrue([self.optimizely setForcedVariation:kExperimentNotRunningKey
                                                 userId:invalidUserId
                                           variationKey:kExperimentNoAudienceVariationKey]);
 }
