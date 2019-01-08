@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2018, Optimizely, Inc. and contributors                        *
+ * Copyright 2018-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -47,6 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
  * @returns A NSString if object is valid string type, else return empty string.
  **/
 - (NSString *)getStringOrEmpty;
+
+/**
+ * Determines if object is a valid audience conditions array type.
+ *
+ * @returns A NSArray of audience conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidAudienceConditionsArray;
+
+/**
+ * Determines if object is a valid conditions array type.
+ *
+ * @returns A NSArray of conditions if valid, else return nil.
+ **/
+- (nullable NSArray *)getValidConditionsArray;
 
 /**
  * Returns if object is a valid attribute

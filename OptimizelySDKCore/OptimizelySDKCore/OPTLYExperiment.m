@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018-2019, Optimizely, Inc. and contributors              *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -17,6 +17,7 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYDatafileKeys.h"
 #import "OPTLYVariation.h"
+#import "OPTLYNSObject+Validation.h"
 
 NSString * const OPTLYExperimentStatusRunning = @"Running";
 
@@ -34,9 +35,32 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 + (OPTLYJSONKeyMapper*)keyMapper
 {
     return [[OPTLYJSONKeyMapper alloc] initWithDictionary:@{ OPTLYDatafileKeysExperimentId   : @"experimentId",
-                                                        OPTLYDatafileKeysExperimentKey  : @"experimentKey",
-                                                        OPTLYDatafileKeysExperimentTrafficAllocation : @"trafficAllocations"
-                                                        }];
+                                                             OPTLYDatafileKeysExperimentKey  : @"experimentKey",
+                                                             OPTLYDatafileKeysExperimentTrafficAllocation : @"trafficAllocations"
+                                                             }];
+}
+
+- (void)setAudienceConditionsWithNSString:(NSString *)string {
+    NSError *err = nil;
+    NSArray *array = [string getValidAudienceConditionsArray];
+    self.audienceConditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:array error:&err];
+    
+    if (err != nil) {
+        NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
+        @throw exception;
+    }
+}
+
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+    for (NSObject<OPTLYCondition> *condition in self.audienceConditions) {
+        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
+        if (result != NULL && [result boolValue] == true) {
+            // if user satisfies any conditions, return true.
+            return [NSNumber numberWithBool:true];
+        }
+    }
+    // if user doesn't satisfy any conditions, return false.
+    return [NSNumber numberWithBool:false];
 }
 
 - (void)setGroupId:(NSString *)groupId {

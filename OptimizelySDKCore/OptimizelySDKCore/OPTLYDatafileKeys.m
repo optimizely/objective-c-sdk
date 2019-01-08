@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -32,6 +32,7 @@ NSString * const OPTLYDatafileKeysExperimentKey = @"key";
 NSString * const OPTLYDatafileKeysExperimentStatus = @"status";
 NSString * const OPTLYDatafileKeysExperimentTrafficAllocation = @"trafficAllocation";
 NSString * const OPTLYDatafileKeysExperimentAudienceIds = @"audienceIds";
+NSString * const OPTLYDatafileKeysExperimentAudienceConditions = @"audienceConditions";
 NSString * const OPTLYDatafileKeysExperimentVariations = @"variations";
 NSString * const OPTLYDatafileKeysExperimentForcedVariations = @"forcedVariations";
 NSString * const OPTLYDatafileKeysExperimentLayerId = @"layerId";
@@ -63,9 +64,19 @@ NSString * const OPTLYDatafileKeysVariationFeatureEnabled = @"featureEnabled";
 NSString * const OPTLYDatafileKeysConditionName = @"name";
 NSString * const OPTLYDatafileKeysConditionType = @"type";
 NSString * const OPTLYDatafileKeysConditionValue = @"value";
+NSString * const OPTLYDatafileKeysConditionMatch = @"match";
 NSString * const OPTLYDatafileKeysAndCondition = @"and";
 NSString * const OPTLYDatafileKeysNotCondition = @"not";
 NSString * const OPTLYDatafileKeysOrCondition = @"or";
+// Match Types
+NSString * const OPTLYDatafileKeysMatchTypeExact = @"exact";
+NSString * const OPTLYDatafileKeysMatchTypeExists = @"exists";
+NSString * const OPTLYDatafileKeysMatchTypeSubstring = @"substring";
+NSString * const OPTLYDatafileKeysMatchTypeGreaterThan = @"gt";
+NSString * const OPTLYDatafileKeysMatchTypeLessThan = @"lt";
+NSString * const OPTLYDatafileKeysMatchTypeRegex = @"regex";
+// Custom Attribute Condition Types
+NSString * const OPTLYDatafileKeysCustomAttributeConditionType = @"custom_attribute";
 // Live Variables (DEPRECATED)
 NSString * const OPTLYDatafileKeysVariableId = @"id";
 NSString * const OPTLYDatafileKeysVariableKey = @"key";

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -511,6 +511,13 @@ static NSArray *supportedDatafileVersions = nil;
     for (OPTLYAudience *audience in self.audiences) {
         NSString *audienceId = audience.audienceId;
         map[audienceId] = audience;
+    }
+    //override previously mapped audience objects with typed audience objects
+    if (self.typedAudiences) {
+        for (OPTLYAudience *audience in self.typedAudiences) {
+            NSString *audienceId = audience.audienceId;
+            map[audienceId] = audience;
+        }
     }
     return map;
 }

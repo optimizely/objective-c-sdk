@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016,2018-2019, Optimizely, Inc. and contributors              *
+ * Copyright 2018-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -14,33 +14,28 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
-#ifdef UNIVERSAL
-    #import "OPTLYJSONModelLib.h"
-#else
-    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
-#endif
-#import "OPTLYCondition.h"
+#import "OPTLYAudienceBaseCondition.h"
+#import "OPTLYAudience.h"
 
-// Switchcase implementation for strings
-#define CASE(str)                       if ([__s__ isEqualToString:(str)])
-#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
-#define DEFAULT
+@implementation OPTLYAudienceBaseCondition
 
-@protocol OPTLYBaseCondition
-@end
++ (BOOL) isBaseConditionJSON:(NSData *)jsonData {
+    return [jsonData isKindOfClass:[NSString class]];
+}
 
-@interface OPTLYBaseCondition : OPTLYJSONModel <OPTLYCondition>
-
-/// Condition name
-@property (nonatomic, strong) NSString *name;
-/// Condition type
-@property (nonatomic, strong) NSString *type;
-/// Condition value
-@property (nonatomic, strong, nullable) NSObject<OPTLYOptional> *value;
-/// Condition match type
-@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *match;
-
-
-+(BOOL)isBaseConditionJSON:(NSData *)jsonData;
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+    if (attributes == nil) {
+        // if the user did not pass in attributes, return false
+        return [NSNumber numberWithBool:false];
+    }
+    
+    OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
+    BOOL areAttributesValid = [[audience evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
+    if (areAttributesValid) {
+        return [NSNumber numberWithBool:true];;
+    }
+    
+    return [NSNumber numberWithBool:false];
+}
 
 @end

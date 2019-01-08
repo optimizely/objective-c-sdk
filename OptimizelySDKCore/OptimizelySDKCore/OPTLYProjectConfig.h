@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSArray<OPTLYEvent *><OPTLYEvent> *events;
 /// List of audience ids
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAudience *><OPTLYAudience> *audiences;
+/// List of typed audience objects
+@property (nonatomic, strong, nullable) NSArray<OPTLYAudience *><OPTLYAudience, OPTLYOptional> *typedAudiences;
 /// List of attributes objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute *><OPTLYAttribute> *attributes;
 /// List of group objects

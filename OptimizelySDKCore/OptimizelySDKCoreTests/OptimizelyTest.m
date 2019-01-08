@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -31,6 +31,8 @@
 #import "OPTLYFeatureVariable.h"
 #import "OPTLYNotificationCenter.h"
 #import "OPTLYEventMetric.h"
+#import "OPTLYEventParameterKeys.h"
+#import "OPTLYEventBuilder.h"
 
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
@@ -96,10 +98,15 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
                                   attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end
 
+@interface OPTLYEventBuilderDefault(Tests)
+@end
+
 @interface OptimizelyTest : XCTestCase
 
 @property (nonatomic, strong) NSData *datafile;
+@property (nonatomic, strong) NSData *typedAudienceDatafile;
 @property (nonatomic, strong) Optimizely *optimizely;
+@property (nonatomic, strong) Optimizely *optimizelyTypedAudience;
 @property (nonatomic, strong) NSDictionary *attributes;
 
 @end
@@ -109,14 +116,21 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void)setUp {
     [super setUp];
     self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experiments"];
+    self.typedAudienceDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"typed_audience_datafile"];
     
     self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = self.datafile;
         builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }]];
+    self.optimizelyTypedAudience = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.typedAudienceDatafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
     
     XCTAssertNotNil(self.optimizely);
+    XCTAssertNotNil(self.optimizelyTypedAudience);
     
     self.attributes = @{
                         kAttributeKeyBrowserType : @"firefox",
@@ -130,6 +144,8 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [super tearDown];
     self.datafile = nil;
     self.optimizely = nil;
+    self.typedAudienceDatafile = nil;
+    self.optimizelyTypedAudience = nil;
     [OHHTTPStubs removeAllStubs];
 }
 
@@ -328,7 +344,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }];
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
-                                                   userId:kUserId];
+                                                    userId:kUserId];
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
@@ -339,10 +355,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __block NSString *notificationExperimentKey = nil;
     
     NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
-                                                         @"browser_name": @"chrome",
-                                                         @"buildno": @(10),
-                                                         @"buildversion": @(0.13)
-                                                         };
+                                                                 @"browser_name": @"chrome",
+                                                                 @"buildno": @(10),
+                                                                 @"buildversion": @(0.13)
+                                                                 };
     __block NSDictionary<NSString *, NSObject *> *actualAttributes;
     
     [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
@@ -460,11 +476,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __block NSDictionary<NSString *, NSObject *> *actualEventTags;
     
     NSDictionary<NSString *, NSObject *> *expectedEventTags = @{
-                                                         OPTLYEventMetricNameRevenue: OPTLYEventMetricNameValue,
-                                                         @"event_int": @(11),
-                                                         @"event_version": @(1.3),
-                                                         @"event_bool": @(YES)
-                                                         };
+                                                                OPTLYEventMetricNameRevenue: OPTLYEventMetricNameValue,
+                                                                @"event_int": @(11),
+                                                                @"event_version": @(1.3),
+                                                                @"event_bool": @(YES)
+                                                                };
     
     [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         actualAttributes = attributes;
@@ -632,7 +648,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     // SendImpressionEvent() does get called.
     OCMVerify([optimizelyMock sendImpressionEventFor:decision.experiment variation:decision.variation userId:kUserId attributes:nil callback:nil]);
-
+    
     OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
     [decisionServiceMock stopMocking];
 }
@@ -779,7 +795,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"featureKey";
     NSString *variableKeyDouble = @"varDouble";
     NSString *featureVariableType = FeatureVariableTypeDouble;
-
+    
     // expectations
     NSString *expectedValueString = @"100.54";
     double expectedValue = 100.54;
@@ -798,7 +814,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"featureKey";
     NSString *variableKeyInt = @"varInt";
     NSString *featureVariableType = FeatureVariableTypeDouble;
-
+    
     NSString *expectedValueString = @"100";
     double expectedValue = 100;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyInt expectedReturn:expectedValueString];
@@ -816,7 +832,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"featureKey";
     NSString *variableKeyNonDouble = @"varNonDouble";
     NSString *featureVariableType = FeatureVariableTypeDouble;
-
+    
     NSString *expectedValueString = @"nonDoubleValue";
     double expectedValue = 0.0;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNonDouble expectedReturn:expectedValueString];
@@ -834,7 +850,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"featureKey";
     NSString *variableKeyNull = @"varNull";
     NSString *featureVariableType = FeatureVariableTypeDouble;
-
+    
     NSString *expectedValueString = nil;
     NSNumber* expectedValue = nil;
     id optimizelyMock = [self getOptimizelyMockForFeatureVariableType:featureVariableType variableKey:variableKeyNull expectedReturn:expectedValueString];
@@ -988,10 +1004,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     // Passing nil and empty feature key.
     XCTAssertNil([self.optimizely getFeatureVariableValueForType:variableType
-                                                     featureKey:nil
-                                                    variableKey:variableKey
-                                                         userId:kUserId
-                                                     attributes:nil]);
+                                                      featureKey:nil
+                                                     variableKey:variableKey
+                                                          userId:kUserId
+                                                      attributes:nil]);
     XCTAssertNil([self.optimizely getFeatureVariableValueForType:variableType
                                                       featureKey:@""
                                                      variableKey:variableKey
@@ -1087,10 +1103,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(nil);
     
     NSString *value = [self.optimizely getFeatureVariableValueForType:variableType
-                                                                   featureKey:featureKey
-                                                                  variableKey:variableKey
-                                                                       userId:kUserId
-                                                                   attributes:nil];
+                                                           featureKey:featureKey
+                                                          variableKey:variableKey
+                                                               userId:kUserId
+                                                           attributes:nil];
     XCTAssertEqualObjects(expectedValue, value, @"should return %@ for featureFlag not enabled", expectedValue);
     
     OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
@@ -1158,20 +1174,20 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"177770"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"177771"];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
-        
+    
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);
-                                   
-   BOOL value = [self.optimizely getFeatureVariableBoolean:featureKey
+    
+    BOOL value = [self.optimizely getFeatureVariableBoolean:featureKey
                                                 variableKey:variableKey
                                                      userId:kUserId
                                                  attributes:nil];
-   XCTAssertEqual(expectedVariableValue, value, @"should return %@ for featureFlag enabled but dont used", expectedVariableValue ? @"true" : @"false");
-                                   
-   OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
-   [decisionServiceMock stopMocking];
-}
+    XCTAssertEqual(expectedVariableValue, value, @"should return %@ for featureFlag enabled but dont used", expectedVariableValue ? @"true" : @"false");
     
+    OCMVerify([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]);
+    [decisionServiceMock stopMocking];
+}
+
 #pragma mark - GetEnabledFeatures Tests
 
 // should return empty feature array as no feature is enabled for user
@@ -1182,12 +1198,376 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMVerify([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]);
     [optimizelyMock stopMocking];
 }
-    
+
 // should return feature array as some feature is enabled for user
 -(void)testGetEnabledFeaturesWithSomeFeaturesEnabledForUser {
     NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
     NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:self.attributes];
     XCTAssertEqualObjects(features, enabledFeatures);
+}
+
+#pragma mark - TypedAudiences Tests
+
+- (void)testActivateWithTypedAudiencesWithExactMatchType {
+    // Should be included via exact match string audience with id '3468206642'
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"house": @"Gryffindor"
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via exact match number audience with id '3468206646'
+    expectedAttributes = @{
+                           @"lasers": @45.5
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // Should be included via exact match bool audience with id '3468206643'
+    expectedAttributes = @{
+                           @"should_do_it": @YES
+                           };
+    expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testActivateWithTypedAudiencesWithSubstringMatchType {
+    // Should be included via substring match string audience with id '3988293898'
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"house": @"222Slytherin"
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testActivateWithTypedAudiencesWithExistsMatchType {
+    // Should be included via exists match string audience with id '3988293899'
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"favorite_ice_cream": @1
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testActivateWithTypedAudiencesWithLtMatchType {
+    // Should be included via lt match number audience with id '3468206644'
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"lasers": @0.8
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testActivateWithTypedAudiencesWithGtMatchType {
+    // Should be included via gt match number audience with id '3468206647'
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"lasers": @71
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testActivateExcludesUserFromExperimentWithTypedAudiences {
+    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+                                                                 @"house": @"Hufflepuff"
+                                                                 };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"typed_audience_experiment" userId:@"user1" attributes:expectedAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertNil(variation);
+    [expectation fulfill];
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testTrackWithTypedAudiences {
+    NSString *eventId = @"item_bought";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         @"house": @"Welcome to Slytherin!"
+                                                         };
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.typedAudienceDatafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    [optimizely track:eventId userId:userId attributes:attributes];
+    
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, eventId, userId];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
+}
+
+- (void)testTrackExcludesUserFromExperimentWithTypedAudiences {
+    NSString *eventId = @"item_bought";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         @"house": @"Hufflepuff"
+                                                         };
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.typedAudienceDatafile;
+        builder.logger = loggerMock;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    [optimizely track:eventId userId:userId attributes:attributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventId];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
+}
+
+- (void)testIsFeatureEnabledWithTypedAudiences {
+    NSString *featureFlagKey = @"feat";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         @"favorite_ice_cream": @"chocolate"
+                                                         };
+    XCTAssertTrue([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
+    
+    attributes = @{
+                   @"lasers": @45.5
+                   };
+    XCTAssertTrue([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
+}
+
+- (void)testIsFeatureEnabledExcludesUserFromExperimentWithTypedAudiences {
+    NSString *featureFlagKey = @"feat";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         };
+    XCTAssertFalse([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
+}
+
+- (void)testGetFeatureVariableStringReturnsVariableValueWithTypedAudiences {
+    NSString *featureKey = @"feat_with_var";
+    NSString *variableKey = @"x";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         @"lasers": @71
+                                                         };
+    NSString *featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    XCTAssertEqualObjects(featureVariable, @"xyz");
+    
+    attributes = @{
+                   @"should_do_it": @YES
+                   };
+    featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    XCTAssertEqualObjects(featureVariable, @"xyz");
+}
+
+- (void)testGetFeatureVariableStringReturnsDefaultVariableValueWithTypedAudiences {
+    NSString *featureKey = @"feat_with_var";
+    NSString *variableKey = @"x";
+    NSString *userId = @"user1";
+    NSDictionary<NSString *, NSObject *> *attributes = @{
+                                                         @"lasers": @50
+                                                         };
+    NSString *featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
+    XCTAssertEqualObjects(featureVariable, @"x");
+}
+
+#pragma mark - Audience Combination Tests
+
+//Test that activate calls dispatch_event with right params and returns expected
+//variation when attributes are provided and complex audience conditions are met.
+- (void)testActivateWithAttributesComplexAudienceMatch {
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Welcome to Slytherin!",
+                                                             @"lasers": @45.5
+                                                             };
+    NSDictionary<NSString *, NSObject *> *expectedAttributes1 = @{
+                                                                  @"shouldIndex": @1,
+                                                                  @"type": @"custom",
+                                                                  @"value": @45.5,
+                                                                  @"entity_id": @"594016",
+                                                                  @"key": @"lasers"
+                                                                  };
+    NSDictionary<NSString *, NSObject *> *expectedAttributes2 = @{
+                                                                  @"shouldIndex": @1,
+                                                                  @"type": @"custom",
+                                                                  @"value": @"Welcome to Slytherin!",
+                                                                  @"entity_id": @"594015",
+                                                                  @"key": @"house"
+                                                                  };
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    
+    __weak id weakSelf = self;
+    [self.optimizelyTypedAudience.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+        id self = weakSelf;
+        NSDictionary *visitors = [(NSArray *)event[@"visitors"] firstObject];
+        NSArray *_attributes = (NSArray *)visitors[@"attributes"];
+        XCTAssertTrue([_attributes containsObject:expectedAttributes1]);
+        XCTAssertTrue([_attributes containsObject:expectedAttributes2]);
+        [expectation fulfill];
+    }];
+    
+    OPTLYVariation *variation = [self.optimizelyTypedAudience activate:@"audience_combinations_experiment" userId:@"test_user" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"A", variation.variationKey);
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+//Test that activate returns None when complex audience conditions do not match.
+- (void)testActivateWithAttributesComplexAudienceMismatch {
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Hufflepuff",
+                                                             @"lasers": @45.5
+                                                             };
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    OPTLYExperiment *experiment = [self.optimizelyTypedAudience.config getExperimentForKey:@"audience_combinations_experiment"];
+    OPTLYVariation *variation = [self.optimizelyTypedAudience variation:@"audience_combinations_experiment" userId:@"test_user" attributes:self.attributes];
+    id optimizelyMock = OCMPartialMock(self.optimizelyTypedAudience);
+    
+    OPTLYVariation *_variation = [self.optimizelyTypedAudience activate:@"audience_combinations_experiment" userId:@"test_user" attributes:userAttributes callback:^(NSError *error) {
+        [expectation fulfill];
+    }];
+    
+    // SendImpressionEvent() does not get called.
+    OCMReject([optimizelyMock sendImpressionEventFor:experiment variation:variation userId:@"test_user" attributes:userAttributes callback:[OCMArg any]]);
+    [optimizelyMock stopMocking];
+    
+    XCTAssertNil(_variation);
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+//Test that track calls Notification Listener with right params when attributes are provided
+//and it's a complex audience match.
+- (void)testTrackWithAttributesComplexAudienceMatch {
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor",
+                                                             @"should_do_it": @YES
+                                                             };
+    NSDictionary<NSString *, NSObject *> *expectedAttributes1 = @{
+                                                                  @"shouldIndex": @1,
+                                                                  @"type": @"custom",
+                                                                  @"value": @"Gryffindor",
+                                                                  @"entity_id": @"594015",
+                                                                  @"key": @"house"
+                                                                  };
+    NSDictionary<NSString *, NSObject *> *expectedAttributes2 = @{
+                                                                  @"shouldIndex": @1,
+                                                                  @"type": @"custom",
+                                                                  @"value": @YES,
+                                                                  @"entity_id": @"594017",
+                                                                  @"key": @"should_do_it"
+                                                                  };
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"trackedSuccessfuly"];
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    
+    __weak id weakSelf = self;
+    [self.optimizelyTypedAudience.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        id self = weakSelf;
+        NSDictionary *visitors = [(NSArray *)event[@"visitors"] firstObject];
+        NSArray *_attributes = (NSArray *)visitors[@"attributes"];
+        XCTAssertTrue([_attributes containsObject:expectedAttributes1]);
+        XCTAssertTrue([_attributes containsObject:expectedAttributes2]);
+        [expectation fulfill];
+    }];
+    
+    [self.optimizelyTypedAudience track:@"user_signed_up" userId:@"test_user" attributes:userAttributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherAttemptingToSendConversionEvent, @"user_signed_up", @"test_user"];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
+    
+    [self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+//Test that track does not call dispatch_event when complex audience conditions do not match.
+- (void)testTrackWithAttributesComplexAudienceMismatch {
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor",
+                                                             @"should_do_it": @false
+                                                             };
+    
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    
+    [self.optimizelyTypedAudience track:@"user_signed_up" userId:@"test_user" attributes:userAttributes];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, @"user_signed_up"];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock stopMocking];
+}
+
+//Test that isFeatureEnabled returns True for feature rollout with complex audience match.
+- (void)testIsFeatureEnabledInRolloutComplexAudienceMatch {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"...Slytherinnn...sss.",
+                                                             @"favorite_ice_cream": @"matcha"
+                                                             };
+    NSString *featureFlagKey = @"feat2";
+    XCTAssertTrue([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:@"test_user" attributes:userAttributes]);
+}
+
+//Test that isFeatureEnabled returns False for feature rollout with complex audience mismatch.
+- (void)testIsFeatureEnabledInRolloutComplexAudienceMismatch {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Lannister"
+                                                             };
+    NSString *featureFlagKey = @"feat2";
+    XCTAssertFalse([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:@"test_user" attributes:userAttributes]);
+}
+
+//Test that getFeatureVariableInteger return variable value with complex audience match.
+- (void)testGetFeatureVariableReturnsVariableValueComplexAudienceMatch {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": @"Gryffindor",
+                                                             @"lasers": @700
+                                                             };
+    XCTAssertEqual([[self.optimizelyTypedAudience getFeatureVariableInteger:@"feat2_with_var" variableKey:@"z" userId:@"user1" attributes:userAttributes] integerValue], 150);
+}
+
+//Test that getFeatureVariableInteger return default value with complex audience mismatch.
+- (void)testGetFeatureVariableReturnsDefaultValueComplexAudienceMatch {
+    XCTAssertEqual([[self.optimizelyTypedAudience getFeatureVariableInteger:@"feat2_with_var" variableKey:@"z" userId:@"user1" attributes:@{}] integerValue], 10);
 }
 
 #pragma mark - setForcedVariation
@@ -1387,3 +1767,4 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 }
 
 @end
+

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -31,8 +31,10 @@
 #import "OPTLYRollout.h"
 #import "OPTLYFeatureDecision.h"
 #import "OPTLYControlAttributes.h"
+#import "OPTLYLogger.h"
 
 static NSString * const kDatafileName = @"test_data_10_experiments";
+static NSString * const ktypeAudienceDatafileName = @"typed_audience_datafile";
 static NSString * const kUserId = @"6369992312";
 static NSString * const kUserNotInExperimentId = @"6358043286";
 
@@ -45,6 +47,10 @@ static NSString * const kWhitelistedVariation = @"a";
 static NSString * const kWhitelistedUserId_test_data_10_experiments = @"forced_variation_user";
 static NSString * const kWhitelistedExperiment_test_data_10_experiments = @"testExperiment6";
 static NSString * const kWhitelistedVariation_test_data_10_experiments = @"variation";
+
+// events with experiment and audiences
+static NSString * const kExperimentWithTypedAudienceKey = @"audience_combinations_experiment";
+static NSString * const kExperimentWithTypedAudienceId = @"3988293898";
 
 // events with experiment and audiences
 static NSString * const kExperimentWithAudienceKey = @"testExperimentWithFirefoxAudience";
@@ -62,8 +68,6 @@ static NSString * const kAttributeValueChrome = @"chrome";
 static NSString * const kAttributeKeyBrowserBuildNumberInt = @"browser_buildnumber";
 static NSString * const kAttributeKeyBrowserVersionNumberInt = @"browser_version";
 static NSString * const kAttributeKeyIsBetaVersionBool = @"browser_isbeta";
-
-
 
 // experiment with no audience
 static NSString * const kExperimentNoAudienceKey = @"testExperiment4";
@@ -96,9 +100,13 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
 @interface OPTLYDecisionServiceTest : XCTestCase
 @property (nonatomic, strong) Optimizely *optimizely;
+@property (nonatomic, strong) Optimizely *optimizelyTypedAudience;
 @property (nonatomic, strong) OPTLYProjectConfig *config;
 @property (nonatomic, strong) OPTLYDecisionService *decisionService;
 @property (nonatomic, strong) OPTLYBucketer *bucketer;
+@property (nonatomic, strong) OPTLYProjectConfig *typedAudienceConfig;
+@property (nonatomic, strong) OPTLYDecisionService *typedAudienceDecisionService;
+@property (nonatomic, strong) OPTLYBucketer *typedAudienceBucketer;
 @property (nonatomic, strong) NSDictionary *attributes;
 @property (nonatomic, strong) NSDictionary *userProfileWithFirefoxAudience;
 @end
@@ -116,8 +124,25 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
               variation:(nonnull OPTLYVariation *)variation
              experiment:(nonnull OPTLYExperiment *)experiment
                  userId:(nonnull NSString *)userId;
-@end
 
+- (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
+                experiment:(OPTLYExperiment *)experiment
+                attributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+
+- (BOOL)shouldEvaluateUsingAudienceConditions:(OPTLYExperiment *)experiment;
+
+- (BOOL)evaluateAudienceConditionsForExperiment:(OPTLYExperiment *)experiment
+                                         config:(OPTLYProjectConfig *)config
+                                     attributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+
+- (BOOL)evaluateAudienceIdsForExperiment:(OPTLYExperiment *)experiment
+                                  config:(OPTLYProjectConfig *)config
+                              attributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+
+- (nullable NSNumber *)evaluateAudienceWithId:(NSString *)audienceId
+                                       config:(OPTLYProjectConfig *)config
+                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+@end
 
 @implementation OPTLYDecisionServiceTest
 
@@ -126,6 +151,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 - (void)setUp {
     [super setUp];
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDatafileName];
+    NSData *typedAudienceDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:ktypeAudienceDatafileName];
 
     id<OPTLYUserProfileService> profileService = [OPTLYUserProfileServiceNoOp new];
 
@@ -133,9 +159,17 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
         builder.datafile = datafile;
         builder.userProfileService = profileService;
     }]];
+    self.optimizelyTypedAudience = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = typedAudienceDatafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+    }]];
+    
     self.config = self.optimizely.config;
+    self.typedAudienceConfig = self.optimizelyTypedAudience.config;
     self.bucketer = [[OPTLYBucketer alloc] initWithConfig:self.config];
+    self.typedAudienceBucketer = [[OPTLYBucketer alloc] initWithConfig:self.typedAudienceConfig];
     self.decisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.config bucketer:self.bucketer];
+    self.typedAudienceDecisionService = [[OPTLYDecisionService alloc] initWithProjectConfig:self.typedAudienceConfig bucketer:self.typedAudienceBucketer];
     self.attributes = @{ kAttributeKey : kAttributeValue };
     
     self.userProfileWithFirefoxAudience = @{ OPTLYDatafileKeysUserProfileServiceUserId : kUserId,
@@ -180,7 +214,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
                                                   attributes:badAttributes];
     NSAssert(isValid == false, @"Experiment running with user in experiment, but with bad attributes should fail validation.");
 }
-    
+
 - (void)testValidatePreconditionsAllowsWhiteListedUserToOverrideAudienceEvaluation {
     NSData *whitelistingDatafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kWhitelistingTestDatafileName];
     Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
@@ -199,6 +233,139 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
                            attributes:self.attributes];
     XCTAssertNotNil(variation);
     XCTAssertEqualObjects(variation.variationKey, kWhitelistedVariation);
+}
+
+- (void)testUserInExperimentWithEmptyAudienceIdAndConditions
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceIds = @[];
+    experiment.audienceConditions = (NSArray<OPTLYCondition> *)@[];
+    BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    
+    XCTAssertTrue(isValid);
+}
+
+- (void)testUserInExperimentWithValidAudienceIdAndEmptyAudienceConditions
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceConditions = (NSArray<OPTLYCondition> *)@[];
+    BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertTrue(isValid);
+}
+
+- (void)testUserInExperimentWithEmptyAudienceIdAndNilAudienceConditions
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceIds = @[];
+    experiment.audienceConditions = nil;
+    BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertTrue(isValid);
+}
+
+- (void)testIsUserInExperimentUsesNonNullAudienceConditionsWhenAudienceIdsAlsoAvailable
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    XCTAssertTrue([self.typedAudienceDecisionService shouldEvaluateUsingAudienceConditions:experiment]);
+}
+
+- (void)testIsUserInExperimentUsesAudienceIdsWhenAudienceConditionsNull
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceConditions = nil;
+    XCTAssertFalse([self.typedAudienceDecisionService shouldEvaluateUsingAudienceConditions:experiment]);
+}
+
+- (void)testIsUserInExperimentReturnsTrueWhenBothAudienceConditionsAndAudienceIdsNull
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceConditions = nil;
+    experiment.audienceIds = @[];
+    BOOL isValid = [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertTrue(isValid);
+}
+
+- (void)testIsUserInExperimentEvaluatesAudienceWhenAttributesEmpty
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    id mock = [OCMockObject partialMockForObject:experiment];
+    [[mock expect] evaluateConditionsWithAttributes:[OCMArg any] projectConfig:[OCMArg any]];
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:@{}];
+    XCTAssertTrue([mock verify]);
+    [mock stopMocking];
+}
+
+- (void)testIsUserInExperimentEvaluatesAudienceWhenAttributesEmptyAndAudienceConditionsNil
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceConditions = nil;
+    OPTLYAudience *audience = [self.typedAudienceConfig getAudienceForId:experiment.audienceIds[0]];
+    id mock = [OCMockObject partialMockForObject:audience];
+    [[mock expect] evaluateConditionsWithAttributes:[OCMArg any] projectConfig:[OCMArg any]];
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:@{}];
+    XCTAssertTrue([mock verify]);
+    [mock stopMocking];
+}
+
+- (void)testIsUserInExperimentEvaluatesAudienceWhenAttributesNil
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    id mock = [OCMockObject partialMockForObject:experiment];
+    [[mock expect] evaluateConditionsWithAttributes:[OCMArg any] projectConfig:[OCMArg any]];
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:nil];
+    XCTAssertTrue([mock verify]);
+    [mock stopMocking];
+}
+
+- (void)testIsUserInExperimentEvaluatesAudienceWhenAttributesNilAndAudienceConditionsNil
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    experiment.audienceConditions = nil;
+    OPTLYAudience *audience = [self.typedAudienceConfig getAudienceForId:experiment.audienceIds[0]];
+    id mock = [OCMockObject partialMockForObject:audience];
+    [[mock expect] evaluateConditionsWithAttributes:[OCMArg any] projectConfig:[OCMArg any]];
+    [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:nil];
+    XCTAssertTrue([mock verify]);
+    [mock stopMocking];
+}
+
+- (void)testIsUserInExperimentReturnsFalseWhenEvaluatorReturnsFalseOrNull
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    id decisionServiceMock = OCMPartialMock(self.typedAudienceDecisionService);
+    OCMStub([decisionServiceMock evaluateAudienceConditionsForExperiment:[OCMArg any] config:[OCMArg any] attributes:[OCMArg any]]).andReturn(false);
+    BOOL isValid = [decisionServiceMock isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertFalse(isValid);
+    [decisionServiceMock stopMocking];
+
+    decisionServiceMock = OCMPartialMock(self.typedAudienceDecisionService);
+    experiment.audienceConditions = nil;
+    OCMStub([decisionServiceMock evaluateAudienceIdsForExperiment:[OCMArg any] config:[OCMArg any] attributes:[OCMArg any]]).andReturn(false);
+    isValid = [decisionServiceMock isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertFalse(isValid);
+    [decisionServiceMock stopMocking];
+    
+    decisionServiceMock = OCMPartialMock(self.typedAudienceDecisionService);
+    OCMStub([decisionServiceMock evaluateAudienceWithId:[OCMArg any] config:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    isValid = [decisionServiceMock isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertFalse(isValid);
+    [decisionServiceMock stopMocking];
+}
+
+- (void)testIsUserInExperimentReturnsTrueWhenEvaluatorReturnsTrue
+{
+    OPTLYExperiment *experiment = [self.typedAudienceConfig getExperimentForKey:kExperimentWithTypedAudienceKey];
+    id decisionServiceMock = OCMPartialMock(self.typedAudienceDecisionService);
+    OCMStub([decisionServiceMock evaluateAudienceConditionsForExperiment:[OCMArg any] config:[OCMArg any] attributes:[OCMArg any]]).andReturn(true);
+    BOOL isValid = [decisionServiceMock isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertTrue(isValid);
+    [decisionServiceMock stopMocking];
+    
+    decisionServiceMock = OCMPartialMock(self.typedAudienceDecisionService);
+    experiment.audienceConditions = nil;
+    OCMStub([decisionServiceMock evaluateAudienceIdsForExperiment:[OCMArg any] config:[OCMArg any] attributes:[OCMArg any]]).andReturn(true);
+    isValid = [decisionServiceMock isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
+    XCTAssertTrue(isValid);
+    [decisionServiceMock stopMocking];
 }
 
 #pragma mark - getVariation

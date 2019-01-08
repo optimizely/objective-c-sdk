@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -62,7 +62,7 @@
     
     // Acquire bucketingId .
     NSString *bucketingId = [self getBucketingId:userId attributes:attributes];
-
+    
     // ---- check if the experiment is running ----
     if (![self isExperimentActive:self.config
                     experimentKey:experimentKey]) {
@@ -74,7 +74,7 @@
     if (bucketedVariation != nil) {
         return bucketedVariation;
     }
-
+    
     // ---- check if the experiment is whitelisted ----
     if ([self checkWhitelistingForUser:userId experiment:experiment]) {
         OPTLYVariation *whitelistedVariation = [self getWhitelistedVariationForUser:userId experiment:experiment];
@@ -108,7 +108,7 @@
     
     // ---- check if the user passes audience targeting before bucketing ----
     if ([self userPassesTargeting:self.config
-                    experiment:experiment
+                       experiment:experiment
                            userId:userId
                        attributes:attributes]) {
         
@@ -125,8 +125,8 @@
 }
 
 - (OPTLYFeatureDecision *)getVariationForFeature:(OPTLYFeatureFlag *)featureFlag
-                                    userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                          userId:(NSString *)userId
+                                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     //Evaluate in this order:
     
@@ -164,6 +164,7 @@
     NSString *bucketingId = userId;
     // If the bucketing ID key is defined in attributes, then use that
     // in place of the userID for the murmur hash key
+    
     if (attributes != nil) {
         NSString *validBucketingId = [attributes[OptimizelyBucketId] getValidString];
         if (validBucketingId != nil) {
@@ -181,9 +182,9 @@
     OPTLYExperiment *experiment = nil;
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserNotBucketed, bucketingId, group.groupId];
     if (bucketer)
-    experiment = [bucketer bucketToExperiment:group withBucketingId:bucketingId];
+        experiment = [bucketer bucketToExperiment:group withBucketingId:bucketingId];
     if (experiment)
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserBucketed, bucketingId, experiment.experimentKey, group.groupId];
+        logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserBucketed, bucketingId, experiment.experimentKey, group.groupId];
     
     [self.config.logger logMessage:logMessage
                          withLevel:OptimizelyLogLevelDebug];
@@ -228,8 +229,8 @@
 }
 
 - (OPTLYFeatureDecision *)getVariationForFeatureExperiment:(OPTLYFeatureFlag *)featureFlag
-                                              userId:(NSString *)userId
-                                          attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                                    userId:(NSString *)userId
+                                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *featureFlagKey = featureFlag.key;
     NSArray *experimentIds = featureFlag.experimentIds;
@@ -264,8 +265,8 @@
 }
 
 - (OPTLYFeatureDecision *)getVariationForFeatureRollout:(OPTLYFeatureFlag *)featureFlag
-                                           userId:(NSString *)userId
-                                       attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                                 userId:(NSString *)userId
+                                             attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
     NSString *featureFlagKey = featureFlag.key;
@@ -448,8 +449,79 @@
     return variationId;
 }
 
+- (nullable NSNumber *)evaluateAudienceWithId:(NSString *)audienceId
+                                       config:(OPTLYProjectConfig *)config
+                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+{
+    OPTLYAudience *audience = [config getAudienceForId:audienceId];
+    return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
+}
+
+- (BOOL)evaluateAudienceIdsForExperiment:(OPTLYExperiment *)experiment
+                                  config:(OPTLYProjectConfig *)config
+                              attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+{
+    NSArray *audienceIds = experiment.audienceIds;
+    // if there are no audiences, ALL users should be part of the experiment
+    if ([audienceIds count] == 0) {
+        return true;
+    }
+    
+    for (NSString *audienceId in audienceIds) {
+        BOOL areAttributesValid = [[self evaluateAudienceWithId:audienceId config:config attributes:attributes] boolValue];
+        if (areAttributesValid) {
+            return true;
+        }
+    }
+    return false;
+}
+
+- (BOOL)evaluateAudienceConditionsForExperiment:(OPTLYExperiment *)experiment
+                                         config:(OPTLYProjectConfig *)config
+                                     attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+{
+    if (experiment.audienceConditions.count == 0) {
+        return true;
+    }
+    BOOL areAttributesValid = [[experiment evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
+    if (areAttributesValid) {
+        return areAttributesValid;
+    }
+    return false;
+}
+
+// Returns true if evaluation should be done using audience conditions, else returns false
+- (BOOL)shouldEvaluateUsingAudienceConditions:(OPTLYExperiment *)experiment
+{
+    return experiment.audienceConditions != nil;
+}
+
+// Returns empty dictionary if attributes nil
+- (NSDictionary<NSString *, NSObject *> *)validateAttributes:(NSDictionary<NSString *, NSObject *> *)attributes
+{
+    // if there are audiences, but no user attributes, Defaults to empty attributes
+    if (attributes == nil) {
+        return @{};
+    }
+    return attributes;
+}
+
+- (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
+                experiment:(OPTLYExperiment *)experiment
+                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+{
+    attributes = [self validateAttributes:attributes];
+    
+    // if there are audience conditions, evaluate them, else evaluate audience Ids
+    if ([self shouldEvaluateUsingAudienceConditions:experiment]) {
+        return [self evaluateAudienceConditionsForExperiment:experiment config:config attributes:attributes];
+    }
+    
+    return [self evaluateAudienceIdsForExperiment:experiment config:config attributes:attributes];
+}
+
 - (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
-              experiment:(OPTLYExperiment *)experiment
+                 experiment:(OPTLYExperiment *)experiment
                      userId:(NSString *)userId
                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
 {
@@ -462,7 +534,7 @@
     
     return isUserInExperiment;
 }
-    
+
 - (BOOL)isExperimentActive:(OPTLYProjectConfig *)config
              experimentKey:(NSString *)experimentKey
 {
@@ -478,30 +550,5 @@
     return true;
 }
 
-- (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
-             experiment:(OPTLYExperiment *)experiment
-                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
-{
-    NSArray *audiences = experiment.audienceIds;
-    
-    // if there are no audiences, ALL users should be part of the experiment
-    if ([audiences count] == 0) {
-        return true;
-    }
-    
-    // if there are audiences, but no user attributes, the user is not in the experiment.
-    if ([attributes count] == 0) {
-        return false;
-    }
-    
-    for (NSString *audienceId in audiences) {
-        OPTLYAudience *audience = [config getAudienceForId:audienceId];
-        BOOL areAttributesValid = [audience evaluateConditionsWithAttributes:attributes];
-        if (areAttributesValid) {
-            return true;
-        }
-    }
-    
-    return false;
-}
 @end
+

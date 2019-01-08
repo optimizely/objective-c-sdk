@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018-2019, Optimizely, Inc. and contributors              *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -16,6 +16,7 @@
 
 #import "OPTLYAudience.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYNSObject+Validation.h"
 
 @implementation OPTLYAudience
 
@@ -27,34 +28,29 @@
 }
 
 - (void)setConditionsWithNSString:(NSString *)string {
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    
+    NSArray *array = [string getValidConditionsArray];
+    [self setConditionsWithNSArray:array];
+}
+
+- (void)setConditionsWithNSArray:(NSArray *)array {
     NSError *err = nil;
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:data
-                                                     options:NSJSONReadingAllowFragments
-                                                       error:&err];
-    if (err != nil) {
-        NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
-        @throw exception;
-    }
-    
-    self.conditions = [OPTLYCondition deserializeJSONArray:array error:&err];
-    
+    self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
     if (err != nil) {
         NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
         @throw exception;
     }
 }
 
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     for (NSObject<OPTLYCondition> *condition in self.conditions) {
-        if ([condition evaluateConditionsWithAttributes:attributes]) {
+        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
+        if (result != NULL && [result boolValue] == true) {
             // if user satisfies any conditions, return true.
-            return true;
+            return [NSNumber numberWithBool:true];
         }
     }
     // if user doesn't satisfy any conditions, return false.
-    return false;
+    return [NSNumber numberWithBool:false];
 }
 
 @end

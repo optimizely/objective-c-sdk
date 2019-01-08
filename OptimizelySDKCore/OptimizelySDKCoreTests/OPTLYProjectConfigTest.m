@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -39,6 +39,7 @@
 // static data from datafile
 static NSString * const kClientEngine = @"objective-c-sdk";
 static NSString * const kDataModelDatafileName = @"optimizely_6372300739_v4";
+static NSString * const kDataModelTypeAudienceDatafileName = @"typed_audience_datafile";
 static NSString * const kDatafileNameAnonymizeIPFalse = @"test_data_25_experiments";
 static NSString * const kRevision = @"58";
 static NSString * const kProjectId = @"6372300739";
@@ -350,12 +351,13 @@ static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDa
                             }
                         ] forKey:@"attributes"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
-    OPTLYProjectConfig *projectConfig = [OPTLYProjectConfig init:^(OPTLYProjectConfigBuilder * _Nullable builder){
+    
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
         builder.datafile = data;
         builder.logger = [OPTLYLoggerDefault new];
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
         builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
-    }];
+    }]];
     NSString *attributeId = [projectConfig getAttributeIdForKey:expectedAttributeKey];
     XCTAssertEqualObjects(attributeId, expectedAttributeId, @"should retrieve attribute Id %@ for reserved attribute key in datafile", expectedAttributeId);
 }
@@ -377,6 +379,25 @@ static NSString * const kUnsupportedVersionDatafileName = @"UnsupportedVersionDa
     NSString* audienceId = @"66666666666";
     OPTLYAudience *audience = [self.projectConfig getAudienceForId:audienceId];
     XCTAssertNil(audience, @"Shouldn't find audience for id: %@", audienceId);
+}
+
+- (void)testExperimentAudiencesRetrievedFromTypedAudiencesFirstThenFromAudiences
+{
+    NSString* experimentKey = @"feat_with_var_test";
+    NSArray *audienceIds = @[@"3468206642", @"3988293898", @"3988293899", @"3468206646", @"3468206647", @"3468206644", @"3468206643"];
+    
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelTypeAudienceDatafileName];
+    OPTLYProjectConfig *projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+        builder.logger = [OPTLYLoggerDefault new];
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+        builder.userProfileService = [OPTLYUserProfileServiceNoOp new];
+    }]];
+    
+    OPTLYExperiment *experiment = [projectConfig getExperimentForKey:experimentKey];
+    XCTAssertNotNil(experiment, @"Should find experiment for id: %@", experimentKey);
+    XCTAssert([experiment isKindOfClass:[OPTLYExperiment class]], @"Expected to be an OPTLYExperiment: %@", experiment);
+    XCTAssertEqualObjects(experiment.audienceIds, audienceIds);
 }
 
 #pragma mark - Test getVariableForVariableKey: (DEPRECATED)
