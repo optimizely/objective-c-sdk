@@ -233,8 +233,8 @@
 		C77958C6219BFBC800B4CA89 /* OPTLYNSObject+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */; };
 		C779881321CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
 		C779881421CBC22A002AAEC8 /* OPTLYValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779881221CBC22A002AAEC8 /* OPTLYValidationTest.m */; };
-		C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
-		C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; };
+		C78F98B7219ADEA600808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C78F98B8219ADEA700808062 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C78F98B4219ADE9600808062 /* OPTLYAudienceBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C78F98B9219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
 		C78F98BA219ADEAB00808062 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C78F98B5219ADE9600808062 /* OPTLYAudienceBaseCondition.m */; };
 		C7ACD4FE218C2E4A008EC52E /* typed_audience_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */; };
