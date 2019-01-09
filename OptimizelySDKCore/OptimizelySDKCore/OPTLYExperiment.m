@@ -67,7 +67,7 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
         }
     }
     // if user doesn't satisfy any conditions, return false.
-    return [NSNumber numberWithBool:false]; 
+    return [NSNumber numberWithBool:false];
 }
 
 - (void)setGroupId:(NSString *)groupId {

@@ -178,7 +178,6 @@
     NSArray *notConditionArray = @[@"not", @"2"];
     NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
     XCTAssertNotNil(conditions);
-    
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[conditions firstObject];
     XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 }

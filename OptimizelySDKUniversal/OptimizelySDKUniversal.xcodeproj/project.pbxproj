@@ -70,6 +70,10 @@
 		90855D0B20ED2C4000A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855D0820ED2C4000A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0C20ED2C4000A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855D0820ED2C4000A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B9BC2CF7D9A5F20910ADE484 /* Pods_OptimizelySDKiOSUniversalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821ECAB08BA28A73A7D94EAC /* Pods_OptimizelySDKiOSUniversalTests.framework */; };
+		C77BCFC821E478A800C59995 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCFC721E478A800C59995 /* OPTLYAudienceBaseCondition.m */; };
+		C77BCFC921E4790400C59995 /* OPTLYAudienceBaseCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = C77BCFC721E478A800C59995 /* OPTLYAudienceBaseCondition.m */; };
+		C77BCFCB21E4792D00C59995 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C77BCFC521E4789700C59995 /* OPTLYAudienceBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C77BCFCC21E4792F00C59995 /* OPTLYAudienceBaseCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = C77BCFC521E4789700C59995 /* OPTLYAudienceBaseCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */; };
 		EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E61ED7A19700A8E555 /* OPTLYExperimentBucketMapEntity.m */; };
 		EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3144E81ED7A19700A8E555 /* OPTLYUserProfile.m */; };
@@ -409,6 +413,8 @@
 		90855D0720ED2C3F00A97BEC /* OPTLYControlAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPTLYControlAttributes.m; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYControlAttributes.m; sourceTree = SOURCE_ROOT; };
 		90855D0820ED2C4000A97BEC /* OPTLYControlAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPTLYControlAttributes.h; path = ../OptimizelySDKCore/OptimizelySDKCore/OPTLYControlAttributes.h; sourceTree = SOURCE_ROOT; };
 		AB5B18573E1770FC43BE1EF9 /* Pods_OptimizelySDKTVOSUniversalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKTVOSUniversalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C77BCFC521E4789700C59995 /* OPTLYAudienceBaseCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYAudienceBaseCondition.h; sourceTree = "<group>"; };
+		C77BCFC721E478A800C59995 /* OPTLYAudienceBaseCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTLYAudienceBaseCondition.m; sourceTree = "<group>"; };
 		E55812A42A88FA30C03D74F0 /* Pods-OptimizelySDKiOSUniversalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKiOSUniversalTests/Pods-OptimizelySDKiOSUniversalTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA3144E31ED7A19700A8E555 /* OPTLYDecisionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYDecisionService.h; sourceTree = "<group>"; };
 		EA3144E41ED7A19700A8E555 /* OPTLYDecisionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYDecisionService.m; sourceTree = "<group>"; };
@@ -776,6 +782,8 @@
 				EAC5F1321E7B604C00C087B8 /* OPTLYAttribute.m */,
 				EAC5F2181E7B639A00C087B8 /* OPTLYAudience.h */,
 				EAC5F1331E7B604C00C087B8 /* OPTLYAudience.m */,
+				C77BCFC521E4789700C59995 /* OPTLYAudienceBaseCondition.h */,
+				C77BCFC721E478A800C59995 /* OPTLYAudienceBaseCondition.m */,
 				EAC5F2191E7B639B00C087B8 /* OPTLYBaseCondition.h */,
 				EAC5F1341E7B604C00C087B8 /* OPTLYBaseCondition.m */,
 				EAC5F21A1E7B639B00C087B8 /* OPTLYBucketer.h */,
@@ -1084,6 +1092,7 @@
 				3ED0F1C0200F37BD00FCFBE0 /* OPTLYRollout.h in Headers */,
 				EA3144EE1ED7A1CD00A8E555 /* OPTLYUserProfile.h in Headers */,
 				EA52CA841E851CC100D4FCA0 /* murmur3.h in Headers */,
+				C77BCFCB21E4792D00C59995 /* OPTLYAudienceBaseCondition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,6 +1150,7 @@
 				EA52CAFB1E851CEE00D4FCA0 /* OPTLYDatafileManagerBasic.h in Headers */,
 				EA52CAFC1E851CEE00D4FCA0 /* OPTLYDataStore.h in Headers */,
 				EA52CAFD1E851CEE00D4FCA0 /* OPTLYFileManager.h in Headers */,
+				C77BCFCC21E4792F00C59995 /* OPTLYAudienceBaseCondition.h in Headers */,
 				EA52CAFE1E851CEE00D4FCA0 /* OPTLYManagerBase.h in Headers */,
 				EA52CAFF1E851CEE00D4FCA0 /* OPTLYManagerBasic.h in Headers */,
 				EA52CB001E851CEE00D4FCA0 /* OPTLYManagerBuilder.h in Headers */,
@@ -1453,6 +1463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3144E91ED7A1C100A8E555 /* OPTLYDecisionService.m in Sources */,
+				C77BCFC821E478A800C59995 /* OPTLYAudienceBaseCondition.m in Sources */,
 				EA3144EA1ED7A1C100A8E555 /* OPTLYExperimentBucketMapEntity.m in Sources */,
 				EA3144EB1ED7A1C100A8E555 /* OPTLYUserProfile.m in Sources */,
 				EAE8C42A1EC4E61E00A76A2D /* OPTLYManager.m in Sources */,
@@ -1550,6 +1561,7 @@
 				EA52CA931E851CEE00D4FCA0 /* OPTLYErrorHandler.m in Sources */,
 				3ED0F1C5200F37BE00FCFBE0 /* OPTLYFeatureFlag.m in Sources */,
 				90855D0A20ED2C4000A97BEC /* OPTLYControlAttributes.m in Sources */,
+				C77BCFC921E4790400C59995 /* OPTLYAudienceBaseCondition.m in Sources */,
 				EA52CA941E851CEE00D4FCA0 /* OPTLYNetworkService.m in Sources */,
 				EA52CA951E851CEE00D4FCA0 /* OPTLYManager.m in Sources */,
 				EA52CA961E851CEE00D4FCA0 /* OPTLYBucketer.m in Sources */,

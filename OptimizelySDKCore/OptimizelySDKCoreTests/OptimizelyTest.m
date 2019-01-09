@@ -1309,7 +1309,6 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
-
 - (void)testActivateExcludesUserFromExperimentWithTypedAudiences {
     NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
                                                                  @"house": @"Hufflepuff"

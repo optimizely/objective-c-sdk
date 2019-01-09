@@ -46,7 +46,7 @@
 
 - (void)setConditionsWithNSArray:(NSArray *)array {
     //Retrieving Jsonstring from array
-    _conditionsJSONString = [array getJSONArrayStringOrEmpty];    
+    _conditionsJSONString = [array getJSONArrayStringOrEmpty];
     NSError *err = nil;
     self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
     if (err != nil) {
