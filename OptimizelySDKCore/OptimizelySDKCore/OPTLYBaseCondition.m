@@ -52,7 +52,7 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     NSNumber *success = NULL;
     
-    if ([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]) {
+    if ([self.value isValidStringType] && [userAttribute isValidStringType]) {
         success = [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     else if ([self.value isValidNumericAttributeValue] && [userAttribute isValidNumericAttributeValue]) {

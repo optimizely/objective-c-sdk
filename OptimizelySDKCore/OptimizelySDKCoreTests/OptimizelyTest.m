@@ -244,6 +244,14 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 # pragma mark - Integration Tests
 
+- (void)testOptimizelyActivateWithEmptyUserId {
+    OPTLYVariation *_variation = [self.optimizely activate:@"testExperimentMultivariate"
+                                                    userId:@""];
+    XCTAssertNotNil(_variation);
+    XCTAssertEqualObjects(@"Feorge", _variation.variationKey);
+}
+
+
 - (void)testOptimizelyActivateWithNoExperiment {
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     

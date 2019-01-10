@@ -123,7 +123,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return nil;
     }
     
-    if ([userId getValidString] == nil) {
+    if (![userId isValidStringType]) {
         NSError *error = [self handleErrorLogsForActivate:OPTLYLoggerMessagesUserIdInvalid ofLevel:OptimizelyLogLevelError];
         _callback(error);
         return nil;
@@ -434,7 +434,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
-    if ([userId getValidString] == nil) {
+    if (![userId isValidStringType]) {
         [self handleErrorLogsForTrack:OPTLYLoggerMessagesUserIdInvalid ofLevel:OptimizelyLogLevelError];
         return;
     }
