@@ -34,7 +34,7 @@
 /// Condition name
 @property (nonatomic, strong) NSString *name;
 /// Condition type
-@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *type;
 /// Condition value
 @property (nonatomic, strong, nullable) NSObject<OPTLYOptional> *value;
 /// Condition match type

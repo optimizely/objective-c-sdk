@@ -33,18 +33,7 @@
 }
 
 + (BOOL) isBaseConditionJSON:(NSData *)jsonData {
-    if (![jsonData isKindOfClass:[NSDictionary class]]) {
-        return false;
-    }
-    else {
-        NSDictionary *dict = (NSDictionary *)jsonData;
-        
-        if (dict[OPTLYDatafileKeysConditionName] != nil &&
-            dict[OPTLYDatafileKeysConditionType] != nil) {
-            return true;
-        }
-        return false;
-    }
+    return [jsonData isKindOfClass:[NSDictionary class]];
 }
 
 -(nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes{
@@ -116,15 +105,15 @@
         //Check if given type is the required type
         return NULL;
     }
-    else if (!self.match || [self.match isEqualToString:@""]){
-        //Check if given match is empty, if so, opt for legacy Exact Matching
-        self.match = OPTLYDatafileKeysMatchTypeExact;
-    }
     else if (self.value == NULL && ![self.match isEqualToString:OPTLYDatafileKeysMatchTypeExists]){
         //Check if given value is null, which is only acceptable if match type is Exists
         return NULL;
     }
-    
+    if (!self.match || [self.match isEqualToString:@""]){
+        //Check if given match is empty, if so, opt for legacy Exact Matching
+        self.match = OPTLYDatafileKeysMatchTypeExact;
+    }
+
     SWITCH(self.match){
         CASE(OPTLYDatafileKeysMatchTypeExact) {
             return [self evaluateMatchTypeExact: attributes];

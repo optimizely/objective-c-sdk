@@ -488,7 +488,7 @@
     NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSError *error = nil;
     NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
-    XCTAssertNil(conditionsArray);
+    XCTAssertTrue(conditionsArray);
 }
 
 - (void)testDeserializeConditionsEmptyConditions {
