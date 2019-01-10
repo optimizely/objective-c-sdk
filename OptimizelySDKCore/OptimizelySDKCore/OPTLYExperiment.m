@@ -41,8 +41,12 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 }
 
 - (void)setAudienceConditionsWithNSString:(NSString *)string {
-    NSError *err = nil;
     NSArray *array = [string getValidAudienceConditionsArray];
+    [self setAudienceConditionsWithNSArray:array];
+}
+
+- (void)setAudienceConditionsWithNSArray:(NSArray *)array {
+    NSError *err = nil;
     self.audienceConditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:array error:&err];
     
     if (err != nil) {
@@ -52,6 +56,7 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 }
 
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+
     for (NSObject<OPTLYCondition> *condition in self.audienceConditions) {
         NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
         if (result != NULL && [result boolValue] == true) {
