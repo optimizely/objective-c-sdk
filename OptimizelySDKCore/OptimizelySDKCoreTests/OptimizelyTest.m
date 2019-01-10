@@ -431,6 +431,28 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [loggerMock stopMocking];
 }
 
+- (void)testOptimizelyTrackWithEmptyUserId {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *_userId = nil;
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        _userId = userId;
+        notificationEventKey = eventKey;
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+    }];
+    
+    [self.optimizely track:eventKey userId:@""];
+    XCTAssertEqualObjects(@"", _userId);
+    XCTAssertEqual(eventKey, notificationEventKey);
+    XCTAssertEqualObjects(nil, actualAttributes);
+    XCTAssertEqualObjects(nil, actualEventTags);
+}
+
 - (void)testOptimizelyTrackWithInvalidEvent {
     
     NSString *invalidEventKey = @"invalid";
