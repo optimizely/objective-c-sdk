@@ -1588,6 +1588,8 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
                                                userId:@""
                                          variationKey:kVariationKeyForFV]);
+    OPTLYVariation *variation = [self.optimizely getForcedVariation:kExperimentKeyForFV userId:@""];
+    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForFV);
 }
 
 - (void)testSetForcedVariationWithInvalidExperimentKey
