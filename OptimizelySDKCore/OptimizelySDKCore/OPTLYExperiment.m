@@ -52,6 +52,11 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 }
 
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+    if (self.audienceConditions != nil && self.audienceConditions.count > 0  && [self.audienceConditions[0] isKindOfClass:NSString.class]) {
+        NSError *err = nil;
+        NSArray *array = self.audienceConditions;
+        self.audienceConditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:array error:&err];
+    }
     for (NSObject<OPTLYCondition> *condition in self.audienceConditions) {
         NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
         if (result != NULL && [result boolValue] == true) {
