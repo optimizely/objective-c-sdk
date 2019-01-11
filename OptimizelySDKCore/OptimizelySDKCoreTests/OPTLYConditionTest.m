@@ -168,7 +168,7 @@
     NSDictionary<NSString *, NSObject *> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
-    NSArray *notConditionArray = @[@"not", @"2"];
+    NSArray *notConditionArray = @[@"not", @"3988293898"];
     NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
     XCTAssertNotNil(conditions);
     
@@ -564,6 +564,21 @@
     XCTAssertEqualObjects(condition1.audienceId, @"1");
     OPTLYAudienceBaseCondition *condition2 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[1];
     XCTAssertEqualObjects(condition2.audienceId, @"2");
+}
+
+- (void)testDeserializeWithComplexLeafConditions {
+    NSString *conditionString = @"[\"and\", [\"or\",\"1\",\"2\"], \"1\"]";
+    NSArray *conditionStringJSONArray = [conditionString getValidAudienceConditionsArray];
+    NSArray *conditionsArray = [OPTLYCondition deserializeAudienceConditionsJSONArray:conditionStringJSONArray];
+    XCTAssertNotNil(conditionsArray);
+    XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYAndCondition class]]);
+    OPTLYAndCondition *andCondition = conditionsArray[0];
+    XCTAssertTrue(andCondition.subConditions.count == 2);
+    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    XCTAssertTrue([andCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYOrCondition *orCondition = (OPTLYOrCondition *)andCondition.subConditions[0];
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    XCTAssertTrue([orCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
 }
 
 - (void)testDeserializeComplexConditions {
