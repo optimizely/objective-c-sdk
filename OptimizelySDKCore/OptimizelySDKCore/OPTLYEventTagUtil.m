@@ -17,6 +17,7 @@
 #import "OPTLYEventTagUtil.h"
 #import "OPTLYEventMetric.h"
 #import "OPTLYLogger.h"
+#import "OPTLYNSObject+Validation.h"
 
 @implementation OPTLYEventTagUtil
 
@@ -93,7 +94,7 @@
             answer = nil;
             [logger logMessage:OPTLYLoggerMessagesRevenueValueInvalid withLevel:OptimizelyLogLevelWarning];
         }
-    } else if ([value isKindOfClass:[NSString class]]) {
+    } else if ([value isValidStringType]) {
         // cast strings to long long
         answer = @([(NSString*)value longLongValue]);
         [logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesRevenueValueString, value] withLevel:OptimizelyLogLevelWarning];
@@ -138,7 +139,7 @@
                 [logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesNumericValueInvalidFloat, value] withLevel:OptimizelyLogLevelWarning];
             }
         }
-    } else if ([value isKindOfClass:[NSString class]]) {
+    } else if ([value isValidStringType]) {
         // cast strings to double
         double doubleValue = [(NSString*)value doubleValue];
         if (isfinite(doubleValue)) {

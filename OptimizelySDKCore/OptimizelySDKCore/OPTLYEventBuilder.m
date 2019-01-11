@@ -190,7 +190,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
         id tagValue = eventTags[tagKey];
         
         // only string, long, int, double, float, and booleans are supported
-        if (![tagValue isKindOfClass:[NSString class]] && ![tagValue isKindOfClass:[NSNumber class]]) {
+        if (![tagValue isValidStringType] && ![tagValue isKindOfClass:[NSNumber class]]) {
             [mutableEventTags removeObjectForKey:tagKey];
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventTagValueInvalid, tagKey];
             [self.config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
