@@ -505,6 +505,35 @@
     XCTAssertNil(conditionsArray);
 }
 
+- (void)testConditionComplexAudienceConditionCaseDeserializationWithNoContainerAndSingleAudienceId {
+    NSArray *andConditionArray = @[@"1"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
+    XCTAssertNotNil(conditions);
+    XCTAssertTrue(conditions.count == 1);
+    XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYOrCondition *orCondition = conditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 1);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYAudienceBaseCondition *condition1 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[0];
+    XCTAssertEqualObjects(condition1.audienceId, @"1");
+}
+
+- (void)testConditionComplexAudienceConditionCaseDeserializationWithNoContainerAndMultipleAudienceIds {
+    NSArray *andConditionArray = @[@"1",@"2"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
+    XCTAssertNotNil(conditions);
+    XCTAssertTrue(conditions.count == 1);
+    XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYOrCondition *orCondition = conditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 2);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    XCTAssertTrue([orCondition.subConditions[1] isKindOfClass:[OPTLYAudienceBaseCondition class]]);
+    OPTLYAudienceBaseCondition *condition1 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[0];
+    XCTAssertEqualObjects(condition1.audienceId, @"1");
+    OPTLYAudienceBaseCondition *condition2 = (OPTLYAudienceBaseCondition *)orCondition.subConditions[1];
+    XCTAssertEqualObjects(condition2.audienceId, @"2");
+}
+
 - (void)testConditionComplexAudienceConditionCaseDeserializationWithAndContainer {
     NSArray *andConditionArray = @[@"and", @"1",@"2"];
     NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:andConditionArray];
