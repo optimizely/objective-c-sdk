@@ -124,6 +124,10 @@
         return nil;
     }
     
+    if ([jsonArray count] == 0) {
+        return (NSArray<OPTLYCondition> *)@[];
+    }
+    
     if ([OPTLYAudienceBaseCondition isBaseConditionJSON:jsonArray[1]]) { //base case condition
         
         // generate all base conditions
