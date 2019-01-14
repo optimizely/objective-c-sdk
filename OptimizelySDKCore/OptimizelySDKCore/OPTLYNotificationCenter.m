@@ -19,6 +19,7 @@
 #import "OPTLYLogger.h"
 #import "OPTLYExperiment.h"
 #import "OPTLYVariation.h"
+#import "OPTLYNSObject+Validation.h"
 #import <objc/runtime.h>
 
 NSString *const OPTLYNotificationExperimentKey = @"experiment";
@@ -149,7 +150,7 @@ NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
     
     NSString *userId = (NSString *)[args objectForKey:OPTLYNotificationUserIdKey];
     assert(userId);
-    assert([userId isKindOfClass:[NSString class]]);
+    assert([userId isValidStringType]);
     
     NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
     
@@ -178,11 +179,11 @@ NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
     
     NSString *eventKey = (NSString *)[args objectForKey:OPTLYNotificationEventKey];
     assert(eventKey);
-    assert([eventKey isKindOfClass:[NSString class]]);
+    assert([eventKey isValidStringType]);
     
     NSString *userId = (NSString *)[args objectForKey:OPTLYNotificationUserIdKey];
     assert(userId);
-    assert([userId isKindOfClass:[NSString class]]);
+    assert([userId isValidStringType]);
     
     NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
     if (attributes != nil && ![attributes isEqual:[NSNull null]]) {

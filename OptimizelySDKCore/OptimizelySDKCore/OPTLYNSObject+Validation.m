@@ -19,9 +19,17 @@
 
 @implementation NSObject (Validation)
 
+- (BOOL)isValidStringType {
+    if (self) {
+        // check value is NSString
+        return [self isKindOfClass:[NSString class]];
+    }
+    return false;
+}
+
 - (nullable NSString *)getValidString {
     if (self) {
-        if ([self isKindOfClass:[NSString class]] && ![(NSString *)self isEqualToString:@""]) {
+        if ([self isValidStringType] && ![(NSString *)self isEqualToString:@""]) {
             return (NSString *)self;
         }
     }
@@ -49,7 +57,7 @@
 - (NSString *)getStringOrEmpty {
     NSString *string = @"";
     if (self) {
-        if ([self isKindOfClass:[NSString class]]) {
+        if ([self isValidStringType]) {
             string = [string stringByAppendingString:((NSString *)self)];
         }
     }
@@ -58,7 +66,7 @@
 
 - (nullable NSArray *)getValidAudienceConditionsArray {
     if(self) {
-        if ([self isKindOfClass:[NSString class]]) {
+        if ([self isValidStringType]) {
             //Check if string is a valid json
             NSError *error = nil;
             NSData *data = [(NSString *)self dataUsingEncoding:NSUTF8StringEncoding];
@@ -82,7 +90,7 @@
 
 - (nullable NSArray *)getValidConditionsArray {
     if(self) {
-        if ([self isKindOfClass:[NSString class]]) {
+        if ([self isValidStringType]) {
             NSError *error = nil;
             NSData *data = [(NSString *)self dataUsingEncoding:NSUTF8StringEncoding];
             NSArray *conditionsArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -100,7 +108,7 @@
             return false;
         }
         // check value is NSString
-        if ([self isKindOfClass:[NSString class]]) {
+        if ([self isValidStringType]) {
             return true;
         }
         // check value is Boolean
@@ -115,7 +123,7 @@
     return false;
 }
 
--(BOOL)isValidBooleanAttributeValue {
+- (BOOL)isValidBooleanAttributeValue {
     if (self) {
         // check value is NSNumber
         NSNumber *number = (NSNumber *)self;
@@ -126,7 +134,7 @@
     return false;
 }
 
--(BOOL)isValidNumericAttributeValue {
+- (BOOL)isValidNumericAttributeValue {
     if (self) {
         NSNumber *number = (NSNumber *)self;
         // check value is NSNumber

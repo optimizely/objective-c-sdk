@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Validation)
 
 /**
+ * Returns if object is a valid string type
+ *
+ * @returns A Bool whether object is a valid string type.
+ **/
+- (BOOL)isValidStringType;
+
+/**
  * Determines if object is a valid non-empty string type.
  *
  * @returns A NSString if object is valid string type, else return nil.
