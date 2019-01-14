@@ -110,6 +110,15 @@
 
 // MARK:- NOT Condition Tests
 
+- (void)testNotEvaluatorReturnsNullWhenEmptyOrNullAttributes {
+    NSDictionary *attributesPassOrValue = @{@"device_type" : [NSNull null]};
+    OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithNot]];
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
+    
+    attributesPassOrValue = @{};
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
+}
+
 - (void)testNotEvaluatorReturnsNullWhenOperandEvaluateToNull {
     NSDictionary *attributesPassOrValue = @{@"device_type" : @123};
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithNot]];
@@ -174,6 +183,19 @@
     
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[conditions firstObject];
     XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+}
+
+- (void)testNotConditionReturnsNilWithComplexAudienceConditionWhenEmptyOrNullAttributes {
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"house": [NSNull null]
+                                                             };
+    NSArray *notConditionArray = @[@"not", @"3988293898"];
+    NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
+    OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[conditions firstObject];
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    
+    userAttributes = @{};
+    XCTAssertNil([notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
 }
 
 // MARK:- OR Condition Tests
