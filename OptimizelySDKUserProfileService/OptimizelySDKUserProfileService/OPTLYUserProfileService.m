@@ -165,6 +165,9 @@
         NSMutableDictionary *userProfileDict = [userProfileService[key] mutableCopy];
         NSDictionary * bucketMap = userProfileDict[@"experiment_bucket_map"];
         NSMutableDictionary *newBucketMap = [bucketMap mutableCopy];
+        if (bucketMap.count < 100) {
+            continue;
+        }
         for (NSString *exId in bucketMap.allKeys) {
             if (![validExperimentIds containsObject:exId]) {
                 [newBucketMap removeObjectForKey:exId];
