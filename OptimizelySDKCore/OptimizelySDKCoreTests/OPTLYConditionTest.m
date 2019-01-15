@@ -25,6 +25,7 @@
 #import "OPTLYErrorHandler.h"
 #import "OPTLYLogger.h"
 #import "OPTLYNSObject+Validation.h"
+#import "OPTLYVariation.h"
 
 @interface OPTLYConditionTest : XCTestCase
 
@@ -196,6 +197,23 @@
     
     userAttributes = @{};
     XCTAssertNil([notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    
+    Optimizely *_optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"audience_targeting"];
+    }]];
+
+    OPTLYVariation *variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"user1"];
+    XCTAssertNil(variation);
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"user1" attributes:nil];
+    XCTAssertNil(variation);
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"user1" attributes:@{}];
+    XCTAssertNil(variation);
+    
+    userAttributes = @{@"s_foo": @"__foo"};
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"user1" attributes:userAttributes];
+    XCTAssertEqualObjects(variation.variationKey, @"all_traffic_variation");
 }
 
 // MARK:- OR Condition Tests
