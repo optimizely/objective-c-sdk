@@ -57,15 +57,11 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
 
-    for (NSObject<OPTLYCondition> *condition in self.audienceConditions) {
-        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
-        if (result != NULL && [result boolValue] == true) {
-            // if user satisfies any conditions, return true.
-            return [NSNumber numberWithBool:true];
-        }
+    NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.audienceConditions firstObject];
+    if (condition) {
+        return [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
     }
-    // if user doesn't satisfy any conditions, return false.
-    return [NSNumber numberWithBool:false];
+    return nil;
 }
 
 - (void)setGroupId:(NSString *)groupId {

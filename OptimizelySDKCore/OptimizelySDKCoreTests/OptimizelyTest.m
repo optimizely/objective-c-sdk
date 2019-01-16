@@ -1444,6 +1444,69 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 //Test that activate calls dispatch_event with right params and returns expected
 //variation when attributes are provided and complex audience conditions are met.
+
+- (void)testActivateWithAttributesComplexAudienceAndMatchingAttributes {
+    
+     Optimizely *_optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"audience_targeting"];
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"s_foo": @"foo",
+                                                             @"b_true": @"N/A",
+                                                             @"i_42": @43,
+                                                             @"d_4_2": @4.2
+                                                             };
+    
+    OPTLYVariation *variation = [_optimizely activate:@"ab_running_exp_audience_combo_exact_foo_and__42_or_4_2" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"all_traffic_variation", variation.variationKey);
+    
+    userAttributes = @{
+                       @"s_foo": @"foo",
+                       @"b_true": @"N/A",
+                       @"i_42": @42,
+                       @"d_4_2": @4.3
+                       };
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_exact_foo_and__42_or_4_2" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"all_traffic_variation", variation.variationKey);
+}
+
+- (void)testActivateWithAttributesComplexAudienceAndNoMatchingAttributes {
+    
+    Optimizely *_optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"audience_targeting"];
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"s_foo": [NSNull null],
+                                                             @"b_true": @"N/A",
+                                                             @"i_42": @"N/A",
+                                                             @"d_4_2": @"N/A"
+                                                             };
+    
+    OPTLYVariation *variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(nil, variation.variationKey);
+    
+    userAttributes = @{
+                       @"s_foo": @"not_foo",
+                       @"b_true": @"N/A",
+                       @"i_42": [NSNull null],
+                       @"d_4_2": @"N/A"
+                       };
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo__and__not_42" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(nil, variation.variationKey);
+}
+
 - (void)testActivateWithAttributesComplexAudienceMatch {
     
     NSDictionary<NSString *, NSObject *> *userAttributes = @{

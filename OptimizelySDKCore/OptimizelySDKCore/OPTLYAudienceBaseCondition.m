@@ -30,12 +30,7 @@
     }
     
     OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
-    BOOL areAttributesValid = [[audience evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
-    if (areAttributesValid) {
-        return [NSNumber numberWithBool:true];;
-    }
-    
-    return [NSNumber numberWithBool:false];
+    return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
 }
 
 @end
