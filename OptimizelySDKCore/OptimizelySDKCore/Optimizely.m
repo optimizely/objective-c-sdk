@@ -447,17 +447,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
-    NSArray *decisions = [self decisionsFor:event userId:userId attributes:attributes];
-    
-    if ([decisions getValidArray] == nil) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey];
-        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
-        return;
-    }
-    
     NSDictionary *conversionEventParams = [self.eventBuilder buildConversionEventForUser:userId
                                                                                    event:event
-                                                                               decisions:decisions
                                                                                eventTags:eventTags
                                                                               attributes:attributes];
     if ([conversionEventParams getValidDictionary] == nil) {

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 // --- Base Parameters ----
 extern NSString * const OPTLYEventParameterKeysAccountId;
 extern NSString * const OPTLYEventParameterKeysProjectId;
+extern NSString * const OPTLYEventParameterKeysEnrichDecisions;
 extern NSString * const OPTLYEventParameterKeysVisitors;
 extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
 extern NSString * const OPTLYEventParameterKeysClientEngine;

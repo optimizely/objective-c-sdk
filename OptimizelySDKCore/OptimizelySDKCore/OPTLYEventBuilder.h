@@ -57,7 +57,6 @@ NS_ASSUME_NONNULL_END
  */
 - (nullable NSDictionary *)buildConversionEventForUser:(nonnull NSString *)userId
                                                  event:(nonnull OPTLYEvent *)event
-                                             decisions:(nonnull NSArray<NSDictionary *> *)decisions
                                              eventTags:(nullable NSDictionary *)eventTags
                                             attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end

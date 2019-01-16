@@ -19,6 +19,7 @@
 // --- Base Parameters ----
 NSString * const OPTLYEventParameterKeysAccountId                       = @"account_id";        // nonnull
 NSString * const OPTLYEventParameterKeysProjectId                       = @"project_id";
+NSString * const OPTLYEventParameterKeysEnrichDecisions                 = @"enrich_decisions";
 NSString * const OPTLYEventParameterKeysVisitors                        = @"visitors";          // nonnull
 NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymize_ip";
 NSString * const OPTLYEventParameterKeysClientEngine                    = @"client_name";
@@ -27,7 +28,7 @@ NSString * const OPTLYEventParameterKeysRevision                        = @"revi
 
 // --- Visitor Parameters ----
 NSString * const OPTLYEventParameterKeysSnapshots                       = @"snapshots";         // nonnull
-NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull
+NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull @"enrich_decisions"
 NSString * const OPTLYEventParameterKeysAttributes                      = @"attributes";
 
 // --- Snapshot Parameters ----
