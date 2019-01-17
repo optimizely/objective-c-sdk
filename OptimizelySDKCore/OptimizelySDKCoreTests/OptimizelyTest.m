@@ -480,8 +480,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     [optimizely track:eventWithNoExerimentKey userId:kUserId attributes:self.attributes];
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackEventNoAssociation, eventWithNoExerimentKey];
-    //OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock verify];
     [loggerMock stopMocking];
 }
 
@@ -1385,8 +1384,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }]];
     [optimizely track:eventId userId:userId attributes:attributes];
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventId];
-    //OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock verify];
     [loggerMock stopMocking];
 }
 
@@ -1625,8 +1623,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     
     [self.optimizelyTypedAudience track:@"user_signed_up" userId:@"test_user" attributes:userAttributes];
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, @"user_signed_up"];
-    //OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
+    [loggerMock verify];
     [loggerMock stopMocking];
 }
 

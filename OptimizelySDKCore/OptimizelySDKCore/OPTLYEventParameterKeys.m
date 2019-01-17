@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -28,7 +28,7 @@ NSString * const OPTLYEventParameterKeysRevision                        = @"revi
 
 // --- Visitor Parameters ----
 NSString * const OPTLYEventParameterKeysSnapshots                       = @"snapshots";         // nonnull
-NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull @"enrich_decisions"
+NSString * const OPTLYEventParameterKeysVisitorId                       = @"visitor_id";        // nonnull
 NSString * const OPTLYEventParameterKeysAttributes                      = @"attributes";
 
 // --- Snapshot Parameters ----
