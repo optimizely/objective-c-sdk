@@ -98,7 +98,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     commonParams[OPTLYEventParameterKeysVisitors] = @[visitor];
     commonParams[OPTLYEventParameterKeysProjectId] = [self.config.projectId getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysAccountId] = [self.config.accountId getStringOrEmpty];
-    commonParams[OPTLYEventParameterKeysEnrichDecisions] = @(true);
+    commonParams[OPTLYEventParameterKeysEnrichDecisions] = @YES;
 
     commonParams[OPTLYEventParameterKeysClientEngine] = [[self.config clientEngine] getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysClientVersion] = [[self.config clientVersion] getStringOrEmpty];
