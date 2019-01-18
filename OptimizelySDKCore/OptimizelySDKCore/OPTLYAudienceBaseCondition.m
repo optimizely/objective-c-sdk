@@ -31,15 +31,11 @@
         // if the user did not pass in attributes, return false
         return [NSNumber numberWithBool:false];
     }
-    
-    // Log Audience Evaluation Started
+    // Log Audience For AudienceId Not Found
     OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
-    NSString *conditionString = self.audienceId ? [audience getConditionsJSONString] : @"";
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
-    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    // Log User Attributes
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [attributes getJSONDictionaryStringOrEmpty]];
-    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    if (audience == nil) {
+        return nil;
+    }
     return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
 }
 

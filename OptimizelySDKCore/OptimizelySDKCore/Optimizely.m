@@ -979,7 +979,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 + (NSString *)stringOrEmpty:(NSString *)str {
-    NSString *string = str != nil ? str : @"";
+    NSString *string = str ?: @"";
     return string;
 }
 

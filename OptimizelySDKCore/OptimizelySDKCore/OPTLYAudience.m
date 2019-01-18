@@ -58,6 +58,11 @@
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.conditions firstObject];
     if (condition) {
+        // Log Audience Evaluation Started
+        NSString *conditionString = [self getConditionsJSONString];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, self.audienceName, conditionString];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        
         NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
         if (result == NULL) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"UNKNOWN"];

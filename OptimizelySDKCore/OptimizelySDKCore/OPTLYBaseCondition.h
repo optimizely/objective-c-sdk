@@ -42,5 +42,7 @@
 
 
 +(BOOL)isBaseConditionJSON:(NSData *)jsonData;
+/// Returns JSON String
+- (NSString *)getJSONString;
 
 @end

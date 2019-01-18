@@ -253,21 +253,17 @@ NSString *const OPTLYHTTPRequestManagerBackoffRetryStates = @"[HTTP] Retry attem
 
 // ---- Audience Evaluator ----
 // info
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audience %@ evaluated as: %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audiences for experiment %@ collectively evaluated as %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationNoAudienceFound = @"[AUDIENCE EVALUATOR] No Audience attached to experiment %@, Evaluated as True.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audience %@ evaluated to: %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audiences for experiment %@ collectively evaluated to %@.";
 // warning
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForInvalidValue = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because the value for user attribute %@ is inapplicable: %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMismatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because the value for user attribute %@ is of type: %@ while expected type is: %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ uses an unknown match type.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition type.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because a value of type %@ was passed for user attribute %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ uses an unknown match type. You may need to upgrade to a newer release of the Optimizely SDK.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition type. You may need to upgrade to a newer release of the Optimizely SDK.";
 // debug
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions = @"[AUDIENCE EVALUATOR] Starting to evaluate audience %@ with conditions: %@.";
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment = @"[AUDIENCE EVALUATOR] Evaluating audiences for experiment %@: %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorUserAttributes = @"[AUDIENCE EVALUATOR] User attributes: %@.";
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated as UNKNOWN because no value was passed for user attribute %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because no value was passed for user attribute %@.";
 // error
-NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionValue = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition value.";
 
 @implementation OPTLYLoggerMessages
 
