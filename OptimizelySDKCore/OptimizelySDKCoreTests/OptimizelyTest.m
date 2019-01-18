@@ -244,6 +244,14 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 # pragma mark - Integration Tests
 
+- (void)testOptimizelyActivateWithEmptyUserId {
+    OPTLYVariation *_variation = [self.optimizely activate:@"testExperimentMultivariate"
+                                                    userId:@""];
+    XCTAssertNotNil(_variation);
+    XCTAssertEqualObjects(@"Feorge", _variation.variationKey);
+}
+
+
 - (void)testOptimizelyActivateWithNoExperiment {
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     
@@ -421,6 +429,28 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OCMVerify([loggerMock logMessage:OPTLYLoggerMessagesUserIdInvalid withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
+}
+
+- (void)testOptimizelyTrackWithEmptyUserId {
+    
+    NSString *eventKey = @"testEvent";
+    __block NSString *_userId = nil;
+    __block NSString *notificationEventKey = nil;
+    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+        _userId = userId;
+        notificationEventKey = eventKey;
+        actualAttributes = attributes;
+        actualEventTags = eventTags;
+    }];
+    
+    [self.optimizely track:eventKey userId:@""];
+    XCTAssertEqualObjects(@"", _userId);
+    XCTAssertEqual(eventKey, notificationEventKey);
+    XCTAssertEqualObjects(nil, actualAttributes);
+    XCTAssertEqualObjects(nil, actualEventTags);
 }
 
 - (void)testOptimizelyTrackWithInvalidEvent {
@@ -1414,6 +1444,69 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 //Test that activate calls dispatch_event with right params and returns expected
 //variation when attributes are provided and complex audience conditions are met.
+
+- (void)testActivateWithAttributesComplexAudienceAndMatchingAttributes {
+    
+     Optimizely *_optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"audience_targeting"];
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"s_foo": @"foo",
+                                                             @"b_true": @"N/A",
+                                                             @"i_42": @43,
+                                                             @"d_4_2": @4.2
+                                                             };
+    
+    OPTLYVariation *variation = [_optimizely activate:@"ab_running_exp_audience_combo_exact_foo_and__42_or_4_2" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"all_traffic_variation", variation.variationKey);
+    
+    userAttributes = @{
+                       @"s_foo": @"foo",
+                       @"b_true": @"N/A",
+                       @"i_42": @42,
+                       @"d_4_2": @4.3
+                       };
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_exact_foo_and__42_or_4_2" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(@"all_traffic_variation", variation.variationKey);
+}
+
+- (void)testActivateWithAttributesComplexAudienceAndNoMatchingAttributes {
+    
+    Optimizely *_optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"audience_targeting"];
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
+    
+    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+                                                             @"s_foo": [NSNull null],
+                                                             @"b_true": @"N/A",
+                                                             @"i_42": @"N/A",
+                                                             @"d_4_2": @"N/A"
+                                                             };
+    
+    OPTLYVariation *variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(nil, variation.variationKey);
+    
+    userAttributes = @{
+                       @"s_foo": @"not_foo",
+                       @"b_true": @"N/A",
+                       @"i_42": [NSNull null],
+                       @"d_4_2": @"N/A"
+                       };
+    
+    variation = [_optimizely activate:@"ab_running_exp_audience_combo_not_foo__and__not_42" userId:@"test_user_1" attributes:userAttributes callback:^(NSError *error) {
+    }];
+    XCTAssertEqualObjects(nil, variation.variationKey);
+}
+
 - (void)testActivateWithAttributesComplexAudienceMatch {
     
     NSDictionary<NSString *, NSObject *> *userAttributes = @{
@@ -1580,6 +1673,8 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertTrue([self.optimizely setForcedVariation:kExperimentKeyForFV
                                                userId:@""
                                          variationKey:kVariationKeyForFV]);
+    OPTLYVariation *variation = [self.optimizely getForcedVariation:kExperimentKeyForFV userId:@""];
+    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForFV);
 }
 
 - (void)testSetForcedVariationWithInvalidExperimentKey

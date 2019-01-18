@@ -35,18 +35,7 @@
 }
 
 + (BOOL) isBaseConditionJSON:(NSData *)jsonData {
-    if (![jsonData isKindOfClass:[NSDictionary class]]) {
-        return false;
-    }
-    else {
-        NSDictionary *dict = (NSDictionary *)jsonData;
-        
-        if (dict[OPTLYDatafileKeysConditionName] != nil &&
-            dict[OPTLYDatafileKeysConditionType] != nil) {
-            return true;
-        }
-        return false;
-    }
+    return [jsonData isKindOfClass:[NSDictionary class]];
 }
 
 -(nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
@@ -67,7 +56,7 @@
         return NULL;
     }
     
-    if ([self.value isKindOfClass:[NSString class]] && [userAttribute isKindOfClass:[NSString class]]) {
+    if ([self.value isValidStringType] && [userAttribute isValidStringType]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
     else if ([self.value isValidNumericAttributeValue] && [userAttribute isValidNumericAttributeValue]) {
@@ -193,11 +182,18 @@
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
-    else if (!self.match || [self.match isEqualToString:@""]){
+    else if (self.value == NULL && ![self.match isEqualToString:OPTLYDatafileKeysMatchTypeExists]){
+        //Check if given value is null, which is only acceptable if match type is Exists
+        // Log Invalid Condition Type
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionValue, [self toJSONString]];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return NULL;
+    }
+    if (!self.match || [self.match isEqualToString:@""]){
         //Check if given match is empty, if so, opt for legacy Exact Matching
         self.match = OPTLYDatafileKeysMatchTypeExact;
     }
-    
+
     SWITCH(self.match){
         CASE(OPTLYDatafileKeysMatchTypeExact) {
             return [self evaluateMatchTypeExact: attributes projectConfig:config];

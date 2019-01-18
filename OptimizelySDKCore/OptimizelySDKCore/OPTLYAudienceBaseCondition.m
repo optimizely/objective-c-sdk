@@ -40,12 +40,7 @@
     // Log User Attributes
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUserAttributes, [attributes getJSONDictionaryStringOrEmpty]];
     [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    
-    BOOL areAttributesValid = [[audience evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
-    if (areAttributesValid) {
-        return [NSNumber numberWithBool:true];;
-    }
-    return [NSNumber numberWithBool:false];
+    return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
 }
 
 @end

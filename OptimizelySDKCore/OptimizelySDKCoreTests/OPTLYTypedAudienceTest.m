@@ -229,6 +229,36 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertTrue([[audience evaluateConditionsWithAttributes:NULL projectConfig:nil] boolValue]);
 }
 
+///MARK:- Invalid Base Condition Tests
+
+- (void)testEvaluateReturnsNullWithInvalidBaseCondition {
+    NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type"};
+    NSDictionary *attributesPassOrValue2 = @{@"device_type" : @"iPhone"};
+    NSError *err;
+    OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:&err];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil]);
+    
+    NSDictionary *attributesPassOrValue3 = @{@"name": @"device_type",
+                                             @"value": @"iPhone"};
+    condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue3 error:&err];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil]);
+    
+    NSDictionary *attributesPassOrValue4 = @{@"name": @"device_type",
+                                             @"match": @"exact"};
+    condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue4 error:&err];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil]);
+    
+    NSDictionary *attributesPassOrValue5 = @{@"name": @"device_type",
+                                             @"type": @"invalid"};
+    condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue5 error:&err];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil]);
+    
+    NSDictionary *attributesPassOrValue6 = @{@"name": @"device_type",
+                                             @"type": @"custom_attribute"};
+    condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue6 error:&err];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:nil]);
+}
+
 ///MARK:- Invalid input Tests
 
 - (void)testEvaluateReturnsNullWithInvalidConditionType {

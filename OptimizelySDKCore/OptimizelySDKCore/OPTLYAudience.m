@@ -56,27 +56,20 @@
 }
 
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
-    for (NSObject<OPTLYCondition> *condition in self.conditions) {
+    NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.conditions firstObject];
+    if (condition) {
         NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
-        if (result != NULL && [result boolValue] == true) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"TRUE"];
+        if (result == NULL) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"UNKNOWN"];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            // if user satisfies any conditions, return true.
-            return [NSNumber numberWithBool:true];
         }
         else {
-            if (result == NULL) {
-                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"UNKNOWN"];
-                [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            }
-            else {
-                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"FALSE"];
-                [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            }
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, [result boolValue] ? @"TRUE" : @"FALSE"];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         }
+        return result;
     }
-    // if user doesn't satisfy any conditions, return false.
-    return [NSNumber numberWithBool:false];
+    return nil;
 }
 
 @end
