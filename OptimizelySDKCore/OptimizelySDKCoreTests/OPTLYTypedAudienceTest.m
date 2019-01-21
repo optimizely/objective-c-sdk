@@ -270,7 +270,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     NSDictionary *attributesPassOrValue2 = @{@"device_type" : @"iPhone"};
     OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:self.optimizelyTypedAudience.config]);
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType, [condition getJSONString]];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType, condition.jsonDescription];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     [loggerMock stopMocking];
 }
@@ -324,7 +324,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:self.optimizelyTypedAudience.config]);
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType, [condition getJSONString]];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType, condition.jsonDescription];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     [loggerMock stopMocking];
 }
@@ -348,25 +348,25 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     OPTLYAndCondition *andCondition1 = (OPTLYAndCondition *)[self getFirstConditionFromArray: [self kAudienceConditionsWithExactMatchStringType]];
     XCTAssertNil([andCondition1 evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:self.optimizelyTypedAudience.config]);
     OPTLYBaseCondition *baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition1.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     OPTLYAndCondition *andCondition2 = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithExactMatchBoolType]];
     XCTAssertNil([andCondition2 evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
     baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition2.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
-    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     OPTLYAndCondition *andCondition3 = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithExactMatchDecimalType]];
     XCTAssertNil([andCondition3 evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
     baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition3.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
-    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     OPTLYAndCondition *andCondition4 = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithExactMatchIntType]];
     XCTAssertNil([andCondition4 evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
     baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition4.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
-    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
 }
@@ -420,7 +420,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue1 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     [loggerMock stopMocking];
     
@@ -507,15 +507,15 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue1 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     userAttributeClassName = NSStringFromClass([[attributesPassOrValue2 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     [loggerMock stopMocking];
@@ -527,7 +527,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithSubstringMatchType]];
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:self.optimizelyTypedAudience.config]);
     OPTLYBaseCondition *baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
 }
@@ -557,23 +557,23 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue1 projectConfig:self.optimizelyTypedAudience.config]);
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue1 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:self.optimizelyTypedAudience.config]);
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue3 projectConfig:self.optimizelyTypedAudience.config]);
     userAttributeClassName = NSStringFromClass([[attributesPassOrValue3 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue4 projectConfig:self.optimizelyTypedAudience.config]);
     userAttributeClassName = NSStringFromClass([[attributesPassOrValue4 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     [loggerMock stopMocking];
@@ -589,7 +589,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     [loggerMock stopMocking];
 }
@@ -625,11 +625,11 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue1 projectConfig:self.optimizelyTypedAudience.config]);
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue1 objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue2 projectConfig:self.optimizelyTypedAudience.config]);
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition getJSONString], baseCondition.name];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, baseCondition.jsonDescription, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
 }
@@ -643,7 +643,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:self.optimizelyTypedAudience.config]);
     NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue objectForKey:@"attr_value"] class]);
     userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition getJSONString], userAttributeClassName, baseCondition.name];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, baseCondition.jsonDescription, userAttributeClassName, baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     [loggerMock stopMocking];
 }
