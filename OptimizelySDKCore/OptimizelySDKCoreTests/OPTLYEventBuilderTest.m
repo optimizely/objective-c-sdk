@@ -156,10 +156,8 @@ typedef enum : NSUInteger {
 #pragma mark - Test BuildConversionTicket:... Audiences
 
 - (void)testBuildConversionTicketWithNoAudience {
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:nil];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithoutAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:nil];
     
@@ -175,10 +173,8 @@ typedef enum : NSUInteger {
 }
 
 - (void)testBuildConversionTicketWithValidAudience {
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
@@ -201,26 +197,20 @@ typedef enum : NSUInteger {
 {
     // check without attributes that satisfy audience requirement
     NSDictionary *attributes = @{@"browser_type":@"chrome"};
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:attributes];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                               event:eventWithAudience
-                                                                          decisions:decisions
                                                                           eventTags:nil
                                                                          attributes:attributes];
     
     XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    decisions = snapshot[OPTLYEventParameterKeysDecisions];
-    XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithExperimentNotRunning {
     OPTLYEvent *event = [self.config getEventForKey:kEventWithExperimentNotRunningName];
-    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                               event:event
-                                                                          decisions:decisions
                                                                           eventTags:nil
                                                                          attributes:nil];
     
@@ -228,16 +218,14 @@ typedef enum : NSUInteger {
     XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    NSDictionary *decisions = snapshot[OPTLYEventParameterKeysDecisions];
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithInvalidExperiment {
     OPTLYEvent *event = [self.config getEventForKey:kEventWithInvalidExperimentName];
-    NSArray *decisions = [self.optimizely decisionsFor:event userId:kUserId attributes:nil];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                               event:event
-                                                                          decisions:decisions
                                                                           eventTags:nil
                                                                          attributes:nil];
     
@@ -245,17 +233,15 @@ typedef enum : NSUInteger {
     XCTAssertNotNil(conversionTicket, @"Conversion ticket should not be nil.");
     NSDictionary *visitor = conversionTicket[OPTLYEventParameterKeysVisitors][0];
     NSDictionary *snapshot = visitor[OPTLYEventParameterKeysSnapshots][0];
-    decisions = snapshot[OPTLYEventParameterKeysDecisions];
+    NSDictionary *decisions = snapshot[OPTLYEventParameterKeysDecisions];
     XCTAssertEqual([decisions count], 0, @"Conversion ticket should not have any decision");
 }
 
 - (void)testBuildConversionTicketWithNoConfig {
     self.config = nil;
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *conversionTicket = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                               event:eventWithAudience
-                                                                          decisions:decisions
                                                                           eventTags:nil
                                                                          attributes:self.attributes];
     
@@ -679,10 +665,8 @@ typedef enum : NSUInteger {
 - (void)testBuildConversionTicketWithAnonymizeIPFalse {
     OPTLYProjectConfig *config = [self setUpForAnonymizeIPFalse];
     OPTLYEventBuilderDefault *eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:config];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:nil];
     NSDictionary *params = [eventBuilder buildConversionEventForUser:kUserId
                                                                event:eventWithoutAudience
-                                                           decisions:decisions
                                                            eventTags:nil
                                                           attributes:nil];
     
@@ -694,10 +678,8 @@ typedef enum : NSUInteger {
 
 - (void)testCreateConversionEventWithEmptyAttributeValue {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:@{kAttributeKeyBrowserType : @""}];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithoutAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:attributes];
     
@@ -724,11 +706,9 @@ typedef enum : NSUInteger {
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithoutAudience userId:kUserId attributes:self.attributes];
     
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithoutAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
@@ -810,11 +790,9 @@ typedef enum : NSUInteger {
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
@@ -835,11 +813,9 @@ typedef enum : NSUInteger {
     NSData *data = [NSJSONSerialization dataWithJSONObject:datafile options:0 error:NULL];
     self.config = [[OPTLYProjectConfig alloc] initWithDatafile:data];
     self.eventBuilder = [[OPTLYEventBuilderDefault alloc] initWithConfig:self.config];
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithAudience
-                                                                decisions:decisions
                                                                 eventTags:nil
                                                                attributes:self.attributes];
     
@@ -962,10 +938,8 @@ typedef enum : NSUInteger {
     // Common subroutine for many of the testBuildEventXxx test methods.
     // Generally, a testBuildEventXxx should make at most one call
     // to commonBuildConversionTicketTest:sentEventTags:sentTags: .
-    NSArray *decisions = [self.optimizely decisionsFor:eventWithAudience userId:kUserId attributes:self.attributes];
     NSDictionary *params = [self.eventBuilder buildConversionEventForUser:kUserId
                                                                     event:eventWithAudience
-                                                                decisions:decisions
                                                                 eventTags:eventTags
                                                                attributes:self.attributes];
     [self.attributes addEntriesFromDictionary:self.reservedAttributes];
@@ -1062,22 +1036,7 @@ typedef enum : NSUInteger {
     
     // check conversion if payload available
     XCTAssertNotNil(params, @"Invalid Conversion ticket");
-    
-    NSArray *decisions = params[OPTLYEventParameterKeysDecisions];
-    
-    XCTAssertGreaterThan([decisions count], 0, @"Didn't find any decision");
-    XCTAssertGreaterThan([experimentKeys count], 0, @"Didn't find any experiment key");
-    
-    for (int i=0; i < [decisions count]; i++) {
-        NSDictionary *decision = decisions[i];
-        OPTLYExperiment *experiment = [config getExperimentForId:experimentKeys[i]];
-        OPTLYVariation *bucketedVariation = [config getVariationForExperiment:experiment.experimentKey
-                                                                       userId:userId
-                                                                   attributes:attributes
-                                                                     bucketer:bucketer];
-        [self checkDecision:decision campaignId:experiment.layerId experimentId:experiment.experimentId variationId:bucketedVariation.variationId];
-    }
-    
+        
     NSArray *events = params[OPTLYEventParameterKeysEvents];
     XCTAssertGreaterThan([events count], 0, @"Didn't find any event");
     
@@ -1189,6 +1148,10 @@ typedef enum : NSUInteger {
     NSString *clientVersion = params[OPTLYEventParameterKeysClientVersion];
     XCTAssert([clientVersion isEqualToString:[self.config clientVersion]], @"Incorrect client version.");
     
+    // check enrich_decisions
+    NSNumber *enrich = params[OPTLYEventParameterKeysEnrichDecisions];
+    XCTAssert([enrich boolValue] == true, @"Incorrect value for enrich decisions.");
+
     // check anonymizeIP
     NSNumber *anonymizeIP = params[OPTLYEventParameterKeysAnonymizeIP];
     XCTAssert([anonymizeIP boolValue] == true, @"Incorrect value for IP anonymization.");
