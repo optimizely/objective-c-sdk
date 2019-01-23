@@ -79,7 +79,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let builder = OPTLYManagerBuilder(block: { (builder) in
             builder!.projectId = nil;
-            builder!.sdkKey = "FCnSegiEkRry9rhVMroit4"
+            
+            //builder!.sdkKey = "FCnSegiEkRry9rhVMroit4"
+            builder!.sdkKey = "AqLkkcss3wRGUbftnKNgh2"
+
+            
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         })
