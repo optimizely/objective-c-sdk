@@ -263,6 +263,7 @@ extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWi
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult;
 // warning
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType;
 // debug

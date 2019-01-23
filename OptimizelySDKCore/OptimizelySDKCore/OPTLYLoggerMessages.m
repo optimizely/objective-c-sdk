@@ -257,6 +257,7 @@ NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResul
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult = @"[AUDIENCE EVALUATOR] Audiences for experiment %@ collectively evaluated to %@.";
 // warning
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because a value of type %@ was passed for user attribute %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because a null value was passed for user attribute %@.";
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType = @"[AUDIENCE EVALUATOR] Audience condition %@ uses an unknown match type. You may need to upgrade to a newer release of the Optimizely SDK.";
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType = @"[AUDIENCE EVALUATOR] Audience condition %@ has an unknown condition type. You may need to upgrade to a newer release of the Optimizely SDK.";
 // debug

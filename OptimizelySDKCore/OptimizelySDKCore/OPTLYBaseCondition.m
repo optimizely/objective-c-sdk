@@ -60,8 +60,7 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     if (![userAttribute isValidExactMatchTypeValue]) {
         // Log Invalid Attribute Value Type
-        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-        userAttributeClassName = userAttributeClassName ?: @"null";
+        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]) ?: @"null";
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
@@ -104,10 +103,15 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     if (![userAttribute isKindOfClass: [NSString class]]) {
         // Log Invalid Attribute Value Type
-        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-        userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        else {
+            NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
         return NULL;
     }
     
@@ -132,10 +136,15 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
-        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-        userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        else {
+            NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
         return NULL;
     }
     
@@ -161,10 +170,15 @@
     NSObject *userAttribute = [attributes objectForKey:self.name];
     if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
-        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-        userAttributeClassName = userAttributeClassName == nil ? @"null" : userAttributeClassName;
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
+        else {
+            NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+        }
         return NULL;
     }
     
