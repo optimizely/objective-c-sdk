@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -256,6 +256,21 @@ extern NSString *const OPTLYHTTPRequestManagerGETWithParametersAttempt;
 extern NSString *const OPTLYHTTPRequestManagerGETIfModifiedSince;
 extern NSString *const OPTLYHTTPRequestManagerPOSTWithParameters;
 extern NSString *const OPTLYHTTPRequestManagerBackoffRetryStates;
+
+// ---- Audience Evaluator ----
+// info
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult;
+// warning
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType;
+// debug
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute;
+// error
 
 @interface OPTLYLoggerMessages : NSObject
 

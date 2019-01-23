@@ -69,6 +69,7 @@
             NSError *err = nil;
             OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:info
                                                                                      error:&err];
+            
             if (error && err) {
                 *error = err;
             }

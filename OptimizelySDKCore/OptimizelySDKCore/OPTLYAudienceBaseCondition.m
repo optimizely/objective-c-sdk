@@ -16,6 +16,9 @@
 
 #import "OPTLYAudienceBaseCondition.h"
 #import "OPTLYAudience.h"
+#import "OPTLYLogger.h"
+#import "OPTLYLoggerMessages.h"
+#import "OPTLYNSObject+Validation.h"
 
 @implementation OPTLYAudienceBaseCondition
 
@@ -28,8 +31,11 @@
         // if the user did not pass in attributes, return false
         return [NSNumber numberWithBool:false];
     }
-    
+    // Log Audience For AudienceId Not Found
     OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
+    if (audience == nil) {
+        return nil;
+    }
     return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
 }
 

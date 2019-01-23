@@ -14,9 +14,17 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+
 #import "OPTLYAudience.h"
 #import "OPTLYDatafileKeys.h"
 #import "OPTLYNSObject+Validation.h"
+#import "OPTLYLoggerMessages.h"
+#import "OPTLYLogger.h"
+
+@interface OPTLYAudience()
+/// A JSON String containing the conditions
+@property (nonatomic, strong) NSString<Ignore> *conditionsJSONString;
+@end
 
 @implementation OPTLYAudience
 
@@ -27,12 +35,18 @@
                                                         }];
 }
 
+- (NSString *)getConditionsJSONString {
+    return _conditionsJSONString ?: @"";
+}
+
 - (void)setConditionsWithNSString:(NSString *)string {
     NSArray *array = [string getValidConditionsArray];
     [self setConditionsWithNSArray:array];
 }
 
 - (void)setConditionsWithNSArray:(NSArray *)array {
+    //Retrieving Jsonstring from array
+    _conditionsJSONString = [array getJSONArrayStringOrEmpty];
     NSError *err = nil;
     self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
     if (err != nil) {
@@ -42,10 +56,23 @@
 }
 
 - (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
-    
     NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.conditions firstObject];
     if (condition) {
-        return [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
+        // Log Audience Evaluation Started
+        NSString *conditionString = [self getConditionsJSONString];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, self.audienceName, conditionString];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        
+        NSNumber *result = [condition evaluateConditionsWithAttributes:attributes projectConfig:config];
+        if (result == NULL) {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, @"UNKNOWN"];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+        else {
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult, self.audienceName, [result boolValue] ? @"TRUE" : @"FALSE"];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+        return result;
     }
     return nil;
 }
