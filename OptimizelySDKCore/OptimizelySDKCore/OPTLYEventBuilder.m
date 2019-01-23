@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016,2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016,2018-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -70,7 +70,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 -(NSDictionary *)buildConversionEventForUser:(NSString *)userId
                                        event:(OPTLYEvent *)event
-                                   decisions:(NSArray<NSDictionary *> *)decisions
                                    eventTags:(NSDictionary *)eventTags
                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
 
@@ -80,7 +79,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     
     NSDictionary *commonParams = [self createCommonParamsForUser:userId attributes:attributes];
     NSArray *conversionOnlyParams = [self createConversionParamsOfEvent:event userId:userId
-                                                              decisions:decisions eventTags:eventTags
+                                                              eventTags:eventTags
                                                              attributes:attributes];
     NSDictionary *conversionParams = [self createImpressionOrConversionParamsWithCommonParams:commonParams conversionOrImpressionOnlyParams:conversionOnlyParams];
     
@@ -99,6 +98,8 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     commonParams[OPTLYEventParameterKeysVisitors] = @[visitor];
     commonParams[OPTLYEventParameterKeysProjectId] = [self.config.projectId getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysAccountId] = [self.config.accountId getStringOrEmpty];
+    commonParams[OPTLYEventParameterKeysEnrichDecisions] = @YES;
+
     commonParams[OPTLYEventParameterKeysClientEngine] = [[self.config clientEngine] getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysClientVersion] = [[self.config clientVersion] getStringOrEmpty];
     commonParams[OPTLYEventParameterKeysRevision] = [self.config.revision getStringOrEmpty];
@@ -142,7 +143,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 - (NSArray *)createConversionParamsOfEvent:(OPTLYEvent *)event
                                     userId:(NSString *)userId
-                                 decisions:(NSArray<NSDictionary *> *)decisions
                                  eventTags:(NSDictionary *)eventTags
                                 attributes:(NSDictionary *)attributes {
     
@@ -175,7 +175,6 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
         }
     }
     
-    snapshot[OPTLYEventParameterKeysDecisions] = decisions;
     snapshot[OPTLYEventParameterKeysEvents] = @[eventDict];
     
     [conversionEventParams addObject:snapshot];

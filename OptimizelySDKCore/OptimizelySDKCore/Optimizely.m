@@ -447,17 +447,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         return;
     }
     
-    NSArray *decisions = [self decisionsFor:event userId:userId attributes:attributes];
-    
-    if ([decisions getValidArray] == nil) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesConversionFailure, eventKey];
-        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelInfo];
-        return;
-    }
-    
     NSDictionary *conversionEventParams = [self.eventBuilder buildConversionEventForUser:userId
                                                                                    event:event
-                                                                               decisions:decisions
                                                                                eventTags:eventTags
                                                                               attributes:attributes];
     if ([conversionEventParams getValidDictionary] == nil) {
@@ -909,57 +900,6 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     return variation;
 }
 
-/**
- Helper method to retrieve decisions for the user from the provided event.
-
- @param event The event which needs to be recorded.
- @param userId Id for user.
- @param attributes The user's attributes.
- @return Array of dictionaries containing valid experiment Ids, variation Ids and layer Ids into which the user is bucketed.
- */
-- (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
-                                   userId:(NSString *)userId
-                               attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
-    
-    NSArray *experimentIds = event.experimentIds;
-    
-    if ([experimentIds count] == 0) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackEventNoAssociation, event.eventKey];
-        [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
-        return nil;
-    }
-    
-    NSMutableArray *decisions = [NSMutableArray new];
-    
-    for (NSString *experimentId in experimentIds) {
-        OPTLYExperiment *experiment = [self.config getExperimentForId:experimentId];
-        
-        // if the experiment is nil, then it is not part of the project's list of experiments
-        if (!experiment) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackExperimentNoAssociation, experiment.experimentKey, event.eventKey];
-            [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
-            continue;
-        }
-        
-        // bucket user into a variation
-        OPTLYVariation *variation = [self variation:experiment.experimentKey userId:userId attributes:attributes];
-        
-        // if the variation is nil, then experiment should not be tracked
-        if (!variation) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesTrackExperimentNotTracked, userId, experiment.experimentKey];
-            [self handleErrorLogsForTrack:logMessage ofLevel:OptimizelyLogLevelDebug];
-            continue;
-        }
-        
-        NSMutableDictionary *decision = [NSMutableDictionary new];
-        decision[OPTLYEventParameterKeysDecisionCampaignId]         = [experiment.layerId getStringOrEmpty];
-        decision[OPTLYEventParameterKeysDecisionExperimentId]       = experiment.experimentId;
-        decision[OPTLYEventParameterKeysDecisionVariationId]        = variation.variationId;
-        [decisions addObject:decision];
-    }
-    return decisions;
-}
-                                      
 + (BOOL)isEmptyArray:(NSObject*)array {
     return (!array
             || ![array isKindOfClass:[NSArray class]]

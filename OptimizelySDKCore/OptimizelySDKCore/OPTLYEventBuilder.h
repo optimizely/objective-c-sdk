@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016,2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2019 Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -57,7 +57,6 @@ NS_ASSUME_NONNULL_END
  */
 - (nullable NSDictionary *)buildConversionEventForUser:(nonnull NSString *)userId
                                                  event:(nonnull OPTLYEvent *)event
-                                             decisions:(nonnull NSArray<NSDictionary *> *)decisions
                                              eventTags:(nullable NSDictionary *)eventTags
                                             attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
 @end

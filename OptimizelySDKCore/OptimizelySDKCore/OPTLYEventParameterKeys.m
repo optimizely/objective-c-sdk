@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -19,6 +19,7 @@
 // --- Base Parameters ----
 NSString * const OPTLYEventParameterKeysAccountId                       = @"account_id";        // nonnull
 NSString * const OPTLYEventParameterKeysProjectId                       = @"project_id";
+NSString * const OPTLYEventParameterKeysEnrichDecisions                 = @"enrich_decisions";
 NSString * const OPTLYEventParameterKeysVisitors                        = @"visitors";          // nonnull
 NSString * const OPTLYEventParameterKeysAnonymizeIP                     = @"anonymize_ip";
 NSString * const OPTLYEventParameterKeysClientEngine                    = @"client_name";
