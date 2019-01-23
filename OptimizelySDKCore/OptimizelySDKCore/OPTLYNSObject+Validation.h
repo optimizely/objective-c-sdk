@@ -63,13 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getJSONArrayStringOrEmpty;
 
 /**
- * Returns a string value for the object
- *
- * @returns A NSString if object is valid json dictionary type, else return empty string.
- **/
-- (NSString *)getJSONDictionaryStringOrEmpty;
-
-/**
  * Returns if object is of exact match type
  *
  * @returns A bool for whether object is valid exact match type.

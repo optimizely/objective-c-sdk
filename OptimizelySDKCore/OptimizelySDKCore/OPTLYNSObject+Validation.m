@@ -78,20 +78,6 @@
     return string;
 }
 
-- (NSString *)getJSONDictionaryStringOrEmpty {
-    NSString *string = @"{}";
-    if (self) {
-        if ([self isKindOfClass:[NSDictionary class]] && ((NSDictionary *)self).count > 0) {
-            NSError *error = nil;
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(NSDictionary *)self options:NSJSONWritingPrettyPrinted error:&error];
-            if (error == nil) {
-                string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            }
-        }
-    }
-    return string;
-}
-
 - (BOOL)isValidExactMatchTypeValue {
     //Check if given object is acceptable exact match type value
     if (self) {
