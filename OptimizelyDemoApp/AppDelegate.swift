@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var projectId:String? // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
-    let attributes = ["sample_attribute_key":"sample_attribute_value"]
+    let attributes: [String: NSObject]? = ["sample_attribute_key": "sample_attribute_value"] as [String: NSObject]
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
     
@@ -64,6 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // *********** Optimizely Initialization ************
         // **************************************************
         
+        
+        //let sdkKey = "FCnSegiEkRry9rhVMroit4"
+        let JaeSdkKey = "AqLkkcss3wRGUbftnKNgh2"
+        
         // ---- Create the Event Dispatcher ----
         let eventDispatcher = OPTLYEventDispatcherDefault(builder: OPTLYEventDispatcherBuilder(block: { (builder) in
             builder?.eventDispatcherDispatchInterval = self.eventDispatcherDispatchInterval
@@ -73,17 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ---- Create the Datafile Manager ----
         let datafileManager = OPTLYDatafileManagerDefault(builder: OPTLYDatafileManagerBuilder(block: { (builder) in
             // builder!.datafileFetchInterval = TimeInterval(self.datafileManagerDownloadInterval)
-            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey:"FCnSegiEkRry9rhVMroit4")!;
+            builder!.datafileConfig = OPTLYDatafileConfig(projectId: nil, withSDKKey: JaeSdkKey)!;
             
         }))
         
         let builder = OPTLYManagerBuilder(block: { (builder) in
             builder!.projectId = nil;
             
-            //builder!.sdkKey = "FCnSegiEkRry9rhVMroit4"
-            builder!.sdkKey = "AqLkkcss3wRGUbftnKNgh2"
-
-            
+            builder!.sdkKey = JaeSdkKey
             builder!.datafileManager = datafileManager!
             builder!.eventDispatcher = eventDispatcher
         })
@@ -129,7 +130,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             })
 #endif
-            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!)
+            
+            var variation: OPTLYVariation?
+            
+            let featureTest = false
+            if featureTest {
+                // feature test () ()
+                
+                let featureKey = "splash"
+                if optimizelyClient!.isFeatureEnabled(featureKey, userId: self!.userId, attributes: self!.attributes),
+                    let featureFlag = optimizelyClient!.optimizely!.config?.featureFlags.filter({ $0.key == featureKey }).first
+                {
+                    let decision = optimizelyClient!.optimizely?.decisionService?.getVariationForFeature(featureFlag, userId: self!.userId, attributes: self!.attributes)
+                    variation = decision?.variation
+                    
+                    print(">>>> feature varation updated: \(variation)")
+                }
+            } else {
+                // AB test (2:5) (2:0)
+                
+                //variation = optimizelyClient?.activate(self!.experimentKey, userId: self!.userId)
+                variation = optimizelyClient!.activate(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
+            }
+            
             
             if let experiments = optimizelyClient?.optimizely?.config?.experiments {
                 for experiment in experiments {
