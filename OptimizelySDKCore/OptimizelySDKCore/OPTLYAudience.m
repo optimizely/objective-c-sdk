@@ -22,8 +22,8 @@
 #import "OPTLYLogger.h"
 
 @interface OPTLYAudience()
-/// A JSON String containing the conditions
-@property (nonatomic, strong) NSString<Ignore> *conditionsJSONString;
+/// String representation of the conditions
+@property (nonatomic, strong) NSString<Ignore> *conditionsString;
 @end
 
 @implementation OPTLYAudience
@@ -35,8 +35,8 @@
                                                         }];
 }
 
-- (NSString *)getConditionsJSONString {
-    return _conditionsJSONString ?: @"";
+- (NSString *)getConditionsString {
+    return _conditionsString ?: @"";
 }
 
 - (void)setConditionsWithNSString:(NSString *)string {
@@ -46,7 +46,7 @@
 
 - (void)setConditionsWithNSArray:(NSArray *)array {
     //Retrieving Jsonstring from array
-    _conditionsJSONString = [array getJSONArrayStringOrEmpty];
+    _conditionsString = [array getJSONArrayStringOrEmpty];
     NSError *err = nil;
     self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
     if (err != nil) {
@@ -59,7 +59,7 @@
     NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.conditions firstObject];
     if (condition) {
         // Log Audience Evaluation Started
-        NSString *conditionString = [self getConditionsJSONString];
+        NSString *conditionString = [self getConditionsString];
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, self.audienceName, conditionString];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         

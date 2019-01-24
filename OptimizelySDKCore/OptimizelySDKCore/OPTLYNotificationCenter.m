@@ -40,7 +40,7 @@ NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 
 @implementation OPTLYNotificationCenter : NSObject
 
--(instancetype)initWithProjectConfig:(OPTLYProjectConfig *)config {
+- (instancetype)initWithProjectConfig:(OPTLYProjectConfig *)config {
     self = [super init];
     if (self != nil) {
         _notificationId = 1;
@@ -56,7 +56,7 @@ NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 
 #pragma mark - Public Methods
 
--(NSUInteger)notificationsCount {
+- (NSUInteger)notificationsCount {
     NSUInteger notificationsCount = 0;
     for (OPTLYNotificationHolder *notificationsMap in _notifications.allValues) {
         notificationsCount += notificationsMap.count;

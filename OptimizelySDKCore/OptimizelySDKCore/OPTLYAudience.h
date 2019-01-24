@@ -38,7 +38,7 @@
 - (void)setConditionsWithNSString:(NSString *)string;
 - (void)setConditionsWithNSArray:(NSArray *)array;
 
-/// Returns conditions JSON String
-- (NSString *)getConditionsJSONString;
+/// Returns conditions string
+- (NSString *)getConditionsString;
 
 @end

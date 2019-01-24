@@ -72,11 +72,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 @end
 
 @implementation OPTLYNotificationTest
--(void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+- (void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 
--(void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+- (void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 @end
@@ -1220,7 +1220,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 #pragma mark - GetEnabledFeatures Tests
 
 // should return empty feature array as no feature is enabled for user
--(void)testGetEnabledFeaturesWithNoFeatureEnabledForUser {
+- (void)testGetEnabledFeaturesWithNoFeatureEnabledForUser {
     id optimizelyMock = OCMPartialMock(self.optimizely);
     OCMStub([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]).andReturn(false);
     XCTAssertEqual([optimizelyMock getEnabledFeatures:kUserId attributes:self.attributes].count, 0);
@@ -1229,7 +1229,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 }
 
 // should return feature array as some feature is enabled for user
--(void)testGetEnabledFeaturesWithSomeFeaturesEnabledForUser {
+- (void)testGetEnabledFeaturesWithSomeFeaturesEnabledForUser {
     NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
     NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:self.attributes];
     XCTAssertEqualObjects(features, enabledFeatures);

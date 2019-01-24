@@ -145,13 +145,13 @@
     XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
--(void)testNotConditionReturnsNullWhenChildrenAreNull {
+- (void)testNotConditionReturnsNullWhenChildrenAreNull {
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     notCondition.subCondition = [self mockBaseConditionAlwaysNull];
     XCTAssertNil([notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
--(void)testNotConditionReturnsNullWhenNoChildren {
+- (void)testNotConditionReturnsNullWhenNoChildren {
     NSDictionary *attributesPassOrValue = @{};
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
@@ -175,7 +175,7 @@
     OPTLYAndCondition *notCondition = (OPTLYAndCondition *)[conditions firstObject];
     XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
     OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
-    NSString *conditionString = [audience getConditionsJSONString];
+    NSString *conditionString = [audience getConditionsString];
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
@@ -334,7 +334,7 @@
     XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 
     OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
-    NSString *conditionString = [audience getConditionsJSONString];
+    NSString *conditionString = [audience getConditionsString];
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];
@@ -464,7 +464,7 @@
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[conditions firstObject];
     XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
     OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
-    NSString *conditionString = [audience getConditionsJSONString];
+    NSString *conditionString = [audience getConditionsString];
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     [loggerMock stopMocking];

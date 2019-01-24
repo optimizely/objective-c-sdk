@@ -29,7 +29,7 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 /// @{NSString *variationKey : OPTLYVariation *variation}
 @property (nonatomic, strong) NSDictionary<Ignore> *variationKeyToVariationMap;
 /// A JSON String containing the expirement's audience conditions
-@property (nonatomic, strong) NSString<Ignore> *conditionsJSONString;
+@property (nonatomic, strong) NSString<Ignore> *conditionsString;
 @end
 
 @implementation OPTLYExperiment
@@ -42,13 +42,12 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
                                                              }];
 }
 
-- (NSString *)getAudienceConditionsJSONString {
-    return _conditionsJSONString ?: @"";
+- (NSString *)getAudienceConditionsString {
+    return _conditionsString ?: @"";
 }
 
 - (void)setAudienceConditionsWithNSString:(NSString *)string {
-    NSError *err = nil;
-    _conditionsJSONString = string ?: @"";
+    _conditionsString = string ?: @"";
     NSArray *array = [string getValidAudienceConditionsArray];
     [self setAudienceConditionsWithNSArray:array];
 }

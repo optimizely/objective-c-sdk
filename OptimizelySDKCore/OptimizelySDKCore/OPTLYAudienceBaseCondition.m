@@ -31,7 +31,6 @@
         // if the user did not pass in attributes, return false
         return [NSNumber numberWithBool:false];
     }
-    // Log Audience For AudienceId Not Found
     OPTLYAudience *audience = [config getAudienceForId:self.audienceId];
     if (audience == nil) {
         return nil;

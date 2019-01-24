@@ -39,8 +39,9 @@
 @property (nonatomic, strong, nullable) NSObject<OPTLYOptional> *value;
 /// Condition match type
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *match;
-/// JSON description of Self
-@property (nonatomic, strong) NSString<Ignore> *jsonDescription;
+
+/// Returns string representation
+- (NSString *)toString;
 
 +(BOOL)isBaseConditionJSON:(NSData *)jsonData;
 

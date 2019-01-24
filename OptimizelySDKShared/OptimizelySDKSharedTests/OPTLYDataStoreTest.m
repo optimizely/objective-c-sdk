@@ -376,7 +376,7 @@ static NSString * const kClientEngine = @"objective-c-sdk";
     XCTAssert([self.testDataNSUserDefault isEqualToDictionary:retrievedData], @"Invalid data save.");
 }
 
--(void)testGetUserDataForType
+- (void)testGetUserDataForType
 {
     [self.dataStore saveUserData:self.testDataNSUserDefault type:OPTLYDataStoreDataTypeUserProfileService];
     NSDictionary *retrievedData = [self.dataStore getUserDataForType:OPTLYDataStoreDataTypeUserProfileService];

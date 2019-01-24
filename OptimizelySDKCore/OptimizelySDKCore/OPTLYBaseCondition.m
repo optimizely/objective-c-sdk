@@ -20,11 +20,20 @@
 #import "OPTLYLoggerMessages.h"
 #import "OPTLYLogger.h"
 
+@interface OPTLYBaseCondition()
+/// String representation of self
+@property (nonatomic, strong) NSString<Ignore> *stringRepresentation;
+@end
+
 @implementation OPTLYBaseCondition
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
-    self.jsonDescription = [NSString stringWithFormat:@"%@", dict];;
+    self.stringRepresentation = [NSString stringWithFormat:@"%@", dict];;
     return [super initWithDictionary:dict error:err];
+}
+
+- (NSString *)toString {
+    return _stringRepresentation ?: @"";
 }
 
 /**
@@ -43,7 +52,7 @@
     return [jsonData isKindOfClass:[NSDictionary class]];
 }
 
--(nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
+- (nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value that is of similar class type to our value and also equals to our value, else return Null
     
     // check if condition value is invalid
@@ -52,7 +61,7 @@
     }
     // check if attributes exists
     if (![attributes.allKeys containsObject:self.name]) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.jsonDescription, self.name];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.stringRepresentation, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
@@ -61,7 +70,7 @@
     if (![userAttribute isValidExactMatchTypeValue]) {
         // Log Invalid Attribute Value Type
         NSString *userAttributeClassName = NSStringFromClass([userAttribute class]) ?: @"null";
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
@@ -81,12 +90,12 @@
     return NULL;
 }
 
--(nullable NSNumber *)evaluateMatchTypeExist:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
+- (nullable NSNumber *)evaluateMatchTypeExist:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain our name as a key to a Non nullable object
     return [NSNumber numberWithBool:([attributes objectForKey:self.name] && ![attributes[self.name] isKindOfClass:[NSNull class]])];
 }
 
--(nullable NSNumber *)evaluateMatchTypeSubstring:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
+- (nullable NSNumber *)evaluateMatchTypeSubstring:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain our value as substring
     
     // check if condition value is invalid
@@ -95,7 +104,7 @@
     }
     // check if attributes exists
     if (![attributes.allKeys containsObject:self.name]) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.jsonDescription, self.name];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.stringRepresentation, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
@@ -104,12 +113,12 @@
     if (![userAttribute isKindOfClass: [NSString class]]) {
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         return NULL;
@@ -119,7 +128,7 @@
     return [NSNumber numberWithBool:containsSubstring];
 }
 
--(nullable NSNumber *)evaluateMatchTypeGreaterThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
+- (nullable NSNumber *)evaluateMatchTypeGreaterThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value greater than our value
     
     // check if condition value is invalid
@@ -128,7 +137,7 @@
     }
     // check if attributes exists
     if (![attributes.allKeys containsObject:self.name]) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.jsonDescription, self.name];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.stringRepresentation, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
@@ -137,12 +146,12 @@
     if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         return NULL;
@@ -153,7 +162,7 @@
     return [NSNumber numberWithBool: ([userValue doubleValue] > [ourValue doubleValue])];
 }
 
--(nullable NSNumber *)evaluateMatchTypeLessThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config{
+- (nullable NSNumber *)evaluateMatchTypeLessThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value lesser than our value
     
     // check if condition value is invalid
@@ -162,7 +171,7 @@
     }
     // check if attributes exists
     if (![attributes.allKeys containsObject:self.name]) {
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.jsonDescription, self.name];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, self.stringRepresentation, self.name];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
@@ -171,12 +180,12 @@
     if (![userAttribute isValidNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.jsonDescription, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.jsonDescription, userAttributeClassName, self.name];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         return NULL;
@@ -187,11 +196,11 @@
     return [NSNumber numberWithBool: ([userValue doubleValue] < [ourValue doubleValue])];
 }
 
--(nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     
     if (![self.type isEqual:OPTLYDatafileKeysCustomAttributeConditionType]){
         //Check if given type is the required type
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType, self.jsonDescription];
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType, self.stringRepresentation];
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
@@ -221,7 +230,7 @@
             return [self evaluateMatchTypeLessThan: attributes projectConfig:config];
         }
         DEFAULT {
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType, self.jsonDescription];
+            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType, self.stringRepresentation];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
             return NULL;
         }
