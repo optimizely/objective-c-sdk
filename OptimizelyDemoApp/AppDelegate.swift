@@ -31,18 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var optimizelyClient : OPTLYClient?
     
-    // generate random user ID on each app load
-    let userId = String(Int(arc4random_uniform(300000)))
-    
     // customizable settings
     let datafileName = "demoTestDatafile" // default parameter for initializing Optimizely from saved datafile
     var projectId:String? // project name: X Mobile - Sample App
     var experimentKey = "background_experiment"
     var eventKey = "sample_conversion"
-    let attributes: [String: NSObject]? = ["sample_attribute_key": "sample_attribute_value"] as [String: NSObject]
     let eventDispatcherDispatchInterval = 1000
     let datafileManagerDownloadInterval = 20000
-    
+    var userId: String!
+    var attributes: [String: NSObject]?
+
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
@@ -133,9 +131,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             var variation: OPTLYVariation?
             
-            let featureTest = false
+            // generate random user ID on each app load
+            self!.userId = String(Int(arc4random_uniform(300000)))
+            self!.attributes = ["sample_attribute_key": "sample_attribute_value_1"] as [String: NSObject]
+
+            let featureTest = true
             if featureTest {
-                // feature test () ()
+                // feature test (3:1) (0:1)
                 
                 let featureKey = "splash"
                 if optimizelyClient!.isFeatureEnabled(featureKey, userId: self!.userId, attributes: self!.attributes),
@@ -147,10 +149,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print(">>>> feature varation updated: \(variation)")
                 }
             } else {
-                // AB test (2:5) (2:0)
+                // AB test (1:3) (0:1)
                 
                 //variation = optimizelyClient?.activate(self!.experimentKey, userId: self!.userId)
                 variation = optimizelyClient!.activate(self!.experimentKey, userId: self!.userId, attributes: self!.attributes)
+                
+                print(">>>> AB varation updated: \(variation)")
             }
             
             
@@ -206,6 +210,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     variationViewController.optimizelyClient = optimizelyClient
                     variationViewController.userId = self.userId
                     variationViewController.variationKey = bucketedVariation!.variationKey
+                    rootViewController = variationViewController
+                }
+            } else {
+                
+                // show FailureViewController or VariationViewController(with F - for track testing)
+                if let variationViewController = storyboard.instantiateViewController(withIdentifier: "OPTLYVariationViewController") as? OPTLYVariationViewController
+                {
+                    variationViewController.eventKey = self.eventKey
+                    variationViewController.optimizelyClient = optimizelyClient
+                    variationViewController.userId = self.userId
+                    variationViewController.variationKey = "failed"
                     rootViewController = variationViewController
                 }
             }

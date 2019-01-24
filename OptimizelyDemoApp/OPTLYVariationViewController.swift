@@ -46,8 +46,13 @@ class OPTLYVariationViewController: UIViewController {
                 self.variationLetterLabel.text = "B"
                 self.variationLetterLabel.textColor = UIColor.white
                 self.variationSubheaderLabel.textColor = UIColor.white
-            self.variationBackgroundImage.image = UIImage(named: "background_variB-marina")
+                self.variationBackgroundImage.image = UIImage(named: "background_variB-marina")
             default:
+                // for testing track check when variation fails
+                self.variationLetterLabel.text = "F"
+                self.variationLetterLabel.textColor = UIColor.black
+                self.variationSubheaderLabel.textColor = UIColor.black
+                self.variationBackgroundImage.image = nil
                 break
         }
     }
