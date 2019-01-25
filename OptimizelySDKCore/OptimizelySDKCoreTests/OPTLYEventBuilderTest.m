@@ -636,6 +636,162 @@ typedef enum : NSUInteger {
     [self commonBuildConversionTicketTest:tags sentEventTags:tags sentTags:tags];
 }
 
+
+
+#pragma mark - Test integer values as boolean
+
+// these set of tests are for filtering bug report (Jira #4041): integer 1 is filtered out as boolean unexpectedly
+
+- (void)testRevenueMetricAndValueMetricWithRevenueIntegerOne
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@1,
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithRevenueIntegerZero
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@0,
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithRevenueIntegerTwo
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@2,
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithRevenueBooleanYes
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@YES,
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    NSDictionary *sentTags = @{OPTLYEventMetricNameValue:@(kEventValue)};
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithRevenueBooleanNo
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@NO,
+                           OPTLYEventMetricNameValue:@(kEventValue)};
+    NSDictionary *sentTags = @{OPTLYEventMetricNameValue:@(kEventValue)};
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags: sentTags
+                                 sentTags:tags];
+}
+
+// value tag checking
+
+- (void)testRevenueMetricAndValueMetricWithValueIntegerOne
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@1};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithValueIntegerZero
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@0};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithValueIntegerTwo
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@2};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithValueIntegerNegativeOne
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@(-1)};
+    NSDictionary *sentTags = tags;
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithValueBooleanYes
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@YES};
+    NSDictionary *sentTags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue)};
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags:sentTags
+                                 sentTags:tags];
+}
+- (void)testRevenueMetricAndValueMetricWithValueBooleanNo
+{
+    // Test creating event containing both "revenue" and "value".  Imagine
+    //     "revenue" == money received
+    //     "value" == temperature measured
+    // There isn't a good reason why both can't be sent in the same event.
+    NSDictionary *tags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue),
+                           OPTLYEventMetricNameValue:@NO};
+    NSDictionary *sentTags = @{OPTLYEventMetricNameRevenue:@(kEventRevenue)};
+    [self commonBuildConversionTicketTest:tags
+                            sentEventTags: sentTags
+                                 sentTags:tags];
+}
+
+
+
+
 #pragma mark - Test BuildConversionTicket:... with Multiple eventTags
 
 - (void)testBuildConversionTicketWithEventTags
@@ -1119,6 +1275,8 @@ typedef enum : NSUInteger {
     // check for number of tags atleast equalt to event tags
     XCTAssert([event count] >= [eventTags count], @"Invalid number of event tags.");
     
+    // (1) this checks if all expected fields exists in event
+        
     if ([[eventTags allKeys] containsObject:OPTLYEventMetricNameRevenue]) {
         NSNumber *expectedRevenue = eventTags[OPTLYEventMetricNameRevenue];
         id revenue = event[OPTLYEventMetricNameRevenue];
@@ -1133,6 +1291,23 @@ typedef enum : NSUInteger {
         XCTAssert([value isKindOfClass:[NSNumber class]], @"value should be an NSNumber .");
         XCTAssertEqualObjects(value, expectedValue, @"event value should equal to %@ .", expectedValue);
     }
+
+    // (2) we also need to check if unexpected fields still exists in event ({revenue, value} check only)
+    //
+    // [Jira #4041] integers {1 and 0} are filtered out accidentally since @YES and @NO interpreted as @1 and @0
+    //              we need compare with @YES and @NO only for boolean NSNumber (objCType == @encode(char))
+
+    NSMutableDictionary *eventTagsDefaultsOnly = [NSMutableDictionary new];
+    if(eventTags != nil) {
+        eventTagsDefaultsOnly[OPTLYEventMetricNameRevenue] = eventTags[OPTLYEventMetricNameRevenue];
+        eventTagsDefaultsOnly[OPTLYEventMetricNameValue] = eventTags[OPTLYEventMetricNameValue];
+    }
+
+    NSMutableDictionary *allDefaultTagsInEvent = [NSMutableDictionary new];
+    allDefaultTagsInEvent[OPTLYEventMetricNameRevenue] = event[OPTLYEventMetricNameRevenue];
+    allDefaultTagsInEvent[OPTLYEventMetricNameValue] = event[OPTLYEventMetricNameValue];
+
+    XCTAssertEqualObjects(eventTagsDefaultsOnly, allDefaultTagsInEvent, @"Invalid tag filtering");
 }
 
 - (void)checkCommonParams:(NSDictionary *)params withAttributes:(NSDictionary *)attributes {
