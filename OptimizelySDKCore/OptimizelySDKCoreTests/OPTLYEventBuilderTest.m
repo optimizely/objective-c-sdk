@@ -706,7 +706,7 @@ typedef enum : NSUInteger {
                                  sentTags:tags];
 }
 
-
+// value tag checking
 
 - (void)testRevenueMetricAndValueMetricWithValueIntegerOne
 {
