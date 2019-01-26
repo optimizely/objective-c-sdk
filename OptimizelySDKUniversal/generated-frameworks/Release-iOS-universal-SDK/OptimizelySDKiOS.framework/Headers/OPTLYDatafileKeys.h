@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -36,7 +36,6 @@ extern NSString * const OPTLYDatafileKeysExperimentKey;
 extern NSString * const OPTLYDatafileKeysExperimentStatus;
 extern NSString * const OPTLYDatafileKeysExperimentTrafficAllocation;
 extern NSString * const OPTLYDatafileKeysExperimentAudienceIds;
-extern NSString * const OPTLYDatafileKeysExperimentAudienceConditions;
 extern NSString * const OPTLYDatafileKeysExperimentVariations;
 extern NSString * const OPTLYDatafileKeysExperimentForcedVariations;
 extern NSString * const OPTLYDatafileKeysExperimentLayerId;
@@ -68,19 +67,9 @@ extern NSString * const OPTLYDatafileKeysVariationFeatureEnabled;
 extern NSString * const OPTLYDatafileKeysConditionName;
 extern NSString * const OPTLYDatafileKeysConditionType;
 extern NSString * const OPTLYDatafileKeysConditionValue;
-extern NSString * const OPTLYDatafileKeysConditionMatch;
 extern NSString * const OPTLYDatafileKeysAndCondition;
 extern NSString * const OPTLYDatafileKeysNotCondition;
 extern NSString * const OPTLYDatafileKeysOrCondition;
-// Match Types
-extern NSString * const OPTLYDatafileKeysMatchTypeExact;
-extern NSString * const OPTLYDatafileKeysMatchTypeExists;
-extern NSString * const OPTLYDatafileKeysMatchTypeSubstring;
-extern NSString * const OPTLYDatafileKeysMatchTypeGreaterThan;
-extern NSString * const OPTLYDatafileKeysMatchTypeLessThan;
-extern NSString * const OPTLYDatafileKeysMatchTypeRegex;
-// Custom Attribute Condition Types
-extern NSString * const OPTLYDatafileKeysCustomAttributeConditionType;
 // Live Variables (DEPRECATED)
 extern NSString * const OPTLYDatafileKeysVariableId;
 extern NSString * const OPTLYDatafileKeysVariableKey;
