@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016,2018, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018-2019, Optimizely, Inc. and contributors              *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -15,13 +15,14 @@
  ***************************************************************************/
 
 #import <Foundation/Foundation.h>
+#import "OPTLYProjectConfig.h"
 
 @protocol OPTLYCondition
 
 /**
  * Evaluate the condition against the user attributes.
  */
-- (BOOL)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSString *> *)attributes;
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config;
 
 @end
 
@@ -29,7 +30,10 @@
 
 + (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
                                             error:(NSError * __autoreleasing *)error;
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
++ (NSArray<OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray;
++ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
+                                            error:(NSError * __autoreleasing *)error;
++ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray;
 
 @end
 
