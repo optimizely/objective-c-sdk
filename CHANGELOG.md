@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 2.1.6
+January 25th, 2019
+
+This includes a fix for revenue and metrics.  Numbers 0 and 1 were evaluated as false and true causing us to drop them from the event.  
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Check for BOOL type but allow number values 0 and 1 in revenue and metrics to go to results.
+
 ## 2.1.5
 December 6th, 2018
 
