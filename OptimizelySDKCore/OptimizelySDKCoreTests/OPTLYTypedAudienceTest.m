@@ -683,7 +683,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 ///MARK:- Helper Methods
 
 - (OPTLYCondition *)getFirstConditionFromArray:(NSArray *)array {
-    NSArray *conditionArray = [OPTLYCondition deserializeJSONArray:array];
+    NSArray *conditionArray = [OPTLYCondition deserializeJSON:array];
     return conditionArray[0];
 }
 

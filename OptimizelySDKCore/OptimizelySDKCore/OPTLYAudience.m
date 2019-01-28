@@ -48,7 +48,16 @@
     //Retrieving Jsonstring from array
     _conditionsString = [array getJSONArrayStringOrEmpty];
     NSError *err = nil;
-    self.conditions = [OPTLYCondition deserializeJSONArray:array error:nil];
+    self.conditions = [OPTLYCondition deserializeJSON:array error:nil];
+    if (err != nil) {
+        NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
+        @throw exception;
+    }
+}
+
+- (void)setConditionsWithNSDictionary:(NSDictionary *)dictionary {
+    NSError *err = nil;
+    self.conditions = [OPTLYCondition deserializeJSON:dictionary error:nil];
     if (err != nil) {
         NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
         @throw exception;
