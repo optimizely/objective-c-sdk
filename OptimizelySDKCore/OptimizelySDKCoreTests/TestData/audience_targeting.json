@@ -16,7 +16,7 @@
           "endOfRange": 10000
         }
       ],
-      "audienceIds": ["10413101794"],
+      "audienceIds": ["10413101794", "10413101795"],
       "variations": [
         {
           "variables": [],
@@ -58,7 +58,7 @@
           "endOfRange": 10000
         }
       ],
-      "audienceIds": ["20413101795", "20413101796", "20413101797" ,"20413101798"],
+      "audienceIds": ["20413101794", "20413101795", "20413101796", "20413101797" ,"20413101798"],
       "variations": [
         {
           "variables": [],
@@ -1294,9 +1294,9 @@
     },
     {
       "id": "10413101795",
-      "_comment_about_condition_format": "Note: pre-3.0 Java SDKs cannot parse leaves at the root of this condition tree. App backend accommodates those SDKs by wrapping the leaves in parents. (OASIS-3718)",
-      "conditions": "{\"type\": \"custom_attribute\", \"name\": \"$opt_dummy_atribute\", \"match\": \"exact\", \"value\": \"$opt_dummy_value\"}",
-      "name": "untyped_single_dummy_condition"
+      "_comment_about_condition_format": "Note: pre-3.0 Java SDKs cannot parse and evaluate leaves at the root of this condition tree. App backend accommodates those SDKs by wrapping the leaves in parents. (OASIS-3718)",
+      "conditions": "{\"type\": \"custom_attribute\", \"name\": \"string_attribute\", \"match\": \"exact\", \"value\": \"leaf_root\"}",
+      "name": "untyped_single_condition_leaf_root"
     },
     {
       "id": "10413101796",
@@ -1311,18 +1311,22 @@
     {
       "_comment": "Dummy audience that is overridden by a typedAudience with the same id",
       "id": "20413101798",
-      "_comment_about_condition_format": "Note: pre-3.0 Java SDKs cannot parse leaves at the root of this condition tree. App backend accommodates those SDKs by wrapping the leaves in parents. (OASIS-3718)",
-      "conditions": "{\"type\": \"custom_attribute\", \"name\": \"$opt_dummy_atribute\", \"match\": \"exact\", \"value\": \"$opt_dummy_value\"}",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"type\": \"custom_attribute\", \"name\": \"$opt_dummy_attribute\", \"match\": \"exact\", \"value\": \"$opt_dummy_value\"}]]]",
       "name": "dummy_audience_overridden_by_typed_audience"
     },
     {
       "_comment": "Dummy audience that is targeted by audienceIds for experiments with backwards-incompatible audienceConditions",
       "id": "$opt_dummy_audience",
-      "conditions": "[\"and\", [\"or\", [\"or\", {\"type\": \"custom_attribute\", \"name\": \"string_attribute\", \"value\": \"exact_match\"}]]]",
+      "conditions": "[\"and\", [\"or\", [\"or\", {\"type\": \"custom_attribute\", \"name\": \"$opt_dummy_attribute\", \"match\": \"exact\", \"value\": \"$opt_dummy_value\"}]]]",
       "name": "dummy_audience"
     }
   ],
   "typedAudiences": [
+    {
+      "id": "20413101794",
+      "conditions": { "type": "custom_attribute", "name": "s_foo", "match": "exact", "value": "leaf_root" },
+      "name": "single_condition_leaf_root"
+    },
     {
       "id": "20413101795",
       "conditions": [ "and", [ "or", [ "or", { "type": "custom_attribute", "name": "s_foo", "match": "exact", "value": "foo" } ] ] ],

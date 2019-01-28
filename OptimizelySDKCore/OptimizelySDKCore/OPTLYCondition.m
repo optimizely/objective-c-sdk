@@ -22,25 +22,25 @@
 
 @implementation OPTLYCondition
 
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray {
-    return [OPTLYCondition deserializeJSONArray:jsonArray error:nil];
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json {
+    return [OPTLYCondition deserializeJSON:json error:nil];
 }
 
-+ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray {
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray {
     return [OPTLYCondition deserializeAudienceConditionsJSONArray:jsonArray error:nil];
 }
 
 // example jsonArray:
 //  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSONArray:(NSArray *)jsonArray
-                                            error:(NSError * __autoreleasing *)error {
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json
+                                                         error:(NSError * __autoreleasing *)error {
     
     NSMutableArray *mutableJsonArray = [NSMutableArray new];
     
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
-    if (![jsonArray isKindOfClass:[NSArray class]]) {
-        if ([OPTLYBaseCondition isBaseConditionJSON:((NSData *)jsonArray)]) {
-            mutableJsonArray = [[NSMutableArray alloc] initWithArray:@[OPTLYDatafileKeysOrCondition,jsonArray]];
+    if (![json isKindOfClass:[NSArray class]]) {
+        if ([OPTLYBaseCondition isBaseConditionJSON:((NSData *)json)]) {
+            mutableJsonArray = [[NSMutableArray alloc] initWithArray:@[OPTLYDatafileKeysOrCondition,json]];
         }
         else {
             NSError *err = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -53,7 +53,7 @@
         }
     }
     else {
-        mutableJsonArray = [jsonArray mutableCopy];
+        mutableJsonArray = [(NSArray *)json mutableCopy];
     }
     
     if (mutableJsonArray.count < 2) {
@@ -82,7 +82,7 @@
         
         // further condition arrays to deserialize
         NSError *err = nil;
-        NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSONArray:mutableJsonArray[i] error:&err];
+        NSArray *deserializedJsonObject = [OPTLYCondition deserializeJSON:mutableJsonArray[i] error:&err];
         if (err) {
             *error = err;
             return nil;
@@ -100,8 +100,8 @@
 
 // example jsonArray:
 //  "[\"and\", [\"or\", \"3468206642\", \"3988293898\"], [\"or\", \"3988293899\", \"3468206646\", \"3468206647\", \"3468206644\", \"3468206643\"]]"
-+ (NSArray<OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
-                                                              error:(NSError * __autoreleasing *)error {
++ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
+                                                                                error:(NSError * __autoreleasing *)error {
 
     NSMutableArray *mutableJsonArray = [NSMutableArray new];
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
