@@ -470,7 +470,7 @@
                                     @"value": @"attributeValue",
                                     @"type": @"custom_attribute"};
     NSArray *andConditionArray = @[@"and", conditionInfo];
-    NSArray *conditions = [OPTLYCondition deserializeJSONArray:andConditionArray];
+    NSArray *conditions = [OPTLYCondition deserializeJSON:andConditionArray];
     XCTAssertNotNil(conditions);
     XCTAssertTrue(conditions.count == 1);
     XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYAndCondition class]]);
@@ -488,7 +488,7 @@
                                     @"value": @"attributeValue",
                                     @"type": @"custom_attribute"};
     NSArray *andConditionArray = @[@"or", conditionInfo];
-    NSArray *conditions = [OPTLYCondition deserializeJSONArray:andConditionArray];
+    NSArray *conditions = [OPTLYCondition deserializeJSON:andConditionArray];
     XCTAssertNotNil(conditions);
     XCTAssertTrue(conditions.count == 1);
     XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
@@ -501,11 +501,27 @@
     XCTAssertEqualObjects(condition.type, @"custom_attribute");
 }
 
+- (void)testConditionBaseCaseDeserializationWithLeafCondition {
+    NSDictionary *conditionInfo = @{@"name": @"someAttributeKey",
+                                    @"value": @"attributeValue",
+                                    @"type": @"custom_attribute"};
+    NSArray *conditions = [OPTLYCondition deserializeJSON:conditionInfo];
+    XCTAssertNotNil(conditions);
+    XCTAssertTrue(conditions.count == 1);
+    XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
+    OPTLYAndCondition *andCondition = conditions[0];
+    XCTAssertTrue(andCondition.subConditions.count == 1);
+    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
+    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)andCondition.subConditions[0];
+    XCTAssertEqualObjects(condition.name, @"someAttributeKey");
+    XCTAssertEqualObjects(condition.value, @"attributeValue");
+    XCTAssertEqualObjects(condition.type, @"custom_attribute");
+}
 
 - (void)testDeserializeConditions {
     NSString *conditionString = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"chrome\"}]]]";
     NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
-    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray];
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSON:conditionStringJSONArray];
     XCTAssertNotNil(conditionsArray);
     XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYAndCondition class]]);
     OPTLYAndCondition *andCondition = conditionsArray[0];
@@ -527,7 +543,7 @@
     NSString *conditionString = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"invalid\": \"custom_attribute\"}]]]";
     NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSError *error = nil;
-    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSON:conditionStringJSONArray error:&error];
     XCTAssertTrue(conditionsArray);
 }
 
@@ -535,13 +551,13 @@
     NSString *conditionString = @"";
     NSArray *conditionStringJSONArray = [conditionString getValidConditionsArray];
     NSError *error = nil;
-    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSON:conditionStringJSONArray error:&error];
     XCTAssertNil(conditionsArray);
 }
 
 - (void)testDeserializeConditionsNilConditions {
     NSError *error = nil;
-    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:nil error:&error];
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSON:nil error:&error];
     XCTAssertNil(conditionsArray);
 }
 
@@ -674,7 +690,7 @@
     NSString *noOperatorConditionString = @"[{\"name\": \"browser_type\", \"type\": \"custom_attribute\", \"value\": \"android\"}]";
     NSArray *conditionStringJSONArray = [noOperatorConditionString getValidConditionsArray];
     NSError *error = nil;
-    NSArray *conditionsArray = [OPTLYCondition deserializeJSONArray:conditionStringJSONArray error:&error];
+    NSArray *conditionsArray = [OPTLYCondition deserializeJSON:conditionStringJSONArray error:&error];
     XCTAssertNotNil(conditionsArray);
     XCTAssertTrue([conditionsArray[0] isKindOfClass:[OPTLYOrCondition class]]);
     
@@ -718,7 +734,7 @@
 ///MARK:- Helper Methods
 
 - (OPTLYCondition *)getFirstConditionFromArray:(NSArray *)array {
-    NSArray *conditionArray = [OPTLYCondition deserializeJSONArray:array];
+    NSArray *conditionArray = [OPTLYCondition deserializeJSON:array];
     return conditionArray[0];
 }
 

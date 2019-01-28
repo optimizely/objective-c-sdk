@@ -37,5 +37,6 @@
 /// Override OPTLYJSONModel set conditions
 - (void)setConditionsWithNSString:(NSString *)string;
 - (void)setConditionsWithNSArray:(NSArray *)array;
+- (void)setConditionsWithNSDictionary:(NSDictionary *)dictionary;
 
 @end
