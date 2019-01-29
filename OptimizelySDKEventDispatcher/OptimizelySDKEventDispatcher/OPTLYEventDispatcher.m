@@ -96,6 +96,16 @@ dispatch_queue_t flushEventsQueue()
     return _flushEventsQueue;
 }
 
+dispatch_queue_t queueEventQueue()
+{
+    static dispatch_queue_t _queueEventsQueue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _queueEventsQueue = dispatch_queue_create("com.Optimizely.QueueEvents", DISPATCH_QUEUE_SERIAL);
+    });
+    return _queueEventsQueue;
+}
+
 dispatch_queue_t dispatchEventQueue()
 {
     static dispatch_queue_t _dispatchEventQueue = nil;
@@ -168,12 +178,17 @@ dispatch_queue_t dispatchEventQueue()
 # pragma mark - Dispatch Events
 - (void)dispatchImpressionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeImpression callback:callback];
+    dispatch_async(queueEventQueue(), ^{
+        [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeImpression callback:callback];
+    });
+    
 }
 
 - (void)dispatchConversionEvent:(nonnull NSDictionary *)params
                        callback:(nullable OPTLYEventDispatcherResponse)callback {
-    [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:callback];
+    dispatch_async(queueEventQueue(), ^{
+        [self dispatchNewEvent:params backoffRetry:YES eventType:OPTLYDataStoreEventTypeConversion callback:callback];
+    });
 }
 
 
