@@ -22,35 +22,35 @@
 /**
  * Evaluate the condition against the user attributes.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config;
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config;
 
 @end
 
 @interface OPTLYCondition : NSObject
 
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json
-                                                         error:(NSError * __autoreleasing *)error;
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json;
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
-                                                                                error:(NSError * __autoreleasing *)error;
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray;
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(nullable id)json
+                                                                  error:(NSError *_Nullable __autoreleasing *_Nullable)error;
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(nullable id)json;
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(nullable NSArray *)jsonArray
+                                                                                         error:(NSError *_Nullable __autoreleasing *_Nullable)error;
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(nullable NSArray *)jsonArray;
 
 @end
 
 @interface OPTLYAndCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *subConditions;
+@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *_Nullable subConditions;
 
 @end
 
 @interface OPTLYOrCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *subConditions;
+@property (nonatomic, strong) NSArray<OPTLYCondition *><OPTLYCondition> *_Nullable subConditions;
 
 @end
 
 @interface OPTLYNotCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSObject<OPTLYCondition> *subCondition;
+@property (nonatomic, strong) NSObject<OPTLYCondition> *_Nullable subCondition;
 
 @end

@@ -32,7 +32,7 @@
     return [super initWithDictionary:dict error:err];
 }
 
-- (NSString *)toString {
+- (nonnull NSString *)toString {
     return _stringRepresentation ?: @"";
 }
 
@@ -48,7 +48,7 @@
                                                              }];
 }
 
-+ (BOOL)isBaseConditionJSON:(NSData *)jsonData {
++ (BOOL)isBaseConditionJSON:(nonnull NSData *)jsonData {
     return [jsonData isKindOfClass:[NSDictionary class]];
 }
 
@@ -240,7 +240,7 @@
 /**
  * Evaluates the condition against the user attributes, returns NULL if invalid.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check user attribute value for the condition and match type against our condition value
     return [self evaluateCustomMatchType: attributes projectConfig:config];
 }

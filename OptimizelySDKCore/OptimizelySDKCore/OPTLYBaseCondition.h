@@ -32,7 +32,7 @@
 @interface OPTLYBaseCondition : OPTLYJSONModel <OPTLYCondition>
 
 /// Condition name
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong, nonnull) NSString *name;
 /// Condition type
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *type;
 /// Condition value
@@ -41,8 +41,8 @@
 @property (nonatomic, strong, nullable) NSString<OPTLYOptional> *match;
 
 /// Returns string representation
-- (NSString *)toString;
+- (nonnull NSString *)toString;
 
-+(BOOL)isBaseConditionJSON:(NSData *)jsonData;
++(BOOL)isBaseConditionJSON:(nonnull NSData *)jsonData;
 
 @end

@@ -22,18 +22,18 @@
 
 @implementation OPTLYCondition
 
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json {
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(nullable id)json {
     return [OPTLYCondition deserializeJSON:json error:nil];
 }
 
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray {
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(nullable NSArray *)jsonArray {
     return [OPTLYCondition deserializeAudienceConditionsJSONArray:jsonArray error:nil];
 }
 
 // example jsonArray:
 //  [“and", [“or", [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": “a”}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "b"}], [“or", {"name": "sample_attribute_key", "type": "custom_attribute", "value": "c"}]
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(id)json
-                                                         error:(NSError * __autoreleasing *)error {
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeJSON:(nullable id)json
+                                                                  error:(NSError *_Nullable __autoreleasing *_Nullable)error {
     
     NSMutableArray *mutableJsonArray = [NSMutableArray new];
     
@@ -101,8 +101,8 @@
 
 // example jsonArray:
 //  "[\"and\", [\"or\", \"3468206642\", \"3988293898\"], [\"or\", \"3988293899\", \"3468206646\", \"3468206647\", \"3468206644\", \"3468206643\"]]"
-+ (NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(NSArray *)jsonArray
-                                                                                error:(NSError * __autoreleasing *)error {
++ (nullable NSArray<OPTLYCondition *><OPTLYCondition> *)deserializeAudienceConditionsJSONArray:(nullable NSArray *)jsonArray
+                                                                                         error:(NSError *_Nullable __autoreleasing *_Nullable)error {
 
     NSMutableArray *mutableJsonArray = [NSMutableArray new];
     // need to check if the jsonArray is actually an array, otherwise, something is wrong with the audience condition
@@ -153,7 +153,7 @@
     return (NSArray<OPTLYCondition> *)@[condition];
 }
 
-+ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(NSString *)conditionClass withConditions:(NSArray<OPTLYCondition> *)conditions {
++ (NSObject<OPTLYCondition> *)createConditionInstanceOfClass:(nonnull NSString *)conditionClass withConditions:(nonnull NSArray<OPTLYCondition> *)conditions {
     if ([conditionClass isEqualToString:OPTLYDatafileKeysAndCondition]) {
         OPTLYAndCondition *andCondition = [[OPTLYAndCondition alloc] init];
         andCondition.subConditions = conditions;
@@ -183,7 +183,7 @@
 
 @implementation OPTLYAndCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // According to the matrix:
     // false and true is false
     // false and null is false
@@ -218,7 +218,7 @@
 
 @implementation OPTLYOrCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // According to the matrix:
     // true returns true
     // false or null is null
@@ -250,7 +250,7 @@
 
 @implementation OPTLYNotCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // return the negative of the subcondition
     NSNumber * result = [NSNumber new];
     result = [self.subCondition evaluateConditionsWithAttributes:attributes projectConfig:config];
