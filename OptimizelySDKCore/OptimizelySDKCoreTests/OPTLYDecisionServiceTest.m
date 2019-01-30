@@ -466,6 +466,18 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
                    kExperimentWithAudienceVariationKey, variation.variationKey);
 }
 
+- (void)testGetVariationWithEmptyBucketingId {
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentNoAudienceKey];
+    OPTLYVariation *variation = [self.decisionService getVariation:kUserId experiment:experiment attributes:nil];
+    
+    XCTAssertNotNil(variation, @"Get variation");
+    
+    NSDictionary *attributes = @{OptimizelyBucketId: @""};
+    OPTLYVariation *variationWithEmptyBucketingId = [self.decisionService getVariation:kUserId experiment:experiment attributes:attributes];
+    
+    XCTAssertNotEqual(variation.variationKey,variationWithEmptyBucketingId.variationKey);
+}
+
 - (void)testGetVariationAcceptAllTypeAttributes {
     
     OPTLYExperiment *experiment = [self.config getExperimentForKey:kExperimentNoAudienceKey];
