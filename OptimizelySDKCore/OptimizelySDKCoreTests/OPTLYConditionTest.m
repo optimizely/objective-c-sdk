@@ -528,10 +528,10 @@
     XCTAssertNotNil(conditions);
     XCTAssertTrue(conditions.count == 1);
     XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
-    OPTLYAndCondition *andCondition = conditions[0];
-    XCTAssertTrue(andCondition.subConditions.count == 1);
-    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
-    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)andCondition.subConditions[0];
+    OPTLYOrCondition *orCondition = conditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 1);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
+    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)orCondition.subConditions[0];
     XCTAssertEqualObjects(condition.name, @"someAttributeKey");
     XCTAssertEqualObjects(condition.value, @"attributeValue");
     XCTAssertEqualObjects(condition.type, @"custom_attribute");
