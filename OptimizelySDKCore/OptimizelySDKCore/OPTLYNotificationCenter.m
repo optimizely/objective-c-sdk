@@ -22,13 +22,13 @@
 #import "OPTLYNSObject+Validation.h"
 #import <objc/runtime.h>
 
-NSString *const OPTLYNotificationExperimentKey = @"experiment";
-NSString *const OPTLYNotificationVariationKey = @"variation";
-NSString *const OPTLYNotificationUserIdKey = @"userId";
-NSString *const OPTLYNotificationAttributesKey = @"attributes";
-NSString *const OPTLYNotificationEventKey = @"eventKey";
-NSString *const OPTLYNotificationEventTagsKey = @"eventTags";
-NSString *const OPTLYNotificationLogEventParamsKey = @"logEventParams";
+NSString * _Nonnull const OPTLYNotificationExperimentKey = @"experiment";
+NSString * _Nonnull const OPTLYNotificationVariationKey = @"variation";
+NSString * _Nonnull const OPTLYNotificationUserIdKey = @"userId";
+NSString * _Nonnull const OPTLYNotificationAttributesKey = @"attributes";
+NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
+NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
+NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 
 @interface OPTLYNotificationCenter()
 

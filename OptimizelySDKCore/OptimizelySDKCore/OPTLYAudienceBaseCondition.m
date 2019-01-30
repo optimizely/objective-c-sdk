@@ -22,11 +22,11 @@
 
 @implementation OPTLYAudienceBaseCondition
 
-+ (BOOL) isBaseConditionJSON:(NSData *)jsonData {
++ (BOOL) isBaseConditionJSON:(nonnull NSData *)jsonData {
     return [jsonData isKindOfClass:[NSString class]];
 }
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     if (attributes == nil) {
         // if the user did not pass in attributes, return false
         return [NSNumber numberWithBool:false];
