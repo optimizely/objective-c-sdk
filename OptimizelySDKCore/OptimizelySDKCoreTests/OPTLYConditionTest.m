@@ -18,6 +18,7 @@
 #import <OCMock/OCMock.h>
 #import "OPTLYCondition.h"
 #import "OPTLYBaseCondition.h"
+#import "OPTLYAudience.h"
 #import "OPTLYAudienceBaseCondition.h"
 #import "Optimizely.h"
 #import "OPTLYProjectConfig.h"
@@ -144,13 +145,13 @@
     XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil] boolValue]);
 }
 
--(void)testNotConditionReturnsNullWhenChildrenAreNull {
+- (void)testNotConditionReturnsNullWhenChildrenAreNull {
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     notCondition.subCondition = [self mockBaseConditionAlwaysNull];
     XCTAssertNil([notCondition evaluateConditionsWithAttributes:self.testUserAttributes projectConfig:nil]);
 }
 
--(void)testNotConditionReturnsNullWhenNoChildren {
+- (void)testNotConditionReturnsNullWhenNoChildren {
     NSDictionary *attributesPassOrValue = @{};
     OPTLYNotCondition *notCondition = [[OPTLYNotCondition alloc] init];
     XCTAssertNil([notCondition evaluateConditionsWithAttributes:attributesPassOrValue projectConfig:nil]);
@@ -163,6 +164,7 @@
 }
 
 - (void)testNotConditionReturnsFalseWhenComplexAudienceConditionReturnsTrue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     NSDictionary<NSString *, NSObject *> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
@@ -172,6 +174,11 @@
     
     OPTLYAndCondition *notCondition = (OPTLYAndCondition *)[conditions firstObject];
     XCTAssertFalse([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+    OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
+    NSString *conditionString = [audience getConditionsString];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
 }
 
 - (void)testNotConditionReturnsTrueWhenComplexAudienceConditionsReturnsFalse {
@@ -181,7 +188,6 @@
     NSArray *notConditionArray = @[@"not", @"3988293898"];
     NSArray *conditions = [OPTLYCondition deserializeAudienceConditionsJSONArray:notConditionArray];
     XCTAssertNotNil(conditions);
-    
     OPTLYNotCondition *notCondition = (OPTLYNotCondition *)[conditions firstObject];
     XCTAssertTrue([[notCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
 }
@@ -316,6 +322,7 @@
 }
 
 - (void)testOrConditionReturnsTrueWhenAnyComplexAudienceConditionReturnsTrue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     NSDictionary<NSString *, NSObject *> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
@@ -325,6 +332,12 @@
 
     OPTLYOrCondition *orCondition = (OPTLYOrCondition *)[conditions firstObject];
     XCTAssertTrue([[orCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+
+    OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
+    NSString *conditionString = [audience getConditionsString];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
 }
 
 - (void)testOrConditionReturnsFalseWhenAllComplexAudienceConditionsReturnsFalse {
@@ -440,6 +453,7 @@
 }
 
 - (void)testAndConditionReturnsFalseWhenAnyComplexAudienceConditionReturnsFalse {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     NSDictionary<NSString *, NSObject *> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
@@ -449,6 +463,11 @@
     
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[conditions firstObject];
     XCTAssertFalse([[andCondition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config] boolValue]);
+    OPTLYAudience *audience = [self.optimizelyTypedAudience.config getAudienceForId:@"3468206642"];
+    NSString *conditionString = [audience getConditionsString];
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions, audience.audienceName, conditionString];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
+    [loggerMock stopMocking];
 }
 
 - (void)testAndConditionReturnsTrueWhenAllComplexAudienceConditionsReturnsTrue {
@@ -509,10 +528,10 @@
     XCTAssertNotNil(conditions);
     XCTAssertTrue(conditions.count == 1);
     XCTAssertTrue([conditions[0] isKindOfClass:[OPTLYOrCondition class]]);
-    OPTLYAndCondition *andCondition = conditions[0];
-    XCTAssertTrue(andCondition.subConditions.count == 1);
-    XCTAssertTrue([andCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
-    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)andCondition.subConditions[0];
+    OPTLYOrCondition *orCondition = conditions[0];
+    XCTAssertTrue(orCondition.subConditions.count == 1);
+    XCTAssertTrue([orCondition.subConditions[0] isKindOfClass:[OPTLYBaseCondition class]]);
+    OPTLYBaseCondition *condition = (OPTLYBaseCondition *)orCondition.subConditions[0];
     XCTAssertEqualObjects(condition.name, @"someAttributeKey");
     XCTAssertEqualObjects(condition.value, @"attributeValue");
     XCTAssertEqualObjects(condition.type, @"custom_attribute");

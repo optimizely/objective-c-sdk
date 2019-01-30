@@ -28,6 +28,8 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 /// A mapping of an experiment's variation's Key to the matching variation.
 /// @{NSString *variationKey : OPTLYVariation *variation}
 @property (nonatomic, strong) NSDictionary<Ignore> *variationKeyToVariationMap;
+/// A JSON String containing the expirement's audience conditions
+@property (nonatomic, strong) NSString<Ignore> *conditionsString;
 @end
 
 @implementation OPTLYExperiment
@@ -40,7 +42,12 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
                                                              }];
 }
 
-- (void)setAudienceConditionsWithNSString:(NSString *)string {
+- (nonnull NSString *)getAudienceConditionsString {
+    return _conditionsString ?: @"";
+}
+
+- (void)setAudienceConditionsWithNSString:(nullable NSString *)string {
+    _conditionsString = string ?: @"";
     NSArray *array = [string getValidAudienceConditionsArray];
     [self setAudienceConditionsWithNSArray:array];
 }
@@ -55,7 +62,7 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
     }
 }
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
 
     NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.audienceConditions firstObject];
     if (condition) {

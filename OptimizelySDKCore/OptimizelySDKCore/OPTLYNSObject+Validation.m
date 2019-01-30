@@ -64,6 +64,36 @@
     return string;
 }
 
+- (NSString *)getJSONArrayStringOrEmpty {
+    NSString *string = @"";
+    if (self) {
+        if ([self isKindOfClass:[NSArray class]]) {
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(NSArray *)self options:NSJSONWritingPrettyPrinted error:&error];
+            if (error == nil) {
+                string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            }
+        }
+    }
+    return string;
+}
+
+- (BOOL)isValidExactMatchTypeValue {
+    //Check if given object is acceptable exact match type value
+    if (self) {
+        return ([self isKindOfClass:[NSString class]] || [self isValidNumericAttributeValue] || [self isKindOfClass:[NSNull class]] || [self isValidBooleanAttributeValue]);
+    }
+    return false;
+}
+
+- (BOOL)isValidGTLTMatchTypeValue {
+    //Check if given object is acceptable GT or LT match type value
+    if (self) {
+        return (self != nil && ![self isKindOfClass:[NSNull class]] && [self isValidNumericAttributeValue]);
+    }
+    return false;
+}
+
 - (nullable NSArray *)getValidAudienceConditionsArray {
     if(self) {
         if ([self isValidStringType]) {
@@ -177,4 +207,5 @@
     }
     return false;
 }
+
 @end

@@ -39,4 +39,7 @@
 - (void)setConditionsWithNSArray:(NSArray *)array;
 - (void)setConditionsWithNSDictionary:(NSDictionary *)dictionary;
 
+/// Returns conditions string
+- (NSString *)getConditionsString;
+
 @end

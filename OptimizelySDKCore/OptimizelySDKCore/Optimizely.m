@@ -383,7 +383,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                      attributes:attributes];
 }
     
--(NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
+- (NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
                                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
     
     
@@ -919,7 +919,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
 
 + (NSString *)stringOrEmpty:(NSString *)str {
-    NSString *string = str != nil ? str : @"";
+    NSString *string = str ?: @"";
     return string;
 }
 
