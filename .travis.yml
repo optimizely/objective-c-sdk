@@ -30,7 +30,6 @@ jobs:
     - stage: 'Integration tests'
       env:
         - SDK=objective-c
-        - TESTAPP_TAG=master
         - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
       cache: false
       before_install: skip
