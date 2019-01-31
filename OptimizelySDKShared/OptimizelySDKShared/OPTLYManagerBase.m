@@ -86,7 +86,9 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 @try {
-                    [(NSObject *)self.userProfileService performSelector:selector withObject:ids];
+                    IMP imp = [self.userProfileService.class instanceMethodForSelector:selector];
+                    void (*func)(id, SEL, NSArray *) = (void *)imp;
+                    func(self.userProfileService, selector, ids);
                 }
                 @catch(NSException *e) {
                     [self.logger logMessage:@"Error cleaning up user profile service" withLevel:OptimizelyLogLevelError];
