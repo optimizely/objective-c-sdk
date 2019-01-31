@@ -42,7 +42,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
 
 @implementation OPTLYBucketer
 
--(id)init {
+- (id)init {
     @try {
         NSAssert(NO, @"Use initWithConfig:");
     } @catch (NSException *exception) {

@@ -40,7 +40,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 
 @implementation OPTLYEventBuilderDefault : NSObject
 
--(instancetype)initWithConfig:(OPTLYProjectConfig *)config {
+- (instancetype)initWithConfig:(OPTLYProjectConfig *)config {
     self = [super init];
     if (self != nil) {
         _config = config;
@@ -53,7 +53,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 // string, double, float, int, or boolean.
 // The OPTLYJSONModel cannot support a generic primitive/object type, so each event tag
 // value would have to be manually checked and converted to the appropriate OPTLYEventFeature type.
--(NSDictionary *)buildImpressionEventForUser:(NSString *)userId
+- (NSDictionary *)buildImpressionEventForUser:(NSString *)userId
                                   experiment:(OPTLYExperiment *)experiment
                                    variation:(OPTLYVariation *)variation
                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
@@ -68,7 +68,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
     return impressionParams;
 }
 
--(NSDictionary *)buildConversionEventForUser:(NSString *)userId
+- (NSDictionary *)buildConversionEventForUser:(NSString *)userId
                                        event:(OPTLYEvent *)event
                                    eventTags:(NSDictionary *)eventTags
                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes {

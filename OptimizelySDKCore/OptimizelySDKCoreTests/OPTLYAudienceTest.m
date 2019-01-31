@@ -39,7 +39,7 @@ static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name
     XCTAssertFalse([[audience evaluateConditionsWithAttributes:@{@"browser_type" : @"wrong_value"} projectConfig:nil] boolValue]);
 }
 
-- (void)testAudienceWithNotInitializedFromDictinoaryEvaluatesCorrectly {
+- (void)testAudienceWithNotInitializedFromDictionaryEvaluatesCorrectly {
     OPTLYAudience *audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
                                                                           @"name" : kAudienceName,
                                                                           @"conditions" : kAudienceConditionsWithNot}

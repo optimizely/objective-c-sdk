@@ -483,7 +483,14 @@
     if (experiment.audienceConditions.count == 0) {
         return true;
     }
+    
+    // Log Experiment Evaluation Started
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment, experiment.experimentKey, [experiment getAudienceConditionsString]];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     BOOL areAttributesValid = [[experiment evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
+    // Log Evaluation Result
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, areAttributesValid ? @"TRUE" : @"FALSE"];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     if (areAttributesValid) {
         return areAttributesValid;
     }

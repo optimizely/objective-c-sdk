@@ -116,7 +116,7 @@ dispatch_queue_t dispatchEventQueue()
     return _dispatchEventQueue;
 }
 
--(OPTLYNetworkService *)networkService {
+- (OPTLYNetworkService *)networkService {
     if (!_networkService) {
         _networkService = [OPTLYNetworkService new];
     }

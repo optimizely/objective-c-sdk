@@ -460,7 +460,7 @@ static NSString * const kClientEngine = @"tvos-sdk";
 
 #pragma mark - isValidKeyString
 
--(void)testIsValidKeyString {
+- (void)testIsValidKeyString {
     XCTAssertTrue([OPTLYDatafileConfig isValidKeyString:@"12121212" ]);
     NSString *strTest = nil;
     XCTAssertFalse([OPTLYDatafileConfig isValidKeyString:strTest]);

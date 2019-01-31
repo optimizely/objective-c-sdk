@@ -26,8 +26,8 @@
 
 @interface OPTLYAudienceBaseCondition : NSObject <OPTLYCondition>
 
-@property (nonatomic, strong) NSString *audienceId;
-+(BOOL)isBaseConditionJSON:(NSData *)jsonData;
+@property (nonatomic, strong, nonnull) NSString *audienceId;
++(BOOL)isBaseConditionJSON:(nonnull NSData *)jsonData;
 
 @end
 
