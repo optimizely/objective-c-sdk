@@ -8,9 +8,9 @@ env:
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
     - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
-    - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.3 NAME='iPhone 6s'
+    - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.4 NAME='iPhone 6s'
     - SCHEME=OptimizelySDKTVOS TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=10.2 NAME='Apple TV 1080p'
-    - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+    - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.4 NAME='Apple TV 1080p'
 before_install: 
   - gem install slather --no-rdoc --no-ri --no-document --quiet
 script:
