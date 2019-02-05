@@ -22,3 +22,24 @@ after_success:
   - slather
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
 
+# Integration tests need to run first to reset the PR build status to pending
+stages:
+  - 'Integration tests'
+  - 'Test'
+
+jobs:
+  include:
+    - stage: 'Integration tests'
+      env:
+        - SDK=objective-c
+        - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+      cache: false
+      before_install: skip
+      install:
+        - "pip install awscli"
+      before_script:
+        - "aws s3 cp s3://optimizely-travisci-artifacts/ci/trigger_fullstack-sdk-compat.sh ci/ && chmod u+x ci/trigger_fullstack-sdk-compat.sh"
+      script:
+        - "ci/trigger_fullstack-sdk-compat.sh"
+      # travis_terminate not supported by darwin
+      after_success: skip
