@@ -487,14 +487,17 @@
     // Log Experiment Evaluation Started
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment, experiment.experimentKey, [experiment getAudienceConditionsString]];
     [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-    BOOL areAttributesValid = [[experiment evaluateConditionsWithAttributes:attributes projectConfig:config] boolValue];
+    NSNumber *areAttributesValid = [experiment evaluateConditionsWithAttributes:attributes projectConfig:config];
+    
     // Log Evaluation Result
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, areAttributesValid ? @"TRUE" : @"FALSE"];
+    NSString *resultMessage = @"";
+    resultMessage = (areAttributesValid == nil ? @"UNKNOWN" : ([areAttributesValid boolValue] ? @"TRUE" : @"FALSE"));
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, resultMessage];
     [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    if (areAttributesValid) {
-        return areAttributesValid;
+    if (areAttributesValid == nil) {
+        return false;
     }
-    return false;
+    return [areAttributesValid boolValue];
 }
 
 // Returns true if evaluation should be done using audience conditions, else returns false

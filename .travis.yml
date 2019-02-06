@@ -13,6 +13,8 @@ env:
     - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 before_install: 
   - gem install slather --no-rdoc --no-ri --no-document --quiet
+addons:
+  srcclr: true
 script:
   - pod spec lint --quick
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|failed|crash|exit|FAILED|Failing|failures)"; fi
@@ -20,3 +22,24 @@ after_success:
   - slather
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
 
+# Integration tests need to run first to reset the PR build status to pending
+stages:
+  - 'Integration tests'
+  - 'Test'
+
+jobs:
+  include:
+    - stage: 'Integration tests'
+      env:
+        - SDK=objective-c
+        - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+      cache: false
+      before_install: skip
+      install:
+        - "pip install awscli"
+      before_script:
+        - "aws s3 cp s3://optimizely-travisci-artifacts/ci/trigger_fullstack-sdk-compat.sh ci/ && chmod u+x ci/trigger_fullstack-sdk-compat.sh"
+      script:
+        - "ci/trigger_fullstack-sdk-compat.sh"
+      # travis_terminate not supported by darwin
+      after_success: skip

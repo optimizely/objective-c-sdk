@@ -87,6 +87,11 @@
     else if ([self.value isValidBooleanAttributeValue] && [userAttribute isValidBooleanAttributeValue]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
+    
+    // Log Invalid Attribute Value Type
+    NSString *userAttributeClassName = NSStringFromClass([userAttribute class]) ?: @"null";
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
+    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
     return NULL;
 }
 
@@ -114,7 +119,7 @@
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
@@ -147,7 +152,7 @@
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
@@ -181,7 +186,7 @@
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
-            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         }
         else {
             NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);

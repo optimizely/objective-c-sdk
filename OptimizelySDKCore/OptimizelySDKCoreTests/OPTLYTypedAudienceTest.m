@@ -388,6 +388,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 - (void)testExactMatcherReturnsNullWhenTypeMismatch {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @YES};
     NSDictionary *attributesPassOrValue2 = @{@"attr_value" : @"abcd"};
     NSDictionary *attributesPassOrValue3 = @{@"attr_value" : @NO};
@@ -396,6 +397,14 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     
     OPTLYAndCondition *andCondition1 = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithExactMatchStringType]];
     XCTAssertNil([andCondition1 evaluateConditionsWithAttributes:attributesPassOrValue1 projectConfig:self.optimizelyTypedAudience.config]);
+    
+    OPTLYBaseCondition *baseCondition = (OPTLYBaseCondition *)[((OPTLYOrCondition *)[((OPTLYOrCondition *)[andCondition1.subConditions firstObject]).subConditions firstObject]).subConditions firstObject];
+    NSString *userAttributeClassName = NSStringFromClass([[attributesPassOrValue1 objectForKey:@"attr_value"] class]);
+    userAttributeClassName = userAttributeClassName ?: @"null";
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, [baseCondition toString], userAttributeClassName, baseCondition.name];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
+    
     XCTAssertNil([andCondition1 evaluateConditionsWithAttributes:attributesPassOrValue5 projectConfig:self.optimizelyTypedAudience.config]);
     
     OPTLYAndCondition *andCondition2 = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithExactMatchBoolType]];
@@ -511,7 +520,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, [baseCondition toString], baseCondition.name];
-    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute, [baseCondition toString], baseCondition.name];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
@@ -577,7 +586,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue5 projectConfig:self.optimizelyTypedAudience.config]);
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, [baseCondition toString], baseCondition.name];
-    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     [loggerMock stopMocking];
 }
@@ -652,7 +661,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     
     XCTAssertNil([andCondition evaluateConditionsWithAttributes:attributesPassOrValue5 projectConfig:self.optimizelyTypedAudience.config]);
     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, [baseCondition toString], baseCondition.name];
-    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelDebug]);
     
     [loggerMock stopMocking];
 }
