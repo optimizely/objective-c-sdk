@@ -264,6 +264,7 @@ NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditi
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment = @"[AUDIENCE EVALUATOR] Evaluating audiences for experiment %@: %@.";
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because no value was passed for user attribute %@.";
 NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because a null value was passed for user attribute %@.";
+NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity = @"[AUDIENCE EVALUATOR] Audience condition %@ evaluated to UNKNOWN because the number value for user attribute %@ is not in the range [-2^53, +2^53].";
 // error
 
 @implementation OPTLYLoggerMessages

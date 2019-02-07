@@ -270,6 +270,7 @@ extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWith
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity;
 // error
 
 @interface OPTLYLoggerMessages : NSObject

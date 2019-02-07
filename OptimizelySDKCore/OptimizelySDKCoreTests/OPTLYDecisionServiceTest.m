@@ -288,7 +288,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
     
     [self.typedAudienceDecisionService isUserInExperiment:self.typedAudienceConfig experiment:experiment attributes:self.attributes];
-    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, @"UNKNOWN"];
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult, experiment.experimentKey, @"FALSE"];
     OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelInfo]);
     
 

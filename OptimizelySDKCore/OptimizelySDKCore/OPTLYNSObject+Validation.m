@@ -81,7 +81,7 @@
 - (BOOL)isValidExactMatchTypeValue {
     //Check if given object is acceptable exact match type value
     if (self) {
-        return ([self isKindOfClass:[NSString class]] || [self isValidNumericAttributeValue] || [self isKindOfClass:[NSNull class]] || [self isValidBooleanAttributeValue]);
+        return ([self isKindOfClass:[NSString class]] || ([self isNumericAttributeValue] && [self isFiniteNumber]) || [self isKindOfClass:[NSNull class]] || [self isValidBooleanAttributeValue]);
     }
     return false;
 }
@@ -89,7 +89,7 @@
 - (BOOL)isValidGTLTMatchTypeValue {
     //Check if given object is acceptable GT or LT match type value
     if (self) {
-        return (self != nil && ![self isKindOfClass:[NSNull class]] && [self isValidNumericAttributeValue]);
+        return (self != nil && ![self isKindOfClass:[NSNull class]] && [self isNumericAttributeValue] && [self isFiniteNumber]);
     }
     return false;
 }
@@ -146,7 +146,7 @@
             return true;
         }
         //check value is valid numeric attribute
-        if ([self isValidNumericAttributeValue]) {
+        if ([self isNumericAttributeValue] && [self isFiniteNumber]) {
             return true;
         }
     }
@@ -164,25 +164,17 @@
     return false;
 }
 
-- (BOOL)isValidNumericAttributeValue {
+- (BOOL)isNumericAttributeValue {
     if (self) {
         NSNumber *number = (NSNumber *)self;
         // check value is NSNumber
         if (number && [number isKindOfClass:[NSNumber class]]) {
             const char *objCType = [number objCType];
-            
-            // check for Nan
-            if (isnan([number doubleValue])) {
-                return false;
-            }
+    
             // check NSNumber is bool
             CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
             CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
             if (boolID == numID) {
-                return false;
-            }
-            // check for infinity
-            if (isinf([number doubleValue])) {
                 return false;
             }
             // check NSNumber is of type int, double
@@ -199,7 +191,19 @@
             || (strcmp(objCType, @encode(char)) == 0)
             || (strcmp(objCType, @encode(unsigned char)) == 0);
             
-            if (isNumeric) {
+            return isNumeric;
+        }
+    }
+    return false;
+}
+
+- (BOOL)isFiniteNumber {
+    if (self) {
+        NSNumber *number = (NSNumber *)self;
+        // check value is NSNumber
+        if (number && [number isKindOfClass:[NSNumber class]]) {
+            // check for Nan and infinity
+            if (!isnan([number doubleValue]) && !isinf([number doubleValue])) {
                 NSNumber *maxValue = [NSNumber numberWithDouble:pow(2,53)];
                 return (fabs([number doubleValue]) <= [maxValue doubleValue]);
             }

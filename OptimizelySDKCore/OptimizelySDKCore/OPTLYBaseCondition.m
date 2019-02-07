@@ -65,21 +65,18 @@
         [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
-    // check if attribute value is invalid
-    NSObject *userAttribute = [attributes objectForKey:self.name];
-    if (![userAttribute isValidExactMatchTypeValue]) {
-        // Log Invalid Attribute Value Type
-        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]) ?: @"null";
-        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
-        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
-        return NULL;
-    }
     
+    NSObject *userAttribute = [attributes objectForKey:self.name];
     if ([self.value isValidStringType] && [userAttribute isValidStringType]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
     }
-    else if ([self.value isValidNumericAttributeValue] && [userAttribute isValidNumericAttributeValue]) {
-        return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
+    else if ([self.value isNumericAttributeValue] && [userAttribute isNumericAttributeValue]) {
+        if ([userAttribute isFiniteNumber]) {
+            return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
+        }
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity, self.stringRepresentation, self.name];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+        return NULL;
     }
     else if ([self.value isKindOfClass:[NSNull class]] && [userAttribute isKindOfClass:[NSNull class]]) {
         return [NSNumber numberWithBool:[self.value isEqual:userAttribute]];
@@ -89,9 +86,15 @@
     }
     
     // Log Invalid Attribute Value Type
-    NSString *userAttributeClassName = NSStringFromClass([userAttribute class]) ?: @"null";
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
-    [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    if ([userAttribute class] != nil) {
+        NSString *userAttributeClassName = NSStringFromClass([userAttribute class]);
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+    }
+    else {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
     return NULL;
 }
 
@@ -137,7 +140,7 @@
     // check if user attributes contain a value greater than our value
     
     // check if condition value is invalid
-    if (self.value == nil || [self.value isKindOfClass:[NSNull class]] || ![self.value isValidNumericAttributeValue]) {
+    if (![self.value isValidGTLTMatchTypeValue]) {
         return NULL;
     }
     // check if attributes exists
@@ -148,7 +151,7 @@
     }
     // check if user attributes are invalid
     NSObject *userAttribute = [attributes objectForKey:self.name];
-    if (![userAttribute isValidNumericAttributeValue]) {
+    if (![userAttribute isNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
@@ -159,6 +162,11 @@
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
+        return NULL;
+    }
+    if (![userAttribute isFiniteNumber]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity, self.stringRepresentation, self.name];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
     
@@ -182,7 +190,7 @@
     }
     // check if user attributes are invalid
     NSObject *userAttribute = [attributes objectForKey:self.name];
-    if (![userAttribute isValidNumericAttributeValue]) {
+    if (![userAttribute isNumericAttributeValue]) {
         // Log Invalid Attribute Value Type
         if (!userAttribute || [userAttribute isKindOfClass:[NSNull class]]) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull, self.stringRepresentation, self.name];
@@ -193,6 +201,11 @@
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType, self.stringRepresentation, userAttributeClassName, self.name];
             [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
+        return NULL;
+    }
+    if (![userAttribute isFiniteNumber]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity, self.stringRepresentation, self.name];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
         return NULL;
     }
     
