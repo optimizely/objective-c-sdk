@@ -81,14 +81,6 @@ extern NSString * const OPTLYDatafileKeysMatchTypeLessThan;
 extern NSString * const OPTLYDatafileKeysMatchTypeRegex;
 // Custom Attribute Condition Types
 extern NSString * const OPTLYDatafileKeysCustomAttributeConditionType;
-// Live Variables (DEPRECATED)
-extern NSString * const OPTLYDatafileKeysVariableId;
-extern NSString * const OPTLYDatafileKeysVariableKey;
-extern NSString * const OPTLYDatafileKeysVariableType;
-extern NSString * const OPTLYDatafileKeysVariableValue;
-// Variation Live Variable (DEPRECATED)
-extern NSString * const OPTLYDatafileKeysVariationVariableId;
-extern NSString * const OPTLYDatafileKeysVariationVariableValue;
 // User Profile Service (not in datafile yet)
 extern NSString * const OPTLYDatafileKeysUserProfileServiceUserId;
 extern NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap;
