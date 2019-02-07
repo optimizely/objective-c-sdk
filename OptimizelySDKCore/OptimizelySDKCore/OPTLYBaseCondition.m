@@ -57,6 +57,8 @@
     
     // check if condition value is invalid
     if (![self.value isValidExactMatchTypeValue]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, self.stringRepresentation];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
     // check if attributes exists
@@ -107,7 +109,9 @@
     // check if user attributes contain our value as substring
     
     // check if condition value is invalid
-    if (self.value == nil || [self.value isKindOfClass:[NSNull class]] || ![self.value isKindOfClass: [NSString class]]) {
+    if (![self.value isValidStringType]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, self.stringRepresentation];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
     // check if attributes exists
@@ -141,6 +145,8 @@
     
     // check if condition value is invalid
     if (![self.value isValidGTLTMatchTypeValue]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, self.stringRepresentation];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
     // check if attributes exists
@@ -180,6 +186,8 @@
     
     // check if condition value is invalid
     if (![self.value isValidGTLTMatchTypeValue]) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, self.stringRepresentation];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
     // check if attributes exists
@@ -224,6 +232,8 @@
     }
     else if (self.value == NULL && ![self.match isEqualToString:OPTLYDatafileKeysMatchTypeExists]){
         //Check if given value is null, which is only acceptable if match type is Exists
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, self.stringRepresentation];
+        [config.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         return NULL;
     }
     if (!self.match || [self.match isEqualToString:@""]){

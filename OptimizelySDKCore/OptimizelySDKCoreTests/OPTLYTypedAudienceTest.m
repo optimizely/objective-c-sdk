@@ -276,6 +276,7 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 - (void)testEvaluateReturnsNullWithNullValueTypeAndNonExistMatchType {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type",
                                              @"value": [NSNull null],
                                              @"type": @"custom_attribute",
@@ -300,18 +301,27 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
     NSDictionary *userAttributes = @{@"device_type" : @"iPhone"};
     OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue2 error:nil];
     XCTAssertTrue([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
     
     condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue3 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue4 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
     
     condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue5 error:nil];
     XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
 }
 
 - (void)testEvaluateReturnsNullWithInvalidMatchType {
@@ -340,6 +350,21 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 ///MARK:- ExactMatcher Tests
+
+- (void)testExactMatcherReturnsNullWhenUnsupportedConditionValue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type",
+                                             @"value": @{},
+                                             @"type": @"custom_attribute",
+                                             @"match": @"exact"};
+    
+    NSDictionary *userAttributes = @{@"device_type" : @"iPhone"};
+    OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
+}
 
 - (void)testExactMatcherReturnsNullWhenNoUserProvidedValue {
     NSDictionary *attributesPassOrValue = @{};
@@ -491,6 +516,21 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 
 ///MARK:- SubstringMatcher Tests
 
+- (void)testSubstringMatcherReturnsNullWhenUnsupportedConditionValue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type",
+                                             @"value": @{},
+                                             @"type": @"custom_attribute",
+                                             @"match": @"substring"};
+    
+    NSDictionary *userAttributes = @{@"device_type" : @"iPhone"};
+    OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
+}
+
 - (void)testSubstringMatcherReturnsFalseWhenConditionValueIsNotSubstringOfUserValue {
     NSDictionary *attributesPassOrValue = @{@"attr_value":@"Breaking news!"};
     OPTLYAndCondition *andCondition = (OPTLYAndCondition *)[self getFirstConditionFromArray:[self kAudienceConditionsWithSubstringMatchType]];
@@ -544,6 +584,21 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 ///MARK:- GTMatcher Tests
+
+- (void)testGTMatcherReturnsNullWhenUnsupportedConditionValue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type",
+                                             @"value": @{},
+                                             @"type": @"custom_attribute",
+                                             @"match": @"gt"};
+    
+    NSDictionary *userAttributes = @{@"device_type" : @"iPhone"};
+    OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
+}
 
 - (void)testGTMatcherReturnsFalseWhenAttributeValueIsLessThanOrEqualToConditionValue {
     NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @5};
@@ -617,6 +672,21 @@ static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"n
 }
 
 ///MARK:- LTMatcher Tests
+
+- (void)testLTMatcherReturnsNullWhenUnsupportedConditionValue {
+    id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
+    NSDictionary *attributesPassOrValue1 = @{@"name": @"device_type",
+                                             @"value": @{},
+                                             @"type": @"custom_attribute",
+                                             @"match": @"lt"};
+    
+    NSDictionary *userAttributes = @{@"device_type" : @"iPhone"};
+    OPTLYBaseCondition *condition = [[OPTLYBaseCondition alloc] initWithDictionary:attributesPassOrValue1 error:nil];
+    XCTAssertNil([condition evaluateConditionsWithAttributes:userAttributes projectConfig:self.optimizelyTypedAudience.config]);
+    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType, [condition toString]];
+    OCMVerify([loggerMock logMessage:logMessage withLevel:OptimizelyLogLevelWarning]);
+    [loggerMock stopMocking];
+}
 
 - (void)testLTMatcherReturnsFalseWhenAttributeValueIsGreaterThanOrEqualToConditionValue {
     NSDictionary *attributesPassOrValue1 = @{@"attr_value" : @15};
