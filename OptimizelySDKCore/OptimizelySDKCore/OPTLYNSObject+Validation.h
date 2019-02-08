@@ -105,11 +105,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isValidBooleanAttributeValue;
 
 /**
- * Returns if object is a valid numeric attribute
+ * Returns if object is a numeric attribute
  *
- * @returns A Bool whether object is a valid numeric attribute.
+ * @returns A Bool whether object is a numeric attribute.
  **/
-- (BOOL)isValidNumericAttributeValue;
+- (BOOL)isNumericAttributeValue;
+
+/**
+ * Returns if object is a finite number
+ *
+ * @returns A Bool whether object is a finite number.
+ **/
+- (BOOL)isFiniteNumber;
 
 @end
 
