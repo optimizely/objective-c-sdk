@@ -163,15 +163,6 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 
 // error
 
-// ---- Live Variables ---- (DEPRECATED)
-// info
-extern NSString *const OPTLYLoggerMessagesVariableValue;
-extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
-// warning
-extern NSString *const OPTLYLoggerMessagesLiveVariablesDeprecated;
-extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
-extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
-
 // ---- Manager ----
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid;
@@ -263,13 +254,15 @@ extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWi
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult;
 // warning
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType;
-extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType;
 // debug
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment;
 extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity;
 // error
 
 @interface OPTLYLoggerMessages : NSObject

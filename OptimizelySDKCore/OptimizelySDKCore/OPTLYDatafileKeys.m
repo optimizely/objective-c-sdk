@@ -77,14 +77,6 @@ NSString * const OPTLYDatafileKeysMatchTypeLessThan = @"lt";
 NSString * const OPTLYDatafileKeysMatchTypeRegex = @"regex";
 // Custom Attribute Condition Types
 NSString * const OPTLYDatafileKeysCustomAttributeConditionType = @"custom_attribute";
-// Live Variables (DEPRECATED)
-NSString * const OPTLYDatafileKeysVariableId = @"id";
-NSString * const OPTLYDatafileKeysVariableKey = @"key";
-NSString * const OPTLYDatafileKeysVariableType = @"type";
-NSString * const OPTLYDatafileKeysVariableValue = @"defaultValue";
-// Variation Live Variable (DEPRECATED)
-NSString * const OPTLYDatafileKeysVariationVariableId = @"id";
-NSString * const OPTLYDatafileKeysVariationVariableValue = @"value";
 // User Profile Service (not in datafile yet)
 NSString * const OPTLYDatafileKeysUserProfileServiceUserId = @"user_id";
 NSString * const OPTLYDatafileKeysUserProfileServiceExperimentBucketMap = @"experiment_bucket_map";
