@@ -157,15 +157,6 @@ NSString *const OPTLYLoggerMessagesEventDispatcherEventSaved = @"[EVENT DISPATCH
 NSString *const OPTLYLoggerMessagesEventDispatcherRemovedEvent = @"[EVENT DISPATCHER] %@ removed: %@ with error: %@"; //event type, event, error
 NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent = @"[EVENT DISPATCHER] Invalid event.";
 
-// ---- Live Variables ---- (DEPRECATED)
-// info
-NSString *const OPTLYLoggerMessagesVariableValue = @"[LIVE VARIABLES] Variable %@ has value: %@.";
-NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable = @"[LIVE VARIABLES] Variation not found for user ID: %@ with experiment key: %@ containing live variable: %@.";
-// warning
-NSString *const OPTLYLoggerMessagesLiveVariablesDeprecated = @"[LIVE VARIABLES] Mobile 1.x Live Variables are DEPRECATED.  Please migrate to Full Stack 2.0 Feature Management.";
-NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable = @"[LIVE VARIABLES] No experiment was found to contain variable key: %@.";
-NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey = @"[LIVE VARIABLES] Live variable not found for variable key: %@."; // live variable key
-
 // ---- Manager ----
 // error
 NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid = @"[MANAGER] An Optimizely Manager Builder instance was not able to be initialized because the OPTLYManagerBuilderBlock was nil.";

@@ -63,10 +63,6 @@
 #import "OPTLYVariation.h"
 #import "OPTLYControlAttributes.h"
 
-// (DEPRECATED)
-#import "OPTLYVariable.h"
-#import "OPTLYVariationVariable.h"
-
 #import "OPTLYJSONModel.h"
 #import "OPTLYJSONModelClassProperty.h"
 #import "OPTLYJSONModelError.h"

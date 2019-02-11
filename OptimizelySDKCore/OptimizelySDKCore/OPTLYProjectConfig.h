@@ -60,8 +60,6 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute *><OPTLYAttribute> *attributes;
 /// List of group objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYGroup *><OPTLYGroup> *groups;
-/// List of live variable objects (DEPRECATED)
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable *><OPTLYVariable, OPTLYOptional> *variables;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment *><OPTLYExperiment, OPTLYOptional> *allExperiments;
@@ -150,11 +148,6 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  * Get an audience for a given audience id.
  */
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
-
-/**
- * Get a variable for a given live variable key. (DEPRECATED)
- */
-- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
 
 /**
  * Get forced variation for a given experiment key and user id.
