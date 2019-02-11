@@ -316,9 +316,14 @@ static NSData *whitelistingDatafile;
 - (void)testRemoveInvalidExperiments
 {
     if (self.userProfileService ) {
-        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:@[]];
-        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:nil];
-        [self.userProfileService performSelector:@selector(removeInvalidExperimentsForAllUsers:) withObject:@[kExperimentId3a]];
+        SEL selector = NSSelectorFromString(@"removeInvalidExperimentsForAllUsers:");
+        
+        IMP imp = [self.userProfileService.class instanceMethodForSelector:selector];
+        void (*func)(id, SEL, NSArray *) = (void *)imp;
+
+        func(self.userProfileService, selector, @[]);
+        func(self.userProfileService, selector, nil);
+        func(self.userProfileService, selector, @[kExperimentId3a]);
     }
     NSDictionary *userProfile1 = [self.userProfileService lookup:kUserId1];
     XCTAssertNil(userProfile1[kExperimentId3a], @"User profile experiment entry should be removed");

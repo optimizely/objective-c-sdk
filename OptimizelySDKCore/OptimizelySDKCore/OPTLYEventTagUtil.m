@@ -106,7 +106,6 @@
     // if the object is an NSNumber, then char, floats, and boolean values will be cast to a double int
     if ([value isKindOfClass:[NSNumber class]]) {
         answer = (NSNumber*)value;
-        const char *objCType = [answer objCType];
         
         if ([self isNSNumberBoolean:answer]) {
             answer = nil;
