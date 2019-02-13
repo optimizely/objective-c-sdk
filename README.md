@@ -25,6 +25,9 @@ up an Optimizely X project and start using the SDK.
  
 Please note below that _\<platform\>_ is used to represent the platform on which you are building your app. Currently, we support ```iOS``` and ```tvOS``` platforms.
 
+**note: if you or another framework are using sqlite, then you should probably add compiler options for thead safe sqlite: SQLITE_THREADSAFE=1
+https://www.sqlite.org/threadsafe.html
+
 #### Cocoapod 
 1. Add the following lines to the _Podfile_:<pre>
     ```use_frameworks!```
@@ -61,7 +64,7 @@ github "optimizely/objective-c-sdk" ~> 3.0.0
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKShared.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDKUserProfileService.framework```
             ```$(SRCROOT)/Carthage/Build/<platform>/OptimizelySDK<platform>.framework```</pre>
-        - Add the paths to the copied frameworks to the **Output Files** list:<pre>
+      - Add the paths to the copied frameworks to the **Output Files** list:<pre>
             ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKCore.framework```
             ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKDatafileManager.framework```
             ```$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OptimizelySDKEventDispatcher.framework```
