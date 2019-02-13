@@ -4,6 +4,7 @@
 February 11, 2019
 
 The 3.0 release improves event tracking and supports additional audience targeting functionality.
+
 ### New Features:
 * Event tracking:
   * The Track method now dispatches its conversion event _unconditionally_, without first determining whether the user is targeted by a known experiment that uses the event. This may increase outbound network traffic.
@@ -23,19 +24,18 @@ The 3.0 release improves event tracking and supports additional audience targeti
 * Support for A/B tests, feature tests, and feature rollouts whose audiences are combined using `"and"` and `"not"` operators, not just the `"or"` operator.
 * Datafile-version compatibility check: The SDK will remain uninitialized (i.e., will gracefully fail to activate experiments and features) if given a datafile version greater than 4.
 * Updated Pull Request template and commit message guidelines.
-* Only remove old variation assignments from the user profile service when there are >= 100 persisted assignments.
 * Support for empty bucketing IDs when evaluating feature rollouts.
 
 ### Breaking Changes:
 * Previously, notification listeners were only given string-valued user attributes because only strings could be passed into various method calls. That is no longer the case. The `ActivateListener` and `TrackListener` interfaces now receive user attributes as `NSDictionary<NSString *, NSObject *> * _Nullable` instead of  `NSDictionary<NSString *,NSString *> * _Nonnull`.
 * The Localytics integration now relies on the user profile service to attribute events to the user's variations.
-* Drops support for the `getVariableBoolean`, `getVariableDouble`, `getVariableInteger`, and `getVariableString` APIs. Please migrate to the Feature Management APIs which are available since 2.x releases.
+* Drops support for the `variableBoolean`, `variableDouble`, `variableInteger`, and `variableString` APIs. Please migrate to the Feature Management APIs which were introduced in the 2.x releases.
 
 ### Bug Fixes:
 * Experiments and features can no longer activate when a negatively targeted attribute has a missing, null, or malformed value.
   * Audience conditions (except for the new `exists` matcher) no longer resolve to `false` when they fail to find an legitimate value for the targeted user attribute. The result remains `null` (unknown). Therefore, an audience that negates such a condition (using the `"not"` operator) can no longer resolve to `true` unless there is an unrelated branch in the condition tree that itself resolves to `true`.
 * Support for empty user IDs.
-* Updated JSONModel definitions.
+* Updated `JSONModel` definitions.
 
 ## 2.1.6
 January 25th, 2019
@@ -47,6 +47,7 @@ This includes a fix for revenue and metrics.  Numbers 0 and 1 were evaluated as 
 
 ### Bug Fixes:
 * Check for BOOL type but allow number values 0 and 1 in revenue and metrics to go to results.
+* Only remove old variation assignments from the user profile service when there are >= 100 persisted assignments.
 
 ## 2.1.5
 December 6th, 2018
