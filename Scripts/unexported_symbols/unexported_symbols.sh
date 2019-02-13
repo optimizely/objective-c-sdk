@@ -66,10 +66,13 @@ main() {
   }
   {
     # Rebuild "${universal_framework}" always.
+    # set to use "Legacy Build System" (to avoid DB build error)
+    # - https://stackoverflow.com/questions/51153525/xcode-10-unable-to-attach-db-error
     echo "Building Universal Framework"
     xcodebuild -project "${universal_dir}/OptimizelySDKUniversal.xcodeproj" \
                -target "OptimizelySDKiOS-Universal" \
-               -configuration "Release"
+               -configuration "Release" \
+                -UseModernBuildSystem=NO
   }
   local arm64_slice="${source_dir}/OptimizelySDKiOS-arm64"
   {
