@@ -25,6 +25,9 @@ up an Optimizely X project and start using the SDK.
  
 Please note below that _\<platform\>_ is used to represent the platform on which you are building your app. Currently, we support ```iOS``` and ```tvOS``` platforms.
 
+**note: if you or another framework are using sqlite, then you should probably add compiler options for thead safe sqlite: SQLITE_THREADSAFE=1
+https://www.sqlite.org/threadsafe.html
+
 #### Cocoapod 
 1. Add the following lines to the _Podfile_:<pre>
     ```use_frameworks!```
