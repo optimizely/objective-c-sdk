@@ -98,6 +98,6 @@ __attribute((deprecated("Use OPTLYEventDispatcherDefault initWithBuilder method 
 /**
  * Flush all events in queue (cached and saved).
  */
--(void)flushEvents;
+- (void)flushEvents;
 
 @end
