@@ -18,6 +18,7 @@
 #import "OPTLYAttribute.h"
 #import "OPTLYAudience.h"
 #import "OPTLYBaseCondition.h"
+#import "OPTLYAudienceBaseCondition.h"
 #import "OPTLYBucketer.h"
 #import "OPTLYBuilder.h"
 #import "OPTLYCondition.h"
@@ -61,10 +62,6 @@
 #import "OPTLYVariableUsage.h"
 #import "OPTLYVariation.h"
 #import "OPTLYControlAttributes.h"
-
-// (DEPRECATED)
-#import "OPTLYVariable.h"
-#import "OPTLYVariationVariable.h"
 
 #import "OPTLYJSONModel.h"
 #import "OPTLYJSONModelClassProperty.h"

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -49,20 +49,20 @@ NS_ASSUME_NONNULL_END
 /// Flag for Bot Filtering
 @property (nonatomic, strong, nonnull) NSNumber<OPTLYOptional> *botFiltering;
 /// List of Optimizely Experiment objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment> *experiments;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYExperiment *><OPTLYExperiment> *experiments;
 /// List of Optimizely Event Type objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYEvent> *events;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYEvent *><OPTLYEvent> *events;
 /// List of audience ids
-@property (nonatomic, strong, nonnull) NSArray<OPTLYAudience> *audiences;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYAudience *><OPTLYAudience> *audiences;
+/// List of typed audience objects
+@property (nonatomic, strong, nullable) NSArray<OPTLYAudience *><OPTLYAudience, OPTLYOptional> *typedAudiences;
 /// List of attributes objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute> *attributes;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYAttribute *><OPTLYAttribute> *attributes;
 /// List of group objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYGroup> *groups;
-/// List of live variable objects (DEPRECATED)
-@property (nonatomic, strong, nonnull) NSArray<OPTLYVariable, OPTLYOptional> *variables;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYGroup *><OPTLYGroup> *groups;
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
-@property (nonatomic, strong, nullable) NSArray<OPTLYExperiment, Ignore> *allExperiments;
+@property (nonatomic, strong, nullable) NSArray<OPTLYExperiment *><OPTLYExperiment, OPTLYOptional> *allExperiments;
 @property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
 @property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
 @property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, Ignore> userProfileService;
@@ -72,9 +72,9 @@ NS_ASSUME_NONNULL_END
 /// Returns the client version number
 @property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
 /// List of Optimizely Feature Flags objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag, OPTLYOptional> *featureFlags;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag *><OPTLYFeatureFlag, OPTLYOptional> *featureFlags;
 /// List of Optimizely Rollouts objects
-@property (nonatomic, strong, nonnull) NSArray<OPTLYRollout, OPTLYOptional> *rollouts;
+@property (nonatomic, strong, nonnull) NSArray<OPTLYRollout *><OPTLYRollout, OPTLYOptional> *rollouts;
 
 /**
  * Initialize the Project Config from a builder block.
@@ -150,11 +150,6 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
 - (nullable OPTLYAudience *)getAudienceForId:(nonnull NSString *)audienceId;
 
 /**
- * Get a variable for a given live variable key. (DEPRECATED)
- */
-- (nullable OPTLYVariable *)getVariableForVariableKey:(nonnull NSString *)variableKey;
-
-/**
  * Get forced variation for a given experiment key and user id.
  */
 - (nullable OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
@@ -165,14 +160,14 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  */
 - (BOOL)setForcedVariation:(nonnull NSString *)experimentKey
                     userId:(nonnull NSString *)userId
-              variationKey:(nonnull NSString *)variationKey;
+              variationKey:(nullable NSString *)variationKey;
 
 /**
  * Get variation for experiment and user ID with user attributes.
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
                                                 userId:(nonnull NSString *)userId
-                                            attributes:(nullable NSDictionary<NSString *,NSString *> *)attributes
+                                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
 
 @end

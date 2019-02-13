@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017, Optimizely, Inc. and contributors                        *
+ * Copyright 2017-2018, Optimizely, Inc. and contributors                        *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -24,8 +24,6 @@
 @class OPTLYVariableUsage;
 @protocol OPTLYVariableUsage;
 @protocol OPTLYVariation;
-// Live Variables (DEPRECATED)
-@protocol OPTLYVariationVariable;
 
 /**
  * This class is a representation of an Optimizely variation.
@@ -37,14 +35,11 @@
 /// The variation's Key.
 @property (nonatomic, strong, nonnull) NSString *variationKey;
 /// The array containing the variables usage instances that are part of this variation.
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage, OPTLYOptional> *variableUsageInstances;
+@property (nonatomic, strong, nullable) NSArray<OPTLYVariableUsage *><OPTLYVariableUsage, OPTLYOptional> *variableUsageInstances;
 /// Flag for Feature Toggle Ability
 @property (nonatomic, assign) BOOL featureEnabled;
 
 /// Gets the variable usage instance for a given variable id
 - (nullable OPTLYVariableUsage *)getVariableUsageForVariableId:(nullable NSString *)variableId;
-
-/// The array containing the variation's live variable information -- variable ID and variable value. (DEPRECATED)
-@property (nonatomic, strong, nullable) NSArray<OPTLYVariationVariable, OPTLYOptional> *variables;
 
 @end
