@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016, Optimizely, Inc. and contributors                        *
+ * Copyright 2016,2018-2019, Optimizely, Inc. and contributors              *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,18 +21,28 @@
 #endif
 #import "OPTLYCondition.h"
 
+// Switchcase implementation for strings
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
+
 @protocol OPTLYBaseCondition
 @end
 
 @interface OPTLYBaseCondition : OPTLYJSONModel <OPTLYCondition>
 
 /// Condition name
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong, nonnull) NSString *name;
 /// Condition type
-@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *type;
 /// Condition value
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong, nullable) NSObject<OPTLYOptional> *value;
+/// Condition match type
+@property (nonatomic, strong, nullable) NSString<OPTLYOptional> *match;
 
-+(BOOL)isBaseConditionJSON:(NSData *)jsonData;
+/// Returns string representation
+- (nonnull NSString *)toString;
+
++(BOOL)isBaseConditionJSON:(nonnull NSData *)jsonData;
 
 @end

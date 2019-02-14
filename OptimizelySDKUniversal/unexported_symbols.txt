@@ -21,3 +21,4 @@ _kDefaultDatafileFetchInterval_s
 _kExpectedDatafileVersion
 _kReservedAttributePrefix
 _networkTasksQueue
+_queueEventQueue

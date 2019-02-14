@@ -46,9 +46,6 @@ extern NSString * const OPTLYErrorHandlerMessagesTrafficAllocationUnknown;
 extern NSString * const OPTLYErrorHandlerMessagesEventDispatchFailed;
 extern NSString * const OPTLYErrorHandlerMessagesConfigInvalid;
 
-// Live Variables (DEPRECATED)
-extern NSString * const OPTLYErrorHandlerMessagesLiveVariableKeyUnknown;
-
 extern NSString * const OPTLYErrorHandlerMessagesManagerBuilderInvalid;
 
 extern NSString *const OPTLYErrorHandlerMessagesDataStoreDatabaseNoSavedEvents;

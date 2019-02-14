@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -163,15 +163,6 @@ extern NSString *const OPTLYLoggerMessagesEventDispatcherInvalidEvent;
 
 // error
 
-// ---- Live Variables ---- (DEPRECATED)
-// info
-extern NSString *const OPTLYLoggerMessagesVariableValue;
-extern NSString *const OPTLYLoggerMessagesNoVariationFoundForExperimentWithLiveVariable;
-// warning
-extern NSString *const OPTLYLoggerMessagesLiveVariablesDeprecated;
-extern NSString *const OPTLYLoggerMessagesNoExperimentsContainVariable;
-extern NSString *const OPTLYLoggerMessagesVariableUnknownForVariableKey;
-
 // ---- Manager ----
 // error
 extern NSString *const OPTLYLoggerMessagesManagerBuilderBlockNotValid;
@@ -204,6 +195,8 @@ extern NSString *const OPTLYLoggerMessagesGroupUnknownForGroupId;
 extern NSString *const OPTLYLoggerMessagesGetVariationNilVariation;
 extern NSString *const OPTLYLoggerMessagesVariationKeyUnknownForExperimentKey;
 extern NSString *const OPTLYLoggerMessagesProjectConfigUserIdInvalid;
+extern NSString *const OPTLYLoggerMessagesProjectConfigExperimentKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesProjectConfigVariationKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesAttributeIsReserved;
 extern NSString *const OPTLYLoggerMessagesAttributeNotFound;
 
@@ -254,6 +247,23 @@ extern NSString *const OPTLYHTTPRequestManagerGETWithParametersAttempt;
 extern NSString *const OPTLYHTTPRequestManagerGETIfModifiedSince;
 extern NSString *const OPTLYHTTPRequestManagerPOSTWithParameters;
 extern NSString *const OPTLYHTTPRequestManagerBackoffRetryStates;
+
+// ---- Audience Evaluator ----
+// info
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationCompletedWithResult;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorExperimentEvaluationCompletedWithResult;
+// warning
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownMatchType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnknownConditionType;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorUnsupportedValueType;
+// debug
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedWithConditions;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorEvaluationStartedForExperiment;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForMissingAttribute;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNull;
+extern NSString *const OPTLYLoggerMessagesAudienceEvaluatorConditionEvaluatedAsUnknownForUnexpectedTypeNanInfinity;
+// error
 
 @interface OPTLYLoggerMessages : NSObject
 

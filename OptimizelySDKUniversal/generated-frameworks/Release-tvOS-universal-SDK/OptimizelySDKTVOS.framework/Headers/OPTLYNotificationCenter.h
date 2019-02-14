@@ -26,19 +26,27 @@ typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
 
 typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
                                  NSString * _Nonnull userId,
-                                 NSDictionary<NSString *,NSString *> * _Nonnull attributes,
+                                 NSDictionary<NSString *, NSObject *> * _Nullable attributes,
                                  OPTLYVariation * _Nonnull variation,
                                  NSDictionary<NSString *,NSObject *> * _Nonnull event);
 
 typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSString * _Nonnull userId,
-                              NSDictionary<NSString *,NSString *> * _Nonnull attributes,
-                              NSDictionary * _Nonnull eventTags,
+                              NSDictionary<NSString *, NSObject *> * _Nullable attributes,
+                              NSDictionary * _Nullable eventTags,
                               NSDictionary<NSString *,NSObject *> * _Nonnull event);
 
-typedef void (^GenericListener)(NSArray * _Nonnull args);
+typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
 typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
+
+extern NSString * _Nonnull const OPTLYNotificationExperimentKey;
+extern NSString * _Nonnull const OPTLYNotificationVariationKey;
+extern NSString * _Nonnull const OPTLYNotificationUserIdKey;
+extern NSString * _Nonnull const OPTLYNotificationAttributesKey;
+extern NSString * _Nonnull const OPTLYNotificationEventKey;
+extern NSString * _Nonnull const OPTLYNotificationEventTagsKey;
+extern NSString * _Nonnull const OPTLYNotificationLogEventParamsKey;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -93,5 +101,5 @@ typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolde
  * @param type type of OPTLYNotificationType to fire.
  * @param args The arg list changes depending on the type of notification sent.
  */
-- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSArray *)args;
+- (void)sendNotifications:(OPTLYNotificationType)type args:(nullable NSDictionary *)args;
 @end

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 // --- Base Parameters ----
 extern NSString * const OPTLYEventParameterKeysAccountId;
 extern NSString * const OPTLYEventParameterKeysProjectId;
+extern NSString * const OPTLYEventParameterKeysEnrichDecisions;
 extern NSString * const OPTLYEventParameterKeysVisitors;
 extern NSString * const OPTLYEventParameterKeysAnonymizeIP;
 extern NSString * const OPTLYEventParameterKeysClientEngine;
