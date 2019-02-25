@@ -86,7 +86,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 @try {
-                    IMP imp = [self.userProfileService.class instanceMethodForSelector:selector];
+                    IMP imp = [((NSObject *)(self.userProfileService)).class instanceMethodForSelector:selector];
                     void (*func)(id, SEL, NSArray *) = (void *)imp;
                     func(self.userProfileService, selector, ids);
                 }
