@@ -33,6 +33,7 @@ jobs:
       env:
         - SDK=objective-c
         - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+        - TESTAPP_TAG=master
       cache: false
       before_install: skip
       install:
