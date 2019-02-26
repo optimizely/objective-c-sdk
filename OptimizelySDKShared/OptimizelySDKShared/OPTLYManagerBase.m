@@ -86,8 +86,11 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                 @try {
+                    // cast to NSObject.  If the user profile service is not the default service, then an exception will be thrown when trying to access this selector.
                     IMP imp = [((NSObject *)(self.userProfileService)).class instanceMethodForSelector:selector];
+                    // cast the function
                     void (*func)(id, SEL, NSArray *) = (void *)imp;
+                    // call it.
                     func(self.userProfileService, selector, ids);
                 }
                 @catch(NSException *e) {
