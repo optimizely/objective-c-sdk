@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.0.1
+February 26th, 2019
+
+This includes a fix for a build error observed with some development settings  
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Type cast id<UserProfileService> to NSObject* to fix a build error with some development settings
+
 ## 3.0.0
 February 14th, 2019
 
