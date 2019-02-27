@@ -71,4 +71,5 @@ iOSInjectionProject/
 
 # tests
 testResults/
+testlog*
 
