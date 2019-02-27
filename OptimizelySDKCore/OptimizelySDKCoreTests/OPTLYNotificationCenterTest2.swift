@@ -53,7 +53,22 @@ class OPTLYNotificationCenterTest2: XCTestCase {
         optimizely?.activate("whiteListExperiment", userId: self.userId)
         XCTAssertEqual(experiment!.experimentKey, experimentKey!)
     }
-    
+
+    func testActivateWithAttributesExample() {
+        var experimentKey:String?
+        var version:Double?
+        let experiment = optimizely?.config?.getExperimentForKey("whiteListExperiment")
+        XCTAssertNotNil(experiment, "Experiment should not be nil to activate")
+        
+        optimizely?.notificationCenter?.addActivateNotificationListener({ (experiment, userId, attributes, variation, logEvent) in
+            experimentKey = experiment.experimentKey
+            version = attributes?["browser_version"] as? Double
+        })
+        optimizely?.activate("whiteListExperiment", userId: self.userId, attributes:["browser_version": 68.1])
+        XCTAssertEqual(experiment!.experimentKey, experimentKey!)
+        XCTAssertEqual(version, 68.1)
+    }
+
     func testTrackExample() {
         var notificationEventKey:String?
         let event = optimizely?.config?.getEventForKey("testEvent")
