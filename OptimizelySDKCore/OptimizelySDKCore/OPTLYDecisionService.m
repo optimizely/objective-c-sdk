@@ -53,7 +53,7 @@
 
 - (OPTLYVariation *)getVariation:(NSString *)userId
                       experiment:(OPTLYExperiment *)experiment
-                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                      attributes:(NSDictionary<NSString *, id> *)attributes
 {
     NSDictionary *userProfileDict = nil;
     OPTLYVariation *bucketedVariation = nil;
@@ -126,7 +126,7 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeature:(OPTLYFeatureFlag *)featureFlag
                                           userId:(NSString *)userId
-                                      attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                      attributes:(NSDictionary<NSString *, id> *)attributes {
     
     //Evaluate in this order:
     
@@ -158,7 +158,7 @@
 # pragma mark - Helper Methods
 
 - (NSString *)getBucketingId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                  attributes:(NSDictionary<NSString *, id> *)attributes {
     
     // By default, the bucketing ID should be the user ID .
     NSString *bucketingId = userId;
@@ -194,7 +194,7 @@
 - (OPTLYFeatureDecision *)getVariationForFeatureGroup:(OPTLYFeatureFlag *)featureFlag
                                               groupId:(NSString *)groupId
                                                userId:(NSString *)userId
-                                           attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                           attributes:(NSDictionary<NSString *, id> *)attributes {
     
     OPTLYFeatureDecision *decision = nil;
     NSString *logMessage = nil;
@@ -230,7 +230,7 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeatureExperiment:(OPTLYFeatureFlag *)featureFlag
                                                     userId:(NSString *)userId
-                                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                                attributes:(NSDictionary<NSString *, id> *)attributes {
     
     NSString *featureFlagKey = featureFlag.key;
     NSArray *experimentIds = featureFlag.experimentIds;
@@ -266,7 +266,7 @@
 
 - (OPTLYFeatureDecision *)getVariationForFeatureRollout:(OPTLYFeatureFlag *)featureFlag
                                                  userId:(NSString *)userId
-                                             attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                             attributes:(NSDictionary<NSString *, id> *)attributes {
     
     NSString *bucketing_id = [self getBucketingId:userId attributes:attributes];
     NSString *featureFlagKey = featureFlag.key;
@@ -451,7 +451,7 @@
 
 - (nullable NSNumber *)evaluateAudienceWithId:(NSString *)audienceId
                                        config:(OPTLYProjectConfig *)config
-                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                                   attributes:(NSDictionary<NSString *, id> *)attributes
 {
     OPTLYAudience *audience = [config getAudienceForId:audienceId];
     return [audience evaluateConditionsWithAttributes:attributes projectConfig:config];
@@ -459,7 +459,7 @@
 
 - (BOOL)evaluateAudienceIdsForExperiment:(OPTLYExperiment *)experiment
                                   config:(OPTLYProjectConfig *)config
-                              attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                              attributes:(NSDictionary<NSString *, id> *)attributes
 {
     NSArray *audienceIds = experiment.audienceIds;
     // if there are no audiences, ALL users should be part of the experiment
@@ -478,7 +478,7 @@
 
 - (BOOL)evaluateAudienceConditionsForExperiment:(OPTLYExperiment *)experiment
                                          config:(OPTLYProjectConfig *)config
-                                     attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                                     attributes:(NSDictionary<NSString *, id> *)attributes
 {
     if (experiment.audienceConditions.count == 0) {
         return true;
@@ -505,7 +505,7 @@
 }
 
 // Returns empty dictionary if attributes nil
-- (NSDictionary<NSString *, NSObject *> *)validateAttributes:(NSDictionary<NSString *, NSObject *> *)attributes
+- (NSDictionary<NSString *, id> *)validateAttributes:(NSDictionary<NSString *, id> *)attributes
 {
     // if there are audiences, but no user attributes, Defaults to empty attributes
     if (attributes == nil) {
@@ -516,7 +516,7 @@
 
 - (BOOL)isUserInExperiment:(OPTLYProjectConfig *)config
                 experiment:(OPTLYExperiment *)experiment
-                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                attributes:(NSDictionary<NSString *, id> *)attributes
 {
     attributes = [self validateAttributes:attributes];
     
@@ -531,7 +531,7 @@
 - (BOOL)userPassesTargeting:(OPTLYProjectConfig *)config
                  experiment:(OPTLYExperiment *)experiment
                      userId:(NSString *)userId
-                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                 attributes:(NSDictionary<NSString *, id> *)attributes
 {
     // check if the user is in the experiment
     BOOL isUserInExperiment = [self isUserInExperiment:config experiment:experiment attributes:attributes];

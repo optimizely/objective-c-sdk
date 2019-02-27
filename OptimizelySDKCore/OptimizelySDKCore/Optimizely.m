@@ -101,14 +101,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                  attributes:(NSDictionary<NSString *, id> *)attributes
 {
     return [self activate:experimentKey userId:userId attributes:attributes callback:nil];
 }
 
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                  attributes:(NSDictionary<NSString *, id> *)attributes
                     callback:(void (^)(NSError *))callback {
     
     __weak void (^_callback)(NSError *) = callback ? : ^(NSError *error) {};
@@ -179,7 +179,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (OPTLYVariation *)variation:(NSString *)experimentKey
                        userId:(NSString *)userId
-                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                   attributes:(NSDictionary<NSString *, id> *)attributes
 {
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:experimentKey
                                                                         userId:userId
@@ -214,7 +214,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 #pragma mark - Feature Flag Methods
 
-- (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+- (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
@@ -262,7 +262,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+                                  attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
@@ -319,7 +319,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+                       attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeBoolean
                                                         featureKey:featureKey
@@ -336,7 +336,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+                       attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeDouble
                                                         featureKey:featureKey
@@ -354,7 +354,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+                        attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeInteger
                                                         featureKey:featureKey
@@ -371,7 +371,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (NSString *)getFeatureVariableString:(nullable NSString *)featureKey
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes {
+                            attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     return [self getFeatureVariableValueForType:FeatureVariableTypeString
                                      featureKey:featureKey
                                     variableKey:variableKey
@@ -380,7 +380,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 }
     
 - (NSArray<NSString *> *)getEnabledFeatures:(NSString *)userId
-                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                attributes:(NSDictionary<NSString *, id> *)attributes {
     
     
     NSMutableArray<NSString *> *enabledFeatures = [NSMutableArray new];
@@ -410,7 +410,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSObject *> * )attributes {
+   attributes:(NSDictionary<NSString *, id> * )attributes {
     [self track:eventKey userId:userId attributes:attributes eventTags:nil];
 }
 
@@ -422,7 +422,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 
 - (void)track:(NSString *)eventKey
        userId:(NSString *)userId
-   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+   attributes:(NSDictionary<NSString *, id> *)attributes
     eventTags:(NSDictionary<NSString *,id> *)eventTags {
     
     if ([eventKey getValidString] == nil) {
@@ -509,7 +509,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                                attributes:(NSDictionary<NSString *, id> *)attributes
                                   callback:(void (^)(NSError *))callback {
     
     // send impression event

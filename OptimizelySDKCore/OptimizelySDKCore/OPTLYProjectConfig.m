@@ -590,7 +590,7 @@ static NSArray *supportedDatafileVersions = nil;
 // TODO: Remove bucketer from parameters -- this is not needed
 - (OPTLYVariation *)getVariationForExperiment:(NSString *)experimentKey
                                        userId:(NSString *)userId
-                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                                   attributes:(NSDictionary<NSString *, id> *)attributes
                                      bucketer:(id<OPTLYBucketer>)bucketer
 {
     OPTLYExperiment *experiment = [self getExperimentForKey:experimentKey];

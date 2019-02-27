@@ -72,11 +72,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 @end
 
 @implementation OPTLYNotificationTest
-- (void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
+- (void)onActivate:(OPTLYExperiment *)experiment userId:(NSString *)userId attributes:(NSDictionary<NSString *,id> *)attributes variation:(OPTLYVariation *)variation event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 
-- (void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, NSObject *> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
+- (void)onTrack:(NSString *)eventKey userId:(NSString *)userId attributes:(NSDictionary<NSString *, id> *)attributes eventTags:(NSDictionary *)eventTags event:(NSDictionary<NSString *,NSString *> *)event {
     
 }
 @end
@@ -84,18 +84,18 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 @interface Optimizely(test)
 - (OPTLYVariation *)activate:(NSString *)experimentKey
                       userId:(NSString *)userId
-                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                  attributes:(NSDictionary<NSString *, id> *)attributes
                     callback:(void (^)(NSError *))callback;
 - (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
                                  variation:(OPTLYVariation *)variation
                                     userId:(NSString *)userId
-                                attributes:(NSDictionary<NSString *, NSObject *> *)attributes
+                                attributes:(NSDictionary<NSString *, id> *)attributes
                                   callback:(void (^)(NSError *))callback;
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
                                   featureKey:(nullable NSString *)featureKey
                                  variableKey:(nullable NSString *)variableKey
                                       userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                                  attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault(Tests)
@@ -347,7 +347,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
     
-    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, id> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
     }];
     
@@ -362,14 +362,14 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
     
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"browser_name": @"chrome",
                                                                  @"buildno": @(10),
                                                                  @"buildversion": @(0.13)
                                                                  };
-    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, id> *actualAttributes;
     
-    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, id> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
         actualAttributes = attributes;
     }];
@@ -385,9 +385,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
-    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
+    __block NSDictionary<NSString *, id> *actualAttributes;
     
-    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizely.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, id> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         notificationExperimentKey = experiment.experimentId;
         actualAttributes = attributes;
     }];
@@ -436,10 +436,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *eventKey = @"testEvent";
     __block NSString *_userId = nil;
     __block NSString *notificationEventKey = nil;
-    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
-    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    __block NSDictionary<NSString *, id> *actualAttributes;
+    __block NSDictionary<NSString *, id> *actualEventTags;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSString *> * _Nonnull event) {
         _userId = userId;
         notificationEventKey = eventKey;
         actualAttributes = attributes;
@@ -489,7 +489,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
     }];
     
@@ -501,17 +501,17 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
-    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
-    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    __block NSDictionary<NSString *, id> *actualAttributes;
+    __block NSDictionary<NSString *, id> *actualEventTags;
     
-    NSDictionary<NSString *, NSObject *> *expectedEventTags = @{
+    NSDictionary<NSString *, id> *expectedEventTags = @{
                                                                 OPTLYEventMetricNameRevenue: OPTLYEventMetricNameValue,
                                                                 @"event_int": @(11),
                                                                 @"event_version": @(1.3),
                                                                 @"event_bool": @(YES)
                                                                 };
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         actualAttributes = attributes;
         actualEventTags = eventTags;
         notificationEventKey = eventKey;
@@ -527,10 +527,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
-    __block NSDictionary<NSString *, NSObject *> *actualAttributes;
-    __block NSDictionary<NSString *, NSObject *> *actualEventTags;
+    __block NSDictionary<NSString *, id> *actualAttributes;
+    __block NSDictionary<NSString *, id> *actualEventTags;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         actualAttributes = attributes;
         actualEventTags = eventTags;
         notificationEventKey = eventKey;
@@ -550,7 +550,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __block NSString *notificationEventKey = nil;
     __block NSDictionary *notificationEventTags = nil;
     
-    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizely.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         notificationEventKey = eventKey;
         notificationEventTags = eventTags;
     }];
@@ -1239,7 +1239,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithTypedAudiencesWithExactMatchType {
     // Should be included via exact match string audience with id '3468206642'
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"house": @"Gryffindor"
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1280,7 +1280,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithTypedAudiencesWithSubstringMatchType {
     // Should be included via substring match string audience with id '3988293898'
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"house": @"222Slytherin"
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1295,7 +1295,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithTypedAudiencesWithExistsMatchType {
     // Should be included via exists match string audience with id '3988293899'
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"favorite_ice_cream": @1
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1310,7 +1310,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithTypedAudiencesWithLtMatchType {
     // Should be included via lt match number audience with id '3468206644'
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"lasers": @0.8
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1325,7 +1325,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithTypedAudiencesWithGtMatchType {
     // Should be included via gt match number audience with id '3468206647'
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"lasers": @71
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1339,7 +1339,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 }
 
 - (void)testActivateExcludesUserFromExperimentWithTypedAudiences {
-    NSDictionary<NSString *, NSObject *> *expectedAttributes = @{
+    NSDictionary<NSString *, id> *expectedAttributes = @{
                                                                  @"house": @"Hufflepuff"
                                                                  };
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
@@ -1355,7 +1355,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void)testTrackWithTypedAudiences {
     NSString *eventId = @"item_bought";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          @"house": @"Welcome to Slytherin!"
                                                          };
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
@@ -1374,7 +1374,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void)testTrackExcludesUserFromExperimentWithTypedAudiences {
     NSString *eventId = @"item_bought";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          @"house": @"Hufflepuff"
                                                          };
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizely.logger);
@@ -1391,7 +1391,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void)testIsFeatureEnabledWithTypedAudiences {
     NSString *featureFlagKey = @"feat";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          @"favorite_ice_cream": @"chocolate"
                                                          };
     XCTAssertTrue([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
@@ -1405,7 +1405,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void)testIsFeatureEnabledExcludesUserFromExperimentWithTypedAudiences {
     NSString *featureFlagKey = @"feat";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          };
     XCTAssertFalse([self.optimizelyTypedAudience isFeatureEnabled:featureFlagKey userId:userId attributes:attributes]);
 }
@@ -1414,7 +1414,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"feat_with_var";
     NSString *variableKey = @"x";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          @"lasers": @71
                                                          };
     NSString *featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
@@ -1431,7 +1431,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureKey = @"feat_with_var";
     NSString *variableKey = @"x";
     NSString *userId = @"user1";
-    NSDictionary<NSString *, NSObject *> *attributes = @{
+    NSDictionary<NSString *, id> *attributes = @{
                                                          @"lasers": @50
                                                          };
     NSString *featureVariable = [self.optimizelyTypedAudience getFeatureVariableValueForType:FeatureVariableTypeString featureKey:featureKey variableKey:variableKey userId:userId attributes:attributes];
@@ -1451,7 +1451,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }]];
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"s_foo": @"foo",
                                                              @"b_true": @"N/A",
                                                              @"i_42": @43,
@@ -1482,7 +1482,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }]];
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"s_foo": [NSNull null],
                                                              @"b_true": @"N/A",
                                                              @"i_42": @"N/A",
@@ -1507,18 +1507,18 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 - (void)testActivateWithAttributesComplexAudienceMatch {
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Welcome to Slytherin!",
                                                              @"lasers": @45.5
                                                              };
-    NSDictionary<NSString *, NSObject *> *expectedAttributes1 = @{
+    NSDictionary<NSString *, id> *expectedAttributes1 = @{
                                                                   @"shouldIndex": @1,
                                                                   @"type": @"custom",
                                                                   @"value": @45.5,
                                                                   @"entity_id": @"594016",
                                                                   @"key": @"lasers"
                                                                   };
-    NSDictionary<NSString *, NSObject *> *expectedAttributes2 = @{
+    NSDictionary<NSString *, id> *expectedAttributes2 = @{
                                                                   @"shouldIndex": @1,
                                                                   @"type": @"custom",
                                                                   @"value": @"Welcome to Slytherin!",
@@ -1529,7 +1529,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     
     __weak id weakSelf = self;
-    [self.optimizelyTypedAudience.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, NSObject *> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
+    [self.optimizelyTypedAudience.notificationCenter addActivateNotificationListener:^(OPTLYExperiment *experiment, NSString *userId, NSDictionary<NSString *, id> *attributes, OPTLYVariation *variation, NSDictionary<NSString *,NSString *> *event) {
         id self = weakSelf;
         NSDictionary *visitors = [(NSArray *)event[@"visitors"] firstObject];
         NSArray *_attributes = (NSArray *)visitors[@"attributes"];
@@ -1547,7 +1547,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 //Test that activate returns None when complex audience conditions do not match.
 - (void)testActivateWithAttributesComplexAudienceMismatch {
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Hufflepuff",
                                                              @"lasers": @45.5
                                                              };
@@ -1573,18 +1573,18 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 //and it's a complex audience match.
 - (void)testTrackWithAttributesComplexAudienceMatch {
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor",
                                                              @"should_do_it": @YES
                                                              };
-    NSDictionary<NSString *, NSObject *> *expectedAttributes1 = @{
+    NSDictionary<NSString *, id> *expectedAttributes1 = @{
                                                                   @"shouldIndex": @1,
                                                                   @"type": @"custom",
                                                                   @"value": @"Gryffindor",
                                                                   @"entity_id": @"594015",
                                                                   @"key": @"house"
                                                                   };
-    NSDictionary<NSString *, NSObject *> *expectedAttributes2 = @{
+    NSDictionary<NSString *, id> *expectedAttributes2 = @{
                                                                   @"shouldIndex": @1,
                                                                   @"type": @"custom",
                                                                   @"value": @YES,
@@ -1595,7 +1595,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
     
     __weak id weakSelf = self;
-    [self.optimizelyTypedAudience.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, NSObject *> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
+    [self.optimizelyTypedAudience.notificationCenter addTrackNotificationListener:^(NSString * _Nonnull eventKey, NSString * _Nonnull userId, NSDictionary<NSString *, id> * _Nonnull attributes, NSDictionary * _Nonnull eventTags, NSDictionary<NSString *,NSObject *> * _Nonnull event) {
         id self = weakSelf;
         NSDictionary *visitors = [(NSArray *)event[@"visitors"] firstObject];
         NSArray *_attributes = (NSArray *)visitors[@"attributes"];
@@ -1615,7 +1615,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 //Test that track does not call dispatch_event when complex audience conditions do not match.
 - (void)testTrackWithAttributesComplexAudienceMismatch {
     
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor",
                                                              @"should_do_it": @false
                                                              };
@@ -1629,7 +1629,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 //Test that isFeatureEnabled returns True for feature rollout with complex audience match.
 - (void)testIsFeatureEnabledInRolloutComplexAudienceMatch {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"...Slytherinnn...sss.",
                                                              @"favorite_ice_cream": @"matcha"
                                                              };
@@ -1639,7 +1639,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 //Test that isFeatureEnabled returns False for feature rollout with complex audience mismatch.
 - (void)testIsFeatureEnabledInRolloutComplexAudienceMismatch {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Lannister"
                                                              };
     NSString *featureFlagKey = @"feat2";
@@ -1648,7 +1648,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 //Test that getFeatureVariableInteger return variable value with complex audience match.
 - (void)testGetFeatureVariableReturnsVariableValueComplexAudienceMatch {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor",
                                                              @"lasers": @700
                                                              };

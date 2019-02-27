@@ -183,7 +183,7 @@
 
 @implementation OPTLYAndCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // According to the matrix:
     // false and true is false
     // false and null is false
@@ -218,7 +218,7 @@
 
 @implementation OPTLYOrCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // According to the matrix:
     // true returns true
     // false or null is null
@@ -250,7 +250,7 @@
 
 @implementation OPTLYNotCondition
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // return the negative of the subcondition
     NSNumber * result = [NSNumber new];
     result = [self.subCondition evaluateConditionsWithAttributes:attributes projectConfig:config];

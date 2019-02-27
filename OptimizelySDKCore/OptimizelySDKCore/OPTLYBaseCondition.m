@@ -52,7 +52,7 @@
     return [jsonData isKindOfClass:[NSDictionary class]];
 }
 
-- (nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateMatchTypeExact:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value that is of similar class type to our value and also equals to our value, else return Null
     
     // check if condition value is invalid
@@ -100,12 +100,12 @@
     return NULL;
 }
 
-- (nullable NSNumber *)evaluateMatchTypeExist:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateMatchTypeExist:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain our name as a key to a Non nullable object
     return [NSNumber numberWithBool:([attributes objectForKey:self.name] && ![attributes[self.name] isKindOfClass:[NSNull class]])];
 }
 
-- (nullable NSNumber *)evaluateMatchTypeSubstring:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateMatchTypeSubstring:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain our value as substring
     
     // check if condition value is invalid
@@ -140,7 +140,7 @@
     return [NSNumber numberWithBool:containsSubstring];
 }
 
-- (nullable NSNumber *)evaluateMatchTypeGreaterThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateMatchTypeGreaterThan:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value greater than our value
     
     // check if condition value is invalid
@@ -181,7 +181,7 @@
     return [NSNumber numberWithBool: ([userValue doubleValue] > [ourValue doubleValue])];
 }
 
-- (nullable NSNumber *)evaluateMatchTypeLessThan:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateMatchTypeLessThan:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check if user attributes contain a value lesser than our value
     
     // check if condition value is invalid
@@ -222,7 +222,7 @@
     return [NSNumber numberWithBool: ([userValue doubleValue] < [ourValue doubleValue])];
 }
 
-- (nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateCustomMatchType:(NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     
     if (![self.type isEqual:OPTLYDatafileKeysCustomAttributeConditionType]){
         //Check if given type is the required type
@@ -268,7 +268,7 @@
 /**
  * Evaluates the condition against the user attributes, returns NULL if invalid.
  */
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     // check user attribute value for the condition and match type against our condition value
     return [self evaluateCustomMatchType: attributes projectConfig:config];
 }

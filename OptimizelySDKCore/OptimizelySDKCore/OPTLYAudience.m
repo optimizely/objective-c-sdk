@@ -64,7 +64,7 @@
     }
 }
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     NSObject<OPTLYCondition> *condition = (NSObject<OPTLYCondition> *)[self.conditions firstObject];
     if (condition) {
         // Log Audience Evaluation Started

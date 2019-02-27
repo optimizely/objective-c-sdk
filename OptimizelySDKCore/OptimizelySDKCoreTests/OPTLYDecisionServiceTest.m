@@ -143,7 +143,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
 
 - (nullable NSNumber *)evaluateAudienceWithId:(NSString *)audienceId
                                        config:(OPTLYProjectConfig *)config
-                                   attributes:(NSDictionary<NSString *, NSObject *> *)attributes;
+                                   attributes:(NSDictionary<NSString *, id> *)attributes;
 @end
 
 @implementation OPTLYDecisionServiceTest

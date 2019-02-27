@@ -167,7 +167,7 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
  */
 - (nullable OPTLYVariation *)getVariationForExperiment:(nonnull NSString *)experimentKey
                                                 userId:(nonnull NSString *)userId
-                                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
+                                            attributes:(nullable NSDictionary<NSString *, id> *)attributes
                                               bucketer:(nullable id<OPTLYBucketer>)bucketer;
 
 @end

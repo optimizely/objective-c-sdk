@@ -92,7 +92,7 @@ typedef enum : NSUInteger {
 @interface Optimizely(test)
 - (NSArray<NSDictionary *> *)decisionsFor:(OPTLYEvent *)event
                                    userId:(NSString *)userId
-                               attributes:(NSDictionary<NSString *,NSString *> *)attributes;
+                               attributes:(NSDictionary<NSString *,id> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault(Tests)

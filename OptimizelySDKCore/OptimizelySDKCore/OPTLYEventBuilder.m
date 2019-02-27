@@ -56,7 +56,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 - (NSDictionary *)buildImpressionEventForUser:(NSString *)userId
                                   experiment:(OPTLYExperiment *)experiment
                                    variation:(OPTLYVariation *)variation
-                                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                  attributes:(NSDictionary<NSString *, id> *)attributes {
     if (!self.config) {
         return nil;
     }
@@ -71,7 +71,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 - (NSDictionary *)buildConversionEventForUser:(NSString *)userId
                                        event:(OPTLYEvent *)event
                                    eventTags:(NSDictionary *)eventTags
-                                  attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                  attributes:(NSDictionary<NSString *, id> *)attributes {
 
     if (!self.config) {
         return nil;
@@ -87,7 +87,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSDictionary *)createCommonParamsForUser:(NSString *)userId
-                                 attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                                 attributes:(NSDictionary<NSString *, id> *)attributes {
     NSMutableDictionary *commonParams = [NSMutableDictionary new];
     
     NSMutableDictionary *visitor = [NSMutableDictionary new];
@@ -199,7 +199,7 @@ NSString * const OPTLYEventBuilderEventsTicketURL   = @"https://logx.optimizely.
 }
 
 - (NSArray *)createUserFeatures:(OPTLYProjectConfig *)config
-                     attributes:(NSDictionary<NSString *, NSObject *> *)attributes {
+                     attributes:(NSDictionary<NSString *, id> *)attributes {
     
     NSNumber *botFiltering = config.botFiltering;
     NSMutableArray *features = [NSMutableArray new];

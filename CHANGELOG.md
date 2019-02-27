@@ -173,7 +173,7 @@ To learn more about Feature Management, read our [knowledge base article introdu
 - (NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *, NSString *> *)attributes;
+                        attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 - (NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
