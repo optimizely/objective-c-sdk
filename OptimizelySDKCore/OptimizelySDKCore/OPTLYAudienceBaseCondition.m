@@ -26,7 +26,7 @@
     return [jsonData isKindOfClass:[NSString class]];
 }
 
-- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
+- (nullable NSNumber *)evaluateConditionsWithAttributes:(nullable NSDictionary<NSString *, id> *)attributes projectConfig:(nullable OPTLYProjectConfig *)config {
     if (attributes == nil) {
         // if the user did not pass in attributes, return false
         return [NSNumber numberWithBool:false];

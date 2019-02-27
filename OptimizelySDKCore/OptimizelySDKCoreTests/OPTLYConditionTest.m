@@ -30,7 +30,7 @@
 
 @interface OPTLYConditionTest : XCTestCase
 
-@property NSDictionary<NSString *, NSObject *> *testUserAttributes;
+@property NSDictionary<NSString *, id> *testUserAttributes;
 @property (nonatomic, strong) NSData *typedAudienceDatafile;
 @property (nonatomic, strong) Optimizely *optimizelyTypedAudience;
 
@@ -165,7 +165,7 @@
 
 - (void)testNotConditionReturnsFalseWhenComplexAudienceConditionReturnsTrue {
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *notConditionArray = @[@"not", @"3468206642"];
@@ -182,7 +182,7 @@
 }
 
 - (void)testNotConditionReturnsTrueWhenComplexAudienceConditionsReturnsFalse {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *notConditionArray = @[@"not", @"3988293898"];
@@ -193,7 +193,7 @@
 }
 
 - (void)testNotConditionReturnsNilWithComplexAudienceConditionWhenEmptyOrNullAttributes {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": [NSNull null]
                                                              };
     NSArray *notConditionArray = @[@"not", @"3988293898"];
@@ -323,7 +323,7 @@
 
 - (void)testOrConditionReturnsTrueWhenAnyComplexAudienceConditionReturnsTrue {
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *orConditionArray = @[@"or", @"3468206642",@"2"];
@@ -341,7 +341,7 @@
 }
 
 - (void)testOrConditionReturnsFalseWhenAllComplexAudienceConditionsReturnsFalse {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *orConditionArray = @[@"or", @"1",@"2"];
@@ -454,7 +454,7 @@
 
 - (void)testAndConditionReturnsFalseWhenAnyComplexAudienceConditionReturnsFalse {
     id loggerMock = OCMPartialMock((OPTLYLoggerDefault *)self.optimizelyTypedAudience.logger);
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *andConditionArray = @[@"and", @"3468206642",@"2"];
@@ -471,7 +471,7 @@
 }
 
 - (void)testAndConditionReturnsTrueWhenAllComplexAudienceConditionsReturnsTrue {
-    NSDictionary<NSString *, NSObject *> *userAttributes = @{
+    NSDictionary<NSString *, id> *userAttributes = @{
                                                              @"house": @"Gryffindor"
                                                              };
     NSArray *andConditionArray = @[@"and", @"3468206642"];

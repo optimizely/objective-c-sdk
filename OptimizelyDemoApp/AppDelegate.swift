@@ -125,7 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             })
 #endif
-            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!)
+            let attributes = ["browser_number": 7]
+            let variation = optimizelyClient?.activate((self?.experimentKey)!, userId: (self?.userId)!, attributes: attributes)
+            
             
             if let experiments = optimizelyClient?.optimizely?.config?.experiments {
                 for experiment in experiments {
