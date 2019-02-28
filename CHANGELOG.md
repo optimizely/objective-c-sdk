@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.0.2
+February 27th, 2019
+
+This release removes type casting in Swift to NSObject in user attributes
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* Change all instances of attributes and eventTags from NSDictionary<NSString*,NSObject*> to NSDictionary<NSString*,id>
+
 ## 3.0.1
 February 26th, 2019
 

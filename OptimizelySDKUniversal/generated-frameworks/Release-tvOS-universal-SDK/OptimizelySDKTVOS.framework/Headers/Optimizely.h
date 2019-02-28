@@ -71,7 +71,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 - (nullable OPTLYVariation *)activate:(nonnull NSString *)experimentKey
                                userId:(nonnull NSString *)userId
-                           attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                           attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 #pragma mark - getVariation methods
 /**
@@ -117,7 +117,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 - (nullable OPTLYVariation *)variation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                            attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 #pragma mark - Forced Variation Methods
 /**
@@ -182,7 +182,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  *
  * @return           `YES` if the feature is enabled. `NO` if the feature is disabled or couldn't be found.
  */
-- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+- (BOOL)isFeatureEnabled:(nullable NSString *)featureKey userId:(nullable NSString *)userId attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Evaluates the specified boolean feature variable and returns its value.
@@ -203,7 +203,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 - (nullable NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
                       variableKey:(nullable NSString *)variableKey
                            userId:(nullable NSString *)userId
-                       attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                       attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Evaluates the specified double feature variable and returns its value.
@@ -224,7 +224,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 - (nullable NSNumber *)getFeatureVariableDouble:(nullable NSString *)featureKey
                        variableKey:(nullable NSString *)variableKey
                             userId:(nullable NSString *)userId
-                        attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                        attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Evaluates the specified integer feature variable and returns its value.
@@ -245,7 +245,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 - (nullable NSNumber *)getFeatureVariableInteger:(nullable NSString *)featureKey
                      variableKey:(nullable NSString *)variableKey
                           userId:(nullable NSString *)userId
-                      attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                      attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Evaluates the specified string feature variable and returns its value.
@@ -266,7 +266,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
 - (nullable NSString *)getFeatureVariableString:(nullable NSString *)featureKey
                            variableKey:(nullable NSString *)variableKey
                                 userId:(nullable NSString *)userId
-                            attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                            attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Retrieves a list of features that are enabled for the user.
@@ -284,7 +284,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  *                   features could be found for the specified user. 
  */
 - (NSArray<NSString *> *_Nonnull)getEnabledFeatures:(nullable NSString *)userId
-                                         attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes;
+                                         attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 #pragma mark - trackEvent methods
 /**
@@ -321,7 +321,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nonnull NSDictionary<NSString *, NSObject *> *)attributes;
+   attributes:(nonnull NSDictionary<NSString *, id> *)attributes;
 
 /**
  * Tracks a conversion event for a user whose attributes meet the default audience conditions for an experiment. 
@@ -360,7 +360,7 @@ extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperiment
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
+   attributes:(nullable NSDictionary<NSString *, id> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 @end
@@ -414,7 +414,7 @@ __attribute((deprecated("Use Optimizely initWithBuilder method instead.")));
  */
 - (void)track:(nonnull NSString *)eventKey
        userId:(nonnull NSString *)userId
-   attributes:(nullable NSDictionary<NSString *, NSObject *> *)attributes
+   attributes:(nullable NSDictionary<NSString *, id> *)attributes
     eventTags:(nullable NSDictionary<NSString *, id> *)eventTags;
 
 @end
