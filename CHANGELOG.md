@@ -3,7 +3,7 @@
 ## 3.0.2
 February 27th, 2019
 
-This includes a fix to remove type casting requirement for new attribute types (eliminate casting to NSObject in Swift)
+This release removes type casting in Swift to NSObject in user attributes
 
 ### New Features
 * No new features for this patch release.
