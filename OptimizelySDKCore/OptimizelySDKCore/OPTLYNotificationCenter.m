@@ -29,6 +29,19 @@ NSString * _Nonnull const OPTLYNotificationAttributesKey = @"attributes";
 NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
 NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
+NSString * _Nonnull const OPTLYNotificationTypeKey = @"type";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
+NSString * _Nonnull const OPTLYNotificationFeatureKey = @"featureKey";
+NSString * _Nonnull const OPTLYNotificationFeatureEnabledKey = @"featureEnabled";
+NSString * _Nonnull const OPTLYNotificationSourceKey = @"source";
+NSString * _Nonnull const OPTLYNotificationVariableKey = @"variableKey";
+NSString * _Nonnull const OPTLYNotificationVariableTypeKey = @"variableType";
+NSString * _Nonnull const OPTLYNotificationVariableValueKey = @"variableValue";
+
+/// Notification decision types.
+NSString * _Nonnull const OPTLYDecisionTypeExperimentVariation = @"experiment_variation";
+NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
+NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature_variable";
 
 @interface OPTLYNotificationCenter()
 
@@ -46,7 +59,7 @@ NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams"
         _notificationId = 1;
         _config = config;
         _notifications = [NSMutableDictionary new];
-        for (NSUInteger i = OPTLYNotificationTypeActivate; i <= OPTLYNotificationTypeTrack; i++) {
+        for (NSUInteger i = OPTLYNotificationTypeActivate; i <= OPTLYNotificationTypeOnDecision; i++) {
             NSNumber *number = [NSNumber numberWithUnsignedInteger:i];
             _notifications[number] = [NSMutableDictionary new];
         }
@@ -70,6 +83,10 @@ NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams"
 
 - (NSInteger)addTrackNotificationListener:(TrackListener)trackListener {
     return [self addNotification:OPTLYNotificationTypeTrack listener:(GenericListener)trackListener];
+}
+
+- (NSInteger)addOnDecisionNotificationListener:(nonnull OnDecisionListener)onDecisionListener {
+    return [self addNotification:OPTLYNotificationTypeOnDecision listener:(GenericListener) onDecisionListener];
 }
 
 - (BOOL)removeNotificationListener:(NSUInteger)notificationId {
@@ -103,6 +120,9 @@ NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams"
                     break;
                 case OPTLYNotificationTypeTrack:
                     [self notifyTrackListener:((TrackListener) listener) args:args];
+                    break;
+                case OPTLYNotificationTypeOnDecision:
+                    [self notifyOnDecisionListener:((OnDecisionListener) listener) args:args];
                     break;
                 default:
                     listener(args);
@@ -200,6 +220,34 @@ NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams"
     assert([logEvent isKindOfClass:[NSDictionary class]]);
     
     listener(eventKey, userId, attributes, eventTags, logEvent);
+}
+
+- (void)notifyOnDecisionListener:(OnDecisionListener)listener args:(NSDictionary *)args {
+    
+    if(args.allKeys.count < 3) {
+        NSString *logMessage = [NSString stringWithFormat:@"Not enough arguments to call %@ for notification callback.", listener];
+        [_config.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return; // Not enough arguments in the array
+    }
+    
+    NSString *typeKey = (NSString *)[args objectForKey:OPTLYNotificationTypeKey];
+    assert(typeKey);
+    assert([typeKey isValidStringType]);
+    
+    NSString *userId = (NSString *)[args objectForKey:OPTLYNotificationUserIdKey];
+    assert(userId);
+    assert([userId isValidStringType]);
+    
+    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
+        assert([attributes isKindOfClass:[NSDictionary class]]);
+    }
+    
+    NSDictionary *decisionInfo = (NSDictionary *)[args objectForKey:OPTLYNotificationDecisionInfoKey];
+    assert(decisionInfo);
+    assert([decisionInfo isKindOfClass:[NSDictionary class]]);
+    
+    listener(typeKey, userId, attributes, decisionInfo);
 }
 
 @end

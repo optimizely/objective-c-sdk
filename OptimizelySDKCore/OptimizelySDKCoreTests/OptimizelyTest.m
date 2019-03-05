@@ -1727,9 +1727,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         builder.errorHandler = [OPTLYErrorHandlerNoOp new];
     }]];
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryExperimentKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationExperimentKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                OptimizelyNotificationsUserDictionaryExperimentKey:@"test_experiment"}];
+                                                                                                                OPTLYNotificationExperimentKey:@"test_experiment"}];
     XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
     OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
@@ -1745,9 +1745,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryEventNameKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationEventKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                OptimizelyNotificationsUserDictionaryEventNameKey:@""}];
+                                                                                                                OPTLYNotificationEventKey:@""}];
     XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
     OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
@@ -1763,9 +1763,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryEventNameKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationEventKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                OptimizelyNotificationsUserDictionaryEventNameKey:[NSNull null]}];
+                                                                                                                OPTLYNotificationEventKey:[NSNull null]}];
     XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
     OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
@@ -1781,9 +1781,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationUserIdKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testUser"}];
+                                                                                                          OPTLYNotificationUserIdKey:@"testUser"}];
     XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
     OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
@@ -1799,9 +1799,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationUserIdKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                OptimizelyNotificationsUserDictionaryUserIdKey:@""}];
+                                                                                                                OPTLYNotificationUserIdKey:@""}];
     XCTAssertTrue([optimizely validateStringInputs:dictionary logs:logs]);
     OCMReject([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];
@@ -1817,9 +1817,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     }]];
     
     NSMutableDictionary<NSString *, NSString *> *logs = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                          OptimizelyNotificationsUserDictionaryUserIdKey:@"testMessage"}];
+                                                                                                          OPTLYNotificationUserIdKey:@"testMessage"}];
     NSMutableDictionary<NSString *, NSString *> *dictionary = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                 OptimizelyNotificationsUserDictionaryUserIdKey:[NSNull null]}];
+                                                                                                                 OPTLYNotificationUserIdKey:[NSNull null]}];
     XCTAssertFalse([optimizely validateStringInputs:dictionary logs:logs]);
     OCMVerify([loggerMock logMessage:@"testMessage" withLevel:OptimizelyLogLevelError]);
     [loggerMock stopMocking];

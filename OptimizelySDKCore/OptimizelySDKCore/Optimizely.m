@@ -39,15 +39,6 @@
 #import "OPTLYNotificationCenter.h"
 #import "OPTLYNSObject+Validation.h"
 
-NSString *const OptimizelyNotificationsUserDictionaryExperimentKey = @"experiment";
-NSString *const OptimizelyNotificationsUserDictionaryVariationKey = @"variation";
-NSString *const OptimizelyNotificationsUserDictionaryUserIdKey = @"userId";
-NSString *const OptimizelyNotificationsUserDictionaryAttributesKey = @"attributes";
-NSString *const OptimizelyNotificationsUserDictionaryEventNameKey = @"eventKey";
-NSString *const OptimizelyNotificationsUserDictionaryFeatureKey = @"feature";
-NSString *const OptimizelyNotificationsUserDictionaryVariableKey = @"variable";
-NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey = @"ExperimentVariationMapping";
-
 @implementation Optimizely
 
 + (instancetype)init:(OPTLYBuilderBlock)builderBlock {
@@ -165,6 +156,18 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         _callback(error);
         return nil;
     }
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeExperimentVariation forKey:OPTLYNotificationTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:experimentKey forKey:OPTLYNotificationExperimentKey];
+    [decisionInfo setValue:(variation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
+    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
 
     return variation;
 }
@@ -185,6 +188,19 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                                                         userId:userId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeExperimentVariation forKey:OPTLYNotificationTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:experimentKey forKey:OPTLYNotificationExperimentKey];
+    [decisionInfo setValue:(bucketedVariation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
+    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
+    
     return bucketedVariation;
 }
 
@@ -192,8 +208,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 - (OPTLYVariation *)getForcedVariation:(nonnull NSString *)experimentKey
                                 userId:(nonnull NSString *)userId {
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OptimizelyNotificationsUserDictionaryExperimentKey:[self ObjectOrNull:experimentKey]}];
+                                                                                                                    OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
+                                                                                                                    OPTLYNotificationExperimentKey:[self ObjectOrNull:experimentKey]}];
     if (![self validateStringInputs:inputValues logs:@{}]) {
         return nil;
     }
@@ -205,8 +221,8 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                     userId:(nonnull NSString *)userId
               variationKey:(nullable NSString *)variationKey {
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OptimizelyNotificationsUserDictionaryExperimentKey:[self ObjectOrNull:experimentKey]}];
+                                                                                                                    OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
+                                                                                                                    OPTLYNotificationExperimentKey:[self ObjectOrNull:experimentKey]}];
     return [self validateStringInputs:inputValues logs:@{}] && [self.config setForcedVariation:experimentKey
                                     userId:userId
                               variationKey:variationKey];
@@ -215,25 +231,25 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
 #pragma mark - Feature Flag Methods
 
 - (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, id> *)attributes {
-    
+    BOOL result = false;
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OptimizelyNotificationsUserDictionaryExperimentKey:[self ObjectOrNull:featureKey]}];
+                                                                                                                    OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
+                                                                                                                    OPTLYNotificationExperimentKey:[self ObjectOrNull:featureKey]}];
     NSDictionary <NSString *, NSString *> *logs = @{
-                                                    OptimizelyNotificationsUserDictionaryUserIdKey:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid,
-                                                    OptimizelyNotificationsUserDictionaryExperimentKey:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid};
+                                                    OPTLYNotificationUserIdKey:OPTLYLoggerMessagesFeatureDisabledUserIdInvalid,
+                                                    OPTLYNotificationExperimentKey:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
-        return false;
+        return result;
     }
     
     OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:featureKey];
     if ([featureFlag.key getValidString] == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
-        return false;
+        return result;
     }
     if (![featureFlag isValid:self.config]) {
-        return false;
+        return result;
     }
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
@@ -249,13 +265,27 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         if (decision.variation.featureEnabled) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            return true;
+            result = true;
         }
     }
     
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    return false;
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
+    [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationFeatureEnabledKey];
+    [decisionInfo setValue:(decision.source ?: [NSNull null]) forKey:OPTLYNotificationSourceKey];
+    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
+    
+    return result;
 }
 
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
@@ -265,13 +295,13 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
                                   attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OptimizelyNotificationsUserDictionaryFeatureKey:[self ObjectOrNull:featureKey],
-                                                                                                                    OptimizelyNotificationsUserDictionaryVariableKey:[self ObjectOrNull:variableKey]}];
+                                                                                                                    OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
+                                                                                                                    OPTLYNotificationFeatureKey:[self ObjectOrNull:featureKey],
+                                                                                                                    OPTLYNotificationVariableKey:[self ObjectOrNull:variableKey]}];
     NSDictionary <NSString *, NSString *> *logs = @{
-                                                    OptimizelyNotificationsUserDictionaryUserIdKey:OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid,
-                                                    OptimizelyNotificationsUserDictionaryVariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
-                                                    OptimizelyNotificationsUserDictionaryFeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
+                                                    OPTLYNotificationUserIdKey:OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid,
+                                                    OPTLYNotificationVariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
+                                                    OPTLYNotificationFeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
         return nil;
@@ -312,6 +342,22 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotBucketed, userId, featureFlag.key, variableValue];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeFeatureVariable forKey:OPTLYNotificationTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
+    [decisionInfo setValue:[NSNumber numberWithBool:decision.variation.featureEnabled] forKey:OPTLYNotificationFeatureEnabledKey];
+    [decisionInfo setValue:variableKey forKey:OPTLYNotificationVariableKey];
+    [decisionInfo setValue:variableType forKey:OPTLYNotificationVariableTypeKey];
+    [decisionInfo setValue:variableValue forKey:OPTLYNotificationVariableValueKey];
+    [decisionInfo setValue:(decision.source ?: [NSNull null]) forKey:OPTLYNotificationSourceKey];
+    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
     
     return variableValue;
 }
@@ -386,7 +432,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     NSMutableArray<NSString *> *enabledFeatures = [NSMutableArray new];
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                                                    OptimizelyNotificationsUserDictionaryUserIdKey:[self ObjectOrNull:userId]}];
+                                                                                                                    OPTLYNotificationUserIdKey:[self ObjectOrNull:userId]}];
     NSDictionary <NSString *, NSString *> *logs = @{};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
@@ -577,14 +623,14 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
     BOOL __block isValid = true;
     // Empty user Id is valid value.
     if (_inputs.allKeys.count > 0) {
-        if ([_inputs.allKeys containsObject:OptimizelyNotificationsUserDictionaryUserIdKey]) {
-            if ([[_inputs objectForKey:OptimizelyNotificationsUserDictionaryUserIdKey] isKindOfClass:[NSNull class]]) {
+        if ([_inputs.allKeys containsObject:OPTLYNotificationUserIdKey]) {
+            if ([[_inputs objectForKey:OPTLYNotificationUserIdKey] isKindOfClass:[NSNull class]]) {
                 isValid = false;
-                if ([logs objectForKey:OptimizelyNotificationsUserDictionaryUserIdKey]) {
-                    [self.logger logMessage:[logs objectForKey:OptimizelyNotificationsUserDictionaryUserIdKey] withLevel:OptimizelyLogLevelError];
+                if ([logs objectForKey:OPTLYNotificationUserIdKey]) {
+                    [self.logger logMessage:[logs objectForKey:OPTLYNotificationUserIdKey] withLevel:OptimizelyLogLevelError];
                 }
             }
-            [_inputs removeObjectForKey:OptimizelyNotificationsUserDictionaryUserIdKey];
+            [_inputs removeObjectForKey:OPTLYNotificationUserIdKey];
         }
     }
     [_inputs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL* stop) {
