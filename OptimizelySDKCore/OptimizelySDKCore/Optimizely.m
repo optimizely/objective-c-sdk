@@ -280,7 +280,7 @@
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
     [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
     [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationFeatureEnabledKey];
-    [decisionInfo setValue:(decision.source ?: [NSNull null]) forKey:OPTLYNotificationSourceKey];
+    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
