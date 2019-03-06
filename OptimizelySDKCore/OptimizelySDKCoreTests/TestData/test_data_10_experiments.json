@@ -361,6 +361,10 @@
             {
               "id": "155551",
               "value": "42.42"
+            },
+            {
+                "id": "155552",
+                "value": "42"
             }
           ]
         },
@@ -782,7 +786,9 @@
       "key": "stringSingleVariableFeature",
       "groupId": "",
       "rolloutId": "166661",
-      "experimentIds": [],
+      "experimentIds": [
+      "6383811555"
+      ],
       "variables": [
         {
           "id": "155558",
@@ -828,8 +834,30 @@
           "key": "doubleVariable",
           "type": "double",
           "defaultValue": "14.99"
+        },
+        {
+            "id": "155558",
+            "key": "stringVariable",
+            "type": "string",
+            "defaultValue": "wingardium leviosa"
         }
       ]
+    },
+    {
+        "id": "155667",
+        "key": "integerSingleVariableFeature",
+        "rolloutId": "",
+        "experimentIds": [
+            "6383811555"
+        ],
+        "variables": [
+            {
+                "id": "155552",
+                "key": "integerVariable",
+                "type": "integer",
+                "defaultValue": "42"
+            }
+        ]
     }
   ],
   "rollouts": [
