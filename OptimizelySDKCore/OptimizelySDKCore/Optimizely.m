@@ -156,18 +156,6 @@
         _callback(error);
         return nil;
     }
-    
-    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-    [args setValue:OPTLYDecisionTypeExperimentVariation forKey:OPTLYNotificationTypeKey];
-    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
-    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
-    
-    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:experimentKey forKey:OPTLYNotificationExperimentKey];
-    [decisionInfo setValue:(variation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
-    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
-    
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
 
     return variation;
 }
