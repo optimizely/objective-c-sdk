@@ -95,7 +95,7 @@ static NSString * const kFeatureFlagInvalidExperimentKey = @"invalidExperimentId
 static NSString * const kFeatureFlagInvalidRolloutKey = @"invalidRolloutIdFeature";
 
 // feature flag with rollout id having no rule
-static NSString * const kFeatureFlagEmptyRuleRolloutKey = @"stringSingleVariableFeature";
+static NSString * const kFeatureFlagEmptyRuleRolloutKey = @"stringSingleVariableFeature2";
 
 // feature flag with rollout id having no bucketed rule
 static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVariableFeature";

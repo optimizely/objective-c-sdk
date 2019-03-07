@@ -858,6 +858,22 @@
                 "defaultValue": "42"
             }
         ]
+    },
+    {
+        "id": "155668",
+        "key": "stringSingleVariableFeature2",
+        "groupId": "",
+        "rolloutId": "166661",
+        "experimentIds": [
+        ],
+        "variables": [
+            {
+                "id": "155558",
+                "key": "stringVariable",
+                "type": "string",
+                "defaultValue": "wingardium leviosa"
+            }
+        ]
     }
   ],
   "rollouts": [

@@ -138,33 +138,17 @@
     
     // send impression event
     __weak typeof(self) weakSelf = self;
-    NSDictionary *impressionEvent = [self createImpressionEventFor:experiment
-                                                         variation:variation
-                                                            userId:userId
-                                                        attributes:attributes];
-    OPTLYVariation *sentVariation = [self sendImpressionEvent:impressionEvent
-                                                   experiment:experiment
-                                                    variation:variation
-                                                       userId:userId
-                                                   attributes:attributes
-                                                     callback:^(NSError *error) {
+    OPTLYVariation *sentVariation = [self sendImpressionEventFor:experiment
+                                                       variation:variation
+                                                          userId:userId
+                                                      attributes:attributes
+                                                        callback:^(NSError *error) {
         if (error) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
             [weakSelf handleErrorLogsForActivate:logMessage ofLevel:OptimizelyLogLevelInfo];
         }
         _callback(error);
     }];
-    
-    if ([impressionEvent getValidDictionary] != nil) {
-        NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-        [args setValue:experiment forKey:OPTLYNotificationExperimentKey];
-        [args setValue:userId forKey:OPTLYNotificationUserIdKey];
-        [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
-        [args setValue:variation forKey:OPTLYNotificationVariationKey];
-        [args setValue:impressionEvent forKey:OPTLYNotificationLogEventParamsKey];
-        
-        [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
-    }
     
     if (!sentVariation) {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, userId, experimentKey];
@@ -257,25 +241,21 @@
     }
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:[NSNull null] forKey:OPTLYNotificationSourceExperimentKey];
     
-    NSString *source = nil;
     if (decision) {
         if ([decision.source isEqualToString:DecisionSourceExperiment]) {
-            NSDictionary *impressionEvent = [self createImpressionEventFor:decision.experiment
-                                                                 variation:decision.variation
-                                                                    userId:userId
-                                                                attributes:attributes];
-            [self sendImpressionEvent:impressionEvent
-                           experiment:decision.experiment
-                            variation:decision.variation
-                               userId:userId
-                           attributes:attributes
-                             callback:nil];
-            source = [NSString stringWithFormat:@"%@ {%@}",DecisionSourceExperiment,decision.experiment.experimentKey];
+            [decisionInfo setValue:decision.experiment.experimentKey forKey:OPTLYNotificationSourceExperimentKey];
+            [self sendImpressionEventFor:decision.experiment
+                               variation:decision.variation
+                                  userId:userId
+                              attributes:attributes
+                                callback:nil];
         } else {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            source = decision.source;
         }
 
         if (decision.variation.featureEnabled) {
@@ -288,15 +268,13 @@
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
-    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
     [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
-    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
     [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
     [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationFeatureEnabledKey];
-    [decisionInfo setValue:(source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
+    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
@@ -341,11 +319,9 @@
     
     NSString *variableValue = featureVariable.defaultValue;
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
-    NSString *source = nil;
     if (decision) {
         OPTLYVariation *variation = decision.variation;
         OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
-        source = [decision.source isEqualToString:DecisionSourceExperiment] ? [NSString stringWithFormat:@"%@ {%@}",DecisionSourceExperiment,decision.experiment.experimentKey] : DecisionSourceRollout;
         if (featureVariableUsage) {
             variableValue = featureVariableUsage.value;
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
@@ -353,6 +329,9 @@
         } else {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotUsed, variableKey, variation.variationKey, variableValue];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+        }
+        if (!variation.featureEnabled) {
+            variableValue = featureVariable.defaultValue;
         }
     } else {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotBucketed, userId, featureFlag.key, variableValue];
@@ -370,7 +349,7 @@
     [decisionInfo setValue:variableKey forKey:OPTLYNotificationVariableKey];
     [decisionInfo setValue:variableType forKey:OPTLYNotificationVariableTypeKey];
     [decisionInfo setValue:variableValue forKey:OPTLYNotificationVariableValueKey];
-    [decisionInfo setValue:(source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
+    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
@@ -578,14 +557,16 @@
                                                attributes:attributes];;
 }
 
-- (OPTLYVariation *)sendImpressionEvent:(NSDictionary *)impressionEvent
-                             experiment:(OPTLYExperiment *)experiment
-                              variation:(OPTLYVariation *)variation
-                                 userId:(NSString *)userId
-                             attributes:(NSDictionary<NSString *, id> *)attributes
-                               callback:(void (^)(NSError *))callback {
+- (OPTLYVariation *)sendImpressionEventFor:(OPTLYExperiment *)experiment
+                                 variation:(OPTLYVariation *)variation
+                                    userId:(NSString *)userId
+                                attributes:(NSDictionary<NSString *, id> *)attributes
+                                  callback:(void (^)(NSError *))callback {
     
-    if ([impressionEvent getValidDictionary] == nil) {
+    // send impression event
+    NSDictionary *impressionEventParams = [self.eventBuilder buildImpressionEventForUser:userId experiment:experiment variation:variation attributes:attributes];
+    
+    if ([impressionEventParams getValidDictionary] == nil) {
         return nil;
     }
     
@@ -593,7 +574,7 @@
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
     __weak typeof(self) weakSelf = self;
-    [self.eventDispatcher dispatchImpressionEvent:impressionEvent
+    [self.eventDispatcher dispatchImpressionEvent:impressionEventParams
                                          callback:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                              if (!error) {
                                                  NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationSuccess, userId, experiment.experimentKey];
@@ -604,6 +585,16 @@
                                                  callback(error);
                                              }
                                          }];
+    
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:experiment forKey:OPTLYNotificationExperimentKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    [args setValue:variation forKey:OPTLYNotificationVariationKey];
+    [args setValue:impressionEventParams forKey:OPTLYNotificationLogEventParamsKey];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
+    
     return variation;
 }
 

@@ -31,6 +31,7 @@ NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 NSString * _Nonnull const OPTLYNotificationTypeKey = @"type";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
+NSString * _Nonnull const OPTLYNotificationSourceExperimentKey = @"source_experiment_key";
 NSString * _Nonnull const OPTLYNotificationFeatureKey = @"featureKey";
 NSString * _Nonnull const OPTLYNotificationFeatureEnabledKey = @"featureEnabled";
 NSString * _Nonnull const OPTLYNotificationSourceKey = @"source";
