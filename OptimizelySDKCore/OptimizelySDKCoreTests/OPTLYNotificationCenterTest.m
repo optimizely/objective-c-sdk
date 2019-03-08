@@ -266,6 +266,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
         XCTAssertEqual(@"booleanVariable", decisionInfo[OPTLYNotificationDecisionInfoVariableKey]);
         XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
     }];
     [self.optimizely getFeatureVariableBoolean:@"booleanSingleVariableFeature" variableKey:@"booleanVariable" userId:kUserId attributes:nil];
     [self.optimizely.notificationCenter clearAllNotificationListeners];
