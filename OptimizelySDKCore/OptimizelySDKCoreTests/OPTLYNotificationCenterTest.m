@@ -16,6 +16,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import "Optimizely.h"
 #import "OPTLYNotificationCenter.h"
 #import "OPTLYErrorHandler.h"
 #import "OPTLYLogger.h"
@@ -26,6 +27,7 @@
 #import "OPTLYVariation.h"
 
 static NSString *const kDataModelDatafileName = @"optimizely_6372300739_v4";
+static NSString *const kFeatureFlagKey = @"booleanFeature";
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
 static NSString *const kVariationId = @"6362476365";
@@ -42,10 +44,13 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
 @end
 
 @interface OPTLYNotificationCenterTest : XCTestCase
+@property (nonatomic, strong) NSData *datafile;
+@property (nonatomic, strong) Optimizely *optimizely;
 @property (nonatomic, strong) OPTLYNotificationCenter *notificationCenter;
 @property (nonatomic, copy) ActivateListener activateNotification;
 @property (nonatomic, copy) ActivateListener anotherActivateNotification;
 @property (nonatomic, copy) TrackListener trackNotification;
+@property (nonatomic, copy) OnDecisionListener onDecisionNotification;
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
 @end
 
@@ -53,6 +58,13 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
 
 - (void)setUp {
     [super setUp];
+    
+    self.datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:@"test_data_10_experiments"];    
+    self.optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = self.datafile;
+        builder.logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelOff];;
+        builder.errorHandler = [OPTLYErrorHandlerNoOp new];
+    }]];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kDataModelDatafileName];
     self.projectConfig = [[OPTLYProjectConfig alloc] initWithBuilder:[OPTLYProjectConfigBuilder builderWithBlock:^(OPTLYProjectConfigBuilder * _Nullable builder) {
@@ -79,6 +91,12 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
         NSString *logMessage = @"track notification called with %@";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, eventKey] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
+    };
+    weakSelf.onDecisionNotification = ^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        NSString *logMessage = @"onDecision notification called with %@";
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, type] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
+        [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, decisionInfo] withLevel:OptimizelyLogLevelInfo];
     };
 }
 
@@ -126,11 +144,15 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
+    // Add onDecision notification.
+    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    
     // Verify that callbacks added successfully.
-    XCTAssertEqual(3, _notificationCenter.notificationsCount);
+    XCTAssertEqual(4, _notificationCenter.notificationsCount);
     
     // Verify that only decision callbacks are removed.
     [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeOnDecision];
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
     // Verify that ClearNotifications does not break on calling twice for same type.
@@ -140,6 +162,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Verify that ClearNotifications does not break after calling ClearAllNotifications.
     [_notificationCenter clearAllNotificationListeners];
     [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeTrack];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeOnDecision];
 }
 
 - (void)testClearAllNotifications {
@@ -151,8 +174,11 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
+    // Add onDecision notification.
+    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    
     // Verify that callbacks added successfully.
-    XCTAssertEqual(3, _notificationCenter.notificationsCount);
+    XCTAssertEqual(4, _notificationCenter.notificationsCount);
     
     // Verify that ClearAllNotifications remove all the callbacks.
     [_notificationCenter clearAllNotificationListeners];
@@ -173,6 +199,9 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
+    // Add onDecision notification.
+    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    
     // Fire decision type notifications.
     
     OPTLYExperiment *experiment = [_projectConfig getExperimentForKey:kExperimentKey];
@@ -192,6 +221,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
     
     OCMReject(_trackNotification);
+    OCMVerify(_onDecisionNotification);
     OCMVerify(_activateNotification);
     OCMVerify(_anotherActivateNotification);
     
@@ -212,6 +242,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:trackArgs];
     
     OCMVerify(_trackNotification);
+    OCMReject(_onDecisionNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
     
@@ -223,8 +254,22 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     
     // Again verify notifications which were registered are not called.
     OCMReject(_trackNotification);
+    OCMReject(_onDecisionNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
+}
+
+- (void) testSendIsFeatureEnabledNotification {
+    
+    __weak typeof(self) weakSelf = self;
+    [weakSelf.optimizely.notificationCenter addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqual(kUserId, userId);
+        XCTAssertEqual(kFeatureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+    }];
+    
+    // Should return true when experiments in feature flag does belongs to same group.
+    XCTAssertTrue([self.optimizely isFeatureEnabled:kFeatureFlagKey userId:kUserId attributes:nil], @"should return true when experiments in feature flag does belongs to same group");
+    [self.optimizely.notificationCenter clearAllNotificationListeners];
 }
 
 - (void) testSendNotificationWithAnyAttributes {
