@@ -1333,18 +1333,54 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 // should return empty feature array as no feature is enabled for user
 - (void)testGetEnabledFeaturesWithNoFeatureEnabledForUser {
-    id optimizelyMock = OCMPartialMock(self.optimizely);
-    OCMStub([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]).andReturn(false);
-    XCTAssertEqual([optimizelyMock getEnabledFeatures:kUserId attributes:self.attributes].count, 0);
-    OCMVerify([optimizelyMock isFeatureEnabled:[OCMArg any] userId:kUserId attributes:self.attributes]);
+    id optimizelyMock = OCMPartialMock(self.optimizely.decisionService);
+    OCMStub([optimizelyMock getVariationForFeature:[OCMArg any] userId:kUserId attributes:self.attributes]).andReturn(nil);
+    OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
+    __block int callCount = 0;
+    OCMStub([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]).andDo(^(NSInvocation *invocation)
+                                                                                                        {
+                                                                                                            ++callCount;
+                                                                                                        });
+    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqualObjects(self.attributes, attributes);
+        XCTAssertEqualObjects(kUserId, userId);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+    }];
+    
+    XCTAssertEqual([self.optimizely getEnabledFeatures:kUserId attributes:self.attributes].count, 0);
+    OCMVerify([optimizelyMock getVariationForFeature:[OCMArg any] userId:kUserId attributes:self.attributes]);
+    int expectedNumberOfCalls = 11;
     [optimizelyMock stopMocking];
+    XCTAssertEqual(callCount, expectedNumberOfCalls);
+    [(id)notificationCenterMock stopMocking];
 }
 
 // should return feature array as some feature is enabled for user
 - (void)testGetEnabledFeaturesWithSomeFeaturesEnabledForUser {
+    OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
+    
+    __block int callCount = 0;
+    OCMStub([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]).andDo(^(NSInvocation *invocation)
+                                                                                                        {
+                                                                                                            ++callCount;
+                                                                                                        });
+    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqualObjects(self.attributes, attributes);
+        XCTAssertEqualObjects(kUserId, userId);
+        if ([enabledFeatures containsObject:decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]]) {
+            XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+        }
+        else {
+            XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+        }
+    }];
+    
+    int expectedNumberOfCalls = 11;
     NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:self.attributes];
     XCTAssertEqualObjects(features, enabledFeatures);
+    XCTAssertEqual(callCount, expectedNumberOfCalls);
+    [(id)notificationCenterMock stopMocking];
 }
 
 #pragma mark - TypedAudiences Tests
