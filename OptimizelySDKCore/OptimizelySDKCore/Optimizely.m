@@ -232,10 +232,12 @@
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
     [decisionInfo setValue:[NSNull null] forKey:OPTLYNotificationDecisionInfoSourceExperimentKey];
+    [decisionInfo setValue:[NSNull null] forKey:OPTLYNotificationDecisionInfoSourceVariationKey];
     
     if (decision) {
         if ([decision.source isEqualToString:DecisionSourceExperiment]) {
             [decisionInfo setValue:decision.experiment.experimentKey forKey:OPTLYNotificationDecisionInfoSourceExperimentKey];
+            [decisionInfo setValue:decision.variation.variationKey forKey:OPTLYNotificationDecisionInfoSourceVariationKey];
             [self sendImpressionEventFor:decision.experiment
                                variation:decision.variation
                                   userId:userId

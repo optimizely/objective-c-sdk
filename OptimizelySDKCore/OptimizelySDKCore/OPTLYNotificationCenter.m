@@ -29,13 +29,14 @@ NSString * _Nonnull const OPTLYNotificationAttributesKey = @"attributes";
 NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
 NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
-NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey = @"type";
-NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
-NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKey = @"sourceExperimentKey";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey = @"featureKey";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureEnabledKey = @"featureEnabled";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKey = @"sourceExperimentKey";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceVariationKey = @"sourceVariationKey";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceKey = @"source";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey = @"variableKey";
+NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey = @"type";
 
 /// Notification decision types.
 NSString * _Nonnull const OPTLYOnDecisionTypeIsFeatureEnabled = @"feature";

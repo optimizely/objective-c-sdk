@@ -53,13 +53,14 @@ extern NSString * _Nonnull const OPTLYNotificationAttributesKey;
 extern NSString * _Nonnull const OPTLYNotificationEventKey;
 extern NSString * _Nonnull const OPTLYNotificationEventTagsKey;
 extern NSString * _Nonnull const OPTLYNotificationLogEventParamsKey;
-extern NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey;
-extern NSString * _Nonnull const OPTLYNotificationDecisionInfoKey;
-extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureEnabledKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionInfoKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceVariationKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey;
+extern NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey;
 
 /// Notification decision types.
 extern NSString * _Nonnull const OPTLYOnDecisionTypeIsFeatureEnabled;
