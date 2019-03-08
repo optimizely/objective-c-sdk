@@ -29,20 +29,20 @@ NSString * _Nonnull const OPTLYNotificationAttributesKey = @"attributes";
 NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
 NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
-NSString * _Nonnull const OPTLYNotificationTypeKey = @"type";
+NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey = @"type";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
-NSString * _Nonnull const OPTLYNotificationSourceExperimentKey = @"source_experiment_key";
-NSString * _Nonnull const OPTLYNotificationFeatureKey = @"featureKey";
-NSString * _Nonnull const OPTLYNotificationFeatureEnabledKey = @"featureEnabled";
-NSString * _Nonnull const OPTLYNotificationSourceKey = @"source";
-NSString * _Nonnull const OPTLYNotificationVariableKey = @"variableKey";
-NSString * _Nonnull const OPTLYNotificationVariableTypeKey = @"variableType";
-NSString * _Nonnull const OPTLYNotificationVariableValueKey = @"variableValue";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKey = @"source_experiment_key";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey = @"featureKey";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureEnabledKey = @"featureEnabled";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceKey = @"source";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey = @"variableKey";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableTypeKey = @"variableType";
+NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableValueKey = @"variableValue";
 
 /// Notification decision types.
-NSString * _Nonnull const OPTLYDecisionTypeExperimentVariation = @"experiment_variation";
-NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
-NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature_variable";
+NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
+NSString * _Nonnull const OPTLYOnDecisionTypeIsFeatureEnabled = @"feature";
+NSString * _Nonnull const OPTLYOnDecisionTypeFeatureVariable  = @"feature_variable";
 
 @interface OPTLYNotificationCenter()
 
@@ -231,7 +231,7 @@ NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature_variable
         return; // Not enough arguments in the array
     }
     
-    NSString *typeKey = (NSString *)[args objectForKey:OPTLYNotificationTypeKey];
+    NSString *typeKey = (NSString *)[args objectForKey:OPTLYNotificationOnDecisionTypeKey];
     assert(typeKey);
     assert([typeKey isValidStringType]);
     

@@ -178,7 +178,7 @@
                                                                       bucketer:self.bucketer];
     
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-    [args setValue:OPTLYDecisionTypeExperimentVariation forKey:OPTLYNotificationTypeKey];
+    [args setValue:OPTLYOnDecisionTypeExperiment forKey:OPTLYNotificationOnDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
@@ -243,11 +243,11 @@
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:[NSNull null] forKey:OPTLYNotificationSourceExperimentKey];
+    [decisionInfo setValue:[NSNull null] forKey:OPTLYNotificationDecisionInfoSourceExperimentKey];
     
     if (decision) {
         if ([decision.source isEqualToString:DecisionSourceExperiment]) {
-            [decisionInfo setValue:decision.experiment.experimentKey forKey:OPTLYNotificationSourceExperimentKey];
+            [decisionInfo setValue:decision.experiment.experimentKey forKey:OPTLYNotificationDecisionInfoSourceExperimentKey];
             [self sendImpressionEventFor:decision.experiment
                                variation:decision.variation
                                   userId:userId
@@ -268,13 +268,13 @@
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
-    [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationTypeKey];
+    [args setValue:OPTLYOnDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationOnDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
-    [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
-    [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationFeatureEnabledKey];
-    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
+    [decisionInfo setValue:featureKey forKey:OPTLYNotificationDecisionInfoFeatureKey];
+    [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationDecisionInfoFeatureEnabledKey];
+    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
@@ -290,12 +290,12 @@
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OPTLYNotificationFeatureKey:[self ObjectOrNull:featureKey],
-                                                                                                                    OPTLYNotificationVariableKey:[self ObjectOrNull:variableKey]}];
+                                                                                                                    OPTLYNotificationDecisionInfoFeatureKey:[self ObjectOrNull:featureKey],
+                                                                                                                    OPTLYNotificationDecisionInfoVariableKey:[self ObjectOrNull:variableKey]}];
     NSDictionary <NSString *, NSString *> *logs = @{
                                                     OPTLYNotificationUserIdKey:OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid,
-                                                    OPTLYNotificationVariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
-                                                    OPTLYNotificationFeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
+                                                    OPTLYNotificationDecisionInfoVariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
+                                                    OPTLYNotificationDecisionInfoFeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
         return nil;
@@ -339,17 +339,17 @@
     }
     
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-    [args setValue:OPTLYDecisionTypeFeatureVariable forKey:OPTLYNotificationTypeKey];
+    [args setValue:OPTLYOnDecisionTypeFeatureVariable forKey:OPTLYNotificationOnDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:featureKey forKey:OPTLYNotificationFeatureKey];
-    [decisionInfo setValue:[NSNumber numberWithBool:decision.variation.featureEnabled] forKey:OPTLYNotificationFeatureEnabledKey];
-    [decisionInfo setValue:variableKey forKey:OPTLYNotificationVariableKey];
-    [decisionInfo setValue:variableType forKey:OPTLYNotificationVariableTypeKey];
-    [decisionInfo setValue:variableValue forKey:OPTLYNotificationVariableValueKey];
-    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationSourceKey];
+    [decisionInfo setValue:featureKey forKey:OPTLYNotificationDecisionInfoFeatureKey];
+    [decisionInfo setValue:[NSNumber numberWithBool:decision.variation.featureEnabled] forKey:OPTLYNotificationDecisionInfoFeatureEnabledKey];
+    [decisionInfo setValue:variableKey forKey:OPTLYNotificationDecisionInfoVariableKey];
+    [decisionInfo setValue:variableType forKey:OPTLYNotificationDecisionInfoVariableTypeKey];
+    [decisionInfo setValue:variableValue forKey:OPTLYNotificationDecisionInfoVariableValueKey];
+    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];

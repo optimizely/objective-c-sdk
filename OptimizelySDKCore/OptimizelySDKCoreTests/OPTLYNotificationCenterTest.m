@@ -267,7 +267,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __weak typeof(self) weakSelf = self;
     [weakSelf.optimizely.notificationCenter addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
-        XCTAssertEqual(kFeatureFlagKey, decisionInfo[OPTLYNotificationFeatureKey]);
+        XCTAssertEqual(kFeatureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
     }];
     
     // Should return true when experiments in feature flag does belongs to same group.
@@ -300,9 +300,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __weak typeof(self) weakSelf = self;
     [weakSelf.optimizely.notificationCenter addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
-        XCTAssertEqual(@"booleanVariable", decisionInfo[OPTLYNotificationVariableKey]);
-        XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[OPTLYNotificationFeatureKey]);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationVariableValueKey] boolValue]);
+        XCTAssertEqual(@"booleanVariable", decisionInfo[OPTLYNotificationDecisionInfoVariableKey]);
+        XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
     }];
     [self.optimizely getFeatureVariableBoolean:@"booleanSingleVariableFeature" variableKey:@"booleanVariable" userId:kUserId attributes:nil];
     [self.optimizely.notificationCenter clearAllNotificationListeners];
