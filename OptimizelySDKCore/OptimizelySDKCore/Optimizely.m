@@ -314,7 +314,7 @@
     }
     
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-    [args setValue:OPTLYOnDecisionTypeFeatureVariable forKey:OPTLYNotificationOnDecisionTypeKey];
+    [args setValue:OPTLYDecisionTypeFeatureVariable forKey:OPTLYNotificationDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
@@ -326,7 +326,7 @@
     [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
     
     return variableValue;
 }

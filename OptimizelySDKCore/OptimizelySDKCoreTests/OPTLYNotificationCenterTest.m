@@ -49,7 +49,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
 @property (nonatomic, copy) ActivateListener activateNotification;
 @property (nonatomic, copy) ActivateListener anotherActivateNotification;
 @property (nonatomic, copy) TrackListener trackNotification;
-@property (nonatomic, copy) OnDecisionListener onDecisionNotification;
+@property (nonatomic, copy) DecisionListener decisionNotification;
 @property (nonatomic, strong) OPTLYProjectConfig *projectConfig;
 @end
 
@@ -91,8 +91,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, eventKey] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
     };
-    weakSelf.onDecisionNotification = ^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        NSString *logMessage = @"onDecision notification called with %@";
+    weakSelf.decisionNotification = ^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        NSString *logMessage = @"decision notification called with %@";
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, type] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, userId] withLevel:OptimizelyLogLevelInfo];
         [weakSelf.projectConfig.logger logMessage:[NSString stringWithFormat:logMessage, decisionInfo] withLevel:OptimizelyLogLevelInfo];
@@ -143,15 +143,15 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
-    // Add onDecision notification.
-    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    // Add decision notification.
+    [_notificationCenter addDecisionNotificationListener:_decisionNotification];
     
     // Verify that callbacks added successfully.
     XCTAssertEqual(4, _notificationCenter.notificationsCount);
     
     // Verify that only decision callbacks are removed.
     [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeActivate];
-    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeOnDecision];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeDecision];
     XCTAssertEqual(1, _notificationCenter.notificationsCount);
     
     // Verify that ClearNotifications does not break on calling twice for same type.
@@ -161,7 +161,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Verify that ClearNotifications does not break after calling ClearAllNotifications.
     [_notificationCenter clearAllNotificationListeners];
     [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeTrack];
-    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeOnDecision];
+    [_notificationCenter clearNotificationListeners:OPTLYNotificationTypeDecision];
 }
 
 - (void)testClearAllNotifications {
@@ -173,8 +173,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
-    // Add onDecision notification.
-    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    // Add decision notification.
+    [_notificationCenter addDecisionNotificationListener:_decisionNotification];
     
     // Verify that callbacks added successfully.
     XCTAssertEqual(4, _notificationCenter.notificationsCount);
@@ -198,8 +198,8 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     // Add track notification.
     [_notificationCenter addTrackNotificationListener:_trackNotification];
     
-    // Add onDecision notification.
-    [_notificationCenter addOnDecisionNotificationListener:_onDecisionNotification];
+    // Add decision notification.
+    [_notificationCenter addDecisionNotificationListener:_decisionNotification];
     
     // Fire decision type notifications.
     
@@ -220,7 +220,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:activateArgs];
     
     OCMReject(_trackNotification);
-    OCMVerify(_onDecisionNotification);
+    OCMVerify(_decisionNotification);
     OCMVerify(_activateNotification);
     OCMVerify(_anotherActivateNotification);
     
@@ -241,7 +241,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     [_notificationCenter sendNotifications:OPTLYNotificationTypeTrack args:trackArgs];
     
     OCMVerify(_trackNotification);
-    OCMReject(_onDecisionNotification);
+    OCMReject(_decisionNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
     
@@ -253,7 +253,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     
     // Again verify notifications which were registered are not called.
     OCMReject(_trackNotification);
-    OCMReject(_onDecisionNotification);
+    OCMReject(_decisionNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
 }
@@ -261,7 +261,7 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
 - (void) testSendGetFeatureVariableNotification {
     
     __weak typeof(self) weakSelf = self;
-    [weakSelf.optimizely.notificationCenter addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
         XCTAssertEqual(@"booleanVariable", decisionInfo[OPTLYNotificationDecisionInfoVariableKey]);
         XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);

@@ -64,7 +64,7 @@ static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number
 static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 @interface OPTLYNotificationCenter(Testing)
-- (void)notifyOnDecisionListener:(OnDecisionListener)listener args:(NSDictionary *)args;
+- (void)notifyDecisionListener:(DecisionListener)listener args:(NSDictionary *)args;
 @end
 
 @interface Optimizely(Testing)
@@ -385,7 +385,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
 
-- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
+- (void)testOptimizelyPostsActivateExperimentNotificationEmptyAttributes {
     
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
@@ -398,7 +398,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                     userId:kUserId attributes:nil];
-    XCTAssertNil(actualAttributes);
+    XCTAssertEqual(@{}, actualAttributes);
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
@@ -453,7 +453,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self.optimizely track:eventKey userId:@""];
     XCTAssertEqualObjects(@"", _userId);
     XCTAssertEqual(eventKey, notificationEventKey);
-    XCTAssertEqualObjects(nil, actualAttributes);
+    XCTAssertEqualObjects(@{}, actualAttributes);
     XCTAssertEqualObjects(nil, actualEventTags);
 }
 
@@ -542,7 +542,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     [self.optimizely track:eventKey userId:kUserId attributes:nil eventTags:nil];
     
-    XCTAssertNil(actualAttributes);
+    XCTAssertEqual(@{}, actualAttributes);
     XCTAssertNil(actualEventTags);
     XCTAssertEqual(eventKey, notificationEventKey);
 }
@@ -1044,7 +1044,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block BOOL expectedValue = false;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeBoolean, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1056,7 +1056,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     BOOL actualValue = [(NSNumber *)[self.optimizely getFeatureVariableBoolean:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] boolValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1075,7 +1075,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block BOOL expectedValue = false;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeBoolean, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1087,7 +1087,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     BOOL actualValue = [(NSNumber *)[self.optimizely getFeatureVariableBoolean:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] boolValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1106,7 +1106,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block BOOL expectedValue = false;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
@@ -1118,7 +1118,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     BOOL actualValue = [(NSNumber *)[self.optimizely getFeatureVariableBoolean:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] boolValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1137,7 +1137,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block BOOL expectedValue = false;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeBoolean, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1149,7 +1149,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     BOOL actualValue = [(NSNumber *)[self.optimizely getFeatureVariableBoolean:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] boolValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1162,7 +1162,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
     
     __block BOOL expectedValue = false;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeBoolean, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1175,7 +1175,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     BOOL actualValue = [(NSNumber *)[self.optimizely getFeatureVariableBoolean:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] boolValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1194,7 +1194,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block double expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeDouble, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1206,7 +1206,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     double actualValue = [(NSNumber *)[self.optimizely getFeatureVariableDouble:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] doubleValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1225,7 +1225,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block double expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeDouble, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1237,7 +1237,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     double actualValue = [(NSNumber *)[self.optimizely getFeatureVariableDouble:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] doubleValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1256,7 +1256,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block double expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeDouble, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1268,7 +1268,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     double actualValue = [(NSNumber *)[self.optimizely getFeatureVariableDouble:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] doubleValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1287,7 +1287,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block double expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeDouble, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1299,7 +1299,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     double actualValue = [(NSNumber *)[self.optimizely getFeatureVariableDouble:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] doubleValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1312,7 +1312,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
     
     __block double expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeDouble, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1325,7 +1325,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     double actualValue = [(NSNumber *)[self.optimizely getFeatureVariableDouble:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] doubleValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1344,7 +1344,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block int expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeInteger, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1356,7 +1356,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     int actualValue = [(NSNumber *)[self.optimizely getFeatureVariableInteger:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] intValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1375,7 +1375,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block int expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeInteger, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1387,7 +1387,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     int actualValue = [(NSNumber *)[self.optimizely getFeatureVariableInteger:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] intValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1406,7 +1406,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block int expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeInteger, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1418,7 +1418,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     int actualValue = [(NSNumber *)[self.optimizely getFeatureVariableInteger:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] intValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1437,7 +1437,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block int expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeInteger, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1449,7 +1449,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     int actualValue = [(NSNumber *)[self.optimizely getFeatureVariableInteger:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] intValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1462,7 +1462,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
     
     __block int expectedValue = 0;
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeInteger, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1475,7 +1475,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     int actualValue = [(NSNumber *)[self.optimizely getFeatureVariableInteger:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}] intValue];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1494,7 +1494,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block NSString *expectedValue = @"";
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeString, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1506,7 +1506,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *actualValue = [self.optimizely getFeatureVariableString:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1525,7 +1525,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block NSString *expectedValue = @"";
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeString, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1537,7 +1537,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *actualValue = [self.optimizely getFeatureVariableString:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1556,7 +1556,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block NSString *expectedValue = @"";
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeString, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1568,7 +1568,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *actualValue = [self.optimizely getFeatureVariableString:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1587,7 +1587,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(expectedDecision);
     
     __block NSString *expectedValue = @"";
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeString, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1599,7 +1599,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *actualValue = [self.optimizely getFeatureVariableString:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
@@ -1612,7 +1612,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
     
     __block NSString *expectedValue = @"";
-    [notificationCenterMock addOnDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+    [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(kUserId, userId);
         XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
         XCTAssertEqual(FeatureVariableTypeString, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
@@ -1625,7 +1625,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     NSString *actualValue = [self.optimizely getFeatureVariableString:featureFlagKey variableKey:variableKey userId:kUserId attributes:@{}];
     XCTAssertEqual(actualValue, expectedValue);
-    OCMVerify([(id)notificationCenterMock notifyOnDecisionListener:[OCMArg any] args:[OCMArg any]]);
+    OCMVerify([(id)notificationCenterMock notifyDecisionListener:[OCMArg any] args:[OCMArg any]]);
     [(id)notificationCenterMock stopMocking];
 }
 
