@@ -29,13 +29,13 @@ NSString * _Nonnull const OPTLYNotificationAttributesKey = @"attributes";
 NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
 NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
-NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey = @"type";
+NSString * _Nonnull const OPTLYNotificationDecisionTypeKey = @"type";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey = @"featureKey";
 NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey = @"variableKey";
 
 /// Notification decision types.
-NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
+NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
 
 @interface OPTLYNotificationCenter()
 
@@ -53,7 +53,7 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
         _notificationId = 1;
         _config = config;
         _notifications = [NSMutableDictionary new];
-        for (NSUInteger i = OPTLYNotificationTypeActivate; i <= OPTLYNotificationTypeOnDecision; i++) {
+        for (NSUInteger i = OPTLYNotificationTypeActivate; i <= OPTLYNotificationTypeDecision; i++) {
             NSNumber *number = [NSNumber numberWithUnsignedInteger:i];
             _notifications[number] = [NSMutableDictionary new];
         }
@@ -79,8 +79,8 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
     return [self addNotification:OPTLYNotificationTypeTrack listener:(GenericListener)trackListener];
 }
 
-- (NSInteger)addOnDecisionNotificationListener:(nonnull OnDecisionListener)onDecisionListener {
-    return [self addNotification:OPTLYNotificationTypeOnDecision listener:(GenericListener) onDecisionListener];
+- (NSInteger)addDecisionNotificationListener:(nonnull DecisionListener)decisionListener {
+    return [self addNotification:OPTLYNotificationTypeDecision listener:(GenericListener) decisionListener];
 }
 
 - (BOOL)removeNotificationListener:(NSUInteger)notificationId {
@@ -115,8 +115,8 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
                 case OPTLYNotificationTypeTrack:
                     [self notifyTrackListener:((TrackListener) listener) args:args];
                     break;
-                case OPTLYNotificationTypeOnDecision:
-                    [self notifyOnDecisionListener:((OnDecisionListener) listener) args:args];
+                case OPTLYNotificationTypeDecision:
+                    [self notifyDecisionListener:((DecisionListener) listener) args:args];
                     break;
                 default:
                     listener(args);
@@ -166,11 +166,8 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
     assert(userId);
     assert([userId isValidStringType]);
     
-    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
-    
-    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
-        assert([attributes isKindOfClass:[NSDictionary class]]);
-    }
+    NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
+    assert([attributes isKindOfClass:[NSDictionary class]]);
     
     OPTLYVariation *variation = (OPTLYVariation *)[args objectForKey:OPTLYNotificationVariationKey];
     assert(variation);
@@ -199,10 +196,8 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
     assert(userId);
     assert([userId isValidStringType]);
     
-    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
-    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
-        assert([attributes isKindOfClass:[NSDictionary class]]);
-    }
+    NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
+    assert([attributes isKindOfClass:[NSDictionary class]]);
     
     NSDictionary *eventTags = (NSDictionary *)[args objectForKey:OPTLYNotificationEventTagsKey];
     if (eventTags != nil && ![eventTags isEqual:[NSNull null]]) {
@@ -216,7 +211,7 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
     listener(eventKey, userId, attributes, eventTags, logEvent);
 }
 
-- (void)notifyOnDecisionListener:(OnDecisionListener)listener args:(NSDictionary *)args {
+- (void)notifyDecisionListener:(DecisionListener)listener args:(NSDictionary *)args {
     
     if(args.allKeys.count < 3) {
         NSString *logMessage = [NSString stringWithFormat:@"Not enough arguments to call %@ for notification callback.", listener];
@@ -224,7 +219,7 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
         return; // Not enough arguments in the array
     }
     
-    NSString *typeKey = (NSString *)[args objectForKey:OPTLYNotificationOnDecisionTypeKey];
+    NSString *typeKey = (NSString *)[args objectForKey:OPTLYNotificationDecisionTypeKey];
     assert(typeKey);
     assert([typeKey isValidStringType]);
     
@@ -232,10 +227,8 @@ NSString * _Nonnull const OPTLYOnDecisionTypeExperiment = @"experiment";
     assert(userId);
     assert([userId isValidStringType]);
     
-    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
-    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
-        assert([attributes isKindOfClass:[NSDictionary class]]);
-    }
+    NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
+    assert([attributes isKindOfClass:[NSDictionary class]]);
     
     NSDictionary *decisionInfo = (NSDictionary *)[args objectForKey:OPTLYNotificationDecisionInfoKey];
     assert(decisionInfo);

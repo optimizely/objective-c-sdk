@@ -22,7 +22,7 @@
 typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeActivate,
     OPTLYNotificationTypeTrack,
-    OPTLYNotificationTypeOnDecision
+    OPTLYNotificationTypeDecision
 };
 
 typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
@@ -37,10 +37,10 @@ typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSDictionary * _Nullable eventTags,
                               NSDictionary<NSString *,id> * _Nonnull event);
 
-typedef void (^OnDecisionListener)(NSString * _Nonnull type,
-                                   NSString * _Nonnull userId,
-                                   NSDictionary<NSString *, id> * _Nullable attributes,
-                                   NSDictionary<NSString *,id> * _Nonnull decisionInfo);
+typedef void (^DecisionListener)(NSString * _Nonnull type,
+                                 NSString * _Nonnull userId,
+                                 NSDictionary<NSString *, id> * _Nullable attributes,
+                                 NSDictionary<NSString *,id> * _Nonnull decisionInfo);
 
 typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
@@ -53,13 +53,13 @@ extern NSString * _Nonnull const OPTLYNotificationAttributesKey;
 extern NSString * _Nonnull const OPTLYNotificationEventKey;
 extern NSString * _Nonnull const OPTLYNotificationEventTagsKey;
 extern NSString * _Nonnull const OPTLYNotificationLogEventParamsKey;
-extern NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionTypeKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey;
 
 /// Notification decision types.
-extern NSString * _Nonnull const OPTLYOnDecisionTypeExperiment;
+extern NSString * _Nonnull const OPTLYDecisionTypeExperiment;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -80,7 +80,7 @@ extern NSString * _Nonnull const OPTLYOnDecisionTypeExperiment;
  * @param activateListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener __deprecated_msg("Use onDecisionListener instead");
+- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener __deprecated_msg("Use DecisionListener instead");
 
 /**
  * Add a track notification listener to the notification center.
@@ -91,12 +91,12 @@ extern NSString * _Nonnull const OPTLYOnDecisionTypeExperiment;
 - (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
 
 /**
- * Add an on decision notification listener to the notification center.
+ * Add a decision notification listener to the notification center.
  *
- * @param onDecisionListener - Notification to add.
+ * @param decisionListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addOnDecisionNotificationListener:(nonnull OnDecisionListener)onDecisionListener;
+- (NSInteger)addDecisionNotificationListener:(nonnull DecisionListener)decisionListener;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.
