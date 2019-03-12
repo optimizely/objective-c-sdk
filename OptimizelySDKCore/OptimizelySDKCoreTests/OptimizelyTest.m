@@ -527,7 +527,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(eventKey, notificationEventKey);
 }
 
-- (void)testOptimizelyPostEventTrackNotificationWithNilAttributesEventTags {
+- (void)testOptimizelyPostEventTrackNotificationWithEmptyAttributesEventTags {
     
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
@@ -1051,6 +1051,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"177770", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"177771", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(true, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue];
     }];
     
@@ -1082,6 +1083,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"177770", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"177771", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(true, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue];
     }];
     
@@ -1113,6 +1115,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(FeatureVariableTypeBoolean, decisionInfo[OPTLYNotificationDecisionInfoVariableTypeKey]);
         XCTAssertEqual(true, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue];
     }];
     
@@ -1144,6 +1147,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(true, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue];
     }];
     
@@ -1170,6 +1174,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(true, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
         XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue];
     }];
     
@@ -1201,6 +1206,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"testExperimentDoubleFeature", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"control", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(14.99, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue];
     }];
     
@@ -1263,6 +1269,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(14.99, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue];
     }];
     
@@ -1294,6 +1301,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42.42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue];
     }];
     
@@ -1320,6 +1328,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] doubleValue];
     }];
     
@@ -1351,6 +1360,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"testExperimentDoubleFeature", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"control", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue];
     }];
     
@@ -1382,6 +1392,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"testExperimentDoubleFeature", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"control", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue];
     }];
     
@@ -1413,6 +1424,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue];
     }];
     
@@ -1444,6 +1456,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue];
     }];
     
@@ -1470,6 +1483,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqual(42, [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue]);
         XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = [decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] intValue];
     }];
     
@@ -1501,6 +1515,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"testExperimentDoubleFeature", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"control", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqualObjects(@"wingardium leviosa", decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey];
     }];
     
@@ -1532,6 +1547,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects(@"testExperimentDoubleFeature", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects(@"control", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqualObjects(@"wingardium leviosa", decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey];
     }];
     
@@ -1563,6 +1579,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqualObjects(@"wingardium leviosa", decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey];
     }];
     
@@ -1594,6 +1611,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqualObjects(@"wingardium leviosa", decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey];
     }];
     
@@ -1620,6 +1638,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
         XCTAssertEqualObjects(@"wingardium leviosa", decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey]);
         XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(@{}, attributes);
         expectedValue = decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey];
     }];
     
