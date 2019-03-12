@@ -22,7 +22,7 @@
 typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeActivate,
     OPTLYNotificationTypeTrack,
-    OPTLYNotificationTypeOnDecision
+    OPTLYNotificationTypeDecision
 };
 
 typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
@@ -37,10 +37,10 @@ typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSDictionary * _Nullable eventTags,
                               NSDictionary<NSString *,id> * _Nonnull event);
 
-typedef void (^OnDecisionListener)(NSString * _Nonnull type,
-                                   NSString * _Nonnull userId,
-                                   NSDictionary<NSString *, id> * _Nullable attributes,
-                                   NSDictionary<NSString *,id> * _Nonnull decisionInfo);
+typedef void (^DecisionListener)(NSString * _Nonnull type,
+                                 NSString * _Nonnull userId,
+                                 NSDictionary<NSString *, id> * _Nullable attributes,
+                                 NSDictionary<NSString *,id> * _Nonnull decisionInfo);
 
 typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
@@ -60,10 +60,10 @@ extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceExperimentKe
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceVariationKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoSourceKey;
 extern NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey;
-extern NSString * _Nonnull const OPTLYNotificationOnDecisionTypeKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionTypeKey;
 
 /// Notification decision types.
-extern NSString * _Nonnull const OPTLYOnDecisionTypeIsFeatureEnabled;
+extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -97,10 +97,10 @@ extern NSString * _Nonnull const OPTLYOnDecisionTypeIsFeatureEnabled;
 /**
  * Add an on decision notification listener to the notification center.
  *
- * @param onDecisionListener - Notification to add.
+ * @param decisionListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addOnDecisionNotificationListener:(nonnull OnDecisionListener)onDecisionListener;
+- (NSInteger)addDecisionNotificationListener:(nonnull DecisionListener)decisionListener;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.

@@ -258,7 +258,7 @@
     NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
     [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     
-    [args setValue:OPTLYOnDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationOnDecisionTypeKey];
+    [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
@@ -267,7 +267,7 @@
     [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
-    [_notificationCenter sendNotifications:OPTLYNotificationTypeOnDecision args:args];
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
     
     return result;
 }
