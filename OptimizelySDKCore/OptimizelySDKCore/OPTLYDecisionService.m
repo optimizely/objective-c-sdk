@@ -152,7 +152,10 @@
     [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed, userId, featureFlag.key]
                          withLevel:OptimizelyLogLevelDebug];
     
-    return nil;
+    decision = [[OPTLYFeatureDecision alloc] init];
+    decision.source = DecisionSourceRollout;
+    
+    return decision;
 }
 
 # pragma mark - Helper Methods

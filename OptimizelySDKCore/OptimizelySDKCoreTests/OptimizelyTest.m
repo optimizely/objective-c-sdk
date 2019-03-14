@@ -1157,13 +1157,13 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [(id)notificationCenterMock stopMocking];
 }
 
-- (void)testGetFeatureVariableBooleanNotificationWithNilDecision {
+- (void)testGetFeatureVariableBooleanNotificationWithDecisionContainingNilVariationAndExperiment {
     
     NSString *featureFlagKey = @"booleanSingleVariableFeature";
     NSString *variableKey = @"booleanVariable";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     id decisionService = OCMPartialMock(self.optimizely.decisionService);
-    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceRollout]);
     
     __block BOOL expectedValue = false;
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
@@ -1311,13 +1311,13 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [(id)notificationCenterMock stopMocking];
 }
 
-- (void)testGetFeatureVariableDoubleNotificationWithNilDecision {
+- (void)testGetFeatureVariableDoubleNotificationWithDecisionContainingNilVariationAndExperiment {
     
     NSString *featureFlagKey = @"doubleSingleVariableFeature";
     NSString *variableKey = @"doubleVariable";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     id decisionService = OCMPartialMock(self.optimizely.decisionService);
-    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceRollout]);
     
     __block double expectedValue = 0;
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
@@ -1466,13 +1466,13 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [(id)notificationCenterMock stopMocking];
 }
 
-- (void)testGetFeatureVariableIntegerNotificationWithNilDecision {
+- (void)testGetFeatureVariableIntegerNotificationWithDecisionContainingNilVariationAndExperiment {
     
     NSString *featureFlagKey = @"integerSingleVariableFeature";
     NSString *variableKey = @"integerVariable";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     id decisionService = OCMPartialMock(self.optimizely.decisionService);
-    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceRollout]);
     
     __block int expectedValue = 0;
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
@@ -1621,13 +1621,13 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [(id)notificationCenterMock stopMocking];
 }
 
-- (void)testGetFeatureVariableStringNotificationWithNilDecision {
+- (void)testGetFeatureVariableStringNotificationWithDecisionContainingNilVariationAndExperiment {
     
     NSString *featureFlagKey = @"stringSingleVariableFeature";
     NSString *variableKey = @"stringVariable";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     id decisionService = OCMPartialMock(self.optimizely.decisionService);
-    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn(nil);
+    OCMStub([decisionService getVariationForFeature:[OCMArg any] userId:[OCMArg any] attributes:[OCMArg any]]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceRollout]);
     
     __block NSString *expectedValue = @"";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {

@@ -323,7 +323,7 @@
     [decisionInfo setValue:variableKey forKey:OPTLYNotificationDecisionInfoVariableKey];
     [decisionInfo setValue:variableType forKey:OPTLYNotificationDecisionInfoVariableTypeKey];
     [decisionInfo setValue:variableValue forKey:OPTLYNotificationDecisionInfoVariableValueKey];
-    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
+    [decisionInfo setValue:decision.source forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
