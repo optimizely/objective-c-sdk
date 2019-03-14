@@ -385,7 +385,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
 
-- (void)testOptimizelyPostsActivateExperimentNotificationEmptyAttributes {
+- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
     
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
@@ -398,7 +398,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                     userId:kUserId attributes:nil];
-    XCTAssertEqual(@{}, actualAttributes);
+    XCTAssertNil(actualAttributes);
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
@@ -453,7 +453,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self.optimizely track:eventKey userId:@""];
     XCTAssertEqualObjects(@"", _userId);
     XCTAssertEqual(eventKey, notificationEventKey);
-    XCTAssertEqualObjects(@{}, actualAttributes);
+    XCTAssertNil(actualAttributes);
     XCTAssertEqualObjects(nil, actualEventTags);
 }
 
@@ -527,7 +527,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(eventKey, notificationEventKey);
 }
 
-- (void)testOptimizelyPostEventTrackNotificationWithEmptyAttributesEventTags {
+- (void)testOptimizelyPostEventTrackNotificationWithNilAttributesEventTags {
     
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
@@ -542,7 +542,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     [self.optimizely track:eventKey userId:kUserId attributes:nil eventTags:nil];
     
-    XCTAssertEqual(@{}, actualAttributes);
+    XCTAssertNil(actualAttributes);
     XCTAssertNil(actualEventTags);
     XCTAssertEqual(eventKey, notificationEventKey);
 }
