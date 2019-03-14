@@ -264,7 +264,7 @@
     
     [decisionInfo setValue:featureKey forKey:OPTLYNotificationDecisionInfoFeatureKey];
     [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:OPTLYNotificationDecisionInfoFeatureEnabledKey];
-    [decisionInfo setValue:(decision.source ?: DecisionSourceRollout) forKey:OPTLYNotificationDecisionInfoSourceKey];
+    [decisionInfo setValue:decision.source forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
