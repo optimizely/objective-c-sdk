@@ -385,7 +385,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
 
-- (void)testOptimizelyPostsActivateExperimentNotificationEmptyAttributes {
+- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
     
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
@@ -527,7 +527,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(eventKey, notificationEventKey);
 }
 
-- (void)testOptimizelyPostEventTrackNotificationWithEmptyAttributesEventTags {
+- (void)testOptimizelyPostEventTrackNotificationWithNilAttributesEventTags {
     
     NSString *eventKey = @"testEvent";
     __block NSString *notificationEventKey = nil;
