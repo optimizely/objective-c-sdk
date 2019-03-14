@@ -398,7 +398,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                     userId:kUserId attributes:nil];
-    XCTAssertEqualObjects(actualAttributes, @{});
+    XCTAssertNil(actualAttributes);
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
@@ -453,7 +453,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self.optimizely track:eventKey userId:@""];
     XCTAssertEqualObjects(@"", _userId);
     XCTAssertEqual(eventKey, notificationEventKey);
-    XCTAssertEqualObjects(actualAttributes, @{});
+    XCTAssertNil(actualAttributes);
     XCTAssertEqualObjects(nil, actualEventTags);
 }
 
@@ -542,7 +542,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     [self.optimizely track:eventKey userId:kUserId attributes:nil eventTags:nil];
     
-    XCTAssertEqualObjects(actualAttributes, @{});
+    XCTAssertNil(actualAttributes);
     XCTAssertNil(actualEventTags);
     XCTAssertEqual(eventKey, notificationEventKey);
 }

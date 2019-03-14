@@ -170,8 +170,10 @@ NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
     assert(userId);
     assert([userId isValidStringType]);
     
-    NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
-    assert([attributes isKindOfClass:[NSDictionary class]]);
+    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {        assert([attributes isKindOfClass:[NSDictionary class]]);
+        assert([attributes isKindOfClass:[NSDictionary class]]);
+    }
     
     OPTLYVariation *variation = (OPTLYVariation *)[args objectForKey:OPTLYNotificationVariationKey];
     assert(variation);
@@ -200,8 +202,10 @@ NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
     assert(userId);
     assert([userId isValidStringType]);
     
-    NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
-    assert([attributes isKindOfClass:[NSDictionary class]]);
+    NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {        assert([attributes isKindOfClass:[NSDictionary class]]);
+        assert([attributes isKindOfClass:[NSDictionary class]]);
+    }
     
     NSDictionary *eventTags = (NSDictionary *)[args objectForKey:OPTLYNotificationEventTagsKey];
     if (eventTags != nil && ![eventTags isEqual:[NSNull null]]) {
