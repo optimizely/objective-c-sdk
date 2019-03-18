@@ -255,8 +255,10 @@
         }
     }
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    if (!result) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    }
     
     [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
