@@ -95,11 +95,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
                                     userId:(NSString *)userId
                                 attributes:(NSDictionary<NSString *, id> *)attributes
                                   callback:(void (^)(NSError *))callback;
-- (NSString *)getFeatureVariableValueForType:(NSString *)variableType
-                                  featureKey:(nullable NSString *)featureKey
-                                 variableKey:(nullable NSString *)variableKey
-                                      userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, id> *)attributes;
+- (id)getFeatureVariableValueForType:(NSString *)variableType
+                          featureKey:(nullable NSString *)featureKey
+                         variableKey:(nullable NSString *)variableKey
+                              userId:(nullable NSString *)userId
+                          attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 @end
 
 @interface OPTLYEventBuilderDefault(Tests)
@@ -1800,7 +1800,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
     NSString *variableKey = @"doubleVariable";
     NSString *variableType = FeatureVariableTypeDouble;
-    NSString *expectedValue = @"14.99";
+    NSNumber *expectedValue = [NSNumber numberWithDouble:14.99];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentDoubleFeature"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"122239"];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
@@ -1808,7 +1808,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);
     
-    NSString *value = [self.optimizely getFeatureVariableValueForType:variableType
+    NSNumber *value = [self.optimizely getFeatureVariableValueForType:variableType
                                                            featureKey:featureKey
                                                           variableKey:variableKey
                                                                userId:kUserId

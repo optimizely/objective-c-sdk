@@ -249,11 +249,11 @@
     return false;
 }
 
-- (NSString *)getFeatureVariableValueForType:(NSString *)variableType
-                                  featureKey:(nullable NSString *)featureKey
-                                 variableKey:(nullable NSString *)variableKey
-                                      userId:(nullable NSString *)userId
-                                  attributes:(nullable NSDictionary<NSString *, id> *)attributes {
+- (id)getFeatureVariableValueForType:(NSString *)variableType
+                          featureKey:(nullable NSString *)featureKey
+                         variableKey:(nullable NSString *)variableKey
+                              userId:(nullable NSString *)userId
+                          attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
@@ -313,6 +313,19 @@
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }
     
+    id finalValue = nil;
+    if (variableValue) {
+        if ([variableType isEqualToString:FeatureVariableTypeBoolean]) {
+            finalValue = [NSNumber numberWithBool:[variableValue boolValue]];
+        } else if ([variableType isEqualToString:FeatureVariableTypeDouble]) {
+            finalValue = [NSNumber numberWithDouble:[variableValue doubleValue]];
+        } else if ([variableType isEqualToString:FeatureVariableTypeInteger]) {
+            finalValue = [NSNumber numberWithDouble:[variableValue intValue]];
+        } else if ([variableType isEqualToString:FeatureVariableTypeString]) {
+            finalValue = variableValue;
+        }
+    }
+    
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
     [args setValue:OPTLYDecisionTypeFeatureVariable forKey:OPTLYNotificationDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
@@ -322,13 +335,13 @@
     [decisionInfo setValue:[NSNumber numberWithBool:decision.variation.featureEnabled] forKey:OPTLYNotificationDecisionInfoFeatureEnabledKey];
     [decisionInfo setValue:variableKey forKey:OPTLYNotificationDecisionInfoVariableKey];
     [decisionInfo setValue:variableType forKey:OPTLYNotificationDecisionInfoVariableTypeKey];
-    [decisionInfo setValue:variableValue forKey:OPTLYNotificationDecisionInfoVariableValueKey];
+    [decisionInfo setValue:finalValue forKey:OPTLYNotificationDecisionInfoVariableValueKey];
     [decisionInfo setValue:decision.source forKey:OPTLYNotificationDecisionInfoSourceKey];
     [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
     
-    return variableValue;
+    return finalValue;
 }
 
 - (NSNumber *)getFeatureVariableBoolean:(nullable NSString *)featureKey
@@ -336,15 +349,11 @@
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
-    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeBoolean
+    NSNumber* booleanValue = [self getFeatureVariableValueForType:FeatureVariableTypeBoolean
                                                         featureKey:featureKey
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    NSNumber* booleanValue = nil;
-    if (variableValue) {
-        booleanValue = @([variableValue boolValue]);
-    }
     return booleanValue;
 }
 
@@ -353,15 +362,11 @@
                            userId:(nullable NSString *)userId
                        attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
-    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeDouble
+    NSNumber* doubleValue = [self getFeatureVariableValueForType:FeatureVariableTypeDouble
                                                         featureKey:featureKey
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    NSNumber* doubleValue = nil;
-    if (variableValue) {
-        doubleValue = @([variableValue doubleValue]);
-    }
     return doubleValue;
 }
 
@@ -371,15 +376,11 @@
                             userId:(nullable NSString *)userId
                         attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     
-    NSString *variableValue = [self getFeatureVariableValueForType:FeatureVariableTypeInteger
+    NSNumber* intValue = [self getFeatureVariableValueForType:FeatureVariableTypeInteger
                                                         featureKey:featureKey
                                                        variableKey:variableKey
                                                             userId:userId
                                                         attributes:attributes];
-    NSNumber* intValue = nil;
-    if (variableValue) {
-        intValue = @([variableValue intValue]);
-    }
     return intValue;
 }
 
