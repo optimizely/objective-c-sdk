@@ -300,7 +300,7 @@ NSString *const OptimizelyNotificationsUserDictionaryExperimentVariationMappingK
         OPTLYVariation *variation = decision.variation;
         OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
         
-        if (featureVariableUsage) {
+        if (featureVariableUsage && variation.featureEnabled) {
             variableValue = featureVariableUsage.value;
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];

@@ -46,6 +46,52 @@
               "value": "eorge"
             }
           ]
+        },
+        {
+            "id": "6373141149",
+            "key": "featureEnabledFalse",
+            "variables": [
+                {
+                    "id": "155556",
+                    "value": "true"
+                },
+                {
+                    "id": "155557",
+                    "value": "42.42"
+                },
+                {
+                    "id": "155558",
+                    "value": "wing"
+                },
+                {
+                    "id": "155559",
+                    "value": "2"
+                }
+            ],
+            "featureEnabled": false
+        },
+        {
+            "id": "6373141149",
+            "key": "featureEnabledTrue",
+            "variables": [
+                {
+                    "id": "155556",
+                    "value": "true"
+                },
+                {
+                    "id": "155557",
+                    "value": "42.42"
+                },
+                {
+                    "id": "155558",
+                    "value": "wing"
+                },
+                {
+                    "id": "155559",
+                    "value": "2"
+                }
+            ],
+            "featureEnabled": true
         }
       ]
     },
@@ -812,6 +858,30 @@
           "key": "restOfName",
           "type": "string",
           "defaultValue": "arry"
+        },
+        {
+            "id": "155556",
+            "key": "booleanVariable",
+            "type": "boolean",
+            "defaultValue": "false"
+        },
+        {
+            "id": "155557",
+            "key": "doubleVariable",
+            "type": "double",
+            "defaultValue": "14.99"
+        },
+        {
+            "id": "155558",
+            "key": "stringVariable",
+            "type": "string",
+            "defaultValue": "wingardium leviosa"
+        },
+        {
+            "id": "155559",
+            "key": "someInteger",
+            "type": "integer",
+            "defaultValue": "1"
         }
       ]
     },
@@ -830,6 +900,39 @@
           "defaultValue": "14.99"
         }
       ]
+    },
+    {
+        "id": "155667",
+        "key": "featureEnabledFalse",
+        "groupId": "",
+        "rolloutId": "166660",
+        "experimentIds": [],
+        "variables": [
+            {
+                "id": "155556",
+                "key": "booleanVariable",
+                "type": "boolean",
+                "defaultValue": "false"
+            },
+            {
+                "id": "155557",
+                "key": "doubleVariable",
+                "type": "double",
+                "defaultValue": "14.99"
+            },
+            {
+                "id": "155558",
+                "key": "stringVariable",
+                "type": "string",
+                "defaultValue": "wingardium leviosa"
+            },
+            {
+                "id": "155559",
+                "key": "someInteger",
+                "type": "integer",
+                "defaultValue": "1"
+            }
+        ]
     }
   ],
   "rollouts": [
@@ -852,6 +955,18 @@
                 {
                   "id": "155556",
                   "value": "true"
+                },
+                {
+                    "id": "155557",
+                    "value": "42.42"
+                },
+                {
+                    "id": "155558",
+                    "value": "wing"
+                },
+                {
+                    "id": "155559",
+                    "value": "2"
                 }
               ],
               "featureEnabled": true
@@ -880,7 +995,19 @@
               "variables": [
                 {
                   "id": "155556",
-                  "value": "false"
+                  "value": "true"
+                },
+                {
+                    "id": "155557",
+                    "value": "42.42"
+                },
+                {
+                    "id": "155558",
+                    "value": "wing"
+                },
+                {
+                    "id": "155559",
+                    "value": "2"
                 }
               ],
               "featureEnabled": false
