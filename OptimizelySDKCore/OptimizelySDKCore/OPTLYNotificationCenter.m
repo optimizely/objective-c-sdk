@@ -171,7 +171,7 @@ NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
     assert([userId isValidStringType]);
     
     NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
-    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {        assert([attributes isKindOfClass:[NSDictionary class]]);
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
         assert([attributes isKindOfClass:[NSDictionary class]]);
     }
     
@@ -203,7 +203,7 @@ NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
     assert([userId isValidStringType]);
     
     NSDictionary *attributes = (NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey];
-    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {        assert([attributes isKindOfClass:[NSDictionary class]]);
+    if (attributes != nil && ![attributes isEqual:[NSNull null]]) {
         assert([attributes isKindOfClass:[NSDictionary class]]);
     }
     
