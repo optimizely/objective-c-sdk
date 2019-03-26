@@ -305,9 +305,6 @@
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotUsed, variableKey, variation.variationKey, variableValue];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
         }
-        if (!variation.featureEnabled) {
-            variableValue = featureVariable.defaultValue;
-        }
     } else {
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotBucketed, userId, featureFlag.key, variableValue];
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
