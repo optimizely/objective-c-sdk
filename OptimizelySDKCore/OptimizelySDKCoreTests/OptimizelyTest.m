@@ -744,6 +744,25 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 #pragma mark - GetFeatureVariable<Type> Tests
 
+- (void)testGetFeatureVariableBooleanNotBucketedInFeatureExperimentAndRollout {
+    NSString *featureKey = @"featureEnabledFalse";
+    NSString *variableKeyTrue = @"booleanVariable";
+    
+    NSString *expectedValueString = @"false";
+    BOOL expectedValue = false;
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableBoolean:featureKey variableKey:variableKeyTrue userId:kUserId attributes:nil] boolValue],
+                   @"should return %@ for feature variable value %@", expectedValue ? @"true" : @"false", expectedValueString);
+    [optimizelyMock stopMocking];
+}
+
 - (void)testGetFeatureVariableBooleanInExperimentWithFeatureEnabledFalse {
     NSString *featureKey = @"featureEnabledFalse";
     NSString *variableKeyTrue = @"booleanVariable";
@@ -906,6 +925,25 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [optimizelyMock stopMocking];
 }
 
+- (void)testGetFeatureVariableDoubleNotBucketedInFeatureExperimentAndRollout {
+    NSString *featureKey = @"featureEnabledFalse";
+    NSString *variableKeyDouble = @"doubleVariable";
+    NSString *expectedValueString = @"14.99";
+    double expectedValue = 14.99;
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    // expectations
+    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableDouble:featureKey variableKey:variableKeyDouble userId:kUserId attributes:nil] doubleValue],
+                   @"should return %f for feature variable value %@", expectedValue, expectedValueString);
+    [optimizelyMock stopMocking];
+}
+
 - (void)testGetFeatureVariableDoubleInExperimentWithFeatureEnabledFalse {
     NSString *featureKey = @"featureEnabledFalse";
     NSString *variableKeyDouble = @"doubleVariable";
@@ -1062,6 +1100,25 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
                                                  variableKey:variableKeyNull
                                                       userId:kUserId
                                                   attributes:nil]);
+    [optimizelyMock stopMocking];
+}
+
+- (void)testGetFeatureVariableIntegerNotBucketedInFeatureExperimentAndRollout {
+    NSString *featureKey = @"featureEnabledFalse";
+    NSString *variableKeyDouble = @"someInteger";
+    NSString *expectedValueString = @"1";
+    int expectedValue = 1;
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    // expectations
+    XCTAssertEqual(expectedValue, [[optimizelyMock getFeatureVariableInteger:featureKey variableKey:variableKeyDouble userId:kUserId attributes:nil] integerValue],
+                   @"should return %d for feature variable value %@", expectedValue, expectedValueString);
     [optimizelyMock stopMocking];
 }
 
@@ -1224,6 +1281,24 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
                                                  variableKey:variableKeyNull
                                                       userId:kUserId
                                                   attributes:nil]);
+    [optimizelyMock stopMocking];
+}
+
+- (void)testGetFeatureVariableStringNotBucketedInFeatureExperimentAndRollout {
+    NSString *featureKey = @"featureEnabledFalse";
+    NSString *variableKeyString = @"stringVariable";
+    NSString *expectedValue = @"wingardium leviosa";
+    id optimizelyMock = OCMPartialMock(self.optimizely);
+    OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceExperiment];
+    
+    id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
+    
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(decision);
+    
+    // expectations
+    XCTAssertEqualObjects(expectedValue, [optimizelyMock getFeatureVariableString:featureKey variableKey:variableKeyString userId:kUserId attributes:nil],
+                          @"should return %@ for feature variable value %@", expectedValue, expectedValue);
     [optimizelyMock stopMocking];
 }
 
