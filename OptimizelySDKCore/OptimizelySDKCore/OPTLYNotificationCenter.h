@@ -97,7 +97,7 @@ extern NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable;
 - (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
 
 /**
- * Add an on decision notification listener to the notification center.
+ * Add a decision notification listener to the notification center.
  *
  * @param decisionListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
