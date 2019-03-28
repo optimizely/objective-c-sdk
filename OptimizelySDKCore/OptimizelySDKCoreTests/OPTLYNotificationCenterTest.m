@@ -267,7 +267,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __weak typeof(self) weakSelf = self;
     [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
-        XCTAssertEqual(kFeatureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqual(kFeatureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
     }];
     
     // Should return true when experiments in feature flag does belongs to same group.

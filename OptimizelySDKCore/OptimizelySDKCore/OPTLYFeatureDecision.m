@@ -18,10 +18,12 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYVariation.h"
 
-NSString * const DecisionSourceExperiment = @"EXPERIMENT";
-NSString * const DecisionSourceRollout = @"ROLLOUT";
-
 @implementation OPTLYFeatureDecision
+    
+const struct DecisionSourceStruct DecisionSource = {
+    .Experiment = @"EXPERIMENT",
+    .Rollout = @"ROLLOUT"
+};
 
 - (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source {
     self = [super init];

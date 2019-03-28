@@ -624,7 +624,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -650,7 +650,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"6373141147"];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -676,7 +676,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[0]];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -702,7 +702,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[1]];
     OPTLYVariation *variation = experiment.variations[1];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -722,7 +722,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -742,7 +742,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = rollout.experiments[1];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -787,10 +787,10 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *featureFlagKey = @"invalidExperimentIdFeature";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqual(DecisionSource.Rollout, decisionInfo[DecisionInfo.SourceKey]);
     }];
     // Should return false when the experiment in feature flag does not get found in the datafile.
     XCTAssertFalse([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return false for featureFlag does not belongs to experiment");
@@ -815,12 +815,12 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqualObjects(@"mutex_exp2", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
-        XCTAssertEqualObjects(@"b", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
-        XCTAssertEqualObjects(DecisionSourceExperiment, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqualObjects(@"mutex_exp2", decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects(@"b", decisionInfo[DecisionInfo.SourceVariationKey]);
+        XCTAssertEqualObjects(DecisionSource.Experiment, decisionInfo[DecisionInfo.SourceKey]);
     }];
     // Should return true when experiments in feature flag does belongs to same group.
     XCTAssertTrue([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return true when experiments in feature flag does belongs to same group");
@@ -833,15 +833,15 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"multiVariateFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqual(DecisionSource.Rollout, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
-    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSourceRollout]);
+    OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn([[OPTLYFeatureDecision alloc] initWithExperiment:nil variation:nil source:DecisionSource.Rollout]);
     
     XCTAssertFalse([self.optimizely isFeatureEnabled:featureFlagKey userId:kUserId attributes:nil], @"should return false for featureFlag not enabled");
     
@@ -857,16 +857,16 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanSingleVariableFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqual(DecisionSource.Rollout, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYRollout *rollout = [self.optimizely.config getRolloutForId:@"166660"];
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -893,17 +893,17 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"multiVariateFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqualObjects(@"testExperimentMultivariate", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
-        XCTAssertEqualObjects(@"Fred", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
-        XCTAssertEqualObjects(DecisionSourceExperiment, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqualObjects(@"testExperimentMultivariate", decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects(@"Fred", decisionInfo[DecisionInfo.SourceVariationKey]);
+        XCTAssertEqualObjects(DecisionSource.Experiment, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"6373141147"];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -930,17 +930,17 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqualObjects(@"mutex_exp1", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
-        XCTAssertEqualObjects(@"a", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
-        XCTAssertEqualObjects(DecisionSourceExperiment, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqualObjects(@"mutex_exp1", decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects(@"a", decisionInfo[DecisionInfo.SourceVariationKey]);
+        XCTAssertEqualObjects(DecisionSource.Experiment, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[0]];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -967,17 +967,17 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqualObjects(@"mutex_exp2", decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
-        XCTAssertEqualObjects(@"b", decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
-        XCTAssertEqualObjects(DecisionSourceExperiment, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqualObjects(@"mutex_exp2", decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects(@"b", decisionInfo[DecisionInfo.SourceVariationKey]);
+        XCTAssertEqualObjects(DecisionSource.Experiment, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[1]];
     OPTLYVariation *variation = experiment.variations[1];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -997,16 +997,16 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanSingleVariableFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqual(DecisionSource.Rollout, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYRollout *rollout = [self.optimizely.config getRolloutForId:@"166660"];
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -1026,16 +1026,16 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYNotificationCenter *notificationCenterMock = OCMPartialMock(self.optimizely.notificationCenter);
     NSString *featureFlagKey = @"booleanSingleVariableFeature";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
-        XCTAssertEqualObjects(featureFlagKey, decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
+        XCTAssertEqualObjects(featureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
-        XCTAssertEqual(DecisionSourceRollout, decisionInfo[OPTLYNotificationDecisionInfoSourceKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
+        XCTAssertEqual(DecisionSource.Rollout, decisionInfo[DecisionInfo.SourceKey]);
     }];
     OPTLYRollout *rollout = [self.optimizely.config getRolloutForId:@"166660"];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = rollout.experiments[1];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -1456,7 +1456,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
     OPTLYVariation *differentVariation = [experiment getVariationForVariationId:@"6358043287"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:differentVariation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:differentVariation source:DecisionSource.Experiment];
     NSString *variableKey = @"stringVariable";
     NSString *variableType = FeatureVariableTypeString;
     NSString *expectedValue = @"wingardium leviosa";
@@ -1485,7 +1485,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *expectedValue = @"42.42";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentDoubleFeature"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"122239"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);
@@ -1509,7 +1509,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     BOOL expectedVariableValue = true;
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"177770"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"177771"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);
@@ -1539,7 +1539,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(self.attributes, attributes);
         XCTAssertEqualObjects(kUserId, userId);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
     }];
     
     XCTAssertEqual([self.optimizely getEnabledFeatures:kUserId attributes:self.attributes].count, 0);
@@ -1563,11 +1563,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [notificationCenterMock addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqualObjects(self.attributes, attributes);
         XCTAssertEqualObjects(kUserId, userId);
-        if ([enabledFeatures containsObject:decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]]) {
-            XCTAssertEqual(true, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+        if ([enabledFeatures containsObject:decisionInfo[DecisionInfo.FeatureKey]]) {
+            XCTAssertEqual(true, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
         }
         else {
-            XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoFeatureEnabledKey] boolValue]);
+            XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.FeatureEnabledKey] boolValue]);
         }
     }];
     
