@@ -25,6 +25,7 @@ jobs:
 
     - stage: 'Unit Tests'
       language: objective-c
+      os: osx
       osx_image: xcode10
       branches:
         only:
