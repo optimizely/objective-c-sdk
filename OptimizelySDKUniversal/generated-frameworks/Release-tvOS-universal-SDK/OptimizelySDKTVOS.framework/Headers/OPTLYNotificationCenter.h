@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2018, Optimizely, Inc. and contributors                        *
+ * Copyright 2018-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -21,7 +21,8 @@
 /// Enum representing notification types.
 typedef NS_ENUM(NSUInteger, OPTLYNotificationType) {
     OPTLYNotificationTypeActivate,
-    OPTLYNotificationTypeTrack
+    OPTLYNotificationTypeTrack,
+    OPTLYNotificationTypeDecision
 };
 
 typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
@@ -36,6 +37,11 @@ typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSDictionary * _Nullable eventTags,
                               NSDictionary<NSString *,id> * _Nonnull event);
 
+typedef void (^DecisionListener)(NSString * _Nonnull type,
+                                 NSString * _Nonnull userId,
+                                 NSDictionary<NSString *, id> * _Nullable attributes,
+                                 NSDictionary<NSString *,id> * _Nonnull decisionInfo);
+
 typedef void (^GenericListener)(NSDictionary * _Nonnull args);
 
 typedef NSMutableDictionary<NSNumber *, GenericListener > OPTLYNotificationHolder;
@@ -47,6 +53,23 @@ extern NSString * _Nonnull const OPTLYNotificationAttributesKey;
 extern NSString * _Nonnull const OPTLYNotificationEventKey;
 extern NSString * _Nonnull const OPTLYNotificationEventTagsKey;
 extern NSString * _Nonnull const OPTLYNotificationLogEventParamsKey;
+extern NSString * _Nonnull const OPTLYNotificationDecisionTypeKey;
+
+struct DecisionInfoStruct {
+    NSString * _Nonnull const FeatureKey;
+    NSString * _Nonnull const FeatureEnabledKey;
+    NSString * _Nonnull const Key;
+    NSString * _Nonnull const SourceExperimentKey;
+    NSString * _Nonnull const SourceVariationKey;
+    NSString * _Nonnull const SourceKey;
+    NSString * _Nonnull const VariableKey;
+    NSString * _Nonnull const VariableTypeKey;
+    NSString * _Nonnull const VariableValueKey;
+};
+extern const struct DecisionInfoStruct DecisionInfo;
+
+/// Notification decision types.
+extern NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable;
 
 @interface OPTLYNotificationCenter : NSObject
 
@@ -76,6 +99,14 @@ extern NSString * _Nonnull const OPTLYNotificationLogEventParamsKey;
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
 - (NSInteger)addTrackNotificationListener:(TrackListener _Nonnull )trackListener;
+
+/**
+ * Add a decision notification listener to the notification center.
+ *
+ * @param decisionListener - Notification to add.
+ * @return the notification id used to remove the notification. It is greater than 0 on success.
+ */
+- (NSInteger)addDecisionNotificationListener:(nonnull DecisionListener)decisionListener;
 
 /**
  * Remove the notification listener based on the notificationId passed back from addNotification.

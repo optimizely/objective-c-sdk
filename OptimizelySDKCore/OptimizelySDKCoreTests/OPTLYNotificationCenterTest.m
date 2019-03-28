@@ -263,11 +263,11 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     __weak typeof(self) weakSelf = self;
     [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
-        XCTAssertEqual(@"booleanVariable", decisionInfo[OPTLYNotificationDecisionInfoVariableKey]);
-        XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[OPTLYNotificationDecisionInfoFeatureKey]);
-        XCTAssertEqual(false, [(NSNumber *)decisionInfo[OPTLYNotificationDecisionInfoVariableValueKey] boolValue]);
-        XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceExperimentKey]);
-        XCTAssertEqualObjects([NSNull null], decisionInfo[OPTLYNotificationDecisionInfoSourceVariationKey]);
+        XCTAssertEqual(@"booleanVariable", decisionInfo[DecisionInfo.VariableKey]);
+        XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[DecisionInfo.FeatureKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.VariableValueKey] boolValue]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[DecisionInfo.SourceVariationKey]);
     }];
     [self.optimizely getFeatureVariableBoolean:@"booleanSingleVariableFeature" variableKey:@"booleanVariable" userId:kUserId attributes:nil];
     [self.optimizely.notificationCenter clearAllNotificationListeners];
