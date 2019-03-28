@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -18,11 +18,13 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYVariation.h"
 
-NSString * const DecisionSourceExperiment = @"experiment";
-NSString * const DecisionSourceRollout = @"rollout";
+const struct DecisionSourceStruct DecisionSource = {
+    .Experiment = @"EXPERIMENT",
+    .Rollout = @"ROLLOUT"
+};
 
 @implementation OPTLYFeatureDecision
-
+    
 - (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source {
     self = [super init];
     if (self) {
