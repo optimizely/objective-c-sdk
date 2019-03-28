@@ -764,7 +764,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -786,7 +786,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"6373141147"];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -808,7 +808,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[0]];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     id optimizelyMock = OCMPartialMock(self.optimizely);
@@ -830,7 +830,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForId:featureFlag.experimentIds[1]];
     OPTLYVariation *variation = experiment.variations[1];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -851,7 +851,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYExperiment *experiment = rollout.experiments[0];
     OPTLYVariation *variation = experiment.variations[0];
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -871,7 +871,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureFlagKey];
     OPTLYExperiment *experiment = rollout.experiments[1];
     OPTLYVariation *variation = experiment.variations[0];
-    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     
@@ -1291,7 +1291,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     OPTLYFeatureFlag *featureFlag = [self.optimizely.config getFeatureFlagForKey:featureKey];
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentMultivariate"];
     OPTLYVariation *differentVariation = [experiment getVariationForVariationId:@"6358043287"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:differentVariation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:differentVariation source:DecisionSource.Experiment];
     NSString *variableKey = @"stringVariable";
     NSString *variableType = FeatureVariableTypeString;
     NSString *expectedValue = @"wingardium leviosa";
@@ -1320,7 +1320,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSString *expectedValue = @"42.42";
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"testExperimentDoubleFeature"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"122239"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceExperiment];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);
@@ -1344,7 +1344,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     BOOL expectedVariableValue = true;
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:@"177770"];
     OPTLYVariation *variation = [experiment getVariationForVariationId:@"177771"];
-    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSourceRollout];
+    OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment variation:variation source:DecisionSource.Rollout];
     
     id decisionServiceMock = OCMPartialMock(self.optimizely.decisionService);
     OCMStub([decisionServiceMock getVariationForFeature:featureFlag userId:kUserId attributes:nil]).andReturn(expectedDecision);

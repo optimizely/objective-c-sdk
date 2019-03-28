@@ -30,9 +30,12 @@ NSString * _Nonnull const OPTLYNotificationEventKey = @"eventKey";
 NSString * _Nonnull const OPTLYNotificationEventTagsKey = @"eventTags";
 NSString * _Nonnull const OPTLYNotificationLogEventParamsKey = @"logEventParams";
 NSString * _Nonnull const OPTLYNotificationDecisionTypeKey = @"type";
-NSString * _Nonnull const OPTLYNotificationDecisionInfoKey = @"decisionInfo";
-NSString * _Nonnull const OPTLYNotificationDecisionInfoFeatureKey = @"featureKey";
-NSString * _Nonnull const OPTLYNotificationDecisionInfoVariableKey = @"variableKey";
+
+const struct DecisionInfoStruct DecisionInfo = {
+    .FeatureKey = @"featureKey",
+    .Key = @"decisionInfo",
+    .VariableKey = @"variableKey",
+};
 
 /// Notification decision types.
 NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
@@ -234,7 +237,7 @@ NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
     NSDictionary *attributes = ((NSDictionary *)[args objectForKey:OPTLYNotificationAttributesKey]) ?: @{};
     assert([attributes isKindOfClass:[NSDictionary class]]);
     
-    NSDictionary *decisionInfo = (NSDictionary *)[args objectForKey:OPTLYNotificationDecisionInfoKey];
+    NSDictionary *decisionInfo = (NSDictionary *)[args objectForKey:DecisionInfo.Key];
     assert(decisionInfo);
     assert([decisionInfo isKindOfClass:[NSDictionary class]]);
     

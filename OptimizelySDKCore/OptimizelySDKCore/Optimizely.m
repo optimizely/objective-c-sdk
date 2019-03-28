@@ -185,7 +185,7 @@
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
     [decisionInfo setValue:experimentKey forKey:OPTLYNotificationExperimentKey];
     [decisionInfo setValue:(bucketedVariation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
-    [args setValue:decisionInfo forKey:OPTLYNotificationDecisionInfoKey];
+    [args setValue:decisionInfo forKey:DecisionInfo.Key];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
     
@@ -243,7 +243,7 @@
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     
     if (decision) {
-        if ([decision.source isEqualToString:DecisionSourceExperiment]) {
+        if ([decision.source isEqualToString:DecisionSource.Experiment]) {
             [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
         } else {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
@@ -270,12 +270,12 @@
     
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
-                                                                                                                    OPTLYNotificationDecisionInfoFeatureKey:[self ObjectOrNull:featureKey],
-                                                                                                                    OPTLYNotificationDecisionInfoVariableKey:[self ObjectOrNull:variableKey]}];
+                                                                                                                    DecisionInfo.FeatureKey:[self ObjectOrNull:featureKey],
+                                                                                                                    DecisionInfo.VariableKey:[self ObjectOrNull:variableKey]}];
     NSDictionary <NSString *, NSString *> *logs = @{
                                                     OPTLYNotificationUserIdKey:OPTLYLoggerMessagesFeatureVariableValueUserIdInvalid,
-                                                    OPTLYNotificationDecisionInfoVariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
-                                                    OPTLYNotificationDecisionInfoFeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
+                                                    DecisionInfo.VariableKey:OPTLYLoggerMessagesFeatureVariableValueVariableKeyInvalid,
+                                                    DecisionInfo.FeatureKey:OPTLYLoggerMessagesFeatureVariableValueFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
         return nil;

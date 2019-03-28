@@ -805,7 +805,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYVariation *expectedVariation = [multiVariateExp getVariationForVariationId:kExperimentMultiVariateVariationId];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:multiVariateExp
                                                                                     variation:expectedVariation
-                                                                                         source:DecisionSourceExperiment];
+                                                                                         source:DecisionSource.Experiment];
     
     id decisionServiceMock = OCMPartialMock(self.decisionService);
     OCMStub([decisionServiceMock getVariation:kUserId experiment:multiVariateExp attributes:@{}]).andReturn(expectedVariation);
@@ -826,7 +826,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYVariation *expectedVariation = mutexExperiment.variations[0];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:mutexExperiment
                                                                                     variation:expectedVariation
-                                                                                         source:DecisionSourceExperiment];
+                                                                                         source:DecisionSource.Experiment];
     id decisionServiceMock = OCMPartialMock(self.decisionService);
     OCMStub([decisionServiceMock getVariation:kUserId experiment:mutexExperiment attributes:@{}]).andReturn(expectedVariation);
 
@@ -893,7 +893,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYVariation *expectedVariation = experiment.variations[0];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                     variation:expectedVariation
-                                                                                         source:DecisionSourceRollout];
+                                                                                         source:DecisionSource.Rollout];
     NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
     
     id bucketerMock = OCMPartialMock(self.bucketer);
@@ -920,7 +920,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYVariation *expectedVariation = fallBackRule.variations[0];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:fallBackRule
                                                                                     variation:expectedVariation
-                                                                                         source:DecisionSourceRollout];
+                                                                                         source:DecisionSource.Rollout];
     NSDictionary *userAttributes = @{ kAttributeKey: kAttributeValueChrome };
     
     id bucketerMock = OCMPartialMock(self.bucketer);
@@ -949,7 +949,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     OPTLYVariation *expectedVariation = fallBackRule.variations[0];
     OPTLYFeatureDecision *expectedDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:fallBackRule
                                                                                     variation:expectedVariation
-                                                                                         source:DecisionSourceRollout];
+                                                                                         source:DecisionSource.Rollout];
     
     id bucketerMock = OCMPartialMock(self.bucketer);
     OCMStub([bucketerMock bucketExperiment:fallBackRule withBucketingId:[OCMArg any]]).andReturn(expectedVariation);
@@ -985,7 +985,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
     OPTLYFeatureDecision *expectedFeatureDecision = [[OPTLYFeatureDecision alloc] initWithExperiment:rolloutRuleExperiment
                                                                                            variation:rolloutVariation
-                                                                                              source:DecisionSourceRollout];
+                                                                                              source:DecisionSource.Rollout];
     OPTLYFeatureDecision *featureDecision = [decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     [loggerMock stopMocking];
     

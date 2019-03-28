@@ -18,9 +18,11 @@
 
 @class OPTLYExperiment, OPTLYVariation;
 
-extern NSString * const DecisionSourceExperiment;
-extern NSString * const DecisionSourceRollout;
-
+struct DecisionSourceStruct {
+    NSString * _Nonnull const Experiment;
+    NSString * _Nonnull const Rollout;
+};
+extern const struct DecisionSourceStruct DecisionSource;
 /**
  * This class determines how the Optimizely SDK will handle exceptions and errors.
  */

@@ -18,8 +18,10 @@
 #import "OPTLYExperiment.h"
 #import "OPTLYVariation.h"
 
-NSString * const DecisionSourceExperiment = @"EXPERIMENT";
-NSString * const DecisionSourceRollout = @"ROLLOUT";
+const struct DecisionSourceStruct DecisionSource = {
+    .Experiment = @"EXPERIMENT",
+    .Rollout = @"ROLLOUT"
+};
 
 @implementation OPTLYFeatureDecision
 
