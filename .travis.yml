@@ -3,12 +3,13 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
-  - 'Integration tests'
+  - 'Trigger Integration Tests'
+  - 'SourceClear and Lint'
   - 'Unit Tests'
 
 jobs:
   include:
-    - stage: 'Integration tests'
+    - stage: 'Trigger Integration Tests'
       language: minimal
       os: linux
       env:
@@ -24,27 +25,44 @@ jobs:
         - "$HOME/travisci-tools/fsc-trigger/trigger_fullstack-sdk-compat.sh"
       after_success: travis_terminate 0
 
-    - stage: 'Unit Tests'
+    - stage: 'SourceClear and Lint'
       language: objective-c
+      os: osx
+      addons:
+        srcclr: true
+      install: gem install cocoapods
+      script:
+        - pod spec lint --quick
+
+    - &unittests
+      stage: 'Unit Tests'
+      language: objective-c
+      os: osx
       osx_image: xcode10
       branches:
         only:
           - master
-      env:
-        matrix:
-          - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
-          - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
-          - SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
-          - SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=11.1 NAME='iPhone 6s'
-          - SCHEME=OptimizelySDKTVOS TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=10.2 NAME='Apple TV 1080p'
-          - SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+      env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
+      name: PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
-      addons:
-        srcclr: true
       script:
-        - pod spec lint --quick
         - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|failed|crash|exit|FAILED|Failing|failures)"; fi
       after_success:
         - slather
         - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
+    - <<: *unittests
+      env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
+      name: PLATFORM='iOS Simulator' OS=10.1 NAME='iPhone 7 Plus'
+    - <<: *unittests
+      env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
+      name: PLATFORM='iOS Simulator' OS=10.3.1 NAME='iPhone 7'
+    - <<: *unittests
+      env: SCHEME=OptimizelySDKiOS-Universal TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=11.1 NAME='iPhone 6s'
+      name: PLATFORM='iOS Simulator' OS=11.1 NAME='iPhone 6s'
+    - <<: *unittests
+      env: SCHEME=OptimizelySDKTVOS TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=10.2 NAME='Apple TV 1080p'
+      name: PLATFORM='tvOS Simulator' OS=10.2 NAME='Apple TV 1080p'
+    - <<: *unittests
+      env: SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+      name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
