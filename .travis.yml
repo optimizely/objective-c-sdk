@@ -3,16 +3,17 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
-  - 'Trigger Integration Tests'
+  - name: trigger_fsc
     if: tag =~ ^\d+\.\d+\.\d+$
-  - 'SourceClear and Lint'
-  - 'Unit Tests'
-  - 'Deploy to Cocoapods'
+  - name: lint
+  - name: unit_tests
+  - name: cocoapods
 #    if: tag =~ ^\d+\.\d+\.\d+$
 
 jobs:
   include:
-    - stage: 'Trigger Integration Tests'
+    - stage: trigger_fsc
+      name: 'Trigger Integration Tests'
       language: minimal
       os: linux
       env:
@@ -28,7 +29,8 @@ jobs:
         - "$HOME/travisci-tools/fsc-trigger/trigger_fullstack-sdk-compat.sh"
       after_success: travis_terminate 0
 
-    - stage: 'SourceClear and Lint'
+    - stage: lint
+      name: 'SourceClear and Lint'
       language: objective-c
       os: osx
       addons:
@@ -39,7 +41,8 @@ jobs:
 #        - pod lib lint
 
     - &unittests
-      stage: 'Unit Tests'
+      stage: unit_tests
+      name: 'Unit Tests'
       language: objective-c
       os: osx
       osx_image: xcode10
@@ -72,7 +75,8 @@ jobs:
       name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 
     - &cocoapods
-      stage: 'Deploy to Cocoapods'
+      stage: cocoapods
+      name: 'Deploy to Cocoapods'
       language: objective-c
       os: osx
       env: PODSPEC=OptimizelySDKEventDispatcher
