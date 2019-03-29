@@ -4,8 +4,11 @@ os: linux
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - 'Trigger Integration Tests'
+    if: tag =~ ^\d+\.\d+\.\d+$
   - 'SourceClear and Lint'
   - 'Unit Tests'
+  - 'Deploy to Cocoapods'
+#    if: tag =~ ^\d+\.\d+\.\d+$
 
 jobs:
   include:
@@ -33,6 +36,7 @@ jobs:
       install: gem install cocoapods
       script:
         - pod spec lint --quick
+#        - pod lib lint
 
     - &unittests
       stage: 'Unit Tests'
@@ -66,3 +70,35 @@ jobs:
     - <<: *unittests
       env: SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
       name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+
+    - &cocoapods
+      stage: 'Deploy to Cocoapods'
+      language: objective-c
+      os: osx
+      env: PODSPEC=OptimizelySDKEventDispatcher
+      name: OptimizelySDKEventDispatcher
+      install:
+        - gem install cocoapods
+        - brew install jq
+      before_script:
+#        - if [ $TRAVIS_TAG != $(pod ipc spec $PODSPEC.podspec | jq -r .version) ]; then echo "$PODSPEC.podspec s.version needs to match $TRAVIS_TAG"; exit 1; fi
+      script:
+        - pod trunk info $PODSPEC
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKiOS
+      name: OptimizelySDKiOS
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKCore
+      name: OptimizelySDKCore
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKTVOS
+      name: OptimizelySDKTVOS
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKUserProfileService
+      name: OptimizelySDKUserProfileService
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKShared
+      name: OptimizelySDKShared
+    - <<: *cocoapods
+      env: PODSPEC=OptimizelySDKDatafileManager
+      name: OptimizelySDKDatafileManager
