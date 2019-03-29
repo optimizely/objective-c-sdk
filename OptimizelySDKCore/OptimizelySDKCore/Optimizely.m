@@ -219,7 +219,7 @@
 #pragma mark - Feature Flag Methods
 
 - (BOOL)isFeatureEnabled:(NSString *)featureKey userId:(NSString *)userId attributes:(nullable NSDictionary<NSString *, id> *)attributes {
-    
+    BOOL result = false;
     NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                                                     OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
                                                                                                                     OPTLYNotificationExperimentKey:[self ObjectOrNull:featureKey]}];
@@ -228,23 +228,33 @@
                                                     OPTLYNotificationExperimentKey:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid};
     
     if (![self validateStringInputs:inputValues logs:logs]) {
-        return false;
+        return result;
     }
     
     OPTLYFeatureFlag *featureFlag = [self.config getFeatureFlagForKey:featureKey];
     if ([featureFlag.key getValidString] == nil) {
         [self.logger logMessage:OPTLYLoggerMessagesFeatureDisabledFlagKeyInvalid withLevel:OptimizelyLogLevelError];
-        return false;
+        return result;
     }
     if (![featureFlag isValid:self.config]) {
-        return false;
+        return result;
     }
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceExperimentKey];
+    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceVariationKey];
     
     if (decision) {
         if ([decision.source isEqualToString:DecisionSource.Experiment]) {
-            [self sendImpressionEventFor:decision.experiment variation:decision.variation userId:userId attributes:attributes callback:nil];
+            [decisionInfo setValue:decision.experiment.experimentKey forKey:DecisionInfo.SourceExperimentKey];
+            [decisionInfo setValue:decision.variation.variationKey forKey:DecisionInfo.SourceVariationKey];
+            [self sendImpressionEventFor:decision.experiment
+                               variation:decision.variation
+                                  userId:userId
+                              attributes:attributes
+                                callback:nil];
         } else {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabledNotExperimented, userId, featureKey];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
@@ -253,13 +263,27 @@
         if (decision.variation.featureEnabled) {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureEnabled, featureKey, userId];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-            return true;
+            result = true;
         }
     }
     
-    NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
-    [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
-    return false;
+    if (!result) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabled, featureKey, userId];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+    }
+    
+    [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationDecisionTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    [decisionInfo setValue:featureKey forKey:DecisionInfo.FeatureKey];
+    [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:DecisionInfo.FeatureEnabledKey];
+    [decisionInfo setValue:decision.source forKey:DecisionInfo.SourceKey];
+    [args setValue:decisionInfo forKey:DecisionInfo.Key];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
+    
+    return result;
 }
 
 - (NSString *)getFeatureVariableValueForType:(NSString *)variableType
@@ -550,6 +574,7 @@
     [args setValue:impressionEventParams forKey:OPTLYNotificationLogEventParamsKey];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeActivate args:args];
+    
     return variation;
 }
 

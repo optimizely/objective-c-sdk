@@ -33,12 +33,17 @@ NSString * _Nonnull const OPTLYNotificationDecisionTypeKey = @"type";
 
 const struct DecisionInfoStruct DecisionInfo = {
     .FeatureKey = @"featureKey",
+    .FeatureEnabledKey = @"featureEnabled",
     .Key = @"decisionInfo",
+    .SourceExperimentKey = @"sourceExperimentKey",
+    .SourceVariationKey = @"sourceVariationKey",
+    .SourceKey = @"source",
     .VariableKey = @"variableKey",
 };
 
 /// Notification decision types.
 NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
+NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
 
 @interface OPTLYNotificationCenter()
 

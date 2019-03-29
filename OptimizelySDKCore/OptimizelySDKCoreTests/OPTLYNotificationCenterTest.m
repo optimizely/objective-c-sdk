@@ -27,6 +27,7 @@
 #import "OPTLYVariation.h"
 
 static NSString *const kDataModelDatafileName = @"optimizely_6372300739_v4";
+static NSString *const kFeatureFlagKey = @"booleanFeature";
 static NSString *const kUserId = @"userId";
 static NSString *const kExperimentKey = @"testExperimentWithFirefoxAudience";
 static NSString *const kVariationId = @"6362476365";
@@ -36,6 +37,9 @@ static NSString *const kAttributeValueBrowserValue = @"firefox";
 static NSString *const kAttributeKeyBrowserBuildNo = @"browser_buildno";
 static NSString *const kAttributeKeyBrowserVersion = @"browser_version";
 static NSString *const kAttributeKeyObject = @"dummy_object";
+static NSString * const kAttributeKeyBrowserType = @"browser_type";
+static NSString * const kAttributeKeyBrowserBuildNumber = @"browser_build_number";
+static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 
 @interface OPTLYNotificationCenter()
 // notification Count represeting total number of notifications.
@@ -256,6 +260,39 @@ static NSString *const kAttributeKeyObject = @"dummy_object";
     OCMReject(_decisionNotification);
     OCMReject(_activateNotification);
     OCMReject(_anotherActivateNotification);
+}
+
+- (void) testSendIsFeatureEnabledNotification {
+    
+    __weak typeof(self) weakSelf = self;
+    [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqual(kUserId, userId);
+        XCTAssertEqual(kFeatureFlagKey, decisionInfo[DecisionInfo.FeatureKey]);
+    }];
+    
+    // Should return true when experiments in feature flag does belongs to same group.
+    XCTAssertTrue([self.optimizely isFeatureEnabled:kFeatureFlagKey userId:kUserId attributes:nil], @"should return true when experiments in feature flag does belongs to same group");
+    [self.optimizely.notificationCenter clearAllNotificationListeners];
+}
+
+- (void) testSendGetEnabledFeaturesNotification {
+    
+    NSDictionary *_attributes = @{
+                                 kAttributeKeyBrowserType : @"firefox",
+                                 kAttributeKeyBrowserVersion : @(68.1),
+                                 kAttributeKeyBrowserBuildNumber : @(106),
+                                 kAttributeKeyBrowserIsDefault : @YES
+                                 };
+    __weak typeof(self) weakSelf = self;
+    [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqual(kUserId, userId);
+        XCTAssertEqual(_attributes, attributes);
+    }];
+    
+    NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
+    NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:_attributes];
+    XCTAssertEqualObjects(features, enabledFeatures);
+    [self.optimizely.notificationCenter clearAllNotificationListeners];
 }
 
 - (void) testSendNotificationWithAnyAttributes {

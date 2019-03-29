@@ -57,13 +57,18 @@ extern NSString * _Nonnull const OPTLYNotificationDecisionTypeKey;
 
 struct DecisionInfoStruct {
     NSString * _Nonnull const FeatureKey;
+    NSString * _Nonnull const FeatureEnabledKey;
     NSString * _Nonnull const Key;
+    NSString * _Nonnull const SourceExperimentKey;
+    NSString * _Nonnull const SourceVariationKey;
+    NSString * _Nonnull const SourceKey;
     NSString * _Nonnull const VariableKey;
 };
 extern const struct DecisionInfoStruct DecisionInfo;
 
 /// Notification decision types.
 extern NSString * _Nonnull const OPTLYDecisionTypeExperiment;
+extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
 
 @interface OPTLYNotificationCenter : NSObject
 
