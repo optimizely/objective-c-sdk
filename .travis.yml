@@ -3,15 +3,15 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
-  - name: trigger_fsc
+  - name: 'Integration tests'
   - name: lint
-  - name: 'unit tests'
+  - name: 'Unit tests'
   - name: deploy
 #    if: tag =~ ^\d+\.\d+\.\d+$
 
 jobs:
   include:
-    - stage: trigger_fsc
+    - stage: 'Integration tests'
       name: 'Trigger Integration Tests'
       language: minimal
       os: linux
@@ -40,7 +40,7 @@ jobs:
 #        - pod lib lint
 
     - &unittests
-      stage: 'unit tests'
+      stage: 'Unit tests'
       language: objective-c
       os: osx
       osx_image: xcode10
