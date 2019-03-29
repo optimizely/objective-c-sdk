@@ -4,10 +4,9 @@ os: linux
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - name: trigger_fsc
-    if: tag =~ ^\d+\.\d+\.\d+$
   - name: lint
-  - name: unit_tests
-  - name: cocoapods
+  - name: 'unit tests'
+  - name: deploy
 #    if: tag =~ ^\d+\.\d+\.\d+$
 
 jobs:
@@ -41,8 +40,7 @@ jobs:
 #        - pod lib lint
 
     - &unittests
-      stage: unit_tests
-      name: 'Unit Tests'
+      stage: 'unit tests'
       language: objective-c
       os: osx
       osx_image: xcode10
@@ -75,8 +73,7 @@ jobs:
       name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
 
     - &cocoapods
-      stage: cocoapods
-      name: 'Deploy to Cocoapods'
+      stage: deploy
       language: objective-c
       os: osx
       env: PODSPEC=OptimizelySDKEventDispatcher
