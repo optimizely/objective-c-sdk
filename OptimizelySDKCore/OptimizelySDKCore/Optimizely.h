@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -16,13 +16,6 @@
 
 #import <Foundation/Foundation.h>
 #import "OPTLYBuilder.h"
-
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryVariationKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryUserIdKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryAttributesKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryEventNameKey;
-extern NSString * _Nonnull const OptimizelyNotificationsUserDictionaryExperimentVariationMappingKey;
 
 @class OPTLYProjectConfig, OPTLYVariation, OPTLYDecisionService, OPTLYNotificationCenter;
 @protocol OPTLYBucketer, OPTLYErrorHandler, OPTLYEventBuilder, OPTLYEventDispatcher, OPTLYLogger;

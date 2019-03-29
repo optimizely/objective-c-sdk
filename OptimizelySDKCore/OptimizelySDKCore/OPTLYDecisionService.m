@@ -152,7 +152,10 @@
     [self.config.logger logMessage:[NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceFRUserNotBucketed, userId, featureFlag.key]
                          withLevel:OptimizelyLogLevelDebug];
     
-    return nil;
+    decision = [[OPTLYFeatureDecision alloc] init];
+    decision.source = DecisionSource.Rollout;
+    
+    return decision;
 }
 
 # pragma mark - Helper Methods
@@ -212,7 +215,7 @@
                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserInVariation, userId, variation.variationKey, experiment.experimentKey];
                     decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                       variation:variation
-                                                                         source:DecisionSourceExperiment];
+                                                                         source:DecisionSource.Experiment];
                 }
             }
         } else {
@@ -255,7 +258,7 @@
             
             OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                     variation:variation
-                                                                                       source:DecisionSourceExperiment];
+                                                                                       source:DecisionSource.Experiment];
             return decision;
         }
     }
@@ -304,7 +307,7 @@
                              withLevel:OptimizelyLogLevelDebug];
         OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                 variation:variation
-                                                                                   source:DecisionSourceRollout];
+                                                                                   source:DecisionSource.Rollout];
         return decision;
     }
     // Evaluate fall back rule / last rule now
@@ -314,7 +317,7 @@
         if (variation && variation.variationKey) {
             OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                     variation:variation
-                                                                                       source:DecisionSourceRollout];
+                                                                                       source:DecisionSource.Rollout];
             return decision;
         }
     }
