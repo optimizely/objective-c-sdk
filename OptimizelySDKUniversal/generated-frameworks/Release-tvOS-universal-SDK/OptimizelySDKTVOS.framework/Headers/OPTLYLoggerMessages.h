@@ -49,6 +49,7 @@ extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvali
 extern NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableType;
 extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotUsed;
 extern NSString *const OPTLYLoggerMessagesFeatureVariableValueNotBucketed;
+extern NSString *const OPTLYLoggerMessagesFeatureDisabledReturnDefault;
 
 // ---- Bucketer ----
 // debug
