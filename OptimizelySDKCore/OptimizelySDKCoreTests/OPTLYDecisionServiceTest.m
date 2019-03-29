@@ -864,6 +864,7 @@ static NSString * const kFeatureFlagNoBucketedRuleRolloutKey = @"booleanSingleVa
     
     XCTAssertNil(decision.experiment, @"Get variation for feature with rollout having no rule should return nil: %@", decision.experiment);
     XCTAssertNil(decision.variation, @"Get variation for feature with rollout having no rule should return nil: %@", decision.variation);
+    XCTAssertEqual(decision.source, DecisionSource.Rollout);
 }
 
 // should return decision with nil experiment and variation when the user is not bucketed into targeting rule as well as "Fall Back" rule.

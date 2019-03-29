@@ -24,7 +24,7 @@ const struct DecisionSourceStruct DecisionSource = {
 };
 
 @implementation OPTLYFeatureDecision
-
+    
 - (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source {
     self = [super init];
     if (self) {

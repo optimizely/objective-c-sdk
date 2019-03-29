@@ -70,6 +70,7 @@ extern const struct DecisionInfoStruct DecisionInfo;
 
 /// Notification decision types.
 extern NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable;
+extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
 
 @interface OPTLYNotificationCenter : NSObject
 
