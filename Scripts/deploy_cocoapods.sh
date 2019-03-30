@@ -13,22 +13,6 @@ podSpecs=(OptimizelySDKCore.podspec \
 numPodSpecs=${#podSpecs[@]};
 
 
-for (( i = 0; i < ${numPodSpecs}; i++ ))
-do
-    curPodSpec=${podSpecs[i]}
-
-    echo "Processing: ${curPodSpec}"
-
-    if [ $VERSION != $(pod ipc spec ${curPodSpec} | jq -r .version) ]; then
-        echo "${curPodSpec} s.version does not match $VERSION";
-        echo "Creating PR to fix bump version..."
-        bump_version
-        exit 1;
-    fi
-
-    pod trunk info $(basename ${curPodSpec} .podspec)
-
-done
 
 function bump_version() {
   mkdir $HOME/objective-c-sdk
@@ -49,3 +33,22 @@ function bump_version() {
   echo "then delete git tag and repush git tag to trigger deploy again"
   popd
 }
+
+
+
+for (( i = 0; i < ${numPodSpecs}; i++ ))
+do
+    curPodSpec=${podSpecs[i]}
+
+    echo "Processing: ${curPodSpec}"
+
+    if [ $VERSION != $(pod ipc spec ${curPodSpec} | jq -r .version) ]; then
+        echo "${curPodSpec} s.version does not match $VERSION";
+        echo "Creating PR to fix bump version..."
+        bump_version
+        exit 1;
+    fi
+
+    pod trunk info $(basename ${curPodSpec} .podspec)
+
+done
