@@ -9,6 +9,7 @@ stages:
   - name: 'Unit tests'
     if: branch = master
   - name: deploy
+    if: type = push
 #    if: tag =~ ^v\d+\.\d+\.\d+$
 
 jobs:
