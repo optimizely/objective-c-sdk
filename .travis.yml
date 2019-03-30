@@ -78,5 +78,6 @@ jobs:
       install:
         - gem install cocoapods
         - brew install jq
+        - brew install hub
       script:
         - TRAVIS_TAG=v3.0.2 ./Scripts/deploy_cocoapods.sh
