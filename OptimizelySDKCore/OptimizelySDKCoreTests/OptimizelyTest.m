@@ -273,7 +273,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     variation = [self.optimizely variation:@"bad" userId:kUserId];
     XCTAssertNil(variation);
-    XCTAssertEqualObjects(decisionNotificationExperimentKey, @"bad");
+    XCTAssertEqualObjects(decisionNotificationExperimentKey, [NSNull null]);
     XCTAssertEqualObjects(decisionNotificationVariationKey, [NSNull null]);
 }
 

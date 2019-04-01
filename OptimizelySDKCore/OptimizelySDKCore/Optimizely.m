@@ -183,7 +183,7 @@
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:experimentKey forKey:OPTLYNotificationExperimentKey];
+    [decisionInfo setValue:(bucketedVariation.variationKey ? experimentKey : [NSNull null]) forKey:OPTLYNotificationExperimentKey];
     [decisionInfo setValue:(bucketedVariation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
     [args setValue:decisionInfo forKey:DecisionInfo.Key];
     
