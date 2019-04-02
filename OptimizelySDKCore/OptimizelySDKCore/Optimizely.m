@@ -317,9 +317,14 @@
         OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];
         
         if (featureVariableUsage) {
-            variableValue = featureVariableUsage.value;
-            NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
-            [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            if (variation.featureEnabled) {
+                variableValue = featureVariableUsage.value;
+                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueVariableType, variableValue, variation.variationKey, featureFlag.key];
+                [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            } else {
+                NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureDisabledReturnDefault, featureFlag.key, userId, variableValue];
+                [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
+            }
         } else {
             NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesFeatureVariableValueNotUsed, variableKey, variation.variationKey, variableValue];
             [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
