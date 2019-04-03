@@ -45,6 +45,7 @@ NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableTypeInvalid = @"[
 NSString *const OPTLYLoggerMessagesFeatureVariableValueVariableType = @"[OPTIMIZELY] Returning variable value %@ for variation %@ of feature flag %@";
 NSString *const OPTLYLoggerMessagesFeatureVariableValueNotUsed = @"[OPTIMIZELY] Variable %@ is not used in variation %@, returning default value %@.";
 NSString *const OPTLYLoggerMessagesFeatureVariableValueNotBucketed = @"[OPTIMIZELY] User %@ is not in any variation for feature flag %@, returning default value %@.";
+NSString *const OPTLYLoggerMessagesFeatureDisabledReturnDefault = @"[OPTIMIZELY] Feature %@ is not enabled for user %@, returning default value %@.";
 
 // ---- Bucketer ----
 // debug
