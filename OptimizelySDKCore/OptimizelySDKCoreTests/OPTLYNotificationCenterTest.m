@@ -289,7 +289,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         XCTAssertEqual(_attributes, attributes);
     }];
     
-    NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature"];
+    NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature", @"featureEnabledFalse"];
     NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:_attributes];
     XCTAssertEqualObjects(features, enabledFeatures);
     [self.optimizely.notificationCenter clearAllNotificationListeners];
