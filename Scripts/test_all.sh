@@ -1,4 +1,7 @@
-  #xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelyiOSDemoApp -configuration Release "${action}"
+#!/usr/bin/env bash
+
+set -e  
+#xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelyiOSDemoApp -configuration Release "${action}"
   #xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelyTVOSDemoApp -configuration Release "${action}"
 echo 'Testing OptimizelySDKUserProfileServiceiOS'
 xcrun xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKUserProfileServiceiOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' \

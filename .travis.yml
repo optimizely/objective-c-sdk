@@ -37,17 +37,16 @@ jobs:
     - &unittests
       stage: 'Unit Tests'
       language: objective-c
+      name: 'Unit Testing With Multi-Simulators'
       os: osx
       osx_image: xcode10
       branches:
         only:
           - master
-      env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
-      name: PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
       script:
-        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./Scripts/test_all.sh > buildoutput; fi
+        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./Scripts/test_all.sh &> buildoutput; fi
         - more buildoutput | xcpretty -c
       after_success:
         - slather
