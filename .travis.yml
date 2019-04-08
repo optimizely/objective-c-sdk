@@ -46,7 +46,7 @@ jobs:
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
       script:
-        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./Scripts/test_all.sh &> buildoutput; fi
+        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then travis_wait ./Scripts/test_all.sh &> buildoutput; fi
         - more buildoutput | xcpretty -c
       after_success:
         - slather
