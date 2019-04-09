@@ -43,7 +43,7 @@ jobs:
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
       script:
-        - travis_wait ./Scripts/test_all.sh &> buildoutput
+        - travis_wait ./Scripts/test_all.sh > buildoutput
         - more buildoutput | xcpretty -c
       after_success:
         - slather
