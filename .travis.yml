@@ -4,10 +4,10 @@ os: linux
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - name: 'Integration tests'
-    if: branch = hello
+#    if: branch = hello
   - name: lint
   - name: 'Unit tests'
-    if: branch = hello
+#    if: branch = hello
   - name: deploy
 #    if: type = push AND tag =~ /^v\d+\.\d+\.\d+$/
     if: type = push
