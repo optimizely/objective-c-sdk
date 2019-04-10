@@ -42,6 +42,7 @@ const struct DecisionInfoStruct DecisionInfo = {
 };
 
 /// Notification decision types.
+NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
 NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
 
 @interface OPTLYNotificationCenter()
