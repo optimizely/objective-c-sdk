@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+if [ -z "$TRAVIS_TAG" ]; then
+  echo "This script should only run when a tag (eg. v3.0.2) is pushed to the repo."
+  exit 1
+fi
+
+# removes the v in v3.0.2, so VERSION=3.0.2
 VERSION=${TRAVIS_TAG:1}
 
 podSpecs=(OptimizelySDKCore.podspec \
