@@ -50,5 +50,6 @@ do
     fi
 
     pod trunk info $(basename ${curPodSpec} .podspec)
+    #pod trunk push ${curPodSpec}
 
 done
