@@ -30,11 +30,11 @@ extern const struct DecisionSourceStruct DecisionSource;
 @interface OPTLYFeatureDecision : NSObject
 
 /// an OPTLYExperiment associated with the decision.
-@property (nonatomic, strong) OPTLYExperiment *experiment;
+@property (nonatomic, strong) OPTLYExperiment * _Nullable experiment;
 /// an OPTLYVariation associated with the decision.
-@property (nonatomic, strong) OPTLYVariation *variation;
+@property (nonatomic, strong) OPTLYVariation * _Nullable variation;
 /// an NSString to hold the source of the decision. Either experiment or rollout
-@property (nonatomic, strong) NSString *source;
+@property (nonatomic, strong) NSString * _Nonnull source;
 
 /*
  * Initializes the FeatureDecision with an experiment id, variation id & source.
@@ -44,6 +44,6 @@ extern const struct DecisionSourceStruct DecisionSource;
  * @param source The source for which the decision made.
  * @return An instance of the FeatureDecision.
  */
-- (instancetype)initWithExperiment:(OPTLYExperiment *)experiment variation:(OPTLYVariation *)variation source:(NSString *)source;
+- (nonnull instancetype)initWithExperiment:(OPTLYExperiment * _Nullable)experiment variation:(OPTLYVariation * _Nullable)variation source:(NSString * _Nonnull)source;
 
 @end

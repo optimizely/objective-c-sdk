@@ -29,7 +29,7 @@ typedef void (^ActivateListener)(OPTLYExperiment * _Nonnull experiment,
                                  NSString * _Nonnull userId,
                                  NSDictionary<NSString *, id> * _Nullable attributes,
                                  OPTLYVariation * _Nonnull variation,
-                                 NSDictionary<NSString *,id> * _Nonnull event);
+                                 NSDictionary<NSString *,id> * _Nonnull event) __deprecated;
 
 typedef void (^TrackListener)(NSString * _Nonnull eventKey,
                               NSString * _Nonnull userId,
@@ -70,6 +70,7 @@ extern const struct DecisionInfoStruct DecisionInfo;
 
 /// Notification decision types.
 extern NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable;
+extern NSString * _Nonnull const OPTLYDecisionTypeExperiment;
 extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
 
 @interface OPTLYNotificationCenter : NSObject
@@ -91,7 +92,7 @@ extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
  * @param activateListener - Notification to add.
  * @return the notification id used to remove the notification. It is greater than 0 on success.
  */
-- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener;
+- (NSInteger)addActivateNotificationListener:(nonnull ActivateListener)activateListener __deprecated_msg("Use DecisionListener instead");
 
 /**
  * Add a track notification listener to the notification center.

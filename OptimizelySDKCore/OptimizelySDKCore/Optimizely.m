@@ -177,6 +177,18 @@
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
     
+    NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeExperiment forKey:OPTLYNotificationDecisionTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
+    NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
+    [decisionInfo setValue:(bucketedVariation.variationKey ? experimentKey : [NSNull null]) forKey:OPTLYNotificationExperimentKey];
+    [decisionInfo setValue:(bucketedVariation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
+    [args setValue:decisionInfo forKey:DecisionInfo.Key];
+    
+    [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
+    
     return bucketedVariation;
 }
 

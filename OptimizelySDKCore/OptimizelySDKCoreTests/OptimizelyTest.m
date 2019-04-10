@@ -169,9 +169,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertTrue([variation.variationId isEqualToString:@"6384330451"]);
     
     // test with bad experiment key
+    
     variation = [self.optimizely variation:@"bad" userId:kUserId];
     XCTAssertNil(variation);
-    
 }
 
 - (void)testVariationWithAudience {
@@ -246,6 +246,62 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqualObjects(variation.variationKey, kVariationKeyForWhitelisting);
 }
 
+#pragma mark - Get Variation <DECISION NOTIFICATION> Tests
+
+- (void)testDecisionNotificationForBasicGetVariation {
+    NSString *experimentKey = @"testExperiment1";
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
+    
+    XCTAssertNotNil(experiment);
+    OPTLYVariation *variation;
+    
+    // test just experiment key
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNotNil(variation);
+    XCTAssertTrue([variation.variationKey isEqualToString:@"control"]);
+    XCTAssertTrue([variation.variationId isEqualToString:@"6384330451"]);
+    
+    // test with bad experiment key
+    
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSString *decisionNotificationVariationKey = nil;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[OPTLYNotificationExperimentKey];
+        decisionNotificationVariationKey = decisionInfo[OPTLYNotificationVariationKey];
+    }];
+    
+    variation = [self.optimizely variation:@"bad" userId:kUserId];
+    XCTAssertNil(variation);
+    XCTAssertEqualObjects(decisionNotificationExperimentKey, [NSNull null]);
+    XCTAssertEqualObjects(decisionNotificationVariationKey, [NSNull null]);
+}
+
+// Test whitelisting works with get variation
+- (void)testDecisionNotificationForVariationWhitelisting {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kBucketerTestDatafileName];
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSString *decisionNotificationVariationKey = nil;
+    
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+    }]];
+    XCTAssertNotNil(optimizely);
+    
+    [optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[OPTLYNotificationExperimentKey];
+        decisionNotificationVariationKey = decisionInfo[OPTLYNotificationVariationKey];
+    }];
+    
+    // get variation
+    OPTLYVariation *variation = [optimizely variation:kExperimentKeyForWhitelisting userId:kUserIdForWhitelisting];
+    XCTAssertNotNil(variation);
+    XCTAssertEqualObjects(variation.variationId, kVariationIDForWhitelisting);
+    XCTAssertEqualObjects(variation.variationKey, kVariationKeyForWhitelisting);
+    XCTAssertEqualObjects(decisionNotificationExperimentKey, kExperimentKeyForWhitelisting);
+    XCTAssertEqualObjects(decisionNotificationVariationKey, variation.variationKey);
+}
+
 # pragma mark - Integration Tests
 
 - (void)testOptimizelyActivateWithEmptyUserId {
@@ -286,6 +342,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
     
     NSString *invalidExperimentKey = @"invalid";
+    
     OPTLYVariation *variation = [self.optimizely activate:invalidExperimentKey userId:kUserId attributes:self.attributes callback:^(NSError *error) {
         XCTAssertNotNil(error);
         NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesActivateExperimentKeyInvalid, invalidExperimentKey];
@@ -342,7 +399,6 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
                                                    [expectation fulfill];
                                                }];
     XCTAssertNil(variation);
-    
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
@@ -385,7 +441,7 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
 
-- (void)testOptimizelyPostsActivateExperimentNotificationNilAttributes {
+- (void)testOptimizelyPostsActivateExperimentNotificationEmptyAttributes {
     
     OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
     __block NSString *notificationExperimentKey = nil;
@@ -398,11 +454,9 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     
     OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
                                                     userId:kUserId attributes:nil];
-    XCTAssertNil(actualAttributes);
     XCTAssertNotNil(_variation);
     XCTAssertEqual(experiment.experimentId, notificationExperimentKey);
 }
-
 
 - (void)testOptimizelyTrackWithNoEvent {
     
@@ -561,6 +615,90 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     [self.optimizely track:eventKey userId:kUserId eventTags:eventTags];
     XCTAssertEqual(eventKey, notificationEventKey);
     XCTAssertEqual(eventTags, notificationEventTags);
+}
+
+#pragma mark - Activate <DECISION NOTIFICATION> Tests
+
+- (void)testDecisionNotificationForActivateWithNonTargetingAudience {
+    
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"getActivatedVariation"];
+    __block NSString *decisionNotificationVariationKey = nil;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationVariationKey = decisionInfo[OPTLYNotificationVariationKey];
+    }];
+    
+    OPTLYVariation *variation = [self.optimizely activate:kExperimentKey
+                                                   userId:kUserId
+                                               attributes:nil callback:^(NSError *error) {
+                                                   XCTAssertNotNil(error);
+                                                   NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherActivationFailure, kUserId, kExperimentKey];
+                                                   XCTAssertEqualObjects(error.userInfo[NSLocalizedDescriptionKey], logMessage);
+                                                   [expectation fulfill];
+                                               }];
+    XCTAssertNil(variation);
+    XCTAssertEqualObjects(decisionNotificationVariationKey, [NSNull null]);
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void)testOptimizelyPostsOnDecisionActivateNotification {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSString *decisionNotificationVariationKey = nil;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[OPTLYNotificationExperimentKey];
+        decisionNotificationVariationKey = decisionInfo[OPTLYNotificationVariationKey];
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId];
+    XCTAssertNotNil(_variation);
+    XCTAssertEqualObjects(experiment.experimentKey, decisionNotificationExperimentKey);
+    XCTAssertEqualObjects(_variation.variationKey, decisionNotificationVariationKey);
+}
+
+- (void)testOptimizelyPostsOnDecisionActivateNotificationAllAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *decisionNotificationExperimentKey = nil;
+    
+    NSDictionary<NSString *, id> *expectedAttributes = @{
+                                                         @"browser_name": @"chrome",
+                                                         @"buildno": @(10),
+                                                         @"buildversion": @(0.13)
+                                                         };
+    __block NSDictionary<NSString *, id> *decisionActualAttributes;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[OPTLYNotificationExperimentKey];
+        decisionActualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:expectedAttributes];
+    XCTAssertEqualObjects(expectedAttributes, decisionActualAttributes);
+    XCTAssertNotNil(_variation);
+    XCTAssertEqualObjects(experiment.experimentKey, decisionNotificationExperimentKey);
+}
+
+- (void)testOptimizelyPostsPostsOnDecisionActivateNotificationEmptyAttributes {
+    
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:kExperimentKeyForWhitelisting];
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSDictionary<NSString *, id> *decisionActualAttributes;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[OPTLYNotificationExperimentKey];
+        decisionActualAttributes = attributes;
+    }];
+    
+    OPTLYVariation *_variation = [self.optimizely activate:kExperimentKeyForWhitelisting
+                                                    userId:kUserId attributes:nil];
+    XCTAssertEqualObjects(decisionActualAttributes, @{});
+    XCTAssertNotNil(_variation);
+    XCTAssertEqualObjects(experiment.experimentKey, decisionNotificationExperimentKey);
 }
 
 # pragma mark - IsFeatureEnabled Tests
