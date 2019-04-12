@@ -63,10 +63,13 @@ struct DecisionInfoStruct {
     NSString * _Nonnull const SourceVariationKey;
     NSString * _Nonnull const SourceKey;
     NSString * _Nonnull const VariableKey;
+    NSString * _Nonnull const VariableTypeKey;
+    NSString * _Nonnull const VariableValueKey;
 };
 extern const struct DecisionInfoStruct DecisionInfo;
 
 /// Notification decision types.
+extern NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable;
 extern NSString * _Nonnull const OPTLYDecisionTypeExperiment;
 extern NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled;
 

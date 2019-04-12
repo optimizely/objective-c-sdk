@@ -39,9 +39,12 @@ const struct DecisionInfoStruct DecisionInfo = {
     .SourceVariationKey = @"sourceVariationKey",
     .SourceKey = @"source",
     .VariableKey = @"variableKey",
+    .VariableTypeKey = @"variableType",
+    .VariableValueKey = @"variableValue"
 };
 
 /// Notification decision types.
+NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature_variable";
 NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
 NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
 

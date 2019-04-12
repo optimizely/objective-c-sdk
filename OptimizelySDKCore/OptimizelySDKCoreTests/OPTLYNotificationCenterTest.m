@@ -278,11 +278,11 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
 - (void) testSendGetEnabledFeaturesNotification {
     
     NSDictionary *_attributes = @{
-                                 kAttributeKeyBrowserType : @"firefox",
-                                 kAttributeKeyBrowserVersion : @(68.1),
-                                 kAttributeKeyBrowserBuildNumber : @(106),
-                                 kAttributeKeyBrowserIsDefault : @YES
-                                 };
+                                  kAttributeKeyBrowserType : @"firefox",
+                                  kAttributeKeyBrowserVersion : @(68.1),
+                                  kAttributeKeyBrowserBuildNumber : @(106),
+                                  kAttributeKeyBrowserIsDefault : @YES
+                                  };
     __weak typeof(self) weakSelf = self;
     [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
         XCTAssertEqual(kUserId, userId);
@@ -292,6 +292,21 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     NSArray<NSString *> *enabledFeatures = @[@"booleanFeature", @"booleanSingleVariableFeature", @"multiVariateFeature", @"featureEnabledFalse"];
     NSArray<NSString *> *features = [self.optimizely getEnabledFeatures:kUserId attributes:_attributes];
     XCTAssertEqualObjects(features, enabledFeatures);
+    [self.optimizely.notificationCenter clearAllNotificationListeners];
+}
+
+- (void) testSendGetFeatureVariableNotification {
+    
+    __weak typeof(self) weakSelf = self;
+    [weakSelf.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        XCTAssertEqual(kUserId, userId);
+        XCTAssertEqual(@"booleanVariable", decisionInfo[DecisionInfo.VariableKey]);
+        XCTAssertEqual(@"booleanSingleVariableFeature", decisionInfo[DecisionInfo.FeatureKey]);
+        XCTAssertEqual(false, [(NSNumber *)decisionInfo[DecisionInfo.VariableValueKey] boolValue]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[DecisionInfo.SourceExperimentKey]);
+        XCTAssertEqualObjects([NSNull null], decisionInfo[DecisionInfo.SourceVariationKey]);
+    }];
+    [self.optimizely getFeatureVariableBoolean:@"booleanSingleVariableFeature" variableKey:@"booleanVariable" userId:kUserId attributes:nil];
     [self.optimizely.notificationCenter clearAllNotificationListeners];
 }
 
