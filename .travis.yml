@@ -8,6 +8,8 @@ stages:
   - name: lint
   - name: 'Unit tests'
     if: branch = hello
+  - name: 'Release Prep'
+    if: branch =~ /^prep/ and type = pull_request
   - name: deploy
 #    if: type = push AND tag =~ /^v\d+\.\d+\.\d+$/
     if: type = push
@@ -72,6 +74,34 @@ jobs:
     - <<: *unittests
       env: SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
       name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+
+    - stage: 'Release Prep'
+      language: objective-c
+      os: osx
+      name: Prep for new release
+      env:
+        global:
+          - VERSION=3.0.3
+          - COLOR_RESET='\033[0m'
+          - COLOR_ORANGE='\033[0;33m'
+      install:
+        - brew install hub
+      script:
+        # clone down repo
+        - mkdir $HOME/objective-c-sdk
+        - git clone https://$CI_USER_TOKEN@github.com/optimizely/objective-c-sdk.git $HOME/objective-c-sdk
+        - git checkout -b optibot/auto_prepareRelease$VERSION
+        - Scripts/build_all.sh
+        # when is this needed / not needed?
+        - Scripts/unexported_symbols.sh
+        - Scripts/test_all.sh | tee testlog.txt
+        - Scripts/update_version.sh $VERSION
+        - git commit -m "ci(travis): automated release prep for $VERSION" --author "optibot <optibot@users.noreply.github.com>" -a
+        - git push https://$CI_USER_TOKEN@github.com/optimizely/objective-c-sdk.git optibot/auto_prepareRelease$VERSION
+        - PR_URL=$(hub pull-request --no-edit) && echo "${COLOR_ORANGE}ATTENTION:${COLOR_RESET} review and merge ${PR_URL} to continue..."
+
+
+
 
     - stage: deploy
       language: objective-c
