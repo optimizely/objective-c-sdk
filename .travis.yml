@@ -16,7 +16,7 @@ stages:
 
 jobs:
   include:
-#    - stage: 'Integration tests'
+    - stage: 'Integration tests'
       name: 'Trigger Integration Tests'
       language: minimal
       os: linux
