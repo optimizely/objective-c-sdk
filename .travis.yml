@@ -9,14 +9,14 @@ stages:
   - name: 'Unit tests'
     if: branch = hello
   - name: 'Release Prep'
-    if: branch =~ /^prep/ and type = pull_request
-  - name: deploy
+#    if: branch =~ /^prep/ and type = pull_request
+#  - name: deploy
 #    if: type = push AND tag =~ /^v\d+\.\d+\.\d+$/
-    if: type = push
+#    if: type = push
 
 jobs:
   include:
-    - stage: 'Integration tests'
+#    - stage: 'Integration tests'
       name: 'Trigger Integration Tests'
       language: minimal
       os: linux
@@ -83,7 +83,8 @@ jobs:
         global:
           - VERSION=3.0.3
           - COLOR_RESET='\033[0m'
-          - COLOR_ORANGE='\033[0;33m'
+          - COLOR_MAGENTA='\033[0;35m'
+          - COLOR_CYAN='\033[0;36m'
       install:
         - brew install hub
       script:
@@ -97,20 +98,5 @@ jobs:
         - Scripts/test_all.sh | tee testlog.txt
         - Scripts/update_version.sh $VERSION
         - git commit -m "ci(travis): automated release prep for $VERSION" --author "optibot <optibot@users.noreply.github.com>" -a
-        - git push https://$CI_USER_TOKEN@github.com/optimizely/objective-c-sdk.git optibot/auto_prepareRelease$VERSION
-        - PR_URL=$(hub pull-request --no-edit) && echo "${COLOR_ORANGE}ATTENTION:${COLOR_RESET} review and merge ${PR_URL} to continue..."
-
-
-
-
-    - stage: deploy
-      language: objective-c
-      os: osx
-      name: Deploy to cocoapods.org
-      install:
-        - gem install cocoapods
-        - brew install jq
-        - brew install hub
-      script:
-        - TRAVIS_TAG=v3.0.2 ./Scripts/deploy_cocoapods.sh
-        # - ./Scripts/deploy_cocoapods.sh
+#        - git push https://$CI_USER_TOKEN@github.com/optimizely/objective-c-sdk.git optibot/auto_prepareRelease$VERSION
+#        - PR_URL=$(hub pull-request --no-edit) && echo "${COLOR_CYAN}ATTENTION:${COLOR_RESET} review and merge ${PR_URL} to continue..."
