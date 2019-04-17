@@ -1,7 +1,6 @@
 language: minimal
 os: linux
-env:
-  - SKIP=true
+
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - name: 'Trigger Integration Tests'
