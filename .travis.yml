@@ -1,11 +1,15 @@
 language: minimal
 os: linux
-
+env:
+  - SKIP=true
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - name: 'Trigger Integration Tests'
+    if: env(SKIP) = true
   - name: 'SourceClear and Lint'
+    if: env(SKIP) = true
   - name: 'Unit Tests'
+    if: env(SKIP) = true
   - name: 'Prepare for release'
     if: env(PREP) = true and type = api
   - name: 'Release'
@@ -75,6 +79,7 @@ jobs:
       name: Prepare for release
       language: objective-c
       os: osx
+      osx_image: xcode10
       env:
         - VERSION=4.0_${TRAVIS_BUILD_NUMBER}
       install:
