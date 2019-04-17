@@ -6,6 +6,10 @@ stages:
   - 'Trigger Integration Tests'
   - 'SourceClear and Lint'
   - 'Unit Tests'
+  - 'Prepare for release'
+    if: env(PREP) = true
+  - 'Release'
+    if: env(RELEASE) = true
 
 jobs:
   include:
@@ -66,3 +70,23 @@ jobs:
     - <<: *unittests
       env: SCHEME=OptimizelySDKTVOS-Universal TEST_SDK=appletvsimulator PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
       name: PLATFORM='tvOS Simulator' OS=9.2 NAME='Apple TV 1080p'
+
+    - stage: 'Prepare for release'
+      name: Prepare for release
+      language: objective-c
+      os: osx
+      env:
+        - VERSION=4.0_${TRAVIS_BUILD_NUMBER}
+      install:
+        - brew install hub
+      script:
+        - Scripts/run_prep.sh
+
+    - stage: 'Release'
+      name: Push to cocoapods.org
+      language: minimal
+      os: linux
+      env:
+        - VERSION=4.0_${TRAVIS_BUILD_NUMBER}
+      script:
+        - Scripts/run_release.sh
