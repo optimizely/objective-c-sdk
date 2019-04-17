@@ -45,7 +45,7 @@ function push_changes {
 
 function main {
   prep_workspace
-  do_stuff
+  do_stuff > /tmp/do_stuff.log
   push_changes
 }
 
