@@ -7,9 +7,9 @@ stages:
   - name: 'SourceClear and Lint'
   - name: 'Unit Tests'
   - name: 'Prepare for release'
-    if: env(PREP) = true
+    if: env(PREP) = true and type = api
   - name: 'Release'
-    if: env(RELEASE) = true
+    if: env(RELEASE) = true and type = api
 
 jobs:
   include:
