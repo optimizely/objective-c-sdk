@@ -3,12 +3,12 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
-  - 'Trigger Integration Tests'
-  - 'SourceClear and Lint'
-  - 'Unit Tests'
-  - 'Prepare for release'
+  - name: 'Trigger Integration Tests'
+  - name: 'SourceClear and Lint'
+  - name: 'Unit Tests'
+  - name: 'Prepare for release'
     if: env(PREP) = true
-  - 'Release'
+  - name: 'Release'
     if: env(RELEASE) = true
 
 jobs:
