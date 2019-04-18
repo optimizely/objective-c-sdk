@@ -80,7 +80,7 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=4.0_${TRAVIS_BUILD_NUMBER}
+        - VERSION=4.0.0
       install:
         - brew install hub
       script:
@@ -91,6 +91,6 @@ jobs:
       language: minimal
       os: linux
       env:
-        - VERSION=4.0_${TRAVIS_BUILD_NUMBER}
+        - VERSION=4.0.0
       script:
         - Scripts/run_release.sh

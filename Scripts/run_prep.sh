@@ -43,18 +43,12 @@ function do_stuff {
   trap "kill $!" EXIT
   trap 'error_handler' ERR
 
-  echo -n "running build_all"
-  Scripts/build_all.sh >> $BUILD_OUTPUT 2>&1
-  echo
-  echo -n "running unexported_symbols"
-  Scripts/unexported_symbols/unexported_symbols.sh >> $BUILD_OUTPUT 2>&1
-  echo
-  echo -n "running test_all"
-  Scripts/test_all.sh >> $BUILD_OUTPUT 2>&1
-  echo
-  echo -n "running update_version"
-  Scripts/update_version.sh ${VERSION}
-  echo
+  myscripts=( "build_all.sh" "unexported_symbols/unexported_symbols.sh" "test_all.sh" "update_version.sh ${VERSION}" )
+  for i in "${myscripts}"; do
+    echo -n "${i} "
+    Scripts/${i} >> $BUILD_OUTPUT 2>&1
+    echo
+  done
 
   dump_output
   kill $! && trap " " EXIT
