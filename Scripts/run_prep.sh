@@ -43,15 +43,18 @@ function do_stuff {
   trap "kill $!" EXIT
   trap 'error_handler' ERR
 
-  # TODO: parse /tmp/build_all.log for issues?
-  echo "running build_all"
+  echo -n "running build_all"
   Scripts/build_all.sh >> $BUILD_OUTPUT 2>&1
-  echo "running unexported_symbols"
-  Scripts/unexported_symbols/unexported_symbols.sh
-  echo "running test_all"
+  echo
+  echo -n "running unexported_symbols"
+  Scripts/unexported_symbols/unexported_symbols.sh >> $BUILD_OUTPUT 2>&1
+  echo
+  echo -n "running test_all"
   Scripts/test_all.sh >> $BUILD_OUTPUT 2>&1
-  echo "running update_version"
+  echo
+  echo -n "running update_version"
   Scripts/update_version.sh ${VERSION}
+  echo
 
   dump_output
   kill $! && trap " " EXIT
