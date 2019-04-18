@@ -15,6 +15,8 @@ COLOR_MAGENTA='\033[0;35m'
 COLOR_CYAN='\033[0;36m'
 MYREPO=${HOME}/workdir/${TRAVIS_REPO_SLUG}
 AUTOBRANCH=${GITHUB_USER}/prepareRelease${VERSION}
+BUILD_OUTPUT=/tmp/build.out
+touch $BUILD_OUTPUT
 
 function prep_workspace {
   rm -rf ${MYREPO}
@@ -24,20 +26,35 @@ function prep_workspace {
   git checkout -b ${AUTOBRANCH}
 }
 
+dump_output() {
+  echo "last 100 lines of output:"
+  tail -100 $BUILD_OUTPUT
+}
+
+function error_handler() {
+  echo "ERROR: An error was encountered."
+  dump_output
+  exit 1
+}
+
 function do_stuff {
   # keepalive for Travis
-  while sleep 300; do echo "=====[ $SECONDS seconds, ${FUNCNAME} still running... ]====="; done &
+  while :; do sleep 10; echo -n .; done &
+  trap "kill $!" EXIT
+  trap 'error_handler' ERR
 
   # TODO: parse /tmp/build_all.log for issues?
   echo "running build_all"
-  Scripts/build_all.sh > /tmp/build_all.log 2>&1
+  Scripts/build_all.sh >> $BUILD_OUTPUT 2>&1
   echo "running unexported_symbols"
   Scripts/unexported_symbols/unexported_symbols.sh
   echo "running test_all"
-  Scripts/test_all.sh > /tmp/test_all.log 2>&1
+  Scripts/test_all.sh >> $BUILD_OUTPUT 2>&1
   echo "running update_version"
   Scripts/update_version.sh ${VERSION}
-  kill %1
+
+  dump_output
+  kill $! && trap " " EXIT
 }
 
 function push_changes {
