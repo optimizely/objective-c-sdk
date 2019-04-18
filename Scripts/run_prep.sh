@@ -27,10 +27,15 @@ function prep_workspace {
 function do_stuff {
   # keepalive for Travis
   while sleep 300; do echo "=====[ $SECONDS seconds, ${FUNCNAME} still running... ]====="; done &
+
   # TODO: parse /tmp/build_all.log for issues?
+  echo "running build_all"
   Scripts/build_all.sh > /tmp/build_all.log 2>&1
+  echo "running unexported_symbols"
   Scripts/unexported_symbols/unexported_symbols.sh
+  echo "running test_all"
   Scripts/test_all.sh > /tmp/test_all.log 2>&1
+  echo "running update_version"
   Scripts/update_version.sh ${VERSION}
   kill %1
 }
