@@ -89,8 +89,10 @@ jobs:
     - stage: 'Release'
       name: Push to cocoapods.org
       language: minimal
-      os: linux
+      os: osx
       env:
         - VERSION=4.0.0
+      install:
+        - brew install hub
       script:
         - Scripts/run_release.sh
