@@ -82,7 +82,8 @@ jobs:
       env:
         - VERSION=4.0.0
       install:
-        - brew install hub
+        # install hub
+        - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
       script:
         - Scripts/run_prep.sh
 
@@ -93,6 +94,7 @@ jobs:
       env:
         - VERSION=4.0.0
       install:
-        - brew install hub
+        # install hub
+        - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
       script:
         - Scripts/run_release.sh
