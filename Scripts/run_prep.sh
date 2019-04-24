@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# This script expects the following environment variables defined in travis job settings:
+# Because `hub` is used, this script expects the following environment variables defined in travis job settings:
 # GITHUB_TOKEN - github api token with repo permissions (display value in build log setting: OFF)
 # GITHUB_USER - github username that GITHUB_TOKEN is associated with (display value in build log setting: ON)
 
