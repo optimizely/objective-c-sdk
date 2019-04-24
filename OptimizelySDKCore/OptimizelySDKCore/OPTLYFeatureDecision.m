@@ -19,8 +19,8 @@
 #import "OPTLYVariation.h"
 
 const struct DecisionSourceStruct DecisionSource = {
-    .Experiment = @"EXPERIMENT",
-    .Rollout = @"ROLLOUT"
+    .FeatureTest = @"feature-test",
+    .Rollout = @"rollout"
 };
 
 @implementation OPTLYFeatureDecision

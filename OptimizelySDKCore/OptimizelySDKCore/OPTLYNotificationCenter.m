@@ -35,18 +35,23 @@ const struct DecisionInfoStruct DecisionInfo = {
     .FeatureKey = @"featureKey",
     .FeatureEnabledKey = @"featureEnabled",
     .Key = @"decisionInfo",
-    .SourceExperimentKey = @"sourceExperimentKey",
-    .SourceVariationKey = @"sourceVariationKey",
     .SourceKey = @"source",
+    .SourceInfoKey = @"sourceInfo",
     .VariableKey = @"variableKey",
     .VariableTypeKey = @"variableType",
     .VariableValueKey = @"variableValue"
 };
 
+const struct ExperimentDecisionInfoStruct ExperimentDecisionInfo = {
+    .ExperimentKey = @"experimentKey",
+    .VariationKey = @"variationKey"
+};
+
 /// Notification decision types.
-NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature_variable";
-NSString * _Nonnull const OPTLYDecisionTypeExperiment = @"experiment";
-NSString * _Nonnull const OPTLYDecisionTypeIsFeatureEnabled = @"feature";
+NSString * _Nonnull const OPTLYDecisionTypeABTest           = @"ab-test";
+NSString * _Nonnull const OPTLYDecisionTypeFeature          = @"feature";
+NSString * _Nonnull const OPTLYDecisionTypeFeatureVariable  = @"feature-variable";
+NSString * _Nonnull const OPTLYDecisionTypeFeatureTest      = @"feature-test";
 
 @interface OPTLYNotificationCenter()
 
