@@ -46,8 +46,10 @@ jobs:
       name: PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
+      install:
+        - pod install --repo-update
       script:
-        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then set -o pipefail && travis_retry xcodebuild -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO clean build test | xcpretty ; fi
+        - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=YES test | xcpretty; test ${PIPESTATUS[0]} -eq 0 ; fi
       after_success:
         - slather
         - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
