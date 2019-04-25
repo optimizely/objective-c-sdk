@@ -49,7 +49,7 @@ function release_cocoapods {
 
 function main {
   release_github
-  #release_cocoapods
+  release_cocoapods
 }
 
 main
