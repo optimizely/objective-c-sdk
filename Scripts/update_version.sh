@@ -132,7 +132,8 @@ do
 done
 
 # check total 17 (= 7 + 10) places replaced
-expTotalCount=17
+#expTotalCount=17
+expTotalCount=4
 if (( ${countChanges} == ${expTotalCount} ))
 then
     printf "Verified successfully! (podspec version updated in ${expTotalCount} places) \n"
