@@ -31,7 +31,8 @@ function release_github {
 function release_cocoapods {
 
   # ---- Optimizely's pods ----
-  pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfileService OptimizelySDKiOS OptimizelySDKTVOS);
+  #pods=(OptimizelySDKCore OptimizelySDKShared OptimizelySDKDatafileManager OptimizelySDKEventDispatcher OptimizelySDKUserProfileService OptimizelySDKiOS OptimizelySDKTVOS);
+  pods=(JCSDKTVOS.podspec)
   number_pods=${#pods[@]};
 
   # ---- push podspecs to cocoapods ----

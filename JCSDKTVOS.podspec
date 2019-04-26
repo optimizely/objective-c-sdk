@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name                    = "OptimizelySDKTVOS"
+  s.name                    = "JCSDKTVOS"
   s.version                 = "3.0.2"
   s.summary                 = "Optimizely server-side testing framework for tvOS."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
