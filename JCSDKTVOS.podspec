@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
-  s.dependency 'OptimizelySDKEventDispatcher', "3.0.3"
-  s.dependency 'OptimizelySDKUserProfileService', "3.0.3"
-  s.dependency 'OptimizelySDKDatafileManager', "3.0.3"
+  s.dependency 'OptimizelySDKEventDispatcher', "3.0.2"
+  s.dependency 'OptimizelySDKUserProfileService', "3.0.2"
+  s.dependency 'OptimizelySDKDatafileManager', "3.0.2"
 end
