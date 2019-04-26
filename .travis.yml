@@ -6,7 +6,6 @@ stages:
   - name: 'Trigger Integration Tests'
     if: env(SKIP) = true
   - name: 'SourceClear and Lint'
-    if: env(SKIP) = true
   - name: 'Unit Tests'
     if: env(SKIP) = true
   - name: 'Prepare for release'
