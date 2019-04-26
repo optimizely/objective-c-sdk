@@ -4,11 +4,8 @@ os: linux
 # Integration tests need to run first to reset the PR build status to pending
 stages:
   - name: 'Trigger Integration Tests'
-    if: env(SKIP) = true
   - name: 'SourceClear and Lint'
-    if: env(SKIP) = true
   - name: 'Unit Tests'
-    if: env(SKIP) = true
   - name: 'Prepare for release'
     if: env(PREP) = true and type = api
   - name: 'Release'
@@ -80,7 +77,7 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=3.0.3-alpha
+        - VERSION=3.0.2
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
@@ -92,7 +89,7 @@ jobs:
       language: minimal
       os: osx
       env:
-        - VERSION=3.0.3-alpha
+        - VERSION=3.0.2
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
