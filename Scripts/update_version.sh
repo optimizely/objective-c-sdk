@@ -40,14 +40,15 @@ cd "$(dirname $0)/.."
 # 1. update the SDK version in all xcode project settings
 #----------------------------------------------------------------------------------
 # SDK submodules + universal
-mods=(OptimizelySDKCore \
-    OptimizelySDKShared \
-    OptimizelySDKDatafileManager \
-    OptimizelySDKEventDispatcher \
-    OptimizelySDKUserProfileService \
-    OptimizelySDKiOS \
-    OptimizelySDKTVOS \
-    OptimizelySDKUniversal)
+#mods=(OptimizelySDKCore \
+#    OptimizelySDKShared \
+#    OptimizelySDKDatafileManager \
+#    OptimizelySDKEventDispatcher \
+#    OptimizelySDKUserProfileService \
+#    OptimizelySDKiOS \
+#    OptimizelySDKTVOS \
+#    OptimizelySDKUniversal)
+mods=(JCSDKTVOS)
 numMods=${#mods[@]}
 
 printf "\n\nReplacing OPTIMIZELY_SDK_VERSION in Xcode Build Settings to the target version.\n"
@@ -86,13 +87,14 @@ done
 #----------------------------------------------------------------------------------
 # 2. update the SDK version in all podspecs
 #----------------------------------------------------------------------------------
-podSpecs=(OptimizelySDKCore.podspec \
-        OptimizelySDKShared.podspec \
-        OptimizelySDKDatafileManager.podspec \
-        OptimizelySDKEventDispatcher.podspec \
-        OptimizelySDKUserProfileService.podspec \
-        OptimizelySDKiOS.podspec \
-        OptimizelySDKTVOS.podspec)
+#podSpecs=(OptimizelySDKCore.podspec \
+#        OptimizelySDKShared.podspec \
+#        OptimizelySDKDatafileManager.podspec \
+#        OptimizelySDKEventDispatcher.podspec \
+#        OptimizelySDKUserProfileService.podspec \
+#        OptimizelySDKiOS.podspec \
+#        OptimizelySDKTVOS.podspec)
+podSpecs=(JCSDKTVOS.podspec)
 numPodSpecs=${#podSpecs[@]};
 
 printf "\n\nReplacing all versions in *.podspec files\n"
