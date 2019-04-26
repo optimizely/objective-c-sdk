@@ -10,6 +10,13 @@ set -e
 function release_github {
   CHANGELOG="CHANGELOG.md"
 
+  # check that CHANGELOG.md has been updated
+  NEW_VERSION_CHECK=$(grep '^## ' ${CHANGELOG} | awk 'NR==1' | tr -d '# ')
+  if [[ ${NEW_VERSION_CHECK} != ${VERSION} ]]; then
+    echo "ERROR: ${CHANGELOG} has not been updated yet."
+    exit 1
+  fi
+
   NEW_VERSION=$(grep '^## ' ${CHANGELOG} | awk 'NR==1')
   LAST_VERSION=$(grep '^## ' ${CHANGELOG} | awk 'NR==2')
 
@@ -27,7 +34,7 @@ function release_cocoapods {
 
   # ---- push podspecs to cocoapods ----
   # The podspecs need to be pushed in the correct order because of dependencies!
-  printf "\n\n11. Pushing podspecs to COCOAPODS.ORG .\n";
+  printf "\n\nPushing podspecs to COCOAPODS.ORG .\n";
   for (( i = 0; i < ${number_pods}; i++ ));
   do
     podname=${pods[i]};
