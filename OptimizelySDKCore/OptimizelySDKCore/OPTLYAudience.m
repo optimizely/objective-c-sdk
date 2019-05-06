@@ -16,6 +16,7 @@
 
 #import "OPTLYAudience.h"
 #import "OPTLYDatafileKeys.h"
+#import "OPTLYBaseCondition.h"
 
 @implementation OPTLYAudience
 
@@ -30,14 +31,22 @@
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *err = nil;
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:data
-                                                     options:NSJSONReadingAllowFragments
-                                                       error:&err];
+    NSArray *array;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:&err];
     if (err != nil) {
         NSException *exception = [[NSException alloc] initWithName:err.domain reason:err.localizedFailureReason userInfo:@{@"Error" : err}];
         @throw exception;
     }
     
+    if ([jsonObject isKindOfClass:[NSArray class]]) {
+        array = (NSArray *)jsonObject;
+    }
+    else if ([jsonObject isKindOfClass:[NSDictionary class]] && [OPTLYBaseCondition isBaseConditionJSON:jsonObject]) {
+        array = @[OPTLYDatafileKeysOrCondition,jsonObject];
+    }
+
     self.conditions = [OPTLYCondition deserializeJSONArray:array error:&err];
     
     if (err != nil) {
