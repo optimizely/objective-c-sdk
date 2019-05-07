@@ -99,6 +99,7 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testDefaultAttributesKeysAreCorrect {
+    XCTestExpectation *managerExpectation = [self expectationWithDescription:@"Manager init"];
     XCTAssertEqualObjects(@"optimizely_tvos_app_version", OptimizelyAppVersionKey);
     XCTAssertEqualObjects(@"optimizely_tvos_device_model", OptimizelyDeviceModelKey);
     XCTAssertEqualObjects(@"optimizely_tvos_os_version", OptimizelyOSVersionKey);
@@ -107,13 +108,16 @@ static NSDictionary *kCDNResponseHeaders = nil;
     OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
+        [managerExpectation fulfill];
     }]] ;
     
-    OPTLYClient *client = [manager initialize];
-    XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
-    XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
-    XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
-    XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
+    [self waitForExpectationsWithTimeout:2.0 handler:^(NSError * _Nullable error) {
+        OPTLYClient *client = [manager initialize];
+        XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
+        XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
+        XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
+        XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
+    }];
 }
 
 @end

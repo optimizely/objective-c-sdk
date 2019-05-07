@@ -58,46 +58,52 @@ static NSDictionary *kCDNResponseHeaders = nil;
 }
 
 - (void)testiOSSDKInitializedWithOverrides {
+    
+    XCTestExpectation *managerExpectation = [self expectationWithDescription:@"Manager init"];
+
     OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
         builder.datafile = kDefaultDatafile;
         builder.projectId = kProjectId;
+        [managerExpectation fulfill];
     }]];
     
-    // asset manager got intialized with the correct defaults
-    XCTAssertNotNil(manager);
-    XCTAssertNotNil(manager.datafileManager);
-    XCTAssertNotNil(manager.errorHandler);
-    XCTAssertNotNil(manager.eventDispatcher);
-    XCTAssertNotNil(manager.logger);
-    XCTAssertNotNil(manager.userProfileService);
-    XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
-    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
-    XCTAssertEqual([manager.userProfileService class], [OPTLYUserProfileServiceDefault class]);
-    XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
-    XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
-    
-    // test initializing the client works
-    OPTLYClient *client = [manager initialize];
-    XCTAssertNotNil(client);
-    XCTAssertNotNil(client.optimizely);
-    
-    // test initializing optimizely core works fine
-    Optimizely *optimizely = client.optimizely;
-    XCTAssertNotNil(optimizely.config);
-    XCTAssertNotNil(optimizely.errorHandler);
-    XCTAssertNotNil(optimizely.eventDispatcher);
-    XCTAssertNotNil(optimizely.logger);
-    XCTAssertNotNil(optimizely.userProfileService);
-    // test components from manager are passed to core properly
-    XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
-    XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
-    XCTAssertEqual(optimizely.logger, manager.logger);
-    XCTAssertEqual(optimizely.userProfileService, manager.userProfileService);
-    
-    // test client engine and version were set correctly
-    XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
-    // TODO - The preprocessor definition for the client version is not getting picked up in the test. Still debugging why...
-    //XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
+    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
+        // asset manager got intialized with the correct defaults
+        XCTAssertNotNil(manager);
+        XCTAssertNotNil(manager.datafileManager);
+        XCTAssertNotNil(manager.errorHandler);
+        XCTAssertNotNil(manager.eventDispatcher);
+        XCTAssertNotNil(manager.logger);
+        XCTAssertNotNil(manager.userProfileService);
+        XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
+        XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
+        XCTAssertEqual([manager.userProfileService class], [OPTLYUserProfileServiceDefault class]);
+        XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
+        XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
+        
+        // test initializing the client works
+        OPTLYClient *client = [manager initialize];
+        XCTAssertNotNil(client);
+        XCTAssertNotNil(client.optimizely);
+        
+        // test initializing optimizely core works fine
+        Optimizely *optimizely = client.optimizely;
+        XCTAssertNotNil(optimizely.config);
+        XCTAssertNotNil(optimizely.errorHandler);
+        XCTAssertNotNil(optimizely.eventDispatcher);
+        XCTAssertNotNil(optimizely.logger);
+        XCTAssertNotNil(optimizely.userProfileService);
+        // test components from manager are passed to core properly
+        XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
+        XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
+        XCTAssertEqual(optimizely.logger, manager.logger);
+        XCTAssertEqual(optimizely.userProfileService, manager.userProfileService);
+        
+        // test client engine and version were set correctly
+        XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
+        // TODO - The preprocessor definition for the client version is not getting picked up in the test. Still debugging why...
+        //XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
+    }];
 }
 
 @end
