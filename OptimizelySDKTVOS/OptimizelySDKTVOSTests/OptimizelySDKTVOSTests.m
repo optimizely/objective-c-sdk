@@ -111,13 +111,13 @@ static NSDictionary *kCDNResponseHeaders = nil;
         [managerExpectation fulfill];
     }]] ;
     
-    [self waitForExpectationsWithTimeout:2.0 handler:^(NSError * _Nullable error) {
-        OPTLYClient *client = [manager initialize];
-        XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
-        XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
-        XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
-        XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
-    }];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    OPTLYClient *client = [manager initialize];
+    XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
+    XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
 }
 
 @end

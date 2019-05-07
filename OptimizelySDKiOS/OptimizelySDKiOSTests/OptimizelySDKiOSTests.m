@@ -66,42 +66,42 @@ static NSDictionary *kCDNResponseHeaders = nil;
         [managerExpectation fulfill];
     }]];
     
-    [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
-        // asset manager got intialized with the correct defaults
-        XCTAssertNotNil(manager);
-        XCTAssertNotNil(manager.datafileManager);
-        XCTAssertNotNil(manager.errorHandler);
-        XCTAssertNotNil(manager.eventDispatcher);
-        XCTAssertNotNil(manager.logger);
-        XCTAssertNotNil(manager.userProfileService);
-        XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
-        XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
-        XCTAssertEqual([manager.userProfileService class], [OPTLYUserProfileServiceDefault class]);
-        XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
-        XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
-        
-        // test initializing the client works
-        OPTLYClient *client = [manager initialize];
-        XCTAssertNotNil(client);
-        XCTAssertNotNil(client.optimizely);
-        
-        // test initializing optimizely core works fine
-        Optimizely *optimizely = client.optimizely;
-        XCTAssertNotNil(optimizely.config);
-        XCTAssertNotNil(optimizely.errorHandler);
-        XCTAssertNotNil(optimizely.eventDispatcher);
-        XCTAssertNotNil(optimizely.logger);
-        XCTAssertNotNil(optimizely.userProfileService);
-        // test components from manager are passed to core properly
-        XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
-        XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
-        XCTAssertEqual(optimizely.logger, manager.logger);
-        XCTAssertEqual(optimizely.userProfileService, manager.userProfileService);
-        
-        // test client engine and version were set correctly
-        XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
-        XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
-    }];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    // asset manager got intialized with the correct defaults
+    XCTAssertNotNil(manager);
+    XCTAssertNotNil(manager.datafileManager);
+    XCTAssertNotNil(manager.errorHandler);
+    XCTAssertNotNil(manager.eventDispatcher);
+    XCTAssertNotNil(manager.logger);
+    XCTAssertNotNil(manager.userProfileService);
+    XCTAssertEqual([manager.datafileManager class], [OPTLYDatafileManagerDefault class]);
+    XCTAssertEqual([manager.eventDispatcher class], [OPTLYEventDispatcherDefault class]);
+    XCTAssertEqual([manager.userProfileService class], [OPTLYUserProfileServiceDefault class]);
+    XCTAssertEqual([manager.logger class], [OPTLYLoggerDefault class]);
+    XCTAssertEqual([manager.errorHandler class], [OPTLYErrorHandlerNoOp class]);
+    
+    // test initializing the client works
+    OPTLYClient *client = [manager initialize];
+    XCTAssertNotNil(client);
+    XCTAssertNotNil(client.optimizely);
+    
+    // test initializing optimizely core works fine
+    Optimizely *optimizely = client.optimizely;
+    XCTAssertNotNil(optimizely.config);
+    XCTAssertNotNil(optimizely.errorHandler);
+    XCTAssertNotNil(optimizely.eventDispatcher);
+    XCTAssertNotNil(optimizely.logger);
+    XCTAssertNotNil(optimizely.userProfileService);
+    // test components from manager are passed to core properly
+    XCTAssertEqual(optimizely.errorHandler, manager.errorHandler);
+    XCTAssertEqual(optimizely.eventDispatcher, manager.eventDispatcher);
+    XCTAssertEqual(optimizely.logger, manager.logger);
+    XCTAssertEqual(optimizely.userProfileService, manager.userProfileService);
+    
+    // test client engine and version were set correctly
+    XCTAssertEqualObjects([optimizely.config clientEngine], kClientEngine);
+    XCTAssertEqualObjects([optimizely.config clientVersion], OPTIMIZELY_SDK_VERSION);
 }
 
 
@@ -118,13 +118,13 @@ static NSDictionary *kCDNResponseHeaders = nil;
         [managerExpectation fulfill];
     }]];
     
-    [self waitForExpectationsWithTimeout:2.0 handler:^(NSError * _Nullable error) {
-        OPTLYClient *client = [manager initialize];
-        XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
-        XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
-        XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
-        XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
-    }];
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+    
+    OPTLYClient *client = [manager initialize];
+    XCTAssertEqualObjects(@"", client.defaultAttributes[OptimizelyAppVersionKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] model], client.defaultAttributes[OptimizelyDeviceModelKey]);
+    XCTAssertEqualObjects([[UIDevice currentDevice] systemVersion], client.defaultAttributes[OptimizelyOSVersionKey]);
+    XCTAssertEqualObjects([client.optimizely.config clientVersion], client.defaultAttributes[OptimizelySDKVersionKey]);
 }
 
 @end
