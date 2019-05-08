@@ -176,15 +176,19 @@
                                                                         userId:userId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+    NSString *decisionType = [self.config isFeatureExperiment:experiment.experimentId] ? OPTLYDecisionTypeFeatureTest : OPTLYDecisionTypeABTest;
     
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
-    [args setValue:OPTLYDecisionTypeExperiment forKey:OPTLYNotificationDecisionTypeKey];
+    [args setValue:decisionType forKey:OPTLYNotificationDecisionTypeKey];
     [args setValue:userId forKey:OPTLYNotificationUserIdKey];
     [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
     
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:(bucketedVariation.variationKey ? experimentKey : [NSNull null]) forKey:OPTLYNotificationExperimentKey];
-    [decisionInfo setValue:(bucketedVariation.variationKey ?: [NSNull null]) forKey:OPTLYNotificationVariationKey];
+    NSMutableDictionary *sourceInfo = [NSMutableDictionary new];
+    sourceInfo[ExperimentDecisionInfo.ExperimentKey] = experimentKey;
+    sourceInfo[ExperimentDecisionInfo.VariationKey] = bucketedVariation.variationKey ?: [NSNull null];
+    decisionInfo = sourceInfo;
     [args setValue:decisionInfo forKey:DecisionInfo.Key];
     
     [_notificationCenter sendNotifications:OPTLYNotificationTypeDecision args:args];
@@ -241,15 +245,22 @@
     }
     
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
+    
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
+    [args setValue:OPTLYDecisionTypeFeature forKey:OPTLYNotificationDecisionTypeKey];
+    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
+    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
+    
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceExperimentKey];
-    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceVariationKey];
+    [decisionInfo setValue:@{} forKey:DecisionInfo.SourceInfoKey];
+    [decisionInfo setValue:featureKey forKey:DecisionInfo.FeatureKey];
     
     if (decision) {
-        if ([decision.source isEqualToString:DecisionSource.Experiment]) {
-            [decisionInfo setValue:decision.experiment.experimentKey forKey:DecisionInfo.SourceExperimentKey];
-            [decisionInfo setValue:decision.variation.variationKey forKey:DecisionInfo.SourceVariationKey];
+        if ([decision.source isEqualToString:DecisionSource.FeatureTest]) {
+            NSMutableDictionary *sourceInfo = [NSMutableDictionary new];
+            [sourceInfo setValue:decision.experiment.experimentKey forKey:ExperimentDecisionInfo.ExperimentKey];
+            [sourceInfo setValue:decision.variation.variationKey forKey:ExperimentDecisionInfo.VariationKey];
+            [decisionInfo setValue:sourceInfo forKey:DecisionInfo.SourceInfoKey];
             [self sendImpressionEventFor:decision.experiment
                                variation:decision.variation
                                   userId:userId
@@ -272,11 +283,6 @@
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelInfo];
     }
     
-    [args setValue:OPTLYDecisionTypeIsFeatureEnabled forKey:OPTLYNotificationDecisionTypeKey];
-    [args setValue:userId forKey:OPTLYNotificationUserIdKey];
-    [args setValue:attributes forKey:OPTLYNotificationAttributesKey];
-    
-    [decisionInfo setValue:featureKey forKey:DecisionInfo.FeatureKey];
     [decisionInfo setValue:[NSNumber numberWithBool:result] forKey:DecisionInfo.FeatureEnabledKey];
     [decisionInfo setValue:decision.source forKey:DecisionInfo.SourceKey];
     [args setValue:decisionInfo forKey:DecisionInfo.Key];
@@ -322,15 +328,16 @@
     }
     
     NSMutableDictionary *decisionInfo = [NSMutableDictionary new];
-    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceExperimentKey];
-    [decisionInfo setValue:[NSNull null] forKey:DecisionInfo.SourceVariationKey];
+    [decisionInfo setValue:@{} forKey:DecisionInfo.SourceInfoKey];
     
     NSString *variableValue = featureVariable.defaultValue;
     OPTLYFeatureDecision *decision = [self.decisionService getVariationForFeature:featureFlag userId:userId attributes:attributes];
     if (decision) {
-        if ([decision.source isEqualToString:DecisionSource.Experiment]) {
-            [decisionInfo setValue:decision.experiment.experimentKey forKey:DecisionInfo.SourceExperimentKey];
-            [decisionInfo setValue:decision.variation.variationKey forKey:DecisionInfo.SourceVariationKey];
+        if ([decision.source isEqualToString:DecisionSource.FeatureTest]) {
+            NSMutableDictionary *sourceInfo = [NSMutableDictionary new];
+            [sourceInfo setValue:decision.experiment.experimentKey forKey:ExperimentDecisionInfo.ExperimentKey];
+            [sourceInfo setValue:decision.variation.variationKey forKey:ExperimentDecisionInfo.VariationKey];
+            [decisionInfo setValue:sourceInfo forKey:DecisionInfo.SourceInfoKey];
         }
         OPTLYVariation *variation = decision.variation;
         OPTLYVariableUsage *featureVariableUsage = [variation getVariableUsageForVariableId:featureVariable.variableId];

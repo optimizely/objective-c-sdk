@@ -45,6 +45,7 @@ static NSArray *supportedDatafileVersions = nil;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentKeyToExperimentMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureFlag *><Ignore> *featureFlagKeyToFeatureFlagMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYRollout *><Ignore> *rolloutIdToRolloutMap;
+@property (nonatomic, strong) NSDictionary<NSString *, NSArray *><Ignore> *experimentIdToFeatureIdsMap;
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
 @property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
@@ -262,6 +263,11 @@ static NSArray *supportedDatafileVersions = nil;
     return experimentId;
 }
 
+- (BOOL)isFeatureExperiment:(NSString *)experimentId
+{
+    return [self.experimentIdToFeatureIdsMap.allKeys containsObject:experimentId];
+}
+
 - (OPTLYGroup *)getGroupForGroupId:(NSString *)groupId {
     OPTLYGroup *group = self.groupIdToGroupMap[groupId];
     if (!group) {
@@ -449,6 +455,14 @@ static NSArray *supportedDatafileVersions = nil;
     return _experimentKeyToExperimentIdMap;
 }
 
+- (NSDictionary<NSString *,NSArray *><Ignore> *)experimentIdToFeatureIdsMap
+{
+    if (!_experimentIdToFeatureIdsMap) {
+        _experimentIdToFeatureIdsMap = [self generateExperimentIdToFeatureIdsMap];
+    }
+    return _experimentIdToFeatureIdsMap;
+}
+
 - (NSDictionary<NSString *, OPTLYGroup *> *)groupIdToGroupMap {
     if (!_groupIdToGroupMap) {
         _groupIdToGroupMap = [OPTLYProjectConfig generateGroupIdToGroupMapFromGroupsArray:_groups];
@@ -556,6 +570,24 @@ static NSArray *supportedDatafileVersions = nil;
     NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
     for (OPTLYExperiment *experiment in self.allExperiments) {
         map[experiment.experimentKey] = experiment.experimentId;
+    }
+    return [map copy];
+}
+
+- (NSDictionary<NSString *, NSArray *> *)generateExperimentIdToFeatureIdsMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYFeatureFlag *featureFlag in self.featureFlags) {
+        for (NSString *experimentId in featureFlag.experimentIds) {
+            if ([map.allKeys containsObject:experimentId]) {
+                NSMutableArray *featureIdsArray = [[NSMutableArray alloc] initWithArray:map[experimentId]];
+                [featureIdsArray addObject:featureFlag.flagId];
+                map[experimentId] = [featureIdsArray copy];
+            }
+            else {
+                NSArray *featureIdsArray = @[featureFlag.flagId];
+                map[experimentId] = featureIdsArray;
+            }
+        }
     }
     return [map copy];
 }

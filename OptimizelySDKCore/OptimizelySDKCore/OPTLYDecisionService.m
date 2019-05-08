@@ -215,7 +215,7 @@
                     logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesDecisionServiceUserInVariation, userId, variation.variationKey, experiment.experimentKey];
                     decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                       variation:variation
-                                                                         source:DecisionSource.Experiment];
+                                                                         source:DecisionSource.FeatureTest];
                 }
             }
         } else {
@@ -258,7 +258,7 @@
             
             OPTLYFeatureDecision *decision = [[OPTLYFeatureDecision alloc] initWithExperiment:experiment
                                                                                     variation:variation
-                                                                                       source:DecisionSource.Experiment];
+                                                                                       source:DecisionSource.FeatureTest];
             return decision;
         }
     }
