@@ -225,6 +225,8 @@
 		90855D0120ED254600A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0D20ED2E0100A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
 		90855D0E20ED2E0300A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
+		C7059863228401EE004AB16E /* V4TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7059862228401EE004AB16E /* V4TestDatafile.json */; };
+		C7059864228401EE004AB16E /* V4TestDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C7059862228401EE004AB16E /* V4TestDatafile.json */; };
 		EA064BC71DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC81DD3FC8800DF7537 /* OPTLYQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA064BC91DD3FC8800DF7537 /* OPTLYQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */; };
@@ -629,6 +631,7 @@
 		A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7059862228401EE004AB16E /* V4TestDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V4TestDatafile.json; sourceTree = "<group>"; };
 		E2E7211C032DF7A75264FDDB /* Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreTVOSTests/Pods-OptimizelySDKCoreTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA064BC51DD3FC8800DF7537 /* OPTLYQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPTLYQueue.h; sourceTree = "<group>"; };
 		EA064BC61DD3FC8800DF7537 /* OPTLYQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYQueue.m; sourceTree = "<group>"; };
@@ -1176,6 +1179,7 @@
 				EA2FAB981DC6FDFA00B1D81B /* test_data_25_experiments.json */,
 				EA2FAB991DC6FDFA00B1D81B /* test_data_50_experiments.json */,
 				3EF9D98F20AE424F00A9B002 /* V2TestDatafile.json */,
+				C7059862228401EE004AB16E /* V4TestDatafile.json */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -1670,6 +1674,7 @@
 				EA2FABD51DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABCF1DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
 				5E4C07F31DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,
+				C7059863228401EE004AB16E /* V4TestDatafile.json in Resources */,
 				3E99CF7F1FE02C2D00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF220CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				EA2FABC91DC6FDFA00B1D81B /* BucketerTestsDatafile.json in Resources */,
@@ -1695,6 +1700,7 @@
 				EA2FABD91DC6FDFA00B1D81B /* optimizely_7519590183.json in Resources */,
 				EA2FABD61DC6FDFA00B1D81B /* test_data_50_experiments.json in Resources */,
 				EA2FABD01DC6FDFA00B1D81B /* test_data_10_experiments.json in Resources */,
+				C7059864228401EE004AB16E /* V4TestDatafile.json in Resources */,
 				3E99CF801FE02C2E00B16B97 /* optimizely_6372300739_v4.json in Resources */,
 				3EEC2AF320CB3D9E00D096E4 /* test_data_10_experimentsV3.json in Resources */,
 				5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */,

@@ -38,6 +38,7 @@ static NSString *const kEventNameWithMultipleExperiments = @"testEventWithMultip
 
 // datafiles
 static NSString *const kV2TestDatafileName = @"V2TestDatafile";
+static NSString *const kV4TestDatafileName = @"V4TestDatafile";
 static NSString *const kBucketerTestDatafileName = @"BucketerTestsDatafile";
 
 // user IDs
@@ -161,6 +162,15 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 // Test initializing with older V2 datafile
 - (void)testOlderV2Datafile {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kV2TestDatafileName];
+    Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
+        builder.datafile = datafile;
+    }]];
+    XCTAssertNotNil(optimizely);
+}
+
+// Test initializing with v4 datafile
+- (void)testOlderV4Datafile {
+    NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kV4TestDatafileName];
     Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
     }]];

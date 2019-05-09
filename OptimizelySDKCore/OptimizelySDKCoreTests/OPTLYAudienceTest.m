@@ -21,6 +21,7 @@ static NSString * const kAudienceName = @"Android users";
 static NSString * const kAudienceConditions = @"[\"and\", [\"or\", [\"or\", {\"name\": \"browser_type\", \"type\": \"custom_dimension\", \"value\": \"android\"}]]]";
 static NSString * const kAudienceConditionsWithNot = @"[\"and\", [\"or\", [\"not\", [\"or\", {\"name\": \"example\", \"type\": \"custom_attribute\", \"value\": \"test\"}]]]]";
 static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value1\"}, {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value2\"}, {\"name\": \"attribute_or\", \"type\": \"custom_attribute\", \"value\": \"attribute_or_value3\"}]], [\"or\", [\"or\", {\"name\": \"attribute_and\", \"type\": \"custom_attribute\", \"value\": \"attribute_and_value1\"}]], [\"or\", [\"not\", [\"or\", {\"name\": \"attribute_not\", \"type\": \"custom_attribute\", \"value\": \"attribute_not_value\"}]]]]";
+static NSString * const kLeafAudienceCondition = @"{\"name\": \"attribute_not\", \"type\": \"custom_attribute\", \"value\": \"attribute_not_value\"}";
 
 @interface OPTLYAudienceTest : XCTestCase
 
@@ -84,6 +85,20 @@ static NSString * const kComplexAudience = @"[\"and\", [\"or\", [\"or\", {\"name
     XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeNot]);
     XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeOr]);
     XCTAssertFalse([audience evaluateConditionsWithAttributes:attributesFailBadAttributeAnd]);
+}
+
+- (void)testLeafAudienceCondition {
+    
+    OPTLYAudience * audience = [[OPTLYAudience alloc] initWithDictionary:@{@"id" : kAudienceId,
+                                                                           @"name" : kAudienceName,
+                                                                           @"conditions" : kLeafAudienceCondition}
+                                                                   error:nil];
+    XCTAssertNotNil(audience);
+    XCTAssertTrue([audience.conditions.firstObject isKindOfClass:[OPTLYOrCondition class]]);
+
+    NSDictionary *attributes = @{@"attribute_not" : @"attribute_not_value"};
+
+    XCTAssertTrue([audience evaluateConditionsWithAttributes:attributes]);
 }
 
 @end
