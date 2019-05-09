@@ -169,7 +169,7 @@ static NSString * const kVariationIDForWhitelisting = @"variation4";
 }
 
 // Test initializing with v4 datafile
-- (void)testOlderV4Datafile {
+- (void)testV4Datafile {
     NSData *datafile = [OPTLYTestHelper loadJSONDatafileIntoDataObject:kV4TestDatafileName];
     Optimizely *optimizely = [[Optimizely alloc] initWithBuilder:[OPTLYBuilder builderWithBlock:^(OPTLYBuilder * _Nullable builder) {
         builder.datafile = datafile;
