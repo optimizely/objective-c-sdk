@@ -1,9 +1,5 @@
 # Optimizely Objective-C SDK Changelog
 
-## [Unreleased]
-Changes that have landed but are not yet released.
-* This adds support to handle and parse both single leaf node and arraylist of audience conditions.
-
 ## 2.1.6
 January 25th, 2019
 
