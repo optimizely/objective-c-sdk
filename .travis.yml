@@ -43,7 +43,7 @@ jobs:
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
       script:
-        - travis_retry xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=12.1,name=iPhone XS Max" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
+        - xctool -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=12.1,name=iPhone XS Max" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
         # - travis_retry xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=12.1,name=Apple TV" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
         # - travis_retry xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS-Universal -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=12.1,name=Apple TV" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
       after_success:
