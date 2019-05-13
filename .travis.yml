@@ -40,12 +40,11 @@ jobs:
       name: 'Unit Testing With Multi-Simulators'
       os: osx
       osx_image: xcode10.1
+      xcode_workspace: OptimizelySDK.xcworkspace
+      xcode_scheme: OptimizelySDKiOS
+      xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS Max
       before_install:
         - gem install slather --no-rdoc --no-ri --no-document --quiet
-      script:
-        - xctool -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKiOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=12.1,name=iPhone XS Max" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
-        # - travis_retry xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=12.1,name=Apple TV" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
-        # - travis_retry xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOS-Universal -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk appletvsimulator -destination "platform=tvOS Simulator,OS=12.1,name=Apple TV" ONLY_ACTIVE_ARCH=YES -UseModernBuildSystem=NO test | xcpretty; test ${PIPESTATUS[0]} -eq 0
       after_success:
         - slather
         - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
