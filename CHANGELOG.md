@@ -11,7 +11,7 @@ May 15th, 2019
     * Added APIs to be able to conveniently add Decision notification handler (addDecisionNotificationHandler) and Track notification handler (addTrackNotificationHandler).
 
 ## Bug Fixes:
-* Feature variable APIs return default variable value when featureEnabled property is false. (#390)
+* Feature variable APIs return default variable value when featureEnabled property is false. ([#390](https://github.com/optimizely/objective-c-sdk/pull/390))
 
 ## Deprecated
 * Activate notification listener is deprecated as of this release. Recommendation is to use the new Decision notification listener. Activate notification listener will be removed in the next major release.
