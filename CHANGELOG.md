@@ -15,7 +15,7 @@ May 15th, 2019
 
 ## Deprecated
 * Activate notification listener is deprecated as of this release. Recommendation is to use the new Decision notification listener. Activate notification listener will be removed in the next major release.
-* addActivateNotificationListener, addTrackNotificationListener and addNotificationListener APIs on NotificationCenter.
+* addActivateNotificationListener API on NotificationCenter.
 
 ## 3.0.2
 February 27th, 2019
