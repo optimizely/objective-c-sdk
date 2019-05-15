@@ -1,7 +1,7 @@
 # Optimizely Objective-C SDK Changelog
 
 ## 3.1.0
-May 15th, 2019
+May 16th, 2019
 
 ## New Features:
 * Introduced Decision notification listener to be able to record:
