@@ -1,7 +1,8 @@
 _BUCKETING_ID_TEMPLATE
 _DEFAULT_HOST
-_DecisionSourceExperiment
-_DecisionSourceRollout
+_DecisionInfo
+_DecisionSource
+_ExperimentDecisionInfo
 _FeatureVariableTypeBoolean
 _FeatureVariableTypeDouble
 _FeatureVariableTypeInteger

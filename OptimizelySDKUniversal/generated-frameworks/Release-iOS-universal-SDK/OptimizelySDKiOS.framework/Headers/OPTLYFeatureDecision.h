@@ -19,7 +19,7 @@
 @class OPTLYExperiment, OPTLYVariation;
 
 struct DecisionSourceStruct {
-    NSString * _Nonnull const Experiment;
+    NSString * _Nonnull const FeatureTest;
     NSString * _Nonnull const Rollout;
 };
 extern const struct DecisionSourceStruct DecisionSource;
