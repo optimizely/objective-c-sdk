@@ -110,6 +110,11 @@ __attribute((deprecated("Use OPTLYProjectConfig initWithBuilder method instead."
 - (nullable NSString *)getExperimentIdForKey:(nonnull NSString *)experimentKey;
 
 /**
+ * Returns true if experiment belongs to any feature, false otherwise.
+ **/
+- (BOOL)isFeatureExperiment:(nonnull NSString *)experimentId;
+
+/**
  * Get a Group object for an Id.
  */
 - (nullable OPTLYGroup *)getGroupForGroupId:(nonnull NSString *)groupId;
