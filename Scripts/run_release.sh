@@ -11,14 +11,14 @@ function release_github {
   CHANGELOG="CHANGELOG.md"
 
   # check that CHANGELOG.md has been updated
-  NEW_VERSION_CHECK=$(grep '^## ' ${CHANGELOG} | awk 'NR==1' | tr -d '# ')
+  NEW_VERSION_CHECK=$(grep '^## \d\+\.\d\+.\d\+' ${CHANGELOG} | awk 'NR==1' | tr -d '# ')
   if [[ ${NEW_VERSION_CHECK} != ${VERSION} ]]; then
     echo "ERROR: ${CHANGELOG} has not been updated yet."
     exit 1
   fi
 
-  NEW_VERSION=$(grep '^## ' ${CHANGELOG} | awk 'NR==1')
-  LAST_VERSION=$(grep '^## ' ${CHANGELOG} | awk 'NR==2')
+  NEW_VERSION=$(grep '^## \d\+\.\d\+.\d\+' ${CHANGELOG} | awk 'NR==1')
+  LAST_VERSION=$(grep '^## \d\+\.\d\+.\d\+' ${CHANGELOG} | awk 'NR==2')
 
   DESCRIPTION=$(awk "/^${NEW_VERSION}$/,/^${LAST_VERSION}$/" ${CHANGELOG} | grep -v "^${LAST_VERSION}$")
 
