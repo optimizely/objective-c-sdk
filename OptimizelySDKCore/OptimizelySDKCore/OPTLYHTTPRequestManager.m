@@ -47,7 +47,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
     }
     @catch (NSException *e) {
         OPTLYLogError(e.description);
-        return self.backgroundSession;
+        //return self.backgroundSession;
     }
     
     return ephemeralSession;
