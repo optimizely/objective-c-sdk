@@ -185,7 +185,7 @@ static NSInteger const kBackoffRetryInterval = 1;
             XCTAssert(false);
         }
         XCTAssert(true);
-        [self swizzleBackConfig];
+        [self swizzleConfig];
     }];
 }
 
@@ -382,12 +382,6 @@ static NSInteger const kBackoffRetryInterval = 1;
     Method method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(ephemeralSessionConfiguration));
     Method swizzle_method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(getEphemeral));
     
-    method_exchangeImplementations(method, swizzle_method);
-}
-- (void)swizzleBackConfig {
-    Method method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(ephemeralSessionConfiguration));
-    Method swizzle_method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(getEphemeral));
-
     method_exchangeImplementations(method, swizzle_method);
 }
 @end
