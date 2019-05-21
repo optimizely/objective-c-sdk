@@ -3,7 +3,7 @@
 ## 3.1.1
 May 21st, 2019
 
-This includes a fix that if an event is dispatched while the app is in the background, the event dispatcher attempts to get an ephemeral session configuration which throws an exception. We catch and log the exception which causes a nil session and no task is run.  The event will be sent again when the next event is queued.
+This includes a fix that if an event is dispatched while the app is in the background, the event dispatcher attempts to get an ephemeral session configuration which throws an exception. We catch and log the exception returning nil which causes a nil session and no task is run.  The event will be sent again when the next event is queued.
 
 ### New Features
 * No new features for this patch release.
