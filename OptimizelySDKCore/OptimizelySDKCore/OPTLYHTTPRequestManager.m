@@ -38,10 +38,32 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 @implementation OPTLYHTTPRequestManager
 
 - (NSURLSession *)session {
-    NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-    ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
+    NSURLSession *ephemeralSession = nil;
+    
+    @try {
+        ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+        ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
 
+    }
+    @catch (NSException *e) {
+        OPTLYLogError(e.description);
+        //return self.backgroundSession;
+    }
+    
     return ephemeralSession;
+}
+
+- (NSURLSession *)backgroundSession {
+    NSURLSession *backgroundSession = nil;
+    
+    @try {
+        backgroundSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"backgroundFlushEvent"]];
+        backgroundSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
+    }
+    @catch (NSException *e) {
+        OPTLYLogError(e.description);
+    }
+    return backgroundSession;
 }
 
 # pragma mark - Object Initializers

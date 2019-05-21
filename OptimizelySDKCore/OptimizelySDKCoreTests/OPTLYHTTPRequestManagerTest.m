@@ -16,6 +16,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OCMock/OCMock.h>
 #import "OPTLYHTTPRequestManager.h"
 #import "OPTLYTestHelper.h"
 
@@ -158,6 +159,33 @@ static NSInteger const kBackoffRetryInterval = 1;
         if (error) {
             NSLog(@"Timeout error for POSTWithParameters: %@", error);
         }
+    }];
+}
+
+- (void)testPOSTWithException
+{
+
+    
+    [self swizzleConfig];
+    
+    OPTLYHTTPRequestManager *requestManager = [OPTLYHTTPRequestManager new];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait for POSTWithParameters to timeout."];
+    // we are not expecting this to be filled.  the session should just disappear.
+    expectation.inverted = true;
+    
+    [requestManager POSTWithParameters:self.parameters url:self.testURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        // we never get here
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error Occurred: %@", error);
+            XCTAssert(false);
+        }
+        XCTAssert(true);
+        [self swizzleConfig];
     }];
 }
 
@@ -350,4 +378,20 @@ static NSInteger const kBackoffRetryInterval = 1;
     XCTAssertTrue(requestManager.retryAttemptTest == kRetryAttempts+1, @"Invalid number of retries.");
     XCTAssertTrue([requestManager.delaysTest isEqualToArray:self.expectedDelays], @"Invalid delays set for backoff retry.");
 }
+- (void)swizzleConfig {
+    Method method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(ephemeralSessionConfiguration));
+    Method swizzle_method = class_getClassMethod(NSURLSessionConfiguration.class, @selector(getEphemeral));
+    
+    method_exchangeImplementations(method, swizzle_method);
+}
+@end
+
+@interface NSURLSessionConfiguration(OPTLYSTubs)
+    + (NSURLSessionConfiguration *)getEphemeral;
+@end
+@implementation NSURLSessionConfiguration(OPTLYSTubs)
+    + (NSURLSessionConfiguration *)getEphemeral {
+        [NSException raise:@"problem" format:@"problem"];
+        return nil;
+    }
 @end
