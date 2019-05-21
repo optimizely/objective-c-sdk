@@ -1,5 +1,17 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.1.1
+May 21st, 2019
+
+This includes a fix that if an event is dispatched while the app is in the background, the event dispatcher attempts to get an ephemeral session configuration which throws an exception. We catch and log the exception returning nil which causes a nil session and no task is run.  The event will be sent again when the next event is queued.
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* NSURLSession ephemeral session creation may throw an exception while the app is in the background. 
+This fix wraps the ephemeral session creation with a try catch and logs an error. ([#417](https://github.com/optimizely/objective-c-sdk/pull/417))
+
 ## 3.1.0
 May 16th, 2019
 
