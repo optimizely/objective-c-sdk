@@ -1,5 +1,17 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.1.1
+May 21st, 2019
+
+This includes a fix for an issue that app may crash when EventDispatch is called while the app is in background. 
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* NSURLSession ephemeral session creation may cause an exception while app is in background. 
+This fix wraps the ephemeral session creation with a try catch and logs an error. ([#417](https://github.com/optimizely/objective-c-sdk/pull/417))
+
 ## 3.1.0
 May 16th, 2019
 
