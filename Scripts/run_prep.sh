@@ -43,7 +43,7 @@ function do_stuff {
   trap "kill $!" EXIT
   trap 'error_handler' ERR
 
-  myscripts=( "build_all.sh" "unexported_symbols/unexported_symbols.sh" "test_all.sh" "update_version.sh ${VERSION}" )
+  myscripts=( "update_version.sh ${VERSION}" "build_all.sh" "unexported_symbols/unexported_symbols.sh" "test_all.sh" )
   for i in "${myscripts[@]}"; do
     echo -n "${i} "
     Scripts/${i} >> $BUILD_OUTPUT 2>&1
