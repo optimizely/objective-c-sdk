@@ -215,7 +215,7 @@ NSString * _Nonnull const OptimizelyBundleDatafileFileTypeExtension = @"json";
 }
 
 - (OPTLYClient *)initializeClientWithManagerSettingsAndDatafile:(NSData *)datafile {
-    OPTLYClient *client = [[OPTLYClient new] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
+    OPTLYClient *client = [[OPTLYClient alloc] initWithBuilder:[OPTLYClientBuilder builderWithBlock:^(OPTLYClientBuilder * _Nonnull builder) {
         builder.datafile = datafile;
         builder.errorHandler = self.errorHandler;
         builder.eventDispatcher = self.eventDispatcher;
