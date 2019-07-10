@@ -24,7 +24,7 @@ static NSString * const kHTTPRequestMethodPost = @"POST";
 static NSString * const kHTTPHeaderFieldContentType = @"Content-Type";
 static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/json";
 
-@interface OPTLYHTTPRequestManager()
+@interface OPTLYHTTPRequestManager() <NSURLSessionDelegate>
 
 - (NSURLSession *)session;
 
@@ -41,7 +41,7 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
     NSURLSession *ephemeralSession = nil;
     
     @try {
-        ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+        ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration] delegate:self delegateQueue:nil];
         ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
 
     }
@@ -452,4 +452,86 @@ dispatch_queue_t networkTasksQueue()
     return components.URL;
 }
 
+@end
+
+typedef enum : NSUInteger {
+    kOPTLY_Unknown,
+    kOPTLY_CDN,
+    kOPTLY_LOGX,
+    kOPTLY_API,
+} OPTLYEndpointHostType;
+
+NSString * const OPTLYDefaultEndpointHost = @"cdn.optimizely.com";
+NSString * const OPTLYLogEventEndpointHost = @"logx.optimizely.com";
+NSString * const OPTLYAPIEndpointHost = @"api.optimizely.com";
+
+@implementation OPTLYHTTPRequestManager (NSURLSessionDelegate)
+- (OPTLYEndpointHostType)hostTypeForChallenge:(NSURLAuthenticationChallenge*)challenge {
+    NSString *host = challenge.protectionSpace.host;
+    OPTLYEndpointHostType hostType = kOPTLY_Unknown;
+    if ([host isEqualToString:OPTLYDefaultEndpointHost]) {
+        hostType = kOPTLY_CDN;
+    } else if ([host isEqualToString:OPTLYLogEventEndpointHost]) {
+        hostType = kOPTLY_LOGX;
+    } else if ([host isEqualToString:OPTLYAPIEndpointHost]) {
+        hostType = kOPTLY_API;
+    }
+    return hostType;
+}
+
+- (NSString*)certificateFileNameForHostType:(OPTLYEndpointHostType)hostType {
+    NSString *fileName = nil;
+    switch (hostType) {
+        case kOPTLY_CDN:
+            fileName =  @"cdnDump";
+            break;
+        case kOPTLY_LOGX:
+            fileName = @"logxDump";
+            break;
+        case kOPTLY_API:
+            fileName = @"apiDump";
+            break;
+        default:
+            break;
+    }
+    return fileName;
+}
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
+    BOOL allowConnection = NO;
+    SecTrustRef serverTrust = NULL;
+    
+    if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
+        OPTLYEndpointHostType hostType = [self hostTypeForChallenge:challenge];
+        NSString *bundleCertFileName = [self certificateFileNameForHostType:hostType];
+        if (bundleCertFileName != nil) {
+            serverTrust = challenge.protectionSpace.serverTrust;
+            SecTrustResultType sectTrustResult = kSecTrustResultInvalid;
+            if (serverTrust != nil && SecTrustEvaluate(serverTrust, &sectTrustResult) == errSecSuccess) {
+                NSString *bundledCertFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:bundleCertFileName ofType:@"cer"];
+                if (bundledCertFilePath != nil) {
+                    NSData *pinnedCertificateData = [NSData dataWithContentsOfFile:bundledCertFilePath];
+                    SecCertificateRef pinnedCertificateRef = SecCertificateCreateWithData(NULL, (CFDataRef) pinnedCertificateData);
+                    
+                    OSStatus err = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef) [NSArray arrayWithObject:(__bridge id) pinnedCertificateRef]);
+                    SecTrustResultType  trustResult = kSecTrustResultInvalid;
+                    if (err == noErr) {
+                        err = SecTrustEvaluate(serverTrust, &trustResult);
+                    }
+                    
+                    if (err == noErr) {
+                        allowConnection = (trustResult == kSecTrustResultProceed) ||(trustResult == kSecTrustResultUnspecified);
+                    }
+                }
+            }
+        }
+    }
+    
+    if (allowConnection) {
+        completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:serverTrust]);
+    } else {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+    }
+}
 @end
