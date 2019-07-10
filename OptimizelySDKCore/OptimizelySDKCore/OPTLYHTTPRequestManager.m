@@ -511,29 +511,17 @@ NSString * const OPTLYAPIEndpointHost = @"api.optimizely.com";
             if (serverTrust != nil && SecTrustEvaluate(serverTrust, &sectTrustResult) == errSecSuccess) {
                 NSString *bundledCertFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:bundleCertFileName ofType:@"cer"];
                 if (bundledCertFilePath != nil) {
-                    CFIndex certCount = SecTrustGetCertificateCount(serverTrust);
-                    CFIndex certIndex;
-                    NSMutableArray* certificates = [NSMutableArray array];
-                    for (certIndex = 0; certIndex < certCount; certIndex++) {
-                        SecCertificateRef aServerCertificate = SecTrustGetCertificateAtIndex(serverTrust, certIndex);
-                        [certificates addObject:(__bridge id)aServerCertificate];
-                    }
+                    NSData *pinnedCertificateData = [NSData dataWithContentsOfFile:bundledCertFilePath];
+                    SecCertificateRef pinnedCertificateRef = SecCertificateCreateWithData(NULL, (CFDataRef) pinnedCertificateData);
                     
-                    SecTrustRef newTrust = NULL;
-                    SecTrustResultType  newTrustResult;
-                    OSStatus err = SecTrustCreateWithCertificates((__bridge CFArrayRef) certificates, NULL, &newTrust);
+                    OSStatus err = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef) [NSArray arrayWithObject:(__bridge id) pinnedCertificateRef]);
+                    SecTrustResultType  trustResult = kSecTrustResultInvalid;
                     if (err == noErr) {
-                        err = SecTrustEvaluate(newTrust, &newTrustResult);
+                        err = SecTrustEvaluate(serverTrust, &trustResult);
                     }
-                    
-                    allowConnection = NO;
                     
                     if (err == noErr) {
-                        allowConnection = (newTrustResult == kSecTrustResultProceed) || (newTrustResult == kSecTrustResultUnspecified);
-                    }
-                    
-                    if (newTrust != NULL) {
-                        CFRelease(newTrust);
+                        allowConnection = (trustResult == kSecTrustResultProceed) ||(trustResult == kSecTrustResultUnspecified);
                     }
                 }
             }
