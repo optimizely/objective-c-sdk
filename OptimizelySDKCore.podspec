@@ -17,4 +17,7 @@ Pod::Spec.new do |s|
   s.framework               = "Foundation"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
+  s.resource_bundles = {
+	    'OptimizelySDKCoreiOS' => ['OptimizelySDKCore/Resources/*.cer']
+	  }
 end
