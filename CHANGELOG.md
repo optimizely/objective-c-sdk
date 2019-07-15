@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.1.2
+July 15th, 2019
+
+This includes a fix of a minor bug that OPTLYClient may be initialized redundantly. It also embeds copies of Optimizely X.509 certificates for optional TLS certificate pinning support.
+
+### New Features
+* Copies of root X.509 certificates are included in OptimizelySDKCore framework bundle (for optional TLS certificate pinning).
+
+### Bug Fixes:
+* OPTLYClient initialization is changed from `[[OPTLYClient new] initWithBuilder:]` to `[[OPTLYClient alloc] initWithBuilder:]` to avoid redundant initialization.
+
 ## 3.1.1
 May 21st, 2019
 
