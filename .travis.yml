@@ -3,7 +3,8 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
-  - name: 'Trigger Integration Tests'
+  - name: 'Integration tests'
+  - name: 'Benchmarking tests'
   - name: 'SourceClear and Lint'
   - name: 'Unit Tests'
   - name: 'Prepare for release'
@@ -13,7 +14,8 @@ stages:
 
 jobs:
   include:
-    - stage: 'Trigger Integration Tests'
+    - &integrationtest
+      stage: 'Integration tests'
       language: minimal
       os: linux
       env:
@@ -26,8 +28,11 @@ jobs:
       before_script:
         - mkdir $HOME/travisci-tools && pushd $HOME/travisci-tools && git init && git pull https://$CI_USER_TOKEN@github.com/optimizely/travisci-tools.git && popd
       script:
-        - "$HOME/travisci-tools/fsc-trigger/trigger_fullstack-sdk-compat.sh"
+        - $HOME/travisci-tools/trigger-script-with-status-update.sh
       after_success: travis_terminate 0
+    - <<: *integrationtest
+      stage: 'Benchmarking tests'
+      env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking
 
     - stage: 'SourceClear and Lint'
       language: objective-c
