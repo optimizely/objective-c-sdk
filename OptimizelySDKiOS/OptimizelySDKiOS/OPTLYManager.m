@@ -92,6 +92,9 @@ static NSString * const kClientEngine = @"ios-sdk";
         
         self.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:self.projectId withSDKKey:self.sdkKey];
         
+        // --- TLS certificates pinning (disabled by default) ---
+        BOOL enableTLSPinning = builder.enableTLSPinning;
+        
         // --- datafile manager ---
         if (!builder.datafileManager) {
             // set default datafile manager if no datafile manager is set            
@@ -99,6 +102,7 @@ static NSString * const kClientEngine = @"ios-sdk";
                 builder.datafileConfig = self.datafileConfig;
                 builder.errorHandler = self.errorHandler;
                 builder.logger = self.logger;
+                builder.enableTLSPinning = enableTLSPinning;
             }]];
         } else {
             self.datafileManager = builder.datafileManager;
@@ -109,6 +113,7 @@ static NSString * const kClientEngine = @"ios-sdk";
             // set default event dispatcher if no event dispatcher is set
             self.eventDispatcher = [[OPTLYEventDispatcherDefault alloc] initWithBuilder:[OPTLYEventDispatcherBuilder builderWithBlock:^(OPTLYEventDispatcherBuilder * _Nullable builder) {
                 builder.logger = self.logger;
+                builder.enableTLSPinning = enableTLSPinning;
             }]];
         } else {
             self.eventDispatcher = builder.eventDispatcher;

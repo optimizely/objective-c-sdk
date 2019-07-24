@@ -24,7 +24,19 @@
 
 typedef void (^OPTLYHTTPRequestManagerResponse)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
-@interface OPTLYHTTPRequestManager : NSObject
+@interface OPTLYHTTPRequestManager : NSObject <NSURLSessionDelegate>
+
+/**
+ * Initialize network service with TLS pinning option
+ *
+ * @param pinning turns on TLS pinning if this set to YES
+ */
+- (nullable instancetype) initWithTLSPinning:(BOOL)pinning;
+
+/**
+ * Initialize network service (TLS pinning disabled by default)
+ */
+- (nullable instancetype) init;
 
 /**
  * GET data from the URL inititialized

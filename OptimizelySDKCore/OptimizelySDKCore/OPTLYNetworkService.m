@@ -34,13 +34,18 @@ const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInterval_m
 
 @implementation OPTLYNetworkService
 
-- (instancetype) init
+- (instancetype) initWithTLSPinning:(BOOL)pinning
 {
     self = [super init];
     if (self) {
-        _requestManager = [OPTLYHTTPRequestManager new];
+        _requestManager = [[OPTLYHTTPRequestManager alloc] initWithTLSPinning: pinning];
     }
     return self;
+}
+
+- (instancetype) init
+{
+    return [self initWithTLSPinning:NO];  // TLS-pinning disabled by default
 }
 
 - (void)downloadProjectConfig:(nonnull NSURL *)datafileConfigURL

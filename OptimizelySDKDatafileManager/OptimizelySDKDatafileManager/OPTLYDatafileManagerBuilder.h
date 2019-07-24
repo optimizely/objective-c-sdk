@@ -35,6 +35,8 @@ typedef void (^OPTLYDatafileManagerBuilderBlock)(OPTLYDatafileManagerBuilder * _
  * The default time interval is 0. This means that the datafile manager will NOT regularly poll for a new datafile during the app session.
  */
 @property (nonatomic, readwrite) NSTimeInterval datafileFetchInterval;
+/// Enable TLS pinning for extra security (do not turn this on unless you really need extra TLS security
+@property (nonatomic, assign) BOOL enableTLSPinning;
 /// The projectID of the project we want to get the datafile for.
 @property (nonatomic, readwrite, strong, nonnull) OPTLYDatafileConfig *datafileConfig;
 /// The error handler to be used for the manager, client, and all subcomponents

@@ -27,6 +27,21 @@ extern const NSInteger OPTLYNetworkServiceDatafileDownloadMaxBackoffRetryTimeInt
 NS_ASSUME_NONNULL_END
 
 @interface OPTLYNetworkService : NSObject
+
+
+
+/**
+ * Initialize network service with TLS pinning option
+ *
+ * @param pinning turns on TLS pinning if this set to YES
+ */
+- (nullable instancetype) initWithTLSPinning:(BOOL)pinning;
+
+/**
+ * Initialize network service (TLS pinning disabled by default)
+ */
+- (nullable instancetype) init;
+
 /**
  * Download the project config file from remote server
  *

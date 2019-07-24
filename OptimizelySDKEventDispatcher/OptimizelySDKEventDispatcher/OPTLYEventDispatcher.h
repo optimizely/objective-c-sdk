@@ -57,6 +57,9 @@ typedef void (^OPTLYEventDispatcherResponse)(NSData * _Nullable data, NSURLRespo
 /// Max number of events to store before overwriting older events (value must be greater than 1)
 @property (nonatomic, assign, readonly) NSInteger maxNumberOfEventsToSave;
 
+/// Enable TLS pinning for extra security (do not turn this on unless you really need extra TLS security
+@property (nonatomic, assign, readonly) BOOL enableTLSPinning;
+
 /// Logger provided by the user
 @property (nonatomic, strong, nullable) id<OPTLYLogger> logger;
 

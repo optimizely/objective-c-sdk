@@ -211,9 +211,9 @@
 		5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
 		5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
-		5E92F23522CDA35C00F12C87 /* cdnDump.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23222CDA35B00F12C87 /* cdnDump.cer */; };
-		5E92F23622CDA35C00F12C87 /* apiDump.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* apiDump.cer */; };
-		5E92F23722CDA35C00F12C87 /* logxDump.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* logxDump.cer */; };
+		5E92F23522CDA35C00F12C87 /* cdn.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23222CDA35B00F12C87 /* cdn.cer */; };
+		5E92F23622CDA35C00F12C87 /* api.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* api.cer */; };
+		5E92F23722CDA35C00F12C87 /* logx.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* logx.cer */; };
 		9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7832150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */; };
@@ -622,9 +622,9 @@
 		59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYProjectConfigSwiftTest.swift; sourceTree = "<group>"; };
 		5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnsupportedVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
-		5E92F23222CDA35B00F12C87 /* cdnDump.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdnDump.cer; sourceTree = "<group>"; };
-		5E92F23322CDA35B00F12C87 /* apiDump.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = apiDump.cer; sourceTree = "<group>"; };
-		5E92F23422CDA35C00F12C87 /* logxDump.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = logxDump.cer; sourceTree = "<group>"; };
+		5E92F23222CDA35B00F12C87 /* cdn.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdn.cer; sourceTree = "<group>"; };
+		5E92F23322CDA35B00F12C87 /* api.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.cer; sourceTree = "<group>"; };
+		5E92F23422CDA35C00F12C87 /* logx.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = logx.cer; sourceTree = "<group>"; };
 		8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYEventTagUtil.h; sourceTree = "<group>"; };
@@ -1006,9 +1006,9 @@
 		5E92F23E22CDA41100F12C87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5E92F23422CDA35C00F12C87 /* logxDump.cer */,
-				5E92F23322CDA35B00F12C87 /* apiDump.cer */,
-				5E92F23222CDA35B00F12C87 /* cdnDump.cer */,
+				5E92F23422CDA35C00F12C87 /* logx.cer */,
+				5E92F23322CDA35B00F12C87 /* api.cer */,
+				5E92F23222CDA35B00F12C87 /* cdn.cer */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1696,9 +1696,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E858C601F42277B00D53856 /* LICENSE in Resources */,
-				5E92F23522CDA35C00F12C87 /* cdnDump.cer in Resources */,
-				5E92F23622CDA35C00F12C87 /* apiDump.cer in Resources */,
-				5E92F23722CDA35C00F12C87 /* logxDump.cer in Resources */,
+				5E92F23522CDA35C00F12C87 /* cdn.cer in Resources */,
+				5E92F23622CDA35C00F12C87 /* api.cer in Resources */,
+				5E92F23722CDA35C00F12C87 /* logx.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

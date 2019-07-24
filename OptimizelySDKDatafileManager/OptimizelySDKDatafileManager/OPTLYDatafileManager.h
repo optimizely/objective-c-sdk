@@ -32,6 +32,8 @@
 
 /// The time interval to regularly fetch the datafile.
 @property (nonatomic, readonly) NSTimeInterval datafileFetchInterval;
+/// Enable TLS pinning for extra security (do not turn this on unless you really need extra TLS security
+@property (nonatomic, assign, readonly) BOOL enableTLSPinning;
 /// The project ID of the datafile this datafile manager will monitor
 @property (nonatomic, readonly, strong, nonnull) OPTLYDatafileConfig *datafileConfig;
 /// The error handler to be used for the manager, client, and all subcomponents

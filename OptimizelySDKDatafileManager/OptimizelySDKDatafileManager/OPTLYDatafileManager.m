@@ -54,10 +54,12 @@ NSTimeInterval const kDefaultDatafileFetchInterval_s = 120;
             _datafileConfig = builder.datafileConfig;
             _errorHandler = builder.errorHandler;
             _logger = builder.logger;
-            _networkService = [OPTLYNetworkService new];
             _dataStore = [OPTLYDataStore dataStore];
             _dataStore.logger = _logger;
             
+            _enableTLSPinning = builder.enableTLSPinning;
+            _networkService = [[OPTLYNetworkService alloc] initWithTLSPinning:_enableTLSPinning];
+
             // download datafile when we start the datafile manager
             [self downloadDatafile:self.datafileConfig completionHandler:nil];
             [self setupNetworkTimer];

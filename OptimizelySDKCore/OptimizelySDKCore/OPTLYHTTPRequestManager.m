@@ -26,54 +26,67 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 
 @interface OPTLYHTTPRequestManager()
 
-- (NSURLSession *)session;
-
 // Use this flag to deterine if we are running a unit test
 // The flag is needed to track some values for unit test
 @property (nonatomic, assign) BOOL isRunningTest;
 @property (nonatomic, assign) NSInteger retryAttemptTest;
 @property (nonatomic, strong) NSMutableArray *delaysTest;
+@property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSMutableArray *pinnedCertificates;
 @end
 
 @implementation OPTLYHTTPRequestManager
 
-- (NSURLSession *)session {
-    NSURLSession *ephemeralSession = nil;
-    
-    @try {
-        ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-        ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
-
-    }
-    @catch (NSException *e) {
-        OPTLYLogError(e.description);
-        //return self.backgroundSession;
-    }
-    
-    return ephemeralSession;
-}
-
-- (NSURLSession *)backgroundSession {
-    NSURLSession *backgroundSession = nil;
-    
-    @try {
-        backgroundSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"backgroundFlushEvent"]];
-        backgroundSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
-    }
-    @catch (NSException *e) {
-        OPTLYLogError(e.description);
-    }
-    return backgroundSession;
-}
-
 # pragma mark - Object Initializers
 
-- (id)init
+- (instancetype) initWithTLSPinning:(BOOL)pinning
 {
     NSAssert(YES, @"Use initWithURL initialization method.");
     _isRunningTest = [self runningUnitTests];
+
     self = [super init];
+    if (self) {
+        _session = [self createSessionWithTLSPinning:pinning];
+        _pinnedCertificates = [NSMutableArray array];
+    }
     return self;
+}
+
+- (instancetype) init
+{
+    return [self initWithTLSPinning:NO];  // TLS-pinning disabled by default
+}
+
+- (NSURLSession *)createSessionWithTLSPinning:(BOOL)pinning {
+    NSURLSession *ephemeralSession = nil;
+    
+    @try {
+        // NSURLSessionDelegate executes pinning actions, so connect to it only when pinning is enabled.
+        
+        id<NSURLSessionDelegate> pinningDelegate = nil;
+        if (pinning) {
+            pinningDelegate = self;
+            
+            // read in embedded certficates
+            
+            NSArray *certNames = @[@"logx", @"api", @"cdn"];
+            for(NSString *name in certNames) {
+                NSString *filepath = [[NSBundle bundleForClass:[OPTLYHTTPRequestManager class]] pathForResource:name ofType:@"cer"];
+                NSData *certData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filepath]];
+                [self.pinnedCertificates addObject:(__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certData)];
+            }
+        }
+        
+        ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]
+                                                         delegate:pinningDelegate
+                                                    delegateQueue:nil];
+        ephemeralSession.configuration.TLSMinimumSupportedProtocol = kTLSProtocol12;
+    }
+    @catch (NSException *e) {
+        OPTLYLogError(e.description);
+    }
+    
+    return ephemeralSession;
 }
 
 // Create global serial GCD queue for NSURL tasks
@@ -400,6 +413,37 @@ dispatch_queue_t networkTasksQueue()
                    }
                }
            }];
+}
+
+# pragma mark - NSURLSessionDelegate (TLS certificates pinning)
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    
+    SecTrustRef serverTrust = challenge.protectionSpace.serverTrust;
+    if (serverTrust == nil) {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+        return;
+    }
+    
+    // Set SSL policies for domain name check
+    NSMutableArray *policies = [NSMutableArray array];
+    [policies addObject:CFBridgingRelease(SecPolicyCreateSSL(true, (CFStringRef)challenge.protectionSpace.host))];
+    SecTrustSetPolicies(serverTrust, CFBridgingRetain(policies));
+    
+    // root-cert
+    SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)self.pinnedCertificates);
+    //SecTrustSetAnchorCertificatesOnly(serverTrust, false) // also allow regular CAs.
+    
+    // Evaluate server certificate
+    SecTrustResultType result = kSecTrustResultInvalid;
+    SecTrustEvaluate(serverTrust, &result);
+    BOOL isServerTrusted = (result == kSecTrustResultProceed) || (result == kSecTrustResultUnspecified);
+    
+    if (isServerTrusted) {
+        completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:serverTrust]);
+    } else {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+    }
 }
 
 # pragma mark - Helper Methods

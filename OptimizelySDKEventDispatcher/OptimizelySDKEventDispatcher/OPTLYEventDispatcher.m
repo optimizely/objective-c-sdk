@@ -76,6 +76,9 @@ const NSInteger OPTLYEventDispatcherDefaultMaxNumberOfEventsToSave = 1000;
             [_logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
+        _enableTLSPinning = builder.enableTLSPinning;
+        _networkService = [[OPTLYNetworkService alloc] initWithTLSPinning:_enableTLSPinning];
+
         [self setupApplicationNotificationHandlers];
         
         NSString *logMessage =  [NSString stringWithFormat:OPTLYLoggerMessagesEventDispatcherProperties, _eventDispatcherDispatchInterval];
@@ -114,13 +117,6 @@ dispatch_queue_t dispatchEventQueue()
         _dispatchEventQueue = dispatch_queue_create("com.Optimizely.dispatchEvent", DISPATCH_QUEUE_SERIAL);
     });
     return _dispatchEventQueue;
-}
-
-- (OPTLYNetworkService *)networkService {
-    if (!_networkService) {
-        _networkService = [OPTLYNetworkService new];
-    }
-    return _networkService;
 }
 
 - (OPTLYDataStore *)dataStore {
