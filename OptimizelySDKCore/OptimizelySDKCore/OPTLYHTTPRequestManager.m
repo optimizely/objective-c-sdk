@@ -47,7 +47,6 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
     self = [super init];
     if (self) {
         _session = [self createSessionWithTLSPinning:pinning];
-        _pinnedCertificates = [NSMutableArray array];
     }
     return self;
 }
@@ -58,25 +57,24 @@ static NSString * const kHTTPHeaderFieldValueApplicationJSON = @"application/jso
 }
 
 - (NSURLSession *)createSessionWithTLSPinning:(BOOL)pinning {
+    
+    // prepare for certificates pinning
+    
+    id<NSURLSessionDelegate> pinningDelegate;
+    if (pinning) {
+        pinningDelegate = self;
+        self.pinnedCertificates = [self preparePinnedCertificates];
+    } else {
+        // NSURLSessionDelegate controls pinning actions, so disconnect from it when pinning is disabled.
+        pinningDelegate = nil;
+        self.pinnedCertificates = [NSMutableArray array];
+    }
+    
+    // session
+    
     NSURLSession *ephemeralSession = nil;
     
     @try {
-        // NSURLSessionDelegate executes pinning actions, so connect to it only when pinning is enabled.
-        
-        id<NSURLSessionDelegate> pinningDelegate = nil;
-        if (pinning) {
-            pinningDelegate = self;
-            
-            // read in embedded certficates
-            
-            NSArray *certNames = @[@"logx", @"api", @"cdn"];
-            for(NSString *name in certNames) {
-                NSString *filepath = [[NSBundle bundleForClass:[OPTLYHTTPRequestManager class]] pathForResource:name ofType:@"cer"];
-                NSData *certData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filepath]];
-                [self.pinnedCertificates addObject:(__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certData)];
-            }
-        }
-        
         ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]
                                                          delegate:pinningDelegate
                                                     delegateQueue:nil];
@@ -417,6 +415,20 @@ dispatch_queue_t networkTasksQueue()
 
 # pragma mark - NSURLSessionDelegate (TLS certificates pinning)
 
+// read in embedded certficates
+- (NSMutableArray*)preparePinnedCertificates {
+    NSArray *certNames = @[@"logx", @"api", @"cdn"];
+    
+    NSMutableArray *certificates = [NSMutableArray array];
+    for(NSString *name in certNames) {
+        NSString *filepath = [[NSBundle bundleForClass:[OPTLYHTTPRequestManager class]] pathForResource:name ofType:@"cer"];
+        NSData *certData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filepath]];
+        [certificates addObject:(__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certData)];
+    }
+    
+    return certificates;
+}
+
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
     
     SecTrustRef serverTrust = challenge.protectionSpace.serverTrust;
@@ -427,12 +439,11 @@ dispatch_queue_t networkTasksQueue()
     
     // Set SSL policies for domain name check
     NSMutableArray *policies = [NSMutableArray array];
-    [policies addObject:CFBridgingRelease(SecPolicyCreateSSL(true, (CFStringRef)challenge.protectionSpace.host))];
-    SecTrustSetPolicies(serverTrust, CFBridgingRetain(policies));
+    [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)challenge.protectionSpace.host)];
+    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
     
-    // root-cert
+    // Trusted root certificates
     SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)self.pinnedCertificates);
-    //SecTrustSetAnchorCertificatesOnly(serverTrust, false) // also allow regular CAs.
     
     // Evaluate server certificate
     SecTrustResultType result = kSecTrustResultInvalid;

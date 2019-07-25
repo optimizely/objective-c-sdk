@@ -367,6 +367,129 @@ static NSInteger const kBackoffRetryInterval = 1;
     }];
 }
 
+#pragma mark - TLS Certficates Pinning Tests
+
+// test with correct root certficates
+// - they should be connected successfully regardless of pinning enabled or disabled
+
+- (void)testGETSuccessWhenPinningDisabled {
+    NSArray *testUrls = @[@"https://cdn.optimizely.com",
+                          @"https://api.optimizely.com",
+                          @"https://logx.optimizely.com"];
+
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithTLSPinning:NO];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"a"];
+    __block int completeCount = 0;
+    for(NSString *url in testUrls) {
+        [requestManager GETWithURL:[NSURL URLWithString:url] completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            completeCount++;
+            if (completeCount == testUrls.count) {
+                [expectation fulfill];
+            }
+        
+            NSAssert(data != nil, @"Network service GET does not return data as expected.");
+        }];
+    }
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testGETSuccess: %@", error);
+        }
+    }];
+}
+
+- (void)testGETSuccessWhenPinningEnabled {
+    NSArray *testUrls = @[@"https://cdn.optimizely.com",
+                          @"https://api.optimizely.com",
+                          @"https://logx.optimizely.com"];
+    
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithTLSPinning:YES];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"a"];
+    __block int completeCount = 0;
+    for(NSString *url in testUrls) {
+        [requestManager GETWithURL:[NSURL URLWithString:url] completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            completeCount++;
+            if (completeCount == testUrls.count) {
+                [expectation fulfill];
+            }
+            
+            NSAssert(data != nil, @"Network service GET does not return data as expected.");
+        }];
+    }
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testGETSuccess: %@", error);
+        }
+    }];
+}
+
+// test with wrong root certficates
+// - try to connect other urls using different root certificates
+// - they're all valid certs but root cert will be rejected by comparing with pinned ones
+// - when pinning is disabled (default), all connections to any ursl must be successful
+
+- (void)testGETWithWrongCertificateWhenPinningDisabled {
+    
+    NSArray *testUrls = @[@"https://google.com",
+                          @"https://amazon.com"];
+    
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] init];   // default: no pinning
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"a"];
+    __block int completeCount = 0;
+    for(NSString *url in testUrls) {
+        [requestManager GETWithURL:[NSURL URLWithString:url] completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            completeCount++;
+            if (completeCount == testUrls.count) {
+                [expectation fulfill];
+            }
+            
+            NSAssert(data != nil, @"Network connection should be allowed since pinning is disabled.");
+        }];
+    }
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testGETWithFakeCertificateWhenPinningDisabled: %@", error);
+        }
+    }];
+
+}
+
+- (void)testGETWithWrongCertificateWhenPinningEnabled {
+    NSArray *testUrls = @[@"https://google.com",
+                          @"https://amazon.com"];
+    
+    OPTLYHTTPRequestManager *requestManager = [[OPTLYHTTPRequestManager alloc] initWithTLSPinning:YES];   // default: no pinning
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"a"];
+    __block int completeCount = 0;
+    for(NSString *url in testUrls) {
+        [requestManager GETWithURL:[NSURL URLWithString:url] completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            completeCount++;
+            if (completeCount == testUrls.count) {
+                [expectation fulfill];
+            }
+            
+            NSAssert(error != nil, @"Network connection should be rejected by pinned certificate validation.");
+        }];
+    }
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout error for testGETWithWrongCertificateWhenPinningEnabled: %@", error);
+        }
+    }];
+}
+
+
 #pragma mark - Helper Methods
 
 - (void)checkNoRetries:(OPTLYHTTPRequestManager *)requestManager {
