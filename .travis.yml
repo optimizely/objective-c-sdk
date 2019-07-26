@@ -20,7 +20,7 @@ jobs:
       os: linux
       env:
         - SDK=objective-c
-        - BUILD_NUMBER=${TRAVIS_JOB_NUMBER}
+        - BUILD_NUMBER=${TRAVIS_JOB_NUMBER/.}
         - TESTAPP_TAG=master
         - SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
       cache: false
@@ -33,7 +33,7 @@ jobs:
       after_success: travis_terminate 0
     - <<: *integrationtest
       stage: 'Benchmarking tests'
-      env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking BUILD_NUMBER=${TRAVIS_JOB_NUMBER} SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
+      env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking BUILD_NUMBER=${TRAVIS_JOB_NUMBER/.} SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 
     - stage: 'SourceClear and Lint'
       language: objective-c
