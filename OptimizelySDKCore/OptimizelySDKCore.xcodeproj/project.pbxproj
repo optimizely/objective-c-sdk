@@ -215,7 +215,6 @@
 		5E92F23622CDA35C00F12C87 /* api.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* api.cer */; };
 		5E92F23722CDA35C00F12C87 /* logx.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* logx.cer */; };
 		6E38557822EB626200C044C2 /* TLSPinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E38557422EB61CA00C044C2 /* TLSPinningTests.m */; };
-		6E38557922EB626500C044C2 /* TLSPinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E38557422EB61CA00C044C2 /* TLSPinningTests.m */; };
 		9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7832150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */; };
@@ -2128,7 +2127,6 @@
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
-				6E38557922EB626500C044C2 /* TLSPinningTests.m in Sources */,
 				EA2FABAC1DC6FDFA00B1D81B /* OPTLYBuilderTest.m in Sources */,
 				C778BD2621DCDAB500AD38AE /* OPTLYTypedAudienceTest.m in Sources */,
 			);
