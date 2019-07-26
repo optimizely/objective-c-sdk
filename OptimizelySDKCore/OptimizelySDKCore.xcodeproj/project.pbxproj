@@ -214,6 +214,8 @@
 		5E92F23522CDA35C00F12C87 /* cdn.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23222CDA35B00F12C87 /* cdn.cer */; };
 		5E92F23622CDA35C00F12C87 /* api.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* api.cer */; };
 		5E92F23722CDA35C00F12C87 /* logx.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* logx.cer */; };
+		6E38557822EB626200C044C2 /* TLSPinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E38557422EB61CA00C044C2 /* TLSPinningTests.m */; };
+		6E38557922EB626500C044C2 /* TLSPinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E38557422EB61CA00C044C2 /* TLSPinningTests.m */; };
 		9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7832150D4F800ACBA99 /* OPTLYEventTagUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9084F7802150D4F700ACBA99 /* OPTLYEventTagUtil.m */; };
@@ -625,6 +627,7 @@
 		5E92F23222CDA35B00F12C87 /* cdn.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdn.cer; sourceTree = "<group>"; };
 		5E92F23322CDA35B00F12C87 /* api.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.cer; sourceTree = "<group>"; };
 		5E92F23422CDA35C00F12C87 /* logx.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = logx.cer; sourceTree = "<group>"; };
+		6E38557422EB61CA00C044C2 /* TLSPinningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSPinningTests.m; sourceTree = "<group>"; };
 		8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTLYEventTagUtil.h; sourceTree = "<group>"; };
@@ -1268,6 +1271,7 @@
 		EA3C68131DC1E66C00C578CA /* OptimizelySDKCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				6E38557422EB61CA00C044C2 /* TLSPinningTests.m */,
 				59B9E1DF20E35C50002F732E /* OptimizelySDKCoreiOSTests-Bridging-Header.h */,
 				EA3C68161DC1E66C00C578CA /* OptimizelySDKCoreTests-Info.plist */,
 				EA2FAB841DC6FDFA00B1D81B /* OptimizelySDKCoreTests.m */,
@@ -2016,6 +2020,7 @@
 				EA2FABA21DC6FDFA00B1D81B /* OptimizelyTest.m in Sources */,
 				C778BD2521DCDAB500AD38AE /* OPTLYTypedAudienceTest.m in Sources */,
 				59B9E1D120E28DBC002F732E /* OptimizelySwiftTest.swift in Sources */,
+				6E38557822EB626200C044C2 /* TLSPinningTests.m in Sources */,
 				EA2FABC31DC6FDFA00B1D81B /* OPTLYTestHelper.m in Sources */,
 				EA2FABBD1DC6FDFA00B1D81B /* OPTLYLoggerTest.m in Sources */,
 				EA064BCE1DD3FCD700DF7537 /* OPTLYQueueTest.m in Sources */,
@@ -2123,6 +2128,7 @@
 				EA2FABC11DC6FDFA00B1D81B /* OPTLYProjectConfigTest.m in Sources */,
 				EA2FABA91DC6FDFA00B1D81B /* OPTLYBucketerTest.m in Sources */,
 				EA9358A21ECD794C00E3F201 /* OPTLYDecisionServiceTest.m in Sources */,
+				6E38557922EB626500C044C2 /* TLSPinningTests.m in Sources */,
 				EA2FABAC1DC6FDFA00B1D81B /* OPTLYBuilderTest.m in Sources */,
 				C778BD2621DCDAB500AD38AE /* OPTLYTypedAudienceTest.m in Sources */,
 			);
