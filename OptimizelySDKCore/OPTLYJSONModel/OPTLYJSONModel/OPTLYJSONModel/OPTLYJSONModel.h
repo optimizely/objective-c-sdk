@@ -34,6 +34,10 @@ lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 #endif
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+//DEPRECATED_ATTRIBUTE
+//@protocol ConvertOnDemand
+//@end
+
 DEPRECATED_ATTRIBUTE
 @protocol OPTLYIndex
 @end
