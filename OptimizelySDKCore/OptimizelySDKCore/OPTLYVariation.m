@@ -20,7 +20,7 @@
 
 @interface OPTLYVariation()
 /// A mapping of Feature Variable IDs to Variable Usages constructed during the initialization of Variation objects from the list of Variable Usages.
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariableUsage *><OPTLYIgnore> *variableIdToVariableUsageMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariableUsage *><Ignore> *variableIdToVariableUsageMap;
 @end
 
 @implementation OPTLYVariation

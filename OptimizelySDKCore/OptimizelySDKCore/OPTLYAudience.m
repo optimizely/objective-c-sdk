@@ -23,7 +23,7 @@
 
 @interface OPTLYAudience()
 /// String representation of the conditions
-@property (nonatomic, strong) NSString<OPTLYIgnore> *conditionsString;
+@property (nonatomic, strong) NSString<Ignore> *conditionsString;
 @end
 
 @implementation OPTLYAudience

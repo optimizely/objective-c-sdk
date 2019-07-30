@@ -38,20 +38,20 @@ static NSArray *supportedDatafileVersions = nil;
 
 @interface OPTLYProjectConfig()
 
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYAudience *><OPTLYIgnore> *audienceIdToAudienceMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYEvent *><OPTLYIgnore> *eventKeyToEventMap;
-@property (nonatomic, strong) NSDictionary<NSString *, NSString *><OPTLYIgnore> *eventKeyToEventIdMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><OPTLYIgnore> *experimentIdToExperimentMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><OPTLYIgnore> *experimentKeyToExperimentMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureFlag *><OPTLYIgnore> *featureFlagKeyToFeatureFlagMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYRollout *><OPTLYIgnore> *rolloutIdToRolloutMap;
-@property (nonatomic, strong) NSDictionary<NSString *, NSArray *><OPTLYIgnore> *experimentIdToFeatureIdsMap;
-@property (nonatomic, strong) NSDictionary<NSString *, NSString *><OPTLYIgnore> *experimentKeyToExperimentIdMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><OPTLYIgnore> *groupIdToGroupMap;
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><OPTLYIgnore> *attributeKeyToAttributeMap;
-//@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><OPTLYIgnore> *forcedVariationMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYAudience *><Ignore> *audienceIdToAudienceMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYEvent *><Ignore> *eventKeyToEventMap;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *eventKeyToEventIdMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentIdToExperimentMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYExperiment *><Ignore> *experimentKeyToExperimentMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureFlag *><Ignore> *featureFlagKeyToFeatureFlagMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYRollout *><Ignore> *rolloutIdToRolloutMap;
+@property (nonatomic, strong) NSDictionary<NSString *, NSArray *><Ignore> *experimentIdToFeatureIdsMap;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *><Ignore> *experimentKeyToExperimentIdMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYGroup *><Ignore> *groupIdToGroupMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYAttribute *><Ignore> *attributeKeyToAttributeMap;
+//@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><Ignore> *forcedVariationMap;
 //    userId --> experimentId --> variationId
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><OPTLYIgnore> *forcedVariationMap;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *forcedVariationMap;
 
 @end
 
@@ -158,15 +158,15 @@ static NSArray *supportedDatafileVersions = nil;
         if (![OPTLYUserProfileServiceUtility conformsToOPTLYUserProfileServiceProtocol:[builder.userProfileService class]]) {
             [builder.logger logMessage:OPTLYErrorHandlerMessagesUserProfileInvalid withLevel:OptimizelyLogLevelWarning];
         } else {
-            _userProfileService = (id<OPTLYUserProfileService, OPTLYIgnore>)builder.userProfileService;
+            _userProfileService = (id<OPTLYUserProfileService, Ignore>)builder.userProfileService;
         }
     }
     
     _clientEngine = builder.clientEngine;
     _clientVersion = builder.clientVersion;
     
-    _errorHandler = (id<OPTLYErrorHandler, OPTLYIgnore>)builder.errorHandler;
-    _logger = (id<OPTLYLogger, OPTLYIgnore>)builder.logger;
+    _errorHandler = (id<OPTLYErrorHandler, Ignore>)builder.errorHandler;
+    _logger = (id<OPTLYLogger, Ignore>)builder.logger;
     return self;
 }
 
@@ -455,7 +455,7 @@ static NSArray *supportedDatafileVersions = nil;
     return _experimentKeyToExperimentIdMap;
 }
 
-- (NSDictionary<NSString *,NSArray *><OPTLYIgnore> *)experimentIdToFeatureIdsMap
+- (NSDictionary<NSString *,NSArray *><Ignore> *)experimentIdToFeatureIdsMap
 {
     if (!_experimentIdToFeatureIdsMap) {
         _experimentIdToFeatureIdsMap = [self generateExperimentIdToFeatureIdsMap];

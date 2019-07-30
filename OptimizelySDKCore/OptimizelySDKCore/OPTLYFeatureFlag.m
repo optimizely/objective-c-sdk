@@ -23,7 +23,7 @@
 
 @interface OPTLYFeatureFlag()
 
-@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureVariable *><OPTLYIgnore> *featureVariableKeyToFeatureVariableMap;
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYFeatureVariable *><Ignore> *featureVariableKeyToFeatureVariableMap;
 
 @end
 

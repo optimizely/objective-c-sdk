@@ -39,7 +39,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-@property (strong, nonatomic) NSString<OPTLYIndex>* name;
+@property (strong, nonatomic) NSString<Index>* name;
 #pragma GCC diagnostic pop
 
 @end

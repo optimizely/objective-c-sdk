@@ -29,7 +29,7 @@
 
 @property (assign, nonatomic) int fillerNumber;
 @property (strong, nonatomic) NSString<OPTLYOptional>* notRequredProperty;
-@property (strong, nonatomic) NSString<OPTLYIgnore>* ignoredProperty;
+@property (strong, nonatomic) NSString<Ignore>* ignoredProperty;
 @property (assign, nonatomic) CGPoint notRequiredPoint;
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName;

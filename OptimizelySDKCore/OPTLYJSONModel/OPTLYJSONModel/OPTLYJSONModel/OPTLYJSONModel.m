@@ -609,7 +609,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
 
                     if ([protocolName isEqualToString:@"OPTLYOptional"]) {
                         p.isOptional = YES;
-                    } else if([protocolName isEqualToString:@"OPTLYIndex"]) {
+                    } else if([protocolName isEqualToString:@"Index"]) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
                         p.isIndex = YES;
@@ -621,7 +621,7 @@ static OPTLYJSONKeyMapper* globalKeyMapper = nil;
                                                  p.name,
                                                  OBJC_ASSOCIATION_RETAIN // This is atomic
                                                  );
-                    } else if([protocolName isEqualToString:@"OPTLYIgnore"]) {
+                    } else if([protocolName isEqualToString:@"Ignore"]) {
                         p = nil;
                     } else {
                         p.protocol = protocolName;
