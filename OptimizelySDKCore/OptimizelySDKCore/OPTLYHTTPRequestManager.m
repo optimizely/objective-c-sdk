@@ -417,11 +417,12 @@ dispatch_queue_t networkTasksQueue()
 
 // read in embedded certficates
 - (NSMutableArray*)preparePinnedCertificates {
-    NSArray *certNames = @[@"logx", @"api", @"cdn"];
+    NSArray *certNames = @[@"optimizely-logx", @"optimizely-api", @"optimizely-cdn"];
     
     NSMutableArray *certificates = [NSMutableArray array];
     for(NSString *name in certNames) {
-        NSString *filepath = [[NSBundle bundleForClass:[OPTLYHTTPRequestManager class]] pathForResource:name ofType:@"cer"];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSString *filepath = [bundle pathForResource:name ofType:@"cer"];
         NSData *certData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filepath]];
         [certificates addObject:(__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certData)];
     }

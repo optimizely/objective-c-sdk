@@ -211,9 +211,9 @@
 		5E4C07F41DFF645C0042B1F8 /* UnsupportedVersionDatafile.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */; };
 		5E4C07FB1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
 		5E4C07FC1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */; };
-		5E92F23522CDA35C00F12C87 /* cdn.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23222CDA35B00F12C87 /* cdn.cer */; };
-		5E92F23622CDA35C00F12C87 /* api.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* api.cer */; };
-		5E92F23722CDA35C00F12C87 /* logx.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* logx.cer */; };
+		5E92F23522CDA35C00F12C87 /* optimizely-cdn.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23222CDA35B00F12C87 /* optimizely-cdn.cer */; };
+		5E92F23622CDA35C00F12C87 /* optimizely-api.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23322CDA35B00F12C87 /* optimizely-api.cer */; };
+		5E92F23722CDA35C00F12C87 /* optimizely-logx.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E92F23422CDA35C00F12C87 /* optimizely-logx.cer */; };
 		6E38557822EB626200C044C2 /* TLSPinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E38557422EB61CA00C044C2 /* TLSPinningTests.m */; };
 		9084F7812150D4F700ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
 		9084F7822150D4F800ACBA99 /* OPTLYEventTagUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9084F77F2150D4F700ACBA99 /* OPTLYEventTagUtil.h */; };
@@ -623,9 +623,9 @@
 		59B9E1E020E35C9E002F732E /* OPTLYProjectConfigSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYProjectConfigSwiftTest.swift; sourceTree = "<group>"; };
 		5E4C07F21DFF645C0042B1F8 /* UnsupportedVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnsupportedVersionDatafile.json; sourceTree = "<group>"; };
 		5E4C07FA1DFF66B00042B1F8 /* OPTLYNetworkServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYNetworkServiceTest.m; sourceTree = "<group>"; };
-		5E92F23222CDA35B00F12C87 /* cdn.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdn.cer; sourceTree = "<group>"; };
-		5E92F23322CDA35B00F12C87 /* api.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.cer; sourceTree = "<group>"; };
-		5E92F23422CDA35C00F12C87 /* logx.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = logx.cer; sourceTree = "<group>"; };
+		5E92F23222CDA35B00F12C87 /* optimizely-cdn.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "optimizely-cdn.cer"; sourceTree = "<group>"; };
+		5E92F23322CDA35B00F12C87 /* optimizely-api.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "optimizely-api.cer"; sourceTree = "<group>"; };
+		5E92F23422CDA35C00F12C87 /* optimizely-logx.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "optimizely-logx.cer"; sourceTree = "<group>"; };
 		6E38557422EB61CA00C044C2 /* TLSPinningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSPinningTests.m; sourceTree = "<group>"; };
 		8766E217ECD3BEA353B080F5 /* Pods_OptimizelySDKCoreiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B04E0101E180FAD8C9CA7A6 /* Pods_OptimizelySDKCoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1008,9 +1008,9 @@
 		5E92F23E22CDA41100F12C87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5E92F23422CDA35C00F12C87 /* logx.cer */,
-				5E92F23322CDA35B00F12C87 /* api.cer */,
-				5E92F23222CDA35B00F12C87 /* cdn.cer */,
+				5E92F23422CDA35C00F12C87 /* optimizely-logx.cer */,
+				5E92F23322CDA35B00F12C87 /* optimizely-api.cer */,
+				5E92F23222CDA35B00F12C87 /* optimizely-cdn.cer */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1699,9 +1699,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E858C601F42277B00D53856 /* LICENSE in Resources */,
-				5E92F23522CDA35C00F12C87 /* cdn.cer in Resources */,
-				5E92F23622CDA35C00F12C87 /* api.cer in Resources */,
-				5E92F23722CDA35C00F12C87 /* logx.cer in Resources */,
+				5E92F23522CDA35C00F12C87 /* optimizely-cdn.cer in Resources */,
+				5E92F23622CDA35C00F12C87 /* optimizely-api.cer in Resources */,
+				5E92F23722CDA35C00F12C87 /* optimizely-logx.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
