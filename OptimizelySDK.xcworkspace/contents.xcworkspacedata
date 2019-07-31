@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OptimizelySDKCore/OptimizelySDKCoreTests/TLSPinningTests.m">
-   </FileRef>
-   <FileRef
       location = "group:OptimizelyDemoApp/OptimizelyDemoApp.xcodeproj">
    </FileRef>
    <FileRef
