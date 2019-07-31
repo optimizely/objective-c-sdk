@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2017, Optimizely, Inc. and contributors                   *
+ * Copyright 2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -39,9 +39,9 @@ static NSString * const kTestURLString = @"testURL";
     [super tearDown];
 }
 
-#pragma mark - TLS Certficates Pinning Tests
+#pragma mark - TLS Certificates Pinning Tests
 
-// test with correct root certficates
+// test with correct root certificates
 // - they should be connected successfully regardless of pinning enabled or disabled
 
 - (void)testGETSuccessWhenPinningDisabled {
@@ -100,10 +100,10 @@ static NSString * const kTestURLString = @"testURL";
     }];
 }
 
-// test with wrong root certficates
+// test with wrong root certificates
 // - try to connect other urls using different root certificates
 // - they're all valid certs but root cert will be rejected by comparing with pinned ones
-// - when pinning is disabled (default), all connections to any ursl must be successful
+// - when pinning is disabled (default), all connections to any urls must be successful
 
 - (void)testGETWithWrongCertificateWhenPinningDisabled {
     

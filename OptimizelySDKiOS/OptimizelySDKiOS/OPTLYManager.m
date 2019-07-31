@@ -93,7 +93,7 @@ static NSString * const kClientEngine = @"ios-sdk";
         self.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:self.projectId withSDKKey:self.sdkKey];
         
         // --- TLS certificates pinning (disabled by default) ---
-        // TLS pinnig is supported for iOS only (not tvOS)
+        // TLS pinning is supported for iOS only (not tvOS)
         BOOL enableTLSPinning = builder.enableTLSPinning;
         
         // --- datafile manager ---

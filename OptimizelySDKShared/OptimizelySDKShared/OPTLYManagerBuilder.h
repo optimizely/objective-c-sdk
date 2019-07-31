@@ -27,7 +27,7 @@ typedef void (^OPTLYManagerBuilderBlock)(OPTLYManagerBuilder * _Nullable builder
 @property (nonatomic, readwrite, strong, nullable) NSData *datafile;
 /// The dispatch interval for the event dispatcher.
 @property (nonatomic, readwrite) NSTimeInterval eventDispatchInterval;
-/// Enable TLS pinning for extra security (do not turn this on unless you really need extra TLS security
+/// Enable TLS pinning for extra security (do not turn this on unless you really need extra TLS security)
 @property (nonatomic, assign) BOOL enableTLSPinning;
 /// The ID of the Optimizely Project the manager will oversee
 @property (nonatomic, readwrite, strong, nullable) NSString *projectId;

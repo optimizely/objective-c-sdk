@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2018, Optimizely, Inc. and contributors                   *
+ * Copyright 2019, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -41,7 +41,7 @@ static int pinningDisabledCount;
 // - [DatafileManager, EventDispatcher] instantiate their OPTLYNetworkService with pinning options.
 //   If pinning enabled, "pinningEnabledCount" must be incremented to 2, otherwise 0.
 
-- (void)testTLSPinngOptOutByDefault {
+- (void)testTLSPinningOptOutByDefault {
     [self swizzleCreateSessionMethods];
     
     pinningEnabledCount = 0;
@@ -59,7 +59,7 @@ static int pinningDisabledCount;
     [self swizzleCreateSessionMethods];
 }
 
-- (void)testTLSPinngOptOut {
+- (void)testTLSPinningOptOut {
     [self swizzleCreateSessionMethods];
     
     pinningEnabledCount = 0;
@@ -78,7 +78,7 @@ static int pinningDisabledCount;
     [self swizzleCreateSessionMethods];
 }
 
-- (void)testTLSPinngOptIn {
+- (void)testTLSPinningOptIn {
     [self swizzleCreateSessionMethods];
     
     pinningEnabledCount = 0;
