@@ -223,6 +223,7 @@
 		90855D0120ED254600A97BEC /* OPTLYControlAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 90855CFC20ED237F00A97BEC /* OPTLYControlAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90855D0D20ED2E0100A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
 		90855D0E20ED2E0300A97BEC /* OPTLYControlAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 90855D0420ED2B0200A97BEC /* OPTLYControlAttributes.m */; };
+		C76DB73622F35274009BBEA1 /* tls_pinning_datafile.json in Resources */ = {isa = PBXBuildFile; fileRef = C76DB73522F35274009BBEA1 /* tls_pinning_datafile.json */; };
 		C778BD2521DCDAB500AD38AE /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BD2421DCDAB500AD38AE /* OPTLYTypedAudienceTest.m */; };
 		C778BD2621DCDAB500AD38AE /* OPTLYTypedAudienceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BD2421DCDAB500AD38AE /* OPTLYTypedAudienceTest.m */; };
 		C77958C3219BFBC300B4CA89 /* OPTLYNSObject+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */; };
@@ -640,6 +641,7 @@
 		A52039FD7B704890859320C4 /* Pods-OptimizelySDKCoreiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-OptimizelySDKCoreiOSTests/Pods-OptimizelySDKCoreiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE0C3BD9DC6186DB98A667C2 /* Pods_OptimizelySDKCoreTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelySDKCoreTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C76DB73522F35274009BBEA1 /* tls_pinning_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tls_pinning_datafile.json; sourceTree = "<group>"; };
 		C778BD2421DCDAB500AD38AE /* OPTLYTypedAudienceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPTLYTypedAudienceTest.m; sourceTree = "<group>"; };
 		C77958C0219BFBA000B4CA89 /* OPTLYNSObject+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OPTLYNSObject+Validation.h"; sourceTree = "<group>"; };
 		C77958C1219BFBA000B4CA89 /* OPTLYNSObject+Validation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OPTLYNSObject+Validation.m"; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 		5E92F23E22CDA41100F12C87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C76DB73422F3524B009BBEA1 /* datafiles */,
 				5E92F23422CDA35C00F12C87 /* optimizely-logx.cer */,
 				5E92F23322CDA35B00F12C87 /* optimizely-api.cer */,
 				5E92F23222CDA35B00F12C87 /* optimizely-cdn.cer */,
@@ -1028,6 +1031,14 @@
 				B333468714C0D4A8633103EF /* Pods-OptimizelySDKCoreiOSTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C76DB73422F3524B009BBEA1 /* datafiles */ = {
+			isa = PBXGroup;
+			children = (
+				C76DB73522F35274009BBEA1 /* tls_pinning_datafile.json */,
+			);
+			path = datafiles;
 			sourceTree = "<group>";
 		};
 		C77958BF219BFADE00B4CA89 /* Categories */ = {
@@ -1699,6 +1710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E858C601F42277B00D53856 /* LICENSE in Resources */,
+				C76DB73622F35274009BBEA1 /* tls_pinning_datafile.json in Resources */,
 				5E92F23522CDA35C00F12C87 /* optimizely-cdn.cer in Resources */,
 				5E92F23622CDA35C00F12C87 /* optimizely-api.cer in Resources */,
 				5E92F23722CDA35C00F12C87 /* optimizely-logx.cer in Resources */,
