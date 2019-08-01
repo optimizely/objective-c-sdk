@@ -1010,7 +1010,6 @@
 		5E92F23E22CDA41100F12C87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C76DB73422F3524B009BBEA1 /* datafiles */,
 				5E92F23422CDA35C00F12C87 /* optimizely-logx.cer */,
 				5E92F23322CDA35B00F12C87 /* optimizely-api.cer */,
 				5E92F23222CDA35B00F12C87 /* optimizely-cdn.cer */,
@@ -1210,6 +1209,7 @@
 		EA2FAB941DC6FDFA00B1D81B /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				C76DB73422F3524B009BBEA1 /* datafiles */,
 				C781DEA821E8A44400EF35EC /* audience_targeting.json */,
 				C7ACD4FD218C2E4A008EC52E /* typed_audience_datafile.json */,
 				EA2FAB951DC6FDFA00B1D81B /* BucketerTestsDatafile.json */,
