@@ -1,5 +1,16 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.1.3
+August 8th, 2019
+
+This release renames some protocols in `OPTLYJSONModel` to avoid potential name conflicts with `JSONModel` in client apps
+
+### New Features
+* No new features for this patch release.
+
+### Bug Fixes:
+* This fix changes the protocol names of potential conflicts (`Ignore` -> `OPTLYIgnore`, `Index` -> `OPTLYIndex`) in `OPTLYJSONModel` and removes deprecated `ConvertOnDemand`.
+
 ## 3.1.2
 July 15th, 2019
 
