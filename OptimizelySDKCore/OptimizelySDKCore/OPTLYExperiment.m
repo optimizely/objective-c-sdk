@@ -24,12 +24,12 @@ NSString * const OPTLYExperimentStatusRunning = @"Running";
 @interface OPTLYExperiment()
 /// A mapping of an experiment's variation's ID to the matching variation.
 /// @{NSString *variationId : OPTLYVariation *variation}
-@property (nonatomic, strong) NSDictionary<Ignore> *variationIdToVariationMap;
+@property (nonatomic, strong) NSDictionary<OPTLYIgnore> *variationIdToVariationMap;
 /// A mapping of an experiment's variation's Key to the matching variation.
 /// @{NSString *variationKey : OPTLYVariation *variation}
-@property (nonatomic, strong) NSDictionary<Ignore> *variationKeyToVariationMap;
+@property (nonatomic, strong) NSDictionary<OPTLYIgnore> *variationKeyToVariationMap;
 /// A JSON String containing the expirement's audience conditions
-@property (nonatomic, strong) NSString<Ignore> *conditionsString;
+@property (nonatomic, strong) NSString<OPTLYIgnore> *conditionsString;
 @end
 
 @implementation OPTLYExperiment
