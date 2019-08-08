@@ -3,7 +3,7 @@
 ## 3.1.3
 August 8th, 2019
 
-This release renames some protocols in `OPTLYJSONModel` to avoid potential name conflicts with `JSONModel` in client apps
+This release renames some protocols in `OPTLYJSONModel` to avoid potential name conflicts with `JSONModel` in client apps.
 
 ### New Features
 * No new features for this patch release.
