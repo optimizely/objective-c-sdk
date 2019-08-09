@@ -63,14 +63,14 @@ NS_ASSUME_NONNULL_END
 
 /// a comprehensive list of experiments that includes experiments being whitelisted (in Groups)
 @property (nonatomic, strong, nullable) NSArray<OPTLYExperiment *><OPTLYExperiment, OPTLYOptional> *allExperiments;
-@property (nonatomic, strong, nullable) id<OPTLYLogger, Ignore> logger;
-@property (nonatomic, strong, nullable) id<OPTLYErrorHandler, Ignore> errorHandler;
-@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, Ignore> userProfileService;
+@property (nonatomic, strong, nullable) id<OPTLYLogger, OPTLYIgnore> logger;
+@property (nonatomic, strong, nullable) id<OPTLYErrorHandler, OPTLYIgnore> errorHandler;
+@property (nonatomic, strong, readonly, nullable) id<OPTLYUserProfileService, OPTLYIgnore> userProfileService;
 
 /// Returns the client type (e.g., objective-c-sdk, ios-sdk, tvos-sdk)
-@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientEngine;
+@property (nonatomic, strong, readonly, nonnull) NSString<OPTLYIgnore> *clientEngine;
 /// Returns the client version number
-@property (nonatomic, strong, readonly, nonnull) NSString<Ignore> *clientVersion;
+@property (nonatomic, strong, readonly, nonnull) NSString<OPTLYIgnore> *clientVersion;
 /// List of Optimizely Feature Flags objects
 @property (nonatomic, strong, nonnull) NSArray<OPTLYFeatureFlag *><OPTLYFeatureFlag, OPTLYOptional> *featureFlags;
 /// List of Optimizely Rollouts objects

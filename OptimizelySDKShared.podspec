@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "OptimizelySDKShared"
-  s.version                 = "3.1.2"
+  s.version                 = "3.1.3"
   s.summary                 = "Optimizely server-side testing shared framework."
   s.homepage                = "http://developers.optimizely.com/server/reference/index.html?language=objectivec"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.ios.library             = "sqlite3"
   s.requires_arc            = true
   s.xcconfig                = { 'GCC_PREPROCESSOR_DEFINITIONS' => "OPTIMIZELY_SDK_VERSION=@\\\"#{s.version}\\\"" }
-  s.dependency 'OptimizelySDKCore', "3.1.2"
+  s.dependency 'OptimizelySDKCore', "3.1.3"
 end

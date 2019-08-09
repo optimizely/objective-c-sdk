@@ -35,11 +35,7 @@ lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 DEPRECATED_ATTRIBUTE
-@protocol ConvertOnDemand
-@end
-
-DEPRECATED_ATTRIBUTE
-@protocol Index
+@protocol OPTLYIndex
 @end
 
 #pragma mark - Property Protocols
@@ -50,7 +46,7 @@ DEPRECATED_ATTRIBUTE
  * @property (strong, nonatomic) NSString&lt;Ignore&gt; *propertyName;
  *
  */
-@protocol Ignore
+@protocol OPTLYIgnore
 @end
 
 /**
@@ -66,7 +62,7 @@ DEPRECATED_ATTRIBUTE
 /**
  * Make all objects compatible to avoid compiler warnings
  */
-@interface NSObject (OPTLYJSONModelPropertyCompatibility) <OPTLYOptional, Ignore>
+@interface NSObject (OPTLYJSONModelPropertyCompatibility) <OPTLYOptional, OPTLYIgnore>
 @end
 
 /////////////////////////////////////////////////////////////////////////////////////////////
