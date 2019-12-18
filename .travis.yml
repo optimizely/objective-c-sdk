@@ -36,11 +36,14 @@ jobs:
       env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking
 
     - stage: 'Lint markdown files'
-      language: node_js
+      language: ruby
+      rvm: 2.4.1
       os: linux
-      install: npm install -g markdown-link-check
+      install: gem install awesome_bot
       script:
-        - find . -type f -name '*.md' -exec markdown-link-check {} \;
+        - find . -type f -name '*.md' -exec awesome_bot {} \;
+      notifications:
+        email: false
 
     - stage: 'SourceClear and Lint'
       language: objective-c
