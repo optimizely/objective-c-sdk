@@ -3,6 +3,7 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
+  - name: 'Lint markdown files'
   - name: 'Integration tests'
   - name: 'Benchmarking tests'
   - name: 'SourceClear and Lint'
@@ -33,6 +34,13 @@ jobs:
     - <<: *integrationtest
       stage: 'Benchmarking tests'
       env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking
+
+    - stage: 'Lint markdown files'
+      language: node_js
+      os: linux
+      install: npm install -g markdown-link-check
+      script:
+        - find . -type f -name '*.md' -exec markdown-link-check {} \;
 
     - stage: 'SourceClear and Lint'
       language: objective-c
