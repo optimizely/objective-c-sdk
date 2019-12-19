@@ -3,6 +3,7 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
+  - name: 'Lint markdown files'
   - name: 'Integration tests'
   - name: 'Benchmarking tests'
   - name: 'SourceClear and Lint'
@@ -34,6 +35,16 @@ jobs:
       stage: 'Benchmarking tests'
       env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking
 
+    - stage: 'Lint markdown files'
+      language: ruby
+      rvm: 2.4.1
+      os: linux
+      install: gem install awesome_bot
+      script:
+        - find . -type f -name '*.md' -exec awesome_bot {} \;
+      notifications:
+        email: false
+
     - stage: 'SourceClear and Lint'
       language: objective-c
       os: osx
@@ -54,7 +65,7 @@ jobs:
       env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       name: PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       before_install:
-        - gem install slather --no-rdoc --no-ri --no-document --quiet
+        - gem install slather --no-document --quiet
       script:
         - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|failed|crash|exit|FAILED|Failing|failures)"; fi
       after_success:
