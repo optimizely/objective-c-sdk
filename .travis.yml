@@ -3,6 +3,7 @@ os: linux
 
 # Integration tests need to run first to reset the PR build status to pending
 stages:
+  - name: 'Lint markdown files'
   - name: 'Integration tests'
   - name: 'Benchmarking tests'
   - name: 'SourceClear and Lint'
@@ -35,6 +36,16 @@ jobs:
       stage: 'Benchmarking tests'
       env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking BUILD_NUMBER=${TRAVIS_JOB_NUMBER/.} SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 
+    - stage: 'Lint markdown files'
+      language: ruby
+      rvm: 2.4.1
+      os: linux
+      install: gem install awesome_bot
+      script:
+        - find . -type f -name '*.md' -exec awesome_bot {} \;
+      notifications:
+        email: false
+
     - stage: 'SourceClear and Lint'
       language: objective-c
       os: osx
@@ -55,7 +66,7 @@ jobs:
       env: SCHEME=OptimizelySDKiOS TEST_SDK=iphonesimulator PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       name: PLATFORM='iOS Simulator' OS=9.1 NAME='iPad Air'
       before_install:
-        - gem install slather --no-rdoc --no-ri --no-document --quiet
+        - gem install slather --no-document --quiet
       script:
         - if [[ "$TRAVIS_BRANCH" == "master" ]]; then xcodebuild test -quiet -workspace OptimizelySDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | egrep -B 10 -A 10 "(error|failed|crash|exit|FAILED|Failing|failures)"; fi
       after_success:
@@ -83,7 +94,7 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=3.1.2
+        - VERSION=3.1.3
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
@@ -96,7 +107,7 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=3.1.2
+        - VERSION=3.1.3
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub

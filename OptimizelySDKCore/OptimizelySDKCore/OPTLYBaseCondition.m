@@ -22,7 +22,7 @@
 
 @interface OPTLYBaseCondition()
 /// String representation of self
-@property (nonatomic, strong) NSString<Ignore> *stringRepresentation;
+@property (nonatomic, strong) NSString<OPTLYIgnore> *stringRepresentation;
 @end
 
 @implementation OPTLYBaseCondition

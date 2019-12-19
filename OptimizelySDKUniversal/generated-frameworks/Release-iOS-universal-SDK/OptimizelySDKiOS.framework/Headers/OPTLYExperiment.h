@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_END
 /// The experiment's status.
 @property (nonatomic, strong, nonnull) NSString *status;
 /// The group ID the experiment belongs to.
-@property (nonatomic, strong, nullable) NSString<Ignore> *groupId;
+@property (nonatomic, strong, nullable) NSString<OPTLYIgnore> *groupId;
 /// The experiment's traffic allocations.
 @property (nonatomic, strong, nonnull) NSArray<OPTLYTrafficAllocation *><OPTLYTrafficAllocation> *trafficAllocations;
 /// An array of audience Ids for the experiment
