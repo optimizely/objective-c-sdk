@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2020, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -172,11 +172,31 @@
                        userId:(NSString *)userId
                    attributes:(NSDictionary<NSString *, id> *)attributes
 {
+    
+    NSMutableDictionary<NSString *, NSString *> *inputValues = [[NSMutableDictionary alloc] initWithDictionary:@{
+                        OPTLYNotificationUserIdKey:[self ObjectOrNull:userId],
+                        OPTLYNotificationExperimentKey:[self ObjectOrNull:experimentKey]}];
+    NSDictionary <NSString *, NSString *> *logs = @{
+        OPTLYNotificationUserIdKey:OPTLYLoggerMessagesUserIdInvalid,
+        OPTLYNotificationExperimentKey:OPTLYLoggerMessagesGetVariationExperimentKeyEmpty};
+    
+    if (![self validateStringInputs:inputValues logs:logs]) {
+        return nil;
+    }
+    
+    // get experiment
+    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
+
+    if (!experiment) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesGetVariationExperimentKeyInvalid, experimentKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelError];
+        return nil;
+    }
+
     OPTLYVariation *bucketedVariation = [self.config getVariationForExperiment:experimentKey
                                                                         userId:userId
                                                                     attributes:attributes
                                                                       bucketer:self.bucketer];
-    OPTLYExperiment *experiment = [self.config getExperimentForKey:experimentKey];
     NSString *decisionType = [self.config isFeatureExperiment:experiment.experimentId] ? OPTLYDecisionTypeFeatureTest : OPTLYDecisionTypeABTest;
     
     NSMutableDictionary *args = [[NSMutableDictionary alloc] init];

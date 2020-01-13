@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2016-2019, Optimizely, Inc. and contributors                   *
+ * Copyright 2016-2020, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -255,14 +255,6 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
     XCTAssertNotNil(experiment);
     OPTLYVariation *variation;
     
-    // test just experiment key
-    variation = [self.optimizely variation:experimentKey userId:kUserId];
-    XCTAssertNotNil(variation);
-    XCTAssertTrue([variation.variationKey isEqualToString:@"control"]);
-    XCTAssertTrue([variation.variationId isEqualToString:@"6384330451"]);
-    
-    // test with bad experiment key
-    
     __block NSString *decisionNotificationExperimentKey = nil;
     __block NSString *decisionNotificationVariationKey = nil;
     
@@ -271,11 +263,54 @@ static NSString * const kAttributeKeyBrowserIsDefault = @"browser_is_default";
         decisionNotificationVariationKey = decisionInfo[ExperimentDecisionInfo.VariationKey];
     }];
     
-    variation = [self.optimizely variation:@"bad" userId:kUserId];
-    XCTAssertNil(variation);
-    XCTAssertEqualObjects(decisionNotificationExperimentKey, @"bad");
-    XCTAssertEqualObjects(decisionNotificationVariationKey, [NSNull null]);
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNotNil(variation);
+    XCTAssertTrue([variation.variationKey isEqualToString:@"control"]);
+    XCTAssertTrue([variation.variationId isEqualToString:@"6384330451"]);
+    XCTAssertEqualObjects(decisionNotificationExperimentKey, experimentKey);
+    XCTAssertEqualObjects(decisionNotificationVariationKey, variation.variationKey);
 }
+
+- (void)testDecisionNotificationForBadExperimentKey {
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSString *decisionNotificationVariationKey = nil;
+    NSString *experimentKey = @"badKey";
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
+    
+    XCTAssertNil(experiment);
+    OPTLYVariation *variation;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[ExperimentDecisionInfo.ExperimentKey];
+        decisionNotificationVariationKey = decisionInfo[ExperimentDecisionInfo.VariationKey];
+    }];
+    
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNil(variation);
+    XCTAssertNil(decisionNotificationExperimentKey);
+    XCTAssertNil(decisionNotificationVariationKey);
+}
+
+- (void)testDecisionNotificationForEmptyExperimentKey {
+    __block NSString *decisionNotificationExperimentKey = nil;
+    __block NSString *decisionNotificationVariationKey = nil;
+    NSString *experimentKey = @"";
+    OPTLYExperiment *experiment = [self.optimizely.config getExperimentForKey:experimentKey];
+    
+    XCTAssertNil(experiment);
+    OPTLYVariation *variation;
+    
+    [self.optimizely.notificationCenter addDecisionNotificationListener:^(NSString * _Nonnull type, NSString * _Nonnull userId, NSDictionary<NSString *,id> * _Nullable attributes, NSDictionary<NSString *,id> * _Nonnull decisionInfo) {
+        decisionNotificationExperimentKey = decisionInfo[ExperimentDecisionInfo.ExperimentKey];
+        decisionNotificationVariationKey = decisionInfo[ExperimentDecisionInfo.VariationKey];
+    }];
+    
+    variation = [self.optimizely variation:experimentKey userId:kUserId];
+    XCTAssertNil(variation);
+    XCTAssertNil(decisionNotificationExperimentKey);
+    XCTAssertNil(decisionNotificationVariationKey);
+}
+
 
 // Test whitelisting works with get variation
 - (void)testDecisionNotificationForVariationWhitelisting {
