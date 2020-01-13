@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2020, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -27,6 +27,8 @@ NSString *const OPTLYLoggerMessagesConversionFailure = @"[OPTIMIZELY] No valid e
 NSString *const OPTLYLoggerMessagesUserIdInvalid = @"[OPTIMIZELY] User ID cannot be nil or an empty string.";
 NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty = @"[OPTIMIZELY] Experiment Key cannot be nil or an empty string.";
 NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid = @"[OPTIMIZELY] Experiment not found for Key %@.";
+NSString *const OPTLYLoggerMessagesGetVariationExperimentKeyEmpty = @"[OPTIMIZELY] Experiment Key cannot be nil or an empty string.";
+NSString *const OPTLYLoggerMessagesGetVariationExperimentKeyInvalid = @"[OPTIMIZELY] Experiment not found for Key %@.";
 NSString *const OPTLYLoggerMessagesTrackEventKeyEmpty = @"[OPTIMIZELY] Event Key cannot be nil or an empty string.";
 NSString *const OPTLYLoggerMessagesTrackEventKeyInvalid = @"[OPTIMIZELY] Event not found for Key %@.";
 NSString *const OPTLYLoggerMessagesTrackEventNoAssociation = @"[OPTIMIZELY] Event key %@ is not associated with any experiment.";
