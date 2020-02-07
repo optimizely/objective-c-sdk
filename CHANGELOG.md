@@ -191,7 +191,7 @@ The primary difference between the new Feature Variable APIs and the older, Vari
 To learn more about Feature Management, read our [knowledge base article introducing the feature](https://help.optimizely.com/Set_Up_Optimizely/Develop_a_product_or_feature_with_Feature_Management).
 
 ### New Features
-* Introduces the `isFeatureEnabled` API, a featue flag used to determine whether to show a feature to a user. The `isFeatureEnabled` should be used in place of the `activate` API to activate experiments running on features. Specifically, calling this API causes the SDK to evaluate all [Feature Tests](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-tests) and [Rollouts](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-rollouts) associated with the provided feature key.
+* Introduces the `isFeatureEnabled` API, a feature flag used to determine whether to show a feature to a user. The `isFeatureEnabled` should be used in place of the `activate` API to activate experiments running on features. Specifically, calling this API causes the SDK to evaluate all [Feature Tests](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-tests) and [Rollouts](https://developers.optimizely.com/x/solutions/sdks/reference/?language=objectivec#activate-feature-rollouts) associated with the provided feature key.
 ```
 /**
  * Determine whether a feature is enabled.
@@ -270,7 +270,7 @@ with Notification Listeners APIs
 ### Deprecations
 * Version 2.1.0 deprecates the Variable APIs: `variableBoolean`, `variableDouble`, `variableInteger`, and `variableString` 
 
-* Replace use of the Variable APIs with Feature Mangement's Feature Variable APIs, described above
+* Replace use of the Variable APIs with Feature Management's Feature Variable APIs, described above
 
 * We will continue to support the Variable APIs until the 3.x release, but we encourage you to upgrade as soon as possible
 
@@ -419,7 +419,7 @@ unable to be deleted from data store due to syntax error.
 June 15, 2018
 
 ### New Features
-* Updated SDK targets to Xcode 9.4 recommended settings, pod update'd third party Cocoapods used by the 2 demo apps,
+* Updated SDK targets to Xcode 9.4 recommended settings, pod updated third party Cocoapods used by the 2 demo apps,
 and eliminated Xcode 9.4 Build and Analyze warnings for SDK targets.
 
 ## 1.5.1
@@ -480,7 +480,7 @@ OPTLYClient * _Nullable client))callback;
 ```
 ### Bug Fixes:
 * Added `libsqlite3.tbd` to the Shared framework podspec and linked it in the build settings. 
-* Crash caused by `Fatal Exception: NSRangeException` in `OPTLYHTTPRequestManager.m`. This crash occurred during a backoff retry in a datafile download or event dispatch because data strutures that were not threadsafe (used only for testing) were being modified. To resolve this, the data structures were wrapped in a flag and are only modifiable if unit tests are running.
+* Crash caused by `Fatal Exception: NSRangeException` in `OPTLYHTTPRequestManager.m`. This crash occurred during a backoff retry in a datafile download or event dispatch because data structures that were not threadsafe (used only for testing) were being modified. To resolve this, the data structures were wrapped in a flag and are only modifiable if unit tests are running.
 
 ### Cleanup:
 * Fix migration to Xcode 9.0 compiler warnings regarding "NSError * __autoreleasing *" and "(^)(void) in blocks".
