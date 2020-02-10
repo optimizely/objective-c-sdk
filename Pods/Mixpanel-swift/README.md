@@ -72,7 +72,7 @@ Check out the **[Carthage docs »](https://github.com/Carthage/Carthage#if-youre
 <a name="manual-installation"></a>
 ## Manual Installation
 
-To help users stay up to date with the latests version of our Swift SDK, we always recommend integrating our SDK via CocoaPods, which simplifies version updates and dependency management. However, there are cases where users can't use CocoaPods. Not to worry, just follow these manual installation steps and you'll be all set.
+To help users stay up to date with the latest version of our Swift SDK, we always recommend integrating our SDK via CocoaPods, which simplifies version updates and dependency management. However, there are cases where users can't use CocoaPods. Not to worry, just follow these manual installation steps and you'll be all set.
 
 ### Step 1: Add as a Submodule
 
