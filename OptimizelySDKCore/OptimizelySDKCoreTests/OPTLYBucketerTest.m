@@ -58,6 +58,7 @@ static NSString *const kBucketerTestDatafile2Name = @"BucketerTestsDatafile2";
     NSString *experimentId = @"1886780721";
     OPTLYBucketer *bucketer = [[OPTLYBucketer alloc] initWithConfig:[[OPTLYProjectConfig alloc] init]];
     
+    NSLog(@"making change here to trigger new browserstack build");
     // These test inputs/outputs should be reproduced exactly in all clients to make sure that they behave
     // consistently.
     NSArray *tests = @[@{@"userId": @"ppid1", @"experimentId": experimentId, @"expect": @(5254)},
