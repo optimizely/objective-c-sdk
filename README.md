@@ -16,6 +16,15 @@ Optimizely Rollouts is free feature flags for development teams. Easily roll out
 
 ## Getting Started
 
+---
+**NOTE**
+
+For new iOS users, it's recommended to use our new [Swift-SDK](https://github.com/optimizely/swift-sdk) written completely in Swift. It is functionally compatible with the Objective-C SDK and provides an extended feature set with simplified interfaces. 
+
+Existing Objective-C SDK users can look at our [guide document](https://docs.developers.optimizely.com/full-stack/docs/migrate-to-swift-sdk) for migrating into the new Swift SDK.
+
+---
+
 ### Using the SDK
 
 See [Install the iOS and tvOS SDKs](https://docs.developers.optimizely.com/full-stack/docs/install-the-ios-and-tvos-sdks) to learn how to set
