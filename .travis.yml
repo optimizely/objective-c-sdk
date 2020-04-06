@@ -37,9 +37,8 @@ jobs:
       env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking BUILD_NUMBER=${TRAVIS_JOB_NUMBER/.} SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 
     - stage: 'Lint markdown files'
-      language: ruby
-      rvm: 2.4.1
       os: linux
+      language: generic
       install: gem install awesome_bot
       script:
         - find . -type f -name '*.md' -exec awesome_bot {} \;
@@ -47,9 +46,8 @@ jobs:
         email: false
 
     - stage: 'Lint markdown files'
-      language: node_js
-      node_js: 12
       os: linux
+      language: generic
       before_install: skip
       install:
         - npm i -g markdown-spellcheck
