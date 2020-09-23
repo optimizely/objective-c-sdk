@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "AMPARCMacros.h"
 #import "AMPConstants.h"
 #import "AMPDatabaseHelper.h"
 #import "AMPDeviceInfo.h"
@@ -19,6 +18,7 @@
 #import "Amplitude.h"
 #import "AMPLocationManagerDelegate.h"
 #import "AMPRevenue.h"
+#import "AMPTrackingOptions.h"
 #import "AMPURLConnection.h"
 #import "AMPURLSession.h"
 #import "AMPUtils.h"

@@ -533,7 +533,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock-tvOS/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs-tvOS/OHHTTPStubs.framework",
 			);
@@ -544,7 +544,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKTVOSTests/Pods-OptimizelySDKTVOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3E8C4A65AA3B5D009D588FC4 /* [CP] Check Pods Manifest.lock */ = {

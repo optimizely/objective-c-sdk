@@ -17,10 +17,12 @@ struct BasePath {
         guard let url = URL(string: base) else {
             return nil
         }
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        components?.path = path
-        components?.queryItems = queryItems
-        return components?.url
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return nil
+        }
+        components.path = path
+        components.queryItems = queryItems
+        return components.url
     }
 
     static func getServerURL(identifier: String) -> String {
@@ -65,10 +67,14 @@ class Network {
             return
         }
 
-        let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) -> Void in
+        URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             guard let httpResponse = response as? HTTPURLResponse else {
-                failure(.other(error!), data, response)
+
+                if let hasError = error {
+                    failure(.other(hasError), data, response)
+                } else {
+                    failure(.noData, data, response)
+                }
                 return
             }
             guard httpResponse.statusCode == 200 else {
@@ -95,6 +101,8 @@ class Network {
             return nil
         }
 
+        Logger.debug(message: "Fetching URL");
+        Logger.debug(message: url.absoluteURL);
         var request = URLRequest(url: url)
         request.httpMethod = resource.method.rawValue
         request.httpBody = resource.requestBody

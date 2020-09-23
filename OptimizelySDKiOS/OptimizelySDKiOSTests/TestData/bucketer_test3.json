@@ -1,0 +1,51 @@
+{
+    "version": "4",
+    "rollouts": [
+        {
+            "experiments": [
+                {
+                    "status": "Running",
+                    "audienceIds": [ ],
+                    "variations": [
+                        {
+                            "variables": [ ],
+                            "id": "18532971919",
+                            "key": "18532971919",
+                            "featureEnabled": true
+                        }
+                    ],
+                    "id": "18513703488",
+                    "key": "18513703488",
+                    "layerId": "18513932701",
+                    "trafficAllocation": [
+                        {
+                            "entityId": "18532971919",
+                            "endOfRange": 0
+                        }
+                    ],
+                    "forcedVariations": { }
+                }
+            ],
+            "id": "18513932701"
+        }
+    ],
+    "anonymizeIP": true,
+    "projectId": "10431130345",
+    "variables": [],
+    "featureFlags": [
+        {
+            "experimentIds": [],
+            "rolloutId": "18513932701",
+            "variables": [],
+            "id": "18533552281",
+            "key": "async_payments"
+        }
+    ],
+    "experiments": [],
+    "audiences": [],
+    "groups": [],
+    "attributes": [],
+    "accountId": "10367498574",
+    "events": [],
+    "revision": "100"
+}

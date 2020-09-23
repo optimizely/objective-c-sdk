@@ -53,4 +53,22 @@ class OPTLYManageriOSSwiftTest: XCTestCase {
         XCTAssertTrue(type(of: self.manager!.logger!) == OPTLYLoggerDefault.self);
         XCTAssertTrue(type(of: self.manager!.errorHandler!) == OPTLYErrorHandlerNoOp.self);
     }
+    
+    func testBucketVariationAtBoundaries() {
+        // testing #OASIS-7150
+        // userId(2113143589306368718) + experId(18513703488) = “211314358930636871818513703488” creates a hash value of 0
+        
+        let datafile = OPTLYTestHelper.loadJSONDatafile(intoDataObject: "bucketer_test3")
+
+        let optimizely = Optimizely.init(builder: OPTLYBuilder.init(block: { (builder) in
+            builder?.datafile = datafile
+        }))
+        
+        XCTAssertFalse(optimizely!.isFeatureEnabled("async_payments", userId: "2113143589306368718", attributes: nil))
+        XCTAssertFalse(optimizely!.isFeatureEnabled("async_payments", userId: "2113143589306368719", attributes: nil))
+        XCTAssertFalse(optimizely!.isFeatureEnabled("async_payments", userId: "2113143589306368710", attributes: nil))
+        XCTAssertFalse(optimizely!.isFeatureEnabled("async_payments", userId: "2113143589306368711", attributes: nil))
+        XCTAssertFalse(optimizely!.isFeatureEnabled("async_payments", userId: "2113143589306368712", attributes: nil))
+    }
+
 }

@@ -854,7 +854,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock-tvOS/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs-tvOS/OHHTTPStubs.framework",
 			);
@@ -865,7 +865,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKSharedTVOSTests/Pods-OptimizelySDKSharedTVOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C453A45F5FB4134EB4DFA9A /* [CP] Embed Pods Frameworks */ = {
@@ -874,7 +874,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharediOSTests/Pods-OptimizelySDKSharediOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKSharediOSTests/Pods-OptimizelySDKSharediOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock-iOS/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs-iOS/OHHTTPStubs.framework",
 			);
@@ -885,7 +885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKSharediOSTests/Pods-OptimizelySDKSharediOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKSharediOSTests/Pods-OptimizelySDKSharediOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C682E5CA2E4CD7395F2DDA9 /* [CP] Check Pods Manifest.lock */ = {

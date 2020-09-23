@@ -515,7 +515,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock-iOS/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs-iOS/OHHTTPStubs.framework",
 			);
@@ -526,7 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKEventDispatcheriOSTests/Pods-OptimizelySDKEventDispatcheriOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		409CF7F6F3961063E0918B68 /* [CP] Check Pods Manifest.lock */ = {
@@ -553,7 +553,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOSTests/Pods-OptimizelySDKEventDispatcherTVOSTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOSTests/Pods-OptimizelySDKEventDispatcherTVOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OCMock-tvOS/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs-tvOS/OHHTTPStubs.framework",
 			);
@@ -564,7 +564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOSTests/Pods-OptimizelySDKEventDispatcherTVOSTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelySDKEventDispatcherTVOSTests/Pods-OptimizelySDKEventDispatcherTVOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

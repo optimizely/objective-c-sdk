@@ -12,7 +12,7 @@ class MiniNotificationViewController: BaseNotificationViewController {
 
     var miniNotification: MiniNotification! {
         get {
-            return super.notification as! MiniNotification
+            return super.notification as? MiniNotification
         }
     }
     @IBOutlet weak var imageView: UIImageView!
@@ -47,26 +47,49 @@ class MiniNotificationViewController: BaseNotificationViewController {
     }
 
     override func show(animated: Bool) {
-        guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
+        guard let sharedUIApplication = MixpanelInstance.sharedUIApplication() else {
             return
         }
         canPan = false
+        var bounds: CGRect
+        if #available(iOS 13.0, *) {
+            let windowScene = sharedUIApplication
+                           .connectedScenes
+                           .filter { $0.activationState == .foregroundActive }
+                           .first
+            guard let scene = windowScene as? UIWindowScene else { return }
+            bounds = scene.coordinateSpace.bounds
+        } else {
+            bounds = UIScreen.main.bounds
+        }
         let frame: CGRect
-        if UIInterfaceOrientationIsPortrait(sharedApplication.statusBarOrientation)
+        if sharedUIApplication.statusBarOrientation.isPortrait
             && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
             frame = CGRect(x: InAppNotificationsConstants.miniSidePadding,
-                           y: UIScreen.main.bounds.size.height,
-                           width: UIScreen.main.bounds.size.width - (InAppNotificationsConstants.miniSidePadding * 2),
+                           y: bounds.size.height,
+                           width: bounds.size.width - (InAppNotificationsConstants.miniSidePadding * 2),
                            height: InAppNotificationsConstants.miniInAppHeight)
         } else { // Is iPad or Landscape mode
-            frame = CGRect(x: UIScreen.main.bounds.size.width / 4,
-                           y: UIScreen.main.bounds.size.height,
-                           width: UIScreen.main.bounds.size.width / 2,
+            frame = CGRect(x: bounds.size.width / 4,
+                           y: bounds.size.height,
+                           width: bounds.size.width / 2,
                            height: InAppNotificationsConstants.miniInAppHeight)
         }
-        window = UIWindow(frame: frame)
+        if #available(iOS 13.0, *) {
+            let windowScene = sharedUIApplication
+                .connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first
+            if let windowScene = windowScene as? UIWindowScene {
+                window = UIWindow(frame: frame)
+                window?.windowScene = windowScene
+            }
+        } else {
+            window = UIWindow(frame: frame)
+        }
+
         if let window = window {
-            window.windowLevel = UIWindowLevelAlert
+            window.windowLevel = UIWindow.Level.alert
             window.clipsToBounds = true
             window.rootViewController = self
             window.layer.cornerRadius = 6
@@ -101,7 +124,7 @@ class MiniNotificationViewController: BaseNotificationViewController {
     }
 
     @objc func didTap(gesture: UITapGestureRecognizer) {
-        if !isDismissing && gesture.state == UIGestureRecognizerState.ended {
+        if !isDismissing && gesture.state == UIGestureRecognizer.State.ended {
             delegate?.notificationShouldDismiss(controller: self,
                                                 callToActionURL: miniNotification.callToActionURL,
                                                 shouldTrack: true,
@@ -112,14 +135,14 @@ class MiniNotificationViewController: BaseNotificationViewController {
     @objc func didPan(gesture: UIPanGestureRecognizer) {
         if canPan, let window = window {
             switch gesture.state {
-            case UIGestureRecognizerState.began:
+            case UIGestureRecognizer.State.began:
                 panStartPoint = gesture.location(in: MixpanelInstance.sharedUIApplication()?.keyWindow)
-            case UIGestureRecognizerState.changed:
+            case UIGestureRecognizer.State.changed:
                 var position = gesture.location(in: MixpanelInstance.sharedUIApplication()?.keyWindow)
                 let diffY = position.y - panStartPoint.y
                 position.y = max(position.y, position.y + diffY)
                 window.layer.position = CGPoint(x: window.layer.position.x, y: position.y)
-            case UIGestureRecognizerState.ended, UIGestureRecognizerState.cancelled:
+            case UIGestureRecognizer.State.ended, UIGestureRecognizer.State.cancelled:
                 if window.layer.position.y > position.y + (InAppNotificationsConstants.miniInAppHeight / 2) {
                     delegate?.notificationShouldDismiss(controller: self,
                                                         callToActionURL: miniNotification.callToActionURL,
@@ -137,13 +160,13 @@ class MiniNotificationViewController: BaseNotificationViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
+        guard MixpanelInstance.sharedUIApplication() != nil else {
             return
         }
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { (ctx) in
             let frame: CGRect
-            if UIInterfaceOrientationIsPortrait(sharedApplication.statusBarOrientation)
+            if  UIDevice.current.orientation.isPortrait
                 && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
                 frame = CGRect(x: InAppNotificationsConstants.miniSidePadding,
                                y: UIScreen.main.bounds.size.height -
@@ -163,3 +186,4 @@ class MiniNotificationViewController: BaseNotificationViewController {
             }, completion: nil)
     }
 }
+
