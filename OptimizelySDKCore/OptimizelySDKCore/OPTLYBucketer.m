@@ -110,7 +110,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     }
     
     for (OPTLYTrafficAllocation *trafficAllocation in group.trafficAllocations) {
-        if (bucketValue <= trafficAllocation.endOfRange) {
+        if (bucketValue < trafficAllocation.endOfRange) {
             NSString *experimentId = trafficAllocation.entityId;
             OPTLYExperiment *experiment = [self.config getExperimentForId:experimentId];
             
@@ -151,7 +151,7 @@ NSString *const BUCKETING_ID_TEMPLATE = @"%@%@"; // "<user_id><experiment_id>"
     }
     
     for (OPTLYTrafficAllocation *trafficAllocation in experiment.trafficAllocations) {
-        if (bucketValue <= trafficAllocation.endOfRange) {
+        if (bucketValue < trafficAllocation.endOfRange) {
             
             NSString *variationId = trafficAllocation.entityId;
             OPTLYVariation *variation = [experiment getVariationForVariationId:variationId];

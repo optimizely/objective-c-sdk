@@ -41,11 +41,13 @@ class WebSocketWrapper: WebSocketDelegate {
     var connectivityIndiciatorWindow: UIWindow? = nil
     let connectCallback: (() -> Void)?
     let disconnectCallback: (() -> Void)?
+    let sessionObjectLock: DispatchQueue
 
     init(url: URL, keepTrying: Bool, connectCallback: (() -> Void)?, disconnectCallback: (() -> Void)?) {
         open = false
         connected = false
         session = [String: Any]()
+        sessionObjectLock = DispatchQueue(label: "com.mixpanel.session_object_lock", qos: .utility, attributes: .concurrent)
         self.url = url
         self.connectCallback = connectCallback
         self.disconnectCallback = disconnectCallback
@@ -65,17 +67,15 @@ class WebSocketWrapper: WebSocketDelegate {
     }
 
     func setSessionObjectSynchronized(with value: Any, for key: String) {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-
-        session[key] = value
+        sessionObjectLock.sync(flags: .barrier, execute: {
+            session[key] = value
+        })
     }
 
     func getSessionObjectSynchronized(for key: String) -> Any? {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-
-        return session[key]
+        sessionObjectLock.sync {
+            return session[key]
+        }
     }
 
     func open(initiate: Bool, maxInterval: Int = 0, maxRetries: Int = 0) {
@@ -173,7 +173,7 @@ class WebSocketWrapper: WebSocketDelegate {
             }
             connectivityIndiciatorWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: window.frame.size.width, height: 4))
             connectivityIndiciatorWindow?.backgroundColor = UIColor.clear
-            connectivityIndiciatorWindow?.windowLevel = UIWindowLevelAlert
+            connectivityIndiciatorWindow?.windowLevel = UIWindow.Level.alert
             connectivityIndiciatorWindow?.alpha = 0
             connectivityIndiciatorWindow?.isHidden = false
             recordingView = UIView(frame: connectivityIndiciatorWindow!.frame)
@@ -183,7 +183,7 @@ class WebSocketWrapper: WebSocketDelegate {
             indeterminateLayer?.frame = CGRect(x: 0, y: 0, width: 0, height: 4)
             recordingView?.layer.addSublayer(indeterminateLayer!)
             connectivityIndiciatorWindow?.addSubview(recordingView!)
-            connectivityIndiciatorWindow?.bringSubview(toFront: recordingView!)
+            connectivityIndiciatorWindow?.bringSubviewToFront(recordingView!)
 
             UIView.animate(withDuration: 0.3) {
                 self.connectivityIndiciatorWindow?.alpha = 1
@@ -212,8 +212,8 @@ class WebSocketWrapper: WebSocketDelegate {
         myAnimation.duration = duration
         myAnimation.fromValue = fromValue
         myAnimation.toValue = toValue
-        myAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        myAnimation.fillMode = kCAFillModeForwards
+        myAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        myAnimation.fillMode = CAMediaTimingFillMode.forwards
         myAnimation.isRemovedOnCompletion = false
         indeterminateLayer?.add(myAnimation, forKey: animationKey)
     }

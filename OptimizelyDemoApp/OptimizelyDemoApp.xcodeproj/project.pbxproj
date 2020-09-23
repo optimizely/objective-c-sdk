@@ -540,10 +540,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${PODS_ROOT}/Localytics/Localytics-iOS-5.1.0/Localytics.framework",
+				"${PODS_ROOT}/Localytics/Localytics-iOS-6.1.0/Localytics.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -555,7 +555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OptimizelyiOSDemoApp/Pods-OptimizelyiOSDemoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

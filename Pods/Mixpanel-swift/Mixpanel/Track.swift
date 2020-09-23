@@ -24,20 +24,22 @@ class Track {
         self.lock = lock
         self.metadata = metadata
     }
-
+    
     func track(event: String?,
                properties: Properties? = nil,
-               eventsQueue: inout Queue,
-               timedEvents: inout InternalProperties,
+               eventsQueue: Queue,
+               timedEvents: InternalProperties,
                superProperties: InternalProperties,
                distinctId: String,
-               epochInterval: Double) {
+               anonymousId: String?,
+               userId: String?,
+               hadPersistedDistinctId: Bool?,
+               epochInterval: Double) -> (eventsQueque: Queue, timedEvents: InternalProperties, properties: InternalProperties) {
         var ev = event
         if ev == nil || ev!.isEmpty {
             Logger.info(message: "mixpanel track called with empty event parameter. using 'mp_event'")
             ev = "mp_event"
         }
-
         assertPropertyTypes(properties)
         let epochSeconds = Int(round(epochInterval))
         let eventStartTime = timedEvents[ev!] as? Double
@@ -47,13 +49,22 @@ class Track {
         }
         p["token"] = apiToken
         p["time"] = epochSeconds
+        var shadowTimedEvents = timedEvents
         if let eventStartTime = eventStartTime {
-            self.lock.write {
-                timedEvents.removeValue(forKey: ev!)
-            }
+            shadowTimedEvents.removeValue(forKey: ev!)
             p["$duration"] = Double(String(format: "%.3f", epochInterval - eventStartTime))
         }
         p["distinct_id"] = distinctId
+        if anonymousId != nil {
+            p["$device_id"] = anonymousId
+        }
+        if userId != nil {
+            p["$user_id"] = userId
+        }
+        if hadPersistedDistinctId != nil  {
+            p["$had_persisted_distinct_id"] = hadPersistedDistinctId
+        }
+        
         p += superProperties
         if let properties = properties {
             p += properties
@@ -61,72 +72,83 @@ class Track {
 
         var trackEvent: InternalProperties = ["event": ev!, "properties": p]
         metadata.toDict().forEach { (k,v) in trackEvent[k] = v }
+        var shadowEventsQueue = eventsQueue
         
-        self.lock.write {
-            eventsQueue.append(trackEvent)
-            if eventsQueue.count > QueueConstants.queueSize {
-                eventsQueue.remove(at: 0)
-            }
+        shadowEventsQueue.append(trackEvent)
+        if shadowEventsQueue.count > QueueConstants.queueSize {
+            shadowEventsQueue.remove(at: 0)
         }
-
+        
+        return (shadowEventsQueue, shadowTimedEvents, p)
     }
 
-    func registerSuperProperties(_ properties: Properties, superProperties: inout InternalProperties) {
+    func registerSuperProperties(_ properties: Properties,
+                                 superProperties: InternalProperties) -> InternalProperties {
         if Mixpanel.mainInstance().hasOptedOutTracking() {
-            return
+            return superProperties
         }
-        self.lock.write {
-            assertPropertyTypes(properties)
-            superProperties += properties
-        }
+
+        var updatedSuperProperties = superProperties
+        assertPropertyTypes(properties)
+        updatedSuperProperties += properties
+        
+        return updatedSuperProperties
     }
 
     func registerSuperPropertiesOnce(_ properties: Properties,
-                                     superProperties: inout InternalProperties,
-                                     defaultValue: MixpanelType?) {
+                                     superProperties: InternalProperties,
+                                     defaultValue: MixpanelType?) -> InternalProperties {
         if Mixpanel.mainInstance().hasOptedOutTracking() {
-            return
+            return superProperties
         }
-        self.lock.write {
-            assertPropertyTypes(properties)
-                _ = properties.map() {
-                    let val = superProperties[$0.key]
-                    if val == nil ||
-                        (defaultValue != nil && (val as? NSObject == defaultValue as? NSObject)) {
-                        superProperties[$0.key] = $0.value
-                    }
-                }
-        }
-    }
 
-    func unregisterSuperProperty(_ propertyName: String, superProperties: inout InternalProperties) {
-        self.lock.write {
-            superProperties.removeValue(forKey: propertyName)
-        }
-    }
-
-    func clearSuperProperties(_ superProperties: inout InternalProperties) {
-        self.lock.write {
-            superProperties.removeAll()
-        }
-    }
-
-    func time(event: String?, timedEvents: inout InternalProperties, startTime: Double) {
-        if Mixpanel.mainInstance().hasOptedOutTracking() {
-            return
-        }
-        self.lock.write {
-            guard let event = event, !event.isEmpty else {
-                Logger.error(message: "mixpanel cannot time an empty event")
-                return
+        var updatedSuperProperties = superProperties
+        assertPropertyTypes(properties)
+        _ = properties.map() {
+            let val = updatedSuperProperties[$0.key]
+            if val == nil ||
+                (defaultValue != nil && (val as? NSObject == defaultValue as? NSObject)) {
+                updatedSuperProperties[$0.key] = $0.value
             }
-            timedEvents[event] = startTime
         }
+        
+        return updatedSuperProperties
     }
 
-    func clearTimedEvents(_ timedEvents: inout InternalProperties) {
-        self.lock.write {
-            timedEvents.removeAll()
+    func unregisterSuperProperty(_ propertyName: String,
+                                 superProperties: InternalProperties) -> InternalProperties {
+        
+        var updatedSuperProperties = superProperties
+        updatedSuperProperties.removeValue(forKey: propertyName)
+        return updatedSuperProperties
+    }
+
+    func clearSuperProperties(_ superProperties: InternalProperties) -> InternalProperties {
+        var updatedSuperProperties = superProperties
+        updatedSuperProperties.removeAll()
+        return updatedSuperProperties
+    }
+    
+    func updateSuperProperty(_ update: (_ superProperties: inout InternalProperties) -> Void, superProperties: inout InternalProperties) {
+        update(&superProperties)
+    }
+
+    func time(event: String?, timedEvents: InternalProperties, startTime: Double) -> InternalProperties {
+        if Mixpanel.mainInstance().hasOptedOutTracking() {
+            return timedEvents
         }
+        var updatedTimedEvents = timedEvents
+        guard let event = event, !event.isEmpty else {
+            Logger.error(message: "mixpanel cannot time an empty event")
+            return updatedTimedEvents
+        }
+        updatedTimedEvents[event] = startTime
+        return updatedTimedEvents
+    }
+
+    func clearTimedEvents(_ timedEvents: InternalProperties) -> InternalProperties {
+        var updatedTimedEvents = timedEvents
+        updatedTimedEvents.removeAll()
+        return updatedTimedEvents
     }
 }

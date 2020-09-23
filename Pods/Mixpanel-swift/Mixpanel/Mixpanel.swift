@@ -14,7 +14,7 @@ import UIKit
 /// The primary class for integrating Mixpanel with your app.
 open class Mixpanel {
 
-    #if !os(OSX)
+    #if !os(OSX) && !WATCH_OS
     /**
      Initializes an instance of the API with the given project token.
 
@@ -37,7 +37,7 @@ open class Mixpanel {
      */
     @discardableResult
     open class func initialize(token apiToken: String,
-                               launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil,
+                               launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil,
                                flushInterval: Double = 60,
                                instanceName: String = UUID().uuidString,
                                automaticPushTracking: Bool = true,
@@ -99,13 +99,13 @@ open class Mixpanel {
      - returns: returns the main Mixpanel instance
      */
     open class func mainInstance() -> MixpanelInstance {
-        let instance = MixpanelManager.sharedInstance.getMainInstance()
-        if instance == nil {
-            fatalError("You have to call initialize(token:) before calling the main instance, " +
+        if let instance = MixpanelManager.sharedInstance.getMainInstance() {
+            return instance
+        } else {
+            assert(false, "You have to call initialize(token:) before calling the main instance, " +
                 "or define a new main instance if removing the main one")
+            return Mixpanel.initialize(token: "")
         }
-
-        return instance!
     }
 
     /**
@@ -125,7 +125,6 @@ open class Mixpanel {
     open class func removeInstance(name: String) {
         MixpanelManager.sharedInstance.removeInstance(name: name)
     }
-
 }
 
 class MixpanelManager {
@@ -133,15 +132,17 @@ class MixpanelManager {
     static let sharedInstance = MixpanelManager()
     private var instances: [String: MixpanelInstance]
     private var mainInstance: MixpanelInstance?
+    private let readWriteLock: ReadWriteLock
 
     init() {
         instances = [String: MixpanelInstance]()
         Logger.addLogging(PrintLogging())
+        readWriteLock = ReadWriteLock(label: "com.mixpanel.instance.manager.lock")
     }
 
-    #if !os(OSX)
+    #if !os(OSX) && !WATCH_OS
     func initialize(token apiToken: String,
-                    launchOptions: [UIApplicationLaunchOptionsKey : Any]?,
+                    launchOptions: [UIApplication.LaunchOptionsKey : Any]?,
                     flushInterval: Double,
                     instanceName: String,
                     automaticPushTracking: Bool = true,
@@ -153,7 +154,9 @@ class MixpanelManager {
                                         automaticPushTracking: automaticPushTracking,
                                         optOutTrackingByDefault: optOutTrackingByDefault)
         mainInstance = instance
-        instances[instanceName] = instance
+        readWriteLock.write {
+            instances[instanceName] = instance
+        }
 
         return instance
     }
@@ -164,16 +167,23 @@ class MixpanelManager {
                     optOutTrackingByDefault: Bool = false) -> MixpanelInstance {
         let instance = MixpanelInstance(apiToken: apiToken,
                                         flushInterval: flushInterval,
-                                        name: instanceName)
+                                        name: instanceName,
+                                        optOutTrackingByDefault: optOutTrackingByDefault)
         mainInstance = instance
-        instances[instanceName] = instance
+        readWriteLock.write {
+            instances[instanceName] = instance
+        }
 
         return instance
     }
     #endif // os(OSX)
 
     func getInstance(name instanceName: String) -> MixpanelInstance? {
-        guard let instance = instances[instanceName] else {
+        var instance: MixpanelInstance? = nil
+        readWriteLock.read {
+            instance = instances[instanceName]
+        }
+        if instance == nil {
             Logger.warn(message: "no such instance: \(instanceName)")
             return nil
         }
@@ -185,17 +195,23 @@ class MixpanelManager {
     }
 
     func setMainInstance(name instanceName: String) {
-        guard let instance = instances[instanceName] else {
+        var instance: MixpanelInstance? = nil
+        readWriteLock.read {
+            instance = instances[instanceName]
+        }
+        if instance == nil {
             return
         }
         mainInstance = instance
     }
 
     func removeInstance(name instanceName: String) {
-        if instances[instanceName] === mainInstance {
-            mainInstance = nil
+        readWriteLock.write {
+            if instances[instanceName] === mainInstance {
+                mainInstance = nil
+            }
+            instances[instanceName] = nil
         }
-        instances[instanceName] = nil
     }
 
 }

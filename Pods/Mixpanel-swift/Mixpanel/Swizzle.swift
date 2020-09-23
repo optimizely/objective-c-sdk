@@ -8,19 +8,6 @@
 
 import Foundation
 
-extension DispatchQueue {
-    private static var _onceTracker = [String]()
-
-    class func once(token: String, block: () -> Void) {
-        objc_sync_enter(self); defer { objc_sync_exit(self) }
-        if _onceTracker.contains(token) {
-            return
-        }
-        _onceTracker.append(token)
-        block()
-    }
-}
-
 class Swizzler {
     static var swizzles = [Method: Swizzle]()
 
@@ -120,7 +107,7 @@ class Swizzle: CustomStringConvertible {
     var description: String {
         var retValue = "Swizzle on \(NSStringFromClass(type(of: self)))::\(NSStringFromSelector(selector)) ["
         for (key, value) in blocks {
-            retValue += "\t\(key) : \(value)\n"
+            retValue += "\t\(key) : \(String(describing: value))\n"
         }
         return retValue + "]"
     }

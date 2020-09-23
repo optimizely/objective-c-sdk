@@ -50,7 +50,17 @@ class JSONHandler {
 
     private class func makeObjectSerializable(_ obj: MPObjectToParse) -> MPObjectToParse {
         switch obj {
-        case is String, is Int, is UInt, is Double, is Float, is Bool:
+        case let obj as NSNumber:
+            if isBoolNumber(obj) {
+                return obj.boolValue
+            } else {
+                return obj
+            }
+
+        case let obj as Double where obj.isFinite:
+            return obj
+            
+        case is String, is Int, is UInt, is UInt64, is Float, is Bool:
             return obj
 
         case let obj as Array<Any>:
@@ -79,4 +89,11 @@ class JSONHandler {
         }
     }
 
+
+    private class func isBoolNumber(_ num: NSNumber) -> Bool
+    {
+        let boolID = CFBooleanGetTypeID()
+        let numID = CFGetTypeID(num)
+        return numID == boolID
+    }
 }
