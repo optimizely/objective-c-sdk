@@ -1,5 +1,12 @@
 # Optimizely Objective-C SDK Changelog
 
+## 3.4.1
+September 23rd, 2020
+
+### Bug Fixes
+* Fix a bucketing error at traffic allocation boundaries. ([#449](https://github.com/optimizely/objective-c-sdk/pull/449))
+* Fix get_variation input validation. ([#441](https://github.com/optimizely/objective-c-sdk/pull/441))
+
 ## 3.1.3
 August 8th, 2019
 

@@ -43,7 +43,7 @@ https://www.sqlite.org/threadsafe.html
 #### Cocoapod 
 1. Add the following lines to the _Podfile_:<pre>
     ```use_frameworks!```
-    ```pod 'OptimizelySDK<platform>', '~> 3.1.0'```
+    ```pod 'OptimizelySDK<platform>', '~> 3.1.4'```
 </pre>
 
 2. Run the following command: <pre>``` pod install ```</pre>
@@ -52,7 +52,7 @@ Further installation instructions for Cocoapods: https://guides.cocoapods.org/us
 
 #### Carthage
 1. Add the following lines to the _Cartfile_:<pre> 
-github "optimizely/objective-c-sdk" ~> 3.1.0
+github "optimizely/objective-c-sdk" ~> 3.1.4
 </pre>
 
 2. Run the following command:<pre>```carthage update```</pre>
