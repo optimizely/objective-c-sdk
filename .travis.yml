@@ -93,7 +93,7 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=3.1.3
+        - VERSION=3.1.4
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
@@ -106,11 +106,11 @@ jobs:
       os: osx
       osx_image: xcode10
       env:
-        - VERSION=3.1.3
+        - VERSION=3.1.4
       install:
         # install hub
         - wget https://github.com/github/hub/releases/download/v2.11.2/hub-darwin-amd64-2.11.2.tgz -O /tmp/hub-darwin-amd64-2.11.2.tgz && tar -xvf /tmp/hub-darwin-amd64-2.11.2.tgz -C /usr/local/opt && ln -s /usr/local/opt/hub-darwin-amd64-2.11.2/bin/hub /usr/local/bin/hub
         # upgrade cocoapods
-        - gem install cocoapods -v '1.6.1'
+        - gem install cocoapods -v '1.8.0'
       script:
         - Scripts/run_release.sh
