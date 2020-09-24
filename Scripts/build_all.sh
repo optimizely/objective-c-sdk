@@ -53,7 +53,6 @@ main() {
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKTVOSUniversal -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKUserProfileServiceiOS -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKUserProfileServiceTVOS -configuration Release "${action}"
-  xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelyiOSDemoApp -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKCoreiOSTests -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKCoreTVOSTests -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKDatafileManageriOSTests -configuration Release "${action}"
@@ -66,7 +65,6 @@ main() {
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKTVOSTests -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKUserProfileServiceiOSTests -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelySDKUserProfileServiceTVOSTests -configuration Release "${action}"
-  xcodebuild -workspace OptimizelySDK.xcworkspace -scheme Pods-OptimizelyTVOSDemoApp -configuration Release "${action}"
 }
 
 main
