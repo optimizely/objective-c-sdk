@@ -33,7 +33,15 @@ main() {
     # TODO: This isn't the best, but you can supply "clean" to our command.
     action="$1"
   fi;
-  # TODO: We'll need to specify certificate for the app builds.
+  
+  #------------------------------------------------------------------------------------
+  # NOTE: [use Xcode10 for now]
+  #  - Xcode11 fails for building "OptimizelySDKiOS-Universal" (confused with "Mac" as a destination target with no reason)
+  #    It works ok for all other builds including "OptimizelySDKtvOS-Universal"
+  #  - Xcode12 fails for building for all modules except for "OptimizelySDKCore" and "OptimizelySDKShared"
+  #    Link errors
+  #------------------------------------------------------------------------------------
+
   #xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelyiOSDemoApp -configuration Release "${action}"
   #xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelyTVOSDemoApp -configuration Release "${action}"
   xcodebuild -workspace OptimizelySDK.xcworkspace -scheme OptimizelySDKCoreiOS -configuration Release "${action}"
