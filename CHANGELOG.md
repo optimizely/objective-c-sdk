@@ -1,6 +1,6 @@
 # Optimizely Objective-C SDK Changelog
 
-## 3.4.1
+## 3.1.4
 September 23rd, 2020
 
 ### Bug Fixes
