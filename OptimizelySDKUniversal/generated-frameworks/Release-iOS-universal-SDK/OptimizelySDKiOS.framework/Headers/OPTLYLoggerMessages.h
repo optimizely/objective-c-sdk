@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright 2017-2019, Optimizely, Inc. and contributors                   *
+ * Copyright 2017-2020, Optimizely, Inc. and contributors                   *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
@@ -31,6 +31,8 @@ extern NSString *const OPTLYLoggerMessagesConversionFailure;
 extern NSString *const OPTLYLoggerMessagesUserIdInvalid;
 extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyEmpty;
 extern NSString *const OPTLYLoggerMessagesActivateExperimentKeyInvalid;
+extern NSString *const OPTLYLoggerMessagesGetVariationExperimentKeyEmpty;
+extern NSString *const OPTLYLoggerMessagesGetVariationExperimentKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesTrackEventKeyEmpty;
 extern NSString *const OPTLYLoggerMessagesTrackEventKeyInvalid;
 extern NSString *const OPTLYLoggerMessagesTrackEventNoAssociation;
