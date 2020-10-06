@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage                = "http://developers.optimizely.com/server"
   s.license                 = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
   s.author                  = "Optimizely"
-  s.ios.deployment_target   = "8.0"
+  s.ios.deployment_target   = "9.0"
   s.source                  = {
     :git => "https://github.com/optimizely/objective-c-sdk.git",
     :tag => "v"+s.version.to_s
@@ -18,4 +18,6 @@ Pod::Spec.new do |s|
   s.dependency 'OptimizelySDKEventDispatcher', "3.1.4"
   s.dependency 'OptimizelySDKUserProfileService', "3.1.4"
   s.dependency 'OptimizelySDKDatafileManager', "3.1.4"
+  s.dependency 'OptimizelySDKShared', "3.1.4"
+  s.dependency 'OptimizelySDKCore', "3.1.4"
 end
