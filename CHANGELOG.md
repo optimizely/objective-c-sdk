@@ -1,7 +1,7 @@
 # Optimizely Objective-C SDK Changelog
 
 ## 3.1.5
-October 6th, 2020
+October 7th, 2020
 
 ### Bug Fixes
 * Explicitly add secondary dependencies into podspecs to fix Xcode 12 build issue. ([#457](https://github.com/optimizely/objective-c-sdk/pull/457))

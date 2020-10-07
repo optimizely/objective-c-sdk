@@ -129,8 +129,8 @@ do
     printf "\t[${curPodSpec}] Verified podspec: ${releaseSDKVersion}\n"
 done
 
-# check total 17 (= 7 + 10) places replaced
-expTotalCount=17
+# check total 24 (= 7 + 17) places replaced
+expTotalCount=24
 if (( ${countChanges} == ${expTotalCount} ))
 then
     printf "Verified successfully! (podspec version updated in ${expTotalCount} places) \n"
