@@ -5,7 +5,6 @@ os: linux
 stages:
   - name: 'Lint markdown files'
   - name: 'Integration tests'
-  - name: 'Benchmarking tests'
   - name: 'SourceClear and Lint'
   - name: 'Unit Tests'
   - name: 'Prepare for release'
@@ -15,8 +14,7 @@ stages:
 
 jobs:
   include:
-    - &integrationtest
-      stage: 'Integration tests'
+    - stage: 'Integration tests'
       language: minimal
       os: linux
       env:
@@ -32,9 +30,6 @@ jobs:
       script:
         - $HOME/travisci-tools/trigger-script-with-status-update.sh
       after_success: travis_terminate 0
-    - <<: *integrationtest
-      stage: 'Benchmarking tests'
-      env: SDK=objective-c FULLSTACK_TEST_REPO=Benchmarking BUILD_NUMBER=${TRAVIS_JOB_NUMBER/.} SDK_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 
     - stage: 'Lint markdown files'
       os: linux
