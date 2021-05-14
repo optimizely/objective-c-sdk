@@ -27,7 +27,7 @@ Existing Objective-C SDK users can look at our [guide document](https://docs.dev
 
 ### Using the SDK
 
-See [Install the iOS and tvOS SDKs](https://docs.developers.optimizely.com/full-stack/docs/install-the-ios-and-tvos-sdks) to learn how to set
+See [Install the iOS and tvOS SDKs](https://docs.developers.optimizely.com/full-stack/docs/install-sdk-objective-c) to learn how to set
 up an Optimizely X project and start using the SDK.
 
 ### Requirements
